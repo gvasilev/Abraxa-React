@@ -1,23 +1,38 @@
-
-import './utils/AbraxaConstants.js';
-import './billing/Billing.jsx'
+import { useAuth0 } from '@auth0/auth0-react';
+import Cookies from 'js-cookie';
+import './preloader/Preloader.jsx'
+import './preloader/Preloader.css'
+import Preloader from './preloader/Preloader.jsx';
 import './accounts/AccountDetails.jsx'
-import './core/components/AbraxaFormlist.js'
-import './view/portcall/agent/payments/PaymentsList.js'
-import './view/tasks/TasksList.js'
-import './view/comments/CommentsList.js'
-import './view/comments/CommentsInput.js'
-import './core/components/combo/OrganizationCombo.js'
-import ReExt from '@gusmano/reext';
+import TempView from '../TempView.jsx';
 
 const App = () => {
-    return (
-        <ReExt xtype='account.details'
-               style={{flex: 2, border: '1px solid gray'}}
-               onSelect={(sender, record) => {
-                   console.log('row selected', record[0])
-               }}
-        />
-    )
+    const { isLoading, isAuthenticated, error, user, getIdTokenClaims, getAccessTokenSilently, loginWithRedirect, logout } = useAuth0();
+    const fetchToken = async function () {
+        const tokenClaims = await getIdTokenClaims();
+        Cookies.set('token', tokenClaims.__raw);
+    };
+
+    if (isLoading) {
+        return <Preloader />;
+    }
+    if (error) {
+        return <div>Oops... {error.message}</div>;
+    }
+
+    if (isAuthenticated) {
+        fetchToken();
+
+        return (
+            <div>
+                <TempView />
+                <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                    Log out
+                </button>
+            </div>
+        );
+    } else {
+        loginWithRedirect();
+    }
 }
-export default App
+export default App;

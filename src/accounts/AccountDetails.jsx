@@ -1,3 +1,12 @@
+import '../utils/AbraxaConstants.js';
+import '../billing/Billing.jsx'
+import '../core/components/AbraxaFormlist.js'
+import '../view/portcall/agent/payments/PaymentsList.js'
+import '../view/tasks/TasksList.js'
+import '../view/comments/CommentsList.js'
+import '../view/comments/CommentsInput.js'
+import '../core/components/combo/OrganizationCombo.js'
+
 //ViewModel
 import '../view/portcall/agent/accounts/AccountsViewModel.js';
 
