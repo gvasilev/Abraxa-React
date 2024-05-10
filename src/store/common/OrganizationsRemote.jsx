@@ -1,5 +1,5 @@
 import Env from '../../env.jsx'; // Import Env from env.jsx
-import '../../model/company/Company.js'; // Import 'src/model/company/Company.js
+import '../../model/company/Company.jsx'; // Import 'src/model/company/Company.jsx
 
 Ext.define('Abraxa.store.common.OrganizationsRemote', {
     extend: 'Ext.data.Store',
