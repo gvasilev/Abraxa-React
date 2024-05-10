@@ -5,7 +5,7 @@ import '../core/components/AbraxaPanel.js';
 
 // Common Components
 import '../view/common/components/UpdatedBy.js';
-import '../view/common/components/PublicUpdatedBy.js';
+import '../view/common/components/PublicUpdatedBy.jsx';
 import '../view/common/button/ImportButton.js';
 
 // Portcall Components

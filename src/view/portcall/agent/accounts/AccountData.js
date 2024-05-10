@@ -1,5 +1,5 @@
 import moment from 'moment';
-import '../../../../view/common/combo/BankAccount.js';
+import '../../../common/combo/BankAccount.jsx';
 
 Ext.define('Abraxa.view.portcall.accounts.AccountData', {
     extend: 'Ext.Container',

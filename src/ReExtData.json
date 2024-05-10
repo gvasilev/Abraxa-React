@@ -12,7 +12,7 @@
     "pivot": false,
     "pivotd3": false,
     "pivotlocale": false,
-    "froalaeditor": false,
+    "froalaeditor": true,
     "materialicons": true
   },
   "debug": true,

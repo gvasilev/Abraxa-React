@@ -20,7 +20,7 @@ import '../core/components/AbraxaPanel.js';
 
 // Common Components
 import '../view/common/components/UpdatedBy.js';
-import '../view/common/components/PublicUpdatedBy.js';
+import '../view/common/components/PublicUpdatedBy.jsx';
 import '../view/common/button/ImportButton.js';
 
 // Portcall Components
@@ -42,13 +42,13 @@ import '../view/vouchers/VouchersDialog.js';
 import '../view/adocs/FinancialDocumentForm.js';
 
 import '../view/portcall/agent/disbursements/DisbursementsUploadController.js'
-import '../view/common/combo/DefaultExpensesCombo.js'
+import '../view/common/combo/DefaultExpensesCombo.jsx'
 import '../view/portcall/agent/disbursements/DisbursementsMyCostCenterCombo.js'
 import '../core/components/AbraxaNumberfield.js'
 import '../core/components/combo/OrganizationNoFilters.js'
-import '../core/components/Abraxa.PriceField.js'
-import '../core/components/combo/Currency.js'
-import '../core/components/Abraxa.CurrencyField.js'
+import '../core/components/Abraxa.PriceField.jsx'
+import '../core/components/combo/Currency.jsx'
+import '../core/components/Abraxa.CurrencyField.jsx'
 import '../view/common/combo/CostCentersCombo.js'
 
 import '../core/override/Abraxa.Component.js'
