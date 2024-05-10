@@ -1,0 +1,79 @@
+// Global search
+.a-global-search {
+    margin: auto;
+}
+
+// Search panel
+.x-panel-slide-search {
+    box-shadow: 0 1px 48px 0 rgba(0, 0, 0, 0.16);
+
+    .x-searchfield {
+        height: 40px;
+
+        .x-input-wrap-el {
+            border-radius: 20px;
+        }
+
+        .x-input-el {
+            padding-left: 0;
+        }
+
+        .x-searchtrigger {
+            width: 40px;
+
+            .x-icon-el {
+                width: 40px;
+                height: 40px;
+
+                &::before {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .x-cleartrigger {
+            position: relative;
+            right: 8px;
+
+            .x-icon-el {
+                &::before {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    .a-search-no-results {
+        padding: 0;
+        color: material-color(grey, '500');
+    }
+
+    .a-search-results {
+        .x-dataitem {
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &.x-hovered {
+                background-color: material-color(grey, '50');
+            }
+        }
+    }
+
+    .a-search-header {
+        min-height: 36px;
+        font-weight: $font-weight-bold;
+        margin-top: 16px;
+        padding: 0 8px;
+
+        .a-count {
+            color: material-color(grey, '500');
+        }
+    }
+
+    .x-dataview {
+        // padding-bottom: 16px;
+        margin-bottom: 16px;
+        // border-bottom: 1px solid material-color(grey, '100')
+    }
+}

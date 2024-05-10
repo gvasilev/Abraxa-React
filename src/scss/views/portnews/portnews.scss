@@ -1,0 +1,583 @@
+// TODO: Move to Application.scss
+// Background light color
+$bg-light-color: #fafbfb;
+
+// Port news main container
+.a-portnews-main-container {
+}
+
+// Port news inner container (card)
+.a-portnews-inner-container {
+    max-width: 1128px;
+    margin: 16px auto !important;
+
+    @media only screen and (min-width: 1280px) {
+        min-width: 1128px;
+    }
+
+    &.is-collapsed {
+        .a-portnews-card-item {
+            .a-card-header-title {
+                max-width: 340px;
+            }
+        }
+    }
+
+    &:not(.is-collapsed) {
+        .a-portnews-card-item {
+            .a-card-header-title {
+                .h3 {
+                    max-width: 440px;
+                }
+            }
+        }
+    }
+}
+
+// Port news list / dataview wrapper
+.a-portnews-dataview-container {
+    flex: 1;
+
+    > .x-body-el {
+        padding: 0 24px;
+    }
+
+    // Empty Container
+    .x-emptytext {
+        background-color: $bg-light-color;
+    }
+}
+
+// Port news card
+.a-portnews-card-item {
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    margin: 24px 0;
+    transition: border-color $transition-default;
+
+    // Card header
+    .a-card-header {
+        background-color: $viewport-color;
+        border-bottom: 1px solid $border-color;
+
+        > .x-body-el {
+            padding: 16px 24px;
+        }
+    }
+
+    // Card title
+    .a-card-header-title {
+        margin-right: 32px;
+        flex: 1;
+        min-height: 24px;
+
+        > .x-innerhtml {
+            // display: flex;
+        }
+
+        .h3 {
+            margin: 0;
+            font-weight: bold;
+            display: inline;
+
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+
+            -webkit-hyphenate-character: '-';
+            hyphenate-character: '-';
+
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .a-status-badge {
+            margin-left: 6px;
+            position: relative;
+            top: -1px;
+        }
+    }
+
+    // Card extra
+    .a-card-header-extra {
+        .a-card-header-date + .a-card-header-action {
+            margin-left: 24px;
+        }
+    }
+
+    // Card header date
+    .a-card-header-date {
+        .a-date-title {
+            color: material-color(blue-grey, '700');
+            font-size: 12px;
+        }
+
+        .a-date-value {
+            font-size: 13px;
+        }
+    }
+
+    // Card body
+    .a-card-body {
+        > .x-body-el {
+            padding: 0 24px;
+        }
+    }
+
+    // Card body text
+    .a-card-body-text {
+        padding: 16px 0;
+    }
+
+    // Card info bar
+    .a-card-info-bar {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    // Card info updated
+    .a-card-info-updated {
+        padding-left: 12px;
+        margin-left: 12px;
+        border-left: 1px solid $border-color-light;
+
+        > .x-innerhtml {
+            display: flex;
+            align-items: center;
+
+            i {
+                font-size: 16px;
+                margin-right: 6px;
+                color: $icon-light-color;
+            }
+        }
+    }
+
+    // Card info list
+    .a-card-info-list {
+        > .x-innerhtml {
+            display: flex;
+            align-items: center;
+        }
+
+        i {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .a-sep-bullet {
+            &::before {
+                content: '\2022';
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+        }
+    }
+
+    // Card footer
+    .a-card-footer {
+        height: 64px;
+        border-top: 1px solid $border-color;
+        margin-top: -1px;
+        box-shadow: none;
+
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+            justify-content: flex-start;
+        }
+    }
+
+    // Hovered / Focused
+    &.x-hovered {
+        border-color: rgba($link-abraxa, 0.4);
+
+        .a-card-header {
+            cursor: pointer;
+            background-color: $selected-abraxa-bgr-color;
+        }
+    }
+}
+
+// Port news filters
+.a-portnews-filters {
+    width: 360px;
+    border-left: 1px solid $border-color-light;
+
+    > .x-body-el {
+        padding: 24px;
+    }
+}
+
+// Tag group
+.a-tags-group {
+    margin: 8px -4px;
+}
+
+// Tag badge
+// TODO: Move to badges.scss
+.a-tag-badge {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    border-radius: 6px;
+    padding: 0 6px;
+    font-size: 11px;
+    font-weight: $font-weight-bold;
+    background-color: $viewport-color;
+    cursor: pointer;
+    margin: 4px;
+
+    &:hover {
+        background-color: rgba(0, 120, 215, 0.12);
+    }
+
+    i {
+        font-size: 14px;
+    }
+
+    .x-innerhtml {
+        display: flex;
+        align-items: center;
+        line-height: 1;
+
+        &::before {
+            font-family: 'Material Symbols Rounded';
+            content: 'info';
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 300,
+                'GRAD' 0,
+                'opsz' 24;
+            margin-right: 6px;
+        }
+    }
+
+    // Temp styles
+    &.a-tag-default {
+        background-color: $viewport-color;
+
+        .x-innerhtml {
+            &::before {
+                content: 'info';
+            }
+        }
+    }
+
+    &.a-tag-lineup {
+        background-color: rgba(63, 81, 181, 0.08);
+
+        .x-innerhtml {
+            &::before {
+                content: 'clear_all';
+                color: #3f51b5;
+            }
+        }
+    }
+
+    &.a-tag-restrictions {
+        background-color: rgba(233, 30, 99, 0.08);
+
+        .x-innerhtml {
+            &::before {
+                content: 'report_off';
+                color: #e91e63;
+            }
+        }
+    }
+
+    &.a-tag-warning {
+        background-color: #fff3e0;
+
+        .x-innerhtml {
+            &::before {
+                content: 'emergency_home';
+                color: #f3c46b;
+            }
+        }
+    }
+
+    &.a-tag-sustainability {
+        background-color: rgba(0, 150, 136, 0.08);
+
+        .x-innerhtml {
+            &::before {
+                content: 'bookmark_added';
+                color: #009688;
+            }
+        }
+    }
+
+    &.a-pressed {
+        background-color: $link-abraxa;
+        color: #fff;
+
+        .x-innerhtml {
+            &::before {
+                color: #fff;
+            }
+        }
+    }
+}
+
+// Status new
+// TODO: Move to badges.scss file
+.a-status-new {
+    background-color: $link-abraxa;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+// Color light grey
+// TODO: Move to colors.scss
+
+.c-light-grey-200 {
+    color: #6b7c93;
+}
+
+// Color blue grey
+// TODO: Move to colors.scss
+.c-blue-grey-700 {
+    color: material-color(blue-grey, '700');
+}
+
+// Color link
+// TODO: Move to colors.scss
+.c-link {
+    color: $link-abraxa !important;
+}
+
+// New field icon - Feed
+// TODO: Move to fields.scss
+.a-field-icon {
+    &.icon-feed {
+        .x-before-input-el {
+            &::before {
+                content: 'lab_profile';
+            }
+        }
+    }
+}
+
+// Field icon experimental
+// TODO: Test it
+.a-field-icon {
+    .x-before-input-el {
+        color: $icon-color;
+    }
+}
+
+// Dialog full screen
+// TODO: Move to dialogs.scss
+.a-dialog-fullscreen {
+    border-radius: 0;
+    box-shadow: none;
+
+    // Override default dialog styles
+    .x-dialog-body-el {
+        background-color: $viewport-color;
+    }
+
+    .x-panel-outer-border-trl {
+        background-color: $viewport-color;
+        border-radius: 0;
+    }
+
+    .x-dialogheader {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 9;
+    }
+
+    // Dialog title
+    .a-dialog-card-title {
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        text-align: center;
+        margin-top: 24px;
+        margin-bottom: 32px;
+    }
+
+    // Dialog card
+    .a-dialog-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: $shadow;
+        width: 740px;
+        margin: auto;
+
+        > .x-body-el {
+            padding: 32px;
+        }
+    }
+
+    // Dialog Froala
+    .a-instructions-container {
+        .x-label-el {
+            font-size: 14px;
+            font-weight: $font-weight-bold;
+            margin-bottom: 8px;
+        }
+
+        .x-containerfield {
+            .x-body-wrap-el {
+                border: 1px solid $border-color;
+                border-radius: 6px;
+            }
+        }
+
+        .fr-toolbar {
+            border-top: 0;
+        }
+    }
+
+    // Dialog footer
+    .a-dialog-card-footer {
+        border-radius: 0;
+        box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+
+        > .x-body-el {
+            justify-content: center;
+        }
+
+        .a-dialog-card-footer-inner {
+            width: 740px;
+
+            > .x-body-el {
+                text-align: right;
+            }
+        }
+    }
+}
+
+// Dialog Card Layout
+.a-dialog-card-layout {
+    .x-mask {
+        &.x-loading-mask {
+            background-color: $viewport-color;
+        }
+    }
+
+    .a-attachment-list {
+        margin: 0 -8px;
+    }
+}
+
+// TODO: Refactor Attachment Component
+.a-card-info-list {
+    .a-attachment-item {
+        position: relative;
+        margin: 8px;
+        padding: 12px 24px 12px 12px;
+    }
+}
+
+// Date Panel UI
+// TODO: Move to Application.scss
+@include datepanel-ui(
+    $disabled-cell-background-color: #fff,
+    $disabled-cell-color: $text-light-color,
+    $focused-cell-outline-color: $accent-color,
+    $selected-focused-cell-outline-color: $accent-color,
+    $selected-cell-background-color: $accent-color !important,
+    $today-cell-color: #fff !important,
+    $today-cell-background-color: $accent-color !important
+);
+
+// Fix Date Panel Cell
+.x-dateview {
+    .x-cell {
+        &:not(.x-disabled),
+        &:not(.x-today) {
+            &:hover {
+                > .x-inner {
+                    background-color: $viewport-color;
+                }
+            }
+        }
+
+        &.x-disabled {
+            > .x-inner {
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+// Background color red
+// TODO: Move to colors.scss
+.bg-pink-500 {
+    background-color: material-color(pink, '500') !important;
+}
+
+.bg-blue-grey-100 {
+    background-color: material-color(blue-grey, '100') !important;
+}
+
+// Dashboard News Feed Button
+.a-button-dashboard-newsfeed-container {
+    > .x-body-el {
+        padding: 0 16px;
+    }
+
+    .a-portnews-button-loadmask {
+        height: 36px;
+        flex-direction: column;
+        align-items: end;
+        margin: 0 16px;
+        border-radius: 6px;
+        background-color: transparent;
+
+        .x-mask-inner {
+            right: -32.5px;
+        }
+    }
+
+    .x-button {
+        &.x-button-default {
+            .x-inner-el {
+                background-color: #fff;
+            }
+
+            &.a-has-counter {
+                .bg-pink-500 {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+// Fix
+// TODO: Update style in fields.scss
+.x-textfield {
+    &.x-focused {
+        .x-dataview {
+            background-color: transparent;
+        }
+    }
+
+    &.x-searchfield {
+        &.a-field-icon {
+            .x-before-input-el {
+                margin-left: 12px;
+            }
+        }
+    }
+}
+
+// Text Field UI
+// TODO: Move to Application.scss
+@include textfield-ui(
+    $ui: 'filled-light',
+    $input-border-width: 0,
+    $input-padding: 6px 8px,
+    $input-padding-big: 6px 8px,
+    $border-radius: 8px,
+    $input-background-color: $viewport-color,
+    $focused-input-background-color: $selected-abraxa-bgr-color
+);

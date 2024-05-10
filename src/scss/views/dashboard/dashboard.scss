@@ -1,0 +1,315 @@
+// Dasboard fake graphs
+.a-card-bgr-01 {
+    background-image: url('https://static.abraxa.com/images/img-dashboard-01.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.a-card-bgr-02 {
+    background-image: url('https://static.abraxa.com/images/img-dashboard-02.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.a-card-bgr-03 {
+    background-image: url('https://static.abraxa.com/images/img-dashboard-03.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+// Dashboard Stats
+.a-dashboard-stats {
+    .item {
+        &.item-inq,
+        &.item-app {
+            border-radius: 8px;
+            margin: 8px;
+            height: 145px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .inner {
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .title {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .info {
+            font-size: 12px;
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            opacity: 0.4;
+        }
+
+        &.item-inq {
+            background-color: $base-abraxa;
+        }
+
+        &.item-app {
+            background-color: $accent-color;
+        }
+    }
+}
+
+// Dashboard Tab Stats
+.a-dashboard-tabstats {
+    .x-listitem {
+        border: 0;
+        background-color: #fff !important;
+
+        &.x-hovered {
+            background-color: #fff !important;
+        }
+    }
+
+    .x-innerhtml {
+        width: 100%;
+    }
+
+    .x-listitem-inner-el {
+        padding: 0;
+    }
+
+    .a-list {
+        display: flex;
+
+        .item {
+            display: flex;
+            padding: 36px 24px;
+
+            .sm-title {
+                color: material-color(blue-grey, '500');
+                text-transform: uppercase;
+            }
+
+            .sm-value {
+                font-weight: 700;
+                line-height: 1;
+            }
+
+            &.current {
+                align-items: center;
+                justify-content: space-between;
+                border-right: 1px solid material-color(grey, '100');
+                width: 240px;
+
+                .sm-value {
+                    color: $accent-color;
+                    font-size: 42px;
+                }
+            }
+
+            &:not(.current) {
+                flex: 1;
+                align-items: center;
+                flex-direction: column;
+
+                .sm-value {
+                    font-size: 24px;
+                    margin-bottom: 8px;
+                }
+            }
+
+            &.pending {
+                .sm-value {
+                    color: material-color(yellow, 'a-yellow');
+                }
+            }
+
+            &.submitted {
+                .sm-value {
+                    color: $base-abraxa;
+                }
+            }
+
+            &.enRoute {
+                .sm-value {
+                    color: $base-abraxa;
+                }
+            }
+
+            &.inPort {
+                .sm-value {
+                    color: material-color(yellow, 'a-yellow');
+                }
+            }
+
+            &.sailed {
+                .sm-value {
+                    color: material-color(green, 'a-green');
+                }
+            }
+        }
+    }
+}
+
+// Dashboard container
+.a-dashboard {
+    // Scroll bar
+
+    ::-webkit-scrollbar-track {
+        margin-top: 8px;
+    }
+
+    &:not(:hover) {
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+    }
+}
+
+// Dashboard KPIs - New appointments
+.a-dashboard-new-appointments {
+    // .a-titlebar {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     z-index: 9;
+    // }
+
+    .a-new-appointments {
+        position: absolute;
+        left: 0;
+        z-index: 9;
+        height: 164px;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+        text-align: center;
+        width: 140px;
+
+        .a-digit {
+            strong {
+                font-size: 72px;
+                letter-spacing: $letter-spacing;
+                font-weight: 700;
+                color: $base-abraxa;
+                line-height: 1.2;
+            }
+
+            .sm-title {
+                font-size: 16px;
+                letter-spacing: $letter-spacing;
+                color: material-color(blue-grey, '200');
+            }
+        }
+
+        .a-percent {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 12px 24px;
+            border-top: 1px solid $border-color-light;
+
+            span {
+                margin-top: 4px;
+                display: inline-flex;
+                align-items: center;
+
+                &::before {
+                    font-family: 'Material Symbols Rounded';
+                    margin-left: -16px;
+                }
+            }
+
+            .sm-title {
+                font-weight: 400;
+                font-size: 12px;
+                color: material-color(blue-grey, '200');
+                display: block;
+            }
+
+            &.a-up-value {
+                span {
+                    color: material-color(teal, '500');
+
+                    &::before {
+                        content: 'arrow_drop_up';
+                    }
+                }
+            }
+
+            &.a-down-value {
+                span {
+                    color: material-color(pink, '500');
+
+                    &::before {
+                        content: 'arrow_drop_down';
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Dashboard heading
+.a-dashboard-heading {
+    padding: 0 16px 16px 16px;
+
+    h2 {
+        margin: 0 0 4px 0;
+        font-size: 24px;
+        font-weight: 400;
+        color: $text-color;
+    }
+
+    .a-subheading {
+        color: rgba($text-color, 0.6);
+    }
+}
+
+// Dashboard map
+.a-dashboard-map {
+    background-image: url(/images/img-sample-map.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+// Dashboard KPIs - Balance
+.a-dashboard-balance {
+    .a-balance {
+        strong {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: $letter-spacing;
+
+            small {
+                font-size: 16px;
+            }
+        }
+    }
+
+    &.a-positive-value {
+        .a-balance {
+            strong {
+                color: $color-completed;
+            }
+        }
+    }
+
+    &.a-negative-value {
+        .a-balance {
+            strong {
+                color: material-color(pink, '500');
+            }
+        }
+    }
+}

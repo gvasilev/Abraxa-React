@@ -1,0 +1,21 @@
+{
+  "sdkversion": "7.7.0",
+  "toolkit": "modern",
+  "theme": "material",
+  "packages": {
+    "charts": false,
+    "fontawesome": false,
+    "ux": false,
+    "calendar": false,
+    "d3": false,
+    "exporter": true,
+    "pivot": false,
+    "pivotd3": false,
+    "pivotlocale": false,
+    "froalaeditor": false,
+    "materialicons": true
+  },
+  "debug": true,
+  "license": "b116e32e-0847-4764-94ef-a16987070409",
+  "url": "local"
+}

@@ -1,0 +1,321 @@
+// Dialog full screen
+// TODO: Compare with branch DEV-2320-Create-the-frontend-module-backbone
+// TODO: Move to dialogs.scss
+.a-dialog-fullscreen {
+    border-radius: 0;
+    box-shadow: none;
+
+    // Override default dialog styles
+    .x-dialog-body-el {
+        background-color: $viewport-color;
+    }
+
+    .x-panel-outer-border-trl {
+        background-color: $viewport-color;
+        border-radius: 0;
+    }
+
+    .x-dialogheader {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 9;
+    }
+
+    // Dialog title
+    .a-dialog-card-title {
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        text-align: center;
+        margin-top: 24px;
+        margin-bottom: 32px;
+    }
+
+    // Dialog card
+    .a-dialog-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: $shadow;
+        width: 740px;
+        margin: auto;
+
+        > .x-body-el {
+            padding: 32px;
+        }
+    }
+
+    // Dialog Froala
+    .a-instructions-container {
+        .x-label-el {
+            font-size: 14px;
+            font-weight: $font-weight-bold;
+            margin-bottom: 8px;
+        }
+
+        .x-containerfield {
+            .x-body-wrap-el {
+                border: 1px solid $border-color;
+                border-radius: 6px;
+            }
+        }
+
+        .fr-toolbar {
+            border-top: 0;
+        }
+    }
+
+    // Dialog footer
+    .a-dialog-card-footer {
+        border-radius: 0;
+        box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+
+        > .x-body-el {
+            justify-content: center;
+        }
+
+        .a-dialog-card-footer-inner {
+            width: 740px;
+
+            > .x-body-el {
+                text-align: right;
+            }
+        }
+    }
+
+    // Dialog Close Button
+    .x-tool-tool-lg {
+        margin: 16px 4px 0 6px;
+
+        .x-icon-el {
+            width: 40px;
+            height: 40px;
+
+            &::before {
+                font-size: 24px;
+                font-family: 'Material Symbols Rounded';
+                font-variation-settings:
+                    'FILL' 0,
+                    'wght' 300,
+                    'GRAD' 0,
+                    'opsz' 24;
+            }
+        }
+    }
+}
+
+// Dialog Card Footer MD
+// TODO: Merge with Dialog Full Screen
+.a-dialog-fullscreen {
+    .a-dialog-card-footer-inner-md {
+        width: 1024px !important;
+    }
+}
+
+// Dialog MD
+.a-dialog-fullscreen {
+    .a-dialog-card-md {
+        width: 1024px !important;
+    }
+
+    .a-dialog-card {
+        .a-dialog-card-body {
+            > .x-body-el {
+                padding-left: 32px;
+                padding-right: 32px;
+                padding-bottom: 16px;
+            }
+        }
+    }
+}
+
+// Card From Container
+.a-card-form {
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: mix(#fff, $base-light-color, 75%);
+    margin: 16px 0;
+
+    .a-collapsible-title {
+        height: 56px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .a-collapsible-container {
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 24px;
+        }
+    }
+
+    .a-form-container {
+        > .x-body-el {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        &.a-form-4cols {
+            .a-field-container {
+                width: 205px;
+                min-width: 205px;
+            }
+        }
+
+        .a-field-container {
+            margin: 8px;
+
+            // Data suffix attribute
+            .x-field {
+                .x-after-input-el[data-suffix] {
+                    &::before {
+                        content: attr(data-suffix);
+                        font-size: 13px;
+                        color: $color-light-grey;
+                        display: flex;
+                        align-items: center;
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            &.a-field-multiple,
+            &.a-field-switch {
+                .x-label {
+                    font-size: 13px;
+                    color: material-color(blue-grey, '500');
+                    line-height: 16px;
+                }
+            }
+
+            &.a-field-multiple {
+                .x-label {
+                    padding: 0 0 8px 0;
+                }
+
+                .x-field {
+                    flex: 1;
+                }
+
+                .a-spacer {
+                    width: 8px;
+                    height: 1px;
+                    background-color: $border-color;
+                    margin: 0 8px;
+                }
+            }
+
+            &.a-field-switch {
+                border-bottom: 1px solid $border-color;
+
+                > .x-body-el {
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    padding-right: 8px;
+                }
+            }
+        }
+    }
+
+    .a-sep-form {
+        margin: 12px 20px;
+    }
+}
+
+// Data Field Container
+.a-data-field-container {
+    max-width: 910px;
+    background-color: transparent !important;
+
+    .a-field-container {
+        max-width: 205px;
+    }
+}
+
+// TODO: Move to Application.scss
+@include textfield-ui(
+    $ui: 'field-md',
+    $input-background-color: #fff,
+    $input-padding: 4px 8px,
+    $focused-input-background-color: #fff
+);
+
+// TODO: Fix this in fields.scss
+.x-field-field-md {
+    .x-before-input-el {
+        height: inherit;
+    }
+}
+
+// TODO: Move to material-icons.scss
+.md-icon-expand-all {
+    &::before {
+        content: 'expand_all';
+    }
+}
+
+.md-icon-collapse-all {
+    &::before {
+        content: 'collapse_all';
+    }
+}
+
+// TODO: Move to fields.scss
+.a-field-icon {
+    &.icon-warehouse {
+        .x-before-input-el {
+            &::before {
+                content: 'warehouse';
+            }
+        }
+    }
+}
+
+// Info Box Danger
+// Extend class in containers.scss
+.a-info-box {
+    &.a-danger-box {
+        align-items: start;
+        background-color: material-color(pink, '50');
+
+        i {
+            color: material-color(pink, '500');
+        }
+    }
+
+    ul {
+        margin: 8px 0 0;
+        padding-left: 16px;
+
+        li {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+    }
+}
+
+// Header Info Bar
+// TODO: Compare and merge with directory.scss
+.a-header-info-bar {
+    border-bottom: 1px solid $border-color-light;
+    margin-bottom: 24px;
+
+    > .x-body-el {
+        padding: 0px 32px 16px;
+    }
+
+    .a-header-info-item {
+        line-height: 1.2;
+
+        &:not(:last-of-type) {
+            margin-right: 32px;
+            padding-right: 32px;
+            border-right: 1px solid $border-color-light;
+        }
+
+        .a-header-info-value {
+            font-size: 16px;
+            font-weight: $font-weight-bold;
+        }
+    }
+}

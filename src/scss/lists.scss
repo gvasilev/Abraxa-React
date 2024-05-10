@@ -1,0 +1,383 @@
+// Main header dropdown - recently opened list
+.a-list-recent {
+    .x-innerhtml {
+        width: 100%;
+    }
+
+    .x-listitem {
+        cursor: pointer;
+    }
+
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .col,
+    .col-auto {
+        padding: 0 4px;
+    }
+
+    i {
+        font-weight: 400;
+        font-size: 18px;
+        margin-right: 8px;
+        font-style: normal;
+
+        &::before {
+            font-family: 'Material Symbols Rounded';
+            content: 'notifications';
+            color: $icon-light-color;
+        }
+
+        &.is-active {
+            &::before {
+                font-family: 'Material Symbols Rounded';
+                content: 'notifications';
+                font-variation-settings: 'FILL' 1;
+                color: material-color(yellow, 'a-yellow');
+            }
+        }
+    }
+
+    .a-vessel {
+        font-weight: $font-weight-bold;
+        color: $base-abraxa;
+        @include text-truncate;
+        max-width: 180px;
+    }
+
+    .a-id {
+        font-size: 11px;
+        color: $text-color;
+        font-weight: $font-weight-bold;
+    }
+}
+
+//cost center combobox
+.cost-center-combo-item {
+    display: flex;
+    width: 230px;
+    .align-item {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .align-icon {
+        margin: 0px 0px 0px 5px;
+    }
+}
+
+.cost-center-item-secod-value {
+    color: #455a64;
+}
+
+// Combo list / item
+.combo-item {
+    width: 100%;
+    position: relative;
+    padding-left: 44px;
+    min-height: 32px;
+    line-height: 1.2;
+
+    .sm-icon {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: $base-light-color;
+        border-radius: 6px;
+    }
+
+    .sm-type-record {
+        background-color: rgba($accent-color, 0.08);
+
+        i {
+            color: $accent-color;
+        }
+    }
+
+    .mini-icon {
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: $base-light-color;
+        border-radius: 4px;
+
+        i {
+            font-family: 'Material Symbols Rounded';
+            font-size: 16px;
+            color: $icon-light-color;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+            text-rendering: optimizeLegibility;
+            font-style: normal;
+        }
+
+        &.round {
+            border-radius: 50%;
+        }
+
+        &.bordered {
+            border: 1px dashed rgba($icon-light-color, 0.8);
+            background-color: transparent;
+        }
+
+        &[data-type='verified'] {
+            border-color: material-color(teal, '500');
+
+            i {
+                color: material-color(teal, '500');
+                font-family: 'Material Symbols Rounded';
+
+                &::before {
+                    content: 'verified_user';
+                }
+            }
+        }
+
+        &[data-type='blocked'] {
+            border-color: $alert-color;
+
+            i {
+                color: $alert-color;
+
+                &::before {
+                    content: 'block';
+                }
+            }
+        }
+
+        &[data-type='pending'] {
+            border-color: material-color(yellow, 'a-yellow');
+
+            i {
+                color: material-color(yellow, 'a-yellow');
+
+                &::before {
+                    content: 'verified_user';
+                }
+            }
+        }
+
+        &[data-type='not verified'] {
+            i {
+                &::before {
+                    content: 'verified_user';
+                }
+            }
+        }
+
+        &[data-type='app'] {
+            background-color: $accent-color;
+
+            i {
+                color: #fff;
+            }
+        }
+
+        &[data-type='cdb'] {
+            background-color: #ffc107;
+
+            i {
+                color: #fff;
+            }
+        }
+
+        &[data-type='ctm'] {
+            background-color: #edf9f1;
+
+            i {
+                color: #22b14b;
+            }
+        }
+
+        &[data-type='bunker'] {
+            background-color: #ebf2f6;
+
+            i {
+                color: #03608e;
+            }
+        }
+
+        &[data-type='supply'] {
+            background-color: #f0f1f5;
+
+            i {
+                color: #6b7c93;
+            }
+        }
+
+        &[data-type='disposal'] {
+            background-color: #ebf7f5;
+
+            i {
+                color: #009688;
+            }
+        }
+
+        &[data-type='cargo'] {
+            background-color: #ebf4fc;
+
+            i {
+                color: #0278d7;
+            }
+        }
+
+        &[data-type='berth'] {
+            background-color: #ecf7f6;
+
+            i {
+                color: #019688;
+            }
+        }
+
+        &[data-type='user'] {
+            background-color: #eceef8;
+
+            i {
+                color: #3f51b5;
+            }
+        }
+
+        &[data-type='file'] {
+            background-color: rgba(0, 120, 215, 0.06);
+
+            i {
+                color: $link-abraxa;
+            }
+        }
+
+        &[data-type='service'] {
+            background-color: mix(#fff, $color-accent-web, 92%);
+            color: $color-accent-web;
+
+            i {
+                color: $color-accent-web;
+            }
+        }
+
+        &[data-type='disbursement'] {
+            background-color: #ebf7f5;
+
+            i {
+                color: #009688;
+            }
+        }
+
+        &[data-type='incoming'] {
+            background-color: mix(#fff, $color-good, 92%);
+
+            i {
+                color: $color-good;
+            }
+        }
+
+        &[data-type='outgoing'] {
+            background-color: mix(#fff, material-color(pink, '500'), 92%);
+
+            i {
+                color: material-color(pink, '500');
+            }
+        }
+
+        &[data-type='requested'] {
+            background-color: #fef7ec;
+
+            i {
+                color: #f5cf88;
+            }
+        }
+    }
+}
+
+// Boundlist item
+.x-boundlistitem {
+    cursor: pointer;
+
+    .x-tool {
+        .x-icon-el {
+            width: 24px;
+            height: 24px;
+
+            &::before {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .a-person {
+        &.a-icon-round {
+            img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
+
+        .a-int {
+            width: 28px;
+            height: 28px;
+        }
+    }
+}
+
+// Account combo list item
+.a-account-listitem {
+    .x-inner-el {
+        width: 100%;
+    }
+
+    .a-bank {
+        flex: 3;
+        margin-right: 16px;
+
+        .a-bank-name {
+            font-weight: $font-weight-bold;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .a-bank-currency {
+        font-weight: $font-weight-bold;
+        color: $accent-color;
+    }
+}
+
+// Button keyboard mode fix
+.x-keyboard-mode {
+    .x-listitem {
+        &.x-focused {
+            &::after {
+                border-color: $link-abraxa;
+            }
+        }
+    }
+}
+
+// SOF Signatures list
+.a-sof-section-list {
+    .a-sof-section-item {
+        margin-bottom: 16px;
+
+        &.x-disabled {
+            > .x-body-el {
+                opacity: 0.4;
+            }
+        }
+    }
+}

@@ -1,0 +1,1603 @@
+/*
+ *  This file can be used to set variables and supply global styling.  View specific
+ *  styling should be located the view's corresponding scss file.
+ */
+
+//Base
+$color: dynamic(#151b26);
+// $color: dynamic(#47495A);
+$base-abraxa-dark: dynamic(#002945);
+$base-abraxa-semi-dark: dynamic(#00385e);
+$base-abraxa: #03608e;
+$link-abraxa: #0078d7;
+// $text-color: #6B7C93;
+$text-color: material-color(blue-grey, '600');
+$text-light-color: material-color(blue-grey, '200');
+$border-color: #c8d4e6;
+$bordered-color: #dbe1e5;
+$border-color-light: mix(#fff, $border-color, 60%);
+$base-color-name: dynamic('blue');
+$accent-color-name: dynamic('cyan');
+$active-color: dynamic('cyan');
+$confirm-color: dynamic(material-color('green', 'a-green'));
+$neutral-color: #f0f1f5;
+$base-light-color: #f0f1f5;
+$hovered-abraxa-bgr-color: mix(#fff, $base-light-color, 60%);
+$selected-abraxa-bgr-color: mix(#fff, $link-abraxa, 92%);
+$viewport-color: #f1f5f9;
+$alert-color: dynamic(material-color('pink', '500'));
+$invalid-color: dynamic(material-color('pink', '500'));
+
+@mixin text-truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+// Transition
+$transition-duration: 267ms;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-default: $transition-duration $transition-timing-function;
+
+// Letter spacing
+$letter-spacing: -0.25px;
+$letter-spacing-md: -0.5px;
+$letter-spacing-lg: -1px;
+
+// Border radius
+$border-radius: 8px;
+$border-radius-none: 0;
+
+// Paddings
+$body-padding: 16px;
+$body-padding-sm: $body-padding/2;
+$body-padding-md: $body-padding * 1.5;
+$body-padding-lg: $body-padding * 2;
+
+// Shadows
+$shadow-base-color: $base-abraxa-dark;
+$shadow-color: rgba($base-abraxa-dark, 0.32);
+$shadow-x-offset: 0;
+$shadow-y-offset: 1px;
+$shadow-blur-radius: 2px;
+$shadow-width: 0;
+$shadow: $shadow-x-offset $shadow-y-offset $shadow-blur-radius $shadow-width $shadow-color;
+
+//Material Styles
+$font-family: dynamic(
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Helvetica,
+    Arial,
+    sans-serif
+);
+$enable-big: dynamic(false);
+$font-size: dynamic(14px);
+$font-weight-normal: dynamic(400);
+$font-weight-bold: dynamic(500);
+$icon-color: $text-color;
+$icon-light-color: $text-light-color;
+
+//Global
+$enable-font-smoothing: dynamic(false);
+
+//Colors
+$material-colors: dynamic(
+    (
+        'red': (
+            '50': #ffebee,
+            '100': #ffcdd2,
+            '200': #ef9a9a,
+            '300': #e57373,
+            '400': #ef5350,
+            '500': #f44336,
+            '600': #e53935,
+            '700': #d32f2f,
+            '800': #c62828,
+            '900': #b71c1c,
+            'a100': #ff8a80,
+            'a200': #ff5252,
+            'a400': #ff1744,
+            'a700': #d50000,
+            'a-red': #b70000,
+        ),
+        'pink': (
+            '50': #fce4ec,
+            '100': #f8bbd0,
+            '200': #f48fb1,
+            '300': #f06292,
+            '400': #ec407a,
+            '500': #e91e63,
+            '600': #d81b60,
+            '700': #c2185b,
+            '800': #ad1457,
+            '900': #880e4f,
+            'a100': #ff80ab,
+            'a200': #ff4081,
+            'a400': #f50057,
+            'a700': #c51162,
+        ),
+        'purple': (
+            '50': #f3e5f5,
+            '100': #e1bee7,
+            '200': #ce93d8,
+            '300': #ba68c8,
+            '400': #ab47bc,
+            '500': #9c27b0,
+            '600': #8e24aa,
+            '700': #7b1fa2,
+            '800': #6a1b9a,
+            '900': #4a148c,
+            'a100': #ea80fc,
+            'a200': #e040fb,
+            'a400': #d500f9,
+            'a700': #aa00ff,
+        ),
+        'deep-purple': (
+            '50': #ede7f6,
+            '100': #d1c4e9,
+            '200': #b39ddb,
+            '300': #9575cd,
+            '400': #7e57c2,
+            '500': #673ab7,
+            '600': #5e35b1,
+            '700': #512da8,
+            '800': #4527a0,
+            '900': #311b92,
+            'a100': #b388ff,
+            'a200': #7c4dff,
+            'a400': #651fff,
+            'a700': #6200ea,
+        ),
+        'indigo': (
+            '50': #e8eaf6,
+            '100': #c5cae9,
+            '200': #9fa8da,
+            '300': #7986cb,
+            '400': #5c6bc0,
+            '500': #3f51b5,
+            '600': #3949ab,
+            '700': #303f9f,
+            '800': #283593,
+            '900': #1a237e,
+            'a100': #8c9eff,
+            'a200': #536dfe,
+            'a400': #3d5afe,
+            'a700': #304ffe,
+        ),
+        'blue': (
+            '50': #e0e5e9,
+            '100': #b3bfc7,
+            '200': #8094a2,
+            '300': #4d697d,
+            '400': #264961,
+            '500': #002945,
+            '600': #00243e,
+            '700': #001f36,
+            '800': #00192e,
+            '900': #000f1f,
+            'A100': #5c92ff,
+            'A200': #2970ff,
+            'A400': #0052f5,
+            'A700': #0049db,
+        ),
+        'light-blue': (
+            '50': #e1f5fe,
+            '100': #b3e5fc,
+            '200': #81d4fa,
+            '300': #4fc3f7,
+            '400': #29b6f6,
+            '500': #03a9f4,
+            '600': #039be5,
+            '700': #0288d1,
+            '800': #0277bd,
+            '900': #01579b,
+            'a100': #80d8ff,
+            'a200': #40c4ff,
+            'a400': #00b0ff,
+            'a700': #0091ea,
+        ),
+        'cyan': (
+            '50': #e7f5f6,
+            '100': #c3e5e9,
+            '200': #9bd4da,
+            '300': #73c2cb,
+            '400': #55b5c0,
+            '500': #37a8b5,
+            '600': #31a0ae,
+            '700': #2a97a5,
+            '800': #238d9d,
+            '900': #167d8d,
+            'A100': #c3f6ff,
+            'A200': #90eeff,
+            'A400': #5de6ff,
+            'A700': #43e2ff,
+        ),
+        'teal': (
+            '50': #e0f2f1,
+            '100': #b2dfdb,
+            '200': #80cbc4,
+            '300': #4db6ac,
+            '400': #26a69a,
+            '500': #009688,
+            '600': #00897b,
+            '700': #00796b,
+            '800': #00695c,
+            '900': #004d40,
+            'a100': #a7ffeb,
+            'a200': #64ffda,
+            'a400': #1de9b6,
+            'a700': #00bfa5,
+        ),
+        'green': (
+            '50': #e8f5e9,
+            '100': #c8e6c9,
+            '200': #a5d6a7,
+            '300': #81c784,
+            '400': #66bb6a,
+            '500': #4caf50,
+            '600': #070807,
+            '700': #388e3c,
+            '800': #2e7d32,
+            '900': #1b5e20,
+            'a100': #b9f6ca,
+            'a200': #69f0ae,
+            'a400': #00e676,
+            'a700': #00c853,
+            'a-green': #22b14c,
+        ),
+        'light-green': (
+            '50': #f1f8e9,
+            '100': #dcedc8,
+            '200': #c5e1a5,
+            '300': #aed581,
+            '400': #9ccc65,
+            '500': #8bc34a,
+            '600': #7cb342,
+            '700': #689f38,
+            '800': #558b2f,
+            '900': #33691e,
+            'a100': #ccff90,
+            'a200': #b2ff59,
+            'a400': #76ff03,
+            'a700': #64dd17,
+        ),
+        'lime': (
+            '50': #f9fbe7,
+            '100': #f0f4c3,
+            '200': #e6ee9c,
+            '300': #dce775,
+            '400': #d4e157,
+            '500': #cddc39,
+            '600': #c0ca33,
+            '700': #afb42b,
+            '800': #9e9d24,
+            '900': #827717,
+            'a100': #f4ff81,
+            'a200': #eeff41,
+            'a400': #c6ff00,
+            'a700': #aeea00,
+        ),
+        'yellow': (
+            '50': #fffde7,
+            '100': #fff9c4,
+            '200': #fff59d,
+            '300': #fff176,
+            '400': #ffee58,
+            '500': #ffeb3b,
+            '600': #fdd835,
+            '700': #fbc02d,
+            '800': #f9a825,
+            '900': #f57f17,
+            'a100': #ffff8d,
+            'a200': #ffff00,
+            'a400': #ffea00,
+            'a700': #ffd600,
+            'a-yellow': #ffc107,
+        ),
+        'amber': (
+            '50': #fff8e1,
+            '100': #ffecb3,
+            '200': #ffe082,
+            '300': #ffd54f,
+            '400': #ffca28,
+            '500': #ffc107,
+            '600': #ffb300,
+            '700': #ffa000,
+            '800': #ff8f00,
+            '900': #ff6f00,
+            'a100': #ffe57f,
+            'a200': #ffd740,
+            'a400': #ffc400,
+            'a700': #ffab00,
+        ),
+        'orange': (
+            '50': #fff3e0,
+            '100': #ffe0b2,
+            '200': #ffcc80,
+            '300': #ffb74d,
+            '400': #ffa726,
+            '500': #ff9800,
+            '600': #fb8c00,
+            '700': #f57c00,
+            '800': #ef6c00,
+            '900': #e65100,
+            'a100': #ffd180,
+            'a200': #ffab40,
+            'a400': #ff9100,
+            'a700': #ff6d00,
+        ),
+        'deep-orange': (
+            '50': #fbe9e7,
+            '100': #ffccbc,
+            '200': #ffab91,
+            '300': #ff8a65,
+            '400': #ff7043,
+            '500': #ff5722,
+            '600': #f4511e,
+            '700': #e64a19,
+            '800': #d84315,
+            '900': #bf360c,
+            'a100': #ff9e80,
+            'a200': #ff6e40,
+            'a400': #ff3d00,
+            'a700': #dd2c00,
+        ),
+        'brown': (
+            '50': #efebe9,
+            '100': #d7ccc8,
+            '200': #bcaaa4,
+            '300': #a1887f,
+            '400': #8d6e63,
+            '500': #795548,
+            '600': #6d4c41,
+            '700': #5d4037,
+            '800': #4e342e,
+            '900': #3e2723,
+        ),
+        'grey': (
+            '50': #f8f9fa,
+            '100': #e9ecef,
+            '200': #dee2e6,
+            '300': #ced4da,
+            '400': #adb5bd,
+            '500': #868e96,
+            '600': #495057,
+            '700': #343a40,
+            '800': #212529,
+            '900': #000000,
+            'a100': #adb5bd,
+        ),
+        'blue-grey': (
+            '50': #eceff1,
+            '100': #cfd8dc,
+            '200': #b0bec5,
+            '300': #90a4ae,
+            '400': #78909c,
+            '500': #607d8b,
+            '600': #546e7a,
+            '700': #455a64,
+            '800': #37474f,
+            '900': #263238,
+            '1000': #11171a,
+        ),
+    )
+);
+
+// Tools
+$tool-size: 36px;
+$tool-font-size: 24px !default;
+$tool-color: $icon-color;
+$tool-border-radius: 50%;
+$tool-hovered-opacity: 1;
+$tool-pressed-opacity: 1;
+$tool-hovered-background-color: $base-light-color;
+$tool-pressed-background-color: mix($base-abraxa-dark, $base-light-color, 6%);
+
+@include tool-ui($ui: 'tool-lg', $size: 40px, $font-size: 24px);
+
+@include tool-ui($ui: 'tool-md', $font-size: 18px);
+
+@include tool-ui($ui: 'tool-sm', $size: 24px, $font-size: 18px);
+
+@include tool-ui($ui: 'tool-xs', $size: 24px, $font-size: 16px);
+
+@include tool-ui($ui: 'toggle', $pressed-color: $link-abraxa, $pressed-background-color: $selected-abraxa-bgr-color);
+
+@include tool-ui(
+    $ui: 'view-more',
+    $size: 24px,
+    $font-size: 18px,
+    $border-radius: 50%,
+    $color: $link-abraxa,
+    $background-color: #fff
+);
+
+// Toggle slider
+$toggleslider-width: 42px;
+$slider-fill-background-color: rgba(
+    $color: #37a8b5,
+    0.4,
+);
+$sliderfield-padding: 16px;
+$toggleslider-fill-background-color: rgba(
+    $color: #37a8b5,
+    0.4,
+);
+$thumb-background-color: #37a8b5;
+$thumb-width: 24px;
+$thumb-height: 24px;
+$thumb-border-radius: 16px;
+
+// Trigger
+$trigger-icon-color: $icon-light-color;
+$trigger-pressed-icon-color: $icon-color;
+
+// Button
+$button-color: $text-color;
+$button-border-radius: 6px;
+$button-padding: 9px 16px;
+$button-text-transform: normal;
+$button-icon-only-padding: 8px;
+$button-icon-color: $icon-color;
+$button-icon-size: 18px;
+$button-icon-font-size: 18px;
+$button-icon-horizontal-spacing: 8px;
+$button-pressed-color: inherit;
+$button-hovered-background-color: $base-light-color;
+$button-pressed-background-color: mix($base-abraxa-dark, $base-light-color, 6%);
+$button-disabled-background-color: rgba($base-light-color, 0.6);
+$button-badge-max-width: 95%;
+$button-font-weight: 500;
+
+// Button disabled
+@include button-ui($disabled-background-color: rgba($base-light-color, 0.6));
+
+// Button badge
+@include button-ui(
+    $badge-background-color: $accent-color,
+    $badge-color: #fff,
+    $badge-min-width: 18px,
+    $badge-font-weight: $font-weight-bold,
+    $badge-font-size: 11px,
+    $badge-line-height: 12px,
+    $badge-padding: 2px 4px
+);
+
+// Button colors & styles
+@include button-ui(
+    $ui: 'status',
+    $hovered-color: $text-color,
+    $background-color: #fff,
+    $hovered-background-color: #fff,
+    $pressed-background-color: #fff,
+    $border-radius: 4px,
+    $padding: 4px 4px 3px 8px,
+    $font-size: 12px,
+    $line-height: 1.2,
+    $hovered-border-color: $text-color,
+    $border-width: 1px,
+    $border-style: solid
+);
+
+@include button-ui(
+    $ui: 'status-md',
+    $hovered-color: $text-color,
+    $background-color: #fff,
+    $hovered-background-color: #fff,
+    $pressed-background-color: #fff,
+    $border-radius: 6px,
+    $padding: 6px 4px 6px 12px,
+    $font-size: 13px,
+    $line-height: 1.2,
+    $hovered-border-color: $text-color,
+    $border-width: 1px,
+    $border-style: solid
+);
+
+@include button-ui(
+    $ui: 'default',
+    $color: $text-color,
+    $border-color: $border-color,
+    $hovered-border-color: $border-color,
+    $pressed-border-color: $border-color,
+    $focused-border-color: $border-color
+);
+
+@include button-ui(
+    $ui: 'normal',
+    $color: $link-abraxa !important,
+    $icon-color: $link-abraxa !important,
+    $border-color: $link-abraxa,
+    $hovered-border-color: $link-abraxa,
+    $pressed-border-color: $link-abraxa,
+    $focused-border-color: $link-abraxa,
+    $hovered-background-color: rgba($link-abraxa, 0.06),
+    $pressed-background-color: rgba($link-abraxa, 0.12),
+    $pressed-color: $link-abraxa
+);
+
+@include button-ui(
+    $ui: 'normal-light',
+    $color: $link-abraxa !important,
+    $icon-color: $link-abraxa !important,
+    $border-color: $link-abraxa,
+    $hovered-border-color: $link-abraxa,
+    $pressed-border-color: $link-abraxa,
+    $focused-border-color: $link-abraxa,
+    $background-color: rgba($link-abraxa, 0.06),
+    $hovered-background-color: rgba($link-abraxa, 0.12),
+    $pressed-background-color: rgba($link-abraxa, 0.24),
+    $pressed-color: $link-abraxa
+);
+
+@include button-ui(
+    $ui: 'success-light',
+    $color: material-color(green, 'a-green'),
+    $icon-color: material-color(green, 'a-green'),
+    $border-color: material-color(green, 'a-green'),
+    $hovered-border-color: material-color(green, 'a-green'),
+    $pressed-border-color: material-color(green, 'a-green'),
+    $focused-border-color: material-color(green, 'a-green'),
+    $background-color: rgba(material-color(green, 'a-green'), 0.06),
+    $hovered-background-color: rgba(material-color(green, 'a-green'), 0.12),
+    $pressed-background-color: rgba(material-color(green, 'a-green'), 0.24),
+    $pressed-color: material-color(green, 'a-green')
+);
+
+@include button-ui(
+    $ui: 'default-light',
+    $color: $text-color,
+    $icon-color: $border-color,
+    $border-color: $border-color,
+    $hovered-border-color: $border-color,
+    $pressed-border-color: $border-color,
+    $focused-border-color: $border-color,
+    $background-color: rgba($border-color, 0.12),
+    $hovered-background-color: rgba($border-color, 0.24),
+    $pressed-background-color: rgba($border-color, 0.4),
+    $pressed-color: $text-color
+);
+
+@include button-ui(
+    $ui: 'warning-light',
+    $color: material-color(yellow, 'a-yellow'),
+    $icon-color: material-color(yellow, 'a-yellow'),
+    $border-color: material-color(yellow, 'a-yellow'),
+    $hovered-border-color: material-color(yellow, 'a-yellow'),
+    $pressed-border-color: material-color(yellow, 'a-yellow'),
+    $focused-border-color: material-color(yellow, 'a-yellow'),
+    $background-color: rgba(material-color(yellow, 'a-yellow'), 0.08),
+    $hovered-background-color: rgba(material-color(yellow, 'a-yellow'), 0.16),
+    $pressed-background-color: rgba(material-color(yellow, 'a-yellow'), 0.24),
+    $pressed-color: material-color(yellow, 'a-yellow')
+);
+
+@include button-ui(
+    $ui: 'danger-light',
+    $color: material-color(pink, '500'),
+    $icon-color: material-color(pink, '500'),
+    $border-color: material-color(pink, '500'),
+    $hovered-border-color: material-color(pink, '500'),
+    $pressed-border-color: material-color(pink, '500'),
+    $focused-border-color: material-color(pink, '500'),
+    $background-color: rgba(material-color(pink, '500'), 0.06),
+    $hovered-background-color: rgba(material-color(pink, '500'), 0.12),
+    $pressed-background-color: rgba(material-color(pink, '500'), 0.24),
+    $pressed-color: material-color(pink, '500')
+);
+
+@include button-ui(
+    $ui: 'danger-dark',
+    $color: material-color(pink, '500'),
+    $icon-color: material-color(pink, '500'),
+    $border-color: material-color(pink, '500'),
+    $hovered-border-color: material-color(pink, '500'),
+    $pressed-border-color: material-color(pink, '500'),
+    $focused-border-color: material-color(pink, '500'),
+    $background-color: rgba(material-color(pink, '50'), 1),
+    $hovered-background-color: rgba(material-color(pink, '100'), 1),
+    $pressed-background-color: rgba(material-color(pink, '100'), 1),
+    $pressed-color: material-color(pink, '100')
+);
+
+@include button-ui(
+    $ui: 'indigo-light',
+    $color: material-color(indigo, '500'),
+    $icon-color: material-color(indigo, '500'),
+    $border-color: material-color(indigo, '500'),
+    $hovered-border-color: material-color(indigo, '500'),
+    $pressed-border-color: material-color(indigo, '500'),
+    $focused-border-color: material-color(indigo, '500'),
+    $background-color: rgba(material-color(indigo, '500'), 0.06),
+    $hovered-background-color: rgba(material-color(indigo, '500'), 0.12),
+    $pressed-background-color: rgba(material-color(indigo, '500'), 0.24),
+    $pressed-color: material-color(indigo, '500')
+);
+
+@include button-ui(
+    $ui: 'blue-light',
+    $color: material-color(light-blue, '500'),
+    $icon-color: material-color(light-blue, '500'),
+    $border-color: material-color(light-blue, '500'),
+    $hovered-border-color: material-color(light-blue, '500'),
+    $pressed-border-color: material-color(light-blue, '500'),
+    $focused-border-color: material-color(light-blue, '500'),
+    $background-color: rgba(material-color(light-blue, '500'), 0.08),
+    $hovered-background-color: rgba(material-color(light-blue, '500'), 0.16),
+    $pressed-background-color: rgba(material-color(light-blue, '500'), 0.24),
+    $pressed-color: material-color(light-blue, '500')
+);
+
+@include button-ui(
+    $ui: 'completed-light',
+    $color: #02be9d,
+    $icon-color: #02be9d,
+    $border-color: #02be9d,
+    $hovered-border-color: #02be9d,
+    $pressed-border-color: #02be9d,
+    $focused-border-color: #02be9d,
+    $background-color: rgba(#02be9d, 0.06),
+    $hovered-background-color: rgba(#02be9d, 0.12),
+    $pressed-background-color: rgba(#02be9d, 0.24),
+    $pressed-color: #02be9d
+);
+
+@include button-ui(
+    $ui: 'progress-light',
+    $color: #f5cf88,
+    $icon-color: #f5cf88,
+    $border-color: #ffb74d,
+    $hovered-border-color: #ffb74d,
+    $pressed-border-color: #ffb74d,
+    $focused-border-color: #ffb74d,
+    $background-color: rgba(#ffb74d, 0.08),
+    $hovered-background-color: rgba(#ffb74d, 0.12),
+    $pressed-background-color: rgba(#ffb74d, 0.24),
+    $pressed-color: #ffb74d
+);
+
+@include button-ui(
+    $ui: 'progress',
+    $color: #ffb74d,
+    $icon-color: #ffb74d,
+    $border-color: #ffb74d,
+    $hovered-border-color: #ffb74d,
+    $pressed-border-color: #ffb74d,
+    $focused-border-color: #ffb74d,
+    $background-color: rgba(#ffb74d, 0.06),
+    $hovered-background-color: rgba(#ffb74d, 0.16),
+    $pressed-background-color: rgba(#ffb74d, 0.24),
+    $pressed-color: #ffb74d
+);
+
+@include button-ui(
+    $ui: 'completed',
+    $color: #fff,
+    $icon-color: #fff,
+    $border-color: #02be9d,
+    $hovered-border-color: #02be9d,
+    $pressed-border-color: #02be9d,
+    $focused-border-color: #02be9d,
+    $background-color: rgba(#02be9d, 1),
+    $hovered-background-color: rgba(#02be9d, 1),
+    $pressed-background-color: rgba(#02be9d, 1),
+    $pressed-color: #02be9d
+);
+
+@include button-ui($ui: 'alt', $disabled-background-color: rgba($base-light-color, 0.6));
+
+@include button-ui(
+    $ui: 'action',
+    $background-color: $link-abraxa,
+    $hovered-background-color: darken($link-abraxa, 2%),
+    $pressed-background-color: darken($link-abraxa, 4%)
+);
+
+@include button-ui(
+    $ui: 'accent',
+    $background-color: #00b6c8,
+    $hovered-background-color: darken(#00b6c8, 2%),
+    $pressed-background-color: darken(#00b6c8, 4%)
+);
+
+@include button-ui(
+    $ui: 'premium',
+    $color: #fff,
+    $pressed-color: #fff,
+    $background-color: #ffb74d,
+    $hovered-background-color: darken(#ffb74d, 4%),
+    $pressed-background-color: darken(#ffb74d, 6%)
+);
+
+@include button-ui(
+    $ui: 'danger',
+    $color: material-color(pink, '500'),
+    $pressed-color: material-color(pink, '500'),
+    $hovered-background-color: rgba(material-color(pink, '500'), 0.06),
+    $pressed-background-color: rgba(material-color(pink, '500'), 0.12),
+    $border-color: material-color(pink, '50'),
+    $hovered-border-color: material-color(pink, '500'),
+    $pressed-border-color: material-color(pink, '500'),
+    $focused-border-color: material-color(pink, '500')
+);
+
+@include button-ui(
+    $ui: 'decline',
+    $hovered-background-color: rgba(material-color(pink, '500'), 0.06),
+    $pressed-background-color: rgba(material-color(pink, '500'), 0.12)
+);
+
+@include button-ui(
+    $ui: 'success',
+    $color: material-color(teal, '500'),
+    $pressed-color: material-color(teal, '500'),
+    $hovered-background-color: rgba(material-color(teal, '500'), 0.06),
+    $pressed-background-color: rgba(material-color(teal, '500'), 0.12),
+    $border-color: material-color(teal, '500'),
+    $hovered-border-color: material-color(teal, '500'),
+    $pressed-border-color: material-color(teal, '500'),
+    $focused-border-color: material-color(teal, '500')
+);
+
+@include button-ui(
+    $ui: 'warning',
+    $color: material-color(yellow, 'a-yellow'),
+    $pressed-color: material-color(yellow, 'a-yellow'),
+    $hovered-background-color: rgba(material-color(yellow, 'a-yellow'), 0.06),
+    $pressed-background-color: rgba(material-color(yellow, 'a-yellow'), 0.12),
+    $border-color: material-color(yellow, 'a-yellow'),
+    $hovered-border-color: material-color(yellow, 'a-yellow'),
+    $pressed-border-color: material-color(yellow, 'a-yellow'),
+    $focused-border-color: material-color(yellow, 'a-yellow')
+);
+
+@include button-ui($ui: 'outlined', $padding: 8px 16px, $border-width: 1px, $border-style: solid);
+
+@include button-ui($ui: 'raised', $background-color: #fff, $box-shadow: 0 1px 2px 0 rgba($base-abraxa-dark, 0.24));
+
+@include button-ui(
+    $ui: 'dark',
+    $background-color: transparent,
+    $hovered-background-color: rgba(#fff, 0.16),
+    $pressed-background-color: rgba(#fff, 0.24),
+    $border-style: solid
+);
+
+// Custom buttons
+@include button-ui(
+    $ui: 'custom-total',
+    $padding: 8px 12px 8px 8px,
+    $border-width: 0,
+    $icon-size: 16px,
+    $color: #ed0000,
+    $border-color: #ed0000,
+    $hovered-background-color: #fff5f5,
+    $pressed-border-color: #ed0000,
+    $pressed-background-color: #fff,
+    $focused-background-color: #fff
+);
+
+// Button sizes
+@include button-ui(
+    $ui: 'link',
+    // $color: $link-abraxa,
+    $padding: 0px,
+    $font-size: 13px,
+    $font-weight: normal,
+    $icon-size: 18px,
+    $icon-font-size: 18px,
+    $hovered-background-color: transparent,
+    $pressed-background-color: transparent
+);
+
+@include button-ui($ui: 'small', $padding: 6px 12px, $font-size: 13px, $icon-size: 18px, $icon-font-size: 18px);
+
+@include button-ui(
+    $ui: 'mini',
+    $padding: 3px 6px !important,
+    $font-size: 10px,
+    $font-weight: normal,
+    $icon-size: 14px,
+    $icon-font-size: 14px
+);
+
+.x-button-mini {
+    .x-inner-el {
+        padding: 4px !important;
+    }
+}
+
+@include button-ui(
+    $ui: 'medium',
+    $border-radius: 8px,
+    $padding: 10px 20px,
+    $font-size: 15px,
+    $icon-size: 24px,
+    $icon-horizontal-spacing: 12px,
+    $icon-font-size: 24px
+);
+
+@include button-ui(
+    $ui: 'large',
+    $border-radius: 8px,
+    $padding: 12px 24px,
+    $font-size: 16px,
+    $icon-size: 24px,
+    $icon-horizontal-spacing: 12px,
+    $icon-font-size: 24px
+);
+
+@include button-ui($ui: 'round', $border-radius: 10000px);
+
+// Button Tool
+@include button-ui(
+    $ui: 'tool',
+    $color: $icon-color,
+    $icon-color: $icon-color,
+    $icon-only-padding: 0,
+    $icon-size: 36px,
+    $icon-font-size: 24px
+);
+
+@include button-ui($ui: 'tool-lg', $padding: 0, $icon-only-padding: 0, $icon-size: 40px, $icon-font-size: 24px);
+
+@include button-ui($ui: 'tool-md', $padding: 0, $icon-only-padding: 0, $icon-size: 36px, $icon-font-size: 18px);
+
+@include button-ui($ui: 'tool-sm', $padding: 0, $icon-only-padding: 0, $icon-size: 30px, $icon-font-size: 18px);
+
+@include button-ui(
+    $ui: 'tool-text-sm',
+    $padding: 0 8px 0 2px !important,
+    $icon-only-padding: 0,
+    $font-size: 13px,
+    $icon-size: 30px,
+    $icon-font-size: 16px,
+    $pressed-icon-color: $link-abraxa,
+    $pressed-color: $link-abraxa,
+    $pressed-background-color: $selected-abraxa-bgr-color
+);
+
+@include button-ui($ui: 'tool-xs', $padding: 0, $icon-only-padding: 0, $icon-size: 24px, $icon-font-size: 16px);
+
+@include button-ui(
+    $ui: 'toggle',
+    $pressed-icon-color: $link-abraxa,
+    $pressed-color: $link-abraxa,
+    $pressed-background-color: $selected-abraxa-bgr-color
+);
+
+// Segmented button
+@include button-ui(
+    $ui: 'segmented',
+    $background-color: #fff,
+    $pressed-background-color: $link-abraxa,
+    $pressed-hovered-background-color: darken($color: $link-abraxa, $amount: 4%),
+    $focused-hovered-background-color: darken($color: $link-abraxa, $amount: 4%),
+    $padding: 8px 12px,
+    $border-width: 1px,
+    $border-style: solid,
+    $pressed-border-color: transparent
+);
+
+// Split button
+@include splitButton-ui(
+    $ui: 'action',
+    $padding: 5px 12px,
+    $border-radius: 6px,
+    $font-size: 13px,
+    $background-color: $link-abraxa,
+    $hovered-background-color: darken($link-abraxa, 2%),
+    $pressed-background-color: darken($link-abraxa, 4%)
+);
+
+@include splitButton-ui(
+    $ui: 'tool-text-sm',
+    $padding: 0 8px 0 2px !important,
+    $icon-only-padding: 0,
+    $border-radius: 6px,
+    $font-size: 13px,
+    $icon-size: 30px,
+    $icon-font-size: 16px,
+    $pressed-icon-color: $link-abraxa,
+    $pressed-color: $link-abraxa,
+    $pressed-background-color: $selected-abraxa-bgr-color
+);
+
+@include splitButton-ui($ui: 'small', $padding: 6px 12px, $font-size: 13px, $icon-size: 18px, $icon-font-size: 18px);
+
+// Split button filter
+@include splitButton-ui(
+    $ui: 'filter',
+    $padding: 12px 6px 12px 12px,
+    $font-size: 13px,
+    $color: $text-color,
+    $pressed-color: $text-color,
+    $focused-color: $link-abraxa,
+    $icon-color: $icon-color,
+    $hovered-icon-color: $icon-color,
+    $pressed-icon-color: $icon-color,
+    $arrow-icon-color: $icon-color,
+    $pressed-arrow-icon-color: $icon-color,
+    $focused-arrow-icon-color: $icon-color,
+    $text-transform: none,
+    $background-color: #fff,
+    $hovered-background-color: transparent,
+    $pressed-background-color: transparent,
+    $focused-background-color: transparent,
+    $border-width: 1px,
+    $border-style: solid,
+    $border-color: $border-color-light
+);
+
+// Button menu item
+@include button-ui(
+    $ui: 'menu-item',
+    $border-radius: 0,
+    $padding: 0,
+    $font-size: 14px,
+    $font-weight: normal,
+    $color: $color,
+    $icon-color: $icon-color !important,
+    $icon-size: 24px,
+    $icon-font-size: 16px,
+    $hovered-background-color: $hovered-abraxa-bgr-color,
+    $pressed-background-color: transparent,
+    $focused-background-color: transparent,
+    $focused-hovered-background-color: transparent
+);
+
+// Panel
+$panel-body-background-color: #fff;
+$panel-body-font-size: 14px;
+
+// Panel header
+@include panelheader-ui($background-color: #fff);
+
+// Panel title
+@include paneltitle-ui($color: $color, $icon-color: $icon-color, $icon-horizontal-spacing: 12px);
+
+// Panel UIs
+@include panel-ui(
+    $border-radius: $border-radius,
+    $header-color: $color,
+    $header-icon-color: $color,
+    $tool-color: $icon-color,
+    $tool-size: 34px,
+    $tool-font-size: 20px
+);
+
+@include panel-ui($ui: 'border-radius-none', $border-radius: $border-radius-none);
+
+@include panel-ui($ui: 'body-padding', $body-padding: $body-padding);
+
+@include panel-ui($ui: 'body-padding-sm', $body-padding: $body-padding-sm);
+
+@include panel-ui($ui: 'body-padding-md', $body-padding: $body-padding-md);
+
+@include panel-ui($ui: 'body-padding-lg', $body-padding: $body-padding-lg);
+
+@include panel-ui(
+    $ui: 'slide-search',
+    $border-radius: 0,
+    $header-padding: 0 24px,
+    $header-min-height: 64px,
+    $header-background-color: #fff,
+    $header-border-width: 0,
+    $header-font-size: 20px,
+    $body-padding: 0 24px 24px 24px,
+    $body-background-color: #fff !important
+);
+
+// Toast
+@include panel-ui($ui: 'toast-default', $body-background-color: red, $body-padding: 48px);
+
+// Formpanel
+$formpanel-body-background-color: null;
+
+// Panelheader
+@include panelheader-ui($border-width: 0);
+
+// Paneltitle
+@include paneltitle-ui($font-size: 16px);
+
+// Titlebar
+$titlebar-background-color: #fff;
+$titlebar-color: $color;
+$titlebar-title-color: $color;
+$titlebar-title-font-size: 16px;
+
+// Dialog
+$dialog-min-width: 360px;
+$dialog-body-background-color: #fff;
+$dialog-body-color: $color;
+$dialog-body-font-size: 14px;
+$dialog-header-padding: 0 12px 0 24px;
+$dialog-body-padding: 16px 24px;
+
+@include dialog-ui(
+    $ui: 'dark',
+    $background-color: rgba(0, 41, 69, 0.94),
+    $header-background-color: rgba(0, 41, 69, 1),
+    $header-color: #fff,
+    $header-border-width: 0,
+    $header-icon-color: #fff,
+    $tool-color: #fff,
+    $tool-hovered-background-color: rgba(#fff, 0.16),
+    $tool-pressed-background-color: rgba(#fff, 0.24),
+    $body-background-color: transparent
+);
+
+@include tool-ui(
+    $ui: 'dark',
+    $color: #fff,
+    $hovered-background-color: rgba(#fff, 0.16),
+    $pressed-background-color: rgba(#fff, 0.24)
+);
+
+// // Dialog UIs
+// @include dialog-ui($ui: "dark",
+//     $background-color: $color,
+//     $body-background-color: $color,
+//     $header-background-color: $color,
+//     $header-color: #fff,
+//     $header-icon-color: #fff,
+//     $tool-color: #fff,
+//     $tool-hovered-background-color: rgba(#fff, .16),
+//     $tool-pressed-background-color: rgba(#fff, .24));
+
+// Messagebox
+@include messagebox-ui(
+    $ui: 'dark',
+    $background-color: $base-abraxa-dark,
+    $body-background-color: $base-abraxa-dark,
+    $header-background-color: $base-abraxa-dark,
+    $header-color: #fff,
+    $header-icon-color: #fff,
+    $tool-color: #fff,
+    $tool-hovered-background-color: rgba(#fff, 0.16),
+    $tool-pressed-background-color: rgba(#fff, 0.24)
+);
+
+// Tabbar
+$tabbar-padding: 0;
+$tabbar-background-color: #fff;
+$tabbar-horizontal-spacing: 24px;
+
+// Tab
+$tab-background-color: transparent;
+$tab-color: $text-color;
+$tab-hovered-color: $color;
+$tab-active-color: $base-abraxa;
+$tab-icon-color: $icon-color;
+$tab-font-size: 13px;
+$tab-font-weight: 500;
+$tab-padding: 16px 0;
+$tab-active-indicator-height: 3px;
+$tab-active-indicator-background-color: $accent-color;
+
+// Tab UIs
+@include tab-ui($ui: 'tab-sm', $active-indicator-height: 2px, $font-weight: normal, $padding: 8px 0);
+
+.x-tabbar-tabbar-alt {
+    @include tab-ui(
+        $color: rgba(#fff, 0.7),
+        $hovered-color: rgba(#fff, 1),
+        $pressed-color: #fff,
+        $focused-color: #fff,
+        $active-color: #fff,
+        $active-focused-color: #fff,
+        $active-indicator-background-color: #fff
+    );
+
+    @include toolbar-ui($padding: 0);
+}
+
+@include tab-ui($ui: 'tab-lg', $font-size: 16px);
+
+@include tab-ui($ui: 'tab-main', $font-size: 14px, $padding: 0 0 12px 0);
+
+// Toolbar
+$toolbar-background-color: #fff;
+$toolbar-box-shadow: none;
+$toolbar-footer-ui: null;
+
+// Toolbar UIs
+@include toolbar-ui($ui: 'no-padding', $padding: 0);
+
+@include toolbar-ui($ui: 'padding-x', $padding: 0 16px);
+
+@include toolbar-ui($ui: 'padding-y', $padding: 16px 0px);
+
+// Dataview
+$dataview-background-color: #fff;
+$dataview-item-pressed-background-color: $selected-abraxa-bgr-color;
+$dataview-item-selected-background: $selected-abraxa-bgr-color;
+
+// Dataview UIs
+@include dataview-ui(
+    $ui: 'bordered',
+    $item-border-width: 1px 0,
+    $item-border-style: solid,
+    $item-border-color: $border-color-light
+);
+
+@include dataview-ui(
+    $ui: 'docs',
+    $item-hovered-background-color: rgba($link-abraxa, 0.12),
+    $item-selected-background-color: rgba($link-abraxa, 0.12),
+    $item-pressed-background-color: rgba($link-abraxa, 0.12),
+    $item-border-width: 1px,
+    $item-border-style: solid,
+    $item-border-color: rgba($link-abraxa, 0),
+    $item-hovered-border-color: rgba($link-abraxa, 0.24),
+    $item-selected-border-color: rgba($link-abraxa, 0.24),
+    $item-pressed-border-color: rgba($link-abraxa, 0.24)
+);
+
+@include dataview-ui($ui: 'transparent', $background-color: transparent);
+
+// Dataitem
+$dataitem-background-color: transparent;
+$dataitem-hovered-background-color: $hovered-abraxa-bgr-color;
+$dataitem-selected-background-color: $selected-abraxa-bgr-color;
+
+// Dataitem UIs
+@include dataitem-ui($ui: 'bordered', $border-width: 1px 0, $border-style: solid, $border-color: $border-color-light);
+
+// Listitem
+$listitem-font-size: 14px;
+$listitem-border-width: 0;
+$listitem-background-color: transparent;
+
+// Listitem UIs
+@include listitem-ui($ui: 'bordered', $border-width: 1px 0, $border-style: solid, $border-color: $border-color-light);
+
+// Itemheader
+$itemheader-background-color: #fff;
+
+// Grid
+$gridcolumn-font-size: 13px;
+$gridcolumn-font-weight: $font-weight-bold;
+$gridcolumn-padding: 16px 12px;
+$gridcolumn-color: rgba(material-color(blue-grey, '500'), 0.8);
+$gridcolumn-background-color: #fff;
+$gridcolumn-trigger-width: 32px;
+$gridcolumn-trigger-border-width: 0;
+$gridcolumn-trigger-icon-color: $icon-light-color;
+$gridcolumn-border-width: 0;
+$gridcolumn-resizer-background-color: rgba($link-abraxa, 0.2);
+$gridcolumn-resizer-width: 1;
+$grid-resize-marker-background-color: material-color(light-blue, '500');
+$grid-resize-marker-width: 2px;
+
+// Grid UIs
+@include gridcell-ui($ui: 'grid-no-padding', $padding: 0px 12px);
+
+@include gridcell-ui($ui: 'grid-sm', $padding: 4px 12px);
+
+@include gridcell-ui($ui: 'grid-md', $padding: 8px 12px);
+
+@include gridcell-ui($ui: 'grid-lg', $padding: 16px);
+
+@include gridcolumn-ui($ui: 'grid-lg', $padding: 16px);
+
+// Field/
+$field-vertical-spacing: 4px;
+$field-label-font-size: 13px;
+$field-label-color: material-color(blue-grey, '500');
+$field-invalid-label-color: $invalid-color;
+$field-focused-label-color: $link-abraxa;
+$field-label-padding: 0;
+
+// Textfield
+$textfield-input-font-size: 14px;
+$textfield-input-line-height: 16px;
+$textfield-input-padding: 8px 0;
+$textfield-input-underline-color: $border-color;
+$textfield-focused-input-underline-color: $link-abraxa;
+$textfield-placeholder-color: material-color(blue-grey, '200');
+// $textfield-invalid-placeholder-color: material-color(red, 'a-red');
+
+// Checkboxfield
+$checkboxfield-checkbox-color: $icon-color;
+$checkboxfield-checked-checkbox-color: $accent-color;
+
+// Checkcell
+$checkcell-checkbox-color: $icon-color;
+$checkcell-focused-checkbox-color: $accent-color;
+
+// Field UIs
+@include field-ui($ui: 'classic', $label-padding: 0 0 8px 0);
+@include field-ui($ui: 'hovered-border', $label-padding: 0 0 4px 8px);
+@include field-ui($ui: 'outlined', $label-padding: 4px 8px);
+@include field-ui($ui: 'field-lg', $label-font-weight: $font-weight-bold, $label-font-size: 14px);
+@include field-ui($ui: 'field-xl', $label-font-weight: $font-weight-bold, $label-font-size: 14px);
+
+@include textfield-ui(
+    $ui: 'classic',
+    $input-background-color: #fff,
+    $input-padding: 6px 8px,
+    $input-border-width: 1px,
+    $input-border-style: solid,
+    $input-border-color: $border-color,
+    $focused-input-background-color: rgba($selected-abraxa-bgr-color, 0.4),
+    $focused-input-border-color: $link-abraxa
+);
+
+@include textfield-ui(
+    $ui: 'outlined',
+    $input-border-width: 1px,
+    $input-border-style: solid,
+    $input-border-color: $border-color,
+    $focused-input-border-color: $link-abraxa
+);
+
+@include textfield-ui($ui: 'no-border', $input-underline-width: 0px, $input-border-width: 0px);
+
+@include textfield-ui(
+    $ui: 'no-underline',
+    $input-underline-width: 0px,
+    $focused-input-underline-width: 0px,
+    $invalid-input-underline-width: 0px,
+    $input-border-width: 0px
+);
+
+@include textfield-ui($ui: 'field-lg', $input-padding: 12px, $input-font-size: 16px);
+
+@include textfield-ui(
+    $ui: 'field-xl',
+    $input-padding: 14px 12px,
+    $input-font-weight: $font-weight-bold,
+    $input-font-size: 20px
+);
+
+@include checkboxfield-ui($ui: 'medium', $checkbox-size: 24px, $checkbox-margin: 4px, $checkbox-font-size: 22px);
+
+@include checkboxfield-ui($ui: 'large', $checkbox-size: 24px, $checkbox-font-size: 24px);
+
+// Chip UIs
+// $chip-font-size: 12px;
+$chip-height: 24px;
+$chip-background-color: #f1f5f9;
+$chip-hovered-background-color: material-color(grey, '100');
+$chip-selected-background-color: $link-abraxa;
+$chip-text-margin: 8px;
+$chip-close-icon-background-color: transparent;
+$chip-close-icon-hovered-background-color: transparent;
+
+// Tooltip UIs
+$tooltip-anchor-width: 12px;
+$tooltip-anchor-height: 4px;
+
+@include tooltip-ui(
+    $background-color: $base-abraxa-dark,
+    $body-background-color: $base-abraxa-dark,
+    $header-background-color: $base-abraxa-dark,
+    $header-color: #fff,
+    $border-radius: 4px,
+    $body-font-size: 12px,
+    $border-width: 0,
+    $body-color: #fff,
+    $body-padding: 2px 6px
+);
+
+@include tooltip-ui(
+    $ui: 'card',
+    $border-radius: 8px,
+    $background-color: #fff,
+    $body-background-color: #fff,
+    $body-font-size: 13px,
+    $body-padding: 0 24px 8px 24px,
+    $body-color: $color !important
+);
+
+@include tooltip-ui($ui: 'info', $body-font-size: 12px, $body-padding: 6px 8px 8px 8px);
+
+@include tooltip-ui(
+    $ui: 'info-card',
+    $border-radius: 16px,
+    $header-shadow: 0 1px 48px 0 rgba(0, 0, 0, 0.21),
+    $body-color: $color !important,
+    $background-color: #fff,
+    $body-background-color: #fff,
+    $body-font-size: 13px,
+    $body-padding: 8px 16px,
+    $header-padding: 8px 16px,
+    $header-border-width: 0 0 1px 0,
+    $header-title-padding: 0 16px 0 0,
+    $header-font-size: 14px
+);
+
+@include tooltip-ui(
+    $ui: 'multiple',
+    $anchor-height: 8px,
+    $anchor-width: 18px,
+    $header-color: $text-light-color,
+    $border-radius: 8px,
+    $header-padding: 8px 16px 0 16px,
+    $body-padding: 4px 16px 8px 16px
+);
+
+// Menu
+$menu-border-width: 0;
+$menu-header-border-width: 0;
+$menu-body-border-width: 0;
+@include menu-ui($body-background-color: #fff);
+@include menu-ui($ui: 'dropdown');
+@include menu-ui($ui: 'has-icons', $icon-column-width: 56px);
+
+// Menuitem
+$menuitem-icon-color: $icon-color;
+$menuitem-active-background-color: $hovered-abraxa-bgr-color;
+$menuitem-height: 36px;
+$menuseparator-margin: 0;
+
+@include menuitem-ui($ui: 'has-icons', $icon-size: 24px, $icon-font-size: 24px, $height: 48px);
+
+@include menuitem-ui($ui: 'medium', $icon-size: 24px, $icon-font-size: 18px, $height: 40px);
+
+// Indicator
+$indicator-size: 10px;
+$indicator-active-size: $indicator-size;
+$indicator-background-color: transparent;
+$indicator-active-background-color: $link-abraxa;
+
+// Abraxa Split Button Dark Mode
+@include splitButton-ui(
+    $ui: 'dark',
+    $color: #fff,
+    $font-weight: normal,
+    $text-transform: none,
+    $hovered-color: #fff,
+    $background-color: rgba(0, 0, 0, 0.1),
+    $border-radius: 4px,
+    $border-width: 1px,
+    $border-style: solid,
+    $border-color: rgba(255, 255, 255, 0.24),
+    $derive-border-colors: rgba(255, 255, 255, 0.24)
+);
+
+// Custom Split Button Dark Mode
+.x-splitButton-dark {
+    .x-splitArrow-el {
+        border-color: rgba(255, 255, 255, 0.24) !important;
+    }
+
+    &.x-disabled {
+        .x-text-el {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .x-arrow-el {
+            &::before {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+}
+
+// Abraxa Form Fileds Dark mode
+@include field-ui(
+    $ui: 'dark',
+    $label-color: rgba(255, 255, 255, 0.6),
+    $focused-label-color: rgba(255, 255, 255, 1),
+    $disabled-label-color: rgba(255, 255, 255, 0.6),
+    $disabled-background-color: transparent
+);
+
+@include textfield-ui(
+    $ui: 'dark',
+    $input-color: #fff,
+    $placeholder-color: rgba(255, 255, 255, 0.24),
+    $focused-input-background-color: #002945,
+    $input-background-color: transparent,
+    $input-border-color: rgba(255, 255, 255, 0.24),
+    $focused-input-border-color: $link-abraxa !important,
+    $disabled-background-color: transparent
+);
+
+.x-selectfield-dark {
+    &.x-disabled {
+        .x-input-wrap-el {
+            background-color: transparent;
+            color: rgba(#fff, 1);
+
+            input {
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.x-field-dark {
+    &.a-field-icon {
+        .x-before-input-el {
+            opacity: 0.6;
+        }
+    }
+
+    &:hover {
+        .x-label-el {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+
+        &.x-disabled {
+            .x-input-wrap-el {
+                border-color: transparent !important;
+            }
+        }
+
+        &:not(.x-disabled):not(.x-focused) {
+            .x-input-wrap-el {
+                border-color: rgba(255, 255, 255, 0.24) !important;
+                background-color: rgba(0, 0, 0, 0.08);
+            }
+        }
+    }
+
+    .x-trigger {
+        &.x-interactive {
+            &:hover {
+                .x-icon-el {
+                    color: #b0bec5;
+                }
+            }
+        }
+    }
+}
+
+.x-datetimefield-dark {
+    &.x-focused {
+        .x-label-el {
+            color: #fff !important;
+        }
+    }
+}
+
+.x-textfield-dark {
+    &.x-field-field-xl {
+        .x-input-wrap-el {
+            background-color: transparent !important;
+        }
+    }
+
+    &.x-disabled {
+        .x-input-wrap-el {
+            background-color: transparent;
+            color: rgba(#fff, 1);
+
+            input {
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.a-list-dark {
+    .x-itemheader {
+        background-color: transparent;
+        color: #fff;
+        min-height: 54px;
+    }
+
+    .x-listitem {
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.4);
+
+        a {
+            color: #fff;
+        }
+
+        .a-file-name {
+            @include text-truncate;
+            margin-left: 16px;
+            width: 160px;
+        }
+
+        &.x-hovered {
+            color: #fff;
+        }
+
+        &.x-selected {
+            background-color: #002945;
+            color: rgba(255, 255, 255, 1);
+
+            .a-file-name {
+                font-weight: $font-weight-bold;
+            }
+
+            &::before {
+                content: '';
+                width: 3px;
+                height: 100%;
+                position: absolute;
+                right: 0;
+                z-index: 9;
+                background-color: #0078d7;
+                border-radius: 3px 0 0 3px;
+            }
+        }
+    }
+}
+
+.a-boundlist-dark {
+    background-color: #002945;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
+
+    .a-bb-100 {
+        border-bottom: 1px solid rgba(material-color(grey, '100'), 0.2);
+    }
+
+    .a-bt-100 {
+        border-top: 1px solid rgba(material-color(grey, '100'), 0.2);
+    }
+
+    .x-dataview {
+        background-color: transparent;
+    }
+
+    .x-listitem {
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.6);
+
+        .a-status-badge {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        a {
+            color: #fff;
+        }
+
+        &.x-hovered,
+        &.x-selected {
+            background-color: #002036;
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+
+    .x-dock-vertical > .x-component {
+        background-color: #002945 !important;
+    }
+
+    .a-inner {
+        &:not(.no-fill) {
+            svg {
+                path {
+                    stroke-width: 0;
+                }
+            }
+        }
+    }
+}
+
+// Abraxa SCSS Imports
+@import './scss/abraxa-font.scss';
+@import './scss/material-icons.scss';
+@import './scss/animations.scss';
+@import './scss/helpers.scss';
+@import './scss/typography.scss';
+@import './scss/colors.scss';
+@import './scss/buttons.scss';
+@import './scss/icons.scss';
+@import './scss/containers.scss';
+@import './scss/fields.scss';
+@import './scss/indicators.scss';
+@import './scss/masks.scss';
+@import './scss/tabs.scss';
+@import './scss/toasts.scss';
+@import './scss/sheets.scss';
+@import './scss/tooltips.scss';
+@import './scss/badges.scss';
+@import './scss/menus.scss';
+@import './scss/lists.scss';
+@import './scss/grids.scss';
+@import './scss/dialogs.scss';
+@import './scss/dialogs-tmp.scss';
+@import './scss/charts.scss';
+@import './scss/main.scss';
+@import './scss/dev.scss';
+@import './scss/wps.scss';

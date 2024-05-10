@@ -1,0 +1,89 @@
+// Sheets
+.a-sheet {
+    margin: auto;
+    box-shadow: 0 4px 16px 0 rgba($base-abraxa-dark, 0.24);
+
+    .x-body-el {
+        background-color: $base-abraxa-dark;
+        color: #fff;
+        padding: 0px 16px;
+    }
+
+    .a-sheet-message {
+        font-size: 14px;
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+
+        i {
+            font-size: 24px;
+            margin-right: 12px;
+            color: #fff;
+        }
+    }
+
+    &.a-sheet-warning {
+        box-shadow: 0 4px 16px 0 rgba(material-color(amber, '900'), 0.24);
+
+        .x-body-el {
+            background-color: material-color(amber, '700');
+        }
+    }
+
+    &.a-sheet-action {
+        box-shadow: 0 4px 16px 0 rgba($base-abraxa, 0.24);
+
+        .x-body-el {
+            background-color: $link-abraxa;
+        }
+    }
+
+    &.a-sheet-success {
+        box-shadow: 0 4px 16px 0 rgba(material-color(teal, '700'), 0.24);
+
+        .x-body-el {
+            background-color: material-color(teal, '500');
+        }
+    }
+
+    &.a-sheet-danger {
+        box-shadow: 0 4px 16px 0 rgba(material-color(pink, '700'), 0.24);
+
+        .x-body-el {
+            background-color: material-color(pink, '500');
+        }
+    }
+}
+
+// Customize sheet
+.x-sheet {
+    &.abraxa-grid-view-options {
+        border-radius: 0;
+        box-shadow: -4px 0 12px 0 rgba($base-abraxa-dark, 0.12);
+
+        .x-titlebar {
+            border-bottom-width: 1px !important;
+        }
+
+        .x-column-options-sortablehandle {
+            &.x-icon-el {
+                color: $icon-color;
+            }
+        }
+
+        .x-column-options-folder,
+        .x-column-options-leaf {
+            &.x-icon-el {
+                display: none;
+            }
+        }
+
+        .x-tool {
+            .x-icon-el {
+                &::before {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

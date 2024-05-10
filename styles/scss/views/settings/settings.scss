@@ -1,0 +1,1017 @@
+// Settings
+.a-settings {
+}
+
+// Disabled fields custom style
+.x-field {
+    &:not(.x-radiofield) {
+        &.x-disabled {
+            .x-label-text-el {
+                display: inline-flex;
+                align-items: center;
+
+                &::after {
+                    content: '';
+                    font-family: 'Material Symbols Rounded';
+                    content: 'lock';
+                    margin-left: 4px;
+                    font-size: 14px;
+                    color: $icon-light-color;
+                }
+            }
+
+            .x-input-el {
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    &:not(.x-field-dark) {
+        &.x-disabled {
+            .x-label-text-el {
+                color: material-color(blue-grey, '500');
+            }
+
+            .x-input-el {
+                color: $color;
+            }
+        }
+    }
+}
+
+// Settings main
+.a-settings-main {
+    > .x-body-el {
+        padding: 16px 32px;
+    }
+}
+
+// Headings
+.a-company-heading {
+    border-bottom: 1px solid $border-color-light;
+
+    > .x-body-el {
+        padding: 24px 0;
+    }
+
+    .x-img {
+        img {
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    .a-user-image,
+    .a-company-logo,
+    .a-company-badge {
+        position: relative;
+        overflow: visible;
+
+        .a-edit-image {
+            opacity: 0;
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &.x-filefield {
+                width: 80px;
+                height: 80px;
+                padding: 0;
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+
+                .x-input-el,
+                .x-underline-el {
+                    display: none;
+                }
+            }
+
+            &::after {
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 80px;
+                height: 80px;
+                font-size: 24px;
+                font-family: 'Material Symbols Rounded';
+                content: 'edit';
+                color: $accent-color;
+                line-height: 1;
+                font-style: normal;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-feature-settings: 'liga';
+                text-rendering: optimizeLegibility;
+            }
+
+            .x-filetrigger {
+                .x-inner-el {
+                    border-radius: 50%;
+                    background-color: transparent;
+                }
+
+                .x-text-el {
+                    display: none;
+                }
+
+                .x-button {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+        }
+
+        .a-delete-image {
+            position: absolute;
+            transform: scale(0.75);
+            opacity: 0;
+            z-index: 99;
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        &:hover {
+            .a-edit-image,
+            .a-delete-image {
+                opacity: 1;
+            }
+
+            .x-img {
+                img {
+                    opacity: 0.32;
+                }
+            }
+        }
+    }
+}
+
+// User heading
+.a-user-heading {
+    margin-top: -66px;
+
+    .a-avatar {
+        margin-right: 24px;
+
+        i {
+            font-size: 32px;
+        }
+    }
+
+    .x-img {
+        width: 132px;
+        height: 132px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        background-color: #fff;
+
+        img {
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            height: 128px !important;
+            width: 128px !important;
+            box-shadow: 0 0 0 2px #f1f5f9;
+            border: 8px solid #fff;
+            margin: 2px;
+        }
+    }
+
+    .a-user-image {
+        position: relative;
+        overflow: visible;
+        width: 135px;
+        margin: auto;
+
+        .a-edit-image {
+            opacity: 0;
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &.x-filefield {
+                width: 135px;
+                height: 135px;
+                margin: 0;
+                padding: 0;
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+
+                .x-input-el,
+                .x-underline-el {
+                    display: none;
+                }
+            }
+
+            &::after {
+                width: 135px;
+                height: 135px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-family: 'Material Symbols Rounded';
+                content: 'edit';
+                color: $accent-color;
+                line-height: 1;
+                font-style: normal;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-feature-settings: 'liga';
+                text-rendering: optimizeLegibility;
+            }
+
+            .x-filetrigger {
+                .x-inner-el {
+                    border-radius: 50%;
+                    background-color: transparent;
+                }
+
+                .x-text-el {
+                    display: none;
+                }
+
+                .x-button {
+                    width: 135px;
+                    height: 135px;
+                }
+            }
+        }
+
+        .a-delete-image {
+            right: 0;
+            top: -12px;
+            position: absolute;
+            transform: scale(0.75);
+            opacity: 0;
+            z-index: 99;
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        &:hover {
+            .a-edit-image,
+            .a-delete-image {
+                opacity: 1;
+            }
+
+            .x-img {
+                img {
+                    opacity: 0.32;
+                }
+            }
+        }
+    }
+
+    .a-user-name {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+}
+
+// Company heading
+.a-company-heading {
+    h5 {
+        margin-top: 0;
+    }
+
+    .a-company-logo {
+        .x-img {
+            width: 340px;
+            height: 128px;
+            border-radius: 8px;
+            border: 1px solid $border-color;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+
+            img {
+                width: auto;
+                height: auto;
+                max-height: 128px;
+                max-width: 100%;
+            }
+        }
+
+        .a-edit-image {
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto !important;
+        }
+
+        .a-delete-image {
+            right: 0;
+            top: 0;
+        }
+    }
+
+    .a-company-badge {
+        height: 128px;
+        border-radius: $border-radius;
+        border: 1px solid $border-color;
+
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .x-img {
+            img {
+                border-radius: 8px;
+            }
+        }
+
+        .a-delete-image {
+            right: 0;
+            top: -12px;
+        }
+    }
+}
+
+// Premium link
+.a-premium-link {
+    color: $color-yellow-500;
+    font-weight: 500;
+    cursor: pointer;
+
+    i {
+        margin-right: 4px;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Normal / Bordered list
+.a-normal-list,
+.a-bordered-list {
+    border-radius: 8px;
+    border: 1px solid $border-color;
+
+    .a-list-titles {
+        padding-top: 12px;
+        padding-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: $text-light-color;
+        }
+    }
+
+    .a-list-item {
+        height: 40px;
+
+        &:not(.x-last) {
+            border-bottom: 1px solid $border-color-light;
+        }
+
+        &.x-selected {
+            background-color: $selected-abraxa-bgr-color;
+        }
+    }
+
+    .a-list-values {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+
+    .a-actions-hover {
+        min-width: 84px;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        > .x-body-el {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
+
+// Grid list
+.a-grid-list {
+    .a-grid-titles {
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+            padding: 16px 12px;
+            color: rgba(96, 125, 139, 0.8);
+            font-size: 13px;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    .a-grid-item {
+        height: 48px;
+
+        &:not(.x-last) {
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+
+    .a-grid-comment {
+        span {
+            color: $text-light-color;
+        }
+    }
+
+    .a-grid-values {
+        display: flex;
+        align-items: center;
+
+        div {
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .a-cell-placeholder {
+        color: $text-light-color;
+    }
+
+    .a-actions-hover {
+        padding-left: 12px;
+        padding-right: 12px;
+        min-width: 90px;
+    }
+}
+
+// Settings signature froala editor
+.signature_editor {
+    .fr-box {
+        .fr-wrapper {
+            .fr-view {
+                table {
+                    &:not(.mcnTextContentContainer) {
+                        td,
+                        th {
+                            &:not(.fr-selected-cell) {
+                                border: 1px solid #ddd;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Profile
+.a-profile {
+    margin: 80px auto 16px auto !important;
+    overflow: visible;
+
+    &:not(.a-profile-full-width) {
+        max-width: 800px;
+        min-width: 800px;
+    }
+
+    > .x-body-el {
+        overflow: visible;
+    }
+
+    .a-settings-profile {
+        &.x-layout-card-item {
+            background-color: inherit;
+        }
+
+        .x-field {
+            max-width: 480px;
+        }
+    }
+
+    .a-profile-access {
+        border-top: 1px solid $border-color-light;
+        background-color: #fafbfc;
+        margin: 16px -32px -16px -32px;
+        border-radius: 0 0 8px 8px;
+
+        .a-item {
+            padding: 0 32px 16px 32px;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $border-color-light;
+            }
+
+            h5 {
+                margin: 16px 0;
+            }
+        }
+    }
+
+    &.a-profile-full-width {
+        .a-profile-access {
+            background-color: #fff;
+        }
+    }
+}
+
+// Vessel data
+.a-vessel-left-panel,
+.a-cargo-left-panel,
+.a-port-left-panel {
+    background-color: #fafbfc;
+    border-right: 1px solid $border-color-light;
+
+    .x-img-background {
+        border-radius: 16px;
+        background-size: cover;
+        background-color: #fff;
+    }
+}
+
+// Helper
+// TODO: Move to helpers.scss
+.w-75 {
+    width: 75%;
+}
+
+// Status Badge
+// TODO: Move to badges.scss
+.a-status-badge {
+    &.filled {
+        background-color: $viewport-color;
+    }
+
+    &.status-verified {
+        background-color: material-color(teal, '500');
+        color: #fff;
+
+        i {
+            color: #fff;
+        }
+    }
+}
+
+// Company General Data
+.a-company-general-data {
+    border-bottom: 1px solid $border-color-light;
+
+    > .x-body-el {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .a-field-company-name {
+        .x-label-el {
+            margin-bottom: -18px;
+
+            > .x-label-text-el {
+                font-size: 13px;
+                font-weight: $font-weight-normal;
+            }
+        }
+
+        .x-input-el {
+            font-size: 32px;
+        }
+    }
+
+    .a-general-form {
+        max-width: 500px;
+    }
+}
+
+// Bank Accounts
+.a-company-bank-accounts {
+    > .x-body-el {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $border-color-light;
+    }
+
+    .a-bank-details-item {
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+}
+
+// Separator
+.a-sep-action {
+    margin: 0 16px;
+    width: 1px;
+    height: 36px;
+    background-color: $border-color-light;
+}
+
+// Company About us
+.a-company-about {
+    > .x-body-el {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+}
+
+// Company Footer
+// TODO: Create a UI style for docked footer
+.a-company-footer {
+    box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+    height: 64px;
+
+    > .x-body-el {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+// Agent Profile Bank details
+// TODO: Compare with DEV-2335-main-central-directory-branch
+.a-bank-details-item {
+    > .x-body-el {
+        padding: 16px 24px;
+    }
+}
+
+// Directory Display Item
+// TODO: Compare with DEV-2335-main-central-directory-branch
+.a-display-item {
+    min-height: 32px;
+
+    .a-display-label {
+        color: material-color(blue-grey, '700');
+        flex: 1;
+
+        &:not(.fs-12) {
+            font-size: 14px;
+        }
+    }
+
+    .a-display-value {
+        flex: 1;
+        line-height: 1.4;
+    }
+}
+
+// Froala Editor
+// TODO: Refactor Froala Editor
+.x-field-froala-classic {
+    > .x-body-wrap-el {
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+    }
+
+    .x-froala {
+        .fr-element {
+            padding: 12px 16px !important;
+        }
+
+        .fr-placeholder {
+            padding-left: 16px !important;
+        }
+
+        .fr-toolbar {
+            border-left-width: 0;
+            border-right-width: 0;
+            border-top-width: 0;
+            border-bottom-width: 1px;
+            background-color: #fff !important;
+        }
+    }
+}
+
+// Button UI: 'material-color(teal, "500")'
+// TODO: Move to application.scss
+// TODO: Refactor color tokens
+@include button-ui(
+    $ui: 'bg-solid-teal-500',
+    $background-color: material-color(teal, '500'),
+    $hovered-background-color: darken(material-color(teal, '500'), 2%),
+    $pressed-background-color: darken(material-color(teal, '500'), 4%)
+);
+
+// Settings Workflows
+// TODO: Merge with DEV-2441-implement-layout-for-agents-public-profile-in-settings
+
+// Workflows List (Container)
+.a-workflows-list {
+    margin: 8px 0;
+
+    // Workflow List item
+    .a-workflow-list-item {
+        padding: 16px;
+        height: 76px;
+        margin: 16px 0;
+        transition: background-color $transition-default;
+
+        &.x-hovered {
+            background-color: $selected-abraxa-bgr-color;
+        }
+
+        .a-workflow-name-container {
+            flex: 1;
+        }
+
+        .a-workflow-info-actions-container {
+            flex: 1;
+
+            .a-workflow-updated {
+                min-width: 160px;
+            }
+
+            .x-checkboxfield {
+                margin: 0 16px;
+            }
+        }
+    }
+
+    .a-date {
+        color: material-color(blue-grey, '700');
+    }
+}
+
+// Badge Background Light Green
+// TODO: Refactor color tokens
+// TODO: Move to badges.scss
+.a-badge-bg-green-50 {
+    background-color: mix(#fff, $color-green-500, 92%);
+
+    i {
+        color: $color-green-500;
+    }
+}
+
+// Extend Dialog Full Screen
+// Merge in dialogs.scss
+.a-dialog-fullscreen {
+    .x-formpanel {
+        .x-formpanel-body-el {
+            background-color: inherit;
+        }
+    }
+}
+
+// Dialog Field Name
+.a-dialog-workflow {
+    .a-field-name {
+        margin-top: 16px !important;
+
+        .x-input-wrap-el {
+            border-radius: $border-radius;
+        }
+
+        &:not(.x-focused) {
+            .x-input-wrap-el {
+                background-color: $viewport-color;
+            }
+        }
+    }
+
+    // Last Card
+    .a-dialog-card-last {
+        margin-bottom: 16px !important;
+    }
+}
+
+// Dialog Card Form
+.a-dialog-card-form {
+    margin: 16px 0;
+
+    &.a-form-hide {
+        display: none;
+    }
+
+    .x-textfield.x-label-align-horizontal .x-label-el {
+        min-width: 160px;
+    }
+}
+
+// Dialog Card Info
+.a-dialog-card-info {
+    display: none;
+    margin: 16px 0;
+
+    &.a-form-show {
+        display: block;
+    }
+
+    .a-info-box {
+        background-color: $viewport-color;
+    }
+}
+
+// Dialog Card Separator
+.a-sep-card {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &::before,
+    &::after {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 32px;
+        margin: auto;
+    }
+
+    .a-sep-text {
+        font-size: 18px;
+        font-weight: $font-weight-bold;
+        padding: 12px;
+        line-height: 1;
+    }
+
+    .a-sep-icon {
+        position: absolute;
+        bottom: -3px;
+    }
+
+    &.a-sep-card-action {
+        &::before,
+        &::after {
+            background-color: $color-green-500;
+        }
+
+        .a-sep-icon {
+            color: $color-green-500;
+        }
+    }
+
+    &:not(.a-sep-card-action) {
+        &::before,
+        &::after {
+            background-color: $border-color;
+        }
+
+        .a-sep-icon {
+            color: $border-color;
+        }
+    }
+}
+
+// Dialog full screen
+// TODO: Merge with Port News - feature/DEV-2320-Create-the-frontend-module-backbone
+// TODO: Move to dialogs.scss
+.a-dialog-fullscreen {
+    border-radius: 0;
+    box-shadow: none;
+
+    // Override default dialog styles
+    .x-dialog-body-el {
+        background-color: $viewport-color;
+    }
+
+    .x-panel-outer-border-trl {
+        background-color: $viewport-color;
+        border-radius: 0;
+    }
+
+    .x-dialogheader {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 9;
+    }
+
+    // Dialog title
+    .a-dialog-card-title {
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        text-align: center;
+        margin-top: 24px;
+        margin-bottom: 32px;
+    }
+
+    // Dialog card
+    .a-dialog-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: $shadow;
+        width: 740px;
+        margin: auto;
+
+        > .x-body-el {
+            padding: 32px;
+        }
+    }
+
+    // Dialog Froala
+    .a-instructions-container {
+        .x-label-el {
+            font-size: 14px;
+            font-weight: $font-weight-bold;
+            margin-bottom: 8px;
+        }
+
+        .x-containerfield {
+            .x-body-wrap-el {
+                border: 1px solid $border-color;
+                border-radius: 6px;
+            }
+        }
+
+        .fr-toolbar {
+            border-top: 0;
+        }
+    }
+
+    // Dialog footer
+    .a-dialog-card-footer {
+        border-radius: 0;
+        box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+
+        > .x-body-el {
+            justify-content: center;
+        }
+
+        .a-dialog-card-footer-inner {
+            width: 740px;
+
+            > .x-body-el {
+                text-align: right;
+            }
+        }
+    }
+}
+
+// Field
+// TODO: Refactor in fields.scss
+.x-field {
+    &:not(.x-invalid)&:not(.x-disabled) {
+        &.x-required {
+            > .x-label-el {
+                &::after {
+                    color: material-color(pink, '500');
+                }
+            }
+        }
+    }
+}
+
+.a-field-icon {
+    &.icon-manage-accounts {
+        .x-before-input-el {
+            &::before {
+                content: 'manage_accounts';
+            }
+        }
+    }
+}
+
+// Cost Center Tree
+.a-cost-center-tree {
+    .x-treecell {
+        .x-expander-el {
+            margin-right: 4px;
+            margin-left: 12px;
+            color: $icon-color;
+        }
+    }
+
+    .x-listitem {
+        .x-treecell {
+            &:not(.x-leaf) {
+                .x-inner-el {
+                    .x-body-el {
+                        color: $base-abraxa;
+                    }
+                }
+            }
+        }
+    }
+
+    .x-button-normal {
+        .x-inner-el {
+            .x-body-el {
+                color: $link-abraxa;
+            }
+        }
+    }
+}

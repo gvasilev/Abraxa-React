@@ -1,0 +1,356 @@
+// A Mail
+.a-mail-left-panel {
+    border-right: 1px solid $border-color-light;
+
+    .a-header {
+        background-color: $link-abraxa;
+
+        * {
+            color: #fff;
+        }
+
+        .a-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    .a-subheader {
+        height: 48px;
+        border-bottom: 1px solid $border-color-light;
+
+        > .x-body-el {
+            padding: 0 8px 0 16px;
+        }
+
+        .a-title {
+            font-weight: 500;
+            color: $text-color;
+        }
+    }
+}
+
+// A mail item
+.a-mail-item {
+    cursor: pointer;
+
+    &:not(.x-last) {
+        > .x-body-el {
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+
+    .x-listitem-inner-el {
+        padding: 8px 16px;
+
+        > .x-innerhtml {
+            width: 100%;
+        }
+    }
+
+    .a-mail-header {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .a-recipient {
+            color: $text-color;
+        }
+    }
+
+    .a-mail-subject {
+        font-weight: 500;
+        margin: 2px 0;
+    }
+
+    .a-mail-date {
+        font-size: 13px;
+        color: $text-color;
+    }
+}
+
+// Mail Body
+.email_body {
+    padding: 8px;
+}
+
+// Mail preview
+.a-reporting-email {
+    .a-outline-brd {
+        border: 0 none !important;
+        padding: 16px !important;
+    }
+
+    table {
+        strong {
+            font-weight: bold !important;
+        }
+    }
+}
+
+// Distribution groups
+.a-distribution-groups {
+    .sm-heading {
+        padding: 0 16px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+
+        i {
+            color: $icon-light-color;
+            font-size: 16px;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
+    }
+
+    .a-distribution-item {
+        > .x-body-el {
+            padding: 8px 8px 8px 16px;
+        }
+
+        .a-badge {
+            margin-right: 12px;
+        }
+
+        .a-group-title {
+            color: $base-abraxa;
+            font-weight: 500;
+        }
+
+        .a-group-subtitle {
+            font-size: 11px;
+            font-weight: 400;
+            color: $text-light-color;
+        }
+
+        .a-tools {
+            opacity: 0;
+            transform: scale(0);
+            transition: $transition-default;
+        }
+
+        &.x-hovered {
+            background-color: $hovered-abraxa-bgr-color;
+
+            .a-tools {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+// Distribution list container
+.dist_list_container {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding-top: 16px;
+    z-index: 999;
+    background-color: #fff;
+}
+
+// A Mail Editor
+.a-mail-editor {
+    .x-panelheader {
+        min-height: 64px;
+        border-bottom: 1px solid material-color(grey, '100');
+    }
+
+    .a-reporting-email {
+        table {
+            th,
+            td {
+                border: 1px double transparent;
+
+                &:hover {
+                    border: 1px double #0098f7;
+                    outline: aliceblue;
+                }
+            }
+        }
+    }
+
+    .a-table-logo,
+    .a-table-powered {
+        display: none;
+    }
+
+    .x-froala {
+        .fr-toolbar {
+            padding-left: 8px;
+        }
+
+        .fr-view {
+            padding-top: 12px !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
+    }
+}
+
+// A Mail Preview
+.a-mail-preview {
+    .x-panelheader {
+        min-height: 64px;
+        border-bottom: 1px solid material-color(grey, '100');
+    }
+
+    table {
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0;
+        }
+    }
+}
+
+// A Mail Plain Text
+.a-mail-plain-text {
+    > .x-body-el {
+        padding: 16px 8px;
+    }
+}
+
+// A Mail Toolbar
+.a-mail-toolbar-row {
+    min-height: 48px;
+    border-bottom: 1px solid material-color(grey, '100');
+
+    .a-mail-label {
+        font-weight: 500;
+        font-size: 16px;
+        padding: 0 24px;
+    }
+
+    .a-mail-recipients {
+        .x-input-el {
+            padding: 15px 0;
+        }
+
+        &.x-invalid {
+            .x-underline-el {
+                display: block;
+            }
+        }
+    }
+
+    .a-mail-subject {
+        .x-input-el {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 14px 0;
+        }
+
+        &.x-invalid {
+            .x-underline-el {
+                display: block;
+            }
+        }
+    }
+
+    .a-mail-chip-list {
+        max-width: calc(100% - 64px);
+        padding: 8px 0px;
+
+        .x-listitem {
+            &.x-hovered {
+                background-color: transparent;
+            }
+
+            .x-inner-el {
+                padding: 0;
+            }
+        }
+    }
+
+    .a-sep {
+        width: 1px;
+        min-height: 47px;
+        height: 100%;
+        background-color: $border-color-light;
+    }
+
+    .x-button {
+        &.x-has-text {
+            .x-inner-el {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    }
+}
+
+// A Mail footer check
+.a-mail-footer-check {
+    border-left: 1px solid $bordered-color;
+
+    > .x-body-el {
+        padding-left: 16px;
+    }
+}
+
+// A Mail attachments panel
+.a-attachments-panel {
+    border-top: 1px solid $border-color-light;
+
+    > .x-body-el {
+        padding: 16px 16px 0 16px;
+    }
+
+    .a-attachments {
+        .file_name {
+            max-width: 184px;
+        }
+    }
+}
+
+// Content editable fixes
+.a-content-editable {
+    outline: none !important;
+}
+
+// Send mail
+.sendmail {
+    .x-innerhtml {
+        > div {
+            outline: none !important;
+        }
+    }
+}
+
+.sendmail-popup {
+    .x-underline-el {
+        display: none;
+    }
+
+    .x-tab {
+        &.x-has-text {
+            .x-inner-el {
+                padding: 14px 22px;
+            }
+        }
+    }
+
+    .x-field:not(.x-field-solo).x-layout-auto-item {
+        padding-bottom: 0;
+    }
+}
+
+.sendmail-history {
+    .x-itemheader-body-el {
+        padding: 12px 16px;
+    }
+}
+
+.sendmail-editor {
+    .x-dataview {
+        .x-list-outer-ct {
+            background-color: transparent !important;
+        }
+    }
+}

@@ -1,0 +1,121 @@
+// Status colors
+$color-enroute: material-color(yellow, 'a-yellow');
+$color-light-grey: material-color(blue-grey, '200');
+$color-anchored: $accent-color;
+$color-berthed: $link-abraxa;
+$color-cargo: material-color(indigo, '500');
+$color-shifting: material-color(purple, '500');
+$color-documents: material-color(teal, '500');
+$color-bunkering: material-color(blue-grey, '500');
+$color-pilot: material-color(orange, '500');
+$color-sailed: material-color(green, 'a-green');
+$color-fda: material-color(cyan, '500');
+$color-green: material-color(green, 'a-green');
+$color-accepted: material-color(green, 'a-green');
+$color-withdrawn: material-color(red, 'a-red');
+$color-draft: $border-color;
+$color-normal: $border-color;
+$color-pending: material-color(yellow, 'a-yellow');
+$color-declined: material-color(pink, '500');
+$color-rejected: material-color(pink, '500');
+$color-red: material-color(pink, '500');
+$color-approved: material-color(teal, '500');
+$color-issued: $link-abraxa;
+$color-to-do: $border-color;
+// $color-progress: #FFB74D;
+$color-progress: #f5cf88;
+$color-premium: #ffb74d;
+$color-completed: #02be9d;
+$color-accent-web: #00b6c8;
+
+// CDB statuses
+$color-good: #02be9d;
+$color-low: #ffb74d;
+$color-high: material-color(pink, '500');
+$color-check: material-color(deep-orange, '500');
+$color-at_risk: material-color(pink, '500');
+$color-partially: #ffb74d;
+$color-funded: #02be9d;
+$color-yellow-500: #ffb74d;
+$color-green-500: #02be9d;
+
+//Colors
+.c-white {
+    color: #fff;
+}
+
+.c-green {
+    color: material-color(green, '500') !important;
+
+    &.x-has-icon {
+        .x-icon-el:before {
+            color: material-color(green, '500');
+        }
+    }
+}
+
+.c-green-500 {
+    color: $color-green-500 !important;
+}
+
+.c-yellow {
+    color: material-color(yellow, 'a-yellow') !important;
+}
+
+.c-yellow-500 {
+    color: $color-yellow-500 !important;
+}
+
+.c-teal {
+    color: material-color(teal, '500');
+}
+
+.c-accent {
+    color: $accent-color;
+}
+
+.c-text {
+    color: $text-color;
+}
+
+.c-grey-500,
+.c-grey {
+    color: material-color(grey, '500');
+}
+
+.c-grey-600 {
+    color: material-color(grey, '600');
+}
+
+.c-blue-grey,
+.c-blue-grey-500 {
+    color: material-color(blue-grey, '500');
+}
+
+.c-light-grey {
+    color: material-color(blue-grey, '200');
+}
+
+.c-light-blue {
+    color: material-color(light-blue, '500');
+}
+
+.c-black {
+    color: $color !important;
+}
+
+.c-blue {
+    color: $base-abraxa !important;
+}
+
+.c-red {
+    color: material-color(pink, '500') !important;
+}
+
+.c-link {
+    color: $link-abraxa;
+}
+
+.c-premium {
+    color: $color-premium;
+}

@@ -1,0 +1,35 @@
+// Title
+.a-husbandry-title {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    align-self: flex-start;
+
+    .a-subtitle {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: $link-abraxa;
+            font-size: 13px;
+            font-weight: $font-weight-bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        i {
+            font-size: 18px;
+            margin-right: 4px;
+            color: $link-abraxa;
+        }
+    }
+
+    .a-id {
+        font-style: normal;
+        margin-left: 4px;
+        font-size: 14px;
+        color: $text-color;
+        font-weight: normal;
+    }
+}

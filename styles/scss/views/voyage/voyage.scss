@@ -1,0 +1,1047 @@
+// Dialog title
+.a-card-layout-title {
+    font-size: 24px;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.a-card-layout-inner-container {
+    max-width: 1080px;
+    min-width: 1080px;
+    margin: 16px auto !important;
+}
+
+.a-card-layout-inner-container-md {
+    max-width: 796px;
+    min-width: 796px;
+    margin: 16px auto !important;
+}
+
+// Card Header
+.a-card-header {
+    height: 64px;
+
+    > .x-body-el {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    // Card Title
+    .x-title {
+        font-size: 16px;
+        font-weight: $font-weight-bold;
+    }
+}
+
+// Card Body
+.a-card-body {
+    > .x-body-el {
+        padding: 0 24px 24px;
+    }
+
+    .a-form-container {
+        margin-left: -8px;
+        margin-right: -8px;
+
+        &.a-form-2col {
+            .a-field-container {
+                min-width: 340px;
+            }
+        }
+
+        .form-error {
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+
+    .a-field-container {
+        margin: 8px;
+        flex: 1;
+
+        // Date Field Fix
+        .x-datetimefield {
+            .x-trigger {
+                opacity: 1;
+                transition: opacity $transition-default;
+            }
+
+            &:not(:hover) {
+                .x-trigger {
+                    opacity: 0;
+                }
+            }
+        }
+
+        // Quantity Unit Field Fix
+        .x-quantityunit {
+            .a-prepend {
+                min-width: 120px;
+            }
+        }
+
+        // Classic Field TBN Fix
+        .a-classic-has-tbn {
+            .x-after-input-el {
+                margin: -1px;
+            }
+        }
+    }
+
+    .a-display-label {
+        min-width: 110px;
+        max-width: 110px;
+    }
+}
+
+// Display Value List
+.a-display-value-list {
+    .x-list-inner-ct {
+        flex-wrap: wrap;
+    }
+
+    .a-display-value-list-item {
+        font-weight: $font-weight-bold;
+        display: flex;
+        align-items: center;
+
+        &:not(.x-last) {
+            &::after {
+                content: '';
+                width: 16px;
+                height: 1px;
+                background-color: $border-color;
+                display: block;
+                margin: auto 8px;
+            }
+        }
+    }
+}
+
+// Dialog footer
+.a-card-footer {
+    height: 64px;
+    border-radius: 0;
+    box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+    background-color: #fff;
+
+    > .x-body-el {
+        justify-content: center;
+    }
+
+    .a-card-footer-inner {
+        width: 760px;
+
+        > .x-body-el {
+            text-align: right;
+        }
+    }
+
+    .a-card-footer-inner-md {
+        width: 1080px;
+
+        > .x-body-el {
+            text-align: right;
+        }
+    }
+}
+
+// Itinerary Form List
+.a-form-itinerary-list {
+    .a-form-itinerary-row {
+        > .x-body-el {
+            padding-left: 26px;
+        }
+
+        &::before {
+            content: '';
+            width: 2px;
+            height: 100%;
+            display: block;
+            position: absolute;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'%3E%3Ccircle id='Ellipse_179' data-name='Ellipse 179' cx='1' cy='1' r='1' fill='%23B0BEC5'/%3E%3C/svg%3E%0A");
+            background-size: 2px 6px;
+            background-repeat: repeat-y;
+            background-position: top center;
+            left: 8px;
+        }
+
+        .a-itinerary-icon {
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+
+            i {
+                font-size: 18px;
+                color: material-color(blue-grey, '300');
+            }
+        }
+
+        &.x-first {
+            &::before {
+                bottom: 0;
+                height: 24px;
+            }
+
+            .a-itinerary-icon {
+                bottom: 18px;
+            }
+        }
+
+        &.x-last {
+            &:not(.x-first) {
+                &::before {
+                    top: 0;
+                    height: 24px;
+                }
+
+                .a-itinerary-icon {
+                    top: 18px;
+                }
+            }
+        }
+
+        &.x-first {
+            &.x-last {
+                &::before {
+                    display: none;
+                }
+            }
+
+            // Fix Last Child
+            &:last-of-type {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+
+        // Fix Last Child
+        &:last-of-type {
+            &::before {
+                top: 0;
+                height: 24px;
+            }
+        }
+    }
+}
+
+// Itinerary List
+.a-itinerary-list {
+    // Item List
+    .a-itinerary-list-item {
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        transition: background-color $transition-default;
+
+        height: 64px;
+        cursor: pointer;
+
+        &:not(.x-last) {
+            border-bottom: 1px solid $border-color-light;
+        }
+
+        &.x-hovered,
+        &.a-focused {
+            background-color: $selected-abraxa-bgr-color;
+        }
+    }
+
+    // Item Port Contianer
+    .a-item-port-container {
+        > .x-body-el {
+            padding-left: 16px;
+            padding-right: 16px;
+            line-height: 1.4;
+        }
+    }
+
+    // Item Appointment Container
+    .a-item-appointment-info-container {
+        > .x-body-el {
+            padding-left: 16px;
+            padding-right: 16px;
+            line-height: 1.4;
+        }
+    }
+}
+
+// Card Section
+.a-card-section {
+    .a-collapsible-title {
+        height: 56px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .a-collapsible-container {
+        > .x-body-el {
+            padding-left: 44px;
+            padding-right: 44px;
+            padding-bottom: 24px;
+        }
+    }
+
+    .a-form-itinerary-row {
+        margin: 0 -8px;
+    }
+
+    .a-card-form {
+        margin: 16px 0;
+    }
+}
+
+// Button Check
+// TODO: Move to button.scss
+.x-button {
+    &.a-item-check-button {
+        &:not(.x-hovered),
+        &:not(.x-pressed) {
+            .x-icon-el {
+                color: $icon-light-color;
+            }
+        }
+
+        &.x-hovered {
+            .x-icon-el {
+                color: $icon-color;
+            }
+        }
+
+        &.x-pressed {
+            .x-inner-el {
+                background-color: transparent;
+            }
+        }
+
+        &.x-pressing,
+        &.x-pressed {
+            .x-icon-el {
+                color: material-color(cyan, '500');
+
+                &::before {
+                    font-variation-settings: 'FILL' 1 !important;
+                }
+            }
+        }
+    }
+}
+
+// Checkbox Field
+// TODO: Move to fields.scss
+.x-field {
+    &.a-item-check-button {
+        .x-icon-el {
+            color: $icon-light-color;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'check_circle';
+            }
+        }
+
+        &.x-checked {
+            .x-icon-el {
+                color: material-color(cyan, '500');
+
+                &::before {
+                    font-variation-settings: 'FILL' 1 !important;
+                }
+            }
+        }
+    }
+}
+
+// Tab Bar XL
+// Move to Application.scss
+@include tab-ui(
+    $ui: 'xl',
+    $active-indicator-height: 4px,
+    $active-indicator-background-color: $color-accent-web,
+    $padding: 16px 24px
+);
+
+.x-tabbar-xl {
+    .x-tab-xl,
+    .x-tab {
+        > .x-inner-el {
+            padding: 16px 24px;
+        }
+
+        .x-text-el {
+            line-height: 1.5;
+        }
+
+        .a-tab-title {
+            font-size: 18px;
+        }
+
+        .a-tab-subtitle {
+            font-size: 13px;
+            font-weight: normal;
+            color: material-color(blue-grey, '700');
+        }
+
+        .x-active-indicator-el {
+            border-radius: 4px 4px 0 0;
+        }
+    }
+}
+
+// Card From Container
+// TODO: Merge with dialogs-tmp.scss
+.a-card-form {
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: mix(#fff, $base-light-color, 75%);
+    margin: 16px 0;
+
+    .a-collapsible-title {
+        height: 56px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .a-collapsible-container {
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 24px;
+        }
+    }
+
+    .a-form-container {
+        margin-top: -8px;
+
+        > .x-body-el {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        &.a-form-4cols {
+            .a-field-container {
+                width: 219px;
+                min-width: 219px;
+            }
+        }
+
+        .a-field-container {
+            margin: 8px;
+
+            // Data suffix attribute
+            .x-field {
+                .x-after-input-el[data-suffix] {
+                    &::before {
+                        content: attr(data-suffix);
+                        font-size: 13px;
+                        color: $color-light-grey;
+                        display: flex;
+                        align-items: center;
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            &.a-field-multiple,
+            &.a-field-switch {
+                .x-label {
+                    font-size: 13px;
+                    color: material-color(blue-grey, '500');
+                    line-height: 16px;
+                }
+            }
+
+            &.a-field-multiple {
+                .x-label {
+                    padding: 0 0 8px 0;
+                }
+
+                .x-field {
+                    flex: 1;
+                }
+
+                .a-spacer {
+                    width: 8px;
+                    height: 1px;
+                    background-color: $border-color;
+                    margin: 0 8px;
+                }
+            }
+
+            &.a-field-switch {
+                border-bottom: 1px solid $border-color;
+
+                > .x-body-el {
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    padding-right: 8px;
+                }
+            }
+        }
+    }
+
+    .a-sep-form {
+        margin: 12px 20px;
+    }
+}
+
+// Card Form Heading
+// TODO: Extend .a-card-form class
+.a-card-form {
+    .a-form-heading {
+        height: 48px;
+
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 16px;
+        }
+    }
+
+    .a-form-body {
+        > .x-body-el {
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 16px;
+        }
+
+        .a-field-container {
+            // Override default flex value for .a-field-container
+            flex: none;
+        }
+    }
+}
+
+// Voyage Form
+.a-voyage-form {
+    .x-panel-body-el {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .form-error {
+        background-color: transparent;
+    }
+}
+
+// Voyage Appointment Form
+.a-voyage-appointment-form {
+    .form-error {
+        border-bottom: 1px solid $border-color-light;
+    }
+}
+
+// Nomination Item
+.a-nomination-item {
+    height: 64px;
+    margin-top: 16px;
+    border-radius: 8px;
+    background-color: $selected-abraxa-bgr-color;
+    border: 1px solid mix(#fff, $link-abraxa, 80%);
+
+    > .x-body-el {
+        padding: 0 16px;
+    }
+}
+
+// Instructions
+.a-instructions-list {
+    > .x-body-el {
+        padding: 0 44px;
+    }
+}
+
+// Instruction Item
+.a-instruction-item {
+    user-select: none;
+    margin: 8px 0;
+
+    .a-instruction-handle {
+        margin: 16px 0 16px 8px;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: grab !important;
+    }
+
+    .a-instruction-card {
+        flex: 1;
+        border-radius: 8px;
+        border: 1px solid $border-color;
+
+        .a-instruction-header {
+            height: 64px;
+            border-bottom: 1px solid $border-color;
+            background-color: #fcfcfd;
+
+            > .x-body-el {
+                padding: 0 16px;
+            }
+        }
+
+        .a-instruction-footer {
+            border-top: 1px solid $border-color-light;
+
+            > .x-body-el {
+                padding: 8px 16px;
+            }
+
+            .a-attachment-list {
+                margin: 0 -8px;
+            }
+
+            .a-attachment-item {
+                position: relative;
+                margin: 8px;
+                padding: 12px 24px 12px 12px;
+            }
+        }
+    }
+
+    .x-froala {
+        .fr-toolbar {
+            padding: 0 8px;
+        }
+    }
+
+    .x-field-froala-classic {
+        > .x-body-wrap-el {
+            border: 0;
+        }
+
+        .fr-element {
+            > p {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+// Field Icon Tag
+// TODO: Move to field.scss
+.a-field-icon {
+    // Field Icon Color Experimental
+    // TODO: Test it
+    // Compare with portnews.scss
+    .x-before-input-el {
+        color: $icon-color;
+    }
+
+    &.icon-tag {
+        .x-before-input-el {
+            &::before {
+                content: 'tag';
+            }
+        }
+    }
+
+    &.icon-domain {
+        .x-before-input-el {
+            &::before {
+                content: 'domain';
+            }
+        }
+    }
+}
+
+// Material Icons
+// TODO: Move to material-icons.scss
+.md-icon-arrow-right-alt {
+    &::before {
+        content: 'arrow_right_alt';
+    }
+}
+
+.md-icon-attach-file-add {
+    &::before {
+        content: 'attach_file_add';
+    }
+}
+
+.md-icon-notification-add {
+    &::before {
+        content: 'notification_add';
+    }
+}
+
+// Link
+// TODO: Move to helpers.scss
+.a-link {
+    color: $base-abraxa;
+    cursor: pointer;
+    display: inline;
+
+    &:hover {
+        color: $link-abraxa;
+        text-decoration: underline;
+    }
+}
+
+// Display Item
+// TODO: Compare and merge with directory.scss
+.a-display-item {
+    min-height: 32px;
+
+    .a-display-label {
+        font-size: 14px;
+        color: material-color(blue-grey, '700');
+        flex: 1;
+    }
+
+    .a-display-value {
+        flex: 1;
+        line-height: 1.4;
+
+        i {
+            font-size: 20px;
+            margin-right: 6px;
+        }
+
+        .a-value-yes,
+        .a-value-no {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-value-yes {
+            i {
+                color: material-color(teal, '500');
+
+                &::before {
+                    content: 'check';
+                }
+            }
+        }
+
+        .a-value-no {
+            i {
+                color: material-color(pink, '500');
+
+                &::before {
+                    content: 'close';
+                }
+            }
+        }
+    }
+}
+
+// Text Field UI
+// Compare with portnews.scss
+// TODO: Move to Application.scss
+@include textfield-ui(
+    $ui: 'filled-light',
+    $input-border-width: 0,
+    $border-radius: 8px,
+    $input-background-color: $viewport-color,
+    $focused-input-background-color: $selected-abraxa-bgr-color
+);
+
+.x-field {
+    &.x-selectfield-filled-light {
+        &.a-field-icon {
+            .x-before-input-el {
+                margin-left: 12px;
+            }
+        }
+    }
+}
+
+.x-textfield-filled-light {
+    .x-input-wrap-el {
+        border-radius: 8px;
+    }
+
+    &.x-invalid {
+        .x-input-wrap-el {
+            border-width: 1px;
+            border-color: $color-red;
+        }
+
+        &:not(.x-focused) {
+            .x-input-wrap-el {
+                background-color: mix(#fff, $color-red, 92%);
+            }
+        }
+    }
+}
+
+.x-textfield-field-lg {
+    &.x-textfield-filled-light {
+        .x-input-el {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
+    }
+}
+
+// Froala Editor
+// TODO: Refactor Froala Editor
+// Compare & Merge with settings.scss
+.x-field-froala-classic {
+    > .x-body-wrap-el {
+        // border: 1px solid $border-color;
+        // border-radius: $border-radius;
+    }
+
+    .x-froala {
+        .fr-newline {
+            display: none;
+        }
+
+        .fr-element {
+            padding: 12px 16px !important;
+        }
+
+        .fr-placeholder {
+            padding-left: 16px !important;
+        }
+
+        .fr-toolbar {
+            border-left-width: 0;
+            border-right-width: 0;
+            border-top-width: 0;
+            border-bottom-width: 1px;
+            background-color: #fff !important;
+        }
+    }
+}
+
+// Port Itinerary List Right Panel
+// TODO: Move to grids.scss
+.a-port-itinerary-list-rp {
+    .a-list-item-rp {
+        > .x-body-el {
+            padding: 16px 16px 16px 58px;
+        }
+
+        &::before {
+            content: '';
+            width: 2px;
+            height: 100%;
+            display: block;
+            position: absolute;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'%3E%3Ccircle id='Ellipse_179' data-name='Ellipse 179' cx='1' cy='1' r='1' fill='%23B0BEC5'/%3E%3C/svg%3E%0A");
+            background-size: 2px 6px;
+            background-repeat: repeat-y;
+            background-position: top center;
+            left: 28px;
+        }
+
+        &:not(.x-last) {
+            &::after {
+                content: '';
+                height: 1px;
+                display: block;
+                margin: 0 16px 0 58px;
+                background-color: $border-color-light;
+            }
+        }
+
+        &.x-first {
+            &::before {
+                bottom: 0;
+                height: calc(100% - 24px);
+            }
+
+            &.x-last {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+
+        &.x-last {
+            &::before {
+                top: 0;
+                height: 24px;
+            }
+        }
+
+        .a-item-icon-rp {
+            width: 32px;
+            height: 32px;
+            background-color: #fcfcfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 13px;
+            top: 10px;
+
+            i {
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    content: 'radio_button_unchecked';
+                }
+            }
+        }
+
+        &.a-list-item-rp-sailed {
+            .a-item-icon-rp {
+                i {
+                    color: $icon-light-color;
+
+                    &::before {
+                        content: 'check_circle';
+                        font-variation-settings: 'FILL' 1 !important;
+                    }
+                }
+            }
+
+            .a-display-item-port {
+                .a-display-port {
+                    color: material-color(blue-grey, '500');
+                }
+            }
+        }
+
+        &.a-list-item-rp-at-port {
+            .a-item-icon-rp {
+                i {
+                    color: $color-green-500;
+
+                    &::before {
+                        content: 'radio_button_checked';
+                    }
+                }
+            }
+
+            .a-display-item-port {
+                .a-display-port {
+                    color: $color-green-500;
+                }
+            }
+        }
+
+        .a-display-item-port {
+            margin-bottom: 12px;
+
+            .a-display-port {
+                font-weight: $font-weight-bold;
+                font-size: 16px;
+            }
+        }
+
+        .a-display-item {
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+
+            .a-display-label,
+            .a-display-value {
+                font-size: 13px;
+            }
+
+            .a-display-label {
+                min-width: 85px;
+                max-width: 85px;
+            }
+        }
+
+        .a-item-port-info-rp {
+            min-width: 280px;
+            margin-right: 24px;
+        }
+
+        .a-item-appointment-info-rp {
+            > .x-body-el {
+                padding: 4px 0;
+            }
+
+            .a-item-appointment-info-content-rp {
+                > .x-body-el {
+                    padding: 0 16px;
+                    line-height: 1.4;
+                }
+            }
+
+            .a-item-appointment-icon-rp {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// DA Stage Badge
+// TODO: Move to badges.scss
+// TODO: Compare with grids.scss
+.a-val-hbox {
+    display: flex;
+    align-items: center;
+}
+
+.a-badge-da-stage {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: $viewport-color;
+
+    &.a-badge-da-stage-draft {
+        background-color: $border-color;
+    }
+
+    &.a-badge-da-stage-submitted {
+        background-color: $link-abraxa;
+    }
+
+    &.a-badge-da-stage-completed {
+        background-color: $color-green-500;
+    }
+}
+
+// Helper
+// TODO: Move to helpers.scss
+// TODO: Compare with grids.scss
+.mx-2 {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.mx-6 {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+// Dialog Fullscreen Appointment Letter
+.a-dialog-appointment-preview {
+    .abx-blank-body {
+        width: 100%;
+        zoom: 115%;
+    }
+
+    .abx-blank-wrap {
+        margin: 0 auto;
+    }
+
+    .abx-blank-general-item {
+        font-size: 8.5pt;
+        line-height: 1.4;
+    }
+
+    .abx-display-title {
+        font-size: 11pt;
+    }
+
+    .a-dialog-card-footer {
+        font: inherit;
+
+        > .x-body-el {
+            width: 1128px;
+            margin: auto;
+        }
+    }
+}

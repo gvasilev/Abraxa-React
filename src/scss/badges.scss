@@ -1,0 +1,2487 @@
+// Object Logo
+.a-obj-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:not(.a-inveted) {
+        background-color: material-color(blue-grey, '100');
+    }
+
+    &:not(.a-inverted) {
+        i {
+            color: #fff;
+        }
+    }
+
+    &.a-shadow {
+        box-shadow: 0 4px 12px 0 rgba($base-abraxa-dark, 0.24);
+    }
+
+    &.a-logo-lg {
+        width: 40px;
+        height: 40px;
+
+        i {
+            font-size: 24px;
+
+            &::before {
+                font-variation-settings:
+                    'FILL' 0,
+                    'wght' 300,
+                    'GRAD' 200,
+                    'opsz' 24;
+            }
+        }
+    }
+
+    &.a-logo-md {
+        width: 24px;
+        height: 24px;
+
+        i {
+            font-size: 18px;
+        }
+    }
+
+    &.a-logo-sm {
+        width: 20px;
+        height: 20px;
+        border-radius: 3px;
+
+        i {
+            font-size: 14px;
+        }
+    }
+
+    &.round {
+        border-radius: 50%;
+    }
+
+    &.a-logo-dashboard {
+        background-color: material-color(indigo, '500');
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba(material-color(indigo, '500'), 0.42);
+        }
+    }
+
+    &.a-logo-am {
+        background-color: $accent-color;
+
+        .abraxa-icon-am {
+            font-size: 20px;
+        }
+    }
+
+    &.a-logo-cdb {
+        background-color: material-color(yellow, 'a-yellow');
+    }
+
+    &.a-logo-tasks {
+        background-color: material-color(indigo, '500');
+    }
+
+    &.a-logo-financials {
+        background-color: material-color(teal, '500');
+    }
+
+    &.a-logo-calendar {
+        background-color: material-color(deep-purple, '500');
+    }
+
+    &.a-logo-map {
+        background-color: $base-abraxa;
+    }
+
+    &.a-logo-appointment {
+        background-color: $accent-color;
+    }
+
+    &.a-logo-inquiry {
+        background-color: material-color(purple, '500');
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba(material-color(purple, '500'), 0.24);
+        }
+    }
+
+    &.a-logo-directory {
+        background-color: material-color(light-blue, '500');
+    }
+
+    &.a-logo-pda {
+        background-color: material-color(purple, '200');
+    }
+
+    &.a-logo-supplies {
+        background-color: material-color(blue-grey, '500');
+    }
+
+    &.a-logo-bunkers {
+        background-color: $base-abraxa;
+    }
+
+    &.a-logo-disposal {
+        background-color: material-color(teal, '500');
+    }
+
+    &.a-logo-ctm {
+        background-color: material-color(green, 'a-green');
+    }
+
+    &.a-logo-service {
+        background-color: material-color(indigo, '200');
+    }
+
+    &.a-logo-amail {
+        background-color: $link-abraxa;
+    }
+
+    &.a-logo-settings {
+        background-color: $base-abraxa;
+
+        i.material-icons-outlined,
+        i.material-icons {
+            &::before {
+                content: 'settings';
+            }
+        }
+    }
+
+    &.a-logo-profile {
+        background-color: $color-accent-web;
+    }
+
+    &.a-logo-design {
+        background-color: material-color(pink, '500');
+    }
+
+    &.a-logo-billing {
+        background-color: material-color(teal, '500');
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba(material-color(teal, '500'), 0.24);
+        }
+    }
+
+    &.a-logo-free {
+        background-color: $color-accent-web;
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba($color-accent-web, 0.24);
+        }
+    }
+
+    &.a-logo-premium {
+        background-color: $color-premium;
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba($color-premium, 0.24);
+        }
+    }
+
+    &.a-logo-suite {
+        background-color: material-color(deep-purple, '500');
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba(material-color(deep-purple, '500'), 0.24);
+        }
+    }
+
+    &.a-logo-calculator {
+        background-color: #1775d1;
+    }
+
+    &.a-logo-portnews {
+        background-color: material-color(light-blue, '500');
+
+        &.a-shadow {
+            box-shadow: 0 4px 12px 0 rgba(material-color(light-blue, '500'), 0.24);
+        }
+    }
+}
+
+// Object icon
+.a-obj-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 12px;
+    font-size: 14px;
+    font-family: 'Material Symbols Rounded';
+
+    &::before {
+        display: flex;
+        line-height: 1;
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: 'liga';
+        text-rendering: optimizeLegibility;
+    }
+
+    &.round {
+        border-radius: 50%;
+    }
+
+    &.a-obj-md {
+        width: 24px;
+        height: 24px;
+        // font-size: 18px;
+        margin-right: 8px;
+    }
+
+    &.a-obj-APP {
+        color: #fff;
+        background-color: $accent-color;
+
+        &::before {
+            content: 'business_center';
+        }
+    }
+
+    &.a-obj-portcall {
+        color: #fff;
+
+        &::before {
+            content: 'business_center';
+        }
+    }
+
+    &.a-obj-CDB {
+        color: #fff;
+        background-color: material-color(yellow, 'a-yellow');
+
+        &::before {
+            content: 'contacts';
+        }
+    }
+
+    &.a-obj-INQ {
+        color: #fff;
+        background-color: material-color(purple, '500');
+
+        &::before {
+            font-family: 'abraxa';
+            content: '\e80c';
+        }
+    }
+
+    &.a-obj-PDA {
+        color: #fff;
+        background-color: material-color(purple, '200');
+        font-weight: 400;
+
+        &::before {
+            content: 'attach_money';
+        }
+    }
+
+    &.a-obj-FDA {
+        color: #fff;
+        background-color: material-color(cyan, '200');
+        font-weight: 400;
+
+        &::before {
+            content: 'attach_money';
+        }
+    }
+
+    &.a-obj-INV {
+        color: #fff;
+        background-color: material-color(yellow, 'a-yellow');
+        font-weight: 400;
+
+        &::before {
+            content: 'attach_money';
+        }
+    }
+
+    &.a-obj-INV_BLANK {
+        color: #fff;
+        background-color: material-color(yellow, 'a-yellow');
+        font-weight: 400;
+
+        &::before {
+            content: 'attach_money';
+        }
+    }
+
+    &.a-obj-INV_FROM_BUDGET_ITEMS {
+        color: #fff;
+        background-color: material-color(orange, '500');
+        font-weight: 400;
+
+        &::before {
+            content: 'attach_money';
+        }
+    }
+
+    &.a-obj-CTM {
+        // color: #fff;
+        // background-color: material-color(yellow, "a-yellow");
+        font-weight: 400;
+
+        &::before {
+            font-size: 24px;
+            content: 'local_atm';
+            color: material-color(green, 'a-green');
+        }
+    }
+
+    &.a-obj-SUP {
+        font-weight: 300;
+        color: material-color(red, '300');
+
+        &::before {
+            font-size: 24px;
+            //content: 'local_shipping';
+            content: 'layers';
+        }
+    }
+
+    &.a-obj-SRV {
+        font-weight: 300;
+        color: material-color(red, '300');
+
+        &::before {
+            font-size: 24px;
+            content: 'local_library';
+        }
+    }
+}
+
+// Status badges
+.a-status-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    text-align: center;
+    height: 24px;
+    max-width: 100%;
+    font-weight: 400;
+
+    &:not(.rounded) {
+        padding: 0 8px;
+        border-radius: 4px;
+    }
+
+    &.rounded {
+        padding: 0 12px;
+        border-radius: 12px;
+    }
+
+    &.no-border {
+        box-shadow: none !important;
+    }
+
+    // Count badge
+    .a-count-badge {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $border-color;
+        margin-left: 4px;
+        margin-right: -10px;
+        color: #fff;
+        font-size: 11px;
+        font-style: normal;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    // Has icon
+    &.a-has-icon {
+        padding-right: 12px;
+        padding-left: 8px !important;
+
+        i {
+            font-size: 14px;
+            margin-right: 4px;
+            color: $icon-light-color;
+        }
+    }
+
+    // &[class*='status'] {
+    //     box-shadow: 0 0 0 1px $border-color inset;
+    // }
+
+    &.status-default {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-pending,
+    &.status-Pending,
+    &.status-additional {
+        background-color: material-color(orange, '50');
+
+        i {
+            color: $color-pending;
+        }
+    }
+
+    &.status-PENDING {
+        background-color: $color-pending;
+        color: $color;
+    }
+
+    &.status-Appointed {
+        box-shadow: 0 0 0 1px $base-abraxa inset;
+    }
+
+    &.status-submitted,
+    &.status-Submitted {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-final,
+    &.status-Final,
+    &.status-active {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-Archived {
+        background-color: material-color(green, '50');
+        color: $text-light-color;
+    }
+
+    &.status-Lost {
+        background-color: material-color(pink, '50');
+    }
+
+    &.status-suspended {
+        background-color: material-color(red, '50');
+
+        i {
+            color: $color-red;
+        }
+    }
+
+    &.status-lost {
+        background-color: material-color(pink, '50');
+    }
+
+    &.status-In {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-in {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-En {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-draft,
+    &.status-Draft {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-other,
+    &.status-Other {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-Issued,
+    &.status-settled {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-New {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-Approved {
+        background-color: material-color(teal, '50');
+    }
+
+    &.status-appointed {
+        background-color: material-color(cyan, '50');
+    }
+
+    &.status-Sailed {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-Anchored,
+    &.status-appointment {
+        box-shadow: 0 0 0 1px $accent-color inset;
+    }
+
+    &.status-accepted {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-under {
+        background-color: material-color(purple, '50');
+    }
+
+    &.status-changes {
+        background-color: material-color(red, '50');
+    }
+
+    &.status-declined,
+    &.status-canceled {
+        background-color: material-color(pink, '50');
+    }
+
+    &.status-confirmed {
+        background-color: material-color(light-green, '50');
+    }
+
+    &.status-in.progress {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-new {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-c-blue {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+    }
+
+    &.status-c-green {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-bg-green {
+        background-color: material-color(green, 'a-green');
+        color: #fff;
+    }
+
+    &.status-c-red {
+        background-color: material-color(red, '50');
+    }
+
+    &.status-c-gray {
+        background-color: material-color(blue-grey, '50');
+        color: $text-color;
+    }
+
+    &.status-en-route,
+    &.status-enroute,
+    &.enroute {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-drifting {
+        background-color: material-color(deep-orange, '50');
+    }
+
+    &.status-anchored,
+    &.anchored {
+        background-color: material-color(cyan, '50');
+    }
+
+    &.status-berthed,
+    &.berthed {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-to-do {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-cargo,
+    &.cargo {
+        background-color: material-color(indigo, '50');
+    }
+
+    &.status-shifting,
+    &.shifting {
+        background-color: material-color(purple, '50');
+    }
+
+    &.status-documents,
+    &.documents {
+        background-color: material-color(teal, '50');
+    }
+
+    &.status-approved {
+        background-color: material-color(teal, '50');
+    }
+
+    &.status-rejected {
+        background-color: material-color(pink, '50');
+    }
+
+    &.status-issued {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-delivered.on.board {
+        background-color: material-color(purple, '50');
+    }
+
+    &.status-advance {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.status-CTM {
+        background-color: material-color(purple, '50');
+    }
+
+    &.status-withdrawn {
+        box-shadow: 0 0 0 1px material-color(red, 'a-red') inset;
+        color: material-color(red, 'a-red');
+    }
+
+    &.status-normal {
+        box-shadow: 0 0 0 1px $color-normal inset;
+
+        &.no-border {
+            background-color: rgba($color-normal, 0.16);
+        }
+    }
+
+    &.status-high {
+        box-shadow: 0 0 0 1px $color-red inset;
+        color: $color-red;
+
+        &.no-border {
+            background-color: rgba($color-red, 0.08);
+        }
+    }
+
+    &.status-not,
+    &.status-notfunded {
+        box-shadow: 0 0 0 1px $border-color inset;
+        color: $text-color;
+
+        &.no-border {
+            background-color: rgba($border-color, 0.16);
+        }
+    }
+
+    &.status-funded {
+        box-shadow: 0 0 0 1px $color-funded inset;
+        color: $color-funded;
+
+        &.no-border {
+            background-color: rgba($color-funded, 0.08);
+        }
+    }
+
+    &.status-partially {
+        box-shadow: 0 0 0 1px $color-partially inset;
+        color: $text-color;
+
+        &.no-border {
+            background-color: rgba($color-partially, 0.08);
+        }
+    }
+
+    &.status-bunkering,
+    &.bunkering {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-pilot,
+    &.pilot {
+        background-color: material-color(deep-orange, '50');
+    }
+
+    &.status-sailed,
+    &.sailed {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-fda,
+    &.fda {
+        background-color: material-color(cyan, '50');
+    }
+
+    &.status-completed,
+    &.completed {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-delivered {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-crew {
+        background-color: material-color(teal, '50');
+        color: $color;
+    }
+
+    &.status-visitor {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-Charterer {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+        color: $link-abraxa;
+    }
+
+    &.status-Charterer {
+        box-shadow: 0 0 0 1px material-color(teal, '500') inset;
+        color: material-color(teal, '500');
+    }
+
+    &.status-Shipper {
+        box-shadow: 0 0 0 1px material-color(orange, '500') inset;
+        color: material-color(orange, '500');
+    }
+
+    &.status-Shipowner {
+        box-shadow: 0 0 0 1px material-color(deep-purple, '500') inset;
+        color: material-color(deep-purple, '500');
+    }
+
+    &.status-department {
+        box-shadow: 0 0 0 1px material-color(cyan, '500') inset;
+        color: $text-color;
+    }
+
+    &.status-Charterer {
+        box-shadow: 0 0 0 1px material-color(teal, '500') inset;
+        color: material-color(teal, '500');
+    }
+
+    &.status-admin {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+        }
+    }
+
+    &.status-active {
+        box-shadow: 0 0 0 1px $color-good inset;
+        color: $color-good;
+
+        i {
+            color: $color-good;
+        }
+    }
+
+    &.status-active {
+        box-shadow: 0 0 0 1px $color-good inset;
+        color: $color-good;
+
+        i {
+            color: $color-good;
+        }
+    }
+
+    &.status-role {
+        box-shadow: 0 0 0 1px material-color(indigo, '500') inset;
+        color: material-color(indigo, '500');
+
+        i {
+            color: material-color(indigo, '500');
+        }
+    }
+
+    &.status-office {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-status-service {
+        background-color: mix(#fff, $color-accent-web, 92%);
+        color: $text-color;
+
+        i {
+            color: $color-accent-web;
+        }
+    }
+
+    &.a-status-user {
+        background-color: mix(#fff, material-color(indigo, '500'), 90%);
+        color: $text-color;
+
+        i {
+            color: material-color(indigo, '500');
+        }
+    }
+
+    &.a-status-supply,
+    &.a-status-supplies {
+        background-color: $base-light-color;
+        color: $icon-color;
+
+        i {
+            color: $icon-color;
+        }
+    }
+
+    &.a-status-disposal {
+        background-color: mix(#fff, material-color(teal, '500'), 92%);
+        color: $text-color;
+
+        i {
+            color: material-color(teal, '500');
+        }
+    }
+
+    &.a-status-bunker {
+        background-color: mix(#fff, $base-abraxa, 92%);
+        color: $text-color;
+
+        i {
+            color: $base-abraxa;
+        }
+    }
+
+    &.a-status-file {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $text-color;
+
+        i {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-status-cargo {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $text-color;
+
+        i {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-status-berth {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $text-color;
+
+        i {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-status-disbursement {
+        background-color: #ebf7f5;
+        color: $text-color;
+
+        i {
+            color: #009688;
+        }
+    }
+
+    &.a-status-incoming {
+        background-color: mix(#fff, $color-good, 92%);
+        color: $text-color;
+        text-transform: capitalize;
+
+        i {
+            color: $color-good;
+        }
+    }
+
+    &.a-status-outgoing {
+        background-color: mix(#fff, material-color(pink, '500'), 92%);
+        color: $text-color;
+        text-transform: capitalize;
+
+        i {
+            color: material-color(pink, '500');
+        }
+    }
+
+    &.a-status-requested {
+        background-color: #fef7ec;
+        color: $text-color;
+        text-transform: capitalize;
+
+        i {
+            color: #f5cf88;
+        }
+    }
+
+    &.a-status-app {
+        background-color: mix(#fff, $accent-color, 92%);
+        color: $text-color;
+
+        i {
+            color: $accent-color;
+        }
+    }
+
+    &.a-status-cdb {
+        background-color: mix(#fff, material-color(yellow, 'a-yellow'), 92%);
+        color: $text-color;
+
+        i {
+            color: material-color(yellow, 'a-yellow');
+        }
+    }
+
+    &.a-status-ctm {
+        background-color: mix(#fff, material-color(green, 'a-green'), 92%);
+        color: $text-color;
+
+        i {
+            color: material-color(green, 'a-green');
+        }
+    }
+
+    &.a-status-agent {
+        background-color: mix(#fff, $color-accent-web, 92%);
+        color: $color-accent-web;
+
+        i {
+            color: $color-accent-web;
+        }
+    }
+
+    &.a-status-principal {
+        background-color: mix(#fff, material-color(deep-purple, '500'), 92%);
+        color: material-color(deep-purple, '800');
+
+        i {
+            color: material-color(deep-purple, '800');
+        }
+    }
+
+    &.a-status-light-accent {
+        background-color: mix(#fff, $color-accent-web, 92%);
+        color: $color-accent-web;
+
+        i {
+            color: $color-accent-web;
+        }
+    }
+
+    &.a-status-light-purple,
+    &.a-status-light-husbandry {
+        background-color: material-color(purple, '50');
+        color: material-color(purple, '900');
+
+        i {
+            color: material-color(purple, '900');
+        }
+    }
+
+    &.a-status-light-cargooperations {
+        background-color: material-color(light-blue, '50');
+        color: material-color(light-blue, '900');
+
+        i {
+            color: material-color(light-blue, '900');
+        }
+    }
+
+    &.a-status-light-technical {
+        background-color: material-color(lime, '50');
+        color: material-color(lime, '900');
+
+        i {
+            color: material-color(lime, '900');
+        }
+    }
+
+    &.a-status-light-crewing {
+        background-color: material-color(teal, '50');
+        color: material-color(teal, '800');
+
+        i {
+            color: material-color(teal, '800');
+        }
+    }
+
+    &.a-status-light-ctm {
+        background-color: material-color(green, '50');
+        color: material-color(green, '800');
+
+        i {
+            color: material-color(green, '800');
+        }
+    }
+
+    &.a-status-light-bunkering {
+        background-color: material-color(blue-grey, '50');
+        color: material-color(blue-grey, '800');
+
+        i {
+            color: material-color(blue-grey, '800');
+        }
+    }
+
+    &.a-status-light-pi {
+        background-color: material-color(brown, '50');
+        color: material-color(brown, '800');
+
+        i {
+            color: material-color(brown, '800');
+        }
+    }
+
+    &.a-status-light-purchasing {
+        background-color: material-color(indigo, '50');
+        color: material-color(indigo, '800');
+
+        i {
+            color: material-color(indigo, '800');
+        }
+    }
+
+    &.a-status-light-northbound {
+        background-color: material-color(deep-purple, '50');
+        color: material-color(deep-purple, '800');
+
+        i {
+            color: material-color(deep-purple, '800');
+        }
+    }
+
+    &.a-status-light-southbound {
+        background-color: material-color(purple, '50');
+        color: material-color(purple, '800');
+
+        i {
+            color: material-color(purple, '800');
+        }
+    }
+
+    &.a-status-light-worldscale {
+        background-color: material-color(blue, '50');
+        color: material-color(blue, '800');
+
+        i {
+            color: material-color(blue, '800');
+        }
+    }
+
+    &.a-status-light-noprefund {
+        background-color: material-color(orange, '50');
+        color: material-color(orange, '800');
+
+        i {
+            color: material-color(orange, '800');
+        }
+    }
+
+    &.a-status-light-fxgainloss {
+        background-color: material-color(pink, '50');
+        color: material-color(pink, '800');
+
+        i {
+            color: material-color(pink, '800');
+        }
+    }
+
+    &.a-status-light-financed {
+        background-color: material-color(cyan, '50');
+        color: material-color(cyan, '800');
+
+        i {
+            color: material-color(cyan, '800');
+        }
+    }
+
+    // Rounded
+    &.status-round {
+        border-radius: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    // Status xl
+    &.status-xl {
+        i {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+    }
+
+    // Status medium
+    &.a-status-md {
+        height: 30px;
+        border-radius: 6px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    // Status small
+    &.a-status-sm {
+        height: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        i {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+    }
+
+    // Status medium
+    &.a-status-square {
+        height: 8px;
+        border-radius: 2px;
+        width: 8px;
+        padding: 0;
+    }
+
+    // Status extra small
+    &.a-status-xs {
+        height: 20px;
+        padding-left: 6px;
+        padding-right: 6px;
+        font-size: 11px;
+
+        i {
+            font-size: 12px;
+            margin-right: 6px;
+        }
+    }
+
+    // Disbursement Statuses
+    &.status-not,
+    &.status-notfunded {
+        i {
+            color: $icon-color;
+            font-size: 18px;
+
+            &::before {
+                content: 'money_off';
+            }
+        }
+    }
+
+    &.status-partially {
+        i {
+            font-size: 18px;
+            color: $color-partially;
+
+            &::before {
+                content: 'attach_money';
+            }
+        }
+    }
+
+    &.status-funded {
+        i {
+            font-size: 18px;
+            color: $color-funded;
+
+            &::before {
+                content: 'attach_money';
+            }
+        }
+    }
+
+    // CDB Statuses
+    &.status-Good {
+        background-color: material-color(green, '50');
+        color: inherit;
+
+        i {
+            color: $color-good;
+        }
+    }
+
+    &.status-Low {
+        background-color: material-color(orange, '50');
+
+        i {
+            color: $color-low;
+        }
+    }
+
+    &.status-At {
+        background-color: material-color(red, '50');
+
+        i {
+            color: $color-at_risk;
+        }
+    }
+
+    &.status-High {
+        background-color: material-color(red, '50');
+
+        i {
+            color: $color-high;
+        }
+    }
+
+    &.status-No {
+        background-color: material-color(blue-grey, '50');
+    }
+
+    &.status-Check {
+        background-color: material-color(deep-orange, '50');
+
+        i {
+            color: $color-check;
+        }
+    }
+
+    &.status-Default {
+        background-color: material-color(red, '50');
+
+        i {
+            color: $color-at_risk;
+        }
+    }
+
+    &.status-refund {
+        background-color: material-color(orange, '50');
+    }
+
+    &.status-credit {
+        background-color: material-color(green, '50');
+    }
+
+    &.status-debit {
+        background-color: material-color(pink, '50');
+    }
+
+    // New statuses
+    &.status-red {
+        box-shadow: 0 0 0 1px material-color(red, 'a-red') inset;
+    }
+
+    &.status-red-500 {
+        box-shadow: 0 0 0 1px material-color(pink, '500') inset;
+    }
+
+    &.status-pink {
+        box-shadow: 0 0 0 1px material-color(pink, '500') inset;
+    }
+
+    &.status-purple {
+        box-shadow: 0 0 0 1px material-color(purple, '500') inset;
+    }
+
+    &.status-deep-purple {
+        box-shadow: 0 0 0 1px material-color(deep-purple, '500') inset;
+    }
+
+    &.status-indigo {
+        box-shadow: 0 0 0 1px material-color(indigo, '500') inset;
+    }
+
+    &.status-blue {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+    }
+
+    &.status-link {
+        box-shadow: 0 0 0 1px $link-abraxa inset;
+    }
+
+    &.status-abraxa-dark {
+        box-shadow: 0 0 0 1px material-color(blue, '500') inset;
+    }
+
+    &.status-light-blue {
+        box-shadow: 0 0 0 1px material-color(light-blue, '500') inset;
+
+        &.no-border {
+            background-color: mix(#fff, material-color(light-blue, '500'), 92%);
+            color: material-color(light-blue, '500');
+        }
+
+        i {
+            color: material-color(light-blue, '500');
+        }
+    }
+
+    &.status-cyan {
+        box-shadow: 0 0 0 1px material-color(cyan, '500') inset;
+    }
+
+    &.status-teal {
+        box-shadow: 0 0 0 1px material-color(teal, '500') inset;
+    }
+
+    &.status-green {
+        box-shadow: 0 0 0 1px material-color(green, 'a-green') inset;
+    }
+
+    &.status-green-500 {
+        box-shadow: 0 0 0 1px $color-green-500 inset;
+    }
+
+    &.status-light-green {
+        box-shadow: 0 0 0 1px material-color(light-green, '500') inset;
+    }
+
+    &.status-lime {
+        box-shadow: 0 0 0 1px material-color(lime, '500') inset;
+    }
+
+    &.status-yellow {
+        box-shadow: 0 0 0 1px material-color(yellow, 'a-yellow') inset;
+    }
+
+    &.status-yellow-500 {
+        box-shadow: 0 0 0 1px $color-yellow-500 inset;
+    }
+
+    &.status-amber {
+        box-shadow: 0 0 0 1px material-color(amber, '500') inset;
+    }
+
+    &.status-orange {
+        box-shadow: 0 0 0 1px material-color(orange, '500') inset;
+    }
+
+    &.status-deep-orange {
+        box-shadow: 0 0 0 1px material-color(deep-orange, '500') inset;
+    }
+
+    &.status-brown {
+        box-shadow: 0 0 0 1px material-color(brown, '500') inset;
+    }
+
+    &.status-grey {
+        box-shadow: 0 0 0 1px material-color(grey, '500') inset;
+    }
+
+    &.status-light-gray {
+        box-shadow: 0 0 0 1px $border-color inset;
+    }
+
+    &.status-blue-grey {
+        box-shadow: 0 0 0 1px material-color(blue-grey, '500') inset;
+    }
+
+    &.status-accent {
+        box-shadow: 0 0 0 1px $accent-color inset;
+    }
+
+    // CDB badges
+    &.status-authorities {
+        box-shadow: 0 0 0 1px material-color(orange, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(orange, '500');
+        }
+    }
+
+    &.status-agent {
+        box-shadow: 0 0 0 1px $color-accent-web inset;
+
+        .a-count-badge {
+            background-color: $color-accent-web;
+        }
+    }
+
+    &.status-sub-agent {
+        box-shadow: 0 0 0 1px $color-accent-web inset;
+
+        .a-count-badge {
+            background-color: $color-accent-web;
+        }
+    }
+
+    &.status-shipowner {
+        box-shadow: 0 0 0 1px material-color(deep-purple, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(deep-purple, '500');
+        }
+    }
+
+    &.status-ship {
+        box-shadow: 0 0 0 1px material-color(purple, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(purple, '500');
+        }
+    }
+
+    &.status-shipper {
+        box-shadow: 0 0 0 1px material-color(indigo, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(indigo, '500');
+        }
+    }
+
+    &.status-charterer {
+        box-shadow: 0 0 0 1px material-color(light-blue, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(light-blue, '500');
+        }
+    }
+
+    &.status-manager,
+    &.status-crew {
+        background-color: material-color(deep-purple, '50');
+
+        .a-count-badge {
+            background-color: material-color(deep-purple, '200');
+        }
+    }
+
+    &.status-pilots,
+    &.status-towage,
+    &.status-mooring {
+        box-shadow: 0 0 0 1px material-color(light-blue, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(light-blue, '500');
+        }
+    }
+
+    &.status-vendor {
+        box-shadow: 0 0 0 1px material-color(green, '200') inset;
+
+        .a-count-badge {
+            background-color: material-color(green, '200');
+        }
+    }
+
+    &.status-wps {
+        box-shadow: 0 0 0 1px material-color(pink, '500') inset;
+
+        .a-count-badge {
+            background-color: material-color(pink, '500');
+        }
+    }
+
+    &.status-bunker,
+    &.status-accommodation,
+    &.status-transportation,
+    &.status-surveyor {
+        box-shadow: 0 0 0 1px material-color(blue, '300') inset;
+
+        .a-count-badge {
+            background-color: material-color(blue, '300');
+        }
+    }
+
+    // Status dark mode
+    &.a-status-dark {
+        color: $color;
+
+        &.status-draft {
+            background-color: material-color(blue-grey, '50');
+        }
+
+        &.status-issued {
+            background-color: material-color(light-blue, '50');
+        }
+
+        &.status-final {
+            background-color: material-color(green, '50');
+        }
+
+        &.status-delivered.on.board {
+            background-color: material-color(purple, '50');
+        }
+    }
+}
+
+// Function
+.a-function {
+    display: inline-block;
+
+    span {
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        padding: 0px 12px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 16px;
+        box-shadow: 0 0 0 1px $border-color inset;
+        background-color: #fff;
+        color: $text-color;
+        text-align: center;
+        white-space: nowrap;
+        min-height: 24px;
+        line-height: 1;
+    }
+
+    &.function-Loading {
+        span {
+            color: $link-abraxa;
+        }
+    }
+
+    &.function-Discharging {
+        span {
+            color: material-color(red, 'a-red');
+        }
+    }
+
+    &.function-Transshipment {
+        span {
+            color: material-color(cyan, '500');
+        }
+    }
+
+    &.function-Lightering {
+        span {
+            color: material-color(orange, '500');
+        }
+    }
+
+    // Function Small Badges
+    &.a-function-sm {
+        padding: 0 4px;
+        height: 14px;
+        line-height: 1;
+        border-radius: 8px;
+        background-color: $hovered-abraxa-bgr-color;
+        font-weight: bold;
+        font-size: 11px;
+        min-width: 25px;
+
+        &::before,
+        &::after {
+            font-family: 'Material Symbols Rounded';
+            font-weight: normal;
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-style: normal;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+            text-rendering: optimizeLegibility;
+        }
+
+        &.function-Loading {
+            color: $link-abraxa;
+            background-color: material-color(light-blue, '50');
+
+            &::after {
+                content: 'keyboard_backspace';
+                transform: rotate(180deg);
+            }
+        }
+
+        &.function-Discharging {
+            color: material-color(red, 'a-red');
+            background-color: material-color(pink, '50');
+
+            &::before {
+                content: 'keyboard_backspace';
+            }
+        }
+
+        &.function-Cargo {
+            color: $text-light-color;
+            box-shadow: 0 0 0 1px $text-light-color;
+        }
+
+        &.function-Transshipment,
+        &.function-Lightering {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.function-Transshipment {
+            background-color: material-color(cyan, '50');
+        }
+
+        &.function-Lightering {
+            background-color: material-color(orange, '50');
+        }
+    }
+}
+
+// SOF
+.a-badge-sof {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        min-width: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 12px;
+        // background-color: $neutral-color;
+    }
+
+    &.sof-working {
+        &::before {
+            background-color: #22b14c;
+        }
+    }
+
+    &.sof-stoppage {
+        &::before {
+            background-color: #dc3912;
+        }
+    }
+
+    &.sof-waiting {
+        &::before {
+            background-color: #ff9900;
+        }
+    }
+
+    &.sof-shifting {
+        &::before {
+            background-color: #990099;
+        }
+    }
+
+    &.sof-documents {
+        &::before {
+            background-color: #109618;
+        }
+    }
+
+    &.sof-event {
+        &::before {
+            background-color: #b0bec5;
+        }
+    }
+
+    &.sof-miscellaneous {
+        &::before {
+            background-color: #37a8b5;
+        }
+    }
+}
+
+// Badge letters
+.a-badge-abbr {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $accent-color;
+    color: #fff;
+
+    &:not(.a-square) {
+        border-radius: 50%;
+    }
+
+    &.a-square {
+        border-radius: 6px;
+    }
+
+    span {
+        font-size: 11px;
+        font-weight: $font-weight-bold;
+    }
+
+    .a-circle {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    &.a-badge-img {
+        img {
+            border-radius: 50%;
+        }
+    }
+}
+
+// Badges
+.a-badge {
+    width: 32px;
+    // min-width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.a-badge-nobg {
+        background-color: transparent !important;
+    }
+
+    &.a-badge-rounded {
+        border-radius: 50%;
+    }
+
+    &.a-badge-x32 {
+        min-width: 32px;
+    }
+
+    &.small {
+        width: 24px;
+        height: 24px;
+
+        i {
+            font-size: 16px !important;
+        }
+    }
+
+    i {
+        font-weight: normal !important;
+    }
+
+    &.a-badge-master {
+        background-color: mix(#fff, $accent-color, 88%);
+        color: $accent-color;
+
+        i {
+            font-size: 20px;
+        }
+
+        span {
+            font-size: 20px;
+            line-height: 1;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &.a-badge-anchor {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-arrival-departure {
+        background-color: mix(#fff, material-color(green, '500'), 92%);
+        color: material-color(green, '500');
+
+        i {
+            color: material-color(green, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-supplies {
+        background-color: $base-light-color;
+        color: $icon-color;
+
+        i {
+            color: $icon-color;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-disposal {
+        background-color: mix(#fff, material-color(teal, '500'), 92%);
+        color: material-color(teal, '500');
+
+        i {
+            color: material-color(teal, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-financial {
+        background-color: mix(#fff, material-color(teal, '500'), 92%);
+        color: material-color(teal, '500');
+
+        i {
+            color: material-color(teal, '500');
+            font-size: 20px;
+        }
+
+        &.a-pseudo-financial {
+            i {
+                font-family: 'Material Symbols Rounded';
+
+                &::before {
+                    content: 'attach_money';
+                }
+            }
+        }
+    }
+
+    &.a-badge-account {
+        background-color: mix(#fff, $color-green-500, 92%);
+        color: $color-green-500;
+
+        i {
+            color: $color-green-500;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-vouchers {
+        background-color: material-color(light-blue, '500');
+        color: #fff;
+
+        i {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-bunkers {
+        background-color: mix(#fff, $base-abraxa, 92%);
+        color: $base-abraxa;
+
+        i {
+            color: $base-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-ctm {
+        background-color: mix(#fff, material-color(green, 'a-green'), 92%);
+        color: material-color(green, 'a-green');
+
+        i {
+            color: material-color(green, 'a-green');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-payments {
+        background-color: mix(#fff, $color-green-500, 92%);
+        color: $color-green-500;
+
+        i {
+            color: $color-green-500;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-services {
+        background-color: mix(#fff, $color-accent-web, 92%);
+        color: $color-accent-web;
+
+        i {
+            color: $color-accent-web;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-company {
+        background-color: mix(#fff, material-color(cyan, '500'), 92%);
+        color: material-color(cyan, '500');
+
+        i {
+            color: material-color(cyan, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-person {
+        background-color: mix(#fff, material-color(indigo, '500'), 90%);
+        color: material-color(indigo, '500');
+        border-radius: 24px;
+
+        i {
+            color: material-color(indigo, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-notes,
+    &.a-badge-tasks {
+        background-color: mix(#fff, material-color(indigo, '500'), 90%);
+        color: material-color(indigo, '500');
+
+        i {
+            color: material-color(indigo, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-mentions {
+        background-color: #f1f9fa;
+        color: #4fb4c5;
+
+        i {
+            color: #4fb4c5;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-announcement {
+        background-color: #f3c46b;
+        color: #fff;
+
+        i {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-portcall {
+        background-color: mix(#fff, $accent-color, 92%);
+        color: $accent-color;
+
+        i {
+            color: $accent-color;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'business_center';
+            }
+        }
+    }
+
+    &.a-badge-enquiry {
+        background-color: mix(#fff, material-color(purple, '500'), 92%);
+        color: $accent-color;
+
+        i {
+            color: material-color(purple, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-adocs,
+    &.a-badge-document {
+        background-color: #0061ae;
+        color: #fff;
+
+        i {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-general {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        &::before {
+            display: none;
+        }
+
+        i {
+            color: $link-abraxa;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-berth {
+        background-color: #ecf7f6;
+        color: #019688;
+
+        &::before {
+            display: none;
+        }
+
+        i {
+            color: #019688;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-progress {
+        background-color: mix(#fff, $color-accent-web, 92%);
+        color: $color-accent-web;
+
+        i {
+            color: $color-accent-web;
+            font-size: 24px;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &.a-badge-sof {
+        background-color: #f0f1f9;
+        color: #3f51b5;
+
+        &::before {
+            display: none;
+        }
+
+        i {
+            color: #3f51b5;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-supply {
+        background-color: $base-light-color;
+        color: #6b7c93;
+
+        &::before {
+            display: none;
+        }
+
+        i {
+            color: #6b7c93;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-crewing {
+        background-color: #eceef8;
+        color: #3f51b5;
+
+        &::before {
+            display: none;
+        }
+
+        i {
+            color: #3f51b5;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-documents {
+        background-color: rgba(0, 120, 215, 0.06);
+        color: #0078d7;
+
+        i {
+            color: #0078d7;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-kpis {
+        background-color: #edd7f1;
+        color: #9d27b0;
+
+        i {
+            color: #9d27b0;
+            font-size: 24px;
+        }
+    }
+
+    &.a-badge-save-template,
+    &.a-badge-apply-template {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-distribution {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-warning {
+        background-color: mix(#fff, $color-yellow-500, 92%);
+        color: $color-progress;
+
+        i {
+            color: $color-yellow-500;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-danger {
+        background-color: mix(#fff, material-color(pink, '500'), 92%);
+        color: $color-progress;
+
+        i {
+            color: material-color(pink, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-cargo,
+    &.a-badge-cargoes {
+        background-color: #ebf4fc;
+        color: #fff;
+
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://static.abraxa.com/images/icon-cargo-outlined.svg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 24px;
+            background-size: 26px;
+        }
+    }
+
+    &.a-badge-request-approval {
+        background-color: mix(#fff, material-color(teal, '500'), 92%);
+        color: material-color(teal, '500');
+
+        i {
+            color: material-color(teal, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-cancel-approval,
+    &.a-badge-reject-approval {
+        background-color: mix(#fff, material-color(pink, '500'), 92%);
+        color: material-color(pink, '500');
+
+        i {
+            color: material-color(pink, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-cargo-plain {
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://static.abraxa.com/images/icon-cargo-outlined.svg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 24px;
+            background-size: 26px;
+        }
+    }
+
+    &.a-badge-prefunding {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+        }
+
+        &.a-pseudo-prefunding {
+            i {
+                &::before {
+                    content: 'payments';
+                }
+            }
+        }
+    }
+
+    &.a-badge-discount {
+        background-color: rgba($color: #f5cf88, $alpha: 0.08);
+        color: #f5cf88;
+
+        i {
+            color: #f5cf88;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+        }
+
+        &.a-pseudo-discount {
+            i {
+                &::before {
+                    content: 'percent';
+                }
+            }
+        }
+    }
+
+    &.a-badge-billing,
+    &.a-badge-direct {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+        }
+
+        &.a-pseudo-direct,
+        &.a-pseudo-billing {
+            i {
+                &::before {
+                    content: 'account_balance_wallet';
+                }
+            }
+        }
+    }
+
+    &.a-badge-teams {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-rules {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-add-users {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-email {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 18px;
+        }
+    }
+
+    &.a-badge-office {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-bank {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-signature {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 18px;
+        }
+    }
+
+    &.a-badge-currency {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 18px;
+        }
+    }
+
+    &.a-badge-general {
+        background-color: mix(#fff, $link-abraxa, 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 18px;
+        }
+    }
+
+    &.a-badge-nomination,
+    &.a-badge-estimate {
+        background-color: #fef7ec;
+        color: #f5cf88;
+
+        i {
+            color: #f5cf88;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-default {
+        background-color: mix(#fff, material-color(light-blue, '500'), 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-invoice {
+        background-color: mix(#fff, material-color(light-blue, '500'), 92%);
+        color: material-color(light-blue, '500');
+
+        i {
+            color: material-color(light-blue, '500');
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-undefined {
+        background-color: mix(#fff, material-color(light-blue, '500'), 92%);
+        color: $link-abraxa;
+
+        i {
+            color: $link-abraxa;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-payment-outgoing {
+        background-color: rgba(233, 30, 99, 0.06);
+        color: var(--alert-color);
+
+        i {
+            color: var(--alert-color);
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'remove';
+            }
+        }
+    }
+
+    &.a-badge-payment-incoming {
+        background-color: mix(#fff, material-color(green, '500'), 92%);
+        color: material-color(green, '500');
+
+        i {
+            color: material-color(green, '500');
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'add';
+            }
+        }
+    }
+
+    &.a-badge-payment-requested {
+        background-color: #fef7ec;
+        color: #f5cf88;
+
+        i {
+            color: #f5cf88;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'inventory';
+            }
+        }
+    }
+
+    &.a-badge-disbursement {
+        background-color: #fef7ec;
+        color: #f5cf88;
+
+        i {
+            color: #f5cf88;
+            font-size: 20px;
+            font-family: 'Material Symbols Rounded';
+
+            &::before {
+                content: 'attach_money';
+            }
+        }
+    }
+
+    &.a-badge-requested {
+        background-color: #fef7ec;
+        color: #f5cf88;
+
+        i {
+            &.md-icon-sync-alt {
+                &::before {
+                    content: 'sync_alt';
+                }
+            }
+
+            color: #f5cf88;
+            font-size: 20px;
+        }
+    }
+
+    &.a-badge-incoming {
+        background-color: mix(#fff, $color-good, 92%);
+        color: $color-good;
+
+        i {
+            color: $color-good;
+            font-size: 18px;
+        }
+    }
+
+    &.a-badge-outgoing {
+        background-color: mix(#fff, material-color(pink, '500'), 92%);
+        color: material-color(pink, '500');
+
+        i {
+            color: material-color(pink, '500');
+            font-size: 18px;
+        }
+    }
+}
+
+// Badge counter
+.a-badge-counter {
+    min-width: 16px;
+    height: 16px;
+    font-size: 12px;
+    font-weight: $font-weight-bold;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:not(.a-empty) {
+        background-color: $color-completed;
+    }
+
+    &.a-empty {
+        background-color: material-color(blue-grey, '100');
+    }
+}
+
+.a-badge-counter-md {
+    min-width: 20px;
+    height: 20px;
+    color: $color;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    padding: 0 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $chip-background-color;
+}

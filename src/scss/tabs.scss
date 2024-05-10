@@ -1,0 +1,155 @@
+// Tab fix
+.x-tab {
+    max-width: inherit !important;
+    flex: none !important;
+
+    .x-active-indicator-el {
+        border-radius: 3px 3px 0 0;
+    }
+}
+
+// Main Tabs
+.a-main-tabs {
+    align-items: flex-start;
+
+    .x-tab {
+        .x-badge-el {
+            top: 0;
+            right: -20px;
+            box-shadow: none;
+        }
+    }
+}
+
+// Tabs Large
+.x-tabbar {
+    .x-button-tab-lg {
+        margin-right: 32px !important;
+
+        .x-body-el {
+            overflow: visible;
+
+            .x-text-el {
+                overflow: visible;
+            }
+        }
+    }
+}
+
+// Tabbar Filter
+@include tabbar-ui($ui: 'tabbar-filter', $background-color: transparent, $horizontal-spacing: 8px);
+
+// Tabbar Filter Button
+@include button-ui(
+    $ui: 'tab-filter',
+    $padding: 8px 12px,
+    $color: $color,
+    $hovered-color: $color,
+    $pressed-color: $link-abraxa,
+    $focused-color: $link-abraxa,
+    $background-color: transparent,
+    $hovered-background-color: $viewport-color,
+    $pressed-hovered-background-color: mix(#fff, $link-abraxa, 92%),
+    $focused-background-color: mix(#fff, $link-abraxa, 92%),
+    $focused-hovered-background-color: mix(#fff, $link-abraxa, 92%),
+    $pressed-background-color: mix(#fff, $link-abraxa, 92%)
+);
+
+// Tabbar Tab UI
+@include tab-ui(
+    $ui: 'tab-filter',
+    $border-radius: 6px,
+    $active-indicator-height: 0,
+    $background-color: transparent,
+    $hovered-background-color: $viewport-color,
+    $pressed-background-color: mix(#fff, $link-abraxa, 92%),
+    $focused-background-color: mix(#fff, $link-abraxa, 92%),
+    $active-background-color: mix(#fff, $link-abraxa, 92%) !important,
+    $active-focused-background-color: mix(#fff, $link-abraxa, 92%)
+);
+
+// Custom Filter Button UI
+// Replace in buttons.scss
+// Refactor counter badge
+.x-button-tab-filter {
+    &.a-has-counter {
+        .x-text-el {
+            em {
+                color: $color;
+                min-width: 20px;
+                height: 20px;
+                margin-left: 8px;
+                border-radius: 6px;
+                font-size: 13px;
+                padding: 0 4px;
+
+                &.a-bg-orange-300 {
+                    background-color: material-color(orange, '300') !important;
+                    color: #fff !important;
+                }
+            }
+        }
+
+        &:not(.x-hovered),
+        &:not(.x-pressed),
+        &:not(.x-focused),
+        &:not(.x-active) {
+            .x-text-el {
+                em {
+                    color: $color;
+                    background-color: $viewport-color;
+                }
+            }
+        }
+
+        &.x-hovered {
+            .x-text-el {
+                em {
+                    background-color: #fff;
+                }
+            }
+        }
+
+        &.x-pressed {
+            .x-text-el {
+                em {
+                    background-color: $link-abraxa;
+                    color: #fff;
+                }
+            }
+        }
+
+        &:not(.x-active),
+        &:not(.x-hovered),
+        &:not(.x-pressed),
+        &:not(.x-focused) {
+            &.x-disabled {
+                .x-inner-el {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &.x-active {
+            .x-text-el {
+                em {
+                    background-color: $link-abraxa;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+// Keyboard Mode Global Fix
+.x-keyboard-mode {
+    .x-button {
+        &.x-focused {
+            .x-inner-el {
+                .x-text-el {
+                    color: inherit !important;
+                }
+            }
+        }
+    }
+}

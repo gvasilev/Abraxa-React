@@ -1,0 +1,1994 @@
+// Field clear element fix
+.x-field {
+    .x-cleartrigger {
+        .x-icon-el {
+            &::before {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+// Field Label Aligned Horizontaly
+.x-textfield {
+    .x-before-input-el {
+        height: 36px;
+    }
+
+    &.x-label-align-horizontal {
+        align-items: center;
+
+        .x-label-el {
+            margin-right: 16px;
+            min-width: 140px;
+            padding: 0;
+        }
+    }
+
+    &.a-field-icon {
+        .x-before-input-el {
+            margin-right: 8px;
+        }
+    }
+}
+
+// Form Filds with icons
+.a-field-icon {
+    .x-before-input-el {
+        font-family: 'Material Symbols Rounded';
+        font-size: 24px;
+        color: $icon-light-color;
+        align-items: center;
+        margin-right: 12px;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        &::before {
+            display: flex;
+            line-height: 1;
+            font-style: normal;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+            text-rendering: optimizeLegibility;
+            @include material-symbols-rounded;
+        }
+    }
+
+    &.icon-rounded {
+        .x-before-input-el {
+            &::before {
+                border-radius: 50%;
+                width: 28px;
+                height: 28px;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                border: 1px dashed rgba($icon-light-color, 0.8);
+            }
+        }
+    }
+
+    &.icon-start {
+        .x-before-input-el {
+            align-items: flex-start;
+            margin-top: 8px;
+        }
+    }
+
+    &.icon-short {
+        .x-before-input-el {
+            &::before {
+                content: 'short_text';
+            }
+        }
+    }
+
+    &.icon-description {
+        .x-before-input-el {
+            &::before {
+                content: 'description';
+            }
+        }
+    }
+
+    &.icon-vessel {
+        .x-before-input-el {
+            &::before {
+                content: 'directions_boat';
+            }
+        }
+    }
+
+    &.icon-time {
+        .x-before-input-el {
+            &::before {
+                content: 'access_time';
+            }
+        }
+    }
+
+    &.icon-calendar {
+        .x-before-input-el {
+            &::before {
+                content: 'calendar_today';
+            }
+        }
+    }
+
+    &.icon-person,
+    &.icon-user {
+        .x-before-input-el {
+            &::before {
+                content: 'person';
+            }
+        }
+    }
+
+    &.icon-layers {
+        .x-before-input-el {
+            &::before {
+                content: 'layers';
+            }
+        }
+    }
+
+    &.icon-business {
+        .x-before-input-el {
+            &::before {
+                content: 'business';
+            }
+        }
+    }
+
+    &.icon-business_center,
+    &.icon-business-center {
+        .x-before-input-el {
+            &::before {
+                content: 'business_center';
+            }
+        }
+    }
+
+    &.icon-phone {
+        .x-before-input-el {
+            &::before {
+                content: 'phone';
+            }
+        }
+    }
+
+    &.icon-print {
+        .x-before-input-el {
+            &::before {
+                content: 'print';
+            }
+        }
+    }
+
+    &.icon-email {
+        .x-before-input-el {
+            &::before {
+                content: 'email';
+            }
+        }
+    }
+
+    &.icon-public {
+        .x-before-input-el {
+            &::before {
+                content: 'public';
+            }
+        }
+    }
+
+    &.icon-location_city {
+        .x-before-input-el {
+            &::before {
+                content: 'location_city';
+            }
+        }
+    }
+
+    &.icon-location {
+        .x-before-input-el {
+            &::before {
+                content: 'location_on';
+            }
+        }
+    }
+
+    &.icon-group {
+        .x-before-input-el {
+            &::before {
+                content: 'group';
+            }
+        }
+    }
+
+    &.icon-link {
+        .x-before-input-el {
+            &::before {
+                content: 'link';
+            }
+        }
+    }
+
+    &.icon-edit {
+        .x-before-input-el {
+            &::before {
+                content: 'edit';
+            }
+        }
+    }
+
+    &.icon-numbers {
+        .x-before-input-el {
+            &::before {
+                content: 'numbers';
+            }
+        }
+    }
+
+    &.icon-lock {
+        .x-before-input-el {
+            &::before {
+                content: 'lock';
+            }
+        }
+    }
+
+    &.icon-lock_open {
+        .x-before-input-el {
+            &::before {
+                content: 'lock_open';
+            }
+        }
+    }
+
+    &.icon-attach_money {
+        .x-before-input-el {
+            &::before {
+                content: 'attach_money';
+            }
+        }
+    }
+
+    &.icon-date {
+        .x-before-input-el {
+            &::before {
+                content: 'calendar_today';
+                font-size: 14px;
+            }
+        }
+
+        &.a-displayfield {
+            .x-before-input-el {
+                &::before {
+                    content: 'calendar_today';
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    &.icon-numbers {
+        .x-before-input-el {
+            &::before {
+                content: 'numbers';
+                font-size: 14px;
+            }
+        }
+
+        &.a-displayfield {
+            .x-before-input-el {
+                &::before {
+                    content: 'numbers';
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    &.icon-history {
+        .x-before-input-el {
+            &::before {
+                content: 'history';
+            }
+        }
+    }
+
+    &.icon-account_balance,
+    &.icon-account {
+        .x-before-input-el {
+            &::before {
+                content: 'account_balance';
+            }
+        }
+    }
+
+    &.icon-info {
+        .x-before-input-el {
+            &::before {
+                content: 'info_outline';
+            }
+        }
+    }
+
+    &.icon-search {
+        .x-before-input-el {
+            &::before {
+                content: 'search';
+            }
+        }
+    }
+
+    &.icon-berth {
+        .x-before-input-el {
+            &::before {
+                content: 'place';
+            }
+        }
+    }
+
+    &.icon-place {
+        .x-before-input-el {
+            &::before {
+                content: 'place';
+            }
+        }
+    }
+
+    &.icon-port {
+        .x-before-input-el {
+            &::before {
+                content: 'anchor';
+            }
+        }
+    }
+
+    &.icon-supplies {
+        .x-before-input-el {
+            &::before {
+                content: 'opacity';
+            }
+        }
+    }
+
+    &.icon-folder {
+        .x-before-input-el {
+            &::before {
+                content: 'folder';
+            }
+        }
+    }
+
+    &.icon-file {
+        .x-before-input-el {
+            &::before {
+                content: 'file_copy';
+            }
+        }
+    }
+
+    &.icon-commodity {
+        .x-before-input-el {
+            &::before {
+                content: 'view_agenda';
+            }
+        }
+    }
+
+    &.icon-corporate-fare {
+        .x-before-input-el {
+            &::before {
+                content: 'corporate_fare';
+            }
+        }
+    }
+
+    &.icon-money {
+        .x-before-input-el {
+            &::before {
+                content: 'attach_money';
+            }
+        }
+    }
+
+    &.icon-exchange {
+        .x-before-input-el {
+            &::before {
+                content: 'swap_horiz';
+            }
+        }
+    }
+
+    &.icon-verified {
+        .x-before-input-el {
+            &::before {
+                content: 'verified_user';
+            }
+        }
+    }
+
+    &.icon-label {
+        .x-before-input-el {
+            &::before {
+                content: 'label';
+            }
+        }
+    }
+
+    &.icon-flag {
+        .x-before-input-el {
+            &::before {
+                content: 'flag';
+            }
+        }
+    }
+
+    &.icon-payments {
+        .x-before-input-el {
+            &::before {
+                content: 'payments';
+            }
+        }
+    }
+
+    &.icon-percent {
+        .x-before-input-el {
+            &::before {
+                content: 'percent';
+            }
+        }
+    }
+
+    &.icon-functions {
+        .x-before-input-el {
+            &::before {
+                content: 'functions';
+            }
+        }
+    }
+
+    &.icon-filter {
+        .x-before-input-el {
+            &::before {
+                content: 'filter_alt';
+            }
+        }
+    }
+
+    &.x-textareafield {
+        .x-before-input-el {
+            margin-top: 0;
+            margin-bottom: 0;
+            align-items: flex-start !important;
+
+            &::before {
+                margin-top: 4px;
+            }
+        }
+
+        &.x-label-align-horizontal {
+            .x-label-el {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &.icon-birthday {
+        .x-before-input-el {
+            &::before {
+                content: 'cake';
+            }
+        }
+    }
+
+    &.icon-skype {
+        .x-before-input-el {
+            &::before {
+                content: '';
+                background-image: url(https://static.abraxa.com/images/icons/icon-skype.svg);
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
+
+    // Datepickerfield horizontal label fix
+    .x-datepickerfield {
+        &.x-label-align-horizontal {
+            max-width: initial !important;
+        }
+    }
+
+    // Prepend / Append
+    .a-prepend {
+        .x-before-input-el {
+            margin-left: 6px;
+            margin-right: 4px;
+        }
+
+        &.x-datepickerfield {
+            .x-before-input-el {
+                &::before {
+                    content: 'calendar_today';
+                    // font-size: 20px;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    .a-prepend {
+        &.x-label-align-horizontal {
+            + .a-append {
+                .x-label-el {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .a-append {
+        .x-before-input-el {
+            display: none;
+        }
+    }
+
+    // Custom Displayfield
+    &.a-displayfield {
+        display: flex;
+        align-items: center;
+
+        .x-before-input-el {
+            margin-right: 12px;
+
+            &::before {
+                border: 0;
+                font-size: 18px;
+            }
+        }
+    }
+
+    // Field icon small
+    &.a-icon-small {
+        .x-before-input-el {
+            font-size: 18px;
+            height: auto;
+        }
+    }
+
+    // Multiselect
+    &.x-multiselect {
+        &:not(.x-combobox) {
+            input.x-input-el {
+                padding: 6px 8px 6px 2px;
+            }
+        }
+    }
+
+    // Chipview
+    .x-chipview {
+        margin-top: 4px;
+
+        .x-chip {
+            margin-top: 1px;
+            font-size: 13px;
+            font-weight: normal;
+        }
+    }
+}
+
+// Textfield XL
+.x-textfield-field-xl {
+    .x-input-el {
+        line-height: 1.4;
+    }
+}
+
+// Picker field small
+.a-picker-small {
+    .x-listitem-inner-el {
+        padding: 4px 0px !important;
+    }
+}
+
+// Formpanel
+.x-formpanel {
+    border-radius: 0;
+}
+
+.x-formpanel-body-el {
+    line-height: inherit;
+}
+
+// Displayfild
+.x-displayfield {
+    &.x-label-align-horizontal {
+        .x-label-el {
+            line-height: 32px;
+        }
+    }
+}
+
+// Displayfield XL
+.x-displayfield-field-xl {
+    .x-label-el {
+        text-transform: uppercase;
+    }
+
+    .x-input-el {
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        line-height: 1.2;
+    }
+}
+
+// Assign field
+.a-field-assign {
+    .a-assign-image {
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        left: 6px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 9;
+
+        .a-person {
+            .a-int,
+            img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    }
+
+    .x-combobox {
+        .x-before-input-el {
+            width: 24px;
+            display: none;
+        }
+
+        .x-input-el {
+            padding-left: 46px;
+        }
+    }
+}
+
+// Disbursement port costs combo
+.a-disb-costs-combo {
+    min-width: 216px !important;
+}
+
+// Object combo
+.a-object-combo {
+    .x-before-input-el {
+        display: flex;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        justify-content: center;
+        border-radius: 50%;
+        margin-top: 4px;
+
+        &::before {
+            font-family: 'Material Symbols Rounded';
+            font-size: 14px;
+            color: #b0bec5;
+            text-decoration: none;
+            content: 'short_text';
+            border-radius: 50%;
+        }
+
+        &[data-type='app'] {
+            background-color: $accent-color;
+
+            &::before {
+                color: #fff;
+                content: 'business_center';
+            }
+        }
+
+        &[data-type='cdb'] {
+            background-color: #ffc107;
+
+            &::before {
+                color: #fff;
+                content: 'contacts';
+            }
+        }
+    }
+
+    .x-input-wrap-el {
+        input {
+            display: none;
+        }
+    }
+}
+
+// Object icon combo
+.a-obj-icon-combo {
+    display: inline-flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    border-radius: 50%;
+
+    &::before {
+        font-family: 'Material Symbols Rounded';
+        font-size: 14px;
+        text-decoration: none;
+        margin-right: 6px;
+    }
+
+    &.round {
+        border-radius: 50%;
+    }
+
+    &.a-obj-APP {
+        color: #fff;
+        background-color: $accent-color;
+
+        &::before {
+            content: 'business_center';
+        }
+    }
+
+    &.a-obj-CDB {
+        color: #fff;
+        background-color: material-color(yellow, 'a-yellow');
+
+        &::before {
+            content: 'contacts';
+        }
+    }
+
+    &.a-logo-supply {
+        background-color: material-color(blue-grey, '500');
+
+        &::before {
+            content: 'abraxa-icon-layers';
+            font-family: 'abraxa';
+        }
+    }
+
+    &.a-logo-bunker {
+        background-color: $base-abraxa;
+
+        &::before {
+            content: 'abraxa-icon-oil';
+            font-family: 'abraxa';
+        }
+    }
+
+    &.a-logo-disposal {
+        background-color: material-color(teal, '500');
+
+        &::before {
+            content: 'abraxa-icon-recycle';
+            font-family: 'abraxa';
+        }
+    }
+
+    &.a-logo-ctm {
+        background-color: material-color(green, 'a-green');
+
+        &::before {
+            content: 'abraxa-icon-atm';
+            font-family: 'abraxa';
+        }
+    }
+
+    &.a-logo-berth {
+        background-color: material-color(green, 'a-green');
+
+        &::before {
+            content: 'abraxa-icon-location';
+            font-family: 'abraxa';
+        }
+    }
+}
+
+// Sub object combo
+.a-sub-objects-combo {
+    .x-before-input-el {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        margin: 4px 4px 4px 6px;
+        border: 1px dashed rgba($icon-light-color, 0.8);
+
+        &::before {
+            font-family: 'Material Symbols Rounded';
+            font-size: 16px;
+            color: $icon-light-color;
+            text-decoration: none;
+            content: 'link';
+        }
+
+        &[data-type='ctm'] {
+            background-color: #edf9f1;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #22b14b;
+                content: '\e804';
+            }
+        }
+
+        &[data-type='bunker'] {
+            background-color: #ebf2f6;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #03608e;
+                content: '\e811';
+            }
+        }
+
+        &[data-type='supply'],
+        &[data-type='supplies'] {
+            background-color: #f0f1f5;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #6b7c93;
+                content: '\e80d';
+            }
+        }
+
+        &[data-type='disposal'] {
+            background-color: #ebf7f5;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #009688;
+                content: '\e812';
+            }
+        }
+
+        &[data-type='cargo'] {
+            background-color: #ebf4fc;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #0278d7;
+                content: '\e807';
+            }
+        }
+
+        &[data-type='berth'] {
+            background-color: #ecf7f6;
+
+            &::before {
+                font-family: 'abraxa';
+                color: #019688;
+                content: '\e80e';
+            }
+        }
+
+        &[data-type='file'] {
+            background-color: rgba(0, 120, 215, 0.06);
+
+            &::before {
+                color: $link-abraxa;
+                content: 'description';
+            }
+        }
+
+        &[data-type='user'] {
+            background-color: #eceef8;
+
+            &::before {
+                color: #3f51b5;
+                content: 'person';
+            }
+        }
+
+        &[data-type='disbursement'] {
+            background-color: #ebf7f5;
+
+            &::before {
+                color: #009688;
+                content: 'attach_money';
+            }
+        }
+    }
+}
+
+// Compliance combo
+.a-compliance-combo {
+    .x-before-input-el {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        margin: 4px 4px 4px 6px;
+        border: 1px dashed rgba($icon-light-color, 0.8);
+
+        &::before {
+            font-family: 'Material Symbols Rounded';
+            font-size: 16px;
+            color: $icon-light-color;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+            text-rendering: optimizeLegibility;
+            content: 'verified_user';
+        }
+
+        &[data-type='verified'] {
+            border-color: material-color(teal, '500');
+
+            &::before {
+                font-family: 'Material Symbols Rounded';
+                color: material-color(teal, '500');
+                content: 'verified_user';
+            }
+        }
+
+        &[data-type='blocked'] {
+            border-color: $alert-color;
+
+            &::before {
+                color: $alert-color;
+                content: 'block';
+            }
+        }
+
+        &[data-type='pending'] {
+            border-color: material-color(yellow, 'a-yellow');
+
+            &::before {
+                color: material-color(yellow, 'a-yellow');
+                content: 'verified_user';
+            }
+        }
+    }
+}
+
+// User combo
+.a-user-combo {
+    > .x-body-wrap-el {
+        min-height: 38px !important;
+    }
+
+    &.no-image {
+        .x-before-input-el {
+            &::before {
+                content: var(--user-icon) !important;
+                background-color: $accent-color;
+                border: none !important;
+                color: #fff;
+                font-weight: $font-weight-bold;
+                font-size: 11px !important;
+                width: 28px;
+                height: 28px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial,
+                    sans-serif;
+            }
+        }
+    }
+
+    &.has-image {
+        .x-before-input-el {
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            margin: 4px 4px 4px 6px;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+// Searchfield
+.x-searchfield {
+    &.a-field-icon {
+        .x-searchtrigger {
+            display: none;
+        }
+    }
+}
+
+// Textaread field
+.x-textareafield {
+    &:not(.x-textfield-classic) {
+        &.a-field-icon {
+            .x-before-input-el {
+                &::before {
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        .x-input-el {
+            padding: 12px 0;
+        }
+    }
+
+    &.x-textfield-classic {
+        .x-input-el {
+            padding: 8px;
+            line-height: 1.4;
+        }
+    }
+}
+
+// Radiofield
+.x-radiofield {
+    &.x-label-align-horizontal {
+        align-items: center;
+    }
+
+    &.x-radiofield-large {
+        .x-label-el {
+            font-size: 14px;
+            margin-left: 12px;
+        }
+    }
+}
+
+// Checkboxfiled
+.x-checkboxfield {
+    &.x-checkboxfield-large {
+        .x-label-el,
+        .x-box-label-el {
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    }
+}
+
+// Object permission checkboxfield
+.a-object-permissions-checkbox {
+    width: 24px;
+    height: 24px;
+
+    .x-body-el {
+        background-color: transparent !important;
+    }
+
+    &.x-has-left-icon {
+        .x-left-icon-wrap-el {
+            margin-right: 0 !important;
+        }
+    }
+}
+
+// Chip
+.x-chip {
+    .x-text-el {
+        font-size: 13px;
+    }
+}
+
+// Selectfield
+.x-selectfield {
+    &.a-field-icon {
+        .x-before-input-el {
+            .x-trigger {
+                display: none;
+            }
+        }
+    }
+
+    .x-chipview {
+        margin-top: 0;
+
+        > .x-body-el {
+            align-items: center;
+        }
+
+        .x-chip {
+            margin: 3px 3px 3px 0;
+        }
+    }
+}
+
+// Checkbox favorites
+.x-checkboxfield {
+    &.a-check-fav {
+        input {
+            cursor: pointer;
+        }
+
+        .x-icon-el {
+            color: $icon-light-color;
+
+            &::before {
+                content: 'notifications_none' !important;
+            }
+        }
+
+        &.x-checked {
+            .x-icon-el {
+                color: material-color(yellow, 'a-yellow');
+
+                &::before {
+                    content: 'notifications' !important;
+                }
+            }
+        }
+    }
+}
+
+// Fields
+.x-field {
+    &:not(.x-focused) {
+        &:hover {
+            .x-label-el {
+                color: $color;
+            }
+        }
+    }
+
+    &.a-cursor-pointer,
+    &.non-editable {
+        .x-input-el {
+            cursor: pointer;
+        }
+    }
+
+    &.a-val-uppercase {
+        text-transform: uppercase;
+    }
+
+    &.a-val-capitalize {
+        text-transform: capitalize;
+    }
+
+    &.x-required {
+        > .x-label-el {
+            &::after {
+                line-height: 1;
+            }
+        }
+    }
+}
+
+// Field required
+.x-field {
+    &.x-required {
+        > .x-label-el {
+            &::after {
+                margin-left: 2px;
+            }
+        }
+    }
+
+    &:not(.x-invalid)&:not(.x-disabled) {
+        &.x-required {
+            > .x-label-el {
+                &::after {
+                    color: $color;
+                }
+            }
+        }
+    }
+
+    &.x-invalid {
+        .x-label-el {
+            &::after {
+                color: $invalid-color !important;
+            }
+        }
+
+        .x-label-text-el {
+            color: $invalid-color !important;
+        }
+    }
+
+    &.x-field-no-border {
+        &:not(.x-invalid) {
+            .x-underline-el {
+                display: none;
+            }
+        }
+
+        &.x-invalid {
+            .x-underline-el {
+                display: block;
+            }
+        }
+    }
+}
+
+// Field has info icon
+.x-field {
+    &.a-has-info {
+        .x-label-text-el {
+            position: relative;
+
+            i {
+                font-size: 16px;
+                position: absolute;
+                right: -24px;
+                color: $icon-light-color;
+            }
+        }
+    }
+
+    &.x-invalid {
+        &.a-has-info {
+            .x-label-text-el {
+                i {
+                    color: $invalid-color !important;
+                }
+            }
+        }
+    }
+}
+
+// UI non-editable
+.x-field-non-editable {
+    .x-input-el {
+        cursor: pointer;
+    }
+}
+
+// UI classic
+.x-textfield-classic {
+    .x-input-wrap-el {
+        transition:
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out,
+            background-color 0.15s ease-in-out;
+        will-change: border-color, box-shadow, background-color;
+        border-radius: 6px;
+        min-height: 32px;
+
+        .x-trigger {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+    }
+
+    &.a-field-icon {
+        .x-before-input-el {
+            margin-left: 6px;
+            margin-right: 4px;
+        }
+    }
+
+    .x-underline-el {
+        display: none;
+    }
+
+    &:hover {
+        &:not(.x-focused),
+        &:not(.x-invalid) {
+            .x-input-wrap-el {
+                border-color: $text-color;
+            }
+        }
+
+        &.x-focused {
+            .x-input-wrap-el {
+                border-color: $link-abraxa;
+            }
+        }
+
+        &.x-invalid {
+            .x-input-wrap-el {
+                border-color: $invalid-color;
+            }
+        }
+    }
+
+    &.x-focused {
+        .x-input-wrap-el {
+            border-color: $link-abraxa;
+        }
+
+        &.x-invalid {
+            .x-input-wrap-el {
+                border-color: $invalid-color;
+            }
+        }
+    }
+}
+
+// UI hovered-underline
+.x-field-hovered-underline {
+    .x-trigger,
+    .x-underline-el {
+        opacity: 0;
+        transition: opacity $transition-default;
+    }
+
+    &:hover,
+    &.x-focused,
+    &.x-invalid {
+        .x-trigger,
+        .x-underline-el {
+            opacity: 1;
+        }
+    }
+}
+
+// UI hovered-border
+.x-field-hovered-border {
+    &:not(:hover)&:not(.x-focused) {
+        .x-trigger {
+            opacity: 0;
+            transition: opacity $transition-default;
+        }
+
+        .x-input-wrap-el {
+            border-color: rgba($border-color, 0);
+        }
+    }
+
+    &:hover&:not(.x-focused)&:not(.x-invalid) {
+        .x-trigger {
+            opacity: 1;
+        }
+
+        .x-input-wrap-el {
+            border-color: $border-color;
+        }
+    }
+}
+
+// UI filled
+.x-field-filled {
+    padding: 8px 12px 0 12px;
+    border-radius: 4px;
+
+    &:not(.x-focused) {
+        background-color: darken($hovered-abraxa-bgr-color, 1%);
+    }
+
+    &.x-focused {
+        background-color: $selected-abraxa-bgr-color;
+    }
+}
+
+// UI outlined
+.x-textfield-outlined {
+    &.a-field-icon {
+        .x-before-input-el {
+            margin-left: 8px;
+        }
+    }
+
+    &:not(.a-field-icon)&:not(.x-textfield-field-lg)&:not(.x-textfield-field-xl) {
+        .x-input-el {
+            padding: 8px 12px;
+        }
+    }
+
+    .x-label-el {
+        transform: translate(8px, 50%);
+        background-color: #fff;
+        position: relative;
+        z-index: 9;
+        max-width: max-content !important;
+    }
+
+    .x-input-wrap-el {
+        padding: 2px;
+        transition:
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+        border-radius: 4px;
+    }
+
+    .x-underline-el {
+        display: none;
+    }
+
+    &:hover {
+        &:not(.x-focused) .x-input-wrap-el {
+            border-color: material-color(blue-grey, '400');
+        }
+
+        &.x-invalid {
+            .x-input-wrap-el {
+                border-color: $invalid-color;
+            }
+        }
+    }
+
+    &.x-textfield-field-lg,
+    &.x-textfield-field-xl {
+        .x-input-wrap-el {
+            padding: 4px;
+            border-radius: 6px;
+            box-shadow: 0 0 0 1px transparent inset;
+        }
+
+        .x-trigger {
+            .x-icon-el {
+                &::before {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        &.a-field-icon {
+            .x-before-input-el {
+                margin-right: 4px;
+            }
+        }
+
+        &.x-focused {
+            &:not(.x-invalid) {
+                .x-input-wrap-el {
+                    box-shadow: 0 0 0 1px $link-abraxa inset;
+                }
+            }
+
+            &.x-invalid {
+                .x-input-wrap-el {
+                    box-shadow: 0 0 0 1px $invalid-color inset;
+                    border-color: $invalid-color;
+                }
+            }
+        }
+    }
+}
+
+// UI Dialog XL
+.x-field-field-xl {
+    &.a-field-icon {
+        .x-input-wrap-el {
+            display: flex;
+            align-items: center;
+        }
+
+        .x-before-input-el {
+            margin-right: 16px;
+            margin-left: 8px;
+        }
+    }
+
+    &.x-field-no-border {
+        &.x-focused {
+            .x-input-wrap-el {
+                background-color: #fff;
+            }
+
+            .x-underline-el {
+                // display: block;
+                // height: 1px;
+            }
+        }
+
+        &.x-invalid {
+            .x-underline-el {
+                display: block;
+            }
+        }
+
+        .x-input-el {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+// Datetime field
+.x-datetimefield {
+    &.x-label-align-horizontal {
+        align-items: center;
+
+        .x-label-el {
+            margin-right: 16px;
+            min-width: 140px;
+            padding: 0;
+        }
+    }
+
+    &:hover {
+        .a-prepend,
+        .a-append {
+            &:not(.x-focused) {
+                .x-input-wrap-el {
+                    border-color: $text-color;
+                }
+            }
+        }
+    }
+
+    &.x-focused {
+        .x-label-el {
+            color: #0078d7;
+        }
+
+        .x-input-wrap-el {
+            border-color: #0078d7 !important;
+            background-color: rgba(235, 244, 252, 0.4) !important;
+        }
+
+        &.x-field-celleditor {
+            .x-input-wrap-el {
+                background-color: #fff !important;
+            }
+        }
+    }
+
+    &.x-datetimefield-dark {
+        &.x-focused {
+            .x-input-wrap-el {
+                background-color: #002945 !important;
+            }
+        }
+    }
+
+    &.x-invalid {
+        .x-input-wrap-el {
+            border-color: #c62828 !important;
+        }
+    }
+
+    // Formfields Prepend / Append
+    .a-prepend {
+        padding-right: 0 !important;
+        flex: auto;
+
+        .x-input-wrap-el {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right-width: 0;
+        }
+    }
+
+    .a-append {
+        padding-left: 0 !important;
+
+        .x-input-wrap-el {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left-width: 0;
+        }
+
+        &.a-disabled {
+            .x-input-wrap-el {
+                background-color: #fff;
+                color: inherit;
+            }
+        }
+    }
+
+    .a-prepend {
+        &.bordered {
+            .x-input-wrap-el {
+                border-right-width: 1px;
+            }
+        }
+    }
+
+    .a-append {
+        &.bordered {
+            .x-input-wrap-el {
+                border-left-width: 1px;
+            }
+        }
+    }
+
+    .x-trigger .x-icon-el:before {
+        content: 'date_range';
+        font-size: 20px;
+    }
+}
+
+// Form fields Prepend-vert / Append-vert
+.a-prepend-vert {
+    padding-bottom: 0 !important;
+
+    .x-input-wrap-el {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-width: 0px;
+    }
+}
+
+.a-append-vert {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+
+    .x-input-wrap-el {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top-width: 1px;
+    }
+}
+
+.a-prepend-vert {
+    &.bordered {
+        .x-input-wrap-el {
+            border-bottom-width: 0px;
+        }
+    }
+}
+
+.a-append-vert {
+    &.bordered {
+        .x-input-wrap-el {
+            border-top-width: 1px;
+        }
+    }
+}
+
+.a-prepend-vert,
+.a-append-vert {
+    &.x-focused {
+        .x-input-wrap-el {
+            border-color: material-color(grey, '300');
+        }
+    }
+}
+
+// Quantity field
+.x-quantityunit {
+    &.x-label-align-horizontal {
+        align-items: center;
+
+        .x-label-el {
+            margin-right: 16px;
+            min-width: 140px;
+            // min-width: 42px;
+            padding: 0;
+        }
+    }
+
+    &.x-focused:not(.x-field-dark) {
+        .x-label-el {
+            color: #0078d7;
+        }
+
+        .x-input-wrap-el {
+            border-color: #0078d7 !important;
+            background-color: rgba(235, 244, 252, 0.4) !important;
+        }
+    }
+
+    &.x-field-dark {
+        &.x-focused {
+            .x-label-el {
+                color: rgba(255, 255, 255, 1) !important;
+            }
+
+            .x-input-wrap-el {
+                border-color: $link-abraxa !important;
+                background-color: rgba(0, 0, 0, 0.16) !important;
+            }
+        }
+    }
+
+    &.x-invalid {
+        .x-input-wrap-el {
+            border-color: #c62828 !important;
+        }
+    }
+
+    // Formfields Prepend / Append
+    .a-prepend {
+        padding-right: 0 !important;
+        flex: auto;
+
+        .x-input-wrap-el {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right-width: 0;
+        }
+    }
+
+    .a-append {
+        padding-left: 0 !important;
+
+        .x-input-wrap-el {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left-width: 0;
+        }
+
+        &.a-disabled {
+            .x-input-wrap-el {
+                background-color: #fff;
+                color: inherit;
+            }
+        }
+    }
+
+    .a-prepend {
+        &.bordered {
+            .x-input-wrap-el {
+                border-right-width: 1px;
+            }
+        }
+    }
+
+    .a-append {
+        &.bordered {
+            .x-input-wrap-el {
+                border-left-width: 1px;
+            }
+        }
+    }
+}
+
+// Toggle field
+.x-togglefield {
+    cursor: pointer;
+}
+
+// Form Error
+.form-error {
+    color: $invalid-color;
+    background-color: #fff;
+}
+
+// Form alert
+.alert-warning {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+
+    &.alert-danger {
+        color: $invalid-color;
+    }
+
+    i {
+        margin-left: 8px;
+        margin-right: 8px;
+
+        &.red {
+            color: material-color(red, 'a-red');
+        }
+    }
+}
+
+// Fields Read Only
+.x-field-viewonly,
+.x-container-viewonly {
+    pointer-events: none !important;
+
+    &:not(.x-field-bordered) {
+        .x-input-wrap-el {
+            border-color: transparent !important;
+        }
+    }
+
+    &.x-field-bordered {
+        .x-input-wrap-el {
+            padding-left: 4px;
+        }
+    }
+
+    .x-label-el {
+        color: material-color(blue-grey, '500') !important;
+    }
+
+    .x-underline-el {
+        display: none;
+    }
+
+    .x-input-wrap-el {
+        background-color: inherit !important;
+    }
+
+    .x-input-el {
+        color: $color !important;
+    }
+
+    .x-trigger {
+        display: none;
+    }
+
+    &.x-field-dark {
+        .x-input-el {
+            color: #fff !important;
+        }
+    }
+
+    &.x-focused {
+        .x-input-wrap-el {
+            border-color: transparent !important;
+            background-color: inherit !important;
+        }
+    }
+
+    &.a-prepend-vert {
+        .x-before-input-el {
+            margin-left: 0;
+        }
+    }
+}
+
+// Dark label
+.x-label-dark {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+// Switch field
+.x-field-switch {
+    width: 44px;
+    height: 22px;
+    background-color: #cfd7dc;
+    border-radius: 16px;
+    cursor: pointer;
+
+    .x-icon-el {
+        width: 44px;
+        height: 22px;
+
+        .x-input-el {
+            cursor: pointer;
+            z-index: 9;
+        }
+
+        &::before {
+            content: '' !important;
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            left: 2px;
+            position: absolute;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+
+    &.x-checked {
+        background-color: #02be9d;
+
+        .x-icon-el {
+            &::before {
+                left: calc(100% - 20px);
+            }
+        }
+    }
+
+    // Switch has icon
+    &.x-field-icon {
+        .x-icon-el {
+            &::after {
+                font-family: 'Material Symbols Rounded';
+                position: absolute;
+                right: 6px;
+                font-size: 14px;
+                color: #fff;
+                content: 'close';
+            }
+        }
+
+        &.x-checked {
+            .x-icon-el {
+                &::after {
+                    content: 'check';
+                    right: inherit;
+                    left: 6px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    // Switch disabled
+    &.x-disabled {
+        opacity: 0.4;
+    }
+}
+
+// Fields placeholders
+::-webkit-input-placeholder {
+    font-weight: 400 !important;
+}
+
+::-moz-placeholder {
+    font-weight: 400 !important;
+}
+
+:-ms-input-placeholder {
+    font-weight: 400 !important;
+}
+
+::-ms-input-placeholder {
+    font-weight: 400 !important;
+}
+
+:-moz-placeholder {
+    font-weight: 400 !important;
+}
+
+// Remove Chrome Autocomplete Background
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+// Label - align top
+.x-label-el {
+    &.align-top {
+        align-self: flex-start;
+        padding: 0 0 4px 0;
+    }
+}
+
+// Form control
+.form-control:not(:focus):not(.no-edit),
+.form-control-inline:not(:focus):not(.no-edit) {
+    outline-offset: -2px;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: rgba(77, 144, 254, 0.75);
+}
+
+.form-control {
+    &:focus {
+        outline-color: rgba(77, 144, 254, 1);
+    }
+
+    &.has_changed {
+        background-color: rgba(255, 193, 5, 0.13) !important;
+    }
+
+    &.updated {
+        background-color: rgba(0, 120, 215, 0.06) !important;
+    }
+}
+
+.form-control-inline {
+    &.has_changed {
+        background-color: rgba(255, 193, 5, 0.13) !important;
+    }
+
+    &.updated {
+        background-color: rgba(0, 120, 215, 0.06) !important;
+    }
+}
+
+// Fixes for Win browsers
+.x-windows {
+    .x-field {
+        .x-label-el,
+        .x-input-el {
+            // line-height: 18px;
+        }
+    }
+
+    .x-listitem {
+        // line-height: 18px;
+    }
+
+    .x-button {
+        .x-inner-el {
+            line-height: 1.1;
+        }
+    }
+}
+
+// Payments - Accounts combo
+.a-combo-accounts {
+    .x-input-wrap-el {
+        .x-input-el {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    }
+}

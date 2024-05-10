@@ -1,0 +1,861 @@
+// Ops - General information
+.a-ops-general-info {
+    > .x-body-el {
+        overflow: visible;
+    }
+
+    .sm-heading {
+        margin: 0 16px;
+        display: flex;
+        align-items: center;
+
+        .a-badge {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            margin-right: 16px;
+            margin-left: -16px;
+        }
+
+        h5 {
+            margin: 16px 0;
+        }
+    }
+
+    .a-separator {
+        margin-top: 16px;
+        margin-left: 16px;
+        margin-right: 16px;
+        border-top: 1px solid $border-color-light;
+        display: flex;
+        align-items: center;
+
+        h5 {
+            width: 140px;
+        }
+
+        .a-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: $font-weight-bold;
+
+            &.a-fore {
+                width: 250px;
+            }
+
+            &.a-toberth {
+                width: 250px;
+            }
+        }
+    }
+
+    .a-bnc-main {
+        flex: 3.5;
+        // padding: 0 24px;
+        padding: 0 16px 0 24px;
+        overflow: visible;
+
+        > .x-body-el {
+            overflow: visible;
+        }
+
+        &.a-bnc-berths {
+            padding-right: 0;
+        }
+
+        .a-berth-heading {
+            .x-field {
+                .x-after-input-el {
+                    margin-right: 16px;
+                }
+
+                &:not(:hover)&:not(.x-focused) {
+                    .x-after-input-el {
+                        .x-trigger {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .a-port-form {
+            max-width: 860px;
+            margin-left: 48px;
+
+            &::before {
+                content: '';
+                width: 2px;
+                height: calc(100% - 114px);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'%3E%3Ccircle id='Ellipse_179' data-name='Ellipse 179' cx='1' cy='1' r='1' fill='%23B0BEC5'/%3E%3C/svg%3E%0A");
+                background-size: 2px 6px;
+                background-repeat: repeat-y;
+                background-position: center center;
+                position: absolute;
+                left: 6px;
+                top: 16px;
+            }
+
+            .x-field {
+                margin: 0 !important;
+                padding: 2px 0 !important;
+
+                .x-label-el {
+                    text-align: right;
+                    width: 120px;
+                    min-width: auto;
+
+                    span {
+                        margin-right: 8px;
+                    }
+                }
+
+                &.a-field-port {
+                    .x-label-el {
+                        font-weight: $font-weight-bold;
+                        font-size: 14px;
+                        padding-left: 24px;
+
+                        i {
+                            color: $icon-color;
+                            position: absolute;
+                            left: -8px;
+                            background-color: #fff;
+                            padding: 8px;
+                            top: 5px;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .x-input-el {
+                        font-size: 16px;
+                        font-weight: $font-weight-bold;
+                        color: $base-abraxa;
+                    }
+
+                    &.a-current {
+                        .x-label-el {
+                            color: $base-abraxa;
+
+                            i {
+                                color: $accent-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .a-validation {
+                .a-info-icon {
+                    position: absolute;
+                    left: 64px;
+                    display: none;
+
+                    i {
+                        color: material-color(red, 'a-red');
+                    }
+                }
+
+                &.is-invalid {
+                    .a-info-icon {
+                        display: block;
+                    }
+
+                    .x-field {
+                        .x-label-el {
+                            color: material-color(red, 'a-red');
+                        }
+
+                        .x-input-wrap-el {
+                            border-color: material-color(red, 'a-red') !important;
+                        }
+                    }
+                }
+            }
+
+            .a-spacer {
+                padding-bottom: 8px;
+                margin-bottom: 8px;
+                margin-left: 146px;
+                border-bottom: 1px solid $border-color-light;
+            }
+        }
+
+        .a-master-form {
+            max-width: 860px;
+            margin-left: 48px;
+
+            .x-field {
+                margin: 0 !important;
+                padding: 2px 0 !important;
+
+                .x-label-el {
+                    text-align: left;
+                    width: 120px;
+                    min-width: auto;
+
+                    span {
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+
+        .a-port-conditions {
+            max-width: 860px;
+            margin-left: 32px;
+            margin-bottom: 24px;
+
+            .a-port-condition-item {
+                margin: 8px 0;
+            }
+
+            .a-titlebar {
+                > .x-body-el {
+                    padding-right: 0;
+                }
+            }
+
+            .a-header {
+                border-bottom: 1px solid $border-color-light;
+
+                div {
+                    padding: 6px 8px;
+                    font-weight: $font-weight-bold;
+                    color: $text-color;
+                }
+
+                .on-arrival {
+                    &::before {
+                        content: '';
+                        width: 42px;
+                        height: 9px;
+                        background-image: url(https://static.abraxa.com/images/icons/arrow-right-green.svg);
+                        display: inline-block;
+                        margin-right: 8px;
+                    }
+                }
+
+                .on-departure {
+                    &::after {
+                        content: '';
+                        width: 42px;
+                        height: 9px;
+                        background-image: url(https://static.abraxa.com/images/icons/arrow-right-blue.svg);
+                        display: inline-block;
+                        margin-left: 8px;
+                    }
+                }
+            }
+
+            .x-field {
+                .x-label-el {
+                    text-align: left;
+                    font-weight: $font-weight-bold;
+                }
+
+                &.a-prepend,
+                &.a-append {
+                    .x-body-wrap-el {
+                        width: 80px;
+                    }
+                }
+            }
+
+            // Draft Condition
+            .a-draft-container {
+                border-top: 1px solid $border-color-light;
+                border-bottom: 1px solid $border-color-light;
+
+                > .x-body-el {
+                    padding: 8px 12px;
+                }
+
+                .x-label {
+                    font-weight: $font-weight-bold;
+                    flex: 1;
+                }
+
+                .a-draft-on-arrival {
+                    flex: 1;
+                    margin: 0 -16px;
+
+                    .x-field {
+                        width: 72px;
+                    }
+                }
+
+                .a-draft-on-departure {
+                    flex: 1;
+
+                    .x-field {
+                        width: 72px;
+                    }
+                }
+            }
+        }
+
+        .a-berth-form {
+            > .x-body-el {
+                padding-left: 48px;
+            }
+
+            .x-field {
+                margin: 0 !important;
+                padding: 2px 0 !important;
+
+                .x-label-el {
+                    margin-right: 0px;
+                    min-width: 42px;
+                }
+            }
+        }
+
+        .a-berth-general,
+        .a-berth-prospects {
+            max-width: 940px;
+        }
+
+        .a-berth-drafts {
+            .x-numberfield {
+                .x-body-wrap-el {
+                    width: auto;
+                    min-width: 100px;
+                }
+            }
+        }
+
+        .a-berth-services {
+            .x-numberfield {
+                .x-body-wrap-el {
+                    width: auto;
+                    min-width: 80px;
+                }
+            }
+        }
+    }
+
+    .a-bnc-cargoes {
+        min-width: 480px;
+        border-left: 1px solid $border-color-light;
+        flex: 2;
+        overflow: visible;
+
+        @media (max-width: 1680px) {
+            min-width: 340px;
+        }
+
+        > .x-dock {
+            overflow: visible;
+        }
+
+        .a-cargo-item {
+            margin: 0 0 8px 8px;
+        }
+
+        .a-cargo-list-item {
+            cursor: pointer;
+
+            &.x-hovered {
+                background-color: $hovered-abraxa-bgr-color;
+            }
+
+            &.x-selected {
+                background-color: $selected-abraxa-bgr-color;
+            }
+
+            .x-title {
+                .x-innerhtml {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .a-badge {
+                    margin-right: 16px;
+                    margin-top: 16px;
+                    margin-bottom: 16px;
+                }
+
+                .a-panel-title {
+                    display: flex;
+                    align-items: center;
+                    line-height: 1.4;
+                    font-size: 14px;
+
+                    .a-qty {
+                        min-width: 110px;
+                        padding-right: 36px;
+                        position: relative;
+
+                        em {
+                            font-weight: normal;
+                            font-style: normal;
+                            margin-left: 4px;
+                        }
+
+                        &::after {
+                            content: '';
+                            width: 12px;
+                            height: 1px;
+                            background-color: $border-color;
+                            position: absolute;
+                            right: 12px;
+                            top: 0;
+                            bottom: 0;
+                            margin: auto;
+                        }
+                    }
+
+                    .a-function {
+                        margin-left: 8px;
+                        margin-top: 1px;
+                    }
+                }
+
+                .a-panel-subtitle {
+                    display: block;
+                    font-size: 11px;
+                    color: $text-light-color;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 400;
+
+                    i {
+                        font-size: 14px;
+                        color: $text-light-color;
+                        margin-right: 4px;
+                    }
+                }
+
+                .a-panel-id {
+                    font-size: 11px;
+                    color: $text-color;
+                    display: block;
+                }
+            }
+        }
+
+        .a-cargo-total {
+            border-top: 1px solid $border-color-light;
+
+            > .x-body-el {
+                padding: 16px 24px;
+            }
+
+            .a-total {
+                text-align: right;
+                position: relative;
+
+                &.a-berth-total {
+                    padding-bottom: 16px;
+                    margin-bottom: 16px;
+
+                    &::after {
+                        content: '';
+                        height: 1px;
+                        width: 200px;
+                        background-color: $border-color-light;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
+
+                .a-qty {
+                    text-align: right;
+                    font-weight: $font-weight-bold;
+                    font-size: 18px;
+
+                    &.a-berth-qty {
+                        color: $base-abraxa;
+                    }
+
+                    &.a-total-qty {
+                        color: material-color(blue-grey, '500');
+                    }
+                }
+            }
+        }
+    }
+
+    .a-port-info {
+        flex: 1;
+        padding: 0px 16px 0 32px;
+        margin-top: -48px;
+        border-left: 1px solid $border-color-light;
+        border-bottom: 1px solid $border-color-light;
+        background-color: $hovered-abraxa-bgr-color;
+
+        .a-title {
+            font-size: 16px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            font-weight: $font-weight-bold;
+        }
+
+        .a-port-timeline {
+            margin-top: 16px;
+
+            .a-timeline-row {
+                height: 140px;
+                padding-left: 48px;
+                padding-right: 16px;
+
+                .x-field-hovered-border {
+                    &:not(:hover)&:not(.x-focused) {
+                        .x-input-wrap-el {
+                            background-color: transparent;
+                        }
+                    }
+                }
+
+                &::before {
+                    content: '';
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'%3E%3Ccircle id='Ellipse_179' data-name='Ellipse 179' cx='1' cy='1' r='1' fill='%23B0BEC5'/%3E%3C/svg%3E%0A");
+                    background-size: 2px 6px;
+                    background-position: 0 0;
+                    width: 2px;
+                    height: 100%;
+                    display: block;
+                    position: absolute;
+                    left: 16px;
+                }
+
+                &::after {
+                    font-family: 'Material Symbols Rounded';
+                    content: 'trip_origin';
+                    position: absolute;
+                    left: 8px;
+                    z-index: 9;
+                    font-size: 18px;
+                    background-color: $hovered-abraxa-bgr-color;
+                }
+
+                &.a-previous-port {
+                    &::after {
+                        color: material-color(teal, '500');
+                    }
+                }
+
+                &.a-current-port {
+                    &::after {
+                        content: 'place';
+                        font-size: 32px;
+                        left: 1px;
+                        color: material-color(teal, '500');
+                    }
+                }
+
+                &.a-next-port {
+                    height: 100px;
+
+                    &::before {
+                        height: 0;
+                    }
+
+                    &::after {
+                        color: $icon-light-color;
+                    }
+                }
+
+                .x-before-input-el {
+                    .x-trigger {
+                        display: none;
+                    }
+                }
+
+                .x-displayfield {
+                    .x-label-el {
+                        padding: 0 0 0 8px;
+                    }
+
+                    .x-input-el {
+                        display: flex;
+                        align-items: center;
+                        padding: 6px 8px;
+                    }
+
+                    &.a-port-name {
+                        .x-input-el {
+                            font-weight: $font-weight-bold;
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                .a-prepend {
+                    width: 100px;
+                }
+
+                .a-append {
+                    width: 80px;
+                }
+            }
+        }
+    }
+
+    // Fields bolder label
+}
+
+// Remarks
+.a-bnc-remarks {
+    .x-emptytext {
+        padding: 0 16px;
+        margin-left: -16px;
+        text-align: left;
+    }
+
+    .a-remark {
+        max-width: 50%;
+        padding: 0 0 16px 0;
+        margin-bottom: 16px;
+        border-bottom: 1px solid $border-color-light;
+
+        .a-title {
+            h4 {
+                margin-top: 0;
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .x-toolbar-body-el {
+        padding: 8px 0;
+    }
+
+    .a-body {
+        .x-textareafield {
+            margin-bottom: 8px;
+        }
+    }
+}
+
+// SOF Events
+.a-sof-events {
+    .x-listitem {
+        .x-checkcell {
+            .x-checkbox-el {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .x-formpanel {
+        border-radius: 0;
+        box-shadow: none !important;
+
+        > .x-body-wrap-el {
+            border-top: 1px solid $border-color-light;
+            border-bottom: 1px solid $border-color-light;
+
+            > .x-body-el {
+                background-color: $hovered-abraxa-bgr-color;
+            }
+        }
+    }
+
+    .x-cells-el {
+        .x-gridcell {
+            &:first-child {
+                .x-gridcell-body-el {
+                    padding-left: 10px;
+                }
+            }
+
+            .a-badge-sof {
+                margin-left: 4px;
+            }
+        }
+    }
+}
+
+.sof-category-input {
+    .x-input-wrap-el {
+        align-items: center;
+        padding: 8px 0px 8px 6px;
+
+        input {
+            display: none;
+        }
+
+        .x-before-input-el {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            position: relative;
+            left: 6px;
+
+            &[data-type='event'] {
+                background-color: #b0bec5;
+            }
+
+            &[data-type='stopped'] {
+                background-color: #dc3912;
+            }
+
+            &[data-type='waiting'] {
+                background-color: #ff9900;
+            }
+
+            &[data-type='shifting'] {
+                background-color: #990099;
+            }
+
+            &[data-type='worked'] {
+                background-color: #22b14c;
+            }
+        }
+    }
+}
+
+// SOF Events - Combo box
+.a-combo-sof-events {
+    .x-listitem {
+        .x-listitem-inner-el {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+    }
+}
+
+// Cargo title
+.a-cargo-title {
+    display: flex;
+    align-items: center;
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 500;
+
+    .a-qty {
+        padding-right: 36px;
+        position: relative;
+
+        em {
+            font-weight: normal;
+            font-style: normal;
+            margin-left: 4px;
+        }
+
+        &::after {
+            content: '';
+            width: 12px;
+            height: 1px;
+            background-color: $border-color;
+            position: absolute;
+            right: 12px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+
+    .a-function {
+        margin-left: 8px;
+        margin-top: 1px;
+    }
+
+    .a-commodity {
+        font-weight: normal;
+        max-width: 150px;
+        @include text-truncate;
+    }
+}
+
+// Cargo subtitle
+.a-cargo-subtitle {
+    display: block;
+    font-size: 11px;
+    color: $text-light-color;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    i {
+        font-size: 14px;
+        color: $text-light-color;
+        margin-right: 4px;
+    }
+}
+
+// Cargo progress
+.a-sof-cargo-progress {
+    .x-formpanel {
+        border-radius: 0;
+        box-shadow: none !important;
+
+        .x-datepickerfield {
+            flex: 1;
+        }
+
+        > .x-body-wrap-el {
+            border-top: 1px solid $border-color-light;
+            border-bottom: 1px solid $border-color-light;
+
+            > .x-body-el {
+                background-color: $hovered-abraxa-bgr-color;
+            }
+        }
+
+        .a-prepend {
+            &:not(:hover)&:not(.x-hovered)&:not(.x-focused) {
+                .x-input-wrap-el {
+                    border-radius: 4px 0 0 4px;
+                    border-right-color: transparent;
+                }
+            }
+        }
+
+        .a-append {
+            &:not(:hover)&:not(.x-hovered)&:not(.x-focused) {
+                .x-input-wrap-el {
+                    border-radius: 0px 4px 4px 0px;
+                    border-left-color: transparent;
+                }
+            }
+        }
+
+        .a-append-units {
+            max-width: 70px !important;
+            min-width: 70px !important;
+        }
+    }
+
+    .a-header-hidden {
+        > .x-header-el {
+            display: none;
+        }
+    }
+}
+
+// SOF Bunkers
+.a-sof-bunkers {
+    .x-grid {
+        .x-gridcolumn {
+            > .x-header-el {
+                .x-title-el {
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        .a-cell-icon {
+            > .x-body-el {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+// SOF Drafts
+.a-sof-drafts {
+    .x-header-el {
+        color: rgba(96, 125, 139, 0.8);
+        font-size: 13px;
+        font-weight: $font-weight-bold;
+        padding: 0 12px;
+    }
+}

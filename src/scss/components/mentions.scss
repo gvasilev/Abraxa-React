@@ -1,0 +1,167 @@
+// Mentions
+.mention_enabled {
+    .x-input-el {
+        width: 100%;
+    }
+}
+
+#mention {
+    padding: 12px;
+    margin-left: 16px;
+    border-radius: 6px;
+    height: 160px;
+    background-color: rgba(235, 244, 252, 0.4);
+    overflow: scroll;
+    outline: none;
+}
+
+.mention_div {
+    padding: 9px;
+    margin-left: 8px;
+    border-radius: 6px;
+    height: 36px;
+    outline: none;
+}
+
+.mention_div {
+    transition: height 267ms ease;
+    will-change: height;
+}
+
+.mention_div:empty:before {
+    content: attr(data-placeholder);
+    color: #b0bec5;
+    font-size: 14px;
+}
+
+.mention_div:focus {
+    height: 80px;
+    overflow: scroll;
+    background-color: rgba(235, 244, 252, 0.4);
+}
+
+.mention_div {
+    &.fake-focus {
+        height: 80px;
+        overflow: scroll;
+        background-color: rgba(235, 244, 252, 0.4);
+    }
+}
+
+.mention_div {
+    &.edit_mode {
+        height: 80px !important;
+        overflow: scroll;
+        margin-left: 0px !important;
+        background-color: rgba(235, 244, 252, 0.4);
+    }
+}
+
+.mention-wrapper {
+    .mention-options {
+        z-index: 999;
+        flex-wrap: nowrap !important;
+        max-height: 400px;
+        overflow-y: auto !important;
+    }
+}
+
+.content_editable_element {
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+}
+
+.menition_type {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 9px;
+    color: #151b26 !important;
+    padding: 0px 4px;
+    background: #dee2e6;
+    border-radius: 2px;
+    margin-left: 6px;
+    display: none;
+}
+
+.mention_description {
+    color: #6b7c93 !important;
+    font-weight: normal;
+}
+
+.mention-option {
+    .a-person {
+        .a-int {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+.mention-option .a-cargo::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://static.abraxa.com/images/icon-cargo-outlined.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+.mention-option .a-berth::before {
+    content: 'location_on';
+    font-family: 'Material Symbols Rounded';
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 2px;
+    color: rgba(176, 190, 197, 0.8);
+    left: 8px;
+    top: 8px;
+    position: absolute;
+    border: 1px solid rgba(176, 190, 197, 0.8);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    text-rendering: optimizeLegibility;
+}
+
+.mention-option .a-file::before {
+    content: 'insert_drive_file';
+    font-family: 'Material Symbols Rounded';
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 21px;
+    left: 8px;
+    top: 8px;
+    color: #de5c5c;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    text-rendering: optimizeLegibility;
+}
+
+.mention-option * {
+    pointer-events: none;
+}

@@ -1,0 +1,220 @@
+// Links
+a {
+    color: $base-abraxa;
+    outline: none;
+
+    &:not(:hover) {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: underline;
+        color: $link-abraxa;
+    }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    font-weight: $font-weight-bold;
+    line-height: 1.4;
+}
+
+h1,
+.h1 {
+    font-size: 20px;
+}
+
+h2,
+.h2 {
+    font-size: 18px;
+    letter-spacing: $letter-spacing-md;
+}
+
+h3,
+.h3 {
+    font-size: 16px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: $letter-spacing;
+}
+
+h4,
+.h4 {
+    font-size: 13px;
+}
+
+h5,
+.h5 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: $text-light-color;
+    font-weight: normal;
+    letter-spacing: 0.25px;
+}
+
+.display-1,
+.display-2,
+.display-3 {
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.display-1 {
+    font-size: 24px;
+}
+
+.display-2 {
+    font-size: 18px;
+}
+
+.display-3 {
+    font-size: 16px;
+}
+
+//Font sizes
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-11 {
+    font-size: 11px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-13 {
+    font-size: 13px !important;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.fs-16 {
+    font-size: 16px !important;
+}
+
+.fs-18 {
+    font-size: 18px !important;
+}
+
+.fs-24 {
+    font-size: 24px !important;
+}
+
+.fs-32 {
+    font-size: 32px !important;
+}
+
+.fs-64 {
+    font-size: 64px !important;
+}
+
+.fw-b,
+strong,
+b {
+    font-weight: $font-weight-bold;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-n {
+    font-weight: normal;
+}
+
+// Text transforms
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-info {
+    font-size: 13px;
+    line-height: 1.6;
+    color: material-color(blue-grey, '300');
+}
+
+.lh-1 {
+    line-height: 1;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-top: 1px solid $border-color-light;
+
+    &.space {
+        border-color: transparent;
+    }
+
+    &.space-x2 {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-color: transparent;
+    }
+
+    &.md {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &.sm {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &.xs {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+    }
+}
+
+// Letter spacing
+.x-tab:not(.x-tab-tab-sm),
+.x-button,
+.x-paneltitle {
+    .x-text-el {
+        letter-spacing: $letter-spacing;
+    }
+}
+
+.x-title {
+    letter-spacing: $letter-spacing;
+}

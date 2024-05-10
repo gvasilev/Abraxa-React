@@ -1,0 +1,428 @@
+// Mixin Directory Layout
+@mixin directory-layout {
+    width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Directory Main Container
+.a-directory-main-container {
+    background-color: #fff;
+}
+
+// Directory Inner Wrapper
+.a-directory-inner-wrapper {
+    @include directory-layout;
+}
+
+//Directory Default Section
+.a-directory-section {
+    &:not(.a-non-hoverable) {
+        > .x-body-el {
+            transition: all $transition-default;
+            will-change: all;
+        }
+
+        &:hover {
+            > .x-body-el {
+                cursor: pointer;
+                background-color: mix(#fff, $link-abraxa, 94%);
+
+                .a-collapsible-title {
+                    color: $base-abraxa;
+
+                    &::before {
+                        color: $base-abraxa;
+                    }
+                }
+            }
+        }
+    }
+
+    &.a-non-hoverable {
+        > .x-body-el {
+            padding-bottom: 24px;
+        }
+    }
+
+    // Section Title
+    .a-section-title {
+        font-size: 16px;
+        font-weight: $font-weight-bold;
+        height: 64px;
+        display: flex;
+        align-items: center;
+    }
+
+    // Collapsible Title
+    .a-collapsible-title {
+        padding-left: 8px;
+        padding-right: 8px;
+        height: 64px;
+
+        &.is-collapsed {
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+
+    // Collapsible Container
+    .a-collapsible-container {
+        > .x-body-el {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        &:not(.is-collapsed) {
+            padding-bottom: 24px;
+            border-bottom: 1px solid $border-color-light;
+        }
+    }
+}
+
+// Directory Main Section
+.a-directory-main-section {
+    border-bottom: 1px solid $border-color-light;
+
+    > .x-body-el {
+        padding-top: 24px;
+        justify-content: stretch;
+
+        > .x-container {
+            align-self: stretch;
+        }
+    }
+}
+
+// Directory Display Item
+.a-display-item {
+    min-height: 32px;
+
+    .a-display-label {
+        font-size: 14px;
+        color: material-color(blue-grey, '700');
+        flex: 1;
+    }
+
+    .a-display-value {
+        flex: 1;
+        line-height: 1.4;
+
+        i {
+            font-size: 20px;
+            margin-right: 6px;
+        }
+
+        .a-value-yes,
+        .a-value-no {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-value-yes {
+            i {
+                color: material-color(teal, '500');
+
+                &::before {
+                    content: 'check';
+                }
+            }
+        }
+
+        .a-value-no {
+            i {
+                color: material-color(pink, '500');
+
+                &::before {
+                    content: 'close';
+                }
+            }
+        }
+    }
+}
+
+// Agent Profile Header
+.a-agent-profile-header {
+    height: 120px;
+    overflow: visible;
+
+    > .x-body-el {
+        width: 1080px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        margin: auto;
+        border-bottom: 1px solid $border-color-light;
+        overflow: visible;
+    }
+
+    // Company Name Title
+    .a-agent-profile-title {
+        flex: 1;
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        margin-left: -56px;
+
+        .x-tool {
+            margin-right: 16px;
+        }
+
+        // Status Badge
+        .a-status-badge {
+            margin-left: 8px;
+        }
+    }
+
+    // Company Logo
+    .a-agent-profile-logo {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        flex: 1;
+        height: 100%;
+
+        svg,
+        img {
+            max-height: 80px;
+            height: auto;
+        }
+    }
+}
+
+// Agent Display Label
+.a-agent-profile-container {
+    .a-display-label {
+        min-width: 180px;
+        max-width: 180px;
+    }
+
+    .a-bank-details-item {
+        margin-bottom: 8px;
+
+        &:not(.x-first) {
+            margin-top: 8px;
+        }
+
+        .a-display-label {
+            min-width: 156px;
+            max-width: 156px;
+        }
+    }
+}
+
+// Agent Profile Bank details
+.a-bank-details-item {
+    > .x-body-el {
+        padding: 16px 24px;
+    }
+}
+
+// Agent Port Served List
+.a-port-served-dataview {
+    margin-top: -4px;
+
+    .a-port-data-item {
+        line-height: 1.5;
+    }
+}
+
+// Port Details Header
+.a-port-details-header {
+    > .x-body-el {
+        padding-top: 24px;
+    }
+
+    // Header Title Bar
+    .a-header-title-bar {
+        width: 1192px;
+        margin: auto;
+
+        > .x-body-el {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+        .x-tool {
+            margin-right: 16px;
+        }
+
+        .a-header-title {
+            font-size: 24px;
+            font-weight: $font-weight-bold;
+        }
+
+        .a-status-badge {
+            margin-left: 8px;
+        }
+    }
+
+    // Header Info Bar
+    .a-header-info-bar {
+        border-bottom: 1px solid $border-color-light;
+        @include directory-layout;
+        margin-bottom: 0;
+
+        > .x-body-el {
+            padding: 12px 4px 16px 4px;
+        }
+
+        .a-header-info-item {
+            line-height: 1.2;
+
+            &:not(:last-of-type) {
+                margin-right: 32px;
+                padding-right: 32px;
+                border-right: 1px solid $border-color-light;
+            }
+
+            .a-header-info-value {
+                font-size: 16px;
+                font-weight: $font-weight-bold;
+            }
+        }
+    }
+
+    // Header Tab Bar
+    .a-header-tab-bar {
+        @include directory-layout;
+        height: 64px;
+        border-bottom: 1px solid $border-color !important;
+
+        > .x-body-el {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    }
+}
+
+// Port image
+.a-port-image {
+    align-self: stretch;
+    margin: 8px 0 8px 32px;
+    border-radius: 16px;
+    background-size: cover !important;
+    background-color: #f9fbfd;
+}
+
+// Port Details Container
+.a-port-details-container {
+    .a-directory-main-section {
+        > .x-body-el {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    }
+
+    .a-display-label {
+        min-width: 220px;
+        max-width: 220px;
+    }
+}
+
+// Port Details Footer
+.a-port-details-footer {
+    box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+    height: 64px;
+
+    > .x-body-el {
+        @include directory-layout;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+// Google Map
+.x-map {
+    border-radius: 16px;
+    max-width: 466px;
+    min-height: 232px;
+}
+
+// Fake Map
+.a-fake-map {
+    border-radius: 16px;
+    background-size: cover;
+    max-width: 466px;
+    min-height: 232px;
+    max-height: 232px;
+}
+
+// Separator - Bullet
+// TODO: Move to helpers.scss
+.a-sep-bullet {
+    &::before {
+        content: '\2022';
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+// Status Badge
+// TODO: Move to badges.scss
+.a-status-badge {
+    &.filled {
+        background-color: $viewport-color;
+    }
+
+    &.status-verified {
+        background-color: material-color(teal, '500');
+        color: #fff;
+
+        i {
+            color: #fff;
+        }
+    }
+
+    // TODO: Refactor status tokens
+    &.bg-light-blue {
+        background-color: material-color(light-blue, '50');
+    }
+
+    &.bg-light-yellow {
+        background-color: material-color(orange, '50');
+    }
+
+    &.bg-light-purple {
+        background-color: material-color(purple, '50');
+    }
+}
+
+// Collapsible Title
+// TODO: Extend the class in containers.scss
+.a-collapsible-title {
+    &.a-trigger-right {
+        justify-content: space-between;
+    }
+}
+
+// Grid Top Bar (Docked to top)
+// TODO: Move to grids.scss
+.a-grid-top-bar {
+    min-height: 54px;
+    border-bottom: 1px solid $border-color-light;
+}
+
+// Grid Offset 0
+// TODO: Move to grids.scss
+.a-offset-grid {
+    .a-column-offset-x0 {
+        .x-gridcolumn-title-wrap-el,
+        .x-gridcolumn-bordered-title-wrap-el {
+            padding-left: 0px;
+        }
+    }
+
+    .a-cell-offset-x0 {
+        .x-body-el {
+            padding-left: 0px !important;
+        }
+    }
+}
+
+// Berth Dialog
+// TODO: Move to dialogs.scss
+.a-dialog-port {
+    &.a-dialog-berth {
+        .a-dialog-bgr {
+            background-color: $base-abraxa-semi-dark;
+        }
+    }
+}

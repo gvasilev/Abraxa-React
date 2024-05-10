@@ -1,0 +1,1334 @@
+// Buttons icon fix
+.x-button {
+    &.x-has-menu {
+        &.x-has-text {
+            .x-inner-el {
+                padding-right: 8px;
+            }
+        }
+    }
+
+    &:not(.x-button-small)&:not(.x-button-medium)&:not(.x-button-large)&:not(.x-button-status) {
+        &.x-has-text.x-has-icon {
+            &.x-icon-align-left {
+                .x-inner-el {
+                    padding-left: 12px;
+                }
+            }
+
+            &.x-icon-align-right {
+                .x-inner-el {
+                    padding-right: 12px;
+                }
+            }
+        }
+    }
+
+    &.x-button-large,
+    &.x-button-medium {
+        &.x-has-text.x-has-icon {
+            &.x-icon-align-left {
+                .x-inner-el {
+                    padding-left: 16px;
+                }
+            }
+
+            &.x-icon-align-right {
+                .x-inner-el {
+                    padding-right: 16px;
+                }
+            }
+        }
+
+        .x-text-el {
+            min-height: 18px;
+        }
+    }
+
+    &.x-button-small {
+        &.x-has-text.x-has-icon {
+            &.x-icon-align-left {
+                .x-icon-el {
+                    width: 18px;
+                    height: 18px;
+                }
+
+                .x-inner-el {
+                    padding-left: 8px;
+                }
+            }
+
+            &.x-icon-align-right {
+                .x-inner-el {
+                    padding-right: 8px;
+                }
+            }
+        }
+    }
+
+    // Disabled button
+    &.x-disabled {
+        pointer-events: all;
+        cursor: not-allowed;
+
+        // .x-inner-el {
+        //     background-color: transparent;
+        // }
+
+        .x-button-el {
+            cursor: not-allowed;
+        }
+
+        &.x-button-outlined {
+            .x-inner-el {
+                border-color: $border-color;
+            }
+        }
+
+        &.x-button-normal {
+            .x-icon-el,
+            .x-text-el,
+            .x-arrow-el {
+                color: rgba(0, 0, 0, 0.26) !important;
+            }
+        }
+    }
+}
+
+// Button hovered
+.x-button-hovered {
+    &:not(.x-hovered)&:not(.x-pressed) {
+        .x-inner-el {
+            padding: 9px !important;
+        }
+
+        .x-icon-el {
+            margin-right: 0;
+        }
+
+        .x-text-el {
+            display: none;
+        }
+    }
+
+    .x-inner-el {
+        transition: padding 150ms ease-out;
+    }
+
+    .x-icon-el {
+        transition: margin-right 150ms ease-out;
+    }
+}
+
+// Button Loading
+.x-button-loading {
+    .x-inner-el {
+        position: relative;
+        transition: all 235ms;
+
+        &::before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            animation: spinner 0.6s linear infinite;
+            display: none;
+        }
+    }
+
+    &.loading,
+    &.x-pressed,
+    &.x-pressing {
+        .x-inner-el {
+            color: #fff;
+            padding-left: 40px !important;
+
+            .x-icon-el {
+                color: #fff;
+            }
+
+            &::before {
+                display: block;
+            }
+        }
+    }
+
+    &.x-button-action {
+        &.loading,
+        &.x-pressed,
+        &.x-pressing {
+            .x-inner-el {
+                background-color: $link-abraxa;
+            }
+        }
+    }
+
+    &.x-button-accent {
+        &.loading,
+        &.x-pressed,
+        &.x-pressing {
+            .x-inner-el {
+                background-color: #00b6c8;
+            }
+        }
+    }
+
+    &.x-button-normal {
+        &.loading,
+        &.x-pressed,
+        &.x-pressing {
+            .x-inner-el {
+                color: $link-abraxa;
+
+                &::before {
+                    border: 2px solid rgba($link-abraxa, 0.2);
+                    border-top-color: $link-abraxa;
+                }
+            }
+        }
+    }
+}
+
+// Button keyboard mode fix
+.x-keyboard-mode {
+    .x-button {
+        &.x-focused {
+            .x-inner-el {
+                border-color: inherit;
+                background-color: $link-abraxa;
+
+                .x-text-el {
+                    color: #fff;
+                }
+
+                .x-icon-el {
+                    color: #fff !important;
+                }
+
+                .x-arrow-el {
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+}
+
+// Button Tool Inline SVG
+.x-button-tool {
+    &.a-inline-svg {
+        width: 34px;
+        height: 34px;
+
+        .x-inner-el {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+
+            .x-text-el {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+// Button Tool + Text Small
+.x-button-tool-text-sm {
+    &.x-has-text {
+        &.x-icon-align-left {
+            .x-icon-el {
+                margin-right: 0px;
+            }
+        }
+    }
+    &.a-has-counter {
+        .x-text-el {
+            em {
+                background-color: $link-abraxa;
+            }
+        }
+    }
+}
+
+// Split button filter
+.x-splitButton-filter {
+    height: 26px;
+    margin: 0 2px;
+
+    .x-icon-el {
+        display: none !important;
+    }
+
+    .x-font-icon {
+        font-size: 14px;
+    }
+
+    .x-splitInner-el {
+        padding: 12px 4px 12px 12px;
+    }
+
+    .x-splitArrow-el {
+        border: 0 none !important;
+
+        .x-font-icon {
+            padding: 4px 4px 4px 0;
+        }
+    }
+
+    &.x-hovered {
+        .x-splitBody-el {
+            background-color: $hovered-abraxa-bgr-color;
+        }
+    }
+
+    &.active {
+        .x-splitBody-el {
+            color: $link-abraxa;
+            background-color: $selected-abraxa-bgr-color;
+            border-color: $link-abraxa;
+        }
+
+        .x-text-el {
+            color: $link-abraxa;
+        }
+
+        .x-font-icon {
+            color: $link-abraxa;
+        }
+    }
+}
+
+// Tool material symbols fix
+.x-tool {
+    .x-icon-el {
+        display: flex;
+    }
+}
+
+// Tool toggle fix
+.x-tool-toggle {
+    &.x-pressed {
+        .x-icon-el {
+            color: $link-abraxa;
+        }
+    }
+}
+
+// Quickstart Tool Button
+.a-button-quick-start {
+    width: 100%;
+
+    .x-inner-el {
+        align-items: flex-start;
+    }
+
+    .x-body-el {
+        margin: 0;
+        justify-content: flex-start;
+    }
+}
+
+// Quickstart Tool Button
+.a-button-help-center {
+    width: 100%;
+
+    .x-inner-el {
+        align-items: flex-start;
+    }
+
+    .x-body-el {
+        margin: 0;
+        justify-content: flex-start;
+    }
+}
+
+// Button status
+.x-button-status,
+.x-button-status-md {
+    color: inherit !important;
+
+    .x-inner-el {
+        // font-weight: normal;
+        border: none;
+    }
+
+    &.no-border {
+        .x-inner-el {
+            border-radius: 16px !important;
+        }
+    }
+
+    .x-text-el {
+        text-transform: capitalize;
+
+        .a-status-icon {
+            font-size: 14px;
+            margin-right: 4px;
+            display: flex;
+            align-items: center;
+            margin-left: -1px;
+            color: $icon-light-color;
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+
+    &.a-has-icon {
+        .x-text-el {
+            padding-left: 16px;
+        }
+    }
+}
+
+.x-button-status,
+.x-button-status-md {
+    &.x-has-text {
+        &.x-icon-align-left {
+            .x-icon-el {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    &.status-scheduled {
+        .x-inner-el {
+            background-color: material-color(blue-grey, '50') !important;
+        }
+    }
+
+    &.status-enroute,
+    &.enroute,
+    &.progress {
+        .x-inner-el {
+            background-color: material-color(orange, '50') !important;
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                background-color: rgba(material-color(yellow, 'a-yellow'), 0.08);
+                color: material-color(yellow, 'a-yellow');
+
+                .x-arrow-el {
+                    color: material-color(yellow, 'a-yellow');
+                }
+
+                .x-icon-el {
+                    color: material-color(yellow, 'a-yellow');
+                }
+            }
+        }
+    }
+
+    &.status-drifting {
+        .x-inner-el {
+            background-color: material-color(deep-orange, '50') !important;
+        }
+    }
+
+    &.status-anchored,
+    &.anchored {
+        .x-inner-el {
+            background-color: material-color(cyan, '50') !important;
+        }
+    }
+
+    &.status-berthed,
+    &.berthed {
+        .x-inner-el {
+            background-color: material-color(light-blue, '50') !important;
+        }
+    }
+
+    &.status-cargo,
+    &.cargo {
+        .x-inner-el {
+            background-color: material-color(indigo, '50') !important;
+        }
+    }
+
+    &.status-shifting,
+    &.shifting {
+        .x-inner-el {
+            background-color: material-color(purple, '50') !important;
+        }
+    }
+
+    &.status-documents,
+    &.documents {
+        .x-inner-el {
+            background-color: material-color(teal, '50') !important;
+        }
+    }
+
+    &.status-bunkering,
+    &.bunkering {
+        .x-inner-el {
+            background-color: material-color(blue-grey, '50') !important;
+        }
+    }
+
+    &.status-pilot,
+    &.pilot {
+        .x-inner-el {
+            background-color: material-color(deep-orange, '50') !important;
+        }
+    }
+
+    &.status-sailed,
+    &.sailed {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+        }
+    }
+
+    &.status-fda,
+    &.fda {
+        .x-inner-el {
+            background-color: material-color(cyan, '50') !important;
+        }
+    }
+
+    &.status-completed,
+    &.completed {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                color: material-color(teal, '500');
+                background-color: rgba(material-color(teal, '500'), 0.08);
+
+                .x-arrow-el {
+                    color: material-color(teal, '500');
+                }
+
+                .x-icon-el {
+                    color: material-color(teal, '500');
+                }
+            }
+        }
+    }
+
+    &.status-to-do {
+        .x-inner-el {
+            background-color: material-color(blue-grey, '50') !important;
+        }
+    }
+
+    &.status-Draft,
+    &.status-draft {
+        .x-inner-el {
+            background-color: material-color(blue-grey, '50') !important;
+            color: $text-color;
+        }
+
+        &.x-button-dark {
+            .x-inner-el {
+                background-color: material-color(blue-grey, '50') !important;
+                color: $text-color;
+
+                .x-arrow-el {
+                    color: $text-color;
+                }
+            }
+        }
+    }
+
+    &.status-Pending,
+    &.status-pending {
+        .x-inner-el {
+            background-color: material-color(orange, '50') !important;
+        }
+    }
+
+    &.status-under {
+        .x-inner-el {
+            background-color: material-color(purple, '50') !important;
+        }
+    }
+
+    &.status-changes {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+        }
+    }
+
+    &.status-Delivered,
+    &.status-delivered {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+        }
+    }
+
+    &.status-Delivered.on.board,
+    &.status-delivered.on.board {
+        .x-inner-el {
+            background-color: material-color(purple, '50') !important;
+        }
+    }
+
+    &.status-Canceled,
+    &.status-canceled {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+        }
+    }
+
+    &.status-Confirmed,
+    &.status-confirmed {
+        .x-inner-el {
+            background-color: material-color(light-green, '50') !important;
+        }
+    }
+
+    &.status-In.progress,
+    &.status-in.progress {
+        .x-inner-el {
+            background-color: material-color(orange, '50') !important;
+        }
+    }
+
+    &.status-Rejected,
+    &.status-rejected {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+        }
+    }
+
+    &.status-Approved,
+    &.status-approved {
+        .x-inner-el {
+            background-color: material-color(teal, '50') !important;
+        }
+    }
+
+    &.status-Final,
+    &.status-final {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+        }
+    }
+
+    &.status-Issued,
+    &.status-issued,
+    &.status-settled,
+    &.status-submitted {
+        .x-inner-el {
+            background-color: material-color(light-blue, '50') !important;
+        }
+    }
+
+    &.status-new {
+        .x-inner-el {
+            background-color: material-color(light-blue, '50') !important;
+        }
+    }
+
+    &.status-In,
+    &.status-in {
+        .x-inner-el {
+            background-color: material-color(orange, '50') !important;
+        }
+    }
+
+    &.status-appointed,
+    &.status-Appointed {
+        .x-inner-el {
+            background-color: material-color(teal, '50') !important;
+        }
+    }
+
+    &.status-lost,
+    &.status-Lost {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+        }
+    }
+
+    &.status-Completed,
+    &.status-completed {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+        }
+    }
+
+    &.status-Good {
+        .x-inner-el {
+            background-color: material-color(green, '50') !important;
+
+            .a-status-icon {
+                color: $color-good !important;
+            }
+        }
+    }
+
+    &.status-Low {
+        .x-inner-el {
+            background-color: material-color(orange, '50') !important;
+
+            .a-status-icon {
+                color: $color-low !important;
+            }
+        }
+    }
+
+    &.status-High {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+
+            .a-status-icon {
+                color: $color-high !important;
+            }
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                background-color: rgba($color-high, 0.08);
+                color: $color-high;
+
+                .x-arrow-el {
+                    color: $color-high;
+                }
+
+                .x-icon-el {
+                    color: $color-high;
+                }
+            }
+        }
+    }
+
+    &.status-Check {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+
+            .a-status-icon {
+                color: $color-check !important;
+            }
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                background-color: rgba($color-check, 0.08);
+                color: $color-check;
+
+                .x-arrow-el {
+                    color: $color-check;
+                }
+
+                .x-icon-el {
+                    color: $color-check;
+                }
+            }
+        }
+    }
+
+    &.status-not,
+    &.status-No {
+        .x-inner-el {
+            background-color: material-color(blue-grey, '50') !important;
+
+            .a-status-icon {
+                color: $border-color !important;
+            }
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                background-color: rgba($border-color, 0.16);
+                color: $text-color;
+
+                .x-icon-el {
+                    color: $icon-color;
+                }
+            }
+        }
+
+        &.solid {
+            .x-inner-el {
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent !important;
+                border-radius: 12px;
+                color: $text-color;
+                background-color: rgba($border-color, 0.16);
+
+                .x-arrow-el {
+                    color: $text-color;
+                }
+
+                .x-icon-el {
+                    color: $text-color;
+                }
+            }
+        }
+    }
+
+    &.status-partially {
+        .x-inner-el {
+            border-width: 1px;
+            border-style: solid;
+            border-color: $color-partially !important;
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                background-color: rgba($color-partially, 0.08);
+                color: $text-color;
+
+                .x-icon-el {
+                    color: $color-partially;
+                }
+            }
+        }
+
+        &.solid {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                color: #fff;
+                background-color: rgba($color-partially, 1);
+
+                .x-arrow-el {
+                    color: #fff;
+                }
+
+                .x-icon-el {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &.status-funded {
+        .x-inner-el {
+            border-width: 1px;
+            border-style: solid;
+            border-color: $color-funded !important;
+        }
+
+        &.no-border {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                color: $color-funded;
+                background-color: rgba($color-funded, 0.08);
+
+                .x-arrow-el {
+                    color: $color-funded;
+                }
+
+                .x-icon-el {
+                    color: $color-funded;
+                }
+            }
+        }
+
+        &.solid {
+            .x-inner-el {
+                border-color: transparent !important;
+                border-radius: 12px;
+                color: #fff;
+                background-color: rgba($color-funded, 1);
+
+                .x-arrow-el {
+                    color: #fff;
+                }
+
+                .x-icon-el {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &.status-Default {
+        .x-inner-el {
+            background-color: material-color(red, '50') !important;
+
+            .a-status-icon {
+                color: $color-at_risk !important;
+            }
+        }
+    }
+
+    &.x-button-dark {
+        .x-arrow-el {
+            color: $color;
+        }
+    }
+}
+
+// Dark buttons / tools fix
+.x-button-dark {
+    &.x-button-tool-round {
+        &.x-hovered {
+            .x-inner-el {
+                border-color: rgba(255, 255, 255, 0);
+            }
+        }
+
+        .x-icon-el {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+}
+
+// Task / Todo buttons
+.a-task-status-button {
+    &.status-to-do {
+    }
+
+    &.status-in {
+    }
+
+    &.status-completed {
+    }
+}
+
+// Segmented button
+.x-splitButton {
+    .x-text-el {
+        text-transform: none;
+    }
+}
+
+.x-segmentedbutton-small {
+    .x-button {
+        font-size: 13px;
+    }
+
+    .x-button-segmented {
+        .x-inner-el {
+            padding: 6px 12px;
+        }
+    }
+}
+
+.x-splitButton-action {
+    &.x-has-icon {
+        .x-splitInner-el {
+            padding-left: 8px;
+        }
+    }
+
+    &.x-arrow-align-right {
+        .x-splitArrow-el {
+            border-left-color: rgba(255, 255, 255, 0.32) !important;
+        }
+    }
+}
+
+// Button badge
+.x-button {
+    &.x-has-badge {
+        .x-badge-el {
+            box-shadow: none;
+            right: 0;
+            top: 0;
+            background-color: $alert-color;
+        }
+    }
+}
+
+// Create buttons aka Boobs
+.a-create-button {
+    margin: 24px 0px;
+    min-width: 128px;
+    max-width: 128px;
+    border-radius: 12px;
+
+    .x-body-el {
+        flex-direction: column;
+    }
+
+    .x-inner-el {
+        padding: 24px 0 !important;
+        background-color: transparent;
+        box-shadow: 0 10px 30px 0 rgba($base-abraxa, 0);
+        transition: box-shadow $transition-default;
+        will-change: box-shadow;
+        border-radius: 12px;
+    }
+
+    .x-icon-el {
+        margin: 0 !important;
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+
+        &::before {
+            font-size: 32px;
+        }
+    }
+
+    .x-text-el {
+        font-size: 16px;
+        margin-top: 12px;
+        line-height: 1.4;
+    }
+
+    &.x-hovered {
+        .x-inner-el {
+            background-color: #fff;
+            box-shadow: 0 10px 30px 0 rgba($base-abraxa, 0.12);
+        }
+
+        .x-text-el {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-button-supplies {
+        .x-icon-el {
+            background-color: $base-light-color;
+        }
+    }
+
+    &.a-button-disposal {
+        .x-icon-el {
+            background-color: mix(#fff, material-color(teal, '500'), 92%);
+            color: material-color(teal, '500');
+        }
+    }
+
+    &.a-button-bunkers {
+        .x-icon-el {
+            background-color: mix(#fff, $base-abraxa, 92%);
+            color: $base-abraxa;
+        }
+    }
+
+    &.a-button-ctm {
+        .x-icon-el {
+            background-color: mix(#fff, material-color(green, 'a-green'), 92%);
+            color: material-color(green, 'a-green');
+        }
+    }
+
+    &.a-button-financial {
+        .x-icon-el {
+            background-color: mix(#fff, material-color(teal, '500'), 92%);
+            color: material-color(teal, '500');
+        }
+    }
+
+    &.a-button-sof {
+        .x-icon-el {
+            background-color: mix(#fff, material-color(indigo, '500'), 92%);
+            color: material-color(indigo, '500');
+        }
+    }
+
+    &.a-button-invoice {
+        .x-icon-el {
+            background-color: mix(#fff, material-color(light-blue, '500'), 92%);
+            color: material-color(light-blue, '500');
+        }
+    }
+
+    &.a-button-services {
+        .x-icon-el {
+            background-color: mix(#fff, $color-accent-web, 92%);
+            color: $color-accent-web;
+        }
+    }
+
+    &.a-button-cargo {
+        .x-icon-el {
+            background-color: mix(#fff, $link-abraxa, 92%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://static.abraxa.com/images/icon-cargo-outlined.svg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 36px;
+        }
+
+        .a-icon-premium {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: #ffb74d;
+        }
+    }
+
+    // &.a-button-premium {
+    //     .x-icon-el {
+    //         background-color: mix(#fff, #FFB74D, 85%);
+
+    //         &::before {
+    //             content: '\f3a5' !important;
+    //             font-family: 'Font Awesome 5 Free Regular';
+    //             font-size: 24px;
+    //             color: #FFB74D;
+    //         }
+    //     }
+    // }
+}
+
+// Button Internal Tools
+.a-btn-internal-tools {
+    height: 48px;
+    width: 48px;
+    box-shadow: 0 0px 8px 0 rgba($base-abraxa, 0.08);
+    transition: box-shadow $transition-default;
+    border-radius: 6px 0 0 6px;
+
+    &::before {
+        border-radius: 6px 0 0 6px;
+    }
+
+    &.x-hovered {
+        box-shadow: 0 8px 32px 0 rgba($base-abraxa, 0.24);
+    }
+
+    &.position_fixed {
+        top: 96px;
+        right: 0;
+        bottom: inherit;
+    }
+
+    .x-inner-el {
+        padding: 8px 12px 8px 8px;
+        background-color: #fff !important;
+        border-radius: 6px 0 0 6px;
+    }
+
+    .x-icon-el {
+        color: material-color(indigo, '500');
+    }
+
+    .x-badge-el {
+        right: 8px !important;
+        top: 8px !important;
+        box-shadow: 0 0 0px 2px rgba(255, 255, 255, 1) !important;
+    }
+}
+
+// Button counter
+.x-button {
+    &.a-has-counter {
+        .x-text-el {
+            em {
+                font-style: normal;
+                min-width: 16px;
+                height: 16px;
+                display: inline-flex;
+                font-size: 12px;
+                font-weight: 500;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                margin-left: 4px;
+                padding: 0 2px;
+                color: #fff;
+            }
+        }
+    }
+
+    &.x-button-default-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: $border-color;
+                }
+            }
+        }
+    }
+
+    &.x-button-normal-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: $link-abraxa;
+                }
+            }
+        }
+    }
+
+    &.x-button-success-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: material-color(green, '500');
+                }
+            }
+        }
+    }
+
+    &.x-button-warning-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: material-color(yellow, 'a-yellow');
+                }
+            }
+        }
+    }
+
+    &.x-button-danger-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: material-color(pink, '500');
+                }
+            }
+        }
+    }
+
+    &.x-button-blue-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: material-color(light-blue, '500');
+                }
+            }
+        }
+    }
+
+    &.x-button-indigo-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: material-color(indigo, '500');
+                }
+            }
+        }
+    }
+
+    &.x-button-completed-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: $color-completed;
+                }
+            }
+        }
+    }
+
+    &.x-button-progress-light {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: $color-progress;
+                }
+            }
+        }
+    }
+
+    // Default color
+    &.x-button-default {
+        &.a-has-counter {
+            .x-text-el {
+                em {
+                    background-color: $chip-background-color;
+                    color: $text-color;
+                }
+            }
+        }
+    }
+
+    &.x-button-color-default {
+        .x-text-el {
+            color: $text-color;
+        }
+    }
+
+    // Background light grey
+    &.x-button-bgr-light-grey {
+        .x-inner-el {
+            background-color: rgba(material-color(blue-grey, '700'), 0.06);
+        }
+    }
+}
+
+// File button menu item
+.x-button {
+    &.x-button-menu-item {
+        width: 100%;
+        height: 36px;
+
+        .x-body-el {
+            margin: 0;
+        }
+
+        .x-inner-el {
+            padding: 0 !important;
+        }
+
+        .x-icon-el {
+            width: 48px;
+            color: $icon-color;
+        }
+    }
+}
+
+// Custom button - Total
+.x-button-custom-total {
+    .a-icon-total {
+        width: 32px;
+        background-image: url('https://static.abraxa.com/images/icon-total.svg');
+    }
+
+    .x-inner-el {
+        border: 0;
+        z-index: 1;
+        background-color: #fff;
+        margin: 1px;
+        border-radius: 5px;
+    }
+
+    &::after {
+        content: '';
+        background-image: linear-gradient(white, white),
+            linear-gradient(
+                180deg,
+                rgba(255, 128, 1, 1) 0%,
+                rgba(237, 0, 0, 1) 33.33%,
+                rgba(26, 97, 255, 1) 66.66%,
+                rgba(35, 192, 199, 1) 100%
+            );
+
+        background-repeat: no-repeat;
+        background-size:
+            100% 100%,
+            100% 200%;
+        background-position:
+            0 0,
+            0 100%;
+        background-origin: padding-box, border-box;
+        animation: total-animation 3s infinite alternate;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 3px solid transparent;
+        border-radius: 6px;
+        z-index: 0;
+    }
+}

@@ -1,0 +1,158 @@
+.no-toolbar {
+    .fr-toolbar,
+    .second-toolbar {
+        display: none;
+    }
+}
+
+.x-froala {
+    border: 0 !important;
+    background-color: transparent !important;
+
+    &::before {
+        content: 'short_text';
+        font-family: 'Material Symbols Rounded';
+        width: 24px;
+        position: absolute;
+        top: 12px;
+        font-size: 24px;
+        display: flex;
+        line-height: 1;
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: 'liga';
+        text-rendering: optimizeLegibility;
+        color: $icon-light-color;
+    }
+
+    .fr-wrapper {
+        border: 0 !important;
+        background-color: transparent !important;
+    }
+
+    .fr-element {
+        padding: 0px 24px 0 24px !important;
+
+        p {
+            margin: 12px 0;
+        }
+    }
+
+    .fr-placeholder {
+        padding: 0px 16px 0 24px !important;
+        margin: 12px 0 !important;
+        color: $textfield-placeholder-color;
+        font-size: 13px;
+    }
+
+    // Reporting email
+    .fr-view {
+        table {
+            th {
+                background: transparent;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4 {
+                margin: 0;
+            }
+
+            strong {
+                font-weight: bold;
+            }
+        }
+
+        .a-powered {
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+}
+
+// Froala light
+.x-component-light {
+    .x-froala {
+        .fr-toolbar,
+        .fr-popup,
+        .fr-modal {
+            background-color: #fff;
+            border: 0 !important;
+        }
+
+        .fr-newline {
+            height: 0px;
+            margin-top: -2px;
+        }
+
+        .second-toolbar {
+            display: none;
+        }
+    }
+}
+
+// Toolbar groups
+.fr-toolbar {
+    .fr-btn-grp {
+        margin: 0;
+    }
+}
+
+// Tables
+.fr-view {
+    table {
+        &:not(.mcnTextContentContainer) {
+            td,
+            th {
+                &:not(.fr-selected-cell) {
+                    border: 0;
+                }
+            }
+        }
+    }
+}
+
+// Modal
+@media (min-width: 992px) {
+    .fr-modal {
+        .fr-modal-wrapper {
+            max-width: 480px;
+        }
+    }
+}
+
+// Popup
+.x-float-wrap {
+    .x-froala {
+        .fr-element {
+            padding: 12px 16px !important;
+        }
+
+        .fr-placeholder {
+            padding-left: 16px !important;
+        }
+    }
+}
+
+// Fr View
+.fr-view-x16 {
+    .fr-view {
+        padding: 16px !important;
+    }
+}
+
+// Fr fix
+.fr-view-fix {
+    .x-froala {
+        .fr-element {
+            padding: 12px 24px !important;
+        }
+    }
+}

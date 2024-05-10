@@ -1,0 +1,10 @@
+// Card Body
+.a-card-body {
+    .a-form-container {
+        &.a-form-3col {
+            .a-field-container {
+                min-width: 233px;
+            }
+        }
+    }
+}

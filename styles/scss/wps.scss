@@ -1,0 +1,104 @@
+// WPS Grid
+.a-wps-financial-grid {
+    .x-headercontainer {
+        > .x-body-el {
+            // border-bottom: 1px solid $border-color-light;
+        }
+    }
+
+    .x-grid-bordered-body-el {
+        border-bottom: 1px solid $border-color-light;
+    }
+
+    .row-status {
+        .x-tool {
+            &.x-start {
+                margin: 0;
+                position: relative;
+                left: 10px;
+            }
+        }
+
+        .a-group-header {
+            padding-left: 0px;
+        }
+    }
+
+    .a-column-bl {
+        > .x-header-el {
+            border-left: 1px solid $border-color-light;
+        }
+    }
+
+    .a-column-br {
+        > .x-header-el {
+            border-right: 1px solid $border-color-light;
+        }
+    }
+
+    .a-column-amount {
+        > .x-header-el {
+            border-left: 1px solid $border-color-light;
+            // border-right: 1px solid $border-color-light;
+        }
+    }
+
+    .a-cell-bl {
+        border-left: 1px solid $border-color-light;
+    }
+
+    .a-cell-br {
+        border-right: 1px solid $border-color-light;
+    }
+
+    .a-cell-amount {
+        border-left: 1px solid $border-color-light;
+        font-weight: $font-weight-bold;
+    }
+
+    .a-cell-company {
+        .party-item {
+            padding-left: 0;
+
+            .sm-function {
+                display: none;
+            }
+        }
+    }
+
+    // Total billed
+    .a-billed-price {
+        text-align: right;
+        font-weight: $font-weight-bold;
+        color: $base-abraxa;
+        line-height: 1;
+        text-align: right;
+
+        .a-billed-currency {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+
+        .a-billed-amount {
+            font-size: 28px;
+            font-weight: 700;
+        }
+    }
+}
+
+// Right container
+.a-wps-disbursements-right-container {
+    .a-portcall-info {
+        .a-portcall-data {
+            .a-data-item {
+                .a-displayfield {
+                    .x-text-el {
+                        a {
+                            max-width: inherit;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

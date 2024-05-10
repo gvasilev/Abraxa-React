@@ -1,0 +1,793 @@
+// Tooltip fixes
+.x-tooltip {
+    color: #fff;
+    font-weight: normal;
+
+    .x-innerhtml {
+        color: #fff;
+
+        .a-person {
+            color: #fff;
+        }
+
+        a {
+            color: #fff;
+        }
+    }
+}
+
+// Tooltip card
+.x-tooltip-card,
+.x-tooltip-info-card {
+    box-shadow: 0 16px 48px 0 rgba($shadow-base-color, 0.24);
+
+    .x-innerhtml {
+        color: $color;
+
+        a {
+            color: $color;
+        }
+    }
+}
+
+.x-tooltip-card {
+    z-index: 999999;
+
+    .x-tooltipheader {
+        position: relative;
+        background-color: transparent;
+        z-index: 9;
+    }
+
+    .x-tooltip-body-wrap-el {
+        margin-top: -20px;
+    }
+
+    .x-tooltip-card-body-el {
+        background-color: transparent;
+    }
+}
+
+// Tooltip body
+.tooltip-body {
+    animation: scale;
+    animation-duration: 267ms;
+
+    .sm-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: material-color(blue-grey, '500');
+    }
+}
+
+// Tooltip title
+.tooltip-title {
+    position: relative;
+    line-height: 1.4;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .sm-label {
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.5px;
+        color: $text-light-color;
+    }
+
+    .label {
+        font-weight: $font-weight-bold;
+        font-size: 20px;
+        letter-spacing: $letter-spacing-md;
+
+        .a-status-badge {
+            margin-left: 16px;
+        }
+    }
+
+    .sub-title {
+        color: $text-color;
+    }
+}
+
+// Tooltip content
+.tooltip-content {
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-size: 14px;
+
+            i {
+                font-size: 24px;
+                margin-right: 12px;
+                padding: 4px;
+                border-radius: 6px;
+            }
+
+            .c-blue {
+                color: $base-abraxa;
+                line-height: 1;
+                font-weight: $font-weight-bold;
+                letter-spacing: $letter-spacing;
+            }
+
+            .a-placeholder {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// Company tooltip
+.a-company-tooltip {
+    .tooltip-title {
+        padding-left: 64px;
+        padding-right: 24px;
+
+        .badge {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 6px;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+            font-weight: $font-weight-bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:not(.person) {
+                background-color: mix(#fff, $accent-color, 88%);
+                color: $accent-color;
+
+                i {
+                    color: $accent-color;
+                }
+            }
+
+            &.person {
+                background-color: mix(#fff, material-color(indigo, '500'), 90%);
+
+                i {
+                    color: material-color(indigo, '500');
+                }
+            }
+
+            &.bank {
+                background-color: mix(#fff, $link-abraxa, 92%);
+
+                i {
+                    color: $link-abraxa;
+                }
+            }
+
+            &.rounded {
+                border-radius: 50%;
+            }
+
+            i {
+                font-size: 24px;
+                font-weight: normal !important;
+            }
+
+            &.badge-discount {
+                background-color: material-color(yellow, 'a-yellow');
+
+                .a-icon {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+
+            &.badge-balance {
+                background-color: material-color(grey, '200');
+
+                &.red {
+                    background-color: material-color(red, 'a-red');
+                }
+
+                &.green {
+                    background-color: material-color(green, 'a-green');
+                }
+
+                .a-icon {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .a-company-type {
+        span,
+        div {
+            margin-right: 4px;
+        }
+    }
+
+    .tooltip-content {
+        ul {
+            margin: 24px 0 16px 64px;
+            border-top: 1px solid $border-color-light;
+            padding-top: 16px;
+
+            li {
+                padding-top: 8px;
+                padding-bottom: 8px;
+
+                &.phone {
+                    margin-left: 16px;
+                }
+
+                &.note {
+                    flex: 1;
+
+                    .hbox {
+                        align-items: flex-start;
+                    }
+                }
+
+                i {
+                    font-size: 24px;
+                    margin-right: 12px;
+                    padding: 4px;
+                    border-radius: 6px;
+                }
+
+                .c-blue {
+                    word-wrap: break-word;
+                    width: 180px;
+                }
+            }
+        }
+
+        ul + ul {
+            margin-top: 0;
+        }
+
+        .tooltip-desc {
+            margin: 8px 0 8px 48px;
+            max-width: 340px;
+        }
+
+        .a-company-balance {
+            span {
+                em {
+                    font-style: normal;
+                    font-weight: normal;
+                }
+            }
+
+            i {
+                background-color: rgba($border-color, 0.12);
+            }
+
+            &.green {
+                i {
+                    background-color: rgba($color-completed, 0.08);
+                    color: $color-completed;
+                }
+
+                span {
+                    color: $color-completed;
+                }
+            }
+
+            &.red {
+                i {
+                    background-color: rgba(material-color(pink, '500'), 0.08);
+                    color: material-color(pink, '500');
+                }
+
+                span {
+                    color: material-color(pink, '500');
+                }
+            }
+        }
+
+        .a-company-deals {
+            i {
+                background-color: rgba(material-color(light-blue, '500'), 0.08);
+                color: material-color(light-blue, '500');
+            }
+        }
+
+        // Bank info card
+        .a-bank-info {
+            padding-left: 64px;
+            padding-bottom: 16px;
+        }
+
+        .a-bank-address {
+            font-style: italic;
+            color: $text-color;
+            font-size: 13px;
+            margin: 8px 0 16px 0;
+            max-width: 320px;
+        }
+
+        .a-bank-row {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+
+            label {
+                width: 180px;
+                font-size: 13px;
+                color: $text-color;
+            }
+        }
+    }
+}
+
+// Person tooltip
+.a-person-tooltip {
+    .a-profile-img {
+        width: 76px;
+        height: 76px;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        img {
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px material-color(yellow, 'a-yellow');
+            border: 4px solid #fff;
+            margin: 2px;
+        }
+
+        &.a-no-img {
+            img {
+                box-shadow: 0 0 0 2px $chip-background-color;
+            }
+        }
+
+        .a-status {
+            width: 16px;
+            height: 16px;
+            display: block;
+            border-radius: 50%;
+
+            border: 3px solid #fff;
+            position: absolute;
+            right: 0;
+            bottom: 8px;
+            z-index: 9;
+
+            &.a-status-online {
+                background-color: material-color(green, 'a-green');
+            }
+
+            &.a-status-offline {
+                background-color: $icon-light-color;
+            }
+        }
+    }
+
+    .x-panelheader {
+        height: 48px;
+        z-index: 9;
+    }
+
+    .tooltip-title {
+        padding-left: 100px;
+        padding-right: 24px;
+    }
+
+    .tooltip-content {
+        padding-left: 100px;
+        padding-right: 24px;
+
+        ul {
+            li {
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+        }
+    }
+}
+
+// Info small tooltip
+.x-tooltip-info {
+    hr {
+        margin: 4px 0;
+        opacity: 0.4;
+    }
+}
+
+// Berth tooltip
+.a-berth-tooltip {
+    min-width: 500px;
+    max-width: 500px;
+    background-color: transparent !important;
+    box-shadow: none;
+    color: $text-color;
+    font-size: 12px;
+    margin-top: -34px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    &.x-hidden-display {
+        display: block !important;
+    }
+
+    .x-panel-body-el {
+        background-color: transparent !important;
+
+        .x-innerhtml {
+            color: $text-color;
+            font-size: 12px;
+        }
+    }
+
+    .a-content {
+        display: flex;
+
+        .a-column {
+            flex: 1;
+
+            &.a-column-left {
+                padding-right: 40px;
+
+                .a-function {
+                    float: right;
+                }
+            }
+
+            &.a-column-right {
+                padding-left: 40px;
+            }
+        }
+
+        .a-cargo {
+            line-height: 1.4;
+            position: relative;
+            padding-left: 44px;
+            background-color: #fff;
+            z-index: 9;
+
+            &::before {
+                content: '';
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-image: url(https://static.abraxa.com/images/icon-cargo-outlined.svg);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-color: mix(#fff, $link-abraxa, 92%);
+                position: absolute;
+                left: 0;
+            }
+
+            + .a-cargo {
+                margin-top: 16px;
+            }
+
+            a {
+                @include text-truncate;
+                display: block;
+                max-width: 176px;
+            }
+
+            u {
+                display: block;
+            }
+
+            .a-function {
+                float: right;
+            }
+        }
+
+        .a-berth-info {
+            color: $color;
+
+            a {
+                font-size: 16px;
+                font-weight: $font-weight-bold;
+                display: block;
+                margin-bottom: 4px;
+                @include text-truncate;
+                max-width: 210px;
+            }
+
+            p {
+                margin: 2px 0;
+                font-size: 12px;
+
+                b {
+                    min-width: 28px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+// Event tooltip
+.a-event-tooltip {
+    min-width: 380px;
+
+    .x-tooltip-outer-border-trbl {
+        border-radius: 8px;
+    }
+
+    .x-innerhtml {
+        position: relative;
+        padding: 8px;
+    }
+
+    .a-header {
+        .sm-title {
+            font-size: 11px;
+            font-weight: $font-weight-bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .a-title {
+            font-size: 18px;
+            font-weight: $font-weight-bold;
+            letter-spacing: $letter-spacing;
+            display: flex;
+            align-items: center;
+
+            i {
+                font-family: 'Material Symbols Rounded';
+                font-style: normal;
+                font-weight: normal;
+                margin-right: 8px;
+                font-size: 12px;
+                height: 16px;
+                color: material-color(teal, '500');
+
+                &::before {
+                    content: 'trip_origin';
+                }
+            }
+        }
+    }
+
+    .a-body {
+        padding-top: 16px;
+        padding-left: 20px;
+
+        .row {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-date {
+            font-size: 16px;
+
+            em {
+                font-style: normal;
+                color: $text-light-color;
+                margin-left: 4px;
+            }
+        }
+
+        .a-time {
+            font-size: 16px;
+            font-weight: $font-weight-bold;
+        }
+
+        .a-sep {
+            margin-left: 16px;
+            margin-right: 16px;
+            width: 16px;
+            height: 1px;
+            background-color: $border-color;
+        }
+
+        .a-comment {
+            display: flex;
+            align-items: flex-start;
+            color: $text-color;
+            margin-top: 16px;
+            font-size: 14px;
+            min-height: 48px;
+
+            p {
+                margin-top: 4px;
+            }
+
+            i {
+                font-style: 24px;
+                color: $icon-color;
+                margin-right: 12px;
+            }
+        }
+    }
+
+    &.a-stopped {
+        .a-header {
+            .sm-title {
+                color: #e91e63;
+            }
+
+            .a-title {
+                i {
+                    color: #e91e63;
+                }
+            }
+        }
+    }
+
+    &.a-worked {
+        .a-header {
+            .sm-title {
+                color: #22b14c;
+            }
+
+            .a-title {
+                i {
+                    color: #22b14c;
+                }
+            }
+        }
+    }
+
+    &.a-waiting {
+        .a-header {
+            .sm-title {
+                color: #ffc107;
+            }
+
+            .a-title {
+                i {
+                    color: #ffc107;
+                }
+            }
+        }
+    }
+
+    &.a-shifting {
+        .a-header {
+            .sm-title {
+                color: #3f51b5;
+            }
+
+            .a-title {
+                i {
+                    color: #3f51b5;
+                }
+            }
+        }
+    }
+
+    &.a-miscellaneous {
+        .a-header {
+            .sm-title {
+                color: #37a8b5;
+            }
+
+            .a-title {
+                i {
+                    color: #37a8b5;
+                }
+            }
+        }
+    }
+}
+
+// Tooltip balance
+.a-tooltip-balance {
+    .a-info-row {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+
+        .a-info-label {
+            width: 100px;
+            flex: 1;
+        }
+
+        .a-info-data {
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .c-light-grey {
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+// Tooltip Multiple
+.x-tooltip-multiple {
+    max-height: 520px;
+
+    // Scroll
+    .x-tooltip-body-el {
+        overflow-y: auto;
+    }
+
+    // Header
+    .x-panelheader {
+        border-radius: 8px 8px 0 0;
+
+        .x-text-el {
+            font-size: 13px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+    }
+
+    // Body
+    .x-body-wrap-el {
+        border-radius: 8px;
+    }
+
+    // Cargo Item
+    .a-cargo-item {
+        padding: 12px 0;
+
+        + .a-cargo-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+    }
+
+    // Berth / Towage Item
+    .a-berth-item {
+        + .a-berth-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 8px;
+        }
+
+        .a-berth-name {
+            font-size: 13px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: material-color(blue-grey, '200');
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .a-towage-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+
+            + .a-towage-item {
+                border-top: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            i {
+                font-size: 18px;
+            }
+
+            .a-towage-company {
+                padding: 0 12px;
+                width: 220px;
+                font-size: 14px;
+                font-weight: 300;
+                @include text-truncate;
+            }
+
+            .a-towage-tugs {
+                em {
+                    font-style: normal;
+                    font-size: 13px;
+                    font-weight: 300;
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
+}

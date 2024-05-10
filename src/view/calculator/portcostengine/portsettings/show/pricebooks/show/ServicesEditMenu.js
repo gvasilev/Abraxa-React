@@ -1,0 +1,58 @@
+Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.ServicesEditMenu', {
+    extend: 'Ext.menu.Menu',
+    xtype: 'calculator.portcostengine.portsettings.show.pricebooks.show.serviceseditmenu',
+    cls: 'a-main-edit-menu',
+    width: 160,
+    ui: 'has-icons medium',
+    items: [
+        {
+            text: 'Delete',
+            iconCls: 'md-icon-outlined md-icon-delete',
+            ui: 'decline',
+            separator: true,
+            handler: function (me) {
+                event.stopPropagation();
+                let store = me.upVM().get('store');
+                let record = me.upVM().get('record');
+                let priceBookRecord = me.upVM().get('priceBookRecord');
+
+                Ext.Msg.confirm(
+                    'Delete',
+                    'Are you sure you would like to delete this entry?',
+                    function (answer) {
+                        if (answer === 'yes') {
+                            store.remove(record);
+
+                            store.sync({
+                                success: function () {
+                                    Ext.toast('Record deleted', 1000);
+                                    let newServiceCount = priceBookRecord.get('serviceCount') - 1;
+                                    priceBookRecord.set('serviceCount', newServiceCount);
+                                },
+                                failure: function (batch, functions) {
+                                    store.rejectChanges();
+                                },
+                            });
+                        }
+                    },
+                    this,
+                    [
+                        {
+                            xtype: 'button',
+                            itemId: 'no',
+                            margin: '0 8 0 0',
+                            text: 'Cancel',
+                        },
+                        {
+                            xtype: 'button',
+                            itemId: 'yes',
+                            text: 'Delete',
+                            ui: 'decline alt',
+                            separator: true,
+                        },
+                    ]
+                );
+            },
+        },
+    ],
+});

@@ -1,0 +1,242 @@
+// Task panel
+.a-task-panel {
+    .sm-heading {
+        height: 48px;
+        border-top: 1px solid $border-color-light;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+
+        h5 {
+            margin: 0;
+        }
+    }
+
+    .a-filters {
+        > .x-body-el {
+            box-shadow: none;
+        }
+    }
+}
+
+// Task list
+.a-task-list {
+    min-height: 30%;
+
+    .a-task-row {
+        cursor: pointer;
+
+        > .x-body-el {
+            padding: 12px 24px;
+        }
+
+        &.x-hovered {
+            background-color: $hovered-abraxa-bgr-color;
+        }
+
+        &:focus {
+            background-color: $selected-abraxa-bgr-color;
+        }
+
+        .a-task-status-button {
+            margin: 0 2px;
+        }
+
+        .a-task-name {
+            font-size: 14px;
+            font-weight: $font-weight-bold;
+            margin: 0 16px;
+            word-break: break-all;
+
+            .a-task-comments {
+                display: inline-flex;
+                align-items: center;
+                margin: 0 2px 0 6px;
+                color: $icon-color;
+                font-size: 11px;
+
+                svg {
+                    fill: $icon-color;
+                    width: 12px;
+                    height: 12px;
+                    margin-left: 2px;
+                }
+            }
+
+            .a-task-attachments {
+                margin: 0 4px;
+                position: relative;
+                top: 1px;
+
+                svg {
+                    fill: $icon-color;
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+        }
+
+        .a-profile-image,
+        .a-int {
+            width: 24px;
+            height: 24px;
+            margin: 0 8px;
+        }
+
+        .a-date {
+            margin-left: 12px;
+            margin-right: 12px;
+            font-size: 13px;
+            color: $text-color;
+            text-align: right;
+            min-width: 48px;
+        }
+
+        .a-task-priority {
+            display: flex;
+            align-items: center;
+        }
+
+        .chatter-avatar {
+            .cursor-pointer {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+// Task priority
+.a-task-priority {
+    &.high {
+        color: material-color(pink, '500');
+    }
+}
+
+// Task due date
+.a-task-due-date {
+    &.overdue {
+        color: material-color(pink, '500');
+    }
+
+    &.today {
+        color: material-color(amber, '700');
+    }
+}
+
+// Task status button
+.a-task-status-button {
+    .x-inner-el {
+        padding: 2px !important;
+        border-radius: 50% !important;
+    }
+}
+
+// Task completed icon
+.a-icon-completed {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #02be9d;
+    border-radius: 50%;
+
+    i {
+        font-size: 22px;
+        color: #fff;
+    }
+}
+
+.a-icon-overdue {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(233, 30, 99, 0.08);
+    border-radius: 50%;
+
+    i {
+        font-size: 22px;
+        color: #e91e63;
+    }
+}
+
+// Task history
+.a-task-history {
+    .a-list-item {
+        display: flex;
+        align-items: center;
+
+        + .a-list-item {
+            margin-top: 32px;
+
+            &::before {
+                content: '';
+                width: 1.5px;
+                height: 16px;
+                background-color: $border-color-light;
+                display: block;
+                position: absolute;
+                top: -24px;
+                left: 13px;
+                border-radius: 2px;
+            }
+        }
+
+        .sm-title {
+            margin-left: 8px;
+        }
+
+        &.a-created {
+            color: #005692;
+
+            a {
+                color: #005692;
+            }
+
+            .a-person {
+                img {
+                    width: 28px !important;
+                    height: 28px !important;
+                }
+            }
+        }
+
+        &.a-completed {
+            color: #02be9d;
+
+            a {
+                color: #02be9d;
+            }
+
+            .a-icon-completed {
+                width: 28px;
+                height: 28px;
+
+                i {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        &.a-overdue {
+            color: #e91e63;
+
+            a {
+                color: #e91e63;
+            }
+
+            .a-icon-overdue {
+                width: 28px;
+                height: 28px;
+                color: #e91e63;
+
+                i {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

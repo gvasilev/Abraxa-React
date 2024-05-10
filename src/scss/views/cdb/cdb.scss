@@ -1,0 +1,149 @@
+// CDB Company header
+
+.a-company-header {
+    .a-verification {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 18px;
+            margin-left: 4px;
+        }
+    }
+}
+
+// CDB Widgets/Cards
+.a-card-balance {
+    box-shadow: none !important;
+
+    &:not(.a-positive-value)&:not(.a-negative-value) {
+        background-color: rgba(material-color(blue-grey, '500'), 0.04) !important;
+
+        .a-balance {
+            strong {
+                color: $text-color;
+            }
+        }
+    }
+
+    &.a-positive-value {
+        background-color: rgba($color-completed, 0.08) !important;
+
+        .a-balance {
+            strong {
+                color: $color-completed;
+            }
+        }
+    }
+
+    &.a-negative-value {
+        background-color: rgba($color-red, 0.08) !important;
+
+        .a-balance {
+            strong {
+                color: $color-red;
+            }
+        }
+    }
+
+    .a-balance {
+        strong {
+            font-size: 32px;
+            letter-spacing: $letter-spacing;
+            font-weight: 700;
+
+            small {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.a-card-total-deals {
+    box-shadow: none !important;
+
+    &.a-card-total-appointed {
+        background-color: rgba(material-color(light-blue, '500'), 0.08) !important;
+
+        .a-total-deals {
+            color: $link-abraxa;
+        }
+    }
+
+    &.a-card-total-nominated {
+        background-color: rgba($color-accent-web, 0.08) !important;
+
+        .a-total-deals {
+            color: material-color(cyan, '500');
+        }
+    }
+
+    .a-total-deals {
+        font-size: 32px;
+        letter-spacing: $letter-spacing;
+
+        strong {
+            font-weight: 600;
+
+            em {
+                font-style: normal;
+                font-size: 20px;
+            }
+        }
+    }
+
+    .a-donut-text {
+        font-size: 6.5px;
+    }
+}
+
+// Balances card
+.a-card-balances {
+    background-image: url('https://static.abraxa.com/images/balances-graph-wip.svg');
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+// Virtual account card
+.a-card-virtual-account {
+    background-color: #27359b !important;
+    background-image: url('https://static.abraxa.com/images/bgr-va.svg');
+    background-size: cover;
+
+    .a-titlebar {
+        color: #fff;
+
+        &.a-bb-100 {
+            border-bottom-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .sm-title {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    .a-balance {
+        font-size: 36px;
+        text-align: right;
+        color: #fff;
+        margin-bottom: 8px;
+
+        strong {
+            font-weight: 700;
+        }
+    }
+
+    .a-balance-title {
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 600;
+    }
+}
+
+// CDB Chart
+.a-cdb-chart {
+    .fusioncharts-container {
+        min-width: 100%;
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,1414 @@
+// Dialog Shadow
+.x-dialog {
+    // animation: pop-in 0.4s;
+    // -webkit-animation: pop-in 0.4s;
+    // -moz-animation: pop-in 0.4s;
+    // -ms-animation: pop-in 0.4s;
+    // position: absolute;
+    // top: calc(100vh - 50%);
+    // left: calc(100vh - 50%);
+    // margin-top: calc(100vh - 50%);
+    // margin-left: calc(100vh - 50%);
+    // width: 100px !important;
+    // height: 100px !important;
+
+    box-shadow:
+        0 11px 15px -7px rgba($base-abraxa-dark, 0.2),
+        0 24px 38px 3px rgba($base-abraxa-dark, 0.14),
+        0 9px 46px 8px rgba($base-abraxa-dark, 0.12);
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(material-color(blue-grey, '100'), 1);
+    }
+
+    &.x-maximized {
+        border-radius: 0;
+    }
+
+    .x-dialogheader {
+        .x-paneltitle {
+            .x-text-el {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .x-messageboxheader {
+        > .x-body-el {
+            padding: 0 8px 0 24px;
+        }
+    }
+
+    .a-img-preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .x-toolbar {
+        &.x-docked-bottom {
+            .x-toolbar-body-el {
+                padding: 16px 24px;
+
+                .x-button {
+                    // margin-left: 8px;
+                }
+            }
+        }
+
+        &.x-docked-left {
+            .x-toolbar-body-el {
+                padding: 0;
+            }
+        }
+    }
+
+    &.x-dialog-dark {
+        .x-toolbar {
+            background-color: transparent;
+        }
+    }
+}
+
+// PDF Preview
+.pdf-preview {
+    .x-innerhtml {
+        height: 100% !important;
+    }
+}
+
+// Templates container - DEV
+.templates_container {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding-top: 16px;
+    z-index: 999;
+    background-color: #fff;
+}
+
+// Create dialog
+.a-dialog-create {
+    .a-heading {
+        display: flex;
+        align-items: center;
+    }
+
+    .x-formpanel {
+        border-radius: 0;
+
+        .x-formpanel-body-el {
+            padding: 0;
+        }
+    }
+
+    .a-dialog-wrap {
+        > .x-body-el {
+            padding: 8px 16px;
+        }
+    }
+
+    &.a-dialog-has-icon {
+        .a-dialog-wrap {
+            > .x-body-el {
+                padding: 8px 24px;
+            }
+        }
+    }
+
+    .a-create-general {
+        overflow: visible;
+
+        > .x-body-el {
+            overflow: visible;
+        }
+    }
+
+    .a-system-form {
+        margin: 8px 0 8px 40px;
+        max-width: 438px;
+
+        .a-system-left {
+            max-width: 180px;
+            margin-right: 24px;
+        }
+    }
+
+    .a-create-title {
+        font-size: 22px;
+        font-weight: normal;
+        text-align: center;
+        color: $text-color;
+    }
+
+    .a-create-buttons-wrap {
+        > .x-body-el {
+            padding-left: 32px;
+            padding-right: 32px;
+            overflow: visible;
+            display: flex;
+        }
+    }
+
+    .a-obj-container-wrap {
+        padding: 16px;
+        border-radius: 6px;
+        background-color: $hovered-abraxa-bgr-color;
+    }
+
+    .divider {
+        height: 1px;
+        margin: 12px 40px;
+        background-color: $bordered-color;
+    }
+
+    .divider-offset {
+        margin: 12px -24px;
+    }
+
+    // General form
+    &.a-dialog-create-portcall {
+        .a-general-form {
+            margin: 8px 0 8px 48px !important;
+        }
+
+        .a-advanced-container {
+            .a-collapsible-title {
+                &.a-collapsible-trigger {
+                    &::before {
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    // General form
+    .a-general-form {
+        max-width: 470px;
+
+        .x-field {
+            &:not(.x-field-group-container)&:not(.x-radiofield) .x-label-el {
+                max-width: 180px;
+                min-width: 180px;
+            }
+
+            &:not(.a-append)&:not(.a-prepend)&:not(.x-checkboxfield-switch) {
+                margin: 0 !important;
+                padding: 2px 0 !important;
+            }
+
+            &.x-datepickerfield {
+                .x-body-wrap-el {
+                    width: 139px;
+                }
+            }
+        }
+
+        .a-charges-row {
+            .x-selectfield {
+                .x-body-wrap-el {
+                    width: 134px;
+                }
+            }
+
+            .x-numberfield {
+                width: 140px;
+            }
+        }
+    }
+
+    // Cargo item
+    .a-cargo-item {
+        margin: 8px 32px;
+        border-radius: 8px;
+        border: 1px solid $border-color;
+
+        .a-cargo-form {
+            margin: 0 16px 12px;
+
+            .x-field {
+                .x-label-el {
+                    max-width: 180px;
+                    min-width: 180px;
+                }
+
+                margin: 0 !important;
+                padding: 2px 0 !important;
+            }
+        }
+    }
+
+    // Group item
+    .a-group-item {
+        margin: 16px 32px;
+
+        .a-group-form {
+            .x-field {
+                .x-label-el {
+                    max-width: 180px;
+                    min-width: 180px;
+                }
+            }
+        }
+    }
+
+    &.x-maximized {
+        .a-dialog-wrap,
+        .a-attachments-wrap {
+            max-width: 640px;
+            min-width: 640px;
+            margin: auto;
+        }
+
+        .x-toolbar {
+            &.x-docked-bottom {
+                > .x-body-el {
+                    width: 614px;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    // Voyage instructions title
+    .a-dialog-instructions-title {
+        padding: 12px 0 12px 40px;
+    }
+
+    // Voyage instructions
+    .a-instructions-wrap {
+        padding: 8px 0;
+
+        .x-button {
+            margin-top: 16px;
+        }
+    }
+
+    .voyageInstructionsEdtior {
+        .fr-view {
+            padding-top: 12px !important;
+        }
+    }
+
+    // Attachments
+    .a-attachments-wrap {
+        padding: 16px 24px 0;
+        margin-top: 16px;
+        border-top: 1px solid $bordered-color;
+
+        .a-voyage-attachments {
+            margin-top: 8px;
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+        .a-attachment-item {
+            position: relative;
+            margin: 8px;
+            border: 1px solid $border-color-light;
+        }
+    }
+
+    // Voyage instructions container
+    .instructions_container {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        // padding-top: 16px;
+        z-index: 999;
+        background-color: #fff;
+    }
+}
+
+// Info dialog
+.a-dialog-portcall-info {
+    .a-titlebar {
+        .x-title {
+            .x-innerhtml {
+                display: flex;
+                align-items: center;
+            }
+
+            .a-badge {
+                margin-right: 16px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+
+            .a-panel-title {
+                display: block;
+                line-height: 1.4;
+            }
+
+            .a-panel-subtitle {
+                display: block;
+                font-size: 11px;
+                color: $text-light-color;
+                display: flex;
+                align-items: center;
+                font-weight: 400;
+
+                i {
+                    font-size: 14px;
+                    color: $text-light-color;
+                    margin-right: 4px;
+                }
+            }
+
+            .a-panel-id {
+                font-size: 11px;
+                color: $text-color;
+                display: block;
+            }
+        }
+    }
+
+    .a-portcall-data {
+        .a-data-item {
+            margin-left: 48px;
+        }
+    }
+}
+
+// Instructions container
+.a-instructions-container {
+    .x-froala {
+        .fr-toolbar {
+            border-left: 0 !important;
+            border-right: 0 !important;
+            border-bottom-width: 1px;
+            background-color: #fff !important;
+        }
+
+        .second-toolbar,
+        .fr-newline {
+            display: none;
+        }
+    }
+}
+
+// Dialog has icon
+.a-dialog-has-icon {
+    .x-dialogtitle {
+        .x-text-el {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-title-multiline {
+            line-height: 1.3;
+        }
+
+        .a-badge {
+            margin: 8px 16px 8px 0;
+        }
+
+        .a-fix-sof {
+            text-transform: uppercase;
+        }
+    }
+
+    // Dialog form offset
+    .a-general-form {
+        margin-left: 72px;
+        margin-right: 24px;
+        max-width: 504px;
+    }
+
+    // Charges form
+    .a-charges-form {
+        margin-left: 72px;
+
+        .x-field {
+            margin: 0 !important;
+            padding: 4px 0 !important;
+
+            .x-label-el {
+                max-width: 180px;
+                min-width: 180px;
+            }
+
+            &.x-selectfield {
+                .x-body-wrap-el {
+                    max-width: 120px;
+                }
+            }
+
+            &.x-numberfield {
+                .x-body-wrap-el {
+                    max-width: 120px;
+                }
+            }
+        }
+
+        .x-tool {
+            margin-left: 8px;
+        }
+    }
+
+    // CTM Form
+    .a-ctm-form {
+        .a-prepend {
+            .x-body-wrap-el {
+                max-width: 124px;
+            }
+        }
+
+        .a-append {
+            flex: 1;
+        }
+    }
+
+    // Group item
+    .a-group-item {
+        margin-left: 54px;
+    }
+
+    // Recipient form
+    .a-recipient-form {
+        margin-right: 24px;
+
+        .x-label-el {
+            min-width: inherit;
+            width: 48px;
+            text-align: right;
+            font-weight: 500;
+            font-size: 16px;
+        }
+    }
+}
+
+// Dialog badge
+.a-dialog-badge {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f6fa;
+    color: #6b7c93;
+    font-weight: $font-weight-bold;
+    font-size: 16px;
+    border-radius: 3px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    &.a-badge-notes {
+        background-color: #eff0f8;
+
+        i {
+            color: #3f51b5;
+        }
+    }
+}
+
+// Invitation dialog
+.a-invite-dialog {
+    .x-panelheader {
+        // background-color: $link-abraxa;
+        background: linear-gradient(125deg, rgba(3, 169, 244, 1) 0%, rgba(0, 120, 215, 1) 100%);
+        color: #fff;
+        min-height: 64px;
+
+        .x-paneltitle {
+            color: #fff;
+
+            .x-text-el {
+                display: flex;
+                align-items: center;
+            }
+
+            i {
+                font-family: 'Material Symbols Rounded';
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                margin-right: 16px;
+
+                &::before {
+                    content: 'group';
+                }
+            }
+        }
+
+        .x-tool {
+            &.x-hovered {
+                background-color: rgba(255, 255, 255, 0.12);
+            }
+
+            .x-icon-el {
+                color: #fff;
+            }
+        }
+    }
+
+    .row-status {
+        margin-top: 8px;
+        margin-bottom: 8px;
+
+        > .x-body-el {
+            padding-left: 24px;
+            padding-right: 24px;
+            font-size: 11px;
+            color: $text-light-color;
+            text-transform: uppercase;
+        }
+    }
+
+    .a-invite-company-item {
+        margin: 24px 0;
+
+        &.x-last {
+            margin-bottom: 0;
+        }
+    }
+
+    .is-owner {
+        padding-bottom: 24px;
+        border-bottom: 1px solid $border-color-light;
+
+        .party-item {
+            .sm-function {
+                background-color: mix(#fff, $accent-color, 88%) !important;
+                color: $accent-color !important;
+
+                i {
+                    color: $accent-color !important;
+                }
+            }
+        }
+    }
+}
+
+// Invited company
+.a-invited-company {
+    .party-item {
+        .sm-company {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                color: $base-abraxa;
+            }
+        }
+    }
+
+    .a-invited-status {
+        margin-left: 4px;
+        cursor: help;
+        font-size: 16px;
+        color: #000;
+
+        &::before {
+            transform: rotate(-0.03deg);
+        }
+
+        &.active {
+            &::before {
+                content: 'check_circle';
+                color: $color-completed;
+            }
+        }
+
+        &.pending {
+            &::before {
+                content: 'access_time';
+                color: $color-progress;
+            }
+        }
+
+        &.declined {
+            &::before {
+                content: 'cancel';
+                color: $color-declined;
+            }
+        }
+    }
+
+    .party-item {
+        &.left {
+            .a-invited-status {
+                &::before {
+                    color: $icon-light-color !important;
+                }
+            }
+        }
+    }
+}
+
+// Approvals dialog
+.a-approvals-dialog {
+    .x-panelheader {
+        height: 64px;
+    }
+
+    .row-status {
+        > .x-body-el {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .a-group-header {
+        font-size: 11px;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        color: $text-light-color;
+    }
+
+    .a-approval-item {
+        margin-bottom: 8px;
+
+        .a-date {
+            font-size: 13px;
+            color: $text-color;
+            margin-right: 16px;
+        }
+    }
+
+    .a-approval-note {
+        margin: 0 0 0 46px !important;
+        padding: 0 !important;
+
+        .x-input-el {
+            font-size: 13px;
+            color: $text-color;
+            display: flex;
+            align-items: flex-start;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 1px;
+
+            &::before {
+                font-family: 'Material Symbols Rounded';
+                font-size: 18px;
+                font-weight: 400;
+                margin-right: 12px;
+                position: relative;
+                top: 1px;
+            }
+        }
+
+        &.a-approval-request {
+            .x-input-el {
+                &::before {
+                    content: 'short_text';
+                    color: $icon-light-color;
+                }
+            }
+        }
+
+        &.a-approval-reason {
+            &::before {
+                content: '';
+                width: 1.5px;
+                height: 12px;
+                display: block;
+                background-color: $border-color-light;
+                margin-left: 12px;
+            }
+
+            &.approved {
+                .x-input-el {
+                    &::before {
+                        content: 'task_alt';
+                        color: $color-approved;
+                    }
+                }
+            }
+
+            &.rejected {
+                .x-input-el {
+                    &::before {
+                        content: 'highlight_off';
+                        color: $color-rejected;
+                    }
+                }
+            }
+
+            &.canceled {
+                .x-input-el {
+                    &::before {
+                        content: 'block';
+                        color: $color-rejected;
+                    }
+                }
+            }
+
+            &.pending {
+                .x-input-el {
+                    &::before {
+                        content: 'timer';
+                        color: #ffb74d;
+                    }
+                }
+            }
+        }
+
+        .approval-avatar {
+        }
+    }
+}
+
+// Dialog success
+.a-dialog-success {
+    .a-success-heading {
+        h1 {
+            line-height: 1.4;
+        }
+    }
+
+    .a-success-heading,
+    .a-success-text {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .a-success-company {
+        background-color: #f1f5f9;
+        padding: 16px;
+        border-radius: 8px;
+        max-width: 320px;
+        margin: 16px auto auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+
+// Dialog tabs
+.a-dialog-tabs {
+    margin-top: 8px;
+}
+
+// Color dialog
+.a-dialog-color {
+    .x-toolbar-toolbar-panel-top {
+        position: absolute;
+        width: 100%;
+        background-color: transparent;
+    }
+
+    .x-img-background {
+        border-radius: 8px;
+        margin-bottom: 16px;
+        background-size: cover;
+    }
+
+    .x-displayfield {
+        .x-label-el {
+            font-size: 13px;
+        }
+    }
+
+    .x-layout-card-item {
+        background-color: transparent;
+    }
+
+    // Location (Coords), ISPS code,
+    // Type, Services
+    // Storage capacity, Equipment
+    // Description
+
+    // Terminal, Type, ISPS code
+
+    .a-dialog-bgr {
+        flex: 3;
+        padding: 24px;
+        min-width: 340px;
+        border-radius: 8px;
+        position: relative;
+        z-index: 9991;
+
+        > .x-body-el {
+            overflow: visible;
+        }
+
+        .a-edit-vessel-image {
+            overflow: visible;
+
+            > .x-body-el {
+                overflow: visible;
+            }
+        }
+
+        .x-field {
+            .x-label-el {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .x-displayfield {
+            .x-label-el {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .x-input-el {
+            color: #fff;
+        }
+
+        .x-disabled {
+            .x-label-el {
+                .x-label-text-el {
+                    color: inherit !important;
+                }
+            }
+
+            .x-input-el {
+                color: #fff !important;
+            }
+        }
+    }
+
+    .a-management-info {
+        .x-displayfield {
+            .x-input-el {
+                display: flex;
+                align-items: center;
+                text-align: right;
+
+                img {
+                    border-radius: 50%;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}
+
+// Commodity dialog
+.a-dialog-commodity {
+    .a-img-wrap {
+        overflow: visible;
+
+        > .x-body-el {
+            overflow: visible;
+            background-color: material-color(indigo, '700');
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+    }
+
+    .x-img-background {
+        box-shadow: 0 16px 48px rgba(material-color(indigo, '900'), 0.8);
+        margin-bottom: 0;
+        background-image: url(https://static.abraxa.com/images/bgr-no-cargo.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .a-dialog-bgr {
+        background-color: material-color(indigo, '500');
+        box-shadow: 0 16px 48px 0 rgba(material-color(indigo, '800'), 0.48);
+    }
+
+    &.a-dialog-edit-commodity {
+        .x-layout-card-item {
+            background-color: transparent;
+        }
+
+        .a-dialog-bgr {
+            .x-textfield-field-xl {
+                .x-input-wrap-el {
+                    background-color: transparent !important;
+                }
+            }
+        }
+
+        .a-dialog-bgr {
+            position: relative;
+            z-index: 9;
+        }
+
+        .x-img-background {
+            cursor: pointer;
+            background-image: url(https://static.abraxa.com/images/bgr-no-image.svg);
+        }
+
+        .x-field {
+            .x-label-el {
+                min-width: 164px;
+            }
+        }
+
+        .x-toolbar {
+            &.x-docked-bottom {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Vessel dialog
+.a-dialog-vessel {
+    .x-img-background {
+        background-color: $base-abraxa-semi-dark;
+        box-shadow: 0 16px 48px rgba($base-abraxa-dark, 0.8);
+        background-image: url(https://static.abraxa.com/images/bgr-no-vessel.svg);
+    }
+
+    .a-dialog-bgr {
+        background-color: $base-abraxa-semi-dark;
+        box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.32);
+    }
+
+    &.a-dialog-edit-vessel {
+        .x-layout-card-item {
+            background-color: transparent;
+        }
+
+        .a-dialog-bgr {
+            .x-textfield-field-xl {
+                .x-input-wrap-el {
+                    background-color: transparent !important;
+                }
+            }
+        }
+
+        .a-dialog-bgr {
+            position: relative;
+            z-index: 9;
+        }
+
+        .x-img-background {
+            cursor: pointer;
+            background-image: url(https://static.abraxa.com/images/bgr-no-image.svg);
+        }
+
+        .x-toolbar {
+            &.x-docked-bottom {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Port dialog
+.a-dialog-port {
+    .a-img-wrap {
+        overflow: visible;
+
+        > .x-body-el {
+            overflow: visible;
+            background-image: url(https://static.abraxa.com/images/bgr-no-port.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: $link-abraxa;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+    }
+
+    .x-img-background {
+        box-shadow: 0 16px 48px rgba($base-abraxa-dark, 0.64);
+        margin-bottom: 0;
+    }
+
+    .a-dialog-bgr {
+        background-color: $link-abraxa;
+        box-shadow: 0 16px 48px 0 rgba($base-abraxa-dark, 0.48);
+    }
+}
+
+// Notification dialog
+.a-notification-dialog {
+    .a-notification {
+        padding: 8px 32px 8px 56px;
+    }
+
+    .x-panelheader-body-el {
+        padding-left: 16px !important;
+    }
+}
+
+// Notification dialog dark
+.a-notification-dialog {
+    &.x-dialog-dark {
+        .a-notification-title {
+            i {
+                color: material-color(yellow, 'a-yellow');
+            }
+        }
+
+        .a-notification {
+            .a-message {
+                color: #fff;
+            }
+
+            .a-container {
+                border-color: rgba(#fff, 0.24);
+
+                .sm-name {
+                    color: #fff;
+                }
+            }
+        }
+
+        a,
+        .c-black {
+            color: #fff !important;
+        }
+
+        hr {
+            opacity: 0.24;
+        }
+    }
+}
+
+// Add Note Dialog
+.a-dialog-add-note {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: visible !important;
+
+    .x-panelheader {
+        height: 54px !important;
+
+        .x-tool-type-up {
+            &::before {
+                content: 'remove';
+            }
+        }
+
+        .x-tool-type-down {
+            &::before {
+                content: 'keyboard_capslock';
+            }
+        }
+    }
+
+    .a-chatter-textarea {
+        > .x-body-el {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #mention {
+            height: 240px;
+            margin-left: 0;
+        }
+    }
+}
+
+.a-note-subheader {
+    height: 38px;
+    display: flex;
+    align-items: center;
+
+    .sm-title {
+        margin-right: 8px;
+    }
+
+    .x-chip {
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        margin-right: 8px;
+        margin-bottom: 0;
+        background: transparent;
+        border-radius: 16px;
+        cursor: pointer !important;
+
+        i {
+            display: flex;
+            align-items: center;
+            width: 28px;
+            height: 28px;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 18px;
+            margin: 0 8px;
+        }
+
+        .x-text-el {
+            margin: 0 8px 0 0;
+            line-height: 28px;
+            font-size: 12px;
+        }
+
+        &.a-chip-vessel {
+            i {
+                background-color: rgba($base-abraxa, 0.08);
+            }
+        }
+
+        &.a-chip-app {
+            background-color: rgba($accent-color, 0.08);
+
+            i {
+                color: $accent-color;
+            }
+        }
+
+        &.a-chip-company {
+            background-color: rgba(#ffc107, 0.08);
+
+            i {
+                color: #ffc107;
+            }
+        }
+
+        &.a-chip-sof {
+            i {
+                background-color: #e91e63;
+                color: #fff;
+                border-radius: 3px;
+            }
+        }
+
+        &.a-chip-cargo {
+            i {
+                background-color: #ebf4fc;
+                color: #0078d7;
+                border-radius: 3px;
+            }
+        }
+    }
+}
+
+// Documents Dialog
+.a-dialog-docs {
+    &.x-dialog-dark {
+        backdrop-filter: blur(6px);
+
+        .a-status-badge {
+            color: $color;
+        }
+    }
+
+    .x-dialogheader-dark {
+        border-width: 0 0 1px 0;
+        border-color: rgba(#fff, 0.16);
+    }
+
+    .a-docs-menu {
+        width: 250px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .a-docs-main-topbar {
+        margin: auto;
+    }
+
+    .a-docs-main {
+        .x-mask {
+            background-color: #0a324c;
+
+            .x-mask-message {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+
+    .a-docs-panel {
+        // width: 480px;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+        .a-titlebar {
+            min-height: 64px;
+            color: #fff;
+
+            > .x-body-el {
+                padding-left: 24px;
+                padding-right: 24px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .x-title {
+                .x-innerhtml {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .a-badge {
+                    margin-right: 16px;
+                }
+
+                .a-panel-title {
+                    display: block;
+                    margin-bottom: 4px;
+                }
+
+                .a-panel-id {
+                    font-size: 12px;
+                    opacity: 0.4;
+                    display: block;
+                }
+            }
+        }
+
+        .a-file-info {
+            color: #fff;
+
+            .x-label {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .a-note-subheader {
+            height: 54px;
+            margin: 0;
+
+            > .x-body-el {
+                align-items: center;
+                padding-left: 24px;
+                padding-right: 24px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .x-chip {
+                margin-bottom: 0;
+                color: #fff;
+
+                &.a-chip-app {
+                    min-width: 174px;
+                }
+            }
+        }
+
+        .a-divider {
+            hr {
+                margin: 12px 0;
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        // Disabled buttons
+        .x-button {
+            &.x-disabled {
+                color: rgba(255, 255, 255, 0.26);
+
+                .x-inner-el {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+
+                .x-button-el {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+// Cargo docs group header - DEV
+.cargo_documents_group_header {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+
+    .a-badge {
+        margin-right: 12px;
+        background-color: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        min-width: 32px;
+    }
+}
+
+// Document page - DEV
+.document_page {
+    &.isLive {
+        .form-control {
+            pointer-events: none !important;
+            outline-color: transparent !important;
+        }
+    }
+}
+
+// Cargo manifest - DEV
+.cargo_manifest {
+    &.selected_cargo {
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+}
+
+// Dialog Premium
+.a-dialog-premium {
+    h1,
+    .h1 {
+        font-size: 24px;
+    }
+
+    .a-txt {
+        font-size: 18px;
+        line-height: 1.6;
+        color: $text-color;
+    }
+}
+
+// Split dialog
+.a-dialog-split {
+    .x-checkboxfield {
+        .x-box-label-el {
+            max-width: 320px;
+        }
+    }
+}
+
+// Dialog attach files
+.a-dialog-files {
+    .x-searchfield {
+        .x-before-input-el {
+            margin-right: 16px;
+        }
+    }
+}
+
+// Dialog import files
+.a-dialog-import {
+    .x-panelheader {
+        height: 64px;
+    }
+}
+
+// Vouchers dialog preview
+.pdf-page-canvas {
+    display: block;
+}
+
+#pdf-viewer {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+// Add task dialog form
+.a-form-create-task {
+    .divider {
+        height: 1px;
+        margin: 12px 40px 12px 0px;
+        background-color: $bordered-color;
+    }
+}
+
+// Dialog payments
+.a-dialog-payments {
+    > .x-panelheader {
+        border-bottom-width: 1px !important;
+        border-bottom: 1px solid $border-color-light;
+        max-height: 64px;
+    }
+
+    .x-toolbar {
+        &.x-docked-bottom {
+            border-top-width: 1px !important;
+        }
+    }
+}

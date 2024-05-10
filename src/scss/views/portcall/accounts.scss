@@ -1,0 +1,111 @@
+// Account data
+.a-account-data {
+    .x-field {
+        &.x-displayfield {
+            .x-input-el {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+
+        &.x-textfield {
+            .x-before-input-el {
+                height: 30px;
+            }
+        }
+
+        &.x-label-align-horizontal {
+            .x-label-el {
+                min-width: 140px;
+                margin-right: 16px;
+            }
+        }
+    }
+
+    // Account data row
+    .a-data-row {
+        .a-data-left,
+        .a-data-right {
+            max-width: 480px;
+        }
+
+        .a-data-left {
+            margin-right: 16px;
+        }
+
+        .a-data-right {
+            margin-left: 16px;
+        }
+    }
+}
+
+// Account balance
+.a-account-balance {
+    background-color: rgba(material-color(light-blue, '500'), 0.06);
+
+    .a-balance-row {
+        min-height: 48px;
+
+        &::after {
+            content: '';
+            height: 1px;
+            width: 100%;
+            background-color: rgba($color, 0.08);
+        }
+
+        &:not(:last-of-type) {
+            &::after {
+                width: 50%;
+            }
+        }
+
+        .a-balance-label {
+            flex: 1;
+            font-weight: $font-weight-bold;
+        }
+
+        .a-balance-amount {
+            flex: 1;
+            font-weight: $font-weight-bold;
+            text-align: right;
+
+            .a-currency {
+                font-size: 13px;
+                color: material-color(blue-grey, '200');
+            }
+
+            .a-value {
+                min-width: 100px;
+                font-size: 16px;
+                display: inline-block;
+            }
+        }
+    }
+
+    // Total balance
+    .a-total-balance-row {
+        min-height: 64px;
+
+        .a-total-balance-label {
+            font-size: 18px;
+            font-weight: $font-weight-bold;
+            margin-right: 8px;
+        }
+
+        .a-total-balance-amount {
+            font-weight: $font-weight-bold;
+            text-align: right;
+
+            .a-currency {
+                color: material-color(blue-grey, '200');
+                margin-right: 8px;
+            }
+
+            .a-value {
+                font-size: 24px;
+                font-weight: 700;
+                color: $base-abraxa;
+            }
+        }
+    }
+}

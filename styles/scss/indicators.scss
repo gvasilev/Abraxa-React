@@ -1,0 +1,10 @@
+// Indicator
+.x-indicator {
+    span {
+        cursor: pointer;
+
+        &:not(.x-indicator-active) {
+            box-shadow: 0 0 0 1px $link-abraxa inset;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+// Abraxa Charts
+
+.abraxa-chart {
+    &.a-stakedcolumn {
+        rect {
+            rx: 2px;
+            ry: 2px;
+        }
+    }
+}
+
+.x-fusionchart {
+    height: 100%;
+
+    [class*='legend'] {
+        path {
+            opacity: 1 !important;
+        }
+    }
+}
+
+.a-google-map {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+// Hide X/Close button on google.maps.InfoWindow
+// .gm-style-iw + div {
+//     display: none;
+// }
+
+// .gm-ui-hover-effect {
+//     display: none !important;
+// }
+
+.gm-style-iw button[title='Close'] {
+    display: none !important;
+}
+
+/* HTML marker styles */
+.google-map-marker {
+    background-color: rgba(66, 133, 244, 0.5);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.google-map-marker::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(66, 133, 244, 1);
+}

@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'abraxa';
+    src: url('./fonts/abraxa.eot?79587554');
+    src:
+        url('./fonts/abraxa.eot?79587554#iefix') format('embedded-opentype'),
+        url('./fonts/abraxa.woff2?79587554') format('woff2'),
+        url('./fonts/abraxa.woff?79587554') format('woff'),
+        url('./fonts/abraxa.ttf?79587554') format('truetype'),
+        url('./fonts/abraxa.svg?79587554#abraxa') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'abraxa';
+    src: url('./fonts/abraxa.svg?79587554#abraxa') format('svg');
+  }
+}
+*/
+.ai-32 {
+    font-size: 32px !important;
+}
+
+.ai-24 {
+    font-size: 24px !important;
+}
+
+.ai-18 {
+    font-size: 18px !important;
+}
+
+.ai-16 {
+    font-size: 16px !important;
+}
+
+.ai-14 {
+    font-size: 14px !important;
+}
+
+[class^='abraxa-icon-'] {
+    font-size: 24px;
+    line-height: 1;
+    display: inline-flex;
+    color: $icon-color;
+}
+
+[class^='abraxa-icon-']:before,
+[class*=' abraxa-icon-']:before {
+    font-family: 'abraxa';
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    transform: none !important;
+}
+
+.abraxa-icon-logo:before {
+    content: '\e800';
+}
+
+/* '' */
+.abraxa-icon-adocs:before {
+    content: '\e801';
+}
+
+/* '' */
+.abraxa-icon-am:before {
+    content: '\e802';
+}
+
+/* '' */
+.abraxa-icon-appointment:before {
+    content: '\e803';
+}
+
+/* '' */
+.abraxa-icon-atm:before {
+    content: '\e804';
+}
+
+/* '' */
+.abraxa-icon-bulb:before {
+    content: '\e805';
+}
+
+/* '' */
+.abraxa-icon-calendar:before {
+    content: '\e806';
+}
+
+/* '' */
+.abraxa-icon-cargo:before {
+    content: '\e807';
+}
+
+/* '' */
+.abraxa-icon-cdb:before {
+    content: '\e808';
+}
+
+/* '' */
+.abraxa-icon-dashboard:before {
+    content: '\e809';
+}
+
+/* '' */
+.abraxa-icon-docs:before {
+    content: '\e80a';
+}
+
+/* '' */
+.abraxa-icon-document:before {
+    content: '\e80a';
+}
+
+/* '' */
+.abraxa-icon-finance:before {
+    content: '\e80b';
+}
+
+/* '' */
+.abraxa-icon-inquiry:before {
+    content: '\e80c';
+}
+
+/* '' */
+.abraxa-icon-layers:before {
+    content: '\e80d';
+}
+
+/* '' */
+.abraxa-icon-location:before {
+    content: '\e80e';
+}
+
+/* '' */
+.abraxa-icon-map:before {
+    content: '\e80f';
+}
+
+/* '' */
+.abraxa-icon-money:before {
+    content: '\e810';
+}
+
+/* '' */
+.abraxa-icon-oil:before {
+    content: '\e811';
+}
+
+/* '' */
+.abraxa-icon-recycle:before {
+    content: '\e812';
+}
+
+/* '' */
+.abraxa-icon-refresh:before {
+    content: '\e813';
+}
+
+/* '' */
+.abraxa-icon-search:before {
+    content: '\e814';
+}
+
+/* '' */
+.abraxa-icon-tasks:before {
+    content: '\e815';
+}
+
+/* '' */

@@ -1,0 +1,1218 @@
+.a-disbursement-item {
+    margin-bottom: 8px;
+    border-bottom: 1px solid $border-color-light;
+}
+
+.a-disbursement-header {
+    height: 64px;
+    border-bottom: 1px solid $border-color-light;
+
+    .party-item {
+        padding-left: 48px;
+
+        .sm-company {
+            font-size: 16px;
+            font-weight: $font-weight-bold;
+            letter-spacing: $letter-spacing;
+        }
+    }
+
+    .a-shared-with {
+        .x-text-el {
+            font-weight: 400;
+        }
+    }
+}
+
+.a-disbursement-body {
+    padding-top: 8px;
+
+    // Name
+    .a-name {
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        margin: 16px 80px 16px 60px;
+        min-width: 320px;
+        border-radius: 6px;
+        cursor: pointer;
+        border: 1px solid $viewport-color;
+        background-color: rgba($viewport-color, 0.6);
+
+        &::after {
+            font-family: 'Material Symbols Rounded';
+            content: 'arrow_drop_down';
+            font-weight: 400;
+            font-size: 24px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: $icon-light-color;
+        }
+
+        a {
+            font-weight: $font-weight-bold;
+        }
+
+        .a-obj-icon {
+            background-color: material-color(teal, '500');
+        }
+
+        &:hover {
+            background-color: $viewport-color;
+
+            &::after {
+                color: $icon-color;
+            }
+        }
+    }
+
+    // Payments
+    .a-payments {
+        width: 360px;
+        padding: 16px 16px 0;
+        display: block !important;
+
+        .a-payments-list {
+            padding: 0 8px 8px 8px;
+            border-bottom: 1px solid $border-color-light;
+
+            &::before {
+                content: 'Payments';
+                text-transform: uppercase;
+                font-size: 11px;
+                width: 120px;
+                text-align: right;
+                letter-spacing: 1px;
+                color: $text-light-color;
+                margin-bottom: 4px;
+            }
+        }
+
+        .a-payment-item {
+            height: 30px;
+
+            > .x-body-el {
+                align-items: center;
+            }
+
+            .a-payment-amount {
+                min-width: 120px;
+                text-align: right;
+                font-weight: $font-weight-bold;
+            }
+
+            .a-payment-date {
+                width: 72px;
+                text-align: right;
+                color: $text-light-color;
+                font-size: 12px;
+            }
+
+            .x-tool {
+                margin-left: 4px;
+                opacity: 0;
+                transition: opacity $transition-default;
+
+                .x-icon-el {
+                    color: $icon-light-color;
+                }
+            }
+
+            &:hover {
+                .x-tool {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // Payment graph
+    .a-payment-graph {
+        width: 180px;
+        padding: 0 16px;
+    }
+
+    // Payment status
+    .a-payment-status {
+        padding: 0 16px;
+    }
+
+    // More details
+    .a-details {
+        flex: 1;
+
+        .x-button {
+            margin: 16px 20px;
+        }
+    }
+}
+
+.a-disbursement-footer {
+    .a-footer-empty {
+        width: 425px;
+    }
+
+    .a-footer-balance {
+        text-align: right;
+        width: 180px;
+        font-weight: $font-weight-bold;
+        font-size: 16px;
+        color: $base-abraxa;
+
+        em {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            margin-right: 4px;
+            color: $text-light-color;
+            position: relative;
+            top: -1px;
+        }
+    }
+
+    .a-footer-btn-payment {
+        margin-left: 30px;
+    }
+}
+
+// Payment row
+.a-payment-row {
+    font-size: 13px;
+    line-height: 1.2;
+
+    .sm-title {
+        font-size: 11px;
+    }
+
+    .a-payment-name {
+        min-width: 220px;
+        max-width: 220px;
+        margin: 0 8px 0 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .a-payment-date {
+        margin-left: 16px;
+        text-align: right;
+    }
+
+    .a-payment-amount {
+        text-align: right;
+    }
+}
+
+// Temporary List
+.a-disbursements-tmp-list {
+    .x-innerhtml {
+        width: 100%;
+    }
+
+    .x-list-inner-ct {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    i {
+        margin-right: 12px;
+        font-size: 20px;
+        transform: rotate(-0.03deg);
+        color: $icon-light-color;
+
+        &::before {
+            content: 'radio_button_unchecked';
+        }
+
+        &.checked {
+            color: material-color(teal, '500');
+
+            &::before {
+                content: 'check_circle';
+            }
+        }
+    }
+
+    span {
+        flex: 1;
+    }
+
+    strong {
+        min-width: 100px;
+        margin-right: 4px;
+        text-align: right;
+    }
+}
+
+// Disbursements grid
+.a-disb-grid {
+    margin: 0px 0;
+
+    .x-gridcolumn {
+        &.a-class-grid-column-sailing-da,
+        &.a-class-grid-column-final-da {
+            .x-title-wrap-el {
+                padding-right: 6px;
+            }
+        }
+
+        .x-tool-zone {
+            position: absolute;
+            right: 12px;
+        }
+    }
+
+    .x-gridrow {
+        .a-main-costs {
+            padding-right: 16px;
+        }
+
+        &.a-row-locked {
+            .x-gridcell {
+                &:not(.x-checkcell) {
+                    cursor: not-allowed;
+
+                    .x-body-el {
+                        color: $text-color;
+                    }
+                }
+            }
+
+            .a-main-costs {
+                cursor: not-allowed;
+                color: $text-color;
+
+                &::after {
+                    content: 'lock';
+                    font-family: 'Material Symbols Rounded';
+                    color: $icon-light-color;
+                    position: absolute;
+                    top: 0;
+                    right: 8px;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .x-gridcell {
+        // Locked
+        &.a-supply-locked {
+            cursor: not-allowed;
+
+            &::after {
+                content: 'lock';
+                font-family: 'Material Symbols Rounded';
+                color: $icon-light-color;
+                position: absolute;
+                top: 0;
+                right: 8px;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                opacity: 0.8;
+            }
+
+            .x-body-el {
+                color: $text-color;
+            }
+        }
+    }
+
+    .x-expandercell {
+        .x-icon-el {
+            color: $icon-color;
+        }
+    }
+
+    .x-checkcolumn {
+        .x-title-wrap-el {
+            padding-left: 24px;
+            padding-right: 16px;
+        }
+    }
+
+    .x-checkcell {
+        .x-checkcell-body-el {
+            padding-left: 8px;
+        }
+    }
+
+    .x-checkboxfield {
+        width: 18px;
+        margin-left: 4px;
+        text-align: center;
+        position: inherit !important;
+
+        .x-input-el {
+            cursor: pointer !important;
+        }
+
+        .x-icon-el {
+            &::before {
+                font-family: 'Material Symbols Rounded';
+                content: 'lock_open';
+                font-size: 18px;
+                color: $icon-light-color;
+            }
+        }
+
+        &.x-checked {
+            .x-icon-el {
+                &::before {
+                    font-family: 'Material Symbols Rounded';
+                    content: 'lock';
+                    color: material-color(pink, '500');
+                }
+            }
+        }
+    }
+
+    .a-cell-variance {
+        .a-cell-placeholder {
+            color: $color;
+        }
+    }
+
+    .a-voucher-link {
+        @include text-truncate;
+        font-size: 13px;
+        text-decoration: none;
+
+        i {
+            margin-right: 4px;
+            color: $icon-color;
+            font-size: 14px;
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    .a-attachments-wrapp {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: $text-light-color;
+
+        i {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+    }
+
+    .a-cell-more {
+        // padding-right: 8px;
+
+        .x-button {
+            .md-icon {
+                // color: $icon-light-color;
+            }
+
+            &.x-hovered {
+                .md-icon {
+                    // color: $icon-color;
+                }
+            }
+        }
+    }
+
+    // Drop handler
+    .disb-grid-drop-candidate {
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 5;
+            background-color: rgba($link-abraxa, 0.08);
+            border: 1px dashed rgba($link-abraxa, 0.8) !important;
+        }
+    }
+
+    .a-disb-total {
+        .a-data-right,
+        .text_right {
+            line-height: 1;
+        }
+    }
+}
+
+// Vouchers grid
+.a-vouchers-grid {
+}
+
+// Attachments
+.a-attachments {
+    display: flex;
+    align-items: center;
+
+    i {
+        margin-right: 4px;
+    }
+
+    .file-icon-new {
+        margin-right: 12px;
+    }
+
+    a {
+        font-size: 13px;
+        @include text-truncate;
+    }
+
+    .remove_attachment {
+        font-size: 14px !important;
+        right: 0;
+    }
+}
+
+// Dibursements grid inside dialog
+.x-dialog {
+    .a-disb-grid {
+        margin: 0;
+
+        .x-gridcolumn {
+            &:first-child {
+                width: 24px !important;
+            }
+        }
+    }
+}
+
+// Grid split child
+.a-disb-grid-child {
+    // background-color: transparent !important;
+
+    // .x-listitem {
+    // 	background-color: transparent !important;
+    // }
+
+    .x-headercontainer {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .x-expandercell {
+        .x-icon-el {
+            display: none;
+        }
+    }
+
+    .icon-row-split {
+        font-size: 14px;
+        margin-left: 40px;
+        margin-right: 8px;
+    }
+}
+
+// Disbursement totals
+.a-disbursements-totals {
+    padding-bottom: 32px;
+    margin-top: 16px;
+}
+
+.a-disb-total,
+.a-disb-received,
+.a-disb-requested {
+    .a-xtype-div {
+        padding: 4px 12px;
+        text-align: right;
+    }
+
+    .a-cell-title {
+        font-weight: $font-weight-bold;
+        color: $text-color;
+    }
+
+    .a-cell-amount {
+        font-size: 16px;
+        text-align: right;
+        font-weight: $font-weight-bold;
+
+        em {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            margin-right: 4px;
+            color: $text-light-color;
+            position: relative;
+            top: -1px;
+        }
+    }
+}
+
+// Amount requested
+.a-disb-requested {
+    .x-numberfield {
+        .x-input-el {
+            font-size: 16px;
+            font-weight: $font-weight-bold;
+            color: $base-abraxa;
+            text-align: right;
+            padding-right: 11px;
+        }
+    }
+}
+
+// Disbursement balance
+.a-disb-balance {
+    height: 48px;
+    box-shadow: 0 -1px 0px 0 rgba($shadow-base-color, $alpha: 0.08);
+
+    .a-title {
+        font-size: 16px;
+        font-weight: $font-weight-bold;
+        color: $text-color;
+        letter-spacing: $letter-spacing;
+        width: 320px;
+        text-align: right;
+        padding-right: 16px;
+    }
+
+    .a-cell-amount {
+        font-size: 20px;
+        letter-spacing: $letter-spacing;
+        font-weight: bold;
+        line-height: 1;
+        width: 290px;
+        text-align: right;
+
+        em {
+            font-size: 13px;
+            color: $text-light-color;
+            font-weight: $font-weight-bold;
+            font-style: normal;
+        }
+
+        &.a-positive-value {
+            color: $color-completed;
+        }
+
+        &.a-negative-value {
+            color: material-color(pink, '500');
+        }
+    }
+}
+
+// Side panel
+.a-drop-container {
+    .x-dataview-docs {
+        padding: 0px;
+        z-index: 9;
+    }
+
+    // Vouchers grid
+    .a-vouchers-dataview {
+        background-color: rgba(255, 255, 255, 0.24);
+
+        .x-body-el {
+            display: grid;
+            grid-template-columns: 30% 30% 30%;
+            grid-template-rows: minmax(145px, 145px) 145px 145px;
+            grid-gap: 16px;
+            padding: 16px;
+        }
+
+        .x-dataview-item {
+            border-radius: 6px;
+            text-align: center;
+            cursor: grab;
+            transition:
+                background-color $transition-default,
+                border-color $transition-default;
+            overflow: hidden;
+
+            .dataview-multisort-item {
+                padding: 16px 8px;
+            }
+
+            .file-title {
+                margin-top: 12px;
+                font-size: 13px;
+                word-wrap: break-word;
+                line-height: 1.2;
+                min-height: 40px;
+                display: inline-flex;
+                align-items: center;
+                min-width: 72px;
+                max-width: 100%;
+                text-align: center;
+
+                a {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    width: 100%;
+                }
+            }
+        }
+
+        .a-voucher-upload {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: 2px dashed $border-color-light;
+            transition:
+                background-color $transition-default,
+                border-color $transition-default;
+
+            &:hover {
+                background-color: rgba($link-abraxa, 0.04);
+                border-color: rgba($link-abraxa, 0.8);
+            }
+        }
+    }
+
+    // Drag & Drop
+    .a-drop-info {
+        width: 120px;
+        height: 100px;
+        color: $icon-light-color;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        margin: auto;
+        opacity: 0.24;
+        transition: opacity $transition-default;
+
+        .a-drop-icon {
+            padding: 8px;
+
+            i {
+                font-size: 48px;
+                color: $icon-light-color;
+            }
+
+            .sm-title {
+                display: block;
+                line-height: 1.4;
+                margin-top: 0px;
+                font-size: 16px;
+            }
+        }
+    }
+
+    &:hover {
+        .a-drop-info {
+            opacity: 0.8;
+        }
+    }
+}
+
+// Uploading progress
+.a-uploading-root {
+    &:not(.a-uploading-dark) {
+        background-color: #fff;
+    }
+
+    padding: 16px;
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+
+    .sm-title {
+        margin-bottom: 8px;
+    }
+}
+
+.a-uploading-progress,
+.a-progress {
+    background-color: rgba($link-abraxa, 0.24);
+    height: 5px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px;
+
+    .a-progress-bar {
+        top: 0;
+        left: 0;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+        transition: transform 0.2s linear;
+        transform-origin: left;
+        background-color: $link-abraxa;
+        border-radius: 4px;
+    }
+
+    .a-bar-1 {
+        width: auto;
+        animation: progress1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    }
+
+    .a-bar-2 {
+        width: auto;
+        animation: progress2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;
+    }
+}
+
+// Disbursements dropdown
+.a-dropdown-disbursements {
+    .x-innerhtml {
+        width: 100%;
+    }
+
+    .x-listitem {
+        cursor: pointer;
+    }
+
+    .x-listitem-inner-el {
+        padding: 12px 16px;
+    }
+
+    .hbox {
+        justify-content: space-between;
+    }
+
+    .party-item {
+        flex: 2;
+        padding-left: 48px;
+
+        .sm-company {
+            font-weight: $font-weight-bold;
+            font-size: 16px;
+        }
+
+        .sm-subtitle {
+            color: $text-light-color;
+            font-weight: 400;
+
+            i,
+            a {
+                color: $text-light-color;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .balance {
+        font-weight: $font-weight-bold;
+        font-size: 16px;
+        text-align: right;
+        color: material-color(teal, '500');
+        flex: 1;
+
+        em {
+            font-size: 13px;
+            color: material-color(blue-grey, '200');
+            font-weight: $font-weight-bold;
+            font-style: normal;
+        }
+    }
+}
+
+// Disbursements sidebar
+.a-disbursements-sidebar {
+    .x-panelheader {
+        &.x-horizontal {
+            min-height: 64px;
+
+            .x-text-el {
+                display: flex;
+                align-items: center;
+
+                i {
+                    margin-left: 4px;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+        }
+
+        i {
+            font-size: 18px;
+            color: $text-light-color;
+        }
+    }
+}
+
+// Total billed docked
+.a-total-billed-docked {
+    line-height: 1.2;
+
+    .a-billed-price {
+        color: $base-abraxa;
+
+        .a-billed-currency {
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .a-billed-amount {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: $letter-spacing-md;
+        }
+
+        i {
+            font-size: 16px;
+            color: $color-light-grey;
+            margin-left: 4px;
+        }
+    }
+}
+
+// Principal Disbursements
+// Mixin Directory Layout
+@mixin disbursements-layout {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 1681px) {
+        max-width: 1440px;
+    }
+}
+
+// Disbursements Main Container
+.a-disbursements-main-container {
+    // Display Item
+    .a-display-item {
+        min-height: 28px;
+
+        .a-display-label {
+            max-width: 148px;
+            // TODO: Compare with directory.scss
+            color: material-color(blue-grey, '500');
+        }
+    }
+}
+
+// Disbursements Wrap Container
+.a-disbursements-wrap-container {
+    > .x-body-el {
+        padding-top: 8px;
+        padding-bottom: 16px;
+    }
+
+    > .x-dock {
+        > .x-body-el {
+            padding-top: 8px;
+            padding-bottom: 16px;
+        }
+    }
+}
+
+// Disbursements Inner Container
+.a-disbursements-inner-container {
+    @include disbursements-layout;
+}
+
+// Disbursement Summary Container
+.a-disbursement-summary-container {
+    background-color: #f8fafc;
+
+    > .x-body-el {
+        padding: 24px;
+
+        > .x-container {
+            background-color: #fff;
+        }
+    }
+}
+
+// Approval Flow List
+.a-disbursement-flow-list {
+    &::before {
+        content: '';
+        width: 1.5px;
+        background-color: $border-color;
+        height: 100%;
+        display: block;
+        position: absolute;
+        background-position: top center;
+        left: 15.5px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    &.a-flow-list-first {
+        &::before {
+            top: 24px;
+        }
+    }
+
+    &.a-flow-list-last {
+        &::before {
+            bottom: 24px;
+        }
+    }
+}
+
+// Approval Flow List Item
+.a-disbursement-flow-list-item {
+    > .x-body-el {
+        padding: 12px 0;
+    }
+
+    // List Item Icon
+    .a-disbursement-flow-item-icon {
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+
+        i {
+            font-size: 16px;
+        }
+
+        &.a-icon-submitted {
+            i {
+                color: $icon-light-color;
+
+                &::before {
+                    content: 'radio_button_checked';
+                }
+            }
+        }
+
+        &.a-icon-approved {
+            i {
+                color: $color-green-500;
+                font-variation-settings: 'FILL' 1 !important;
+
+                &::before {
+                    content: 'check_circle';
+                    font-variation-settings: 'FILL' 1 !important;
+                }
+            }
+        }
+
+        &.a-icon-pending {
+            i {
+                color: $color-yellow-500;
+
+                &::before {
+                    content: 'schedule';
+                }
+            }
+        }
+
+        &.a-icon-canceled {
+            i {
+                color: $color-declined;
+
+                &::before {
+                    content: 'cancel';
+                }
+            }
+        }
+
+        &.a-icon-declined {
+            i {
+                color: $color-declined;
+
+                &::before {
+                    content: 'block';
+                }
+            }
+        }
+    }
+
+    // List Item User
+    .a-approval-flow-user {
+        .cursor-pointer {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    // List Item Comment
+    .a-approval-flow-comment {
+        margin: 0 42px;
+        display: flex;
+
+        i {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .a-approval-text {
+            font-size: 13px;
+            font-style: italic;
+            color: material-color(blue-grey, '500');
+        }
+    }
+}
+
+// Disbursement Approvals Container
+.a-approvals-container {
+    margin: 16px 8px !important;
+}
+
+// Disbursements Right Container
+.a-disbursements-right-container {
+    // Additional Info
+    .a-disbursement-additional-info {
+        max-width: 65%;
+
+        .a-display-item {
+            .a-display-value {
+                text-align: right;
+            }
+        }
+    }
+
+    .a-disbursement-invoices {
+        .x-dataview {
+            max-width: 65%;
+        }
+    }
+}
+
+// Disbursements grid
+// TODO: Merge with grids.scss
+.a-disb-grid {
+    .x-gridcell {
+        // Select Cost Center
+        .a-selectfield-cost-center {
+            margin: 0 12px;
+            height: 32px;
+
+            .x-input-el {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+// Select Cost Center Picker
+// TODO: Move to fields.scss
+.a-selectfield-cost-center-picker {
+    .x-listitem {
+        font-size: 13px;
+    }
+}
+
+// Offset Grid
+// TODO: Merge with grids.scss
+.a-offset-grid {
+    .a-column-offset-x24 {
+        > .x-body-el {
+            padding-left: 24px;
+        }
+    }
+}
+
+// Disbursements footer
+// TODO: Refactor docked footer
+.a-disbursements-footer {
+    box-shadow: 0 -4px 8px 0px rgba(0, 41, 69, 0.08);
+    min-height: 64px;
+    background-color: #fff;
+    z-index: 99;
+
+    > .x-body-el {
+        @include disbursements-layout;
+        padding: 8px;
+    }
+}
+
+// TODO: Merge with badges.scss
+.a-status-badge.status-pda,
+.a-status-badge.status-dda,
+.a-status-badge.status-fda,
+.a-status-badge.status-sda {
+    background-color: inherit;
+    font-weight: 500;
+}
+
+.a-status-badge.status-pda {
+    box-shadow: 0 0 0 1px #ffb74d inset;
+}
+
+.a-status-badge.status-dda {
+    box-shadow: 0 0 0 1px #3f51b5 inset;
+}
+
+.a-status-badge.status-sda {
+    box-shadow: 0 0 0 1px #03a9f4 inset;
+}
+
+.a-status-badge.status-fda {
+    box-shadow: 0 0 0 1px #02be9d inset;
+}
+
+// TODO: Merge with badges.scss
+.a-status-badge {
+    &.a-status-square {
+        // background-color: #C8D4E6;
+
+        &.status-draft {
+            background-color: #c8d4e6;
+        }
+
+        &.status-completed {
+            background-color: #30a691;
+        }
+
+        &.status-submitted {
+            background-color: #2e8eda;
+        }
+    }
+}
+
+// Approval Status
+.a-approval-status {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 13px;
+
+    i {
+        margin-right: 8px;
+        font-size: 20px;
+
+        &.a-approval-icon-approved {
+            color: $color-green-500;
+
+            &::before {
+                content: 'check_circle';
+            }
+        }
+
+        &.a-approval-icon-pending {
+            color: $color-yellow-500;
+
+            &::before {
+                content: 'schedule';
+            }
+        }
+
+        &.a-approval-icon-canceled {
+            color: $color-declined;
+
+            &::before {
+                content: 'cancel';
+            }
+        }
+
+        &.a-approval-icon-declined {
+            color: $color-declined;
+
+            &::before {
+                content: 'block';
+            }
+        }
+    }
+}

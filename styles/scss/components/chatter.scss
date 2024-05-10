@@ -1,0 +1,132 @@
+.chatter {
+    .a-message-item {
+        min-height: 92px;
+
+        > .x-body-el {
+            padding: 16px 24px 16px 24px;
+            outline: none;
+        }
+
+        outline: none;
+
+        &:not(.x-last) {
+            border-bottom: 1px solid $border-color-light;
+        }
+
+        .chatter-avatar {
+            margin-right: 8px;
+            width: 30px;
+            align-items: center;
+
+            .a-person {
+                img {
+                    margin-right: 0;
+                }
+
+                .a-int {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .a-badge-abbr {
+            margin-right: 20px;
+        }
+
+        .chatter-message {
+            margin-left: 8px;
+            line-height: 1.4;
+
+            .user_mention {
+                color: $color-accent-web;
+            }
+
+            small {
+                color: #b3bfc7;
+            }
+
+            &.own {
+            }
+        }
+
+        .chatter-title {
+            display: flex;
+            align-items: center;
+            margin-left: 8px;
+            margin-bottom: 2px;
+
+            .a-user {
+                font-weight: $font-weight-bold;
+                text-align: left;
+                @include text-truncate;
+            }
+
+            .a-company {
+                flex: 1;
+                text-align: left;
+                color: $text-color;
+                margin-left: 4px;
+                @include text-truncate;
+            }
+
+            .a-date {
+                flex: 1;
+                text-align: right;
+                font-size: 13px;
+                color: $text-color;
+                min-width: 120px;
+            }
+        }
+
+        .chat-message-tools {
+            position: absolute;
+            right: 12px;
+            border-radius: 24px 0 24px 24px;
+            z-index: 9;
+            background-color: #fff;
+
+            > .x-body-el {
+                padding: 4px 4px 4px 16px;
+            }
+        }
+
+        .chatter-date {
+            font-size: 12px;
+            color: $text-light-color;
+        }
+
+        .chatter-footer {
+            margin-left: 2px;
+
+            .a-status-badge {
+                margin-top: 6px;
+            }
+        }
+
+        .a-edited {
+            font-size: 13px;
+            color: $text-light-color;
+            font-style: italic;
+        }
+
+        &.x-hovered {
+            background-color: transparent;
+        }
+
+        &.x-selected {
+            background-color: transparent !important;
+        }
+    }
+
+    .chatter-message-edit {
+        border-radius: 0;
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-top: -16px;
+        border-bottom: 1px solid $border-color-light;
+
+        > .x-body-el {
+            padding: 8px 16px;
+        }
+    }
+}
