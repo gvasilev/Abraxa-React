@@ -17,5 +17,6 @@
   },
   "debug": true,
   "license": "b116e32e-0847-4764-94ef-a16987070409",
-  "url": "local"
+  "urlbase": "./",
+  "location": "local"
 }

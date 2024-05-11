@@ -3,8 +3,7 @@ import Cookies from 'js-cookie';
 import './preloader/Preloader.jsx'
 import './preloader/Preloader.css'
 import Preloader from './preloader/Preloader.jsx';
-import './accounts/AccountDetails.jsx'
-import TempView from '../TempView.jsx';
+import TempView from './TempView.jsx';
 
 const App = () => {
     const { isLoading, isAuthenticated, error, user, getIdTokenClaims, getAccessTokenSilently, loginWithRedirect, logout } = useAuth0();

@@ -206,31 +206,31 @@ Ext.define('Abraxa.view.main.MainToolbar', {
                         company_id: 0,
                     },
                 ],
-                filters: [
-                    {
-                        filterFn: function (record) {
-                            let current_company_id = Ext.Viewport.getViewModel()
-                                .get('currentUser')
-                                .get('current_company_id');
-                            return record.get('company_id') == current_company_id || record.get('company_id') == 0;
-                        },
-                    },
-                    {
-                        //filter for role this is needed when module is for specific role agent,principal,shipowner etc.
-                        filterFn: function (record) {
-                            let currentUserType = Ext.Viewport.getViewModel()
-                                .get('currentUser')
-                                .getCompany()
-                                .get('type');
-                            if (record.get('role')) {
-                                // check if menu has role attribute
-                                return record.get('role') && record.get('role') == currentUserType;
-                            } else {
-                                return true;
-                            }
-                        },
-                    },
-                ],
+                // filters: [
+                //     {
+                //         filterFn: function (record) {
+                //             let current_company_id = Ext.Viewport.getViewModel()
+                //                 .get('currentUser')
+                //                 .get('current_company_id');
+                //             return record.get('company_id') == current_company_id || record.get('company_id') == 0;
+                //         },
+                //     },
+                //     {
+                //         //filter for role this is needed when module is for specific role agent,principal,shipowner etc.
+                //         filterFn: function (record) {
+                //             let currentUserType = Ext.Viewport.getViewModel()
+                //                 .get('currentUser')
+                //                 .getCompany()
+                //                 .get('type');
+                //             if (record.get('role')) {
+                //                 // check if menu has role attribute
+                //                 return record.get('role') && record.get('role') == currentUserType;
+                //             } else {
+                //                 return true;
+                //             }
+                //         },
+                //     },
+                // ],
             },
             ripple: false,
             itemRipple: {

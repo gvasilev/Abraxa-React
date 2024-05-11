@@ -12,6 +12,7 @@ Ext.define('Abraxa.store.CompanyDatabase', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'organizations',
+        withCredentials: true,
         writer: {
             type: 'json',
             allDataOptions: {

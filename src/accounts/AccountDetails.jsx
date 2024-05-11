@@ -1,11 +1,11 @@
 import '../utils/AbraxaConstants.js';
 import '../billing/Billing.jsx'
-import '../core/components/AbraxaFormlist.js'
+import '../core/components/AbraxaFormlist.jsx'
 import '../view/portcall/agent/payments/PaymentsList.js'
-import '../view/tasks/TasksList.js'
-import '../view/comments/CommentsList.js'
-import '../view/comments/CommentsInput.js'
-import '../core/components/combo/OrganizationCombo.js'
+import '../view/tasks/TasksList.jsx'
+import '../view/comments/CommentsList.jsx'
+import '../view/comments/CommentsInput.jsx'
+import '../core/components/combo/OrganizationCombo.jsx'
 
 //ViewModel
 import '../view/portcall/agent/accounts/AccountsViewModel.js';
@@ -63,12 +63,12 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
     flex: 1,
     publishes: ['activeItemIndex'],
     layout: {
-        type: 'vbox',
+        type: 'fit',
         // deferRender: false,
     },
     bind: {
         layout: {
-            type: 'vbox',
+            type: 'fit',
             animation: '{selectedDisbursement && showDetails ? "cover" : "reveal"}',
         },
         activeItem: '{selectedDisbursement && showDetails ? 1 : 0}',

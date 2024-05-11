@@ -1,3 +1,24 @@
+import Env from '../../env.jsx'; // Import Env from env.jsx
+import '../../store/Components.jsx';
+import '../../store/common/Organizations.jsx';
+import '../../store/common/Users.jsx';
+import '../../store/adocs/DocumentTypes.jsx';
+import '../../store/common/OrganizationContacts.jsx';
+import '../../store/common/PortsServed.jsx';
+import '../../store/common/system/RecentlyOpened.jsx';
+import '../../store/common/system/Notifications.jsx';
+import '../../store/cdb/Types.jsx';
+import '../../store/common/Objects.jsx';
+import '../../store/announcement/Announcements.jsx';
+import '../../store/tasks/Tasks.jsx';
+import '../../store/comments/Comments.jsx';
+import '../../store/common/CurrencyRates.jsx';
+import '../../store/agreement/Agreements.jsx';
+import '../../store/company/CompanyCurrencies.jsx';
+import '../../store/common/DefaultUnits.jsx';
+import '../../store/commodities/Commodities.jsx';
+import '../../store/vessels/Vessels.jsx';
+import '../../store/directory/agents/Agents.jsx';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',

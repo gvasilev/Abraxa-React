@@ -1,5 +1,6 @@
 import Env from '../../env.jsx'; // Import Env from env.jsx
 import '../cdb/Compliance.jsx';
+import '../cdb/Department.jsx';
 Ext.define('Abraxa.model.company.Company', {
     extend: 'Ext.data.Model',
     fields: [
@@ -178,16 +179,16 @@ Ext.define('Abraxa.model.company.Company', {
                 }
             },
         },
-        {
-            name: 'search_index',
-            depends: 'updated_at',
-            persist: false,
-            mapping: function (data) {
-                if (data) {
-                    return this.buildSearchIndex(data);
-                }
-            },
-        },
+        // {
+        //     name: 'search_index',
+        //     depends: 'updated_at',
+        //     persist: false,
+        //     mapping: function (data) {
+        //         if (data) {
+        //             return this.buildSearchIndex(data);
+        //         }
+        //     },
+        // },
         {
             name: 'org_types',
             critical: true,
