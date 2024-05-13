@@ -1,3 +1,4 @@
+import '../../store/invitations/Invitations.jsx';
 Ext.define('Abraxa.view.invitations.InvitationViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.invitations-viewmodel',

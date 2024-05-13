@@ -1,3 +1,9 @@
+import '../settings/company/CompanyCurrency.jsx';
+import '../team/Team.jsx';
+import '../settings/company/EmailSettings.jsx';
+import '../office/Office.jsx';
+import '../settings/CompanyBankDetails.jsx';
+import '../company/CustomComponent.jsx';
 Ext.define('Abraxa.model.common.Company', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

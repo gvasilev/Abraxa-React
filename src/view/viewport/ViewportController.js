@@ -152,7 +152,7 @@ Ext.define('Abraxa.view.viewport.ViewportController', {
                         }
                     }
                     Ext.Viewport.getViewModel().set('is_logged', true);
-                    Ext.state.Provider.get().restoreState();
+                    // Ext.state.Provider.get().restoreState();
                     me.identifyChameleon(user);
                     if (content.data.user.company_user && !content.data.user.company_user[0].is_active) {
                         me.suspendMsg();
@@ -656,4 +656,79 @@ Ext.define('Abraxa.view.viewport.ViewportController', {
                 });
             });
     },
+
+    loginUser: function () {
+        const me = this;
+        me.checkLogin().then(function (content) {
+            if (content.success == false && content.message == 'User not found') {
+                Ext.create('Ext.MessageBox', {
+                    ui: 'warning',
+                    title: 'Warning',
+                    // testId: 'permissionsUpdateTeamsRulesMsgbox',
+                    innerCls: 'a-bgr-white',
+                    message: 'User not found <br> Please check your credentials',
+                    // width: 300,
+                    dataTitle: 'Warning',
+                    modal: true,
+                    draggable: false,
+                    closable: false,
+                    bbar: {
+                        manageBorders: false,
+                        items: [
+                            '->',
+                            {
+                                xtype: 'button',
+                                // iconCls: 'md-icon-exit-to-app',
+                                ui: 'action',
+                                text: 'Login',
+                                handler: function () {
+                                    auth0Logout();
+                                },
+                            },
+                        ],
+                    },
+                }).show();
+                return;
+            }
+            if (content.data) {
+                let user = Ext.Viewport.getViewModel().get('currentUser');
+                let company = Abraxa.getApplication()
+                    .getController('AbraxaController')
+                    .createCompanyModel(content.data.user.company);
+                company.custom_components().setData(content.data.user.company.custom_components);
+                user.setCompany(company);
+                user.mergeData(content.data.user);
+                if (content.data.user.signatures) {
+                    user.signatures().setData(content.data.user.signatures);
+                }
+                if (content.data.user.offices) {
+                    user.offices().setData(content.data.user.offices);
+                }
+                if (content.data.user.office) {
+                    user.setOffice(new Abraxa.model.office.Office(Object.assign({}, content.data.user.office)));
+                    if (content.data.user.office.emails) {
+                        user.getOffice().emails().setData(content.data.user.office.emails);
+                    }
+                }
+                Ext.Viewport.getViewModel().set('is_logged', true);
+                // Ext.state.Provider.get().restoreState();
+                // me.identifyChameleon(user);
+                if (content.data.user.company_user && !content.data.user.company_user[0].is_active) {
+                    me.suspendMsg();
+                } else if (content.data.user.needs_password_change) {
+                    Ext.getApplication().logout();
+                    window.location = content.data.user.needs_password_url;
+                }
+            } else {
+                let currentURL = window.location.href;
+                if (currentURL.includes('#userinvite')) return;
+
+                if (window.location.hash === '#signup') {
+                    me.showAuth();
+                } else {
+                    // auth0Logout();
+                }
+            }
+        });
+    }
 });

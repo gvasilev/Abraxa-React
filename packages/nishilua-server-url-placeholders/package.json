@@ -1,0 +1,44 @@
+{
+  "name": "nishilua-server-url-placeholders",
+  "namespace": "Nishilua",
+  "format": "1",
+  "version": "2017.12.11",
+  "compatVersion": "2017.09.27",
+  "creator": "Alfonso Nishikawa",
+  "summary": "Allow placeholders in the URLs configured in a proxy server",
+  "detailedDescription": "With this package it is possible to configure an api for a proxy with a string with placeholders, like \u0027/resource/${foo.bar}/more/${baz}\u0027, and have those values be replaced with the values \u0027params\u0027 configured when loading a store or model.",
+  "type": "code",
+  "signatures": [
+    {
+      "name": "Alfonso Nishikawa",
+      "uuid": "d49eff33-ec31-4b42-bc2f-b991ca5dfd0a",
+      "created": "2017-12-11T19:30:41Z",
+      "algorithm": "SHA1withRSA",
+      "nonce": "fgDJBRE4bmc\u003d",
+      "signature": "F3fn15D3TAZ7rCBbi21y9UfdIEwcsHokCeXIJQKMDF0biZxDFPeeQKAE+VgFxCcJsiH7UGSSh2yjyM46Qpv+mDsMPQo7LL38kbthQPMpgh84m+uepl7De+wJsINenynGkoBVD2+e1PVZgC/Bkamol2yAYocE7R3+v1nFL/tXDf14vTeZnJphqvy/1hv0RsSA0uSJBcYaZIT379Ys/tCd+r5XN0dBTMKZ5zfWmzMxFhOuyW0i4KhtIv8R2C5uoQua6kQIIxQBt0yln3acDtYCbw1Xh5NUdJf4DtETC4C7hAbXKgRvE/XjUgKxt6pmJYkFI01LrdicOzRNhlhI9IJGgg\u003d\u003d"
+    }
+  ],
+  "slicer": {
+    "js": [
+      {
+        "path": "${package.dir}/sass/example/custom.js",
+        "isWidgetManifest": true
+      }
+    ]
+  },
+  "output": "${package.dir}/build",
+  "classpath": [
+    "${package.dir}/src",
+    "${package.dir}/${toolkit.name}/src"
+  ],
+  "overrides": [
+    "${package.dir}/overrides",
+    "${package.dir}/${toolkit.name}/overrides"
+  ],
+  "example": {
+    "path": [
+      "${package.dir}/examples"
+    ]
+  },
+  "framework": "ext"
+}

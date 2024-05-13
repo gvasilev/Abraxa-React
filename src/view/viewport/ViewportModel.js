@@ -7,7 +7,7 @@ Ext.define('Abraxa.view.viewport.ViewportModel', {
     alias: 'viewmodel.viewport',
 
     data: {
-        // currentUser: new Abraxa.model.common.User(),
+        currentUser: new Abraxa.model.common.User(),
         is_logged: false,
         registration_mode: false,
     },

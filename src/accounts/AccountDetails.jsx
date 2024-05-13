@@ -1,4 +1,4 @@
-import '../utils/AbraxaConstants.js';
+import '../utils/AbraxaConstants.jsx';
 import '../billing/Billing.jsx'
 import '../core/components/AbraxaFormlist.jsx'
 import '../view/portcall/agent/payments/PaymentsList.js'

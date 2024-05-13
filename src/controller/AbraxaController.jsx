@@ -1,3 +1,4 @@
+import '../model/common/Company.jsx';
 Ext.define('Abraxa.controller.AbraxaController', {
     extend: 'Ext.app.Controller',
 

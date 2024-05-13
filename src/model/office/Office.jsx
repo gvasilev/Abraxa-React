@@ -1,3 +1,7 @@
+import './OfficeUser.jsx';
+import './OfficeBank.jsx';
+import './OfficeEmail.jsx';
+import '../settings/CustomFileNumber.jsx';
 Ext.define('Abraxa.model.office.Office', {
     extend: 'Ext.data.Model',
     fields: [

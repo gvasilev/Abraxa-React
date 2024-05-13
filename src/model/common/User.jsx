@@ -1,5 +1,7 @@
-
-
+import '../common/Company.jsx';
+import '../office/Office.jsx';
+import '../settings/company/EmailSignature.jsx';
+import './UserOffices.jsx';
 Ext.define('Abraxa.model.common.User', {
     extend: 'Ext.data.Model',
     fields: [

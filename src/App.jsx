@@ -1,8 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import Cookies from 'js-cookie';
-import './preloader/Preloader.jsx'
-import './preloader/Preloader.css'
+import './preloader/Preloader.jsx';
+import './preloader/Preloader.css';
 import Preloader from './preloader/Preloader.jsx';
+import './utils/AbraxaConstants.jsx';
 import TempView from './TempView.jsx';
 
 const App = () => {

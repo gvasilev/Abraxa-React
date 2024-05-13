@@ -1,3 +1,4 @@
+import '../../model/invitation/Invitation.jsx';
 Ext.define('Abraxa.store.invitations.Invitations', {
     extend: 'Ext.data.Store',
     alias: 'store.invitations',
@@ -13,7 +14,7 @@ Ext.define('Abraxa.store.invitations.Invitations', {
     },
 
     onProxyLoad: function (operation) {
-        this.callParent([operation]);
+        //this.callParent([operation]);
 
         this.doSomething();
     },

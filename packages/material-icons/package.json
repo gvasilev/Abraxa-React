@@ -1,0 +1,44 @@
+{
+  "name": "material-icons",
+  "namespace": "Ext",
+  "format": "1",
+  "version": "1.0.0",
+  "creator": "RichardStyles",
+  "summary": "Package wrapper for Material Fonts",
+  "detailedDescription": "Sencha Cmd package wrapper for Google\u0027s Material Fonts",
+  "type": "code",
+  "signatures": [
+    {
+      "name": "RichardStyles",
+      "uuid": "6309b7c0-f25d-42a5-bf8d-e223c165d0b1",
+      "created": "2016-07-10T13:21:09Z",
+      "algorithm": "SHA1withRSA",
+      "nonce": "KHj9eqKR9aM\u003d",
+      "signature": "DyeBdtI3dtgOrqohzRI1WQhyABTUQT0LSuDEMxHlP+4UYd7kXvnaDrWESCDpG0bdNPTQY9gLOeJdCjMA++oYWK0HnGsIuJJOssh0lKgfNVoz1kKmsGmOGCTVBsDnjrqJ96+4oViqX5NlLaPAl6fB1fMxCk47edlov3ftP5mZ7fTLWsOvgvsVX5/WJhSFaTWtQ87cUwp7KrIzhg18JYhsIEn+aHn9+VD5AHhmKoW27aM+uIHWZsLCrfrh1t6YjdqhhMFvMg1QdM30FiCbJw7fwXZsr0sLIq5lnZ4dl+eciLLE44vUQ88DMn6gaUMPHKWP6ttQgd/pN8+Q/2otwWKtAQ\u003d\u003d"
+    }
+  ],
+  "resources": [
+    {
+      "path": "${package.dir}/resources",
+      "output": "shared"
+    }
+  ],
+  "framework": "ext",
+  "toolkit": "classic",
+  "theme": "theme-triton",
+  "output": "${framework.dir}/build/packages/${package.name}",
+  "resource": {
+    "paths": ""
+  },
+  "sass": {
+    "namespace": "Ext",
+    "etc": "${package.dir}/sass/etc/all.scss",
+    "var": "${package.dir}/sass/var",
+    "src": [
+      "${package.dir}/sass/src",
+      "${package.dir}/sass/src/all.scss"
+    ]
+  },
+  "classpath": "${package.dir}/src",
+  "overrides": "${package.dir}/overrides"
+}

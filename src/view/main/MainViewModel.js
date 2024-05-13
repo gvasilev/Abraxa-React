@@ -19,6 +19,8 @@ import '../../store/commodities/Commodities.jsx';
 import '../../store/vessels/Vessels.jsx';
 import '../../store/directory/agents/Agents.jsx';
 import '../../view/main/DefaultHeaderContent';
+import '../../store/invitations/Invitations.jsx';
+import '../../store/settings/CompanyOffices.jsx';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',
@@ -323,17 +325,17 @@ Ext.define('Abraxa.view.main.MainViewModel', {
             },
         },
         // todo - kalo Portcall will not work because of that !!!!IMPORTANT
-        joinSocket: {
-            bind: {
-                bindTo: '{currentUser.current_company_id}',
-                // deep: true
-            },
-            get: function (company_id) {
-                if (company_id) {
-                    Abraxa.Socket.init(company_id);
-                }
-            },
-        },
+        // joinSocket: {
+        //     bind: {
+        //         bindTo: '{currentUser.current_company_id}',
+        //         // deep: true
+        //     },
+        //     get: function (company_id) {
+        //         if (company_id) {
+        //             Abraxa.Socket.init(company_id);
+        //         }
+        //     },
+        // },
         initChat: {
             bind: {
                 bindTo: '{currentUser}',
@@ -800,7 +802,9 @@ Ext.define('Abraxa.view.main.MainViewModel', {
                 deep: true,
             },
             get: function (user) {
-                return user.getCompany();
+               if(user && user.getCompany()) {
+                   return user.getCompany();
+               }
             },
         },
         offices: {
@@ -1078,7 +1082,7 @@ Ext.define('Abraxa.view.main.MainViewModel', {
             get: function (user) {
                 let banks = [];
                 let company = this.get('currentCompany');
-                if (user) {
+                if (user && company) {
                     if (user.get('current_office_id')) {
                         let office = user.getOffice();
                         if (office && office.get('banks') && office.get('banks').length) {
@@ -1143,7 +1147,7 @@ Ext.define('Abraxa.view.main.MainViewModel', {
                     portcall: false,
                 };
                 let company = this.get('currentCompany');
-                if (company.get('custom_file_number')) {
+                if (company && company.get('custom_file_number')) {
                     data.portcall = true;
                     data.portcall_placeholder = 'Automated ID';
                 }
