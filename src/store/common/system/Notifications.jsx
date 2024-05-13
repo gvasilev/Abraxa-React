@@ -1,4 +1,4 @@
-import Env from '../../../env.jsx';
+
 import '../../../model/notification/Notification.jsx';
 Ext.define('Abraxa.store.common.system.Notifications', {
     extend: 'Ext.data.Store',

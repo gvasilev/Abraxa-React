@@ -1,3 +1,6 @@
+import '../../core/components/InfoIcon';
+import '../../core/components/charts/Abraxa.Chart.jsx';
+
 Ext.define('Abraxa.view.dashboard.DashboardRightContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.right.container',

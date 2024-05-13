@@ -1,3 +1,6 @@
+import '../../store/dashboard/BalanceExposure';
+import '../../store/dashboard/PortcallsMap';
+
 Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.dashboard-viewmodel',
@@ -135,6 +138,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/average_port_stay/-1',
                             method: 'GET',
+                            withCredentials: true,
                             success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
@@ -162,6 +166,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/appointments/month',
                             method: 'GET',
+                            withCredentials: true,
                             success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
@@ -189,6 +194,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/appointments_latest',
                             method: 'GET',
+                            withCredentials: true,
                             success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
@@ -219,6 +225,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/top_deals',
                             method: 'GET',
+                            withCredentials: true,
                             success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {

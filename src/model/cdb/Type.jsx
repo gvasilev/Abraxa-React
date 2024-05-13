@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 
 Ext.define('Abraxa.model.cdb.Type', {
     extend: 'Ext.data.Model',

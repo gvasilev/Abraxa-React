@@ -1,4 +1,4 @@
-import Env from "../../env.jsx";
+
 import '../../model/vessel/VesselCompliance.jsx';
 
 Ext.define('Abraxa.model.common.Vessel', {

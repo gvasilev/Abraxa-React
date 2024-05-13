@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/common/Commodity.jsx'
 
 Ext.define('Abraxa.store.common.Commodity', {

@@ -1,3 +1,5 @@
+import '../../../store/common/Port';
+
 Ext.define('Abraxa.core.components.combo.Port', {
     extend: 'Ext.field.ComboBox',
     xtype: 'port.combo',
@@ -34,7 +36,7 @@ Ext.define('Abraxa.core.components.combo.Port', {
         value: null,
     },
     initialize: function () {
-        this.callParent(arguments);
+        // this.callParent(arguments);
 
         const vm = this.getViewModel();
         const combo = this;

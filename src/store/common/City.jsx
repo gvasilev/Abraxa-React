@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/common/City.js';
 Ext.define('Abraxa.store.common.City', {
     extend: 'Ext.data.Store',

@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/cdb/Contact.jsx';
 
 Ext.define('Abraxa.store.common.OrganizationContacts', {

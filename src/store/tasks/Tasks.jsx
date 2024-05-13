@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/task/Task.jsx';
 
 Ext.define('Abraxa.store.task.Tasks', {

@@ -1,4 +1,4 @@
-import Env from "../../env.jsx";
+
 import "../../model/settings/company/CompanyCurrency.jsx";
 
 Ext.define('Abraxa.store.company.CompanyCurrencies', {

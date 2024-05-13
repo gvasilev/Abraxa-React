@@ -1,4 +1,5 @@
 import './ViewportMask';
+import '../../store/portnews/PortNewsCount';
 Ext.define('Abraxa.view.main.MainController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.main-controller',

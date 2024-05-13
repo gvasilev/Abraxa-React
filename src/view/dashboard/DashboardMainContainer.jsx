@@ -1,3 +1,10 @@
+import './DashboardViewModel';
+import './DashboardLeftContainer';
+import './DashboardRightContainer';
+import './DashboardMiddleContainer';
+import './DashboardBottomLeftContainer';
+import './DashboardBottomRightContainer';
+
 Ext.define('Abraxa.view.dashboard.DashboardMainContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.main',

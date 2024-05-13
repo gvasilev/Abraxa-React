@@ -1,4 +1,4 @@
-import Env from '../env.jsx';
+
 import '../model/Component.jsx';
 
 Ext.define('Abraxa.store.Components', {

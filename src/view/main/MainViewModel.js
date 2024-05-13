@@ -1,4 +1,3 @@
-import Env from '../../env.jsx'; // Import Env from env.jsx
 import '../../store/Components.jsx';
 import '../../store/common/Organizations.jsx';
 import '../../store/common/Users.jsx';
@@ -19,6 +18,7 @@ import '../../store/common/DefaultUnits.jsx';
 import '../../store/commodities/Commodities.jsx';
 import '../../store/vessels/Vessels.jsx';
 import '../../store/directory/agents/Agents.jsx';
+import '../../view/main/DefaultHeaderContent';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',

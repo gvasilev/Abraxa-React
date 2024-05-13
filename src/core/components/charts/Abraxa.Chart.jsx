@@ -1,3 +1,5 @@
+import Column2D from "fusioncharts/fusioncharts.charts";
+
 import '../../mixins/Abraxa.fusioncharts.Mixin.jsx';
 Ext.define('Abraxa.Chart', {
     extend: 'Ext.Component',

@@ -1,3 +1,5 @@
+import '../../core/components/combo/Port';
+
 Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.bottom.right.container',

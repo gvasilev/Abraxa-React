@@ -1,4 +1,4 @@
-import Env from '../../../env.jsx';
+
 import '../../../model/directory/agents/Agents.jsx';
 
 Ext.define('Abraxa.store.directory.Agents', {

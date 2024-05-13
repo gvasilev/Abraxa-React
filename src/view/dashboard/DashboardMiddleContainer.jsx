@@ -1,3 +1,6 @@
+import '../../core/components/AbraxaDateField';
+import './KPIExport';
+
 Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.middle.container',

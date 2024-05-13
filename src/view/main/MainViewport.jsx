@@ -4,6 +4,9 @@ import './MainViewModel.js';
 import '../../core/components/AbraxaDiv.js';
 import '../../core/override/Abraxa.Component.js';
 import './NotificationsMenu.jsx';
+import './MainHeader';
+import '../dashboard/DashboardMainContainer';
+
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',
     // itemId: "main-viewport",
@@ -19,7 +22,7 @@ Ext.define('Abraxa.view.main.MainViewport', {
     //     // bodyCls: '{fullscreen ? "" : "a-main-container-wrap"}',
     //     bodyCls: 'a-main-container-wrap',
     // },
-    flex: 1,
+    // flex: 1,
     // masked: {
     //     xtype: 'viewport.mask'
     // },

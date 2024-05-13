@@ -1,4 +1,4 @@
-import Env from '../../env.jsx'; // Import Env from env.jsx
+
 import '../../model/announcement/Announcement.jsx';
 Ext.define('Abraxa.store.announcement.Announcements', {
     extend: 'Ext.data.Store',

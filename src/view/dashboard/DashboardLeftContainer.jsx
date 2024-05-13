@@ -1,3 +1,5 @@
+import '../map/VoyageCountMap';
+
 Ext.define('Abraxa.view.dashboard.DashboardLeftContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.left.container',

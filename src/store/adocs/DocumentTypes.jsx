@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 
 Ext.define('Abraxa.store.adocs.DocumentTypes', {
     extend: 'Ext.data.Store',

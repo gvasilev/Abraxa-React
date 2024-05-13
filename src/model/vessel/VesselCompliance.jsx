@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 
 Ext.define('Abraxa.model.vessel.VesselCompliance', {
     extend: 'Ext.data.Model',

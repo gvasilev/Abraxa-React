@@ -1,5 +1,4 @@
 import moment from 'moment';
-import './store/View.js';
 
 Ext.define('Abraxa.Application', {
     extend: 'Ext.app.Application',

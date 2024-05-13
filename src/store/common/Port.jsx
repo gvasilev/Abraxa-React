@@ -1,3 +1,5 @@
+import '../../model/common/Port';
+
 Ext.define('Abraxa.store.common.Port', {
     extend: 'Ext.data.Store',
     alias: 'store.port',

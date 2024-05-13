@@ -1,3 +1,6 @@
+import '../../core/components/permissions/VerifiedDiv';
+import '../../core/components/AbraxaDiv';
+
 Ext.define('Abraxa.view.main.DefaultHeaderContent', {
     extend: 'Ext.Container',
     xtype: 'default.header',

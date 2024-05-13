@@ -1,4 +1,13 @@
-import FusionCharts from "fusioncharts";
+import FusionCharts from 'fusioncharts';
+import Widgets from 'fusioncharts/fusioncharts.widgets';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import Gantt from 'fusioncharts/fusioncharts.gantt';
+import Charts from "fusioncharts/fusioncharts.charts";
+
+FusionTheme(FusionCharts);
+Gantt(FusionCharts);
+Widgets(FusionCharts);
+Charts(FusionCharts);
 
 Ext.define('Abraxa.fusioncharts.Mixin', {
     extend: 'Ext.Mixin',

@@ -1,4 +1,4 @@
-import Env from '../../env.jsx'; // Import Env from env.jsx
+
 import '../../model/expense/DefaultExpenseItem.jsx';
 
 Ext.define('Abraxa.store.common.DefaultExpenseItems', {

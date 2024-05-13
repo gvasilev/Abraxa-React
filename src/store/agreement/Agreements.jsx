@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 
 Ext.define('Abraxa.store.agreement.Agreements', {
     extend: 'Ext.data.Store',

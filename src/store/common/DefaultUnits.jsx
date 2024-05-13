@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/unit/DefaultUnit.jsx';
 
 Ext.define('Abraxa.store.common.DefaultUnits', {

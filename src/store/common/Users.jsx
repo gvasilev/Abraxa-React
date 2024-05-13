@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/common/User.jsx';
 
 Ext.define('Abraxa.store.common.Users', {

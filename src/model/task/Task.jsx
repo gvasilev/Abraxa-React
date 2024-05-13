@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import moment from 'moment';
 
 Ext.define('Abraxa.model.task.Task', {

@@ -1,3 +1,5 @@
+import '../../model/common/Country';
+
 Ext.define('Abraxa.store.common.Country', {
     extend: 'Ext.data.Store',
     alias: 'store.countryStore',

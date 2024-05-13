@@ -1,5 +1,3 @@
-import Env from '../../env.jsx'; // Import Env from env.jsx
-
 Ext.define('Abraxa.store.disbursements.DefaultDisbursementTags', {
     extend: 'Ext.data.Store',
     alias: 'store.default.disbursement.tags',

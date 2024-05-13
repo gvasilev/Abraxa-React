@@ -1,4 +1,4 @@
-import Env from '../../env.jsx'; // Import Env from env.jsx
+
 Ext.define('Abraxa.store.common.PaymentTerms', {
     extend: 'Ext.data.Store',
     alias: 'store.payment.terms',

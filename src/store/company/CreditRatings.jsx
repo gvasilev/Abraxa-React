@@ -1,4 +1,4 @@
-import Env from '../../env.jsx';
+
 import '../../model/cdb/CreditRating.jsx';
 
 Ext.define('Abraxa.store.company.CreditRatings', {

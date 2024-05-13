@@ -5,6 +5,13 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 
+// Import CSS
+import './index.css';
+import '../styles/1.css';
+import '../styles/2.css';
+import '../styles/3.css';
+import '../styles/4.css';
+
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
     "api_host": import.meta.env.VITE_MIXPANEL_API_HOST,
@@ -12,19 +19,26 @@ mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
 });
 
 // Declare global variables
-window.Env = await import('./env');
 window.moment = moment;
 window.mixpanel = mixpanel;
 
 (async () => {
     Fill();
-    const { default: ReExtData } = await import('./ReExtData')
+    const { default: ReExtData } = await import('./ReExtData');
+    window.Env = await import('./env');
     await ReExtLoaderFunction(ReExtData);
     const { default: App } = await import('./App');
 
     //Adding ExtJS application launch as there is no Ext.Vieport otherwise
     Ext.application({
         name: 'Abraxa',
+        viewport: {
+            controller: 'viewport',
+            viewModel: 'viewport',
+        },
+        stores: [
+            'View', // creates one global instance of the Menu store (Ext.getStore('Menu'))
+        ],
         launch: function() {
         }
     });
