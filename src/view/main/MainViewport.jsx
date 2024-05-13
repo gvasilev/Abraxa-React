@@ -1,11 +1,13 @@
 import './MainController.js';
 import './MainToolbar.js';
-import './MainViewModel.js';
+import './MainViewModel';
 import '../../core/components/AbraxaDiv.js';
 import '../../core/override/Abraxa.Component.js';
 import './NotificationsMenu.jsx';
 import './MainHeader';
 import '../dashboard/DashboardMainContainer';
+import '../cdb/MainView';
+import '../inbox/InboxMainView';
 
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',

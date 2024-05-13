@@ -1,5 +1,5 @@
 import './UserMenu.js';
-
+import './RecentlyOpenedMenu';
 Ext.define('Abraxa.view.main.MainHeader', {
     extend: 'Ext.Container',
     xtype: 'main.header',

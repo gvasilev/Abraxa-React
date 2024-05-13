@@ -1,3 +1,8 @@
+.fill {
+    height: 100%;
+    width: 100%;
+}
+
 .fi:before {
     font-family: 'Material Icons' !important
 }

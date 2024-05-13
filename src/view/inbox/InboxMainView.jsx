@@ -1,3 +1,5 @@
+import '../invitations/InvitationsGrid';
+import '../invitations/invite/InvitationMainBody';
 Ext.define('Abraxa.view.inbox.InboxMainView', {
     extend: 'Ext.Container',
     xtype: 'inbox.main.view',

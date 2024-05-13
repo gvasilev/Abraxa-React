@@ -5,13 +5,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 
-// Import CSS
-import './index.css';
-import '../styles/1.css';
-import '../styles/2.css';
-import '../styles/3.css';
-import '../styles/4.css';
-
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
     "api_host": import.meta.env.VITE_MIXPANEL_API_HOST,

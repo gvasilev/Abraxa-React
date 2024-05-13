@@ -45,7 +45,7 @@ Ext.define('Abraxa.Chart', {
         me.setData(null);
         if (me.getFusionChart()) me.getFusionChart().dispose();
 
-        me.callParent();
+        // me.callParent();
     },
 
     updateValue: function (value) {

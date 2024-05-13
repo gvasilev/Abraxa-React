@@ -24,12 +24,7 @@ const App = () => {
         fetchToken();
 
         return (
-            <div>
-                <TempView />
-                <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                    Log out
-                </button>
-            </div>
+            <TempView />
         );
     } else {
         loginWithRedirect();

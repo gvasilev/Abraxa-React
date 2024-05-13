@@ -1,3 +1,5 @@
+import '../../../core/components/AbraxaFormlist';
+
 Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
     extend: 'Ext.Container',
     xtype: 'invitaion.content',

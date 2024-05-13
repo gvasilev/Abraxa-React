@@ -1,5 +1,8 @@
 import '../../common/button/GridFiltersButton.jsx';
 import '../../../core/components/AbraxaCountryCombo.jsx';
+import '../../common/components/PublicUpdatedBy';
+import '../../../utils/AbraxaConstants';
+import '../../../controller/AbraxaController';
 Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'companiesgrid',

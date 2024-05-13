@@ -3,7 +3,7 @@ import '../main/MainHeader.jsx';
 import '../../core/components/AbraxaDiv.js';
 import './CdbMainViewModel.jsx';
 import './company/CompanyView.jsx';
-import '../main/MainViewport.js';
+import './CdbHeader';
 
 Ext.define('Abraxa.view.cdb.MainView', {
     extend: 'Ext.Container',
