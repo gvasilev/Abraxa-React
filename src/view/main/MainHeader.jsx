@@ -1,4 +1,4 @@
-import './UserMenu.js';
+import './UserMenu';
 import './RecentlyOpenedMenu';
 Ext.define('Abraxa.view.main.MainHeader', {
     extend: 'Ext.Container',

@@ -5,7 +5,7 @@ Ext.define('Abraxa.Socket', {
         if (Env.useSSENotifications === true) {
             let socket;
 
-            connect = function (onNotificationReceive, onError) {
+            let connect = function (onNotificationReceive, onError) {
                 socket = new EventSource(new URL('/broadcast/sse/', Env.SSEEventSource) + company_id);
                 socket.addEventListener('message', (ev) => {
                     onNotificationReceive(JSON.parse(ev.data));

@@ -730,5 +730,5 @@ Ext.define('Abraxa.view.viewport.ViewportController', {
                 }
             }
         });
-    }
+    },
 });

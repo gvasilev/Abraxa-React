@@ -60,177 +60,176 @@ Ext.define('Abraxa.view.main.MainToolbar', {
             deselectable: false,
             reference: 'mainMenuList',
             publishes: ['selection', 'self'],
-            // bind: {
-            //     store: '{mainMenu}'
-            // },
-            store: {
-                data: [
-                    {
-                        iconCls: 'md-icon-dashboard md-icon-outlined',
-                        icon: 'dashboard',
-                        name: 'Dashboard',
-                        mixPanelSlug: 'dashboard',
-                        hash: '#dashboard',
-                        cls: 'chameleon_main_menu_dashboard',
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-inbox md-icon-outlined',
-                        icon: 'inbox',
-                        mixPanelSlug: 'inbox',
-                        name: 'Inbox',
-                        hash: '#inbox',
-                        bind: {
-                            text: '100',
-                            pressed: '{(routeHash == "#inbox") ? true : false}',
+            bind: {
+                store: {
+                    data: [
+                        {
+                            iconCls: 'md-icon-dashboard md-icon-outlined',
+                            icon: 'dashboard',
+                            name: 'Dashboard',
+                            mixPanelSlug: 'dashboard',
+                            hash: '#dashboard',
+                            cls: 'chameleon_main_menu_dashboard',
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-business-center md-icon-outlined',
-                        icon: 'business_center',
-                        cls: 'chameleon_main_menu_portcalls',
-                        name: 'Operations',
-                        hash: '#operations/port-calls',
-                        role: 'principal', //set this if menu is specific for role
-                        bind: {
-                            pressed: '{(routeHash == "#operations") ? true : false}',
+                        {
+                            iconCls: 'md-icon-inbox md-icon-outlined',
+                            icon: 'inbox',
+                            mixPanelSlug: 'inbox',
+                            name: 'Inbox',
+                            hash: '#inbox',
+                            bind: {
+                                text: '100',
+                                pressed: '{(routeHash == "#inbox") ? true : false}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-business-center md-icon-outlined',
-                        icon: 'business_center',
-                        cls: 'chameleon_main_menu_portcalls',
-                        name: 'Port calls',
-                        slug: 'portcall',
-                        mixPanelSlug: 'portCalls',
-                        skipEditPermission: true,
-                        role: 'agent', //set this if menu is specific for role
-                        hash: '#portcalls',
-                        bind: {
-                            pressed:
-                                '{(routeHash == "#portcalls" || routeHash == "#portcall" || routeHash == "#invitations") ? true : false}',
-                            permission: '{userPermissions}',
+                        {
+                            iconCls: 'md-icon-business-center md-icon-outlined',
+                            icon: 'business_center',
+                            cls: 'chameleon_main_menu_portcalls',
+                            name: 'Operations',
+                            hash: '#operations/port-calls',
+                            role: 'principal', //set this if menu is specific for role
+                            bind: {
+                                pressed: '{(routeHash == "#operations") ? true : false}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-live-help md-icon-outlined',
-                        icon: 'live_help',
-                        hidden: false,
-                        skipEditPermission: true,
-                        name: 'Enquiries',
-                        role: 'agent', //set this if menu is specific for role
-                        mixPanelSlug: 'enquiries',
-                        hash: '#inquiries',
-                        bind: {
-                            pressed:
-                                '{(routeHash == "#inquiries" || routeHash == "#inquiry" || routeHash == "#pda" ) ? true : false}',
+                        {
+                            iconCls: 'md-icon-business-center md-icon-outlined',
+                            icon: 'business_center',
+                            cls: 'chameleon_main_menu_portcalls',
+                            name: 'Port calls',
+                            slug: 'portcall',
+                            mixPanelSlug: 'portCalls',
+                            skipEditPermission: true,
+                            role: 'agent', //set this if menu is specific for role
+                            hash: '#portcalls',
+                            bind: {
+                                pressed:
+                                    '{(routeHash == "#portcalls" || routeHash == "#portcall" || routeHash == "#invitations") ? true : false}',
+                                permission: '{userPermissions}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-contacts md-icon-outlined',
-                        icon: 'contacts',
-                        hidden: false,
-                        skipEditPermission: true,
-                        name: 'Directory',
-                        mixPanelSlug: 'directory',
-                        hash: '#directory/agents',
-                        testId: 'directoryIcon',
-                        role: 'principal', //set this if menu is specific for role
-                        bind: {
-                            pressed: '{(routeHash == "#directory" ) ? true : false}',
-                            permission: '{userPermissions}',
+                        {
+                            iconCls: 'md-icon-live-help md-icon-outlined',
+                            icon: 'live_help',
+                            hidden: false,
+                            skipEditPermission: true,
+                            name: 'Enquiries',
+                            role: 'agent', //set this if menu is specific for role
+                            mixPanelSlug: 'enquiries',
+                            hash: '#inquiries',
+                            bind: {
+                                pressed:
+                                    '{(routeHash == "#inquiries" || routeHash == "#inquiry" || routeHash == "#pda" ) ? true : false}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-contacts md-icon-outlined',
-                        name: 'Company database',
-                        icon: 'contacts',
-                        cls: 'chameleon_main_menu_cdb',
-                        hash: '#companydatabase',
-                        slug: 'cdb',
-                        role: 'agent', //set this if menu is specific for role
-                        mixPanelSlug: 'companyDatabase',
-                        skipEditPermission: true,
-                        bind: {
-                            pressed: '{routeHash == "#companydatabase" ? true : false}',
-                            permission: '{userPermissions}',
+                        {
+                            iconCls: 'md-icon-contacts md-icon-outlined',
+                            icon: 'contacts',
+                            hidden: false,
+                            skipEditPermission: true,
+                            name: 'Directory',
+                            mixPanelSlug: 'directory',
+                            hash: '#directory/agents',
+                            testId: 'directoryIcon',
+                            role: 'principal', //set this if menu is specific for role
+                            bind: {
+                                pressed: '{(routeHash == "#directory" ) ? true : false}',
+                                permission: '{userPermissions}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-outlined md-icon-task-alt',
-                        icon: '',
-                        customIcon: 'md-icon-outlined md-icon-task-alt',
-                        hidden: false,
-                        name: 'Task manager',
-                        hash: '#taskmanager',
-                        slug: 'taskManager',
-                        role: 'agent', //set this if menu is specific for role
-                        mixPanelSlug: 'taskManager',
-                        skipEditPermission: true,
-                        bind: {
-                            pressed: '{(routeHash == "#taskmanager") ? true : false}',
-                            permission: '{userPermissions}',
+                        {
+                            iconCls: 'md-icon-contacts md-icon-outlined',
+                            name: 'Company database',
+                            icon: 'contacts',
+                            cls: 'chameleon_main_menu_cdb',
+                            hash: '#companydatabase',
+                            slug: 'cdb',
+                            role: 'agent', //set this if menu is specific for role
+                            mixPanelSlug: 'companyDatabase',
+                            skipEditPermission: true,
+                            bind: {
+                                pressed: '{routeHash == "#companydatabase" ? true : false}',
+                                permission: '{userPermissions}',
+                            },
+                            company_id: 0,
                         },
-                        company_id: 0,
-                    },
-                    {
-                        iconCls: 'md-icon-calculate md-icon-outlined',
-                        icon: 'calculate',
-                        // customIcon: 'abraxa-icon-money',
-                        hidden: false,
-                        name: 'Port cost engine',
-                        hash: '#calculator',
-                        slug: 'portCostEngine',
-                        role: 'agent', //set this if menu is specific for role
-                        company_id: 0,
-                        bind: {
-                            pressed: '{(routeHash == "#calculator") ? true : false}',
+                        {
+                            iconCls: 'md-icon-outlined md-icon-task-alt',
+                            icon: '',
+                            customIcon: 'md-icon-outlined md-icon-task-alt',
+                            hidden: false,
+                            name: 'Task manager',
+                            hash: '#taskmanager',
+                            slug: 'taskManager',
+                            role: 'agent', //set this if menu is specific for role
+                            mixPanelSlug: 'taskManager',
+                            skipEditPermission: true,
+                            bind: {
+                                pressed: '{(routeHash == "#taskmanager") ? true : false}',
+                                permission: '{userPermissions}',
+                            },
+                            company_id: 0,
                         },
-                    },
-                    {
-                        iconCls: 'md-icon-attach-modeny md-icon-outlined',
-                        icon: 'attach_money',
-                        name: 'Financial',
-                        slug: 'financial',
-                        role: 'principal', //set this if menu is specific for role
-                        hash: '#comingsoon',
-                        bind: {
-                            pressed: '{(routeHash == "#financial") ? true : false}',
+                        {
+                            iconCls: 'md-icon-calculate md-icon-outlined',
+                            icon: 'calculate',
+                            // customIcon: 'abraxa-icon-money',
+                            hidden: false,
+                            name: 'Port cost engine',
+                            hash: '#calculator',
+                            slug: 'portCostEngine',
+                            role: 'agent', //set this if menu is specific for role
+                            company_id: 0,
+                            bind: {
+                                pressed: '{(routeHash == "#calculator") ? true : false}',
+                            },
                         },
-                        company_id: 0,
-                    },
-                ],
-                // filters: [
-                //     {
-                //         filterFn: function (record) {
-                //             let current_company_id = Ext.Viewport.getViewModel()
-                //                 .get('currentUser')
-                //                 .get('current_company_id');
-                //             return record.get('company_id') == current_company_id || record.get('company_id') == 0;
-                //         },
-                //     },
-                //     {
-                //         //filter for role this is needed when module is for specific role agent,principal,shipowner etc.
-                //         filterFn: function (record) {
-                //             let currentUserType = Ext.Viewport.getViewModel()
-                //                 .get('currentUser')
-                //                 .getCompany()
-                //                 .get('type');
-                //             if (record.get('role')) {
-                //                 // check if menu has role attribute
-                //                 return record.get('role') && record.get('role') == currentUserType;
-                //             } else {
-                //                 return true;
-                //             }
-                //         },
-                //     },
-                // ],
+                        {
+                            iconCls: 'md-icon-attach-modeny md-icon-outlined',
+                            icon: 'attach_money',
+                            name: 'Financial',
+                            slug: 'financial',
+                            role: 'principal', //set this if menu is specific for role
+                            hash: '#comingsoon',
+                            bind: {
+                                pressed: '{(routeHash == "#financial") ? true : false}',
+                            },
+                            company_id: 0,
+                        },
+                    ],
+                    filters: [
+                        {
+                            filterFn: function (record) {
+                                let current_company_id = Ext.Viewport.getViewModel()
+                                    .get('currentUser')
+                                    .get('current_company_id');
+                                return record.get('company_id') == current_company_id || record.get('company_id') == 0;
+                            },
+                        },
+                        {
+                            //filter for role this is needed when module is for specific role agent,principal,shipowner etc.
+                            filterFn: function (record) {
+                                let currentUserType = Ext.Viewport.getViewModel()
+                                    .get('currentUser')
+                                    .getCompany()
+                                    .get('type');
+                                if (record.get('role')) {
+                                    // check if menu has role attribute
+                                    return record.get('role') && record.get('role') == currentUserType;
+                                } else {
+                                    return true;
+                                }
+                            },
+                        },
+                    ],
+                },
             },
             ripple: false,
             itemRipple: {

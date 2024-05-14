@@ -12,8 +12,7 @@
     "pivot": false,
     "pivotd3": false,
     "pivotlocale": false,
-    "froalaeditor": true,
-    "materialicons": true
+    "froalaeditor": true
   },
   "debug": true,
   "license": "b116e32e-0847-4764-94ef-a16987070409",

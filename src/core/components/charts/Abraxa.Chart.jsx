@@ -1,5 +1,3 @@
-import Column2D from "fusioncharts/fusioncharts.charts";
-
 import '../../mixins/Abraxa.fusioncharts.Mixin.jsx';
 Ext.define('Abraxa.Chart', {
     extend: 'Ext.Component',
@@ -45,7 +43,7 @@ Ext.define('Abraxa.Chart', {
         me.setData(null);
         if (me.getFusionChart()) me.getFusionChart().dispose();
 
-        // me.callParent();
+        console.log('doDestroy', arguments);
     },
 
     updateValue: function (value) {
@@ -59,30 +57,4 @@ Ext.define('Abraxa.Chart', {
     updateData: function (data) {
         this.mixins.fusionchart.updateData.call(this, data);
     },
-    privates: {
-        // // Overrides a private method in Ext.mixin.Observable
-        // doAddListener: function (ename) {
-        //     var me = this,
-        //         result;
-        //     result = me.callParent(arguments);
-        //     this.mixins.froalaeditor.handleAddListener.call(this, ename);
-        //     return result;
-        // },
-        // // Overrides a private method in Ext.mixin.Observable
-        // doRemoveListener: function (ename) {
-        //     var me = this,
-        //         result;
-        //     result = me.callParent(arguments);
-        //     this.mixins.froalaeditor.handleRemoveListener.call(this, ename);
-        //     return result;
-        // }
-    },
-    // listeners: {
-    //     resize: function (chart, width, height) {
-    //         if (chart.getFusionChart()) {
-    //             console.log(chart.getFusionChart());
-    //             chart.getFusionChart().resizeTo(width, height);
-    //         }
-    //     },
-    // },
 });

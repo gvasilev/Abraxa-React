@@ -13,6 +13,20 @@ const App = () => {
         Cookies.set('token', tokenClaims.__raw);
     };
 
+    const LogoutButton = () => {
+        const { logout } = useAuth0();
+
+        const handleLogout = () => {
+            logout({ logoutParams: { returnTo: window.location.origin } })
+        };
+
+        return (
+            <button id="logoutButton" onClick={handleLogout} style={{ display: 'none' }}>
+                Logout
+            </button>
+        );
+    };
+
     if (isLoading) {
         return <Preloader />;
     }
@@ -24,7 +38,13 @@ const App = () => {
         fetchToken();
 
         return (
-            <TempView />
+            <div style={{
+                boxSizing:'border-box',height:'100%',
+                display:'flex',flexDirection:'column'
+                }}>
+                <TempView />
+                <LogoutButton />
+            </div>
         );
     } else {
         loginWithRedirect();

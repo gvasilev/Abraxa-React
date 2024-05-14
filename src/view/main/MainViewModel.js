@@ -18,9 +18,9 @@ import '../../store/common/DefaultUnits.jsx';
 import '../../store/commodities/Commodities.jsx';
 import '../../store/vessels/Vessels.jsx';
 import '../../store/directory/agents/Agents.jsx';
-import '../../view/main/DefaultHeaderContent';
 import '../../store/invitations/Invitations.jsx';
 import '../../store/settings/CompanyOffices.jsx';
+import '../../view/main/DefaultHeaderContent';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',
@@ -802,9 +802,7 @@ Ext.define('Abraxa.view.main.MainViewModel', {
                 deep: true,
             },
             get: function (user) {
-               if(user && user.getCompany()) {
-                   return user.getCompany();
-               }
+                if (user && user.getCompany()) return user.getCompany();
             },
         },
         offices: {

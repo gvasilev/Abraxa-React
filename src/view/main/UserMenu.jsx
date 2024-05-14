@@ -482,7 +482,10 @@ Ext.define('Abraxa.view.main.UserMenu', {
                             cls: 'a-menu-logout',
                             iconCls: 'md-icon-exit-to-app',
                             handler: function handler() {
-                                Ext.getApplication().logout();
+                                const logoutButton = document.getElementById('logoutButton');
+                                if (logoutButton) {
+                                    logoutButton.click(); // Simulate a click on the hidden logout button
+                                }
                             },
                         },
                     ],
