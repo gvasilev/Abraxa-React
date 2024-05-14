@@ -17,6 +17,15 @@
 Ext.define('Nishilua.data.proxy.Rest', {
     override: 'Ext.data.proxy.Rest',
 
+    config: {
+        actionMethods: {
+            create: 'POST',
+            read: 'GET',
+            update: 'PATCH',
+            destroy: 'DELETE',
+        },
+    },
+
     placeholdersRe: /\${([^}]*)}/g,
 
     /**
@@ -29,31 +38,39 @@ Ext.define('Nishilua.data.proxy.Rest', {
      * @return {String} The url
      */
     buildUrl: function (request) {
-        var me = this,
-            url = me.getUrl(request),
-            placeholderKeys = me._findPlaceholderKeys(url),
-            params = request.getParams();
+        console.log(this.getUrl(request));
+        // var me = this,
+        //     url = me.getUrl(request),
+        //     placeholderKeys = me._findPlaceholderKeys(url),
+        //     params = request.getParams();
 
-        // console.log('params', params);
+        // if (!me.getAppendId()) {
+        //     params = request.getParams();
+        //     if (params) {
+        //         delete params[me.getIdParam()];
+        //     }
+        // }
 
-        // Perform the replacements
-        placeholderKeys.forEach(function (placeholderKey) {
-            var value = this._findValue(params, placeholderKey);
-            if (Ext.isDefined(value)) {
-                url = url.replace('${' + placeholderKey + '}', value, 'g');
-            }
-        }, this);
-        request.setUrl(url);
+        // console.log('url', url);
 
-        // Delete the replaced object from params
-        placeholderKeys.forEach(function (placeholderKey) {
-            var tokens = placeholderKey.split('.');
-            delete params[tokens[0]];
-        }, this);
+        // // Perform the replacements
+        // placeholderKeys.forEach(function (placeholderKey) {
+        //     var value = this._findValue(params, placeholderKey);
+        //     if (Ext.isDefined(value)) {
+        //         url = url.replace('${' + placeholderKey + '}', value, 'g');
+        //     }
+        // }, this);
+        // request.setUrl(url);
 
-        // me.callParent([request]);
-        url = me.getUrl(request);
-        return url;
+        // // Delete the replaced object from params
+        // placeholderKeys.forEach(function (placeholderKey) {
+        //     var tokens = placeholderKey.split('.');
+        //     delete params[tokens[0]];
+        // }, this);
+
+        // // me.callParent([request]);
+        // url = me.getUrl(request);
+        return this.getUrl(request);
     },
 
     /**

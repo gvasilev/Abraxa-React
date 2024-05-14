@@ -1,9 +1,9 @@
 import ReExt from '@gusmano/reext';
 import './core/override/Abraxa.data.proxy.Ajax.js';
+import './core/override/Abraxa.data.proxy.Rest.js';
 import './core/override/Abraxa.AjaxRequest.jsx';
 import './core/override/Abraxa.Ajax.js';
 import './core/override/Server.js';
-import './core/override/Rest.js';
 import './core/components/AbraxaDiv.js';
 import './store/View.js';
 import './view/viewport/ViewportController.js';

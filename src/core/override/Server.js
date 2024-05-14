@@ -101,7 +101,7 @@ Ext.define('Nishilua.data.proxy.Server', {
             delete params[tokens[0]];
         }, this);
 
-        me.callParent([request]);
+        // me.callParent([request]);
         url = me.getUrl(request);
         return url;
     },
