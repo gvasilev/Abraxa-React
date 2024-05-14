@@ -23,22 +23,6 @@ window.mixpanel = mixpanel;
     await ReExtLoaderFunction(ReExtData);
     const { default: App } = await import('./App');
 
-    //Adding ExtJS application launch as there is no Ext.Vieport otherwise
-    Ext.application({
-        name: 'Abraxa',
-        viewport: {
-            controller: 'viewport',
-            viewModel: 'viewport',
-        },
-        defaultToken: 'dashboard',
-        stores: [
-            'View', // creates one global instance of the Menu store (Ext.getStore('Menu'))
-        ],
-        launch: function() {
-            Ext.Viewport.getController().loginUser();
-        }
-    });
-
     ReactDOM.createRoot(document.getElementById('root')).render(
         <Auth0Provider
             domain={import.meta.env.VITE_AUTH0_DOMAIN}

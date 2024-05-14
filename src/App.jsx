@@ -37,6 +37,22 @@ const App = () => {
     if (isAuthenticated) {
         fetchToken();
 
+        //Loading extjs app if user is authenticated
+        Ext.application({
+            name: 'Abraxa',
+            viewport: {
+                controller: 'viewport',
+                viewModel: 'viewport',
+            },
+            defaultToken: 'dashboard',
+            stores: [
+                'View', // creates one global instance of the Menu store (Ext.getStore('Menu'))
+            ],
+            launch: function() {
+                Ext.Viewport.getController().loginUser();
+            }
+        });
+
         return (
             <div style={{
                 boxSizing:'border-box',height:'100%',
