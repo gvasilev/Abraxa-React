@@ -507,6 +507,9 @@ Ext.define('Abraxa.view.invitations.InvitationsGrid', {
         },
     ],
     listeners: {
+        painted:function () {
+            console.log('painted');
+        },
         childtap: function (item, location, eOpts) {
             if (location.event.target.classList.contains('a_grid_action')) return false;
 

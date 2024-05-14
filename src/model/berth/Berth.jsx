@@ -1,3 +1,5 @@
+import '../cargo/Cargo.jsx';
+import './Service.jsx';
 Ext.define('Abraxa.model.berth.Berth', {
     extend: 'Ext.data.Model',
 

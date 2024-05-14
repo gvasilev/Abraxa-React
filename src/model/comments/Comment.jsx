@@ -1,3 +1,4 @@
+import '../likes/Like.jsx'
 Ext.define('Abraxa.model.comments.Comment', {
     extend: 'Ext.data.Model',
 

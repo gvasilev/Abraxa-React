@@ -1,3 +1,13 @@
+import '../account/Account.jsx';
+import '../payment/Payment.jsx';
+import './Voucher.jsx';
+import './Sharing.jsx';
+import './DisbursementMember.jsx';
+import '../approval/Approval.jsx';
+import '../portcall/Note.jsx';
+import '../task/Task.jsx';
+import '../document/Document.jsx';
+import '../portcall/Expense.jsx';
 Ext.define('Abraxa.model.disbursement.Disbursement', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

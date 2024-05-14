@@ -13,20 +13,20 @@ Ext.define('Abraxa.store.invitations.Invitations', {
         url: Env.ApiEndpoint + 'portcall-invitation',
     },
 
-    onProxyLoad: function (operation) {
-        //this.callParent([operation]);
-
-        this.doSomething();
-    },
-
-    doSomething: function () {
-        let id = this.invitation_id;
-        if (id) {
-            let record = this.getById(id);
-            Abraxa.getApplication().getController('AbraxaController').showInviteDialog(record);
-            this.invitation_id = null;
-        }
-    },
+    // onProxyLoad: function (operation) {
+    //     //this.callParent([operation]);
+    //
+    //     this.doSomething();
+    // },
+    //
+    // doSomething: function () {
+    //     let id = this.invitation_id;
+    //     if (id) {
+    //         let record = this.getById(id);
+    //         Abraxa.getApplication().getController('AbraxaController').showInviteDialog(record);
+    //         this.invitation_id = null;
+    //     }
+    // },
     sorters: [
         {
             property: 'id',

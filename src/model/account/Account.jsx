@@ -1,3 +1,6 @@
+import '../disbursement/Disbursement.jsx';
+import './AccountMember.jsx';
+import '../payment/Payment.jsx';
 Ext.define('Abraxa.model.account.Account', {
     extend: 'Ext.data.Model',
     fields: [

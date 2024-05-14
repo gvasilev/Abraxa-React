@@ -1,3 +1,4 @@
+import './InvitationsViewModel.jsx'
 Ext.define('Abraxa.view.invitations.InvitationsLayout', {
     extend: 'Ext.Container',
     xtype: 'invitations.layout',

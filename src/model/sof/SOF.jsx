@@ -1,3 +1,6 @@
+import './Event.jsx';
+import './Remark.jsx';
+import './SofSignature.jsx';
 Ext.define('Abraxa.model.sof.SOF', {
     extend: 'Ext.data.Model',
     fields: [

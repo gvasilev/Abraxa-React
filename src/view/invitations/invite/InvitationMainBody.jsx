@@ -1,6 +1,6 @@
 import './InvitationContent';
 import '../InvitationController';
-import './InvitationMainViewModel';
+import './InvitationMainViewModel.jsx';
 
 Ext.define('Abraxa.view.invitations.invite.InvitationMainBody', {
     extend: 'Ext.Container',

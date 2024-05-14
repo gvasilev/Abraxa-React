@@ -1,3 +1,5 @@
+import './DocumentFolderFile.jsx';
+import './FolderMember.jsx';
 Ext.define('Abraxa.model.adocs.DocumentFolder', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

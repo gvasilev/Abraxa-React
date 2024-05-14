@@ -1,3 +1,4 @@
+import './SettingsMainViewModel.jsx';
 Ext.define('Abraxa.view.settings.SettingsMainLayout', {
     extend: 'Ext.Container',
     xtype: 'settings.main',

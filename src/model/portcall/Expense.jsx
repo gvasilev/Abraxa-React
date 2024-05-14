@@ -1,3 +1,6 @@
+import './Attachment.jsx';
+import '../disbursement/Voucher.jsx';
+import '../comments/Comment.jsx';
 Ext.define('Abraxa.model.portcall.Expense', {
     extend: 'Ext.data.Model',
     fields: [

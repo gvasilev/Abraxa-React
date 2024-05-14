@@ -1,3 +1,4 @@
+import '../voyage/Voyage.jsx';
 Ext.define('Abraxa.model.invitation.Invitation', {
     extend: 'Ext.data.Model',
     fields: [

@@ -1,3 +1,5 @@
+import './CargoDocuments.jsx';
+import './CargoAdditional.jsx';
 Ext.define('Abraxa.model.cargo.Cargo', {
     extend: 'Ext.data.Model',
 

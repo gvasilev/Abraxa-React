@@ -1,3 +1,4 @@
+import '../document/Document.jsx';
 Ext.define('Abraxa.model.disbursement.Voucher', {
     extend: 'Ext.data.Model',
     fields: [

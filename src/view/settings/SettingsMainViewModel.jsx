@@ -1,3 +1,4 @@
+import '../../store/roles/Roles.jsx';
 Ext.define('Abraxa.view.settings.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.settings-main-viewmodel',

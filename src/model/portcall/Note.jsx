@@ -1,3 +1,4 @@
+import '../likes/Like.jsx';
 Ext.define('Abraxa.model.portcall.Note', {
     extend: 'Ext.data.Model',
     fields: [

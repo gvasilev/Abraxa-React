@@ -1,6 +1,8 @@
 
 import moment from 'moment';
-
+import '../comments/Comment.jsx';
+import '../portcall/Attachment.jsx';
+import '../likes/Like.jsx';
 Ext.define('Abraxa.model.task.Task', {
     extend: 'Ext.data.Model',
     fields: [

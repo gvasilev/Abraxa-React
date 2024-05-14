@@ -1,3 +1,7 @@
+import '../inquiry/Inquiry.jsx';
+import '../portcall/Portcall.jsx';
+import '../invitation/Invitation.jsx';
+import '../task/Task.jsx';
 Ext.define('Abraxa.model.voyage.Voyage', {
     extend: 'Ext.data.Model',
     fields: [

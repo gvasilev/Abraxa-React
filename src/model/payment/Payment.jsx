@@ -1,3 +1,7 @@
+import '../account/Account.jsx';
+import '../portcall/Attachment.jsx';
+import '../portcall/Note.jsx';
+import '../task/Task.jsx';
 Ext.define('Abraxa.model.payment.Payment', {
     extend: 'Ext.data.Model',
     fields: [

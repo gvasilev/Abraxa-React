@@ -1,3 +1,5 @@
+import '../adocs/DocumentFolderFile.jsx';
+import '../approval/Approval.jsx'
 Ext.define('Abraxa.model.document.Document', {
     extend: 'Ext.data.Model',
     fields: [

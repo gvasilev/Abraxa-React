@@ -1,3 +1,4 @@
+import '../sharing/Permission.jsx';
 Ext.define('Abraxa.model.portcall.Member', {
     extend: 'Ext.data.Model',
     fields: [

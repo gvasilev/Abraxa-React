@@ -1,3 +1,5 @@
+import './DocumentData.js';
+import './DocumentPage.jsx';
 Ext.define('Abraxa.model.adocs.Document', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

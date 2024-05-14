@@ -7,11 +7,11 @@ Ext.define('Abraxa.view.invitations.InvitationViewModel', {
             type: 'invitations',
             autoLoad: true,
             filters: '{invitationFilter}',
-            // grouper: {
-            //     groupFn: function groupFn(record) {
-            //         return record.get("object_name");
-            //     }
-            // },
+            grouper: {
+                groupFn: function groupFn(record) {
+                    return record.get("object_name");
+                }
+            },
         },
     },
     formulas: {
@@ -21,6 +21,7 @@ Ext.define('Abraxa.view.invitations.InvitationViewModel', {
                 deep: true,
             },
             get: function (user) {
+                console.log(user);
                 if (user) {
                     if (this.get('invitations')) {
                         this.get('invitations').clearFilter();
