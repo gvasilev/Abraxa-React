@@ -1,3 +1,5 @@
+import '../likes/Like';
+
 Ext.define('Abraxa.model.cdb.Note', {
     extend: 'Ext.data.Model',
     fields: [

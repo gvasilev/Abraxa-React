@@ -1,3 +1,5 @@
+import '../../model/portcall/Portcall';
+
 Ext.define('Abraxa.store.company.CompanyPortcalls', {
     extend: 'Ext.data.Store',
     alias: 'store.company_portcalls',

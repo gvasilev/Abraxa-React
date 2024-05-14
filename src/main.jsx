@@ -5,6 +5,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 import 'moment-timezone';
+import numeral from 'numeral';
 
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
@@ -15,6 +16,7 @@ mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
 // Declare global variables
 window.moment = moment;
 window.mixpanel = mixpanel;
+window.numeral = numeral;
 
 (async () => {
     Fill();

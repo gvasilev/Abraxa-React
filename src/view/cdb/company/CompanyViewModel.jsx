@@ -3,6 +3,7 @@ import '../../../store/common/OrganizationsRemote.jsx';
 import '../../../store/common/City.jsx';
 import '../../../store/company/CreditRatings.jsx';
 import '../../../store/common/DefaultExpenseItems.jsx';
+import '../../../store/company/CompanyPortcalls';
 import moment from 'moment';
 
 Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
@@ -416,7 +417,9 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
                 if (deals) {
                     let company_deals = 0,
                         percentage = 0,
-                        all_deals = 0;
+                        all_deals = 0,
+                        stroke,
+                        strokeOffset;
                     company_deals = deals.deals;
                     all_deals = deals.all_deals;
                     percentage = 100 * (company_deals / all_deals);

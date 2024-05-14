@@ -1,3 +1,5 @@
+import '../../model/payment/Payment';
+
 Ext.define('Abraxa.store.payments.Payments', {
     extend: 'Ext.data.Store',
     alias: 'store.payments',

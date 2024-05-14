@@ -1,3 +1,5 @@
+import '../payment/Payment';
+
 Ext.define('Abraxa.model.cdb.VirtualAccount', {
     extend: 'Ext.data.Model',
     fields: [

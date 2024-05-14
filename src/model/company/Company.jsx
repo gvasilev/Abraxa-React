@@ -1,6 +1,10 @@
 
 import '../cdb/Compliance.jsx';
 import '../cdb/Department.jsx';
+import '../cdb/Note';
+import '../portcall/Attachment';
+import '../cdb/VirtualAccount.jsx';
+import '../account/Account.jsx';
 Ext.define('Abraxa.model.company.Company', {
     extend: 'Ext.data.Model',
     fields: [

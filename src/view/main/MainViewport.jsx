@@ -8,6 +8,7 @@ import './MainHeader';
 import '../dashboard/DashboardMainContainer';
 import '../cdb/MainView';
 import '../inbox/InboxMainView';
+import '../cdb/company/Company.jsx';
 
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',

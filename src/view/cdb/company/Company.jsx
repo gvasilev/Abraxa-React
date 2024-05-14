@@ -16,6 +16,7 @@ import './financials/virtualAccounts/VirtualAccountRightCard.jsx';
 import './agreements/Main.jsx';
 import './Compliance.jsx';
 import './Documents.jsx';
+import './CompanyHeader';
 Ext.define('Abraxa.view.cdb.company.Company', {
     extend: 'Ext.Container',
     alias: 'widget.company',

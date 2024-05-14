@@ -1,4 +1,5 @@
 import './TransactionsGrid.jsx';
+import '../../../../../store/payments/Payments.jsx';
 Ext.define('Abraxa.view.cdb.company.financials.transations.TransactionsView', {
     extend: 'Ext.Container',
     flex: 1,

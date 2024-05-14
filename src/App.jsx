@@ -4,6 +4,7 @@ import './preloader/Preloader.jsx';
 import './preloader/Preloader.css';
 import Preloader from './preloader/Preloader.jsx';
 import './utils/AbraxaConstants.jsx';
+import './utils/AbraxaFunctions';
 import TempView from './TempView.jsx';
 
 const App = () => {
