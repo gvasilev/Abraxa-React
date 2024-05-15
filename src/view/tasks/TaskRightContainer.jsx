@@ -1,4 +1,4 @@
-import '../../core/AbraxaDiv.jsx';
+import '../../core/components/AbraxaDiv.jsx';
 import '../../core/components/combo/SubObjects.jsx';
 import '../../core/UserCombo.jsx';
 import '../../core/components/fields/DateTimeField.jsx';

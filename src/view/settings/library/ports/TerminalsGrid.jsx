@@ -1,3 +1,5 @@
+import './SuggestDialogs/SuggestTerminal/SuggestTerminalDialog.jsx';
+import '../../../../model/suggestions/Terminal.jsx';
 Ext.define('Abraxa.view.settings.library.ports.TerminalsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.terminals.grid',
@@ -153,14 +155,14 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsGrid', {
                                     data: {
                                         selectedPort: port,
                                         currentUser: currentUser,
-                                        parent_id: legacyPort.uuid,
+                                        // parent_id: legacyPort.uuid,
                                     },
                                     links: {
                                         record: {
                                             type: 'Abraxa.model.suggestions.Terminal',
                                             create: {
                                                 legacy_parent_id: port.get('port_id'),
-                                                parent_uuid: legacyPort.uuid,
+                                                // parent_uuid: legacyPort.uuid,
                                             },
                                         },
                                     },

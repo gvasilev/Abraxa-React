@@ -1,4 +1,6 @@
 import '../model/common/Company.jsx';
+import '../store/document/Document.jsx';
+import '../view/documents/DocumentDialog.jsx';
 Ext.define('Abraxa.controller.AbraxaController', {
     extend: 'Ext.app.Controller',
 

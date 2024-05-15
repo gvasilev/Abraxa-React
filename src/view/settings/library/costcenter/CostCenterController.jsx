@@ -1,3 +1,5 @@
+import '../../../../model/costcenter/CostCenterService.jsx';
+import '../../../../model/costcenter/SubCostCenter.jsx';
 Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.CostCenterController',
@@ -223,9 +225,8 @@ Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
                 costCenterFromStore = costCenterStore.getById(costCenter.get('id'));
             let costCenterItem = costCenterFromStore
                     .get('items')
-                    .find((item) => item.default_expense_item_id === service.get('id')),
-                model;
-            model = Ext.create('Abraxa.model.costcenter.CostCenterService', {
+                    .find((item) => item.default_expense_item_id === service.get('id'));
+           const model = Ext.create('Abraxa.model.costcenter.CostCenterService', {
                 id: costCenterItem.id,
             });
             model.set(cmp.cost_center_value, cmp.getValue());

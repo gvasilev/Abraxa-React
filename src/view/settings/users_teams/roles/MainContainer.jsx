@@ -1,4 +1,5 @@
 import './RolesGrid.jsx';
+import './AddEditRole.jsx';
 Ext.define('Abraxa.view.settings.users_teams.roles.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.users_teams.roles.main.container',

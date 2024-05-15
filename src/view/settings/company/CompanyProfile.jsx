@@ -1,6 +1,7 @@
 import '../../../core/components/AbraxaCountryCombo.jsx';
 import '../../../core/components/Abraxa.CityCombo.jsx';
 import '../../../core/components/Abraxa.EmailField.jsx';
+import './AssignBanksToPublicProfile.jsx';
 Ext.define('Abraxa.view.settings.company.CompanyProfile', {
     extend: 'Ext.Container',
     xtype: 'settings.company.profile',

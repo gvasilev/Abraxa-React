@@ -1,3 +1,5 @@
+import './ServiceLibraryController.jsx';
+import './AssignCostCenterPopup.jsx';
 Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
     extend: 'Ext.Container',
     xtype: 'ServiceRightPanel',

@@ -27,7 +27,7 @@ Ext.define('Abraxa.view.settings.lirbrary.SharedCostCentersButton', {
     },
     afterRender: function () {
         const button = this;
-        if (this.upVM().get('currentUser').data.company.type !== 'principal') return;
+        if (this.upVM().get('currentCompany') && this.upVM().get('currentCompany').get('type') !== 'principal') return;
         button.sharedCostCenters().then((response) => {
             const data = JSON.parse(response.responseText).data;
             const vm = this.up('settings\\.library\\.main').getViewModel();

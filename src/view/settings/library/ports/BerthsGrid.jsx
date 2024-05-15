@@ -1,3 +1,4 @@
+import './SuggestDialogs/SuggestBerth/SuggestBerthDialog.jsx';
 Ext.define('Abraxa.view.settings.library.ports.BerthsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.berths.grid',

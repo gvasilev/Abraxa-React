@@ -1,4 +1,5 @@
 import './CostCenterController.jsx';
+import './CreateCostCenterPopup.jsx';
 Ext.define('Abraxa.view.settings.library.cost_center.CostCenterGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'CostCenterGrid',

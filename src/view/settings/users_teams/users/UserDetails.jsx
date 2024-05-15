@@ -1,4 +1,7 @@
 import './UserController.jsx';
+import './UserDetailsMain.jsx';
+import './UserDetailsSecurity.jsx';
+import './UserDetailsSessionHistory.jsx';
 Ext.define('Abraxa.view.settings.users_teams.users.UserDetails', {
     extend: 'Ext.Container',
     xtype: 'usersettings.userdetails',

@@ -1,3 +1,5 @@
+import './CreateTeam.jsx';
+import './UsersHeads.jsx';
 Ext.define('Abraxa.view.settings.user_teams.teams.TeamsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.teams.grid',

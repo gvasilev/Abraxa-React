@@ -1,4 +1,4 @@
-import '../document/Document.jsx'
+import '../document/Document.jsx';
 Ext.define('Abraxa.model.portcall.Attachment', {
     extend: 'Ext.data.Model',
     fields: [

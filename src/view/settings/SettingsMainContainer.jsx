@@ -9,6 +9,9 @@ import './integraions/IntegrationsMain.jsx';
 import './users_teams/users/UserDetails.jsx';
 import './users_teams/roles/RoleDetails.jsx';
 import './automation/templates/task/TemplatesDetails.jsx';
+import './users_teams/teams/TeamDetails.jsx';
+import './offices/OfficeDetails.jsx';
+import './currencies/CurrenciesDetails.jsx';
 Ext.define('Abraxa.view.settings.SettingsMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.main.container',

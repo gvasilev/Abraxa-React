@@ -1,3 +1,5 @@
+import './AddTax.jsx';
+import './TaxesEditMenu.jsx';
 Ext.define('Abraxa.view.settings.library.taxes.TaxesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.taxes.grid',

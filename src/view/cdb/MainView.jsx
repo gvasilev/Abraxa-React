@@ -1,6 +1,6 @@
 import './MainController.js';
 import '../main/MainHeader.jsx';
-import '../../core/components/AbraxaDiv.js';
+import '../../core/components/AbraxaDiv.jsx';
 import './CdbMainViewModel.jsx';
 import './company/CompanyView.jsx';
 import './CdbHeader';

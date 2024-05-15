@@ -1,6 +1,6 @@
 // Core Components
 import '../core/components/AbraxaContainer.js';
-import '../core/components/AbraxaDiv.js';
+import '../core/components/AbraxaDiv.jsx';
 import '../core/components/AbraxaPanel.js';
 
 // Common Components

@@ -1,3 +1,4 @@
+import './SofEventAliasForm.jsx';
 Ext.define('Abraxa.view.settings.library.sof.SofEventsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.sof.grid',

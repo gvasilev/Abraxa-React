@@ -1,3 +1,6 @@
+import './SuggestDialogs/SuggestPort/SuggestPortDialog.jsx';
+import '../../../../model/suggestions/Port.jsx';
+import '../../system/ports/AddPort.jsx';
 Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.portsserved.grid',

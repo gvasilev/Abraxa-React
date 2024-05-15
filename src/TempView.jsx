@@ -6,7 +6,7 @@ import './core/override/Abraxa.Ajax.js';
 import './core/override/Server.js';
 import './core/override/Abraxa.data.ChainedStore.jsx';
 import './core/override/Abraxa.data.Model.jsx';
-import './core/components/AbraxaDiv.js';
+import './core/components/AbraxaDiv.jsx';
 import './store/View.js';
 import './view/viewport/ViewportController.js';
 import './view/viewport/ViewportModel.js';

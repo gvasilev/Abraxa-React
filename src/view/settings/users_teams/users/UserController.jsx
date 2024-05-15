@@ -6,7 +6,7 @@ Ext.define('Abraxa.view.settings.users.UserController', {
         let form = element.up('dialog').down('formpanel');
         if (form.validate()) {
             let data = form.getValues();
-            inviteStore = Ext.ComponentQuery.query('grid[reference=userGrid]')[0].getStore();
+            const inviteStore = Ext.ComponentQuery.query('grid[reference=userGrid]')[0].getStore();
 
             if (element.up('dialog').upVM().get('users').findRecord('email', data.email)) {
                 Ext.Msg.alert('Oops', 'This user is already part of your company');

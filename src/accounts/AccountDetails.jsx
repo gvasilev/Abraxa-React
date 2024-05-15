@@ -1,7 +1,7 @@
 import '../utils/AbraxaConstants.jsx';
 import '../billing/Billing.jsx'
 import '../core/components/AbraxaFormlist.jsx'
-import '../view/portcall/agent/payments/PaymentsList.js'
+import '../view/portcall/agent/payments/PaymentsList.jsx'
 import '../view/tasks/TasksList.jsx'
 import '../view/comments/CommentsList.jsx'
 import '../view/comments/CommentsInput.jsx'
@@ -15,7 +15,7 @@ import '../store/common/OrganizationsRemote.jsx';
 
 // Core Components
 import '../core/components/AbraxaContainer.js';
-import '../core/components/AbraxaDiv.js';
+import '../core/components/AbraxaDiv.jsx';
 import '../core/components/AbraxaPanel.js';
 
 // Common Components

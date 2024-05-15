@@ -1,7 +1,7 @@
 import './MainController.js';
 import './MainToolbar.js';
 import './MainViewModel';
-import '../../core/components/AbraxaDiv.js';
+import '../../core/components/AbraxaDiv.jsx';
 import '../../core/override/Abraxa.Component.js';
 import './NotificationsMenu.jsx';
 import './MainHeader';

@@ -1,5 +1,9 @@
-
-
+import './Terminal.jsx';
+import './Berth.jsx';
+import './Holiday.jsx';
+import '../settings/port/WorkingTime.jsx';
+import '../settings/port/PortService.jsx';
+import '../portcall/Attachment.jsx';
 Ext.define('Abraxa.model.common.PortServed', {
     extend: 'Ext.data.Model',
     fields: [
