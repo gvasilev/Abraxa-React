@@ -5,6 +5,7 @@ import './preloader/Preloader.css';
 import Preloader from './preloader/Preloader.jsx';
 import './utils/AbraxaConstants.jsx';
 import './utils/AbraxaFunctions';
+import './core/components/AbraxaContainer';
 import TempView from './TempView.jsx';
 
 const App = () => {

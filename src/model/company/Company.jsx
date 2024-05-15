@@ -5,6 +5,7 @@ import '../cdb/Note';
 import '../portcall/Attachment';
 import '../cdb/VirtualAccount.jsx';
 import '../account/Account.jsx';
+import '../cdb/OrganizationPhone.jsx';
 Ext.define('Abraxa.model.company.Company', {
     extend: 'Ext.data.Model',
     fields: [

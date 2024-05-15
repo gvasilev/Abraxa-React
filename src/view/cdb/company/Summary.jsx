@@ -4,6 +4,7 @@ import '../../common/combo/PortsServed.jsx';
 import '../../../core/components/AbraxaCountryCombo.jsx';
 import '../../../core/components/Abraxa.CityCombo.jsx';
 import '../../../core/components/combo/OrganizationCombo.jsx';
+import './financials/overview/CreateReportingCurrency.jsx';
 
 Ext.define('Abraxa.view.cdb.company.Summary', {
     extend: 'Ext.Container',

@@ -71,8 +71,9 @@ Ext.define('Abraxa.view.cdb.company.financials.overview.CreateReportingCurrency'
                 let vm = me.upVM(),
                     dialog = me.up('dialog'),
                     object_record = vm.get('object_record'),
-                    currentUser = vm.get('currentUser');
-                form = dialog.down('formpanel');
+                    currentUser = vm.get('currentUser'),
+                    form = dialog.down('formpanel');
+
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     object_record.set('updated_by_user', currentUser.getData());

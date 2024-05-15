@@ -1,3 +1,5 @@
+import './AppointmentsDialog';
+
 Ext.define('Abraxa.view.cdb.company.CompanyController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.cdb.company.controller',

@@ -1,3 +1,4 @@
+import '../../model/cdb/Appointment';
 Ext.define('Abraxa.store.cdb.Appointments', {
     extend: 'Ext.data.Store',
     alias: 'store.CdbAppointmentsStore',

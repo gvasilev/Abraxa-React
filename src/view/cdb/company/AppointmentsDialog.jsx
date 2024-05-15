@@ -1,3 +1,5 @@
+import '../../../store/cdb/Appointments';
+
 Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
     extend: 'Ext.Dialog',
     xtype: 'AppointmentsDialog',

@@ -448,13 +448,13 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
         },
         reportingCurrency: {
             bind: {
-                bindTo: '{object_record.preferred_currency}',
-                deep: true,
+                preferred_currency: '{object_record.preferred_currency}',
+                companyCurrencies: '{companyCurrencies}',
             },
-            get: function (currency) {
-                if (currency) {
-                    let companyCurrencies = this.get('companyCurrencies');
-                    let currencyRecord = companyCurrencies.findRecord('currency', currency, 0, false, false, true);
+            get: function (data) {
+                if (data) {
+                    let companyCurrencies = data.companyCurrencies;
+                    let currencyRecord = companyCurrencies.findRecord('currency', data.preferred_currency, 0, false, false, true);
                     if (currencyRecord) {
                         return currencyRecord;
                     }

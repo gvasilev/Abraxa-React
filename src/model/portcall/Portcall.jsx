@@ -237,16 +237,16 @@ Ext.define('Abraxa.model.portcall.Portcall', {
                 if (record && record.getNomination()) return record.getNomination().get('voyage_number');
             },
         },
-        {
-            name: 'search_index',
-            depends: 'updated_at',
-            persist: false,
-            mapping: function (data) {
-                if (data) {
-                    return this.buildSearchIndex(data);
-                }
-            },
-        },
+        // {
+        //     name: 'search_index',
+        //     depends: 'updated_at',
+        //     persist: false,
+        //     mapping: function (data) {
+        //         if (data) {
+        //             return this.buildSearchIndex(data);
+        //         }
+        //     },
+        // },
         {
             name: 'status_name',
             mapping: function (data) {
@@ -255,19 +255,19 @@ Ext.define('Abraxa.model.portcall.Portcall', {
                 }
             },
         },
-        {
-            name: 'cargo_string',
-            depends: 'updated_at',
-            persist: false,
-            mapping: function (data) {
-                if (data && data.cargoes && data.cargoes.length) {
-                    let cargo_names = data.cargoes.map(function (value) {
-                        return value.commodity;
-                    });
-                    return this.buildSearchIndex(cargo_names);
-                }
-            },
-        },
+        // {
+        //     name: 'cargo_string',
+        //     depends: 'updated_at',
+        //     persist: false,
+        //     mapping: function (data) {
+        //         if (data && data.cargoes && data.cargoes.length) {
+        //             let cargo_names = data.cargoes.map(function (value) {
+        //                 return value.commodity;
+        //             });
+        //             return this.buildSearchIndex(cargo_names);
+        //         }
+        //     },
+        // },
         {
             name: 'appointing_party',
             depends: 'updated_at',

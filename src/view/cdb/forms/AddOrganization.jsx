@@ -1,3 +1,5 @@
+import '../../../view/login/FormError';
+
 Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
     xtype: 'companydatabase.create',
     extend: 'Ext.Dialog',

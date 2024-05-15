@@ -1,3 +1,5 @@
+import '../forms/AddOrganization';
+
 Ext.define('Abraxa.view.cdb.company.CompanyEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'company.edit.menu',

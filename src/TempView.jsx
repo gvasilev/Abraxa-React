@@ -4,6 +4,7 @@ import './core/override/Abraxa.data.proxy.Rest.js';
 import './core/override/Abraxa.AjaxRequest.jsx';
 import './core/override/Abraxa.Ajax.js';
 import './core/override/Server.js';
+import './core/override/Abraxa.data.ChainedStore.jsx';
 import './core/components/AbraxaDiv.js';
 import './store/View.js';
 import './view/viewport/ViewportController.js';

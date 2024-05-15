@@ -36,24 +36,24 @@ Ext.define('Abraxa.view.cdb.company.Portcalls', {
                             padding: '0 8',
                             flex: 1,
                             items: [
-                                // {
-                                //     xtype: 'fusionchart',
-                                //     flex: 1,
-                                //     cls: 'abraxa-chart a-stakedcolumn a-cdb-chart',
-                                //     type: 'stackedcolumn2d',
-                                //     itemId: 'companyPortcallsChart',
-                                //     height: '100%',
-                                //     width: '100%',
-                                //     events: {
-                                //         dataPlotClick: function (e) {
-                                //             let vm = this.component.upVM(),
-                                //                 months = vm.get('months');
-                                //             if (months) {
-                                //                 vm.set('currentMonth', months[e.data.index]);
-                                //             }
-                                //         },
-                                //     },
-                                // },
+                                {
+                                    xtype: 'fusionchart',
+                                    flex: 1,
+                                    cls: 'abraxa-chart a-stakedcolumn a-cdb-chart',
+                                    type: 'stackedcolumn2d',
+                                    itemId: 'companyPortcallsChart',
+                                    height: '100%',
+                                    width: '100%',
+                                    events: {
+                                        dataPlotClick: function (e) {
+                                            let vm = this.component.upVM(),
+                                                months = vm.get('months');
+                                            if (months) {
+                                                vm.set('currentMonth', months[e.data.index]);
+                                            }
+                                        },
+                                    },
+                                },
                             ],
                         },
                     ],
