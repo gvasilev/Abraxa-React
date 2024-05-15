@@ -1,3 +1,4 @@
+import '../../model/tax/Tax.jsx';
 Ext.define('Abraxa.store.taxes.Taxes', {
     extend: 'Ext.data.Store',
     alias: 'store.taxes',

@@ -1,4 +1,6 @@
 import './SettingsMainViewModel.jsx';
+import './SettingsMenu.jsx';
+import './SettingsMainContainer.jsx';
 Ext.define('Abraxa.view.settings.SettingsMainLayout', {
     extend: 'Ext.Container',
     xtype: 'settings.main',

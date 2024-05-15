@@ -5,6 +5,7 @@ import './core/override/Abraxa.AjaxRequest.jsx';
 import './core/override/Abraxa.Ajax.js';
 import './core/override/Server.js';
 import './core/override/Abraxa.data.ChainedStore.jsx';
+import './core/override/Abraxa.data.Model.jsx';
 import './core/components/AbraxaDiv.js';
 import './store/View.js';
 import './view/viewport/ViewportController.js';
@@ -12,7 +13,8 @@ import './view/viewport/ViewportModel.js';
 import './view/main/MainViewport.jsx';
 import './controller/AbraxaController.jsx';
 import './core/globals/Abraxa.Socket.js';
-
+import './view/settings/SettingsMainLayout.jsx';
+import './view/error/404.jsx';
 // Import CSS
 import './index.css';
 import '../styles/1.css';

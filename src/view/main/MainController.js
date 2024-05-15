@@ -280,6 +280,8 @@ Ext.define('Abraxa.view.main.MainController', {
         var me = this,
             store = Ext.getStore('View'),
             entry = store.getById(type);
+        console.log(entry);
+
         // Ext.getCmp('main-viewport').removeAll(true, false);
 
         if (type === 'directory') {
