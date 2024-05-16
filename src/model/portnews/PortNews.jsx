@@ -1,3 +1,6 @@
+import '../portcall/Attachment';
+import '../likes/Like';
+
 Ext.define('Abraxa.model.portnews.PortNews', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

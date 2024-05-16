@@ -1,3 +1,9 @@
+import './PortNewsMainViewModel';
+import './PortNewsCardsDataView';
+import './PortNewsMainFiltersMenu';
+import './Header';
+import './CreateNewPostDialog';
+
 Ext.define('Abraxa.view.portnews.PortNewsMainContainer', {
     xtype: 'PortNewsMain',
     minWidth: '100%',

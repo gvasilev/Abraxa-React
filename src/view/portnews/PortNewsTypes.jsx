@@ -1,3 +1,5 @@
+import './PortNewsType';
+
 Ext.define('Abraxa.view.portnews.PortNewsTypes', {
     extend: 'Ext.dataview.Component',
     xtype: 'PortNewsTypes',

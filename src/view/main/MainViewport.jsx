@@ -13,6 +13,7 @@ import '../profile/ProfileMainContainer';
 import '../billing/BillingMainContainer';
 import '../search/SearchPanel';
 import '../tasks/TasksMainContainer';
+import '../portnews/PortNewsMainContainer';
 
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',

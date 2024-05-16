@@ -1,3 +1,5 @@
+import '../../model/portnews/PortNews';
+
 Ext.define('Abraxa.store.portnews.PortNews', {
     extend: 'Ext.data.Store',
     // extend: 'Ext.data.virtual.Store',

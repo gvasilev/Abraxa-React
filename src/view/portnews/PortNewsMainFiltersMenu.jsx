@@ -1,7 +1,10 @@
+import '../../core/components/fields/FromToDateField';
+import '../common/combo/Commodity';
+
 Ext.define('Abraxa.view.portnews.PortNewsMainFiltersMenu', {
     xtype: 'PortNewsMainFiltersMenu',
     extend: 'Ext.Container',
-    cls: 'a-portnews-filters',
+    cls: 'a-portnews-filters a-bgr-white',
     scrollable: 'y',
     viewModel: {
         data: {
@@ -247,7 +250,7 @@ Ext.define('Abraxa.view.portnews.PortNewsMainFiltersMenu', {
                 painted: function (combo, newValue) {
                     //Filter only for selected country if country is selected
                     combo.getStore().on('load', function (store, records) {
-                        countryIds = combo.up('PortNewsMainFiltersMenu').down('#newsPortFilterCountryCombo').getValue();
+                        let countryIds = combo.up('PortNewsMainFiltersMenu').down('#newsPortFilterCountryCombo').getValue();
                         let filteredRecords = [...records];
                         if (countryIds) {
                             filteredRecords = records.filter((record) => countryIds.includes(record.get('country_id')));

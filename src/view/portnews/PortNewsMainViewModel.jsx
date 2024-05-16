@@ -1,3 +1,6 @@
+import '../../store/portnews/PortNews';
+import '../../store/portnews/PortNewsType';
+
 Ext.define('Abraxa.view.portnews.PortNewsMainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.PortNewsMainViewModel',

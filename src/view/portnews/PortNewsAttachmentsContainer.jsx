@@ -14,7 +14,6 @@ Ext.define('Abraxa.view.portnews.PortNewsAttachmentsContainer', {
         hidden: '{hidden}',
     },
     initialize: function () {
-        this.callParent(arguments);
         this.getViewModel().set('readOnly', this.getReadOnly());
     },
     items: [

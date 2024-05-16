@@ -1,3 +1,4 @@
+import '../../model/portnews/PortNewsCreate';
 Ext.define('Abraxa.view.portnews.CreateNewPostDialogController', {
     extend: 'Ext.app.ViewController',
     id: 'createNewPostDialogController',

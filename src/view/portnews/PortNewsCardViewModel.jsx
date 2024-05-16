@@ -20,30 +20,31 @@ Ext.define('Abraxa.view.portnews.PortNewsCardViewModel', {
                 if (recordCompanyId == currentUserCompanyId) {
                     const updatetByUser = record.get('updated_by_user');
                     const createdByUser = record.get('created_by_user');
+                    let img;
 
                     if (updatetByUser) {
                         img = updatetByUser.profile_image
                             ? updatetByUser.profile_image
                             : AbraxaConstants.urls.staticAbraxa + 'images/profile/no-image.svg';
                         return ` <div class="a-val a-person a-icon-round"><i class="md-icon">calendar_today</i>
-                        <span style="margin: 0 7px 0 0" class="c-light-grey-200">Last updated by</span> 
+                        <span style="margin: 0 7px 0 0" class="c-light-grey-200">Last updated by</span>
                           <img src="${img}" height="30" alt=""></img><a href="javascript:void(0);" class="fw-b" id="${
                               updatetByUser.id
                           }">${updatetByUser.first_name[0]}. ${
                               updatetByUser.last_name
-                          }</a> <span style="margin: 0 6px 0 6px">on</span> 
+                          }</a> <span style="margin: 0 6px 0 6px">on</span>
                          ${Ext.Date.format(record.get('updated_at'), 'd M y - H:i')} </div> `;
                     } else if (createdByUser) {
                         img = createdByUser.profile_image
                             ? createdByUser.profile_image
                             : AbraxaConstants.urls.staticAbraxa + 'images/profile/no-image.svg';
                         return ` <div class="a-val a-person a-icon-round"><i class="md-icon">calendar_today</i>
-                        <span style="margin: 0 7px 0 0" class="c-light-grey-200">Created by</span> 
+                        <span style="margin: 0 7px 0 0" class="c-light-grey-200">Created by</span>
                           <img src="${img}" height="30" alt=""></img><a href="javascript:void(0);" class="fw-b" id="${
                               createdByUser.id
                           }">${createdByUser.first_name[0]}. ${
                               createdByUser.last_name
-                          }</a> <span style="margin: 0 6px 0 6px">on</span> 
+                          }</a> <span style="margin: 0 6px 0 6px">on</span>
                          ${Ext.Date.format(record.get('created_at'), 'd M y - H:i')} </div> `;
                     } else {
                         return AbraxaConstants.placeholders.emptyValue;
@@ -56,7 +57,7 @@ Ext.define('Abraxa.view.portnews.PortNewsCardViewModel', {
                     }">${record.get('company').name}</a> <span>on</span> ${Ext.Date.format(
                         record.get('updated_at'),
                         'd M y - H:i'
-                    )}</span> 
+                    )}</span>
                     </div>`;
                 }
             },

@@ -1,3 +1,5 @@
+import '../../model/portnews/PortNewsType';
+
 Ext.define('Abraxa.store.portnews.PortNewsType', {
     extend: 'Ext.data.Store',
     alias: 'store.portNewsType',

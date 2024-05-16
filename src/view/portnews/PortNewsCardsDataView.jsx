@@ -1,3 +1,6 @@
+import '../../core/components/AbraxaComponentDataview';
+import './PortNewsCard';
+
 Ext.define('Abraxa.view.portnews.PortNewsCardsDataView', {
     xtype: 'PortNewsCardsDataView',
     extend: 'Abraxa.core.ComponentDataview',
