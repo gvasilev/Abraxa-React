@@ -44,7 +44,7 @@ Ext.define('Abraxa.view.pda.PDANotes', {
                 quickInsertEnabled: false,
                 theme: 'royal',
                 pastePlain: true,
-                enter: this.ENTER_BR,
+                enter: 2,
                 imagePaste: false,
                 height: 300,
                 charCounterCount: false,

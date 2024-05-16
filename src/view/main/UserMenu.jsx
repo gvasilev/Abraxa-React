@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                 },
                                 handler: function () {
                                     let portCallVM = Ext.ComponentQuery.query(
-                                        Env.currentUser.get('company').type + 'portcall\\.main'
+                                        window.CurrentUser.get('company').type + 'portcall\\.main'
                                     )[0].upVM();
 
                                     Ext.create('Abraxa.view.adocs.CreateDocumentPopup', {

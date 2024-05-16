@@ -5,7 +5,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
     requires: ['Ext.drag.Target'],
 
     canEdit: function () {
-        let permission = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0]
+        let permission = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0]
             .upVM()
             .get('documentsEditable');
         return Object.keys(permission).length;
@@ -274,7 +274,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this,
             currentController = this,
             view = me.getView(),
-            sectionsView = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0];
+            sectionsView = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0];
 
         me.dropZone = Ext.create('Ext.plugin.dd.DropZone', {
             element: sectionsView.bodyElement,

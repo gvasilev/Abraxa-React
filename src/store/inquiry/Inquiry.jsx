@@ -1,3 +1,5 @@
+import '../../model/inquiry/Inquiry';
+
 Ext.define('Abraxa.store.inquiry.Inquiry', {
     extend: 'Ext.data.Store',
     alias: 'store.inquiry',

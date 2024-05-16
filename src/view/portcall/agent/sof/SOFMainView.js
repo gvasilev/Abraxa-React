@@ -254,7 +254,7 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
                                 },
                                 select: function (list, record) {
                                     let VM = Ext.ComponentQuery.query(
-                                            Env.currentUser.get('company').type + 'portcall\\.main'
+                                            window.CurrentUser.get('company').type + 'portcall\\.main'
                                         )[0].upVM(),
                                         store = list.getStore();
                                     VM.set('selectedOpsSection', store.indexOf(record));
@@ -263,7 +263,7 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
                                     this.select(0);
                                 },
                                 // initialize: function () {
-                                //     Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].upVM().set('opsMenuPainted', true);
+                                //     Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].upVM().set('opsMenuPainted', true);
                                 // }
                             },
                         },

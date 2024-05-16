@@ -1,3 +1,12 @@
+import '../common/Vessel';
+import '../inquiry/Inquiry';
+import '../calculation/Calculation';
+import './InquiryOfferService';
+import '../portcall/Attachment';
+import '../portcall/Note';
+import '../task/Task';
+import '../portcall/Instruction';
+
 Ext.define('Abraxa.model.inquiry.InquiryOffer', {
     extend: 'Ext.data.Model',
     fields: [

@@ -106,7 +106,7 @@ Ext.define('Abraxa.view.portcall.principal.DisbursementsViewModelPrincipal', {
             get: function (store) {
                 let me = this;
                 if (store && store.count()) {
-                    let approval = store.findRecord('to_company_id', Env.currentUser.get('current_company_id'));
+                    let approval = store.findRecord('to_company_id', window.CurrentUser.get('current_company_id'));
                     if (approval) {
                         approval.set('current_approval_data', me.get('selectedDisbursement.current_approval_data'));
                         return approval;

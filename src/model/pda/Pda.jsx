@@ -1,3 +1,11 @@
+import '../common/Vessel';
+import '../inquiry/Inquiry';
+import '../inquiry/InquiryOfferService';
+import '../portcall/Attachment';
+import '../portcall/Note';
+import '../task/Task';
+import '../portcall/Instruction';
+
 Ext.define('Abraxa.model.pda.Pda', {
     extend: 'Ext.data.Model',
     fields: [

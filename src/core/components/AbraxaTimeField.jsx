@@ -13,10 +13,7 @@ Ext.define('Abraxa.Timefield', {
                 var rawValue = moment(value, 'HH:mm').utc();
                 date = rawValue._d;
             }
-            if (date !== null) {
-                return this.callParent([date, errors]);
-            }
         }
-        return this.callParent([value, errors]);
+        return date;
     },
 });

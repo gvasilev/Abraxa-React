@@ -884,7 +884,7 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                         quickInsertEnabled: false,
                                                         theme: 'royal',
                                                         pastePlain: true,
-                                                        // enter: this.ENTER_BR,
+                                                        // enter: 2,
                                                         imagePaste: false,
                                                         height: 180,
                                                         charCounterCount: false,

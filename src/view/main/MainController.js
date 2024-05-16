@@ -354,7 +354,7 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype,
             view;
 
-        xtype = Env.currentUser.get('company').type + 'portcall.main';
+        xtype = window.CurrentUser.get('company').type + 'portcall.main';
 
         // leave a developer message in case of new types addition
         if (!Ext.ClassManager.getNameByAlias('widget.' + xtype)) {
@@ -672,7 +672,7 @@ Ext.define('Abraxa.view.main.MainController', {
                 // This was originally allways redirecting to #portcalls, but for Principal users
                 // there is no #portcalls route and a 404 page was being shown.
                 // This case happened only when a Principal user clicks on an invitation link and is logged in.
-                const currentUserCompany = Env.currentUser.getCompany();
+                const currentUserCompany = window.CurrentUser.getCompany();
                 let redirectHash = 'portcalls';
 
                 if (currentUserCompany.get('type') === 'principal') {
@@ -1030,7 +1030,7 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype,
             view;
 
-        if (Env.currentUser.get('company').type !== 'principal') {
+        if (window.CurrentUser.get('company').type !== 'principal') {
             this.redirectTo('404', {
                 replace: true,
             });
@@ -1073,7 +1073,7 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype,
             view;
 
-        if (Env.currentUser.get('company').type !== 'principal') {
+        if (window.CurrentUser.get('company').type !== 'principal') {
             this.redirectTo('404', {
                 replace: true,
             });

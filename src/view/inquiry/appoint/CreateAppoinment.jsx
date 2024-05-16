@@ -1,3 +1,5 @@
+import '../../../core/components/fields/UnitField';
+
 Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
     extend: 'Ext.Dialog',
     xtype: 'inquiry.create.appointment',

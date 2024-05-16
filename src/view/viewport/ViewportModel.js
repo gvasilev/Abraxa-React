@@ -20,18 +20,17 @@ Ext.define('Abraxa.view.viewport.ViewportModel', {
             autoLoad: true,
         },
     },
-    // formulas: {
-    //     setCurrentUser: {
-    //         bind: {
-    //             bindTo: '{currentUser}',
-    //             deep: true,
-    //         },
-    //         get: function (currentUser) {
-    //             if (currentUser.get('id')) {
-    //                 console.log('currentUser', currentUser);
-    //                 // Env.currentUser = currentUser;
-    //             }
-    //         },
-    //     },
-    // },
+    formulas: {
+        setCurrentUser: {
+            bind: {
+                bindTo: '{currentUser}',
+                deep: true,
+            },
+            get: function (currentUser) {
+                if (currentUser.get('id')) {
+                    window.CurrentUser = currentUser;
+                }
+            },
+        },
+    },
 });

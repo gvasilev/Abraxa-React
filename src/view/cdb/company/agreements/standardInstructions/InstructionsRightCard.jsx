@@ -226,7 +226,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                         quickInsertEnabled: false,
                         theme: 'royal',
                         pastePlain: true,
-                        // enter: this.ENTER_BR, THROW error comment for now
+                        // enter: 2, THROW error comment for now
                         imagePaste: false,
                         height: 300,
                         charCounterCount: false,

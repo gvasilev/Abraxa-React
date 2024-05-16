@@ -1,5 +1,15 @@
 import '../voyage/Voyage.jsx';
 import '../portcall/Instruction.jsx';
+import './InquiryOffer';
+import '../amail/Amail';
+import '../cargo/Cargo';
+import '../pda/Pda';
+import '../invitation/Invitation';
+import '../common/Port';
+import '../portcall/Attachment';
+import '../portcall/Note';
+import '../task/Task';
+
 Ext.define('Abraxa.model.inquiry.Inquiry', {
     extend: 'Ext.data.Model',
     fields: [
@@ -126,7 +136,7 @@ Ext.define('Abraxa.model.inquiry.Inquiry', {
         {
             name: 'is_watching',
             mapping: function (data) {
-                return data.watching.find((e) => e.user_id === Env.currentUser.get('id'));
+                return data.watching.find((e) => e.user_id === window.CurrentUser.get('id'));
             },
         },
     ],

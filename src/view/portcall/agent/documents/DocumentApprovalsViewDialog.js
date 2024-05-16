@@ -30,7 +30,9 @@ Ext.define('Abraxa.view.portcall.documents.DocumentApprovalsViewDialog', {
             groupHeader: {
                 tpl: new Ext.XTemplate('<div>{[this.memberName(values.children[0].data)]}</div>', {
                     memberName: function (record) {
-                        let store = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0]
+                        let store = Ext.ComponentQuery.query(
+                                window.CurrentUser.get('company').type + 'portcall\\.main'
+                            )[0]
                                 .upVM()
                                 .get('members'),
                             member = store.getById(record.member_id);

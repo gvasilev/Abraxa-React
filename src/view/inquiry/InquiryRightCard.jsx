@@ -1,3 +1,7 @@
+import './inquiryDetails/ProformaCargo';
+import '../notes/NotesNotify';
+import './appoint/AppointList';
+
 Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
     extend: 'Ext.Container',
     xtype: 'inquiry.right.card',

@@ -764,7 +764,7 @@ Ext.define('Abraxa.view.mail.SendmailEditor', {
                         quickInsertEnabled: false,
                         theme: 'royal',
                         pastePlain: true,
-                        enter: this.ENTER_BR,
+                        enter: 2,
                         imagePaste: false,
                         height: 300,
                         htmlUntouched: false,

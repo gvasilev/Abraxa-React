@@ -1,3 +1,8 @@
+import '../InquiryController';
+import './InquiryAgentActiveGrid';
+import './EstimateGrid';
+import '../InquiryRightCard';
+
 Ext.define('Abraxa.view.inquiry.agent.InquiryAgentMainContainer', {
     extend: 'Ext.Container',
     xtype: 'inquiry.agent.main.container',

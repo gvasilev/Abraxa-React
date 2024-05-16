@@ -41,7 +41,7 @@ Ext.define('Abraxa.view.inquiry.agent.InstructionsContainer', {
                         quickInsertEnabled: false,
                         theme: 'royal',
                         pastePlain: true,
-                        enter: this.ENTER_BR,
+                        enter: 2,
                         imagePaste: false,
                         height: 300,
                         toolbarButtons: [

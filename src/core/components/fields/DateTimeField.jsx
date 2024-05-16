@@ -28,102 +28,99 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
             return false;
         },
     },
-    initConfig: function (instanceConfig) {
-        Ext.apply(instanceConfig, {
-            items: [
-                {
-                    xtype: 'abraxa.datefield',
-                    required: Ext.isDefined(instanceConfig.required) ? instanceConfig.required : false,
-                    submitValue: false,
-                    flex: 1,
-                    maxWidth: Ext.isDefined(instanceConfig.dateFieldMaxWidth) ? instanceConfig.dateFieldMaxWidth : null,
-                    ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
-                    disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
-                    cls: 'a-prepend',
-                    triggers: {
-                        datetrigger: null,
-                        expand: null,
-                    },
-                    floatedPicker: {
-                        listeners: {
-                            select: function (me, value) {
-                                this.up('abraxa\\.datetimefield').setDateTime(value);
-                                this.up('abraxa\\.datetimefield').getAt(1).focus();
-                                this.up('abraxa\\.datetimefield').blur();
-                                this.hide();
-                            },
-                        },
-                    },
+    defaultListenerScope: true,
+    privates: {
+        items: [
+            {
+                xtype: 'abraxa.datefield',
+                submitValue: false,
+                flex: 1,
+                // required: Ext.isDefined(this.required) ? this.required : false,
+                // maxWidth: Ext.isDefined(instanceConfig.dateFieldMaxWidth) ? instanceConfig.dateFieldMaxWidth : null,
+                // ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
+                // disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
+                cls: 'a-prepend',
+                triggers: {
+                    datetrigger: null,
+                    expand: null,
+                },
+                floatedPicker: {
                     listeners: {
-                        keyup: function () {
-                            let value = this.up('abraxa\\.datetimefield').getValue();
+                        select: function (me, value) {
                             this.up('abraxa\\.datetimefield').setDateTime(value);
-                        },
-                        focus: function () {
-                            this.up('abraxa\\.datetimefield').addCls('x-focused');
-                            this.up('abraxa\\.datetimefield').fireEvent('focus', this.up('abraxa\\.datetimefield'));
-                        },
-                        blur: function () {
-                            let value = this.getValue();
-                            if (this.isValid()) {
-                                // this.up('abraxa\\.datetimefield').setDateTime(value);
-                                this.up('abraxa\\.datetimefield').removeCls('x-focused');
-                                this.up('abraxa\\.datetimefield').blur();
-                            } else {
-                                this.up('abraxa\\.datetimefield').setValue(null);
-                                this.clearValue();
-                                this.setInputValue(null);
-                            }
+                            this.up('abraxa\\.datetimefield').getAt(1).focus();
+                            this.up('abraxa\\.datetimefield').blur();
+                            this.hide();
                         },
                     },
                 },
-                {
-                    xtype: 'abraxa.timefield',
-                    allowBlank: Ext.isDefined(instanceConfig.required) ? instanceConfig.required : false,
-                    submitValue: false,
-                    width: 94,
-                    ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
-                    maxWidth: Ext.isDefined(instanceConfig.timeFieldMaxWidth) ? instanceConfig.timeFieldMaxWidth : null,
-                    cls: 'a-append',
-                    disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
-                    triggers: {
-                        datetrigger: {
-                            margin: '0 4 0 0',
-                            iconCls: 'md-icon-date-range',
-                            side: 'right',
-                            handler: function () {
-                                this.up('abraxa\\.datetimefield').down('abraxa\\.datefield').expand();
-                            },
-                        },
+                listeners: {
+                    keyup: function () {
+                        let value = this.up('abraxa\\.datetimefield').getValue();
+                        this.up('abraxa\\.datetimefield').setDateTime(value);
                     },
-                    listeners: {
-                        keyup: function () {
-                            let value = this.up('abraxa\\.datetimefield').getValue();
-                            this.up('abraxa\\.datetimefield').setDateTime(value);
-                        },
-                        blur: function (me) {
-                            let value = this.up('abraxa\\.datetimefield').getValue();
-                            this.up('abraxa\\.datetimefield').setDateTime(value);
-                            this.up('abraxa\\.datetimefield').fireEvent('blur', this.up('abraxa\\.datetimefield'));
+                    focus: function () {
+                        this.up('abraxa\\.datetimefield').addCls('x-focused');
+                        this.up('abraxa\\.datetimefield').fireEvent('focus', this.up('abraxa\\.datetimefield'));
+                    },
+                    blur: function () {
+                        let value = this.getValue();
+                        if (this.isValid()) {
+                            // this.up('abraxa\\.datetimefield').setDateTime(value);
                             this.up('abraxa\\.datetimefield').removeCls('x-focused');
-                        },
-                        focusleave: function (me) {
-                            this.up('abraxa\\.datetimefield').fireEvent(
-                                'focusleave',
-                                this.up('abraxa\\.datetimefield')
-                            );
-                            this.up('abraxa\\.datetimefield').removeCls('x-focused');
-                        },
-                        focus: function () {
-                            this.up('abraxa\\.datetimefield').fireEvent('focus', this.up('abraxa\\.datetimefield'));
-                            this.up('abraxa\\.datetimefield').addCls('x-focused');
+                            this.up('abraxa\\.datetimefield').blur();
+                        } else {
+                            this.up('abraxa\\.datetimefield').setValue(null);
+                            this.clearValue();
+                            this.setInputValue(null);
+                        }
+                    },
+                },
+            },
+            {
+                xtype: 'abraxa.timefield',
+                submitValue: false,
+                width: 94,
+                // allowBlank: Ext.isDefined(instanceConfig.required) ? instanceConfig.required : false,
+                // ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
+                // maxWidth: Ext.isDefined(instanceConfig.timeFieldMaxWidth) ? instanceConfig.timeFieldMaxWidth : null,
+                // disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
+                cls: 'a-append',
+                triggers: {
+                    datetrigger: {
+                        margin: '0 4 0 0',
+                        iconCls: 'md-icon-date-range',
+                        side: 'right',
+                        handler: function () {
+                            this.up('abraxa\\.datetimefield').down('abraxa\\.datefield').expand();
                         },
                     },
                 },
-            ],
-        });
-
-        // this.callParent(arguments);
+                listeners: {
+                    keyup: function () {
+                        let value = this.up('abraxa\\.datetimefield').getValue();
+                        this.up('abraxa\\.datetimefield').setDateTime(value);
+                    },
+                    blur: function (me) {
+                        let value = this.up('abraxa\\.datetimefield').getValue();
+                        this.up('abraxa\\.datetimefield').setDateTime(value);
+                        this.up('abraxa\\.datetimefield').fireEvent('blur', this.up('abraxa\\.datetimefield'));
+                        this.up('abraxa\\.datetimefield').removeCls('x-focused');
+                    },
+                    focusleave: function (me) {
+                        this.up('abraxa\\.datetimefield').fireEvent(
+                            'focusleave',
+                            this.up('abraxa\\.datetimefield')
+                        );
+                        this.up('abraxa\\.datetimefield').removeCls('x-focused');
+                    },
+                    focus: function () {
+                        this.up('abraxa\\.datetimefield').fireEvent('focus', this.up('abraxa\\.datetimefield'));
+                        this.up('abraxa\\.datetimefield').addCls('x-focused');
+                    },
+                },
+            },
+        ],
     },
 
     getRawValue: function () {
@@ -161,7 +158,7 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
     // },
 
     setDateTime: function () {
-        this.callParent(arguments);
+        // this.callParent(arguments);
         if (this.getValue()) {
             this.validate();
         }
@@ -187,18 +184,18 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
     getDateTime: function (value) {
         return this.getValue();
     },
-    //THROW ERROR must see !
-    // getValue: function () {
-    //     var dateField = this.getAt(0);
-    //     var timeField = this.getAt(1);
-    //
-    //     var date = dateField.getValue();
-    //     if (date) {
-    //         date = this.setTimePart(date, timeField.getValue());
-    //     }
-    //
-    //     return date;
-    // },
+
+    getValue: function () {
+        var dateField = this.getAt(0);
+        var timeField = this.getAt(1);
+
+        var date = dateField.getValue();
+        if (date) {
+            date = this.setTimePart(date, timeField.getValue());
+        }
+
+        return date;
+    },
 
     clearValue: function () {
         var dateField = this.getAt(0);
@@ -209,7 +206,7 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
     },
 
     setValue: function (value) {
-        this.callParent(arguments);
+        // this.callParent(arguments);
     },
 
     applyValue(value) {
@@ -356,5 +353,15 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
     },
     addTrigger: function () {
         console.log(arguments);
+    },
+
+    setUi: function (value) {
+        var dateField = this.getAt(0);
+        var timeField = this.getAt(1);
+
+        dateField.setUi(value);
+        timeField.setUi(value);
+
+        return value;
     },
 });

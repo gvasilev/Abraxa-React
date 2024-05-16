@@ -459,7 +459,7 @@ Ext.define('Abraxa.model.portcall.Portcall', {
             name: 'is_watching',
             mapping: function (data) {
                 if (data && data.watching) {
-                    return data.watching.find((e) => e.user_id === Env.currentUser.get('id'));
+                    return data.watching.find((e) => e.user_id === window.CurrentUser.get('id'));
                 }
             },
         },

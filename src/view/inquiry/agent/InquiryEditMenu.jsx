@@ -1,3 +1,6 @@
+import '../InquiryAssingTo';
+import '../InquiryArchive';
+
 Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'inquiry.edit.menu',

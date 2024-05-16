@@ -1,3 +1,6 @@
+import '../../store/inquiry/Inquiry';
+import '../../store/inquiry/InquiryPdas';
+
 Ext.define('Abraxa.view.inquiry.InquiryViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.inquiry-viewmodel',

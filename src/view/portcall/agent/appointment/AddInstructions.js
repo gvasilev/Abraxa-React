@@ -179,7 +179,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                                         quickInsertEnabled: false,
                                         theme: 'royal',
                                         pastePlain: true,
-                                        enter: this.ENTER_BR,
+                                        enter: 2,
                                         imagePaste: false,
                                         height: 300,
                                         charCounterCount: false,

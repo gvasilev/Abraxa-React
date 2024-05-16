@@ -170,7 +170,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                         Ext.create('Abraxa.view.vouchers.VouchersDialog', {
                             viewModel: {
                                 parent: Ext.ComponentQuery.query(
-                                    Env.currentUser.get('company').type + 'portcall\\.main'
+                                    window.CurrentUser.get('company').type + 'portcall\\.main'
                                 )[0].upVM(),
                                 data: data,
                                 formulas: {

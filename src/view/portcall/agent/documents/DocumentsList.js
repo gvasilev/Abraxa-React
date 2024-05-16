@@ -1465,7 +1465,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                                 Ext.toast('Document deleted', 1500);
                                                                 me.upVM().set('selectedFiles', null);
                                                                 Ext.ComponentQuery.query(
-                                                                    Env.currentUser.get('company').type +
+                                                                    window.CurrentUser.get('company').type +
                                                                         'portcall\\.main'
                                                                 )[0]
                                                                     .getController()

@@ -1,3 +1,5 @@
+import './SubscribersCombo';
+
 Ext.define('Abraxa.view.notes.NotesNotify', {
     extend: 'Ext.Container',
     xtype: 'notes.notify',

@@ -1,3 +1,5 @@
+import './InquiryEditMenu';
+
 var doubleClickInProgress = false;
 Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
     extend: 'Ext.grid.Grid',

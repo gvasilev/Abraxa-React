@@ -1,3 +1,10 @@
+import '../../common/combo/Vessel';
+import './PortsContainerController';
+import '../agent/AttachmentContainer';
+import '../agent/InstructionsContainer';
+import '../../../core/components/fields/UnitField';
+import '../../../core/components/fields/DateTimeField';
+
 Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
     xtype: 'inquiry.create',
     testId: 'inquiryCreateDialog',

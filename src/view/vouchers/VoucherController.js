@@ -251,7 +251,7 @@ Ext.define('Abraxa.view.vouchers.VoucherController', {
                                 function (answer) {
                                     if (answer == 'yes') {
                                         Ext.ComponentQuery.query(
-                                            Env.currentUser.get('company').type + 'portcall\\.main'
+                                            window.CurrentUser.get('company').type + 'portcall\\.main'
                                         )[0]
                                             .getController()
                                             .deleteVouchers([record]);

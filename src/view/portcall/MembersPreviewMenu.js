@@ -121,7 +121,7 @@ Ext.define('Abraxa.view.portcall.MembersPreviewMenu', {
                         let record = this.upVM().get('object_record'),
                             companyVerified = this.upVM().get('currentCompany').get('verified'),
                             portCallVM = Ext.ComponentQuery.query(
-                                Env.currentUser.get('company').type + 'portcall\\.main'
+                                window.CurrentUser.get('company').type + 'portcall\\.main'
                             )[0].upVM();
                         Ext.create('Abraxa.view.invitations.InviteDialog', {
                             viewModel: {

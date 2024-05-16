@@ -691,7 +691,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         parentNod.replaceChild(fileField, tmpForm);
     },
     generateCargoDocs(cmp) {
-        let vm = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             cargoSelection = cmp.upVM().get('documentsSelectedCargoes.selection'),
             document_types = cmp.upVM().get('selectedDocumentTypes.selection'),
@@ -794,7 +794,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
     },
 
     generateOperationalDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_types = cmp.upVM().get('operationalTemplate.selection'),
             documents = [];
@@ -887,7 +887,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         });
     },
     generateSofDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_type = 'sof',
             operationalTemplate = cmp.upVM().get('operationalTemplate.selection'),
@@ -992,7 +992,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
     generateFinancialDocument(cmp) {
         const controller = this;
         const portcallMainVM = Ext.ComponentQuery.query(
-            Env.currentUser.get('company').type + 'portcall\\.main'
+            window.CurrentUser.get('company').type + 'portcall\\.main'
         )[0].lookupViewModel();
 
         const docFormVM = cmp.upVM();
@@ -1241,7 +1241,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 let dialog = Ext.create('Abraxa.view.vouchers.VouchersDialog', {
                     viewModel: {
                         parent: Ext.ComponentQuery.query(
-                            Env.currentUser.get('company').type + 'portcall\\.main'
+                            window.CurrentUser.get('company').type + 'portcall\\.main'
                         )[0].upVM(),
                         data: {
                             selectVoucher: first,
@@ -1369,7 +1369,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         });
     },
     generateStowagePlanDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_type = 'operational',
             document_subtype = 'stowage_plan',

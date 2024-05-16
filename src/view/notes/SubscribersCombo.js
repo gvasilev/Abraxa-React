@@ -150,8 +150,8 @@ Ext.define('Abraxa.view.notes.SubscribersCombo', {
         focusleave: function () {
             let record = this.up('[xtype=notes\\.notify]').upVM().get('object_record'),
                 selection = this.getSelection(),
-                needSync = this.up('[xtype=notes\\.notify]').upVM().get('needSync');
-            users = [];
+                needSync = this.up('[xtype=notes\\.notify]').upVM().get('needSync'),
+                users = [];
 
             Ext.each(selection, function (record) {
                 users.push(record.getData());

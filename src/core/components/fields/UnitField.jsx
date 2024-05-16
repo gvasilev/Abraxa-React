@@ -67,12 +67,12 @@ Ext.define('Abraxa.core.components.fields.UnitField', {
                 twoWayBindable: ['isValid'],
                 xtype: 'abraxa.numberfield',
                 cls: 'a-prepend',
-                labelAlign: this.labelAlign,
-                label: this.label,
-                maxValue: this.maxValue,
-                required: this.required,
-                clearable: false,
-                value: this.value,
+                // labelAlign: this.labelAlign,
+                // label: this.label,
+                // maxValue: this.maxValue,
+                // required: this.required,
+                // clearable: false,
+                // value: this.value,
                 listeners: {
                     painted: function () {
                         this.setError(null);
@@ -93,11 +93,11 @@ Ext.define('Abraxa.core.components.fields.UnitField', {
             {
                 xtype: 'combobox',
                 queryMode: 'local',
-                label: this.unitLabel,
-                value: this.valueUnit,
-                bind: this.bind,
-                labelAlign: 'top',
-                required: this.required,
+                // label: this.unitLabel,
+                // value: this.valueUnit,
+                // bind: this.bind,
+                // labelAlign: 'top',
+                // required: this.required,
                 valueField: 'name',
                 displayField: 'name',
                 cls: 'a-append a-append-units a-cursor-pointer {invalidCls}',
@@ -106,10 +106,10 @@ Ext.define('Abraxa.core.components.fields.UnitField', {
                 typeAhead: false,
                 autoComplete: true,
                 flex: '1 1 auto',
-                store: this.options,
-                matchFieldWidth: this.matchFieldWidth,
-                minWidth: this.unitFieldMinWidth,
-                maxWidth: this.unitFieldMaxWidth || 440,
+                // store: this.options,
+                // matchFieldWidth: this.matchFieldWidth,
+                // minWidth: this.unitFieldMinWidth,
+                // maxWidth: this.unitFieldMaxWidth || 440,
                 listeners: {
                     change: function (me, newValue, oldValue) {
                         this.oldValue = oldValue;
@@ -152,11 +152,11 @@ Ext.define('Abraxa.core.components.fields.UnitField', {
         this.down('selectfield').setStore(newOptions);
     },
 
-    constructor: function (config) {
-        this.callParent(arguments);
-        this.initConfig(config);
-        return this;
-    },
+    // constructor: function (config) {
+    //     // this.callParent(arguments);
+    //     this.initConfig(config);
+    //     return this;
+    // },
 
     applyValue: function (value) {
         if (!value) {

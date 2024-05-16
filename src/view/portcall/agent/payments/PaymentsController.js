@@ -392,7 +392,7 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
     },
 
     sendEmailDialog(object_record, payment) {
-        let portCallVM = Ext.ComponentQuery.query(Env.currentUser.get('company').type + 'portcall\\.main')[0].upVM(),
+        let portCallVM = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].upVM(),
             view = Ext.ComponentQuery.query('[xtype=payments\\.create\\.payment]')[0],
             me = view,
             subject = null,
