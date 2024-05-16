@@ -319,7 +319,7 @@ Ext.define('Abraxa.view.invitations.InvitationsGrid', {
                 tpl: new Ext.XTemplate('{[this.create(values.company)]}', {
                     create: function (company) {
                         if (company) {
-                            label =
+                            const label =
                                 '<a class="a_grid_action company_details" href="javascript:void(0)" data-company_id="' +
                                 company.id +
                                 '">' +

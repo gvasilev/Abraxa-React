@@ -32,9 +32,9 @@ Ext.define('Abraxa.view.main.MainViewport', {
     //     bodyCls: 'a-main-container-wrap',
     // },
     // flex: 1,
-    // masked: {
-    //     xtype: 'viewport.mask'
-    // },
+    masked: {
+        xtype: 'viewport.mask'
+    },
     items: [
         {
             xtype: 'main.toolbar',
