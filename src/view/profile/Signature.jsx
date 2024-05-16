@@ -1,3 +1,5 @@
+import './AddSignature';
+
 Ext.define('Abraxa.view.profile.Signature', {
     extend: 'Ext.Container',
     xtype: 'profile.signature',

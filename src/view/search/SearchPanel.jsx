@@ -1,3 +1,9 @@
+import '../../store/common/Berth';
+import '../../store/common/Vessel';
+import '../../store/common/Port';
+import '../../store/common/Commodity';
+import '../../store/common/port/Terminals';
+
 Ext.define('Abraxa.view.search.SearchPanel', {
     extend: 'Ext.Dialog',
     xtype: 'search.panel',

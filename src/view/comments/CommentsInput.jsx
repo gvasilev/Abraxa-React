@@ -95,7 +95,9 @@ Ext.define('Abraxa.view.comments.CommentsInput', {
                                     users = this.component.upVM().get('users'),
                                     fieldId = 'mention';
 
-                                myMention = new Mention({
+                                // console.log('users', Ext.fly(this.el.dom).query('.content_editable_element')[0]);
+
+                                const myMention = new Mention({
                                     input: Ext.fly(this.el.dom).query('.content_editable_element')[0],
                                     reverse: true,
                                     options: data,

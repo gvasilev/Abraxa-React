@@ -6,6 +6,7 @@ import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
+import Mention from './helpers/mention/Mention';
 
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
@@ -17,6 +18,7 @@ mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
 window.moment = moment;
 window.mixpanel = mixpanel;
 window.numeral = numeral;
+window.Mention = Mention;
 
 (async () => {
     Fill();

@@ -1,3 +1,5 @@
+import '../../view/notes/MentionDiv';
+
 Ext.define('Abraxa.view.comments.EditCommentInput', {
     extend: 'Ext.Container',
     alias: 'widget.EditCommentInput',

@@ -1,3 +1,5 @@
+import './EditCommentInput';
+
 Ext.define('Abraxa.view.comments.EditCommentPopup', {
     extend: 'Ext.Dialog',
     alias: 'widget.EditCommentPopup',

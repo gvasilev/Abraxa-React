@@ -58,7 +58,9 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                     handler: function (me) {
                                         let store = this.upVM().get('announcements'),
                                             createAnnouncement = me.upVM().get('createAnnouncement'),
-                                            form = me.up('[xtype=daily\\.actions]').down('[itemId=announcementForm]');
+                                            form = me.up('[xtype=daily\\.actions]').down('[itemId=announcementForm]'),
+                                            record;
+
                                         if (store.getCount() > 0 && createAnnouncement) {
                                             if (createAnnouncement && form.validate() && !store.needsSync) {
                                                 record = store.add({

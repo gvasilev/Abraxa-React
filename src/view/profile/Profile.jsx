@@ -1,3 +1,7 @@
+import './Security';
+import './Signature';
+import './SessionHistory';
+
 Ext.define('Abraxa.view.profile.Main', {
     extend: 'Ext.Container',
     xtype: 'profile.main',

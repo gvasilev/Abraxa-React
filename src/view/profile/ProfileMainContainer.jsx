@@ -1,7 +1,11 @@
+import './ProfileViewModel';
+import './ProfileController';
+import './Profile';
+
 Ext.define('Abraxa.view.profile.ProfileMainContainer', {
     extend: 'Ext.Container',
     xtype: 'profile.main.container',
-    bodyCls: 'a-main-container a-profile',
+    bodyCls: 'a-main-container a-profile a-bgr-white',
     flex: 1,
     layout: 'vbox',
     viewModel: 'profile-viewmodel',

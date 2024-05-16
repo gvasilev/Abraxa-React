@@ -72,7 +72,7 @@ Ext.define('Abraxa.view.profile.AddSignature', {
                         quickInsertEnabled: false,
                         theme: 'dark',
                         imagePaste: true,
-                        enter: this.ENTER_BR,
+                        enter: 2,
                         toolbarButtons: [
                             'bold',
                             'italic',

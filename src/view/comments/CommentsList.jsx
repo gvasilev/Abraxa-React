@@ -1,6 +1,8 @@
 // NOTE(boyan): created new class instead of editing Abraxa.view.comments.Comments
 // in order to avoid breaking other components where it is used
 import './CommentsInput.jsx';
+import '../common/tooltips/PersonToolTip';
+import './EditCommentPopup';
 Ext.define('Abraxa.view.comments.CommentsList', {
     extend: 'Abraxa.core.AbraxaFormList',
     alias: 'widget.CommentsList',

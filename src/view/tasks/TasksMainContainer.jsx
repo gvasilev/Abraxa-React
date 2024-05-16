@@ -1,3 +1,7 @@
+
+import './TasksViewModel';
+import './TasksGrid';
+import './TaskHeader';
 Ext.define('Abraxa.view.tasks.TasksMainContainer', {
     extend: 'Ext.Container',
     xtype: 'tasks.main',

@@ -1,3 +1,5 @@
+import './TaskEditMenu';
+
 Ext.define('Abraxa.view.tasks.TasksGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'tasks.grid',

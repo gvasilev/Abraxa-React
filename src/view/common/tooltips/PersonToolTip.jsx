@@ -14,6 +14,7 @@
     }).showBy(el, 'bc-tc?');
 
 */
+import './AbraxaTooltip';
 
 Ext.define('Abraxa.view.common.tooltips.PersonToolTip', {
     extend: 'Abraxa.view.common.tooltips.AbraxaTooltip',

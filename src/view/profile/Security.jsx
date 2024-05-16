@@ -1,3 +1,5 @@
+import '../../core/components/AbraxaPanel';
+
 Ext.define('Abraxa.view.profile.Security', {
     extend: 'Ext.Container',
     xtype: 'profile.security',

@@ -1,3 +1,5 @@
+import '../../model/billing/BillingCompanyInfo';
+
 Ext.define('Abraxa.view.billing.BillingMainContainer', {
     extend: 'Ext.Container',
     xtype: 'billing.main',
