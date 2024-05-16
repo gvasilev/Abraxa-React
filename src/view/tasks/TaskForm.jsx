@@ -1,3 +1,5 @@
+import '../../core/components/combo/Objects';
+import '../../core/components/combo/Portcall';
 Ext.define('Abraxa.view.tasks.TaskForm', {
     extend: 'Ext.Container',
     xtype: 'tasks.form',

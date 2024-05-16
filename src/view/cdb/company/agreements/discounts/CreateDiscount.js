@@ -387,8 +387,9 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.CreateDiscount', {
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     discounts = vm.get('discounts'),
-                    discount = vm.get('discount');
-                form = dialog.down('formpanel');
+                    discount = vm.get('discount'),
+                    form = dialog.down('formpanel');
+
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     discount.getProxy().setExtraParams({

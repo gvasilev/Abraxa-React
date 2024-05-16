@@ -1,3 +1,5 @@
+import './AddContact';
+import './ContactEditMenu';
 Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'contacts.grid',

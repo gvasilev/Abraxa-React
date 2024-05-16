@@ -10,7 +10,7 @@ Ext.define('Abraxa.view.tasks.TaskRightContainer.js', {
     cls: 'a-notification-center a-bgr-white',
     bodyCls: 'a-bgr-white',
     width: 540,
-    // side: 'right',throw error comment for now must fix
+    side: 'right',
     displayed: false,
     hideOnMaskTap: true,
     flex: 1,

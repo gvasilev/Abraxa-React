@@ -84,7 +84,7 @@ Ext.define('Nishilua.data.proxy.Server', {
             placeholderKeys = me._findPlaceholderKeys(url),
             params = request.getParams();
 
-        console.log('params', params);
+        // console.log('params', params);
 
         // Perform the replacements
         placeholderKeys.forEach(function (placeholderKey) {

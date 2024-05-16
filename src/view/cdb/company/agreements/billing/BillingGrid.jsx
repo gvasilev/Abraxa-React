@@ -1,3 +1,7 @@
+import './BillingEditMenu';
+import './CreateBilling';
+import '../../../../../model/agreements/AgreementBilling';
+
 Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'agreements.billing.grid',

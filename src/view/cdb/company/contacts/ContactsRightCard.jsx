@@ -1,5 +1,6 @@
 import '../../../../core/components/Abraxa.EmailField.jsx';
-
+import '../../../tasks/AddTaskPopup.jsx';
+import './ContactEditMenu';
 Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
     extend: 'Ext.Container',
     xtype: 'contacts.right.card',
@@ -189,8 +190,8 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             handler: function (me) {
                                 let container = this.find('contactsRightCard'),
                                     companyRecord = me.upVM().get('object_record'),
-                                    record = me.upVM().get('contactsGrid.selection');
-                                store = companyRecord.contacts();
+                                    record = me.upVM().get('contactsGrid.selection'),
+                                    store = companyRecord.contacts();
 
                                 Ext.Msg.confirm(
                                     'Delete',

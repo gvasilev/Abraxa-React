@@ -1,3 +1,4 @@
+import '../ListTopContainer';
 Ext.define('Abraxa.core.components.combo.OrganizationCombo', {
     extend: 'Ext.field.ComboBox',
     xtype: 'organization.combo',

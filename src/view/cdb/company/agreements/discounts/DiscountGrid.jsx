@@ -1,3 +1,6 @@
+import './CreateDiscount';
+import './DiscountEditMenu';
+import '../../../../../model/agreements/AgreementDiscount';
 Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'agreements.discounts.grid',

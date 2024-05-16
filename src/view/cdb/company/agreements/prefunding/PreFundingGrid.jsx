@@ -1,3 +1,6 @@
+import '../../../../../model/agreements/AgreementPrefunding';
+import './CreatePreFunding';
+import './PreFundingEditMenu';
 Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PreFundingGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'agreements.prefunding.grid',

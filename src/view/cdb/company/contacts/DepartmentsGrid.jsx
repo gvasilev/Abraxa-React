@@ -1,3 +1,5 @@
+import './CreateDepartment';
+import './DepartmentsEditMenu';
 Ext.define('Abraxa.view.cdb.company.contacts.DepartmentsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'departments.grid',

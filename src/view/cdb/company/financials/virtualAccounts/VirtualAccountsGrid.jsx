@@ -1,3 +1,5 @@
+import './CreateVirtualAccount';
+import './VirtualAccountsEditMenu';
 Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'virtual.accounts.grid',

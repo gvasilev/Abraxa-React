@@ -38,39 +38,31 @@ Ext.define('Nishilua.data.proxy.Rest', {
      * @return {String} The url
      */
     buildUrl: function (request) {
-        console.log(this.getUrl(request));
-        // var me = this,
-        //     url = me.getUrl(request),
-        //     placeholderKeys = me._findPlaceholderKeys(url),
-        //     params = request.getParams();
+        var me = this,
+            url = me.getUrl(request),
+            placeholderKeys = me._findPlaceholderKeys(url),
+            params = request.getParams();
 
-        // if (!me.getAppendId()) {
-        //     params = request.getParams();
-        //     if (params) {
-        //         delete params[me.getIdParam()];
-        //     }
-        // }
+        console.log('params', params);
 
-        // console.log('url', url);
+        // Perform the replacements
+        placeholderKeys.forEach(function (placeholderKey) {
+            var value = this._findValue(params, placeholderKey);
+            if (Ext.isDefined(value)) {
+                url = url.replace('${' + placeholderKey + '}', value, 'g');
+            }
+        }, this);
+        request.setUrl(url);
 
-        // // Perform the replacements
-        // placeholderKeys.forEach(function (placeholderKey) {
-        //     var value = this._findValue(params, placeholderKey);
-        //     if (Ext.isDefined(value)) {
-        //         url = url.replace('${' + placeholderKey + '}', value, 'g');
-        //     }
-        // }, this);
-        // request.setUrl(url);
+        // Delete the replaced object from params
+        placeholderKeys.forEach(function (placeholderKey) {
+            var tokens = placeholderKey.split('.');
+            delete params[tokens[0]];
+        }, this);
 
-        // // Delete the replaced object from params
-        // placeholderKeys.forEach(function (placeholderKey) {
-        //     var tokens = placeholderKey.split('.');
-        //     delete params[tokens[0]];
-        // }, this);
-
-        // // me.callParent([request]);
-        // url = me.getUrl(request);
-        return this.getUrl(request);
+        // me.callParent([request]);
+        url = me.getUrl(request);
+        return url;
     },
 
     /**
@@ -94,6 +86,23 @@ Ext.define('Nishilua.data.proxy.Rest', {
             }
         }
         return obj;
+    },
+
+    /**
+     * Finds all the placeholder keys present in the target String.
+     *
+     * @param {String} targetString - String where to find placeholders with format `${foo.bar.baz}`
+     * @returns {String[]} List with unique placeholders found
+     * @private
+     */
+    _findPlaceholderKeys: function (targetString) {
+        var matchedPlaceholder,
+            placeholders = [];
+
+        while ((matchedPlaceholder = this.placeholdersRe.exec(targetString)) !== null) {
+            placeholders.push(matchedPlaceholder);
+        }
+        return Ext.Array.pluck(placeholders, '1');
     },
 
     /**

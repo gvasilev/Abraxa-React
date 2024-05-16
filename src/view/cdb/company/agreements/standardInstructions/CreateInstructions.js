@@ -46,8 +46,8 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstru
                         let size = function (size) {
                             var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                             if (size == 0) return '0 Byte';
-                            var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
-                            return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
+                            var num = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
+                            return Math.round(size / Math.pow(1024, num), 2) + ' ' + sizes[num];
                         };
 
                         for (var i = 0; i < len; i++) {
@@ -83,11 +83,12 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstru
                                     ],
                                 },
                             }).show();
-                            fileField = document.getElementById(me.id);
+                            let fileField = document.getElementById(me.id);
                             // get the file upload parent element
-                            parentNod = fileField.parentNode;
+                            let parentNod = fileField.parentNode;
                             // create new element
-                            tmpForm = document.createElement('form');
+                            let tmpForm = document.createElement('form');
+
                             parentNod.replaceChild(tmpForm, fileField);
                             tmpForm.appendChild(fileField);
                             tmpForm.reset();
@@ -96,12 +97,12 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstru
                             me.setValue(null);
                             return;
                         }
-                        for (var i = 0; i < len; i++) {
-                            ext = files.item(i).name.split('.').pop();
+                        for (var a = 0; a < len; a++) {
+                            ext = files.item(a).name.split('.').pop();
                             let record = {
                                 ext: ext,
-                                firstName: files.item(i).name.split('.').shift(),
-                                file: files.item(i),
+                                firstName: files.item(a).name.split('.').shift(),
+                                file: files.item(a),
                                 size: size(totalSize),
                             };
                             fileStore.add(record);

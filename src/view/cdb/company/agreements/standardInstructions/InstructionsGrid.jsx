@@ -1,3 +1,6 @@
+import './CreateInstructions';
+import './InstructionsEditMenu';
+import '../../../../../model/cdb/StandardInstructions';
 Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.InstructionsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'agreements.instructions.grid',

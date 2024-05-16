@@ -8,7 +8,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
     cls: 'a-notification-center a-bgr-white',
     bodyCls: 'a-bgr-white',
     width: 540,
-    // side: 'right',throw error comment for now
+    side: 'right',
     displayed: false,
     hideOnMaskTap: true,
     height: 'calc(100% - 73px)',

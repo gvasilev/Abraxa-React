@@ -1,6 +1,7 @@
 import './VirtualAccountBalance.jsx';
 import './VirtualAccountTransactions.jsx';
 import './TransactionsRightCard.jsx';
+import './CreateFunds';
 Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
     extend: 'Ext.Container',
     xtype: 'virtual.account.right.card',

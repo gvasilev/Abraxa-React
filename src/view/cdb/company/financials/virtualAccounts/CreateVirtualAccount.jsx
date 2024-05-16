@@ -1,20 +1,23 @@
-Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
+import '../../../../../core/components/AbraxaNumberfield';
+Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
     extend: 'Ext.Dialog',
-    xtype: 'contacts.department.create',
+    xtype: 'virtual.accounts.create',
+    testId: 'virtAccountsCreate',
     cls: 'a-dialog-create a-dialog-has-icon',
-    testId: 'contactsDeparmetCreate',
     manageBorders: false,
     scrollable: 'y',
-    width: 620,
+    width: 540,
     minHeight: 580,
-    maxHeight: '90%',
+    maxHeight: 860,
     padding: 0,
     showAnimation: 'pop',
     closable: true,
     draggable: false,
     maximizable: false,
     maximized: false,
-    title: '<div class="a-badge a-badge-default"><i class="md-icon-outlined">corporate_fare</i></div>Add department',
+    bind: {
+        title: '<div class="a-badge a-badge-default"><i class="md-icon-outlined">credit_score</i></div>{editMode ? "Edit float line":"New float line"}',
+    },
     items: [
         {
             xtype: 'container',
@@ -23,13 +26,14 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
             items: [
                 {
                     xtype: 'formpanel',
-                    testId: 'contactsDeparmetForm',
+                    testId: 'virtAccountsCreateForm',
                     flex: 1,
                     scrollable: 'y',
                     layout: 'vbox',
                     items: [
                         {
                             xtype: 'form.error',
+                            testId: 'virtAccountsCreateFormErr',
                             hidden: true,
                             margin: 0,
                             padding: 8,
@@ -47,19 +51,21 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
                                     maxWidth: 520,
                                     defaults: {
                                         labelAlign: 'left',
-                                        clearable: false,
                                         ui: 'classic hovered-border',
+                                        slug: 'cdbFinancialVirtualAccounts',
+                                        bind: {
+                                            permission: '{userPermissions}',
+                                        },
                                     },
                                     items: [
                                         {
                                             xtype: 'textfield',
+                                            testId: 'virtAccountsCreateAccNameField',
                                             ui: 'field-xl no-border classic',
                                             label: false,
-                                            clearable: false,
-                                            placeholder: 'Enter department name',
-                                            testId: 'contactsDeparmetDepartmentNameField',
+                                            placeholder: 'Enter account name',
                                             bind: {
-                                                value: '{department.dept_name}',
+                                                value: '{virtualAccount.name}',
                                             },
                                             required: true,
                                             listeners: {
@@ -69,34 +75,38 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
                                             },
                                         },
                                         {
-                                            xtype: 'abraxa.emailfield',
-                                            cls: 'a-field-icon icon-email icon-rounded',
-                                            label: 'Email',
-                                            vtype: 'email',
-                                            testId: 'contactsDeparmetEmailField',
-                                            placeholder: 'Enter email address',
-                                            required: true,
-                                            bind: {
-                                                value: '{department.dept_email}',
-                                            },
-                                        },
-                                        {
-                                            xtype: 'abraxa.phonefield',
-                                            cls: 'a-field-icon icon-phone icon-rounded',
-                                            label: 'Phone',
-                                            testId: 'contactsDeparmetPhoneField',
-                                            bind: {
-                                                value: '{department.dept_phone}',
-                                            },
-                                        },
-                                        {
                                             xtype: 'textfield',
-                                            label: 'Address',
-                                            testId: 'contactsDeparmetAddressField',
-                                            placeholder: 'Enter address',
-                                            cls: 'a-field-icon icon-location icon-rounded',
+                                            label: 'Account ID',
+                                            testId: 'virtAccountsCreateAccIDField',
+                                            placeholder: 'Enter account ID',
+                                            cls: 'a-field-icon icon-short icon-rounded',
                                             bind: {
-                                                value: '{department.address}',
+                                                value: '{virtualAccount.account_number}',
+                                            },
+                                        },
+                                        {
+                                            xtype: 'common-combo-currency',
+                                            label: 'Currency',
+                                            testId: 'virtAccountsCreateCurrencyField',
+                                            editable: false,
+                                            placeholder: 'Choose currency',
+                                            required: true,
+                                            cls: 'a-field-icon icon-money icon-rounded',
+                                            matchFieldWidth: true,
+                                            bind: {
+                                                value: '{virtualAccount.currency}',
+                                            },
+                                        },
+                                        {
+                                            xtype: 'abraxa.numberfield',
+                                            label: 'Minimum balance',
+                                            testId: 'virtAccountsCreateMinBalanceField',
+                                            labelAlign: 'left',
+                                            placeholder: '0,000.00',
+                                            cls: 'a-field-icon icon-money icon-rounded a-append a-append-units',
+                                            ui: 'classic hovered-border',
+                                            bind: {
+                                                value: '{virtualAccount.minimum_balance}',
                                             },
                                         },
                                         {
@@ -104,15 +114,14 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
                                             cls: 'divider divider-offset',
                                             html: '',
                                         },
-
                                         {
                                             xtype: 'textareafield',
+                                            testId: 'virtAccountsCreateEnterDescField',
                                             ui: 'no-border no-underline',
-                                            testId: 'contactsDeparmetDescriptionField',
                                             cls: 'a-field-icon icon-short',
                                             placeholder: 'Enter description (optional)',
                                             bind: {
-                                                value: '{department.description}',
+                                                value: '{virtualAccount.description}',
                                             },
                                         },
                                     ],
@@ -127,10 +136,10 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
     buttons: [
         {
             text: 'Cancel',
-            testId: 'contactsDeparmetCancelBtn',
+            testId: 'virtAccountsCreateCancelBtn',
             margin: '0 8 0 0',
             handler: function () {
-                let record = this.upVM().get('department');
+                let record = this.upVM().get('virtualAccount');
                 if (record) {
                     record.reject();
                 }
@@ -138,30 +147,43 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
             },
         },
         {
-            text: 'Create',
-            testId: 'contactsDeparmetCreateBtn',
+            bind: {
+                text: '{editMode ? "Save":"Create"}',
+            },
             enableToggle: true,
+            testId: 'virtAccountsCreateSaveBtn',
             ui: 'action loading',
             handler: function (me) {
                 let vm = me.upVM(),
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
-                    departments = vm.get('departments'),
-                    department = vm.get('department');
-                form = dialog.down('formpanel');
+                    editMode = vm.get('editMode'),
+                    virtualAccounts = vm.get('virtualAccounts'),
+                    virtualAccount = vm.get('virtualAccount'),
+                    form = dialog.down('formpanel');
+
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
-                    department.getProxy().setExtraParams({
-                        org_id: company.get('org_id'),
-                    });
-                    department.save({
-                        success: function (rec) {
-                            departments.add(rec);
-                            departments.commitChanges();
-                            Ext.getCmp('main-viewport').getVM().get('agreements').reload();
-                            dialog.destroy();
-                        },
-                    });
+                    if (editMode) {
+                        virtualAccounts.sync({
+                            success: function () {
+                                Ext.toast('Record updated', 1000);
+                                dialog.destroy();
+                            },
+                        });
+                    } else {
+                        virtualAccount.getProxy().setExtraParams({
+                            org_id: company.get('org_id'),
+                        });
+                        virtualAccount.save({
+                            success: function (rec) {
+                                virtualAccounts.add(rec);
+                                virtualAccounts.commitChanges();
+                                Ext.ComponentQuery.query('[xtype=company]')[0].getVM().set('newUpdate', new Date());
+                                dialog.destroy();
+                            },
+                        });
+                    }
                 } else {
                     me.toggle();
                     form.down('form\\.error').setHtml('Please fill in all required fields').show().addCls('error');

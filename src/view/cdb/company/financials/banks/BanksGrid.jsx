@@ -1,3 +1,5 @@
+import './CreateBank';
+import './BanksEditMenu';
 Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'financials.banks',

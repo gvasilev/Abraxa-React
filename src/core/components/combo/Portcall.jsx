@@ -1,3 +1,5 @@
+import '../../../store/common/PortcallsRemote.jsx'
+
 Ext.define('Abraxa.core.components.combo.Portcall', {
     extend: 'Ext.field.ComboBox',
     xtype: 'portcall.combo',

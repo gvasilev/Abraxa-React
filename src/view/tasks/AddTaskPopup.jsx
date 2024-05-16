@@ -1,3 +1,4 @@
+import './TaskForm';
 Ext.define('Abraxa.view.tasks.AddTaskPopup', {
     extend: 'Ext.Dialog',
     xtype: 'add.task',

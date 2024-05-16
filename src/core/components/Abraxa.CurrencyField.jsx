@@ -14,7 +14,7 @@ Ext.define('Abraxa.CurrencyField', {
         } else {
             this.setValue(null);
         }
-        return this.callParent([value, errors]);
+        // return this.callParent([value, errors]);
     },
 
     applyInputValue: function (value) {

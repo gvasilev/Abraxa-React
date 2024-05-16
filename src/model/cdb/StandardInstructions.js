@@ -1,3 +1,6 @@
+import '../portcall/Attachment';
+import '../cdb/InstructionRule';
+
 Ext.define('Abraxa.model.cdb.StandardInstructions', {
     extend: 'Ext.data.Model',
     fields: [

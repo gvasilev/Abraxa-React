@@ -1,3 +1,4 @@
+import './CreateVirtualAccount';
 Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'virtual.accounts.edit.menu',
@@ -40,8 +41,9 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 let vm = this.upVM(),
                     grid = vm.get('grid'),
                     record = me.upVM().get('record'),
-                    virtualAccounts = vm.get('virtualAccounts');
-                selections = grid.getSelections();
+                    virtualAccounts = vm.get('virtualAccounts'),
+                    selections = grid.getSelections();
+
                 Ext.Msg.confirm(
                     'Enable',
                     'Are you sure you want to enable this direct billings?',
@@ -96,8 +98,9 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 let vm = this.upVM(),
                     grid = vm.get('grid'),
                     record = me.upVM().get('record'),
-                    virtualAccounts = vm.get('virtualAccounts');
-                selections = grid.getSelections();
+                    virtualAccounts = vm.get('virtualAccounts'),
+                    selections = grid.getSelections();
+
                 Ext.Msg.confirm(
                     'Disable',
                     'Are you sure you want to disable this Virtual Account?',

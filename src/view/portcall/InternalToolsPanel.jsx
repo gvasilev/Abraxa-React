@@ -7,7 +7,7 @@ Ext.define('Abraxa.view.portcall.InternalToolsPanel', {
     bodyCls: 'a-bgr-white',
     testId: 'internalToolsPanel',
     width: 540,
-    // side: 'right',throw error comment for now
+    side: 'right',
     displayed: false,
     hideOnMaskTap: true,
     flex: 1,
