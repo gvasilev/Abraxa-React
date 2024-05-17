@@ -2,6 +2,7 @@ Ext.define('Abraxa.MessageBox', {
     override: 'Ext.MessageBox',
     manageBorders: false,
     zIndex: 9999,
+    buttonAlign: 'right',
     info: function (title, message, fn, scope) {
         return this.show({
             title: title || null,

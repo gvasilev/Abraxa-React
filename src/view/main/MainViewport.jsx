@@ -15,6 +15,7 @@ import '../search/SearchPanel';
 import '../tasks/TasksMainContainer';
 import '../portnews/PortNewsMainContainer';
 import '../inquiry/InquiryMainView';
+import '../inquiry/inquiryDetails/MainView';
 
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',

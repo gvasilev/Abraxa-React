@@ -58,21 +58,21 @@ Ext.define('Abraxa.view.main.MainController', {
                 ':id': '([a-f0-9-]{36}|create|edit|[0-9]+)',
                 ':args': '(.*)',
             },
-            handlers: [
-                {
-                    before: 'onBefore',
-                    scope: {
-                        onBefore: function (id, action) {
-                            if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'agent') {
-                                // other roles can't access this module
-                                Ext.getCmp('main-viewport').getController().redirectTo('404');
-                                return;
-                            }
-                            action.resume();
-                        },
-                    },
-                },
-            ],
+            // handlers: [
+            //     {
+            //         before: 'onBefore',
+            //         scope: {
+            //             onBefore: function (id, action) {
+            //                 if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'agent') {
+            //                     // other roles can't access this module
+            //                     Ext.getCmp('main-viewport').getController().redirectTo('404');
+            //                     return;
+            //                 }
+            //                 action.resume();
+            //             },
+            //         },
+            //     },
+            // ],
         },
         'invitations/:id': {
             action: 'handleInvitationRoute',

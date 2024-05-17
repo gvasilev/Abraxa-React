@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
 import Mention from './helpers/mention/Mention';
+import WebViewer from '@pdftron/webviewer';
 
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
@@ -19,6 +20,7 @@ window.moment = moment;
 window.mixpanel = mixpanel;
 window.numeral = numeral;
 window.Mention = Mention;
+window.WebViewer = WebViewer;
 
 (async () => {
     Fill();

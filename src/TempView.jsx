@@ -18,6 +18,8 @@ import './controller/AbraxaController.jsx';
 import './core/globals/Abraxa.Socket.js';
 import './view/settings/SettingsMainLayout.jsx';
 import './view/error/404.jsx';
+import './core/override/Abraxa.Dialog.js';
+import './core/override/Abraxa.MessageBox.js';
 // Import CSS
 import './index.css';
 import '../styles/1.css';

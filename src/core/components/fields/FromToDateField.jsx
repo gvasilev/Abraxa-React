@@ -235,6 +235,13 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
         }
     },
 
+    setUi: function (ui) {
+        const dateField1 = this.getAt(0);
+        const dateField2 = this.getAt(1);
+        dateField1.setUi(ui);
+        dateField2.setUi(ui);
+    },
+
     validate: function (skipLazy) {
         var me = this,
             empty,

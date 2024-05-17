@@ -105,6 +105,7 @@ Ext.define('Abraxa.model.disbursement.Voucher', {
             Ext.Ajax.request({
                 url: Env.ApiEndpoint + 'get_pdf',
                 jsonData: sendData,
+                withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
                 },

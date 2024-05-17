@@ -4,4 +4,5 @@ Ext.define('Abraxa.Dialog', {
         maximizeAnimation: null,
         restoreAnimation: null,
     },
+    buttonAlign: 'right',
 });

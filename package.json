@@ -13,6 +13,7 @@
         "@auth0/auth0-react": "^2.2.4",
         "@gusmano/reext": "^0.0.398",
         "@jridgewell/sourcemap-codec": "^1.4.15",
+        "@pdftron/webviewer": "^10.9.0",
         "@rollup/plugin-terser": "^0.4.4",
         "@vitejs/plugin-legacy": "^5.4.0",
         "fusioncharts": "^3.23.0",

@@ -137,6 +137,7 @@ Ext.define('Abraxa.model.document.Document', {
             Ext.Ajax.request({
                 url: Env.ApiEndpoint + 'get_pdf',
                 jsonData: sendData,
+                withCredentials: true,
                 // headers: {
                 //     'Content-Type': 'application/json',
                 //     'Accept-Encoding': 'gzip'
