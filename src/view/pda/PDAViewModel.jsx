@@ -1,3 +1,6 @@
+import '../../store/pda/PdaOfferServices';
+import '../../store/common/port/Berths.js';
+
 Ext.define('Abraxa.view.pda.PDAViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.pda-viewmodel',

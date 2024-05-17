@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                     member = this.get('member'),
                                     currentUser = this.get('currentUser');
 
-                                record_exists = store.queryBy(function (rec, id) {
+                                let record_exists = store.queryBy(function (rec, id) {
                                     return (
                                         rec.get('assigned_company_id') == currentUser.get('current_company_id') &&
                                         rec.get('approvable_id') == file_id &&

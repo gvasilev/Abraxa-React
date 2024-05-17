@@ -78,9 +78,9 @@ Ext.define('Abraxa.view.document.DocumentController', {
             username = Ext.getCmp('main-viewport').upVM().get('currentUser.full_name');
         if (this.viewerHasLoaded) return;
 
-        WebViewer.default(
+        WebViewer(
             {
-                path: '/public/webviewer/',
+                path: 'node_modules/@pdftron/webviewer/public',
                 licenseKey:
                     'Abraxa Group Ltd (abraxa.com):OEM:Abraxa::B+:AMS(20240616):61DCB4C3076A84F3FB313BC9B263192E4E6F4FA156DD73040486F424E718C634D2B6F5C7',
                 css: '/src/css/webviewer.css',
@@ -107,6 +107,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 fullAPI: true,
                 disableLogs: false,
                 useDownloader: false,
+                withCredentials: true,
             },
             document.getElementById('pdf-viewer')
         ).then((instance) => {
@@ -125,6 +126,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
 
             if (me.documentForLoad) {
                 instance.UI.loadDocument(me.documentForLoad, {
+                    withCredentials: true,
                     customHeaders: {
                         'Cross-Origin-Opener-Policy': 'same-origin',
                     },

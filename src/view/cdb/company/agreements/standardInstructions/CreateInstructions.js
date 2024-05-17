@@ -498,7 +498,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstru
                                                     let store = this.upVM().get('instruction').rules();
                                                     me.setDisabled(false);
                                                     if (store.getCount()) {
-                                                        record_exists = store.queryBy(function (rec, id) {
+                                                        let record_exists = store.queryBy(function (rec, id) {
                                                             return rec.get('property') == me.property;
                                                         }).items;
                                                         if (record_exists.length) {

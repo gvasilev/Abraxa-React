@@ -1,3 +1,5 @@
+import '../../controller/CalculationController';
+
 Ext.define('Abraxa.view.pda.PDAConmtroller', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.pda-controller',

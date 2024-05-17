@@ -1,3 +1,10 @@
+import './PDAEstimateDetails';
+import './calculation/PDACalculationFields';
+import './PDAVesselDetails';
+import './PDATerms';
+import './PDANotes';
+import './PDAAttachments';
+
 Ext.define('Abraxa.view.pda.PDALeftMenu', {
     extend: 'Ext.Container',
     xtype: 'pda.left.menu',

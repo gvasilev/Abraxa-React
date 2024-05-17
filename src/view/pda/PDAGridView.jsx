@@ -1,7 +1,10 @@
-Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
+import './PDAItemsGrid';
+import './PDADotsMenu';
+import '../portcall/agent/accounts/AgreementsList';
+
+Ext.define('Abraxa.view.pda.PDAGridView', {
     extend: 'Ext.Container',
-    xtype: 'pda.calculation.items',
-    itemId: 'pdaCalculationGridView',
+    xtype: 'pda.items',
     layout: {
         type: 'vbox',
         align: 'stretch',
@@ -10,29 +13,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
     bind: {
         cls: 'a-bgr-white no-shadow',
     },
-    viewModel: {
-        data: {
-            selectedCurrency: null,
-            exchangeRate: null,
-            pdaOriginExchangeRate: null,
-        },
-        formulas: {
-            currency: function (get) {
-                return get('pda.currency');
-            },
-            setExchangeRate: function (get) {
-                if (!get('pdaOriginExchangeRate')) {
-                    this.set('pdaOriginExchangeRate', get('pda.exchange_rate'));
-                    this.set({ exchangeRate: get('pda.exchange_rate') });
-                } else {
-                    this.set({ exchangeRate: get('pdaOriginExchangeRate') });
-                }
-            },
-            menuButtonFormatROE: function (get) {
-                return Abraxa.utils.Functions.formatROE(get('pdaOriginExchangeRate'));
-            },
-        },
-    },
+    itemId: 'pdaGridView',
     items: [
         {
             xtype: 'container',
@@ -104,6 +85,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                     xtype: 'button',
                                     margin: '0 16',
                                     ui: 'status-md default',
+                                    // ui: 'status default',
                                     bind: {
                                         cls: 'status-{pda.status}',
                                         text: '{pda.status:capitalize}',
@@ -113,7 +95,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                         defaults: {
                                             handler: function (me) {
                                                 let selection = me.upVM().get('pda'),
-                                                    object_record = me.upVM().get('object_record'),
                                                     calculation = me.upVM().get('calculation');
 
                                                 if (selection) {
@@ -122,7 +103,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                 if (selection.dirty) {
                                                     selection.save({
                                                         success: function () {
-                                                            Abraxa.utils.Functions.updateInquiry(object_record);
                                                             Ext.toast('Record updated', 1000);
                                                         },
                                                     });
@@ -201,7 +181,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                         {
                             xtype: 'div',
                             hidden: true,
-                            margin: '0 16',
+                            margin: '0 0 0 16',
                             bind: {
                                 html: '<div class="a-status-badge status-xl status-{pda.status}">{pda.status:capitalize}</div>',
                                 hidden: '{!nonEditable}',
@@ -226,216 +206,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                 align: 'middle',
                             },
                             items: [
-                                {
-                                    xtype: 'button',
-                                    testId: 'pdaCalculationGridViewChageCurrencyButton',
-                                    ui: 'bgr-light-grey completed-light color-default small',
-                                    iconCls: 'md-icon-outlined md-icon-currency-exchange md-icon-color-green',
-                                    bind: {
-                                        text: '<span class="mr-16">{currencyData.port_currency}/{currencyData.offer_currency}</span> {menuButtonFormatROE}',
-                                        disabled: '{pda.status !="draft" || nonEditable}',
-                                    },
-                                    menu: {
-                                        width: '320',
-                                        cls: 'a-menu-currency',
-                                        items: [
-                                            {
-                                                xtype: 'div',
-                                                cls: 'h5',
-                                                margin: '8 16',
-                                                bind: {
-                                                    html: 'Change currency',
-                                                },
-                                            },
-                                            {
-                                                xtype: 'container',
-                                                padding: '0 16 16',
-                                                items: [
-                                                    {
-                                                        xtype: 'common-combo-currency',
-                                                        testId: 'pdaCalculationGridViewCurrencyCombo',
-                                                        labelAlign: 'left',
-                                                        label: 'Currency',
-                                                        ui: 'classic hovered-border',
-                                                        required: true,
-                                                        cls: 'a-field-icon icon-money icon-rounded',
-                                                        bind: {
-                                                            value: '{currency}',
-                                                        },
-                                                        floatedPicker: {
-                                                            listeners: {
-                                                                select: function (me, record) {
-                                                                    let pda = me.upVM().get('pda'),
-                                                                        currency = record.get('currency'),
-                                                                        portCurrency = me
-                                                                            .upVM()
-                                                                            .get('currencyData.port_currency');
-                                                                    me.upVM().set({
-                                                                        selectedCurrency: currency,
-                                                                    });
-                                                                    const applyButton = this.up('container')
-                                                                        .up()
-                                                                        .down('#applyButton');
-                                                                    applyButton.setDisabled(true);
-                                                                    if (currency === portCurrency) {
-                                                                        applyButton.setDisabled(false);
-                                                                        me.upVM().set({
-                                                                            exchangeRate: 1,
-                                                                        });
-                                                                    } else {
-                                                                        Abraxa.getApplication()
-                                                                            .getController('AbraxaController')
-                                                                            .getExchange(portCurrency, currency)
-                                                                            .then(function (response) {
-                                                                                if (response && response.length) {
-                                                                                    applyButton.setDisabled(false);
-                                                                                    me.upVM().set({
-                                                                                        exchangeRate:
-                                                                                            response[0].exchange_rate,
-                                                                                    });
-                                                                                }
-                                                                            });
-                                                                    }
-                                                                },
-                                                            },
-                                                        },
-                                                    },
-                                                    {
-                                                        xtype: 'container',
-                                                        margin: '2 0 0 0',
-                                                        padding: '0 0 2 0',
-                                                        defaults: {
-                                                            labelAlign: 'left',
-                                                            ui: 'classic hovered-border',
-                                                        },
-                                                        layout: {
-                                                            type: 'hbox',
-                                                            align: 'middle',
-                                                        },
-                                                        items: [
-                                                            {
-                                                                xtype: 'abraxa.currency.field',
-                                                                flex: 1,
-                                                                label: 'Exchange rate',
-                                                                placeholder: '0,000.00',
-                                                                cls: 'a-prepend a-field-icon icon-exchange icon-rounded',
-                                                                required: false,
-                                                                bind: {
-                                                                    value: '{exchangeRate}',
-                                                                    required: '{currencyData ? true:false}',
-                                                                },
-                                                                listeners: {
-                                                                    change: function (me, newValue, oldValue) {
-                                                                        const applyButton = this.up('container')
-                                                                            .up()
-                                                                            .up()
-                                                                            .down('#applyButton');
-                                                                        if (
-                                                                            newValue &&
-                                                                            oldValue &&
-                                                                            oldValue.toFixed(100) !==
-                                                                                newValue.toFixed(100)
-                                                                        ) {
-                                                                            applyButton.setDisabled(false);
-                                                                        }
-                                                                    },
-                                                                },
-                                                            },
-                                                            {
-                                                                xtype: 'div',
-                                                                cls: 'c-light-grey',
-                                                                margin: '0 8',
-                                                                bind: {
-                                                                    html: '{currencyData.port_currency}',
-                                                                },
-                                                            },
-                                                        ],
-                                                    },
-                                                ],
-                                            },
-                                            {
-                                                xtype: 'container',
-                                                padding: '8 16',
-                                                layout: {
-                                                    type: 'hbox',
-                                                    pack: 'end',
-                                                },
-                                                subObject: 'disbursements',
-                                                items: [
-                                                    {
-                                                        xtype: 'button',
-                                                        itemId: 'applyButton',
-                                                        testId: 'pdaCalculationGridViewApplyButton',
-                                                        ui: 'small action',
-                                                        text: 'Apply',
-                                                        bind: {
-                                                            disabled: '{!(selectedCurrency || pda.dirty)}',
-                                                        },
-                                                        handler: function (me) {
-                                                            const menuButton = me.up('menu').up('button');
-                                                            const pdaCalculationItemsVm = me
-                                                                .up('pda\\.calculation\\.items')
-                                                                .getViewModel();
-                                                            const vm = this.upVM();
-                                                            const pda = vm.get('pda');
-                                                            const object_record = vm.get('object_record');
-                                                            const services = this.upVM().get('calculationServices');
-                                                            const selectedCurrency =
-                                                                pdaCalculationItemsVm.get('selectedCurrency');
-                                                            const exchangeRate =
-                                                                pdaCalculationItemsVm.get('exchangeRate');
-                                                            const tempOrigExchangeRate =
-                                                                vm.get('pdaOriginExchangeRate');
-                                                            me.up('menu').hide();
-                                                            menuButton.setDisabled(true);
-                                                            if (selectedCurrency) {
-                                                                pda.set({
-                                                                    currency: selectedCurrency,
-                                                                    exchange_rate: exchangeRate,
-                                                                });
-                                                            }
-
-                                                            vm.set(
-                                                                'pdaOriginExchangeRate',
-                                                                Abraxa.utils.Functions.formatROE(exchangeRate)
-                                                            );
-                                                            pda.save({
-                                                                success: function (record, operation) {
-                                                                    services.each(function (service) {
-                                                                        service.dirty = true;
-                                                                        service.set('exchange_rate', exchangeRate);
-                                                                    });
-                                                                    services.sync();
-
-                                                                    Ext.toast('Record updated');
-                                                                    Abraxa.utils.Functions.updateInquiry(object_record);
-                                                                    pda.load();
-                                                                },
-                                                                failure: function (record, operation) {
-                                                                    vm.set(
-                                                                        'pdaOriginExchangeRate',
-                                                                        Abraxa.utils.Functions.formatROE(
-                                                                            tempOrigExchangeRate
-                                                                        )
-                                                                    );
-                                                                },
-                                                                callback: function () {
-                                                                    menuButton.setDisabled(false);
-                                                                },
-                                                            });
-                                                        },
-                                                    },
-                                                ],
-                                            },
-                                        ],
-                                        listeners: {
-                                            hide: function (me) {
-                                                let pda = this.upVM().get('pda');
-                                                pda.reject();
-                                            },
-                                        },
-                                    },
-                                },
                                 {
                                     xtype: 'button',
                                     margin: '0 0 0 8',
@@ -495,23 +265,25 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                         {
                             xtype: 'button',
                             ui: 'action small',
+                            testId: 'addItemButtonPdaGridView',
                             iconCls: 'md-icon-add',
                             text: 'Item',
                             bind: {
                                 disabled: '{(pda.status !="draft" || nonEditable) || isSyncingPdaGrid}',
                             },
                             handler: function (me) {
-                                me.upVM().set('isSyncingPdaGrid', true);
-                                let store = me.upVM().get('calculationServices'),
-                                    pda = me.upVM().get('pda'),
+                                let store = me.upVM().get('services'),
                                     object_record = me.upVM().get('object_record'),
-                                    record = Ext.create('Abraxa.model.calculation.CalculationService', {
+                                    pda = me.upVM().get('pda'),
+                                    record = Ext.create('Abraxa.model.inquiry.InquiryOfferService', {
                                         inquiry_offer_id: pda.get('id'),
+                                        value: 0,
+                                        currency: pda.get('currency'),
                                         custom_amount: 0,
                                         exchange_rate: pda.get('exchange_rate'),
                                     });
 
-                                store.add({ custom_amount: 0, exchange_rate: pda.get('exchange_rate') });
+                                store.add(record);
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 store.sync({
                                     success: function (rec) {
@@ -530,18 +302,20 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                     items: [
                         {
                             xtype: 'pda.dots.menu',
+                            testId: 'pdaGridViewDotsMenu',
                             subObject: 'disbursements',
+                            // ui: 'tool-text-sm round',
                         },
                     ],
                 },
             ],
         },
-
         {
-            xtype: 'pda.calculation.items.grid',
+            xtype: 'pda.items.grid',
         },
         {
             xtype: 'container',
+            // docked: 'bottom',
             cls: 'a-total-billed-docked',
             padding: '8 24',
             layout: {
@@ -572,7 +346,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                 {
                     xtype: 'div',
                     bind: {
-                        html: '<div class="h5">Total disbursement costs</div><div class="a-billed-price"><span class="a-billed-currency">{pda.currency}</span><span class="a-billed-amount">{totalDisbursementCosts:number("0,000.00")}</span><i class="md-icon-outlined">info</i></div>',
+                        html: '<div class="h5">Total disbursement costs</div><div class="a-billed-price"><span class="a-billed-currency">{pda.currency}</span><span class="a-billed-amount">{totalDisbursementCostsManual:number("0,000.00")}</span><i class="md-icon-outlined">info</i></div>',
                     },
                 },
                 {
@@ -587,33 +361,26 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                     items: [
                         {
                             xtype: 'button',
-                            testId: 'previewButtonPdaCalculationGridView',
                             ui: 'action large',
                             text: 'Preview',
+                            testId: 'previewButtonPdaGridView',
                             cls: 'no_show',
                             bind: {
                                 disabled: '{isSyncingPdaGrid}',
                             },
                             handler: function (me) {
                                 me.upVM().set('isSyncingPdaGrid', true);
-                                const pdaCalculations = me.up('pda\\.calculation\\.items');
-
+                                const pdaItems = me.up('pda\\.items');
                                 let pda = me.upVM().get('pda');
                                 let vm = me.upVM();
                                 let model = Ext.create('Abraxa.model.portcall.Attachment', {
                                         name: pda.get('name'),
-                                        status: pda.get('status'),
-                                        updated_at: pda.get('updated_at'),
-                                        updated_by_user: pda.get('updated_by_user'),
-                                        created_at: pda.get('created_at'),
-                                        created_by_user: pda.get('updated_by_user'), // No created_by_user field in PDA
-                                        size: pda.get('size') || '', // No size field in PDA
                                         pdf: true,
                                         id: 1001,
                                         extension: 'pdf',
                                         folder_file: null,
-                                        is_locked: true,
                                         nonEditable: true,
+                                        is_locked: true,
                                         document: {
                                             extension: 'pdf',
                                             folder_file: null,
@@ -644,10 +411,12 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                 loadDodument: {
                                                     bind: {
                                                         bindTo: '{selectedDocument.id}',
+                                                        // deep: true
                                                     },
                                                     get: function (id) {
                                                         let record = this.get('selectedDocument');
                                                         if (record) {
+                                                            // Ext.ComponentQuery.query('[cls~=pdf-preview]')[0].setMasked(true);
                                                             var me = this;
                                                             let file = record,
                                                                 pdf = record.get('pdf') ? true : false;
@@ -666,8 +435,9 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                             },
                                         },
                                     });
+
                                 dialog.on('destroy', (dialog) => {
-                                    Ext.ComponentQuery.query('#pdaCalculationGridView')[0].upVM().set({
+                                    Ext.ComponentQuery.query('#pdaGridView')[0].upVM().set({
                                         isSyncingPdaGrid: false,
                                     });
                                 });

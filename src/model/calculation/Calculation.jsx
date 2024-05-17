@@ -1,3 +1,7 @@
+import './CalculationService';
+import './CalculationField';
+import '../common/Vessel';
+
 Ext.define('Abraxa.model.calculation.Calculation', {
     extend: 'Ext.data.Model',
     fields: [

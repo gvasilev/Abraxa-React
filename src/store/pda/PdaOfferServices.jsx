@@ -1,3 +1,5 @@
+import '../../model/calculation/CalculationService';
+
 Ext.define('Abraxa.store.pda.PdaOfferServices', {
     extend: 'Ext.data.Store',
     alias: 'store.pda.offer.services',

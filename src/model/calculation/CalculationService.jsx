@@ -1,3 +1,5 @@
+import './CalculationField';
+
 Ext.define('Abraxa.model.calculation.CalculationService', {
     extend: 'Ext.data.Model',
     fields: [

@@ -1,3 +1,5 @@
+import '../common/combo/Berth';
+
 Ext.define('Abraxa.view.pda.PDAEstimateDetails', {
     extend: 'Ext.Container',
     xtype: 'pda.estimate.details',

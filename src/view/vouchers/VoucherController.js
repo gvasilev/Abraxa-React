@@ -16,9 +16,9 @@ Ext.define('Abraxa.view.vouchers.VoucherController', {
 
         if (this.viewerHasLoaded) return;
 
-        WebViewer.default(
+        WebViewer(
             {
-                path: '/public/webviewer/',
+                path: 'node_modules/@pdftron/webviewer/public',
                 licenseKey:
                     'Abraxa Group Ltd (abraxa.com):OEM:Abraxa::B+:AMS(20240616):61DCB4C3076A84F3FB313BC9B263192E4E6F4FA156DD73040486F424E718C634D2B6F5C7',
                 css: '/src/css/webviewer.css',
@@ -67,7 +67,9 @@ Ext.define('Abraxa.view.vouchers.VoucherController', {
             // instance.setFitMode(instance.FitMode.FitWidth);
 
             if (me.documentForLoad) {
-                instance.UI.loadDocument(me.documentForLoad, {});
+                instance.UI.loadDocument(me.documentForLoad, {
+                    withCredentials: true,
+                });
             }
 
             const tool = documentViewer.getTool('AnnotationCreateRubberStamp');
@@ -357,6 +359,7 @@ Ext.define('Abraxa.view.vouchers.VoucherController', {
         if (me.viewerHasLoaded) {
             let instance = WebViewer.getInstance();
             instance.UI.loadDocument(data, {
+                withCredentials: true,
                 customHeaders: {
                     Authorization: 'Basic YWxhZGRpbjpvcGVuc2VzYW1l',
                 },

@@ -1,3 +1,5 @@
+import './PDAController';
+
 Ext.define('Abraxa.view.pda.PDAAttachments', {
     extend: 'Ext.Container',
     xtype: 'pda.attachments',

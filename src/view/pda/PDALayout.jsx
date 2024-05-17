@@ -1,3 +1,11 @@
+import './PDAViewModel';
+import './PDAController';
+import './PDALeftMenu';
+import './PDAItemsGrid';
+import './PDAGridViewReadOnly';
+import './calculation/PDACalculationGridView';
+import './PDADotsMenu';
+
 Ext.define('Abraxa.view.pda.PDALayout', {
     extend: 'Ext.Container',
     xtype: 'pda.layout',

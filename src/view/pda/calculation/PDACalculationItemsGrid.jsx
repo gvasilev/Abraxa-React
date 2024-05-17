@@ -1,3 +1,6 @@
+import './PDACalculationItemsFieldsGrid';
+import '../PDAController';
+
 Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'pda.calculation.items.grid',
