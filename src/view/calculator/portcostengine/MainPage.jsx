@@ -1,3 +1,8 @@
+import './ViewModel.jsx';
+import './portsettings/show/Controller.jsx';
+import './portsettings/show/_Page.jsx';
+import './PremiumPage.jsx';
+import '../../../store/calculator/Nomenclature.jsx';
 Ext.define('Abraxa.view.calculator.portcostengine.MainPage', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.main',

@@ -21,6 +21,7 @@ import '../../store/directory/agents/Agents.jsx';
 import '../../store/invitations/Invitations.jsx';
 import '../../store/settings/CompanyOffices.jsx';
 import '../../view/main/DefaultHeaderContent';
+import '../calculator/portcostengine/Header.jsx';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',

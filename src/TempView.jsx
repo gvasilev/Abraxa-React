@@ -20,6 +20,7 @@ import './view/settings/SettingsMainLayout.jsx';
 import './view/error/404.jsx';
 import './core/override/Abraxa.Dialog.js';
 import './core/override/Abraxa.MessageBox.js';
+import './view/calculator/portcostengine/MainPage.jsx';
 // Import CSS
 import './index.css';
 import '../styles/1.css';
