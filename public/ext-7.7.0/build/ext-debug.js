@@ -4223,7 +4223,7 @@ var Ext = Ext || {};
       "idx": 446
     },
     {
-      "path": "../classic/classic/src/panel/Header.js",
+      "path": "../classic/classic/src/panel/Header.jsx",
       "requires": [
         433,
         444,
@@ -12285,7 +12285,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                 for (n = 0; n < len; n++) {
                     src = (script = scriptEls[n]).src;
                     if (!src) {
-                        
+
                         continue;
                     }
                     state = script.readyState || null;
@@ -12336,7 +12336,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                 // In ALL browsers! When called multiple times in a sequence, as if when
                 // we resolve dependencies for entries, it will cause garbage collection events
                 // and overall painful slowness. This is why we try to avoid it as much as we can.
-                // 
+                //
                 // @TODO - see if we need this fallback logic
                 // http://stackoverflow.com/questions/470832/getting-an-absolute-url-from-a-relative-one-ie6-issue
                 resolverEl.href = url;
@@ -12571,7 +12571,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
         this.urls = urls;
         this.charset = charset;
     }
-    
+
     Request.prototype = {
         $isRequest: true,
         createLoadOrderMap: function(loadOrder) {
@@ -12870,7 +12870,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
         this.buster = buster;
         this.requests = [];
     }
-    
+
     Entry.prototype = {
         $isEntry: true,
         done: false,
@@ -13436,16 +13436,16 @@ var Ext = Ext || {};
     /**
      * Copies all the properties of `config` to the specified `object`. There are two levels
      * of defaulting supported:
-     * 
+     *
      *      Ext.apply(obj, { a: 1 }, { a: 2 });
      *      //obj.a === 1
-     * 
+     *
      *      Ext.apply(obj, {  }, { a: 2 });
      *      //obj.a === 2
-     * 
+     *
      * Note that if recursive merging and cloning without referencing the original objects
      * or arrays is needed, use {@link Ext.Object#merge} instead.
-     * 
+     *
      * @param {Object} object The receiver of the properties.
      * @param {Object} config The primary source of the properties.
      * @param {Object} [defaults] An object that will also be applied for default values.
@@ -14632,7 +14632,7 @@ Ext.platformTags.modern = !(Ext.platformTags.classic = Ext.isClassic = true);
         },
         /**
          * Globally handle any Ext errors that may be raised, optionally providing custom logic
-         * to handle different errors individually. Return true from the function to bypass 
+         * to handle different errors individually. Return true from the function to bypass
          * throwing the error to the browser, otherwise the error will be thrown and execution
          * will halt.
          *
@@ -15048,8 +15048,8 @@ Ext.Array = (function() {
          *
          *     sum(1, 2, 3); // returns 6
          *
-         * The iteration can be stopped by returning `false` from the callback function.  
-         * Returning `undefined` (i.e `return;`) will only exit the callback function and 
+         * The iteration can be stopped by returning `false` from the callback function.
+         * Returning `undefined` (i.e `return;`) will only exit the callback function and
          * proceed with the next iteration of the loop.
          *
          *     Ext.Array.each(countries, function(name, index, countriesItSelf) {
@@ -15063,8 +15063,8 @@ Ext.Array = (function() {
          * @param {Array/NodeList/Object} array The value to be iterated. If this
          * argument is not iterable, the callback function is called once.
          * @param {Function} fn The callback function. If it returns `false`, the iteration
-         * stops and this method returns the current `index`. Returning `undefined` (i.e 
-         * `return;`) will only exit the callback function and proceed with the next iteration 
+         * stops and this method returns the current `index`. Returning `undefined` (i.e
+         * `return;`) will only exit the callback function and proceed with the next iteration
          * in the loop.
          * @param {Object} fn.item The item at the current `index` in the passed `array`
          * @param {Number} fn.index The current `index` within the `array`
@@ -15489,7 +15489,7 @@ Ext.Array = (function() {
             },
             /**
          * Removes item/s at the specified index.
-         * 
+         *
          * @param {Array} array The array.
          * @param {Number} index The index of the item to be removed.
          * @param {Number} [count=1] The number of items to be removed.
@@ -15725,7 +15725,7 @@ Ext.Array = (function() {
          * relative to each other). By default, this method sorts the elements alphabetically and
          * ascending.
          * **Note:** This method modifies the passed array, in the same manner as the
-         * native javascript Array.sort. 
+         * native javascript Array.sort.
          *
          * @param {Array} array The array to sort.
          * @param {Function} [sortFn] The comparison function.
@@ -15844,13 +15844,13 @@ Ext.Array = (function() {
             /**
          * Creates a map (object) keyed by the elements of the given array. The values in
          * the map are the index+1 of the array element. For example:
-         * 
+         *
          *      var map = Ext.Array.toMap(['a','b','c']);
          *
          *      // map = { a: 1, b: 2, c: 3 };
-         * 
+         *
          * Or a key property can be specified:
-         * 
+         *
          *      var map = Ext.Array.toMap([
          *              { name: 'a' },
          *              { name: 'b' },
@@ -15858,9 +15858,9 @@ Ext.Array = (function() {
          *          ], 'name');
          *
          *      // map = { a: 1, b: 2, c: 3 };
-         * 
+         *
          * Lastly, a key extractor can be provided:
-         * 
+         *
          *      var map = Ext.Array.toMap([
          *              { name: 'a' },
          *              { name: 'b' },
@@ -15868,7 +15868,7 @@ Ext.Array = (function() {
          *          ], function(obj) { return obj.name.toUpperCase(); });
          *
          *      // map = { A: 1, B: 2, C: 3 };
-         * 
+         *
          * @param {String/String[]} strings The strings from which to create the map.
          * @param {String/Function} [getKey] Name of the object property to use
          * as a key or a function to extract the key.
@@ -15902,13 +15902,13 @@ Ext.Array = (function() {
             /**
          * Creates a map (object) keyed by a property of elements of the given array. The values in
          * the map are the array element. For example:
-         * 
+         *
          *      var map = Ext.Array.toValueMap(['a','b','c']);
          *
          *      // map = { a: 'a', b: 'b', c: 'c' };
-         * 
+         *
          * Or a key property can be specified:
-         * 
+         *
          *      var map = Ext.Array.toValueMap([
          *              { name: 'a' },
          *              { name: 'b' },
@@ -15916,9 +15916,9 @@ Ext.Array = (function() {
          *          ], 'name');
          *
          *      // map = { a: {name: 'a'}, b: {name: 'b'}, c: {name: 'c'} };
-         * 
+         *
          * Lastly, a key extractor can be provided:
-         * 
+         *
          *      var map = Ext.Array.toValueMap([
          *              { name: 'a' },
          *              { name: 'b' },
@@ -16083,7 +16083,7 @@ Ext.Array = (function() {
          * are coerced to strings when sorting, which can be problematic when using numeric values.
          * To ensure that the values are sorted numerically, this method can be passed to the sort
          * method:
-         * 
+         *
          *     Ext.Array.sort(myArray, Ext.Array.numericSortFn);
          */
             numericSortFn: function(a, b) {
@@ -16184,7 +16184,7 @@ Ext.Array = (function() {
  * @class Ext.Assert
  * This class provides help value testing methods useful for diagnostics. These are often
  * used in `debugHooks`:
- * 
+ *
  *      Ext.define('Foo.bar.Class', {
  *
  *          debugHooks: {
@@ -16197,13 +16197,13 @@ Ext.Array = (function() {
  *              }
  *          }
  *      });
- * 
+ *
  * **NOTE:** This class is entirely removed in production builds so all uses of it should
  * be either in `debug` conditional comments or `debugHooks`.
- * 
+ *
  * The following type detection methods from the `Ext` object are wrapped as assertions
  * by this class:
- * 
+ *
  *  * `isEmpty`
  *  * `isArray`
  *  * `isDate`
@@ -16219,19 +16219,19 @@ Ext.Array = (function() {
  *  * `isTextNode`
  *  * `isDefined`
  *  * `isIterable`
- * 
+ *
  * These appear both their exact name and with a "Prop" suffix for checking a property on
  * an object. For example, these are almost identical:
- * 
+ *
  *      Ext.Assert.isFunction(object.foo);
  *
  *      Ext.Assert.isFunctionProp(object, 'foo');
  *
  * The difference is the default error message generated is better in the second use case
  * than the first.
- * 
+ *
  * The above list are also expanded for "Not" flavors (and "Not...Prop"):
- * 
+ *
  *  * `isNotEmpty`
  *  * `isNotArray`
  *  * `isNotDate`
@@ -16424,7 +16424,7 @@ Ext.String = (function() {
          * @param {String} s The original string.
          * @param {String} value The substring to insert.
          * @param {Number} index The index to insert the substring. Negative indexes will insert
-         * from the end of the string. Example: 
+         * from the end of the string. Example:
          *
          *     Ext.String.insert("abcdefg", "h", -1); // abcdefhg
          *
@@ -16689,8 +16689,8 @@ Ext.String = (function() {
          *      var regex2 = /world/;
          *
          * @param {String/RegExp} value The String to convert to a `RegExp`.
-         * @param {Boolean} [startsWith=true] Pass `false` to allow a match to start 
-         * anywhere in the string. By default the `value` will match only at the start 
+         * @param {Boolean} [startsWith=true] Pass `false` to allow a match to start
+         * anywhere in the string. By default the `value` will match only at the start
          * of the string.
          * @param {Boolean} [endsWith=true] Pass `false` to allow the match to end before
          * the end of the string. By default the `value` will match only at the end of the
@@ -17162,7 +17162,7 @@ Ext.Date = (function() {
      * @private
      */
         formatCodeToRegex: function(character, currentGroup) {
-            // Note: currentGroup - position in regex result array (see notes for 
+            // Note: currentGroup - position in regex result array (see notes for
             // Ext.Date.parseCodes below)
             var p = utilDate.parseCodes[character];
             if (p) {
@@ -17332,10 +17332,10 @@ Ext.Date = (function() {
      * - `i`: {@link Number} - The default minute value. Defaults to `undefined`.
      * - `s`: {@link Number} - The default second value. Defaults to `undefined`.
      * - `ms`: {@link Number} - The default millisecond value. Defaults to `undefined`.
-     * 
+     *
      * Override these properties to customize the default date values used by the {@link #parse}
      * method.
-     * 
+     *
      * __Note:__ In countries which experience Daylight Saving Time (i.e. DST), the `h`, `i`, `s`
      * and `ms` properties may coincide with the exact time in which DST takes effect.
      * It is the responsibility of the developer to account for this.
@@ -17516,7 +17516,7 @@ Ext.Date = (function() {
      * @locale
      */
         getMonthNumber: function(name) {
-            // handle camel casing for English month names (since the keys for 
+            // handle camel casing for English month names (since the keys for
             // the Ext.Date.monthNumbers hash are case sensitive)
             return utilDate.monthNumbers[name.substring(0, 1).toUpperCase() + name.substring(1, 3).toLowerCase()];
         },
@@ -17678,7 +17678,7 @@ Ext.Date = (function() {
      * If a corresponding default date value has not been specified in the {@link #defaults} hash,
      * the current date's year, month, day or DST-adjusted zero-hour time value will be used
      * instead. Keep in mind that the input date string must precisely match the specified format
-     * string in order for the parse operation to be successful (failed parse operations return a 
+     * string in order for the parse operation to be successful (failed parse operations return a
      * `null` value).
      *
      * Example:
@@ -18226,7 +18226,7 @@ Ext.Date = (function() {
      * Standard Time)", `getTimezone()` first tries to get the timezone abbreviation from between
      * a pair of parentheses (which may or may not be present), failing which it proceeds to get
      * the timezone abbreviation from the GMT offset portion of the date string.
-     * 
+     *
      *     var dt = new Date('9/17/2011');
      *     console.log(Ext.Date.getTimezone(dt));
      *
@@ -19109,16 +19109,16 @@ Ext.Function = (function() {
          * the caller.
          *
          * {@link Ext#bind Ext.bind} is alias for {@link Ext.Function#bind Ext.Function.bind}
-         * 
+         *
          * **NOTE:** This method is similar to the native `bind()` method. The major difference
          * is in the way the parameters are passed. This method expects an array of parameters,
          * and if supplied, it does not automatically pass forward parameters from the bound
          * function:
-         * 
+         *
          *      function foo (a, b, c) {
          *          console.log(a, b, c);
          *      }
-         *      
+         *
          *      var nativeFn = foo.bind(this, 1, 2);
          *      var extFn = Ext.Function.bind(foo, this, [1, 2]);
          *
@@ -19128,7 +19128,7 @@ Ext.Function = (function() {
          * This method is unavailable natively on IE8 and IE/Quirks but Ext JS provides a
          * "polyfill" to emulate the important features of the standard `bind` method. In
          * particular, the polyfill only provides binding of "this" and optional arguments.
-         * 
+         *
          * @param {Function} fn The function to delegate.
          * @param {Object} [scope] The scope (`this` reference) in which the function
          * is executed.
@@ -19667,7 +19667,7 @@ Ext.Function = (function() {
             /**
          * Adds behavior to an existing method that is executed before the
          * original behavior of the function.  For example:
-         * 
+         *
          *     var soup = {
          *         contents: [],
          *         add: function(ingredient) {
@@ -19683,7 +19683,7 @@ Ext.Function = (function() {
          *     soup.add("onions");
          *     soup.add("salt");
          *     soup.contents; // will contain: water, onions, salt
-         * 
+         *
          * @param {Object} object The target object
          * @param {String} methodName Name of the method to override
          * @param {Function} fn Function with the new behavior.  It will
@@ -19705,7 +19705,7 @@ Ext.Function = (function() {
             /**
          * Adds behavior to an existing method that is executed after the
          * original behavior of the function.  For example:
-         * 
+         *
          *     var soup = {
          *         contents: [],
          *         add: function(ingredient) {
@@ -19719,7 +19719,7 @@ Ext.Function = (function() {
          *     soup.add("water");
          *     soup.add("onions");
          *     soup.contents; // will contain: water, salt, onions, salt
-         * 
+         *
          * @param {Object} object The target object
          * @param {String} methodName Name of the method to override
          * @param {Function} fn Function with the new behavior.  It will
@@ -20527,10 +20527,10 @@ Ext.Number = (new function() {
      * Returns a new object with the given object as the prototype chain. This method is
      * designed to mimic the ECMA standard `Object.create` method and is assigned to that
      * function when it is available.
-     * 
+     *
      * **NOTE** This method does not support the property definitions capability of the
      * `Object.create` method. Only the first argument is supported.
-     * 
+     *
      * @param {Object} object The prototype chain for the new object.
      */
         chain: Object.create || function(object) {
@@ -20556,7 +20556,7 @@ Ext.Number = (new function() {
         /**
      * Freezes the given object making it immutable. This operation is by default shallow
      * and does not effect objects referenced by the given object.
-     * 
+     *
      * @method
      * @param {Object} obj The object to freeze.
      * @param {Boolean} [deep=false] Pass `true` to freeze sub-objects recursively.
@@ -20773,7 +20773,7 @@ Ext.Number = (new function() {
                         keys = [];
                         if (matchedKeys === null) {
                             object[name] = value;
-                            
+
                             continue;
                         }
                         for (j = 0 , subLn = matchedKeys.length; j < subLn; j++) {
@@ -21112,7 +21112,7 @@ Ext.Number = (new function() {
      * Shallow compares the contents of 2 objects using strict equality. Objects are
      * considered equal if they both have the same set of properties and the
      * value for those properties equals the other in the corresponding object.
-     * 
+     *
      *     // Returns true
      *     Ext.Object.equals({
      *         foo: 1,
@@ -21121,7 +21121,7 @@ Ext.Number = (new function() {
      *         foo: 1,
      *         bar: 2
      *     });
-     * 
+     *
      * @param {Object} object1
      * @param {Object} object2
      * @return {Boolean} `true` if the objects are equal.
@@ -21644,7 +21644,7 @@ Ext.apply(Ext, {
                 var m;
                 for (m in o) {
                     if (!o.hasOwnProperty(m)) {
-                        
+
                         continue;
                     }
                     this[m] = o[m];
@@ -22095,7 +22095,7 @@ Ext.apply(Ext, {
              *             ]
              *         },
              *         markerSubStyle: {}
-             *     } 
+             *     }
              *
              * @param {Object} object The object to iterate
              * @param {Number} [level] Current level of identation (and recursion). Default is 0.
@@ -22130,7 +22130,7 @@ Ext.apply(Ext, {
                     type = typeof value;
                     if (type === 'function') {
                         if (!withFunctions) {
-                            
+
                             continue;
                         }
                         member = type;
@@ -22271,11 +22271,11 @@ Ext.apply(Ext, {
  * to perform comparisons. A version number is expressed in the following general format:
  *
  *     major[.minor[.patch[.build[release]]]]
- * 
+ *
  * The `Version` instance holds various readonly properties that contain the digested form
  * of the version string. The numeric componnets of `major`, `minor`, `patch` and `build`
  * as well as the textual suffix called `release`.
- * 
+ *
  * Not depicted in the above syntax are three possible prefixes used to control partial
  * matching. These are '^' (the default), '>' and '~'. These are discussed below.
  *
@@ -22301,11 +22301,11 @@ Ext.apply(Ext, {
  *  * `"pl"` or `"p"`
  *
  * Any other (unrecognized) suffix is consider greater than any of these.
- * 
+ *
  * ## Comparisons
  * There are two forms of comparison that are commonly needed: full and partial. Full
  * comparison is simpler and is also the default.
- * 
+ *
  * Example:
  *
  *     var version = new Ext.Version('1.0.2beta');
@@ -22318,58 +22318,58 @@ Ext.apply(Ext, {
  *
  *     console.log(version.match(1.0)); // True (using a Number)
  *     console.log(version.match('1.0.2')); // True (using a String)
- * 
+ *
  * These comparisons are ultimately implemented by {@link Ext.Version#compareTo compareTo}
  * which returns -1, 0 or 1 depending on whether the `Version' instance is less than, equal
  * to, or greater than the given "other" version.
- * 
+ *
  * For example:
- * 
+ *
  *      var n = version.compareTo('1.0.1');  // == 1  (because 1.0.2beta > 1.0.1)
- *      
+ *
  *      n = version.compareTo('1.1');  // == -1
  *      n = version.compareTo(version); // == 0
- * 
+ *
  * ### Partial Comparisons
  * By default, unspecified version number fields are filled with 0. In other words, the
  * version number fields are 0-padded on the right or a "lower bound". This produces the
  * most commonly used forms of comparsion:
- * 
+ *
  *      var ver = new Version('4.2');
  *
  *      n = ver.compareTo('4.2.1'); // == -1  (4.2 promotes to 4.2.0 and is less than 4.2.1)
- * 
+ *
  * There are two other ways to interpret comparisons of versions of different length. The
  * first of these is to change the padding on the right to be a large number (scuh as
  * Infinity) instead of 0. This has the effect of making the version an upper bound. For
  * example:
- * 
+ *
  *      var ver = new Version('^4.2'); // NOTE: the '^' prefix used
  *
  *      n = ver.compareTo('4.3'); // == -1  (less than 4.3)
- *      
+ *
  *      n = ver.compareTo('4.2'); // == 1   (greater than all 4.2's)
  *      n = ver.compareTo('4.2.1'); // == 1
  *      n = ver.compareTo('4.2.9'); // == 1
- * 
+ *
  * The second way to interpret this comparison is to ignore the extra digits, making the
  * match a prefix match. For example:
- * 
+ *
  *      var ver = new Version('~4.2'); // NOTE: the '~' prefix used
  *
  *      n = ver.compareTo('4.3'); // == -1
- *      
+ *
  *      n = ver.compareTo('4.2'); // == 0
  *      n = ver.compareTo('4.2.1'); // == 0
- * 
+ *
  * This final form can be useful when version numbers contain more components than are
  * important for certain comparisons. For example, the full version of Ext JS 4.2.1 is
  * "4.2.1.883" where 883 is the `build` number.
- * 
+ *
  * This is how to create a "partial" `Version` and compare versions to it:
- * 
+ *
  *      var version421ish = new Version('~4.2.1');
- *      
+ *
  *      n = version421ish.compareTo('4.2.1.883'); // == 0
  *      n = version421ish.compareTo('4.2.1.2'); // == 0
  *      n = version421ish.compareTo('4.2.1'); // == 0
@@ -22474,7 +22474,7 @@ Ext.apply(Ext, {
         /**
          * @property {String} [release=""]
          * The release level. The following values are understood:
-         * 
+         *
          *  * `"dev"`
          *  * `"alpha"` or `"a"`
          *  * `"beta"` or `"b"`
@@ -22778,10 +22778,10 @@ Ext.apply(Ext, {
         compatVersions: {},
         /**
          * @private
-         * 
-         * Object containing version information for all packages utilized by your 
-         * application. 
-         * 
+         *
+         * Object containing version information for all packages utilized by your
+         * application.
+         *
          * For a public getter, please see `Ext.getVersion()`.
          */
         versions: {},
@@ -22853,39 +22853,39 @@ Ext.apply(Ext, {
          * This method accepts either form or an array of these as the first argument. The
          * second argument applies only when the first is an array and indicates whether
          * all `specs` must match or just one.
-         * 
+         *
          * ## Package Version Specifications
          * The string form of a `spec` is used to indicate a version or range of versions
          * for a particular package. This form of `spec` consists of three (3) parts:
-         * 
+         *
          *  * Package name followed by "@". If not provided, the framework is assumed.
          *  * Minimum version.
          *  * Maximum version.
-         * 
+         *
          * At least one version number must be provided. If both minimum and maximum are
          * provided, these must be separated by a "-".
-         * 
+         *
          * Some examples of package version specifications:
-         * 
+         *
          *      4.2.2           (exactly version 4.2.2 of the framework)
          *      4.2.2+          (version 4.2.2 or higher of the framework)
          *      4.2.2-          (version 4.2.2 or higher of the framework)
          *      4.2.1 - 4.2.3   (versions from 4.2.1 up to 4.2.3 of the framework)
          *      - 4.2.2         (any version up to version 4.2.1 of the framework)
-         *      
+         *
          *      foo@1.0         (exactly version 1.0 of package "foo")
          *      foo@1.0-1.3     (versions 1.0 up to 1.3 of package "foo")
-         * 
+         *
          * **NOTE:** This syntax is the same as that used in Sencha Cmd's package
          * requirements declarations.
-         * 
+         *
          * ## Boolean Operator Specifications
          * Instead of a string, an object can be used to describe a boolean operation to
          * perform on one or more `specs`. The operator is either **`and`** or **`or`**
          * and can contain an optional **`not`**.
-         * 
+         *
          * For example:
-         * 
+         *
          *      {
          *          not: true,  // negates boolean result
          *          and: [
@@ -22893,11 +22893,11 @@ Ext.apply(Ext, {
          *              'foo@1.0.1 - 2.0.1'
          *          ]
          *      }
-         * 
+         *
          * Each element of the array can in turn be a string or object spec. In other
          * words, the value is passed to this method (recursively) as the first argument
          * so these two calls are equivalent:
-         * 
+         *
          *      Ext.checkVersion({
          *          not: true,  // negates boolean result
          *          and: [
@@ -22910,18 +22910,18 @@ Ext.apply(Ext, {
          *              '4.2.2',
          *              'foo@1.0.1 - 2.0.1'
          *          ], true);
-         * 
+         *
          * ## Examples
-         * 
+         *
          *      // A specific framework version
          *      Ext.checkVersion('4.2.2');
-         * 
+         *
          *      // A range of framework versions:
          *      Ext.checkVersion('4.2.1-4.2.3');
-         * 
+         *
          *      // A specific version of a package:
          *      Ext.checkVersion('foo@1.0.1');
-         * 
+         *
          *      // A single spec that requires both a framework version and package
          *      // version range to match:
          *      Ext.checkVersion({
@@ -22930,7 +22930,7 @@ Ext.apply(Ext, {
          *              'foo@1.0.1-1.0.2'
          *          ]
          *      });
-         * 
+         *
          *      // These checks can be nested:
          *      Ext.checkVersion({
          *          and: [
@@ -22944,18 +22944,18 @@ Ext.apply(Ext, {
          *              }
          *          ]
          *      });
-         * 
+         *
          * ## Version Comparisons
          * Version comparsions are assumed to be "prefix" based. That is to say, `"foo@1.2"`
          * matches any version of "foo" that has a major version 1 and a minor version of 2.
-         * 
+         *
          * This also applies to ranges. For example `"foo@1.2-2.2"` matches all versions
          * of "foo" from 1.2 up to 2.2 regardless of the specific patch and build.
-         * 
+         *
          * ## Use in Overrides
          * This methods primary use is in support of conditional overrides on an
          * `Ext.define` declaration.
-         * 
+         *
          * @param {String/Array/Object} specs A version specification string, an object
          * containing `or` or `and` with a value that is equivalent to `specs` or an array
          * of either of these.
@@ -22999,7 +22999,7 @@ Ext.apply(Ext, {
                             }
                             // Otherwise this spec is not a match so we can move on to the
                             // next...
-                            
+
                             continue;
                         }
                         range = spec.substring(index + 1);
@@ -23501,9 +23501,9 @@ Ext.Config.prototype = {
             /**
          * This object holds an `Ext.Config` value for each config property keyed by name.
          * This object has as its prototype object the `configs` of its super class.
-         * 
+         *
          * This map is maintained as each property is added via the `add` method.
-         * 
+         *
          * @property {Object} configs
          * @private
          * @readonly
@@ -23511,9 +23511,9 @@ Ext.Config.prototype = {
             me.configs = ExtObject.chain(superCfg.configs);
             /**
          * This object holds a bool value for each cachedConfig property keyed by name.
-         * 
+         *
          * This map is maintained as each property is added via the `add` method.
-         * 
+         *
          * @property {Object} cachedConfigs
          * @private
          * @readonly
@@ -23523,16 +23523,16 @@ Ext.Config.prototype = {
          * This object holds a `Number` for each config property keyed by name. This object has
          * as its prototype object the `initMap` of its super class. The value of each property
          * has the following meaning:
-         * 
+         *
          *   * `0` - initial value is `null` and requires no processing.
          *   * `1` - initial value must be set on each instance.
          *   * `2` - initial value can be cached on the prototype by the first instance.
          *
          * Any `null` values will either never be added to this map or (if added by a base
          * class and set to `null` by a derived class) will cause the entry to be 0.
-         * 
+         *
          * This map is maintained as each property is added via the `add` method.
-         * 
+         *
          * @property {Object} initMap
          * @private
          * @readonly
@@ -23541,9 +23541,9 @@ Ext.Config.prototype = {
             /**
          * This object holds the default value for each config property keyed by name. This
          * object has as its prototype object the `values` of its super class.
-         * 
+         *
          * This map is maintained as each property is added via the `add` method.
-         * 
+         *
          * @property {Object} values
          * @private
          * @readonly
@@ -23569,11 +23569,11 @@ Ext.Config.prototype = {
         needsFork: false,
         /**
      * This array holds the properties that need to be set on new instances.
-     * 
+     *
      * This array is populated when the first instance is passed to `configure` (basically
      * when the first instance is created). The entries in `initMap` are iterated to find
      * those configs needing per-instance processing.
-     * 
+     *
      * @property {Ext.Config[]} initList
      * @private
      */
@@ -23582,7 +23582,7 @@ Ext.Config.prototype = {
      * This method adds new config properties. This is called for classes when they are
      * declared, then for any mixins that class may define and finally for any overrides
      * defined that target the class.
-     * 
+     *
      * @param {Object} config The config object containing the new config properties.
      * @param {Ext.Class} [mixinClass] The mixin class if the configs are from a mixin.
      * @private
@@ -23614,7 +23614,7 @@ Ext.Config.prototype = {
                     if (mixinClass) {
                         merge = cfg.merge;
                         if (!merge) {
-                            
+
                             continue;
                         }
                         // Don't want the mixin meta modifying our own
@@ -23665,18 +23665,18 @@ Ext.Config.prototype = {
                     // Ensure that the new config has a getter and setter. Because this method
                     // is called during class creation as the "config" (or "cachedConfig") is
                     // being processed, the user's methods will not be on the prototype yet.
-                    // 
+                    //
                     // This has the following trade-offs:
-                    // 
+                    //
                     // - Custom getters are rare so there is minimal waste generated by them.
-                    // 
+                    //
                     // - Custom setters are more common but, by putting the default setter on
                     //   the prototype prior to addMembers, when the user methods are added
                     //   callParent can be used to call the generated setter. This is almost
                     //   certainly desirable as the setter has some very important semantics
                     //   that a custom setter would probably want to preserve by just adding
                     //   logic before and/or after the callParent.
-                    //   
+                    //
                     // - By not adding these to the class body we avoid all the "is function"
                     //   tests that get applied to each class member thereby streamlining the
                     //   downstream class creation process.
@@ -23752,7 +23752,7 @@ Ext.Config.prototype = {
         /**
      * This method configures the given `instance` using the specified `instanceConfig`.
      * The given `instance` should have been created by this object's `cls`.
-     * 
+     *
      * @param {Object} instance The instance to configure.
      * @param {Object} instanceConfig The configuration properties to apply to `instance`.
      * @private
@@ -23935,7 +23935,7 @@ Ext.Config.prototype = {
                             // the old config... If there is not a Config we don't want to
                             // proceed and put the property on the instance. That will likely
                             // hide the bug during development.
-                            
+
                             continue;
                         }
                     }
@@ -24118,7 +24118,7 @@ Ext.Config.prototype = {
                 cfg = configs[name];
                 /* eslint-disable-next-line max-len */
                 if (defaults && instance.hasOwnProperty(cfg && instance.$configPrefixed ? cfg.names.internal : name)) {
-                    
+
                     continue;
                 }
                 currentConfig[name] = instanceConfig[name];
@@ -24126,7 +24126,7 @@ Ext.Config.prototype = {
                     // See similar logic doc in configure() method.
                     Ext.log.warn(this.deprecations[name]);
                     if (!cfg) {
-                        
+
                         continue;
                     }
                 }
@@ -24146,7 +24146,7 @@ Ext.Config.prototype = {
                     if (strict) {
                         if ((typeof prop === 'function') && !prop.$nullFn) {
                             Ext.Error.raise("Cannot override method " + name + " on " + instance.$className + " instance.");
-                            
+
                             continue;
                         } else {
                             if (name !== 'type') {
@@ -24766,7 +24766,7 @@ Ext.Base = (function(flexSetter) {
                         // This is a config property so it must be added to the configs
                         // collection not just smashed on the prototype...
                         (configs || (configs = {}))[name] = member;
-                        
+
                         continue;
                     }
                     target[name] = member;
@@ -25286,7 +25286,7 @@ Ext.Base = (function(flexSetter) {
          *             // always equals to 'Cat' no matter what 'this' refers to
          *             // equivalent to: My.Cat.speciesName
          *             alert(statics.speciesName);
-         * 
+         *
          *
          *             alert(this.self.speciesName);   // dependent on 'this'
          *
@@ -25458,12 +25458,12 @@ Ext.Base = (function(flexSetter) {
          *
          *      Ext.define('Ext.some.DerivedClass', {
          *          extend: 'Ext.some.Class',
-         *          
+         *
          *          method: function() {
          *              console.log('Bad');
-         * 
+         *
          *              // ... logic but with a bug ...
-         *              
+         *
          *              this.callParent();
          *          }
          *      });
@@ -25473,10 +25473,10 @@ Ext.Base = (function(flexSetter) {
          *
          *      Ext.define('App.patches.DerivedClass', {
          *          override: 'Ext.some.DerivedClass',
-         *          
+         *
          *          method: function() {
          *              console.log('Fixed');
-         * 
+         *
          *              // ... logic but with bug fixed ...
          *
          *              this.callSuper();
@@ -25779,7 +25779,7 @@ Ext.Base = (function(flexSetter) {
          *     Ext.define('MyApp.view.Button', {
          *         extend: 'Ext.button.Button',
          *         xtype: 'mybutton',
-         *     
+         *
          *         scale: 'large',
          *         enableToggle: true
          *     });
@@ -26319,15 +26319,15 @@ Ext.Base = (function(flexSetter) {
  *
  * This is a low level factory that is used by {@link Ext#define Ext.define} and should not be used
  * directly in application code.
- * 
+ *
  * The configs of this class are intended to be used in `Ext.define` calls to describe the class you
  * are declaring. For example:
- * 
+ *
  *     Ext.define('App.util.Thing', {
  *         extend: 'App.util.Other',
- * 
+ *
  *         alias: 'util.thing',
- * 
+ *
  *         config: {
  *             foo: 42
  *         }
@@ -26695,8 +26695,8 @@ Ext.Base = (function(flexSetter) {
     // true to always run this preprocessor even w/o "extend" keyword
     /**
      * @cfg {Object} privates
-     * The `privates` config is a list of methods intended to be used internally by the 
-     * framework.  Methods are placed in a `privates` block to prevent developers from 
+     * The `privates` config is a list of methods intended to be used internally by the
+     * framework.  Methods are placed in a `privates` block to prevent developers from
      * accidentally overriding framework methods in custom classes.
      *
      *     Ext.define('Computer', {
@@ -26706,13 +26706,13 @@ Ext.Base = (function(flexSetter) {
      *                 this.factory(brand);
      *             }
      *         },
-     *     
+     *
      *         factory: function (brand) {}
      *     });
-     * 
-     * In order to override a method from a `privates` block, the overridden method must 
+     *
+     * In order to override a method from a `privates` block, the overridden method must
      * also be placed in a `privates` block within the override class.
-     * 
+     *
      *     Ext.define('Override.Computer', {
      *         override: 'Computer',
      *         privates: {
@@ -26921,14 +26921,14 @@ Ext.Base = (function(flexSetter) {
     });
     /**
      * @cfg {Object} cachedConfig
-     * 
+     *
      * This configuration works in a very similar manner to the {@link #config} option.
      * The difference is that the configurations are only ever processed when the first instance
      * of that class is created. The processed value is then stored on the class prototype and
      * will not be processed on subsequent instances of the class. Getters/setters will be generated
      * in exactly the same way as {@link #config}.
-     * 
-     * This option is useful for expensive objects that can be shared across class instances. 
+     *
+     * This option is useful for expensive objects that can be shared across class instances.
      * The class itself ensures that the creation only occurs once.
      */
     ExtClass.registerPreprocessor('cachedConfig', function(Class, data) {
@@ -26964,7 +26964,7 @@ Ext.Base = (function(flexSetter) {
      *          mixins: {
      *              canSing: 'CanSing'
      *          },
-     * 
+     *
      *          sing: function() {
      *              // delegate singing operation to mixin
      *              this.mixins.canSing.sing.call(this);
@@ -27115,7 +27115,7 @@ Ext.Inventory.prototype = {
             nameMapping = nameTo[cls] || (nameTo[cls] = []);
             for (i = 0; i < length; ++i) {
                 if (!(a = aliases[i])) {
-                    
+
                     continue;
                 }
                 if (toName[a] !== cls) {
@@ -27270,7 +27270,7 @@ Ext.Inventory.prototype = {
             if (items) {
                 currChar = className.charAt(length);
                 if (currChar !== '.') {
-                    
+
                     continue;
                 }
                 for (j = 0 , jlen = items.length; j < jlen; j++) {
@@ -27348,25 +27348,25 @@ Ext.Inventory.prototype = {
     /**
      * This method returns a selector object that produces a selection of classes and
      * delivers them to the desired `receiver`.
-     * 
+     *
      * The returned selector object has the same methods as the given `receiver` object
      * but these methods on the selector accept a first argument that expects a pattern
      * or array of patterns. The actual method on the `receiver` will be called with an
      * array of classes that match these patterns but with any patterns passed to an
      * `exclude` call removed.
-     * 
+     *
      * For example:
-     * 
+     *
      *      var sel = inventory.select({
      *              require: function (classes) {
      *                  console.log('Classes: ' + classes.join(','));
      *              }
      *          });
-     * 
+     *
      *      sel.exclude('Ext.chart.*').exclude('Ext.draw.*').require('*');
-     *      
+     *
      *      // Logs all classes except those in the Ext.chart and Ext.draw namespaces.
-     * 
+     *
      * @param {Object} receiver
      * @param {Object} [scope] Optional scope to use when calling `receiver` methods.
      * @return {Object} An object with the same methods as `receiver` plus `exclude`.
@@ -28378,14 +28378,14 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
      * @cfg {String} override
      * @member Ext.Class
      * Overrides members of the specified `target` class.
-     * 
-     * **NOTE:** the overridden class must have been defined using 
+     *
+     * **NOTE:** the overridden class must have been defined using
      * {@link Ext#define Ext.define} in order to use the `override` config.
-     * 
-     * Methods defined on the overriding class will not automatically call the methods of 
-     * the same name in the ancestor class chain.  To call the parent's method of the 
+     *
+     * Methods defined on the overriding class will not automatically call the methods of
+     * the same name in the ancestor class chain.  To call the parent's method of the
      * same name you must call {@link Ext.Base#method!callParent callParent}.  To skip the
-     * method of the overridden class and call its parent you will instead call 
+     * method of the overridden class and call its parent you will instead call
      * {@link Ext.Base#method!callSuper callSuper}.
      *
      * See {@link Ext#define Ext.define} for additional usage examples.
@@ -28847,7 +28847,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
             //      3: (config)
             //      4: (xtype, component)
             //      5: (component)
-            //      
+            //
             var xtype = name,
                 alias, className, T;
             if (typeof xtype !== 'string') {
@@ -28921,12 +28921,12 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *              }
          *          };
          *      });
-         * 
+         *
          * _Note_ that when using override, the above syntax will not override successfully,
          * because the passed function would need to be executed first to determine whether or not
          * the result  is an override or defining a new object. As such, an alternative syntax that
          * immediately  invokes the function can be used:
-         * 
+         *
          *      Ext.define('MyApp.override.BaseOverride', function() {
          *          var counter = 0;
          *
@@ -28937,7 +28937,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *              }
          *          };
          *      }());
-         * 
+         *
          *
          * When using this form of `Ext.define`, the function is passed a reference to its
          * class. This can be used as an efficient way to access any static properties you
@@ -29027,13 +29027,13 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *              }
          *          }
          *      });
-         * 
+         *
          * Starting in version 4.2.2, overrides can declare their `compatibility` based
          * on the framework version or on versions of other packages. For details on the
          * syntax and options for these checks, see `Ext.checkVersion`.
-         * 
+         *
          * The simplest use case is to test framework version for compatibility:
-         * 
+         *
          *      Ext.define('App.overrides.grid.Panel', {
          *          override: 'Ext.grid.Panel',
          *
@@ -29041,10 +29041,10 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *
          *          //...
          *      });
-         * 
+         *
          * An array is treated as an OR, so if any specs match, the override is
          * compatible.
-         * 
+         *
          *      Ext.define('App.overrides.some.Thing', {
          *          override: 'Foo.some.Thing',
          *
@@ -29055,9 +29055,9 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *
          *          //...
          *      });
-         * 
+         *
          * To require that all specifications match, an object can be provided:
-         * 
+         *
          *      Ext.define('App.overrides.some.Thing', {
          *          override: 'Foo.some.Thing',
          *
@@ -29070,9 +29070,9 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *
          *          //...
          *      });
-         * 
+         *
          * Because the object form is just a recursive check, these can be nested:
-         * 
+         *
          *      Ext.define('App.overrides.some.Thing', {
          *          override: 'Foo.some.Thing',
          *
@@ -29099,14 +29099,14 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          *
          * @param {String} className The class name to create in string dot-namespaced format,
          * for example: 'My.very.awesome.Class', 'FeedViewer.plugin.CoolPager'
-         * 
+         *
          * It is highly recommended to follow this simple convention:
          *  - The root and the class name are 'CamelCased'
          *  - Everything else is lower-cased
          * Pass `null` to create an anonymous class.
          * @param {Object} data The key - value pairs of properties to apply to this class.
          * Property names can be of any valid strings, except those in the reserved listed below:
-         *  
+         *
          *  - {@link Ext.Class#cfg-alias alias}
          *  - {@link Ext.Class#cfg-alternateClassName alternateClassName}
          *  - {@link Ext.Class#cfg-cachedConfig cachedConfig}
@@ -29144,14 +29144,14 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          * Undefines a class defined using the #define method. Typically used
          * for unit testing where setting up and tearing down a class multiple
          * times is required.  For example:
-         * 
+         *
          *     // define a class
          *     Ext.define('Foo', {
          *        ...
          *     });
-         *     
+         *
          *     // run test
-         *     
+         *
          *     // undefine the class
          *     Ext.undefine('Foo');
          * @param {String} className The class name to undefine in string dot-namespaced format.
@@ -30516,7 +30516,7 @@ Ext.feature = {
                 if (!isReady && test.ready) {
                     // test requires domready state
                     notRun.push(test);
-                    
+
                     continue;
                 }
                 value = test.fn.call(me, doc, div);
@@ -31460,7 +31460,7 @@ Ext.feature = {
                     /* eslint-disable indent */
                     el.innerHTML = [
                         '<div style="display:table;height:100%;">',
-                        // The element that causes the horizontal overflow must be 
+                        // The element that causes the horizontal overflow must be
                         // a child of the element with the 100% height, otherwise
                         // horizontal overflow is not triggered in webkit quirks mode
                         '<div style="width:51px;"></div>',
@@ -32083,7 +32083,7 @@ Ext.feature.detect();
 /**
  * This class manages ready detection and handling. Direct use of this class is not
  * recommended. Instead use `Ext.onReady`:
- * 
+ *
  *      Ext.onReady(function () {
  *          // DOM and Framework are ready...
  *      });
@@ -32211,11 +32211,11 @@ Ext.env.Ready = {
     /**
      * @property {Number} state
      * Holds the current ready state as managed by this class. The values possible are:
-     * 
+     *
      *   * 0 - Not ready.
      *   * 1 - Ready detected but listeners are not yet notified.
      *   * 2 - Ready detected and listeners are notified. See also `firing`.
-     *   
+     *
      * @private
      */
     state: 0,
@@ -32527,7 +32527,7 @@ Ext.env.Ready = {
  *  when testing against a built page (ext-all.js) and not a dev mode page.
  */
     if (Ext.isIE9m) {
-        /* Customized implementation for Legacy IE. The default implementation is 
+        /* Customized implementation for Legacy IE. The default implementation is
      * configured for use with all other 'standards compliant' agents.
      * References: http://javascript.nwbox.com/IEContentLoaded/
      * licensed courtesy of http://developer.yahoo.com/yui/license.html
@@ -32792,16 +32792,16 @@ Ext.env.Ready = {
  * not known statically. Internally, `{@link Ext#method!create}` may need to *synchronously*
  * load the desired class and its requirements. Doing this will generate a warning in
  * the console:
- * 
+ *
  *      [Ext.Loader] Synchronously loading 'Ext.window.Window'...
  *
  * If you see these in your debug console, you should add the indicated class(es) to the
  * appropriate `requires` array (as above) or make an `{@link Ext#require}` call.
- * 
- * 
+ *
+ *
  * **Note** Using `{@link Ext#method!create}` has some performance overhead and is best reserved
  * for cases where the target class is not known until run-time.
- * 
+ *
  * @class Ext.Loader
  * @singleton
  */
@@ -32969,7 +32969,7 @@ Ext.Loader = (new function() {
             }
             if (manifest) {
                 loadOrder = manifest.loadOrder;
-                // if the manifest paths were calculated as relative to the 
+                // if the manifest paths were calculated as relative to the
                 // bootstrap file, then we need to prepend Boot.baseUrl to the
                 // paths before processing
                 baseUrl = Ext.Boot.baseUrl;
@@ -33393,7 +33393,7 @@ Ext.Loader = (new function() {
             return Loader;
         },
         /**
-         * This is an internal method that delegate content loading to the 
+         * This is an internal method that delegate content loading to the
          * bootstrap layer.
          * @private
          * @param params
@@ -33404,7 +33404,7 @@ Ext.Loader = (new function() {
                 loadOrderMap = manifest && manifest.loadOrderMap,
                 options;
             ++Loader.scriptsLoading;
-            // if the load order map hasn't been created, create it now 
+            // if the load order map hasn't been created, create it now
             // and cache on the manifest
             if (loadOrder && !loadOrderMap) {
                 manifest.loadOrderMap = loadOrderMap = Boot.createLoadOrderMap(loadOrder);
@@ -35143,7 +35143,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
                         // Reattach to the DOM in case the caller animated a Fly
                         // in which case the dom reference will have changed by now.
                         animFly.attach(dom);
-                        // restore any visibility/display that may have 
+                        // restore any visibility/display that may have
                         // been applied by a fadeout animation
                         if (animFly.isStyle('display', 'none')) {
                             animFly.setDisplayed('');
@@ -35811,7 +35811,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
         },
         /**
          * Set the height of this Element.
-         * 
+         *
          *     // change the height to 200px and animate with default configuration
          *     Ext.fly('elementId').setHeight(200, true);
          *
@@ -35821,12 +35821,12 @@ Ext.define('Ext.overrides.dom.Element', (function() {
          *         // will change the content to "finished"
          *         callback: function(){ this.setHtml("finished"); }
          *     });
-         *     
+         *
          * @param {Number/String} height The new height. This may be one of:
          *
          * - A Number specifying the new height in pixels.
          * - A String used to set the CSS height style. Animation may **not** be used.
-         *     
+         *
          * @param {Boolean/Object} [animate] a standard Element animation config object or `true`
          * for the default animation (`{duration: 350, easing: 'ease-in'}`)
          * @return {Ext.dom.Element} this
@@ -35860,7 +35860,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
                 delete me.verticalCls;
                 me.removeCls(cls);
             }
-            // delete the inverted methods and revert to inheriting from the prototype 
+            // delete the inverted methods and revert to inheriting from the prototype
             delete me.setWidth;
             delete me.setHeight;
             if (!Ext.isIE8) {
@@ -35899,7 +35899,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
          * when the update completes.
          * @param {Object} [scope=`this`] The scope (`this` reference) in which to execute
          * the callback.
-         * 
+         *
          * Also used as the scope for any *inline* script source if the `loadScripts` parameter
          * is `true`. Scripts with a `src` attribute cannot be executed in this scope.
          *
@@ -35916,9 +35916,9 @@ Ext.define('Ext.overrides.dom.Element', (function() {
             dom = me.dom;
             if (loadScripts !== true) {
                 // Setting innerHtml changes the DOM and replace all dom nodes
-                // with the new html. For IE specifically, all dom child nodes get 
-                // destroyed when removed from DOM tree even if DOM is referenced 
-                // within some JS file. Thus, before setting innerHTML, remove the 
+                // with the new html. For IE specifically, all dom child nodes get
+                // destroyed when removed from DOM tree even if DOM is referenced
+                // within some JS file. Thus, before setting innerHTML, remove the
                 // children so that they are not destroyed/removed from DOM tree.
                 if (Ext.isIE) {
                     while (dom.firstChild) {
@@ -36007,7 +36007,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
          * and applying hooks for rotating getters and setters for border/margin/padding.
          * (getWidth becomes getHeight and vice versa), setStyle and getStyle will
          * also return the inverse when height or width are being operated on.
-         * 
+         *
          * @param {Number} angle the angle of rotation - either 90 or 270
          * @param {String} cls an optional css class that contains the required
          * styles for switching the element to vertical orientation. Omit this if
@@ -36164,7 +36164,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
         },
         /**
          * Set the width of this Element.
-         * 
+         *
          *     // change the width to 200px and animate with default configuration
          *     Ext.fly('elementId').setWidth(200, true);
          *
@@ -36174,12 +36174,12 @@ Ext.define('Ext.overrides.dom.Element', (function() {
          *         // will change the content to "finished"
          *         callback: function(){ this.setHtml("finished"); }
          *     });
-         *     
+         *
          * @param {Number/String} width The new width. This may be one of:
          *
          * - A Number specifying the new width in pixels.
          * - A String used to set the CSS width style. Animation may **not** be used.
-         * 
+         *
          * @param {Boolean/Object} [animate] a standard Element animation config object or `true`
          * for the default animation (`{duration: 350, easing: 'ease-in'}`)
          * @return {Ext.dom.Element} this
@@ -36651,7 +36651,7 @@ Ext.define('Ext.overrides.dom.Element', (function() {
          * Currently used for updating grid cells without modifying DOM structure
          *
          * Synchronizes content of this Element with the content of the passed element.
-         * 
+         *
          * Style and CSS class are copied from source into this Element, and contents are synced
          * recursively. If a child node is a text node, the textual data is copied.
          */
@@ -38938,25 +38938,25 @@ Ext.define('Ext.override.sparkline.Base', {
 /**
  * @method beforeRender
  * @template
- * Template method called by the owning component's 
+ * Template method called by the owning component's
  * {@link Ext.Component#method-beforeRender beforeRender} method.
- * @param {Ext.Component} component The owner component attached to the 
+ * @param {Ext.Component} component The owner component attached to the
  * ViewController
  */
 /**
  * @method afterRender
  * @template
- * Template method called by the owning component's 
+ * Template method called by the owning component's
  * {@link Ext.Component#method-afterRender afterRender} method.
- * @param {Ext.Component} component The owner component attached to the 
+ * @param {Ext.Component} component The owner component attached to the
  * ViewController
  */
 /**
  * @method boxReady
  * @template
- * Template method called by the owning component's 
+ * Template method called by the owning component's
  * {@link Ext.Component#method-onBoxReady onBoxReady} method.
- * @param {Ext.Component} component The owner component attached to the 
+ * @param {Ext.Component} component The owner component attached to the
  * ViewController
  */
 

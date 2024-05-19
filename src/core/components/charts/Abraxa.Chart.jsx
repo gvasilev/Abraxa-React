@@ -42,7 +42,7 @@ Ext.define('Abraxa.Chart', {
 
         me.setData(null);
         if (me.getFusionChart()) me.getFusionChart().dispose();
-
+        // this.callParent(arguments);
         console.log('doDestroy', arguments);
     },
 

@@ -21,6 +21,18 @@ import './view/error/404.jsx';
 import './core/override/Abraxa.Dialog.js';
 import './core/override/Abraxa.MessageBox.js';
 import './view/calculator/portcostengine/MainPage.jsx';
+import './view/operations/OperationsMainContainer.jsx';
+import './view/operations/PortcallsPrincipal/CreateAppointment.jsx';
+import './core/override/Abraxa.grid.CellEditor.jsx';
+import './core/override/Abraxa.core.override.WidgetCell.jsx';
+import './core/override/Abraxa.Widget.jsx';
+import './view/voyage/CreateVoyage.jsx';
+import './view/voyage/VoyageMainView.jsx';
+import './view/directory/DirectroryMainContainer.jsx';
+import './view/directory/agents/DirectroryAgentsContainer.jsx';
+import './view/directory/ports/PortDetailsMainView.jsx';
+import './view/comingsoon/ComingSoon.jsx';
+import './view/portcall/principal/PortcallMainPrincipal.jsx';
 // Import CSS
 import './index.css';
 import '../styles/1.css';

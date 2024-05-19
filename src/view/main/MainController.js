@@ -131,13 +131,13 @@ Ext.define('Abraxa.view.main.MainController', {
                     before: 'onBefore',
                     scope: {
                         onBefore: function (action) {
-                            if (
-                                Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal'
-                            ) {
-                                // other roles can't access this module
-                                Ext.getCmp('main-viewport').getController().redirectTo('404');
-                                return;
-                            }
+                            // if (
+                            //     Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal'
+                            // ) {
+                            //     // other roles can't access this module
+                            //     Ext.getCmp('main-viewport').getController().redirectTo('404');
+                            //     return;
+                            // }
                             Ext.getCmp('main-viewport').getController().redirectTo('directory/agents');
                             action.resume();
                         },
@@ -155,13 +155,13 @@ Ext.define('Abraxa.view.main.MainController', {
                     before: 'onBefore',
                     scope: {
                         onBefore: function (tab, action) {
-                            if (
-                                Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal'
-                            ) {
-                                // other roles can't access this module
-                                Ext.getCmp('main-viewport').getController().redirectTo('404');
-                                return;
-                            }
+                            // if (
+                            //     Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal'
+                            // ) {
+                            //     // other roles can't access this module
+                            //     Ext.getCmp('main-viewport').getController().redirectTo('404');
+                            //     return;
+                            // }
                             if (tab === 'agents' || tab === 'ports') {
                                 action.resume();
                             } else {
@@ -285,26 +285,26 @@ Ext.define('Abraxa.view.main.MainController', {
         // Ext.getCmp('main-viewport').removeAll(true, false);
 
         if (type === 'directory') {
-            if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') !== 'principal') {
-                // other roles can't access this module
-                this.redirectTo('404', {
-                    replace: true,
-                });
-                return;
-            }
+            // if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') !== 'principal') {
+            //     // other roles can't access this module
+            //     this.redirectTo('404', {
+            //         replace: true,
+            //     });
+            //     return;
+            // }
             if (!args) {
                 me.redirectTo('directory/agents');
                 return;
             }
         }
         if (type === 'operations') {
-            if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') !== 'principal') {
-                // other roles can't access this module
-                this.redirectTo('404', {
-                    replace: true,
-                });
-                return;
-            }
+            // if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') !== 'principal') {
+            //     // other roles can't access this module
+            //     this.redirectTo('404', {
+            //         replace: true,
+            //     });
+            //     return;
+            // }
             if (!args) {
                 me.redirectTo('port-calls');
                 return;
@@ -737,11 +737,11 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype = 'DirectoryAgentsContainer',
             Model = Abraxa.model.directory.Agents,
             view;
-        if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal') {
-            // other roles can't access this module
-            me.redirectTo('404');
-            return;
-        }
+        // if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal') {
+        //     // other roles can't access this module
+        //     me.redirectTo('404');
+        //     return;
+        // }
         Ext.Viewport.getViewModel().set('routeParams', profileId);
 
         Ext.Viewport.getViewModel().set('routeParams', profileId);
@@ -868,11 +868,11 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype = 'PortDetailsMainView',
             Model = Abraxa.model.directory.Ports,
             view;
-        if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal') {
-            // other roles can't access this module
-            me.redirectTo('404');
-            return;
-        }
+        // if (Ext.Viewport.getViewModel().get('currentUser').getCompany().get('type') != 'principal') {
+        //     // other roles can't access this module
+        //     me.redirectTo('404');
+        //     return;
+        // }
         Ext.Viewport.getViewModel().set('routeParams', portId);
         Ext.Viewport.getViewModel().set('routeHash', '#' + tab);
         me.getViewModel().set('portcall_record', null);
@@ -1030,12 +1030,12 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype,
             view;
 
-        if (window.CurrentUser.get('company').type !== 'principal') {
-            this.redirectTo('404', {
-                replace: true,
-            });
-            return;
-        }
+        // if (window.CurrentUser.get('company').type !== 'principal') {
+        //     this.redirectTo('404', {
+        //         replace: true,
+        //     });
+        //     return;
+        // }
 
         xtype = 'CreateVoyage';
         if (action && action === 'appoint') {
@@ -1073,12 +1073,12 @@ Ext.define('Abraxa.view.main.MainController', {
             xtype,
             view;
 
-        if (window.CurrentUser.get('company').type !== 'principal') {
-            this.redirectTo('404', {
-                replace: true,
-            });
-            return;
-        }
+        // if (window.CurrentUser.get('company').type !== 'principal') {
+        //     this.redirectTo('404', {
+        //         replace: true,
+        //     });
+        //     return;
+        // }
 
         xtype = 'CreateAppointment';
         // leave a developer message in case of new types addition

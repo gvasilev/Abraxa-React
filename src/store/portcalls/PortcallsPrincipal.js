@@ -1,3 +1,4 @@
+import '../../model/portcall/PortcallPrincipal.jsx';
 Ext.define('Abraxa.store.portcalls.PortcallsPrincipal', {
     extend: 'Ext.data.Store',
     alias: 'store.portcallsPrincipal',

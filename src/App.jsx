@@ -51,7 +51,7 @@ const App = () => {
                 'View', // creates one global instance of the Menu store (Ext.getStore('Menu'))
             ],
             launch: function() {
-                Ext.Viewport.getController().loginUser();
+                 Ext.Viewport.getController().loginUser();
             }
         });
 

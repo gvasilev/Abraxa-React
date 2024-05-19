@@ -1,4 +1,4 @@
-import '../../../../store/disbursements/DefaultDisbursementTags.js';
+import '../../../../store/disbursements/DefaultDisbursementTags.jsx';
 
 Ext.define('Abraxa.view.portcall.accounts.AccountsViewModel', {
     extend: 'Ext.app.ViewModel',

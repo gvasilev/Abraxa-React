@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.directory.Agents', {
     extend: 'Ext.data.Model',
     autoLoad: true,

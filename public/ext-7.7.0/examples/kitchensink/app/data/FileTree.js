@@ -1104,7 +1104,7 @@ Ext.define('KitchenSink.data.FileTree', {
                         "qtip": "Type: JavaScript File<br />Last Modified: Mar 19, 2014, 1:21 pm<br />Size: 2.70 KB"
                     },
                     {
-                        "text": "Header.js",
+                        "text": "Header.jsx",
                         "qtip": "Type: JavaScript File<br />Last Modified: Mar 19, 2014, 1:21 pm<br />Size: 21.04 KB"
                     },
                     {
@@ -1402,7 +1402,7 @@ Ext.define('KitchenSink.data.FileTree', {
                         "qtip": "Type: Folder<br />Last Modified: Mar 19, 2014, 1:21 pm",
                         "children": [
                             {
-                                "text": "Header.js",
+                                "text": "Header.jsx",
                                 "qtip": "Type: JavaScript File<br />Last Modified: Mar 19, 2014, 1:21 pm<br />Size: 1.44 KB"
                             },
                             {
