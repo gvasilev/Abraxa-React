@@ -1,3 +1,5 @@
+import './HolidaysGrid';
+
 Ext.define('Abraxa.view.common.dialog.port.PortHolidays', {
     extend: 'Ext.Container',
     xtype: 'port.dialog.holidays',

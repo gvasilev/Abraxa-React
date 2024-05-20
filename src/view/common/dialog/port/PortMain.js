@@ -1,3 +1,6 @@
+import './PortMainViewModel';
+import './PortDialogInfo';
+
 Ext.define('Abraxa.view.common.dialog.PortMain', {
     extend: 'Ext.Dialog',
     xtype: 'port.main',
@@ -223,8 +226,9 @@ Ext.define('Abraxa.view.common.dialog.PortMain', {
     listeners: {
         destroy: function (me) {
             let portServed = Ext.getCmp('main-viewport').getVM().get('portsServed'),
-                port = me.upVM().get('port');
-            portRecord = portServed.findRecord('port_id', port.get('id'), 0, false, false, true);
+                port = me.upVM().get('port'),
+                portRecord = portServed.findRecord('port_id', port.get('id'), 0, false, false, true);
+
             if (portRecord) {
                 portRecord.load();
             }

@@ -1,3 +1,8 @@
+import './PortTerminals';
+import './PortBerths';
+import './PortHolidays';
+import './PortGeneralInfo';
+
 Ext.define('Abraxa.view.common.dialog.PortDialogInfo', {
     extend: 'Ext.Container',
     xtype: 'port.dialog.info',

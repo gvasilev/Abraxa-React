@@ -1,9 +1,9 @@
 
-import '../../model/vessel/VesselCompliance.jsx';
+import '../vessel/VesselCompliance.jsx';
+import '../portcall/Attachment.jsx';
 
 Ext.define('Abraxa.model.common.Vessel', {
     extend: 'Ext.data.Model',
-    requires: ['Abraxa.model.vessel.VesselCompliance'],
     fields: [
         {
             name: 'id',

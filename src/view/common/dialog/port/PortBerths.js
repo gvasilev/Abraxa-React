@@ -1,3 +1,5 @@
+import './BerthsGrid';
+
 Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
     extend: 'Ext.Container',
     xtype: 'port.dialog.berths',

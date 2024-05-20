@@ -1,3 +1,5 @@
+import './TerminalsGrid';
+
 Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
     extend: 'Ext.Container',
     xtype: 'port.dialog.terminals',
@@ -71,30 +73,6 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                             },
                                         }).show();
                                     },
-                                    // handler: function (item, el, eOpts) {
-                                    //     // Ext.ComponentQuery.query('#mainleftmenuSlidepanelSearchId')[0].getViewModel().set('storeLoaded', false);
-                                    //     let me = this,
-                                    //         dialog = this.up('dialog'),
-                                    //         vm = dialog.getViewModel();
-                                    //     portRecord = vm.get('port');
-                                    //     let portId = portRecord.get('id'),
-                                    //         portName = portRecord.get('name');
-                                    //     Ext.create("Abraxa.view.common.port.AddEditTerminal", {
-                                    //         title: 'Add Terminal',
-                                    //         viewModel: {
-                                    //             parent: vm,
-                                    //             data: {
-                                    //                 action: 'create',
-                                    //                 portName: portName,
-                                    //                 portId: portId,
-                                    //                 port: portRecord,
-                                    //                 terminal: Ext.create('Abraxa.model.common.Terminal', {
-                                    //                     port_id: portId
-                                    //                 })
-                                    //             }
-                                    //         }
-                                    //     }).showBy(item);
-                                    // }
                                 },
                             ],
                         },

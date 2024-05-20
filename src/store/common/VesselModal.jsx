@@ -1,3 +1,5 @@
+import '../../model/common/Vessel';
+
 Ext.define('Abraxa.store.common.VesselModal', {
     extend: 'Ext.data.Store',
     alias: 'store.vesselmodal',

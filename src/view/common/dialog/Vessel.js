@@ -1,3 +1,6 @@
+import './VesselDialogInfo';
+import '../../../store/common/VesselModal';
+
 Ext.define('Abraxa.view.common.dialog.Vessel', {
     extend: 'Ext.Dialog',
     xtype: 'common.dialog.vessel',

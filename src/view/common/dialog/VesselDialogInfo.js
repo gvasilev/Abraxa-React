@@ -1,3 +1,7 @@
+import './VesselMainDetails';
+import './VesselTechnical';
+import './VesselManagment';
+
 Ext.define('Abraxa.view.common.dialog.VesselDialogInfo', {
     extend: 'Ext.Container',
     xtype: 'vessel.dialog.info',

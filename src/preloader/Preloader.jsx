@@ -1,3 +1,5 @@
+import './Preloader.css';
+
 const Preloader = () => {
     return (
         <div id="preloader" className="a-preloader-container" height='400'>
