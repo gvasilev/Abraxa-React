@@ -1,3 +1,4 @@
+import './DocumentsEditButton.jsx';
 Ext.define('Abraxa.view.portcall.documents.DocumentsEditButtonShared', {
     extend: 'Ext.Tool',
     xtype: 'documents.edit.button.shared',

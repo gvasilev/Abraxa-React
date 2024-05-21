@@ -1,3 +1,7 @@
+import './PaymentsController.jsx';
+import './InitCreate.jsx';
+import './PaymentContent.jsx';
+import './PaymentsRightCard.jsx';
 Ext.define('Abraxa.view.portcall.payments.PaymentsMainView', {
     extend: 'Ext.Container',
     xtype: 'payments.main',

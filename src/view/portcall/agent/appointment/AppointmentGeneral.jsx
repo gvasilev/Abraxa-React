@@ -1,3 +1,7 @@
+import './AppointmentGeneralInfo.jsx';
+import './AppointmentNominationInfo.jsx';
+import './AppointmentCargo.jsx';
+import './AppointmentInstructions.jsx';
 Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
     extend: 'Ext.Container',
     xtype: 'appointment.general',

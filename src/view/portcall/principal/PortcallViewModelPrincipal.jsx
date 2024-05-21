@@ -1,3 +1,4 @@
+import '../../../store/chatter/Messages.jsx';
 Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.PortcallViewModelPrincipal',
@@ -1988,11 +1989,9 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                 let me = this;
                 if (date && me) {
                     var countDownDate = new Date(date).getTime();
-                    if (typeof portCallTimer !== 'undefined') {
-                        clearInterval(portCallTimer);
-                    }
+
                     // Update the count down every 1 second
-                    portCallTimer = setInterval(function () {
+                    const portCallTimer = setInterval(function () {
                         // Get today's date and time
                         var now = new Date().getTime();
 
@@ -2033,6 +2032,9 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                             );
                         }
                     }, 1000);
+                    if (typeof portCallTimer !== 'undefined') {
+                        clearInterval(portCallTimer);
+                    }
                 }
             },
         },

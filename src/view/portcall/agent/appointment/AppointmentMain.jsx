@@ -1,3 +1,7 @@
+import './AppointmentViewModel.jsx';
+import './AppointmentGeneral.jsx';
+import './AppointmentRightCard.jsx';
+import './InstructionRightCard.jsx';
 Ext.define('Abraxa.view.portcall.appointment.AppointmentMain', {
     extend: 'Ext.Container',
     xtype: 'appointment.main',

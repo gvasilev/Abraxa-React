@@ -25,6 +25,7 @@ import '../calculator/portcostengine/Header.jsx';
 import '../operations/Header.jsx';
 import '../../store/directory/agents/Agents.jsx';
 import '../directory/DirectoryHeader.jsx';
+import '../portcall/PortCallHeader.jsx';
 Ext.define('Abraxa.view.main.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.main-viewmodel',

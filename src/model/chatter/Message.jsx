@@ -1,3 +1,4 @@
+import '../likes/Like.jsx';
 Ext.define('Abraxa.model.chatter.Message', {
     extend: 'Ext.data.Model',
 

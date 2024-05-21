@@ -1,3 +1,6 @@
+import './SummaryLeftContainer.jsx';
+import './SummaryMiddleContainer.jsx';
+import './SummaryRightContainer.jsx';
 Ext.define('Abraxa.view.portcall.summary.SummaryMainView', {
     extend: 'Ext.Container',
     xtype: 'summary.main',

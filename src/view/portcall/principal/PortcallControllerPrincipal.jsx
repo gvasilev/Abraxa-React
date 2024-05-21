@@ -1,3 +1,4 @@
+import '../PortcallController.jsx';
 Ext.define('Abraxa.view.portcall.principal.PortcallControllerPrincipal', {
     extend: 'Abraxa.view.portcall.PortcallController',
     alias: 'controller.PortcallControllerPrincipal',

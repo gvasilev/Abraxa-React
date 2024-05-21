@@ -1,3 +1,4 @@
+import './DocumentsEditMenu.jsx';
 Ext.define('Abraxa.view.portcall.documents.DocumentsEditButton', {
     extend: 'Ext.Tool',
     xtype: 'documents.edit.button',

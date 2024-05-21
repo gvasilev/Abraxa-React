@@ -1,3 +1,4 @@
+import './DocumentsEditButton.jsx';
 Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
     extend: 'Ext.dataview.List',
     xtype: 'documents.list',

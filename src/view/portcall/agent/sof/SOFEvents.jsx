@@ -1,3 +1,4 @@
+import './SOFEventForm.jsx';
 Ext.define('Abraxa.view.portcall.sof.SOFEvents', {
     extend: 'Ext.Container',
     xtype: 'sof.events',

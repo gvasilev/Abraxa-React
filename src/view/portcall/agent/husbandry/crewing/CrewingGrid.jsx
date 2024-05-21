@@ -1,3 +1,4 @@
+import './CrewingController.jsx';
 Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'husbandry.crewing.grid',

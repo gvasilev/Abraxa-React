@@ -1,3 +1,4 @@
+import './SOFCargoProgressForm.jsx';
 Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
     extend: 'Ext.Container',
     xtype: 'sof.cargo.progress',

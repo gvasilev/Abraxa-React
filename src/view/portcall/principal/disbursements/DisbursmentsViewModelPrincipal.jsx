@@ -205,7 +205,7 @@ Ext.define('Abraxa.view.portcall.principal.DisbursementsViewModelPrincipal', {
                 deep: true,
             },
             get: function (store) {
-                total = 0;
+                let total = 0;
                 if (store) {
                     total = store.sum('calculated_amount');
                 }

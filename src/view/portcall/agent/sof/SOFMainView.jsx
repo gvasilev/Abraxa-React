@@ -1,3 +1,11 @@
+import './SOFViewModel.jsx';
+import './SOFPortInfo.jsx';
+import './SOFBerths.jsx';
+import './SOFEvents.jsx';
+import './SOFRemarks.jsx';
+import './SOFSignatures.jsx';
+import './SOFCargoProgress.jsx';
+import './CargoRightCard.jsx';
 Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
     extend: 'Ext.Container',
     xtype: 'sof.main',

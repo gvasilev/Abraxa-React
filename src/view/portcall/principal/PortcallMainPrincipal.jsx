@@ -1,5 +1,13 @@
 import './PortcallViewModelPrincipal.jsx';
 import './PortcallControllerPrincipal.jsx';
+import '../agent/summary/SummaryMainView.jsx';
+import '../agent/appointment/AppointmentMain.jsx';
+import '../agent/sof/SOFMainView.jsx';
+import '../agent/documents/DocumentsMainView.jsx';
+import '../agent/husbandry/HusbandryMain.jsx';
+import './disbursements/DisbursementsMainPrincipal.jsx';
+import '../agent/payments/PaymentsMainView.jsx';
+import '../agent/kpi/KPIs.jsx';
 Ext.define('Abraxa.view.portcall.principal.PortcallMainPrincipal', {
     extend: 'Ext.Container',
     xtype: 'PortcallMainPrincipal',

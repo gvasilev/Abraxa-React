@@ -1,3 +1,4 @@
+import './DisbursementServicesGridController.jsx';
 Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementServicesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'DisbursementServicesGrid',

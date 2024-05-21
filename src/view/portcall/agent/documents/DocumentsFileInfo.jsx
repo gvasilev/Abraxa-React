@@ -1,3 +1,4 @@
+import './DocumentsEditButton.jsx';
 Ext.define('Abraxa.view.portcall.documents.DocumentsFileInfo', {
     extend: 'Ext.Container',
     xtype: 'documents.file.info',

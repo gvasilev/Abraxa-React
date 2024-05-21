@@ -1,3 +1,10 @@
+import './HusbandryViewModel.jsx';
+import './supplies/SuppliesGrid.jsx';
+import './crewing/CrewingGrid.jsx';
+import './supplies/SuppliesRightCard.jsx';
+import './crewing/CrewingRightCard.jsx';
+import '../../agent/accounts/AccountsCombo.jsx';
+import './crewing/CrewingActionsCombo.jsx';
 Ext.define('Abraxa.view.portcall.husbandry.HusbandryMain', {
     extend: 'Ext.Container',
     xtype: 'husbandry.main',

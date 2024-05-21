@@ -1,3 +1,4 @@
+// import '../../../../core/components/fields/Abraxa.Draftfield.jsx';
 Ext.define('Abraxa.view.portcall.appointment.CargoInformation', {
     extend: 'Ext.Container',
     xtype: 'appointment.cargo.information',
@@ -579,26 +580,27 @@ Ext.define('Abraxa.view.portcall.appointment.CargoInformation', {
                             },
                             // options: ["mts"]
                         },
-                        {
-                            xtype: 'draftfield',
-                            cls: 'a-field-icon icon-short icon-rounded',
-                            ui: 'hovered-border classic',
-                            maxWidth: 440,
-                            margin: '2 0 0 0',
-                            padding: '0 0 2 0',
-                            label: 'Stowage factor',
-                            slug: 'portcallCargoStowage',
-                            subObject: 'cargo',
-                            options: ['cbm/mt', 'cbft/mt', 'cbm/lt', 'cbft/lt'],
-                            bind: {
-                                value: '{cargoesGrid.selection.stowage_factor}',
-                                valueUnit: '{cargoesGrid.selection.stowage_factor_unit}',
-                                readOnly: '{nonEditable ? true : false}',
-                                ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
-                                permission: '{userPermissions}',
-                                objectPermission: '{objectPermissions}',
-                            },
-                        },
+                        //TODO COMMENT FOR NOW!!
+                        // {
+                        //     xtype: 'draftfield',
+                        //     cls: 'a-field-icon icon-short icon-rounded',
+                        //     ui: 'hovered-border classic',
+                        //     maxWidth: 440,
+                        //     margin: '2 0 0 0',
+                        //     padding: '0 0 2 0',
+                        //     label: 'Stowage factor',
+                        //     slug: 'portcallCargoStowage',
+                        //     subObject: 'cargo',
+                        //     options: ['cbm/mt', 'cbft/mt', 'cbm/lt', 'cbft/lt'],
+                        //     bind: {
+                        //         value: '{cargoesGrid.selection.stowage_factor}',
+                        //         valueUnit: '{cargoesGrid.selection.stowage_factor_unit}',
+                        //         readOnly: '{nonEditable ? true : false}',
+                        //         ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
+                        //         permission: '{userPermissions}',
+                        //         objectPermission: '{objectPermissions}',
+                        //     },
+                        // },
                         {
                             xtype: 'vessel.combo',
                             cls: 'a-field-icon icon-vessel icon-rounded',

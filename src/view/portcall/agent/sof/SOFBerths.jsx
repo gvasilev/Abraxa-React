@@ -1,3 +1,4 @@
+import './SOFCargolist.jsx';
 Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
     extend: 'Ext.Container',
     xtype: 'sof.berths',
@@ -832,43 +833,43 @@ Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
                                                         },
                                                     },
                                                     items: [
-                                                        {
-                                                            xtype: 'draftfield',
-                                                            ui: 'hovered-border classic',
-                                                            label: 'Arrival',
-                                                            slug: 'portcallBerthDrafts',
-                                                            subObject: 'berth',
-                                                            options: ['m', 'dm', 'cm'],
-                                                            bind: {
-                                                                value: '{activeBerth.selection.arrival_drafts_fore}',
-                                                                valueUnit:
-                                                                    '{activeBerth.selection.arrival_drafts_fore_unit}',
-                                                                readOnly: '{nonEditable ? true : false}',
-                                                                ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
-                                                                permission: '{userPermissions}',
-                                                                objectPermission: '{objectPermissions}',
-                                                            },
-                                                        },
+                                                        // {
+                                                        //     xtype: 'draftfield',
+                                                        //     ui: 'hovered-border classic',
+                                                        //     label: 'Arrival',
+                                                        //     slug: 'portcallBerthDrafts',
+                                                        //     subObject: 'berth',
+                                                        //     options: ['m', 'dm', 'cm'],
+                                                        //     bind: {
+                                                        //         value: '{activeBerth.selection.arrival_drafts_fore}',
+                                                        //         valueUnit:
+                                                        //             '{activeBerth.selection.arrival_drafts_fore_unit}',
+                                                        //         readOnly: '{nonEditable ? true : false}',
+                                                        //         ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
+                                                        //         permission: '{userPermissions}',
+                                                        //         objectPermission: '{objectPermissions}',
+                                                        //     },
+                                                        // },
                                                         {
                                                             xtype: 'div',
                                                             width: 60,
                                                         },
-                                                        {
-                                                            xtype: 'draftfield',
-                                                            label: false,
-                                                            slug: 'portcallBerthDrafts',
-                                                            subObject: 'berth',
-                                                            options: ['m', 'dm', 'cm'],
-                                                            bind: {
-                                                                value: '{activeBerth.selection.arrival_drafts_aft}',
-                                                                valueUnit:
-                                                                    '{activeBerth.selection.arrival_drafts_aft_unit}',
-                                                                readOnly: '{nonEditable ? true : false}',
-                                                                ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
-                                                                permission: '{userPermissions}',
-                                                                objectPermission: '{objectPermissions}',
-                                                            },
-                                                        },
+                                                        // {
+                                                        //     xtype: 'draftfield',
+                                                        //     label: false,
+                                                        //     slug: 'portcallBerthDrafts',
+                                                        //     subObject: 'berth',
+                                                        //     options: ['m', 'dm', 'cm'],
+                                                        //     bind: {
+                                                        //         value: '{activeBerth.selection.arrival_drafts_aft}',
+                                                        //         valueUnit:
+                                                        //             '{activeBerth.selection.arrival_drafts_aft_unit}',
+                                                        //         readOnly: '{nonEditable ? true : false}',
+                                                        //         ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
+                                                        //         permission: '{userPermissions}',
+                                                        //         objectPermission: '{objectPermissions}',
+                                                        //     },
+                                                        // },
                                                     ],
                                                 },
                                                 {
@@ -896,42 +897,42 @@ Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
                                                         },
                                                     },
                                                     items: [
-                                                        {
-                                                            xtype: 'draftfield',
-                                                            label: 'Departure',
-                                                            slug: 'portcallBerthDrafts',
-                                                            subObject: 'berth',
-                                                            options: ['m', 'dm', 'cm'],
-                                                            bind: {
-                                                                value: '{activeBerth.selection.departure_drafts_fore}',
-                                                                valueUnit:
-                                                                    '{activeBerth.selection.departure_drafts_fore_unit}',
-                                                                readOnly: '{nonEditable ? true : false}',
-                                                                ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
-                                                                permission: '{userPermissions}',
-                                                                objectPermission: '{objectPermissions}',
-                                                            },
-                                                        },
+                                                        // {
+                                                        //     xtype: 'draftfield',
+                                                        //     label: 'Departure',
+                                                        //     slug: 'portcallBerthDrafts',
+                                                        //     subObject: 'berth',
+                                                        //     options: ['m', 'dm', 'cm'],
+                                                        //     bind: {
+                                                        //         value: '{activeBerth.selection.departure_drafts_fore}',
+                                                        //         valueUnit:
+                                                        //             '{activeBerth.selection.departure_drafts_fore_unit}',
+                                                        //         readOnly: '{nonEditable ? true : false}',
+                                                        //         ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
+                                                        //         permission: '{userPermissions}',
+                                                        //         objectPermission: '{objectPermissions}',
+                                                        //     },
+                                                        // },
                                                         {
                                                             xtype: 'div',
                                                             width: 60,
                                                         },
-                                                        {
-                                                            xtype: 'draftfield',
-                                                            label: false,
-                                                            options: ['m', 'dm', 'cm'],
-                                                            slug: 'portcallBerthDrafts',
-                                                            subObject: 'berth',
-                                                            bind: {
-                                                                value: '{activeBerth.selection.departure_drafts_aft}',
-                                                                valueUnit:
-                                                                    '{activeBerth.selection.departure_drafts_aft_unit}',
-                                                                readOnly: '{nonEditable ? true : false}',
-                                                                ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
-                                                                permission: '{userPermissions}',
-                                                                objectPermission: '{objectPermissions}',
-                                                            },
-                                                        },
+                                                        // {
+                                                        //     xtype: 'draftfield',
+                                                        //     label: false,
+                                                        //     options: ['m', 'dm', 'cm'],
+                                                        //     slug: 'portcallBerthDrafts',
+                                                        //     subObject: 'berth',
+                                                        //     bind: {
+                                                        //         value: '{activeBerth.selection.departure_drafts_aft}',
+                                                        //         valueUnit:
+                                                        //             '{activeBerth.selection.departure_drafts_aft_unit}',
+                                                        //         readOnly: '{nonEditable ? true : false}',
+                                                        //         ui: '{nonEditable ? "viewonly classic" : "hovered-border classic"}',
+                                                        //         permission: '{userPermissions}',
+                                                        //         objectPermission: '{objectPermissions}',
+                                                        //     },
+                                                        // },
                                                     ],
                                                 },
                                             ],

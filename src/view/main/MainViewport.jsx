@@ -17,7 +17,8 @@ import '../portnews/PortNewsMainContainer';
 import '../inquiry/InquiryMainView';
 import '../inquiry/inquiryDetails/MainView';
 import '../pda/PDALayout';
-
+import '../portcall/principal/PortcallMainPrincipal.jsx';
+import '../operations/OperationsMainContainer.jsx';
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',
     // itemId: "main-viewport",

@@ -1,3 +1,5 @@
+import './ChatterMessages.jsx';
+import './ChatterInput.jsx';
 Ext.define('Abraxa.view.chatter.ChatterMain', {
     extend: 'Ext.Container',
     xtype: 'chatter',

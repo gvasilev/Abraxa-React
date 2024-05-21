@@ -1,3 +1,10 @@
+import './DisbursementControllerPrincipal.jsx';
+import './DisbursementsMenuList.jsx';
+import './services/DisbursementServicesRightPanel.jsx';
+import './summary/DisbursementSummaryData.jsx';
+import './summary/DisbursementCostComparison.jsx';
+import './paymentdetails/DisbursementPaymentDetails.jsx';
+import './approvals/DisbursementApprovals.jsx';
 Ext.define('Abraxa.view.portcall.principal.disbursements.DisbursementDetails', {
     extend: 'Ext.Container',
     xtype: 'DisbursementDetails',

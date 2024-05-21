@@ -1,3 +1,7 @@
+import './ProspectsChart.jsx';
+import './BerthChart.jsx';
+import './PortChart.jsx';
+import './CargoChart.jsx';
 Ext.define('Abraxa.view.portcall.kpi.KPIs', {
     extend: 'Ext.Container',
     xtype: 'portcall.sof.kpis',
