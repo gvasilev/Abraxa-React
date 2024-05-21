@@ -1,4 +1,4 @@
-//let companyTooltipTimeout;
+import './AbraxaTooltip'; //let companyTooltipTimeout;
 
 Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
     extend: 'Abraxa.view.common.tooltips.AbraxaTooltip',

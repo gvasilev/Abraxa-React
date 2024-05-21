@@ -1,3 +1,9 @@
+import './PortcallsAgentTopContainer';
+import '../PortcallsGridActive';
+import '../PortcallsRightCard';
+import './PortcallsAgentController';
+import './PortcallsAgentViewModel';
+
 Ext.define('Abraxa.view.portcalls.agent.PortacallAgentMain', {
     extend: 'Ext.Container',
     xtype: 'portcalls.agent.main',

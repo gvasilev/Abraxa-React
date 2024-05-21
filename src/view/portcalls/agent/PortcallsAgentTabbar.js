@@ -183,20 +183,6 @@ Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentTabbar', {
                             this.find('portcalls-grid-active').getPlugin('gridviewoptions').showViewOptions();
                         },
                     },
-                    // {
-                    //     xtype: 'tool',
-                    //     ui: 'tool-md',
-                    //     iconCls: 'md-icon-more-vert',
-                    //     tooltip: {
-                    //         anchorToTarget: true,
-                    //         align: 'bc-tc?',
-                    //         html: 'More actions',
-                    //         showDelay: 0,
-                    //         hideDelay: 0,
-                    //         dismissDelay: 0,
-                    //         closeAction: 'destroy'
-                    //     },
-                    // }
                 ],
             },
         ],

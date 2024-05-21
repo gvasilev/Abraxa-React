@@ -1,3 +1,6 @@
+import './IncomingRightContent';
+import './OutgoingRightContent';
+
 Ext.define('Abraxa.view.portcall.payments.PaymentsRightCard', {
     extend: 'Ext.Container',
     xtype: 'payments.right.card',

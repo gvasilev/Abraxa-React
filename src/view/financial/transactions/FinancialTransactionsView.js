@@ -1,3 +1,7 @@
+import '../../../store/payments/Payments';
+import './FinancialTransactionsGrid';
+import './FinancialTransactionsRightCard';
+
 Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
     extend: 'Ext.Container',
     flex: 1,

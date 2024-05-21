@@ -1,3 +1,6 @@
+import './NotesInput';
+import './MentionDiv';
+
 Ext.define('Abraxa.view.notes.AddNotePopup', {
     extend: 'Ext.Dialog',
     xtype: 'add.note',
@@ -6,7 +9,6 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
     right: 80,
     bottom: 0,
     alwaysOnTop: true,
-    viewModel: true,
     showAnimation: {
         type: 'slide',
         direction: 'up',

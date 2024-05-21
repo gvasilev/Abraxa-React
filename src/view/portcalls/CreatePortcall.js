@@ -1,3 +1,8 @@
+import './agent/create/PortcallsAgentCreateController';
+import './agent/create/AttachmentContainer';
+import './agent/create/InstructionsContainer';
+import './agent/create/TemplateContainer';
+
 Ext.define('Abraxa.view.portcalls.CreatePortcall', {
     extend: 'Ext.Dialog',
     testId: 'portcallsCreatePortcall',

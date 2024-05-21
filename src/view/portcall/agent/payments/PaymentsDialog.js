@@ -1,3 +1,5 @@
+import './PaymentForm';
+
 Ext.define('Abraxa.view.portcall.payments.PaymentsDialog', {
     extend: 'Ext.Dialog',
     xtype: 'payments.request.payment',

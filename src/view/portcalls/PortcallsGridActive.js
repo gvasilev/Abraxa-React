@@ -1,3 +1,8 @@
+import './agent/PortcallsAgentEditMenu';
+import './CreatePortcall';
+
+import '../common/Global';
+
 var doubleClickInProgress = false;
 Ext.define('Abraxa.view.portcalls.PortcallsGridActive', {
     extend: 'Ext.grid.Grid',
@@ -2617,8 +2622,8 @@ Ext.define('Abraxa.view.portcalls.PortcallsGridActive', {
         },
         childmouseenter: function (item, location) {
             if (location.column.getDataIndex() == 'cargoes') {
-                var label_str = '';
-                cargoes = [];
+                var label_str = '',
+                    cargoes = [];
                 if (location.record.getNomination() && location.record.getNomination().cargoes()) {
                     cargoes = location.record.getNomination().cargoes().getRange();
                 }

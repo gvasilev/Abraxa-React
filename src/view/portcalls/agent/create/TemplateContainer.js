@@ -1,3 +1,5 @@
+import '../../../../core/components/combo/TemplateCombo';
+
 Ext.define('Abraxa.view.portcalls.agent.TemplateContainer', {
     extend: 'Ext.Container',
     xtype: 'portcalls.template.container',

@@ -1,6 +1,7 @@
 import '../model/common/Company.jsx';
 import '../store/document/Document.jsx';
 import '../view/documents/DocumentDialog.jsx';
+import '../view/portcall/agent/payments/PaymentsDialog';
 Ext.define('Abraxa.controller.AbraxaController', {
     extend: 'Ext.app.Controller',
 
@@ -633,7 +634,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
             default:
                 break;
         }
-        files = null;
+        let files = null;
         if (Ext.isNumber(payment.get('id'))) {
             editMode = true;
             files = payment.attachments();

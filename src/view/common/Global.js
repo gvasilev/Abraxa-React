@@ -1,3 +1,6 @@
+import '../common/dialog/commodity/CommodityDialog';
+import '../../model/commodity/Commodity';
+
 /**
  * Global class for functions used a lot like show port dialog
  */
@@ -359,7 +362,7 @@ Ext.define('Abraxa.Global', {
     },
     openCommodityDialog(commodityModel) {
         var vm = Ext.getCmp('main-viewport').getViewModel();
-        dialog = Ext.create('Abraxa.view.common.dialog.Commodity', {
+        Ext.create('Abraxa.view.common.dialog.Commodity', {
             viewModel: {
                 parent: vm,
                 data: {

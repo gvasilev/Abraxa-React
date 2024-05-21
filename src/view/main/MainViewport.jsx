@@ -1,8 +1,10 @@
-import './MainController.js';
-import './MainToolbar.js';
+import './MainController';
+import './MainToolbar';
 import './MainViewModel';
-import '../../core/components/AbraxaDiv.jsx';
-import '../../core/override/Abraxa.Component.js';
+import '../../core/components/AbraxaDiv';
+import '../../core/override/Abraxa.Component';
+import '../common/tooltips/PublicPersonToolTip';
+import '../common/tooltips/CompanyToolTip';
 import './NotificationsMenu.jsx';
 import './MainHeader';
 import '../dashboard/DashboardMainContainer';
@@ -17,8 +19,9 @@ import '../portnews/PortNewsMainContainer';
 import '../inquiry/InquiryMainView';
 import '../inquiry/inquiryDetails/MainView';
 import '../pda/PDALayout';
-import '../portcall/principal/PortcallMainPrincipal.jsx';
-import '../operations/OperationsMainContainer.jsx';
+import '../portcall/principal/PortcallMainPrincipal';
+import '../operations/OperationsMainContainer';
+import '../portcalls/PortcallsMainContainer';
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',
     // itemId: "main-viewport",

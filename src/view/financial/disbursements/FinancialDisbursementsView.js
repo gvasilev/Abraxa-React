@@ -1,3 +1,7 @@
+import '../../../store/disbursements/Disbursements';
+import './FinancialDisbursementsGrid';
+import './FinancialRightCard';
+
 Ext.define('Abraxa.view.financial.FinancialDisbursementsView', {
     extend: 'Ext.Container',
     layout: 'fit',

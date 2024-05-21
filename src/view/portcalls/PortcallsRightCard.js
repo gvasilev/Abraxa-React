@@ -1,3 +1,5 @@
+import '../notes/AddNotePopup';
+
 Ext.define('Abraxa.view.portcalls.agent.PortacallAgentCard', {
     extend: 'Ext.Container',
     xtype: 'portcalls.right.card',

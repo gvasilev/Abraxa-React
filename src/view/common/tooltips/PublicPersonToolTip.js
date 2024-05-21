@@ -14,6 +14,7 @@
     }).showBy(el, 'bc-tc?');
 
 */
+import './AbraxaTooltip';
 
 Ext.define('Abraxa.view.common.tooltips.PublicPersonToolTip', {
     extend: 'Abraxa.view.common.tooltips.AbraxaTooltip',
@@ -35,6 +36,7 @@ Ext.define('Abraxa.view.common.tooltips.PublicPersonToolTip', {
                     var email = '';
                     var locationStr = null;
                     let country = this.get('countryStore');
+                    var phone = '';
                     var avatar =
                         '<div class="a-profile-img a-no-img"><img width="72" height="72" src="' +
                         AbraxaConstants.urls.staticAbraxa +

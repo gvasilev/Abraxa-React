@@ -1,3 +1,6 @@
+import '../../../store/accounts/Accounts';
+import './FinancialAccountsGrid';
+
 Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
     extend: 'Ext.Container',
     layout: 'fit',

@@ -1,3 +1,6 @@
+import '../../../store/portcalls/Portcalls';
+import '../../../store/portcalls/Statuses';
+
 Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.portcalls-agent-viewmodel',
