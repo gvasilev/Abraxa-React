@@ -1,3 +1,8 @@
+import './PortcallInfoDialog';
+import '../../store/mail/Templates';
+import '../../store/mail/Snippets';
+import '../../store/mail/Attachments';
+
 Ext.define('Abraxa.view.portcall.PortCallHeader', {
     extend: 'Ext.Container',
     xtype: 'portcall.header',

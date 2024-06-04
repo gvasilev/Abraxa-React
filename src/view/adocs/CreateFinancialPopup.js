@@ -1,3 +1,6 @@
+import '../documents/DocumentController';
+import '../portcall/agent/disbursements/DisbursementsUploadController';
+
 Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
     extend: 'Ext.Dialog',
     xtype: 'adocs.create.financial.popup',

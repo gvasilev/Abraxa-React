@@ -29,7 +29,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsGrid', {
                         deep: true,
                     },
                     get: function (store) {
-                        total = 0;
+                        let total = 0;
                         if (store) {
                             total = store.sum('calculated_amount');
                         }

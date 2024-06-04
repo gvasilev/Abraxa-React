@@ -1,3 +1,6 @@
+import '../appointment/CargoEditMenu';
+import '../sof/AddCargoPopup';
+
 Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
     extend: 'Ext.grid.Grid',
     xtype: 'appointment.cargo',

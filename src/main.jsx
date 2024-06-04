@@ -29,7 +29,7 @@ window.WebViewer = WebViewer;
     await ReExtLoaderFunction(ReExtData);
     const { default: App } = await import('./App');
 
-    ReactDOM.createRoot(document.getElementById('root')).render(
+    window.root = ReactDOM.createRoot(document.getElementById('root')).render(
         <Auth0Provider
             domain={import.meta.env.VITE_AUTH0_DOMAIN}
             clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}

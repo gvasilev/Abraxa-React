@@ -1,3 +1,5 @@
+import './AddAdditionalQuantity';
+
 Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
     extend: 'Ext.Container',
     xtype: 'appointment.documentary.instructions',

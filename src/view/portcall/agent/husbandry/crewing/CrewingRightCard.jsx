@@ -1,3 +1,5 @@
+import './AssignServices';
+
 Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingRightCard', {
     extend: 'Ext.Container',
     xtype: 'husbandry.crewing.right.card',

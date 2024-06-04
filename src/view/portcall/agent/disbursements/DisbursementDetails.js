@@ -1,6 +1,6 @@
 import './DisbursementDotsMenu.js';
 import './DisbursementItemsGrid.js';
-
+import './ConvertDisbursement';
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementDetails', {
     extend: 'Ext.Container',
     xtype: 'disbursement.details',

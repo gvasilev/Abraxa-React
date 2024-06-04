@@ -35,12 +35,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         }
     },
 
-    destroy: function (e, info) {
-        Ext.undefer(this.timer);
-        this.target = Ext.destroy(this.target);
-        this.callParent();
-    },
-
     onDragOverListItem: function (target, info) {
         if (!this.canEdit()) return;
         Ext.get('dropped-container').addCls('a-dropped');
@@ -574,6 +568,5 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this;
 
         me.dragZone = me.dropZone = Ext.destroy(me.dragZone, me.dragZone);
-        me.callParent();
     },
 });

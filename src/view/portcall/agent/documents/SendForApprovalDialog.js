@@ -1,6 +1,6 @@
 Ext.define('Abraxa.view.portcall.documents.SendForApprovalDialog', {
     extend: 'Ext.Dialog',
-    xtype: 'send.for.approval.diialog',
+    xtype: 'send.for.approval.dialog',
     closable: true,
     draggable: false,
     minHeight: 500,

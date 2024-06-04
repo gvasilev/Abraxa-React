@@ -1,4 +1,5 @@
 import './DocumentsEditButton.jsx';
+import '../../../approval/SendForApprovalDialog';
 Ext.define('Abraxa.view.portcall.documents.DocumentsFileInfo', {
     extend: 'Ext.Container',
     xtype: 'documents.file.info',

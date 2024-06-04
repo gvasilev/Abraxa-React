@@ -1,3 +1,5 @@
+import '../vouchers/VouchersDialog';
+
 Ext.define('Abraxa.view.document.DocumentController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.document.controller',
@@ -1149,11 +1151,12 @@ Ext.define('Abraxa.view.document.DocumentController', {
             selectedDocumment = cmp.upVM().get('selectedDocumentType.selection'),
             fromSupply = cmp.upVM().get('fromSupply'),
             vm = cmp.upVM(),
-            selectedAccount;
+            selectedAccount,
+            accountVouchers;
         if (fromSupply) {
             let accounts = cmp.upVM().get('accounts');
-            selectedAccount = accounts.getById(expense.get('account_id'));
             accountVouchers = store;
+            selectedAccount = accounts.getById(expense.get('account_id'));
         } else {
             selectedAccount = cmp.upVM().get('billingParty.selection');
             accountVouchers = cmp.upVM().get('accountVouchers');

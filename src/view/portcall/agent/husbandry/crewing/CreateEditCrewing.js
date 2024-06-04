@@ -1,3 +1,5 @@
+import './AssignServices';
+
 Ext.define('Abraxa.view.portcall.husbandry.crewing.CreateEditCrewing', {
     extend: 'Ext.Dialog',
     xtype: 'husbandry.crewing.create',

@@ -2,6 +2,7 @@ import '../model/common/Company.jsx';
 import '../store/document/Document.jsx';
 import '../view/documents/DocumentDialog.jsx';
 import '../view/portcall/agent/payments/PaymentsDialog';
+import '../view/common/tooltips/TenantToolTip';
 Ext.define('Abraxa.controller.AbraxaController', {
     extend: 'Ext.app.Controller',
 

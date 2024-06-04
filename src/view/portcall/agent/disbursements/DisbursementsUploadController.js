@@ -1,3 +1,5 @@
+import './DisbursementsUploadController';
+
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.disbursements.uploadcontroller',

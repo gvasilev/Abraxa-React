@@ -1,3 +1,5 @@
+import './VoucherController';
+
 Ext.define('Abraxa.view.vouchers.VouchersDialog', {
     extend: 'Ext.Dialog',
     xtype: 'vouchers-dialog',

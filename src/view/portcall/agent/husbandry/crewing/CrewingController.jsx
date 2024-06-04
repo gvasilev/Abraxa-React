@@ -1,3 +1,5 @@
+import './CreateEditCrewing';
+
 Ext.define('Abraxa.view.portcall.husbandary.crewing.CrewingController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.crewing-controller',

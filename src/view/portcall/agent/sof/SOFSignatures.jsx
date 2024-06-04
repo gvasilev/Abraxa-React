@@ -1,3 +1,5 @@
+import './AddSignature';
+
 Ext.define('Abraxa.view.portcall.sof.SOFSignatures', {
     extend: 'Ext.Container',
     xtype: 'portcall.sof.signatures',

@@ -400,8 +400,8 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                 proxy: {
                     type: 'memory',
                 },
-            });
-        companyVerified = portCallVM.get('currentCompany').get('verified');
+            }),
+            companyVerified = portCallVM.get('currentCompany').get('verified');
         if (payment && payment.attachments() && payment.attachments().getRange().count) {
             Ext.Array.each(files, function (file) {
                 attachments.add(file);

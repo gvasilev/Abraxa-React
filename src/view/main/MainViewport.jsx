@@ -22,6 +22,7 @@ import '../pda/PDALayout';
 import '../portcall/principal/PortcallMainPrincipal';
 import '../operations/OperationsMainContainer';
 import '../portcalls/PortcallsMainContainer';
+import '../portcall/MainView';
 Ext.define('Abraxa.view.main.MainViewport', {
     id: 'main-viewport',
     // itemId: "main-viewport",

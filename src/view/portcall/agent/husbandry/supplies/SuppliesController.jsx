@@ -1,3 +1,5 @@
+import './CreateEditSupplies';
+
 Ext.define('Abraxa.view.portcall.husbandary.supplies.SuppliesController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.supplies-controller',

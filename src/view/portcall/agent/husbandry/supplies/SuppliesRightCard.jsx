@@ -1,3 +1,5 @@
+import '../../../../adocs/CreateFinancialPopup';
+
 Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesRightCard', {
     extend: 'Ext.Container',
     xtype: 'husbandry.supplies.right.card',

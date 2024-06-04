@@ -6,6 +6,10 @@ import './SOFRemarks.jsx';
 import './SOFSignatures.jsx';
 import './SOFCargoProgress.jsx';
 import './CargoRightCard.jsx';
+import './BerthMenu';
+import './CreateSOFTemplate';
+import './ApplySOFTemplate';
+import './AddRemark';
 Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
     extend: 'Ext.Container',
     xtype: 'sof.main',

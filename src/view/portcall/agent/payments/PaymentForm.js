@@ -1,5 +1,6 @@
 import './IncomingFormContent';
 import './OutgoingFormContent';
+import './RequestFormContent';
 
 Ext.define('Abraxa.view.portlog.payment.PaymentForm', {
     extend: 'Ext.form.Panel',

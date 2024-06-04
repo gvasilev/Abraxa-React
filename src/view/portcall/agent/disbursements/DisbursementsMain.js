@@ -1,3 +1,5 @@
+import './DisbursementsUploadController';
+
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementsMain', {
     extend: 'Ext.Container',
     xtype: 'disbursements.main',

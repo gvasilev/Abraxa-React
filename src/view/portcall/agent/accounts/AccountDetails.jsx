@@ -3,26 +3,28 @@
 // import '../core/components/AbraxaDiv.jsx';
 // import '../core/components/AbraxaPanel.js';
 
-// Common Components
-import '../view/common/components/UpdatedBy.js';
-import '../view/common/components/PublicUpdatedBy.jsx';
-import '../view/common/button/ImportButton.js';
+// // Common Components
+// import '../../../common/components/UpdatedBy';
+// import '../../../common/components/PublicUpdatedBy';
+// import '../../../common/button/ImportButton';
 
-// Portcall Components
-import '../view/portcall/MembersPreviewMenu.js';
-import '../view/portcall/MembersCombo.js';
-import '../view/portcall/agent/accounts/AccountData.js'; // Assuming AccountData is in the same directory
-import '../view/portcall/agent/accounts/AccountData.js'; // Assuming AccountBalance is in the same directory
-import './disbursements/DisbursementsGrid.js';
+// // Portcall Components
+// import '../../MembersPreviewMenu.js';
+// import '../../MembersCombo.js';
+import './AccountData'; // Assuming AccountData is in the same directory
+import './AccountBalance'; // Assuming AccountBalance is in the same directory
+import '../disbursements/DisbursementsGrid';
 
-// Agreements Components
-import './agreements/AgreementsList.js';
+// // Agreements Components
+// import './AgreementsList';
 
-// Voucher Components
-import '../view/vouchers/VouchersDialog.js';
+// // Voucher Components
+// import '../../../vouchers/VouchersDialog.js';
 
-// ADocs Components
-import '../view/adocs/FinancialDocumentForm.js';
+// // ADocs Components
+// import '../../../adocs/FinancialDocumentForm.js';
+import '../disbursements/DisbursementRightCard';
+import '../disbursements/DisbursementDetails';
 
 Ext.define('Abraxa.view.portcall.account.AccountDetails', {
     extend: 'Ext.Container',

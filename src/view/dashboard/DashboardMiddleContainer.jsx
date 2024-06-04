@@ -1,6 +1,8 @@
 import '../../core/components/AbraxaDateField';
 import './KPIExport';
 
+import ChartsOverviewDemo from '../../react/ReactChart';
+
 Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.middle.container',
@@ -280,37 +282,43 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
             bind: {
                 permission: '{userPermissions}',
             },
+            layout: 'hbox',
+            defaults: {
+                width: '50%',
+            },
             items: [
                 {
-                    xtype: 'fusionchart',
-                    cls: 'abraxa-chart a-stakedcolumn',
-                    type: 'stackedcolumn2d',
-                    itemId: 'chart',
-                    layout: 'fit',
-                    width: '100%',
-                    height: '100%',
-                    // dataFormat: 'jsonurl',
-                    // dataSource: Env.ApiEndpoint + 'dashboard/appointments/month',
-                    // listeners: {
-                    //     painted: function () {
-                    //         let chart = this.getFusionChart();
-                    //         Ext.Ajax.request({
-                    //             url: Env.ApiEndpoint + 'dashboard/appointments/month',
-                    //             method: 'GET',
-                    //             success: function (response) {
-                    //                 var obj = Ext.decode(response.responseText);
-                    //                 if (chart && !chart.disposed) {
-                    //                     if (obj) {
-                    //                         chart.setJSONData(obj);
-                    //                     }
-                    //                 }
-                    //             },
-                    //             failure: function failure(response) {
-
-                    //             }
-                    //         });
-                    //     }
-                    // }
+                    xtype: 'container',
+                    items: [
+                        {
+                            xtype: 'div',
+                            cls: 'a-sub-title',
+                            html: 'ExtJS (FusionCharts)'
+                        },
+                        {
+                            xtype: 'fusionchart',
+                            cls: 'abraxa-chart a-stakedcolumn',
+                            type: 'stackedcolumn2d',
+                            itemId: 'chart',
+                            layout: 'fit',
+                            width: '100%',
+                            height: '100%',
+                        }
+                    ]
+                },
+                {
+                    xtype: 'container',
+                    items: [
+                        {
+                            xtype: 'div',
+                            cls: 'a-sub-title',
+                            html: 'React (Chart.js)'
+                        },
+                        {
+                            xtype: 'react-container',
+                            reactComponent: ChartsOverviewDemo()
+                        }
+                    ]
                 },
             ],
         },

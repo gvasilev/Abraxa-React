@@ -1,3 +1,5 @@
+import '../adocs/CreateDocumentPopup';
+
 Ext.define('Abraxa.view.main.UserMenu', {
     extend: 'Ext.Container',
     xtype: 'user.header.menu',

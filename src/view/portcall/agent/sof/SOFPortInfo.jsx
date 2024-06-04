@@ -1,3 +1,4 @@
+import './BunkersUnitCombo';
 Ext.define('Abraxa.view.portcall.sof.SOFPortInfo', {
     extend: 'Ext.Container',
     xtype: 'sof.port.info',

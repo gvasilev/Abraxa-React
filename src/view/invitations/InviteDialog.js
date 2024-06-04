@@ -1,3 +1,5 @@
+import './AccessMenu';
+
 Ext.define('Abraxa.view.invitations.InviteDialog', {
     extend: 'Ext.Dialog',
     xtype: 'invite.dialog',

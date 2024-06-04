@@ -1,5 +1,6 @@
 import './CargoInformation.jsx';
 import './DocumentaryInstructions.jsx';
+import '../../../adocs/CargoDocumentForm';
 Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
     extend: 'Ext.Container',
     xtype: 'appointment.right.card',

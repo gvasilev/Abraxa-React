@@ -1,3 +1,5 @@
+import './DisbursementsUploadController';
+
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'portcall.disbursement.edit.menu',

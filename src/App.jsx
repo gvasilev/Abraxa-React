@@ -38,6 +38,29 @@ const App = () => {
                                 // Handle login failure (show error message, redirect to login page, etc.)
                                 console.error('Login failed:', error);
                             });
+
+                            //KILL THIS ASAP!!!
+                            Ext.Ajax.on(
+                                'beforerequest',
+                                function (conn, options, eOptions) {
+                                    let routeHash = Ext.Viewport.getViewModel().get('routeHash'),
+                                        object_id = null;
+                                    if (routeHash == '#portcall') {
+                                        object_id = 3;
+                                    } else if (routeHash == '#inquiry') {
+                                        object_id = 6;
+                                    } else if (routeHash == '#company') {
+                                        object_id = 2;
+                                    }
+                                    conn.setDefaultHeaders({
+                                        'Object-Id': object_id,
+                                        'Object-Meta-Id': Ext.getCmp('main-viewport')
+                                            ? Ext.getCmp('main-viewport').getViewModel().get('object_meta_id')
+                                            : null,
+                                    });
+                                },
+                                this
+                            );
                         },
                     });
                 } catch (error) {

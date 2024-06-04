@@ -1,4 +1,6 @@
 import './DocumentsEditButton.jsx';
+import '../../../adocs/CreateDocumentPopup';
+import '../../../approval/SendForApprovalDialog';
 Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
     extend: 'Ext.dataview.List',
     xtype: 'documents.list',
@@ -607,45 +609,45 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             align: 'center',
                         },
                         items: [
-                            {
-                                xtype: 'gauge',
-                                cls: 'a-gauge-fix',
-                                height: 53,
-                                width: 53,
-                                minValue: 0,
-                                maxValue: 3,
-                                value: 0,
-                                bind: {
-                                    maxValue: '{recordApprovals.total}',
-                                    value: '{recordApprovals.approved}',
-                                    valueStyle: '{recordApprovals.valueStyle}',
-                                },
-                                textTpl: [
-                                    '<div class="transformer-guage-text" class="fw-b">',
-                                    '<div class="fs-11 fw-b">',
-                                    '{value}/{maxValue}',
-                                    '</div>',
-                                    '</div>',
-                                ],
-                                trackStart: 270,
-                                trackLength: 360,
-                                trackStyle: {
-                                    // stroke: '#ffc107',
-                                    strokeWidth: 0,
-                                    outerRadius: '100%',
-                                    innerRadius: '100% - 2',
-                                    // round: true,
+                            // {
+                            //     xtype: 'gauge',
+                            //     cls: 'a-gauge-fix',
+                            //     height: 53,
+                            //     width: 53,
+                            //     minValue: 0,
+                            //     maxValue: 3,
+                            //     value: 0,
+                            //     bind: {
+                            //         maxValue: '{recordApprovals.total}',
+                            //         value: '{recordApprovals.approved}',
+                            //         valueStyle: '{recordApprovals.valueStyle}',
+                            //     },
+                            //     textTpl: [
+                            //         '<div class="transformer-guage-text" class="fw-b">',
+                            //         '<div class="fs-11 fw-b">',
+                            //         '{value}/{maxValue}',
+                            //         '</div>',
+                            //         '</div>',
+                            //     ],
+                            //     trackStart: 270,
+                            //     trackLength: 360,
+                            //     trackStyle: {
+                            //         // stroke: '#ffc107',
+                            //         strokeWidth: 0,
+                            //         outerRadius: '100%',
+                            //         innerRadius: '100% - 2',
+                            //         // round: true,
 
-                                    // fill: [{
-                                    //     offset: 1,
-                                    //     color: 'darkblue',
-                                    //     opacity: 0.1
-                                    // }, {
-                                    //     offset: 1,
-                                    //     color: 'lightblue'
-                                    // }]
-                                },
-                            },
+                            //         // fill: [{
+                            //         //     offset: 1,
+                            //         //     color: 'darkblue',
+                            //         //     opacity: 0.1
+                            //         // }, {
+                            //         //     offset: 1,
+                            //         //     color: 'lightblue'
+                            //         // }]
+                            //     },
+                            // },
                             {
                                 xtype: 'div',
                                 hidden: true,
@@ -1346,6 +1348,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                         text: 'Cancel',
                                                         margin: '0 8 0 0',
                                                         handler: function () {
+                                                            const record = file.upVM().get('record');
                                                             record.reject();
                                                             this.up('dialog').destroy();
                                                         },

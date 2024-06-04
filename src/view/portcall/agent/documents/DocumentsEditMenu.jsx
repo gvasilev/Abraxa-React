@@ -1,3 +1,4 @@
+import '../../../approval/SendForApprovalDialog';
 Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'documents.edit.menu',

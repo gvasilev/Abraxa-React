@@ -1,3 +1,5 @@
+import './Service';
+
 Ext.define('Abraxa.view.portcall.husbandry.supplies.CreateEditSupplies', {
     extend: 'Ext.Dialog',
     xtype: 'husbandry.supplies.create',

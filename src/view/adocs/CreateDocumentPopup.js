@@ -1,3 +1,8 @@
+import './SofDocumentForm';
+import './CargoDocumentForm';
+import './FinancialDocumentForm';
+import './InvoiceDocumentForm';
+
 Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
     extend: 'Ext.Dialog',
     xtype: 'adocs.create.document.popup',

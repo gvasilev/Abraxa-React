@@ -1,3 +1,5 @@
+import './ConvertDisbursement';
+
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementRightCard', {
     extend: 'Ext.Container',
     xtype: 'disbursement-right-card',
@@ -226,8 +228,8 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementRightCard', {
                             (colorCls == 'a-positive-value'
                                 ? '(credit)'
                                 : colorCls == 'a-negative-value'
-                                ? '(debit)'
-                                : '') +
+                                  ? '(debit)'
+                                  : '') +
                             '</small></div>'
                         );
                     }

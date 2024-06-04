@@ -203,9 +203,9 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                             if (cargoStore) {
                                                 let record = cargoStore.getById(value);
                                                 let str = record.get('commodity'),
-                                                    cargoFunction = record.get('function') || '';
+                                                    cargoFunction = record.get('function') || '',
+                                                    quantityStr = '';
 
-                                                quantityStr = '';
                                                 if (record.get('bl_quantity')) {
                                                     let unitStr = '';
                                                     if (record.get('bl_unit')) {
