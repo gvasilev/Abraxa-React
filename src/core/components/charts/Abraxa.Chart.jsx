@@ -37,14 +37,14 @@ Ext.define('Abraxa.Chart', {
         return this.chartElement.dom;
     },
 
-    doDestroy: function () {
-        var me = this;
+    // doDestroy: function () {
+    //     var me = this;
 
-        me.setData(null);
-        if (me.getFusionChart()) me.getFusionChart().dispose();
-        // this.callParent(arguments);
-        console.log('doDestroy', arguments);
-    },
+    //     me.setData(null);
+    //     if (me.getFusionChart()) me.getFusionChart().dispose();
+    //     this.destroy();
+    //     console.log('doDestroy', arguments);
+    // },
 
     updateValue: function (value) {
         this.mixins.fusionchart.updateValue.call(this, value);

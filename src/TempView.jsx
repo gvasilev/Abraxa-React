@@ -29,6 +29,7 @@ import './view/calculator/portcostengine/MainPage.jsx';
 import './view/settings/SettingsMainLayout.jsx';
 import './view/common/dialog/Vessel';
 import './view/common/dialog/port/PortMain';
+import './core/globals/AbraxaPoup';
 
 // Import CSS
 import './index.css';

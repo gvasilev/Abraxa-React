@@ -6,8 +6,8 @@ Ext.define('Abraxa.core.AbraxaFormList', {
     // navigationModel: {
     //     type: 'null',
     // },
-    onFocusEnter: Ext.emptyFn,
-    onFocusLeave: Ext.emptyFn,
+    // onFocusEnter: Ext.emptyFn,
+    // onFocusLeave: Ext.emptyFn,
     selectable: false,
     ripple: false,
     itemRipple: false,

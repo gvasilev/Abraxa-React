@@ -1,6 +1,7 @@
 /**
  * Global class for currency
  */
+import '../../view/common/dialog/SuccessfullyDialog';
 Ext.define('Abraxa.popup', {
     singleton: true,
 
