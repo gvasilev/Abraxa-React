@@ -1,3 +1,5 @@
+import './CreateDisbursement';
+
 Ext.define('Abraxa.view.portcall.disbursements.DisbursementsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'disbursements.grid',

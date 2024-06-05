@@ -22,6 +22,8 @@
         "@mui/x-data-grid-pro": "^7.6.0",
         "@pdftron/webviewer": "^10.9.0",
         "@rollup/plugin-terser": "^0.4.4",
+        "@sentry/react": "^8.7.0",
+        "@sentry/vite-plugin": "^2.18.0",
         "@vitejs/plugin-legacy": "^5.4.0",
         "fusioncharts": "^3.23.0",
         "install": "^0.13.0",
@@ -36,6 +38,7 @@
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
+        "@ampproject/rollup-plugin-closure-compiler": "^0.27.0",
         "@types/react": "^18.2.55",
         "@types/react-dom": "^18.2.19",
         "@vitejs/plugin-react-swc": "^3.5.0",

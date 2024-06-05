@@ -1,8 +1,9 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import legacy from '@vitejs/plugin-legacy';
 import { default as terser } from '@rollup/plugin-terser';
-import obfuscator from 'rollup-plugin-obfuscator';
+import { default as closureCompiler } from '@ampproject/rollup-plugin-closure-compiler';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,31 +15,29 @@ export default defineConfig({
             rollupOptions: {
                 plugins: [
                     terser(), // Minify the code
-                    obfuscator({
-                        // Configure options for code obfuscation
-                        compact: true,
-                        controlFlowFlattening: true,
-                        controlFlowFlatteningThreshold: 0.75,
-                        deadCodeInjection: true,
-                        deadCodeInjectionThreshold: 0.4,
-                        debugProtection: false,
-                        debugProtectionInterval: false,
-                        disableConsoleOutput: true,
-                        identifierNamesGenerator: 'hexadecimal',
-                        log: false,
-                        renameGlobals: false,
-                        rotateStringArray: true,
-                        selfDefending: true,
-                        stringArray: true,
-                        stringArrayEncoding: 'rc4',
-                        stringArrayThreshold: 0.75,
-                        unicodeEscapeSequence: false,
+                    closureCompiler({
+                        compilationLevel: 'ADVANCED',
+                        sourcemap: true,
                     }),
                 ],
             },
         },
+        sentryVitePlugin({
+            org: 'abraxa',
+            project: 'react-frontend',
+        }),
     ],
-    // server: {
-    //     port: 80,
-    // },
+
+    build: {
+        sourcemap: true,
+        rollupOptions: {
+            onwarn(warning, defaultHandler) {
+                if (warning.code === 'SOURCEMAP_ERROR') {
+                    return;
+                }
+
+                defaultHandler(warning);
+            },
+        },
+    },
 });

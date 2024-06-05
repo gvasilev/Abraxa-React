@@ -5,6 +5,7 @@ import './PDAItemsGrid';
 import './PDAGridViewReadOnly';
 import './calculation/PDACalculationGridView';
 import './PDADotsMenu';
+import './PDAGridView';
 
 Ext.define('Abraxa.view.pda.PDALayout', {
     extend: 'Ext.Container',
