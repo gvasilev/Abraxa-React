@@ -2,7 +2,7 @@ import FusionCharts from 'fusioncharts';
 import Widgets from 'fusioncharts/fusioncharts.widgets';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import Gantt from 'fusioncharts/fusioncharts.gantt';
-import Charts from 'fusioncharts/fusioncharts.charts';
+import Charts from "fusioncharts/fusioncharts.charts";
 
 FusionTheme(FusionCharts);
 Gantt(FusionCharts);
@@ -60,6 +60,7 @@ Ext.define('Abraxa.fusioncharts.Mixin', {
         var me = this,
             fusionchart = new FusionCharts(me.config),
             chartElement = this.chartElement;
+
 
         if (chartElement && chartElement.id) {
             FusionCharts.ready(function () {

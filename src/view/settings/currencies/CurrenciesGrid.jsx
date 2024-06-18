@@ -20,7 +20,7 @@ Ext.define('Abraxa.view.settings.currencies.CurrenciesGrid', {
                     get: function (record) {
                         var store = this.get('currencyRates');
                         if (store && store.count()) {
-                            storeRecord = store.queryBy(function (rec) {
+                            let storeRecord = store.queryBy(function (rec) {
                                 return rec.get('currency') == record.get('currency');
                             }).items[0];
 
