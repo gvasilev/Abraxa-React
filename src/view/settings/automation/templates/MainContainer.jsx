@@ -1,4 +1,5 @@
-import './TemplatesGrid.jsx';
+import './TemplatesGrid';
+
 Ext.define('Abraxa.view.settings.automation.templates.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.automation.templates.main.container',

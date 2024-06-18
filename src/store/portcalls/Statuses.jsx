@@ -1,4 +1,5 @@
-import '../../model/portcall/Status.jsx';
+import '../../model/portcall/Status';
+
 Ext.define('Abraxa.store.portcalls.Statuses', {
     extend: 'Ext.data.Store',
     alias: 'store.portcall.statuses',

@@ -1,8 +1,7 @@
+import '../comments/Comment';
+import '../portcall/Attachment';
+import '../likes/Like';
 
-import moment from 'moment';
-import '../comments/Comment.jsx';
-import '../portcall/Attachment.jsx';
-import '../likes/Like.jsx';
 Ext.define('Abraxa.model.task.Task', {
     extend: 'Ext.data.Model',
     fields: [
@@ -35,30 +34,30 @@ Ext.define('Abraxa.model.task.Task', {
         {
             name: 'overdue',
             persist: false,
-            calculate: function (data) {
+            calculate: function(data) {
                 if (data.status == 'completed') {
                     return moment(data.due_date).isBefore(data.updated_at);
                 }
                 return moment(data.due_date).isBefore(new Date());
             },
         },
-        // {
-        //     name: 'search_index',
-        //     depends: 'updated_at',
-        //     persist: false,
-        //     mapping: function (data) {
-        //         if (data) {
-        //             return this.buildSearchIndex(data);
-        //         }
-        //     },
-        // },
+        {
+            name: 'search_index',
+            depends: 'updated_at',
+            persist: false,
+            mapping: function(data) {
+                if (data) {
+                    return this.buildSearchIndex(data);
+                }
+            },
+        },
         {
             name: 'current_office_id',
             type: 'auto',
-            mapping: function (data) {
-                if (data && data.assignee && data.assignee.current_office_id) {
-                    return data.assignee.current_office_id;
-                }
+            mapping: function(data) {
+                return data && data.assigned_user && data.assigned_user.current_office_id
+                    ? data.assigned_user.current_office_id
+                    : 0;
             },
         },
     ],

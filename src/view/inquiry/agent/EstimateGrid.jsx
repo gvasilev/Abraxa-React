@@ -11,7 +11,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
     stateful: true,
     stateId: 'estimate-grid',
     itemId: 'estimate-grid',
-    collapsible: false,
     infinite: false,
     pinHeaders: false,
     selectable: {
@@ -52,10 +51,10 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
                             listeners: {
                                 change: function (field, newValue, oldValue, eOpts) {
                                     var storeInquiries = this.upVM().get('inquiriesPdas');
-                                    if (newValue == '') storeInquiries.removeFilter('search');
+                                    if (newValue === '') storeInquiries.removeFilter('search');
                                 },
                                 action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var storeInquiries = this.upVM().get('inquiriesPdas');
                                     storeInquiries.removeFilter('search');
                                     if (query.length > 2) {
@@ -166,7 +165,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
             ],
         },
     ],
-    pinHeaders: false,
     columnMenu: {
         xtype: 'menu',
         weighted: true,
@@ -358,18 +356,12 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
             filterType: {
                 // required configs
                 type: 'string',
-                // optional configs
-                // value: 'star', // setting a value makes the filter active.
                 operators: ['like'],
                 fieldDefaults: {
                     ui: 'classic',
                     placeholder: 'Enter vessel',
                     // any Ext.form.field.Text configs accepted
                 },
-                // serializer: function (value) {
-
-                //     return;
-                // }
             },
             cell: {
                 cls: 'expand',
@@ -483,10 +475,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
                     placeholder: 'Enter port',
                     // any Ext.form.field.Text configs accepted
                 },
-                // serializer: function (value) {
-
-                //     return;
-                // }
             },
             renderer: function (value, record) {
                 if (record) {
@@ -567,8 +555,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
                     xtype: 'combobox',
                     ui: 'classic',
                     placeholder: 'Choose',
-                    valueField: 'full_name',
-                    displayField: 'full_name',
                     queryMode: 'local',
                     multiSelect: true,
                     displayField: 'name',
@@ -653,16 +639,15 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
                 encodeHtml: false,
                 renderer: function (value, record) {
                     if (record) {
-                        var label =
+                        return (
                             '<a class="a_grid_action company_details" href="javascript:void(0)" data-company_id="' +
                             record.getInquiry().get('requesting_party_id') +
                             '" data-email="' +
                             record.getInquiry().get('requesting_party_email') +
                             '">' +
                             record.getInquiry().get('requesting_party_name') +
-                            '</a>';
-
-                        return label;
+                            '</a>'
+                        );
                     }
                     return '<span class="a-cell-placeholder">---</span>';
                 },
@@ -759,7 +744,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
             cls: 'a-column-bl a-column-br',
             align: 'right',
             minWidth: 140,
-            align: 'right',
             cell: {
                 cls: 'a-cell-bl a-cell-br fw-b',
                 encodeHtml: false,
@@ -1027,11 +1011,6 @@ Ext.define('Abraxa.view.inquiry.agent.EstimateGrid', {
             });
             let record = location.record;
             if (record) {
-                // mixpanel.track(
-                //     "Double click on grid active portcall"
-                // );
-
-                // Ext.ComponentQuery.query('portcalls\\.right\\.card')[0].hide();
                 Ext.getCmp('main-viewport')
                     .getController()
                     .redirectTo('inquiry/' + record.getInquiry().get('id') + '/pda/' + record.get('id'));

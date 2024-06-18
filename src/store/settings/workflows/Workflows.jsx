@@ -1,4 +1,5 @@
-import '../../../model/settings/workflows/Workflow.jsx';
+import '../../../model/settings/workflows/Workflow';
+
 Ext.define('Abraxa.store.settings.workflows.Workflows', {
     extend: 'Ext.data.Store',
     alias: 'store.workflows',

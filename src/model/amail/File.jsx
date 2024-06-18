@@ -1,4 +1,5 @@
-import '../adocs/Document.jsx';
+import '../adocs/Document';
+
 Ext.define('Abraxa.model.amail.File', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

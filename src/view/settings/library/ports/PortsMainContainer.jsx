@@ -1,9 +1,8 @@
-import './PortController.jsx';
-import './PortsServedGrid.jsx';
+import './PortsServedGrid';
+
 Ext.define('Abraxa.view.settings.library.PortsMainContaianer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.ports.main',
-    controller: 'ports.controller',
     hidden: true,
     layout: 'vbox',
     flex: 1,
@@ -50,22 +49,24 @@ Ext.define('Abraxa.view.settings.library.PortsMainContaianer', {
                                             ui: 'normal-light small',
                                             iconCls: 'md-icon-add',
                                             text: 'Suggest new entry',
+                                            testId: 'settingsLibrarySuggestNewPortBtn',
                                             handler: function (me) {
-                                                let currentUser = me.upVM().get('currentUser');
+                                                const childSettingsMainVM = me.upVM(),
+                                                    currentUser = childSettingsMainVM.get('currentUser');
+
+                                                childSettingsMainVM.set(
+                                                    'addEditPortTitle',
+                                                    AbraxaConstants.titles.addPort
+                                                );
 
                                                 Ext.create(
                                                     'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.SuggestPortDialog',
                                                     {
                                                         viewModel: {
-                                                            parent: me.upVM(),
+                                                            parent: childSettingsMainVM,
                                                             data: {
                                                                 currentUser: currentUser,
-                                                            },
-                                                            links: {
-                                                                record: {
-                                                                    type: 'Abraxa.model.suggestions.Port',
-                                                                    create: true,
-                                                                },
+                                                                record: Ext.create('Abraxa.model.suggestions.Port', {}),
                                                             },
                                                         },
                                                     }

@@ -1,6 +1,7 @@
-import './OfficeGeneralInfo.jsx';
-import './OfficeUsersGrid.jsx';
-import './OfficeSettings.jsx';
+import './OfficeGeneralInfo';
+import './OfficeUsersGrid';
+import './OfficeSettings';
+
 Ext.define('Abraxa.view.settings.offices.OfficeDetails', {
     extend: 'Ext.Container',
     xtype: 'settings.offices.details',

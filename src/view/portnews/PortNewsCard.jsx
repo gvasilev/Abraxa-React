@@ -143,34 +143,14 @@ Ext.define('Abraxa.view.portnews.PortNewsCard', {
                                                 },
                                                 get: function (portNewsTypes) {
                                                     const store = portNewsTypes;
-                                                    if(store.count() > 0) {
-                                                        const recordTypeId = this.get('record.type_id');
-                                                        if (recordTypeId === null)
-                                                            return [
-                                                                {
-                                                                    id: null,
-                                                                    name: '',
-                                                                },
-                                                            ];
-                                                        const index = store.find('id', recordTypeId);
-
+                                                    const recordTypeId = this.get('record.type_id');
+                                                    if (recordTypeId === null)
                                                         return [
                                                             {
-                                                                id: recordTypeId,
-                                                                name: store.getAt(index).get('name'),
+                                                                id: null,
+                                                                name: '',
                                                             },
                                                         ];
-                                                    }
-                                                },
-                                            },
-                                            typeName: function (get) {
-                                                const recordTypeId = get('record.type_id');
-                                                const store = this.getView()
-                                                    .up('PortNewsCard')
-                                                    .upVM()
-                                                    .get('portNewsTypes');
-
-                                                if (store.count() > 0) {
                                                     const index = store.find('id', recordTypeId);
 
                                                     return [
@@ -179,7 +159,22 @@ Ext.define('Abraxa.view.portnews.PortNewsCard', {
                                                             name: store.getAt(index).get('name'),
                                                         },
                                                     ];
-                                                }
+                                                },
+                                            },
+                                            typeName: function (get) {
+                                                const recordTypeId = get('record.type_id');
+                                                const store = this.getView()
+                                                    .up('PortNewsCard')
+                                                    .upVM()
+                                                    .get('portNewsTypes');
+                                                const index = store.find('id', recordTypeId);
+
+                                                return [
+                                                    {
+                                                        id: recordTypeId,
+                                                        name: store.getAt(index).get('name'),
+                                                    },
+                                                ];
                                             },
                                         },
                                     },

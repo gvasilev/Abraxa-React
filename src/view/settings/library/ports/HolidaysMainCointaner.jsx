@@ -1,4 +1,5 @@
-import './HolidaysGrid.jsx';
+import './HolidaysGrid';
+
 Ext.define('Abraxa.view.settings.library.ports.HolidaysMainCointaner', {
     extend: 'Ext.Container',
     xtype: 'settings.library.holidays.main',

@@ -1,12 +1,13 @@
-import './SuggestTerminalAdditional.jsx';
-import './SuggestTerminalCoordinates.jsx';
-import './SuggestTerminalGeneral.jsx';
-import './SuggestTerminalLDRates.jsx';
-import './SuggestTerminalMaxVessel.jsx';
-import './SuggestTerminalRestrictions.jsx';
-import './SuggestTerminalSpecialGoods.jsx';
-import './SuggestTerminalStorage.jsx';
-import '../SuggestController.jsx';
+import './SuggestTerminalAdditional';
+import './SuggestTerminalCoordinates';
+import './SuggestTerminalGeneral';
+import './SuggestTerminalLDRates';
+import './SuggestTerminalMaxVessel';
+import './SuggestTerminalRestrictions';
+import './SuggestTerminalSpecialGoods';
+import './SuggestTerminalStorage';
+import '../SuggestController';
+
 Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestTerminal.SuggestTerminalDialog', {
     extend: 'Ext.Dialog',
     xtype: 'SuggestTerminalDialog',
@@ -97,7 +98,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestTerminal.Su
             xtype: 'div',
             cls: 'a-dialog-card-title a-dialog-has-icon',
             bind: {
-                html: "Let's add a Terminal",
+                html: '{addEditTerminalTitle}',
             },
         },
         {

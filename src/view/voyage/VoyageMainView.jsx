@@ -1,7 +1,8 @@
-import './VoyageViewModel.jsx';
-import './VoyageController.jsx';
-import './VoyageAppointment.jsx';
-import './AppointPreview.jsx';
+import './VoyageViewModel';
+import './VoyageController';
+import './VoyageAppointment';
+import './AppointPreview';
+
 Ext.define('Abraxa.view.voyage.VoyageMainView', {
     extend: 'Ext.Container',
     xtype: 'VoyageMainView',

@@ -1,5 +1,5 @@
+import '../../model/announcement/Announcement';
 
-import '../../model/announcement/Announcement.jsx';
 Ext.define('Abraxa.store.announcement.Announcements', {
     extend: 'Ext.data.Store',
     alias: 'store.announcements',

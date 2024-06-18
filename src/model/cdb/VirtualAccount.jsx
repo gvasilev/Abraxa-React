@@ -63,10 +63,11 @@ Ext.define('Abraxa.model.cdb.VirtualAccount', {
     ],
     proxy: {
         type: 'rest',
-        url: Env.ApiEndpoint + 'cdb/${org_id}/virtual-accounts',
-        // reader: {
-        //     type: 'json',
-        //     rootProperty: 'data'
-        // }
+        api: {
+            update: Env.ApiEndpoint + 'cdb/${org_id}/virtual-accounts',
+            create: Env.ApiEndpoint + 'cdb/${org_id}/virtual-accounts',
+            destroy: Env.ApiEndpoint + 'cdb/${org_id}/virtual-accounts',
+            read: Env.ApiEndpoint + 'organizations/${org_id}/virtual-accounts',
+        },
     },
 });

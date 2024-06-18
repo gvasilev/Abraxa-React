@@ -1,24 +1,25 @@
-import '../../../store/calculator/PortSettings.jsx';
-import '../../../store/calculator/DataField.jsx';
-import '../../../store/calculator/GlobalVariable.jsx';
-import '../../../store/calculator/TariffTable.jsx';
-import '../../../store/calculator/PriceBook.jsx';
-import './portsettings/index/_Page.jsx';
-import './PremiumPage.jsx';
-import './portsettings/show/nomenclatures/show/_Subpage.jsx';
-import './portsettings/show/datafields/show/_Subpage.jsx';
-import '../../../store/calculator/Nomenclature.jsx';
-import './portsettings/show/tarifftables/Grid.jsx';
-import './portsettings/show/globalvariables/show/_Subpage.jsx';
-import './portsettings/show/pricebooks/show/_Subpage.jsx';
-import './portsettings/show/pricebooks/show/services/show/_Subpage.jsx';
-import './portsettings/show/pricebooks/show/services/show/datafields/show/_Subpage.jsx';
-import './portsettings/show/pricebooks/show/variables/show/_Subpage.jsx';
-import './portsettings/show/DataFieldAddModal.jsx';
-import './portsettings/show/GlobalVariableAddModal.jsx';
-import './portsettings/show/PriceBookAddModal.jsx';
-import './portsettings/show/TariffTableAddModal.jsx';
-import '../../../store/calculator/PriceBookService.jsx';
+import '../../../store/calculator/PortSettings';
+import '../../../store/calculator/DataField';
+import '../../../store/calculator/GlobalVariable';
+import '../../../store/calculator/TariffTable';
+import '../../../store/calculator/PriceBook';
+import './portsettings/index/_Page';
+import './PremiumPage';
+import './portsettings/show/nomenclatures/show/_Subpage';
+import './portsettings/show/datafields/show/_Subpage';
+import '../../../store/calculator/Nomenclature';
+import './portsettings/show/tarifftables/Grid';
+import './portsettings/show/globalvariables/show/_Subpage';
+import './portsettings/show/pricebooks/show/_Subpage';
+import './portsettings/show/pricebooks/show/services/show/_Subpage';
+import './portsettings/show/pricebooks/show/services/show/datafields/show/_Subpage';
+import './portsettings/show/pricebooks/show/variables/show/_Subpage';
+import './portsettings/show/DataFieldAddModal';
+import './portsettings/show/GlobalVariableAddModal';
+import './portsettings/show/PriceBookAddModal';
+import './portsettings/show/TariffTableAddModal';
+import '../../../store/calculator/PriceBookService';
+
 Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.calculator.portcostengine',
@@ -26,7 +27,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         portsettings: {
             type: 'portsettings',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -39,7 +40,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         calcdatafield: {
             type: 'calcdatafield',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -49,16 +50,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -66,7 +67,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         calcglobalvariable: {
             type: 'calcglobalvariable',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -76,16 +77,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -93,14 +94,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         tarifftable: {
             type: 'tarifftable',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
             autoLoad: true,
             sorters: [
                 {
-                    sorterFn: function (tt1, tt2) {
+                    sorterFn: function(tt1, tt2) {
                         return tt1.get('slug') > tt2.get('slug') ? 1 : tt1.get('slug') === tt1.get('slug') ? 0 : -1;
                     },
                     // transform: function (value) {
@@ -114,16 +115,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -131,7 +132,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         calcpricebook: {
             type: 'calcpricebook',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -141,16 +142,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -158,7 +159,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         calcpricebookservice: {
             type: 'calcpricebookservice',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -169,11 +170,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     priceBookId: '{priceBooksList.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (
                                 this.getProxy().getExtraParams().portSettingsId &&
                                 this.getProxy().getExtraParams().priceBookId
@@ -181,7 +182,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -189,7 +190,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         calcnomenclature: {
             type: 'calcnomenclature',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -199,21 +200,21 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
             listeners: {
-                load: function () {
+                load: function() {
                     let nomenclatureList = Ext.ComponentQuery.query('list[reference=nomenclaturesList]')[0];
 
                     if (nomenclatureList && !nomenclatureList.getSelection()) {
@@ -250,7 +251,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
     formulas: {
         pageActiveItem: {
             bind: '{pageXtype}',
-            get: function (value) {
+            get: function(value) {
                 let pages = this.data.pages;
                 if (this.get('currentUserPlan') === 'starter') {
                     this.set('pageXtype', 'calculator.premium.page');
@@ -260,7 +261,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.ViewModel', {
         },
         subpageActiveItem: {
             bind: '{subpageXtype}',
-            get: function (value) {
+            get: function(value) {
                 let subpages = this.data.subpages;
                 return value ? subpages.findIndex((subpage) => subpage.xtype === value) : 0;
             },

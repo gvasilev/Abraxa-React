@@ -1,5 +1,6 @@
-import './WorkflowsMainContainer.jsx';
-import './CreateWorkflow.jsx';
+import './WorkflowsMainContainer';
+import './CreateWorkflow';
+
 Ext.define('Abraxa.view.settings.workflows.WorkflowsMain', {
     extend: 'Ext.Container',
     xtype: 'settings.workflows.main',

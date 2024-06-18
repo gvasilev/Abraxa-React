@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.disbursement.DefaultDisbursementItem', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

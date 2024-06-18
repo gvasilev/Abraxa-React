@@ -4,7 +4,7 @@ Ext.define('Abraxa.core.plugins.LazyItems', {
     alias: 'plugin.lazyitems',
 
     init: function (comp) {
-        // this.callParent(arguments);
+// this.callParent(arguments);
 
         if (this.items) {
             // Eager instantiation means create the child items now

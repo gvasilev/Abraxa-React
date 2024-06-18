@@ -1,4 +1,5 @@
-import './CreateRule.jsx';
+import './CreateRule';
+
 Ext.define('Abraxa.view.settings.users_teams.teams.rules.RulesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.teams.rules.grid',

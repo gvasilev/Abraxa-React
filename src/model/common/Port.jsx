@@ -5,11 +5,19 @@ Ext.define('Abraxa.model.common.Port', {
             name: 'id',
             type: 'integer',
         },
+        {
+            name: 'name',
+            type: 'string',
+        },
     ],
     idProperty: 'id',
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'ports',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        },
     },
     hasMany: [
         {

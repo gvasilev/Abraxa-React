@@ -1,9 +1,10 @@
-import './CompanyController.jsx';
-import './CompanyProfile.jsx';
-import './SystemSettings.jsx';
-import './Automations.jsx';
-import './EmailSettings.jsx';
-import './Security.jsx';
+import './CompanyController';
+import './CompanyProfile';
+import './SystemSettings';
+import './Automations';
+import './EmailSettings';
+import './Security';
+
 Ext.define('Abraxa.view.settings.company.CompanyMain', {
     extend: 'Ext.Container',
     xtype: 'settings.company.main',

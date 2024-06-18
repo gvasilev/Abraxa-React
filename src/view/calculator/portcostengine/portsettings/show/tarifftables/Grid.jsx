@@ -1,5 +1,6 @@
-import '../../../../../../controller/TariffTableController.jsx';
-import '../../../../../../store/calculator/TarrifTableRows.jsx';
+import '../../../../../../controller/TariffTableController';
+import '../../../../../../store/calculator/TarrifTableRows';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables.Grid', {
     extend: 'Ext.grid.Grid',
     xtype: 'calculator.portcostengine.portsettings.show.tarifftables.grid',
@@ -60,11 +61,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         portSettingsTariffTableId: '{tariffTablesList.selection.id}',
                     },
                 },
-                updateProxy: function (proxy) {
+                updateProxy: function(proxy) {
                     if (proxy) {
                         proxy.onAfter(
                             'extraparamschanged',
-                            function () {
+                            function() {
                                 if (
                                     this.getProxy().getExtraParams().portSettingsId &&
                                     this.getProxy().getExtraParams().portSettingsTariffTableId
@@ -72,7 +73,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                     this.load();
                                 }
                             },
-                            this
+                            this,
                         );
                     }
                 },
@@ -84,10 +85,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                     bindTo: '{columns}',
                     deep: true,
                 },
-                get: function (store) {
+                get: function(store) {
                     let columns = [];
                     if (store && store.count()) {
-                        store.each(function (record) {
+                        store.each(function(record) {
                             columns.push(record.getData());
                         });
                         let editColumn = {
@@ -111,19 +112,19 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                             align: 'bc-tc?',
                                             html: 'Delete',
                                         },
-                                        handler: function (value, metadata) {
+                                        handler: function(value, metadata) {
                                             let record = this.toolOwner.getRecord();
                                             let selectionPort = this.upVM().get('calculatorPortSettingsGrid.selection');
                                             let store = this.upVM().get('rows');
                                             Ext.Msg.confirm(
                                                 'Delete',
                                                 'Are you sure you want to delete this row?',
-                                                function (answer) {
+                                                function(answer) {
                                                     if (answer == 'yes') {
                                                         store.remove(record);
                                                         // record.erase();
                                                         store.sync({
-                                                            success: function () {
+                                                            success: function() {
                                                                 store.load();
                                                                 Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                                 Ext.toast('Record updated');
@@ -151,7 +152,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                         text: 'Delete',
                                                         separator: true,
                                                     },
-                                                ]
+                                                ],
                                             );
                                         },
                                     },
@@ -168,7 +169,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                     bindTo: '{tariffTablesList.selection}',
                     // deep: true,
                 },
-                get: function (data) {
+                get: function(data) {
                     if (data) {
                         let me = this;
                         data.getProxy().setExtraParams({
@@ -178,36 +179,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         return data;
                     }
                 },
-                // get: function (data) {
-                //     if (data.portSettingsId && data.portSettingsTariffTableId) {
-                //         console.log(
-                //             'Changing table to: ',
-                //             data.portSettingsTariffTableId + ' ' + this.get('tariffTablesList.selection').get('label'),
-                //             ' for port: ',
-                //             data.portSettingsId
-                //         );
-                //         let me = this,
-                //             record = Ext.create('Abraxa.model.calculator.TableSource', {
-                //                 id: data.portSettingsTariffTableId,
-                //             });
-                //         record.getProxy().setExtraParams({
-                //             portSettingsId: data.portSettingsId,
-                //         });
-                //         record.load({
-                //             success: function (rec) {
-                //                 me.getView().getController().prepareTableData(rec);
-                //             },
-                //         });
-
-                //         return record;
-                //     }
-                // },
             },
             restrictions: {
                 bind: {
                     bindTo: '{tableSourceData.behaviour}',
                 },
-                get: function (behavior) {
+                get: function(behavior) {
                     return behavior;
                 },
             },
@@ -228,11 +205,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         bind: {
                             bindTo: '{columns}',
                         },
-                        get: function (store) {
-                            let columnId = this.getView().getDataIndex(),
-                                record = store.queryBy(function (rec) {
-                                    return rec.get('dataIndex') == columnId;
-                                }).items[0];
+                        get: function(store) {
+                            let columnId = this.getView().getDataIndex();
+
+                            record = store.queryBy(function(rec) {
+                                return rec.get('dataIndex') == columnId;
+                            }).items[0];
 
                             return record;
                         },
@@ -241,7 +219,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         bind: {
                             bindTo: '{columnRecord}',
                         },
-                        get: function (record) {
+                        get: function(record) {
                             let string;
                             if (record && record.get('match') && record.get('match').value) {
                                 switch (record.get('match').type) {
@@ -262,7 +240,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         bind: {
                             bindTo: '{columnRecord}',
                         },
-                        get: function (record) {
+                        get: function(record) {
                             let store = this.get('columns');
                             return store.indexOf(record);
                         },
@@ -294,7 +272,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                 bind: {
                                     disabled: '{!restrictions.canEditColumns}',
                                 },
-                                handler: function () {
+                                handler: function() {
                                     let record = this.upVM().get('columnRecord');
 
                                     Ext.create('Ext.Dialog', {
@@ -363,7 +341,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                     value: '{record.matchValue}',
                                                                 },
                                                                 listeners: {
-                                                                    painted: function () {
+                                                                    painted: function() {
                                                                         this.setError(false);
                                                                     },
                                                                 },
@@ -379,7 +357,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                     value: '{record.matchValue}',
                                                                 },
                                                                 listeners: {
-                                                                    painted: function () {
+                                                                    painted: function() {
                                                                         this.setError(false);
                                                                     },
                                                                 },
@@ -409,7 +387,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                             value: '{record.matchFrom}',
                                                                         },
                                                                         listeners: {
-                                                                            painted: function () {
+                                                                            painted: function() {
                                                                                 this.setError(false);
                                                                             },
                                                                         },
@@ -427,7 +405,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                             value: '{record.matchTo}',
                                                                         },
                                                                         listeners: {
-                                                                            painted: function () {
+                                                                            painted: function() {
                                                                                 this.setError(false);
                                                                             },
                                                                         },
@@ -449,7 +427,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         buttons: [
                                             {
                                                 text: 'Cancel',
-                                                handler: function (me) {
+                                                handler: function(me) {
                                                     let record = me.upVM().get('record');
                                                     record.reject();
                                                     this.up('dialog').destroy();
@@ -459,7 +437,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                             {
                                                 text: 'Save',
                                                 ui: 'action',
-                                                handler: function (item, el) {
+                                                handler: function(item, el) {
                                                     let me = this,
                                                         dialog = this.up('dialog'),
                                                         form = dialog.down('formpanel'),
@@ -483,7 +461,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                             value: record.get('matchValue'),
                                                         });
                                                         store.sync({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                                 dialog.destroy();
                                                             },
@@ -497,7 +475,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                             },
                             {
                                 text: 'Set label',
-                                handler: function () {
+                                handler: function() {
                                     let record = this.upVM().get('columnRecord');
 
                                     Ext.create('Ext.Dialog', {
@@ -537,7 +515,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                     value: '{record.label}',
                                                                 },
                                                                 listeners: {
-                                                                    painted: function () {
+                                                                    painted: function() {
                                                                         this.setError(false);
                                                                     },
                                                                 },
@@ -557,7 +535,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         buttons: [
                                             {
                                                 text: 'Cancel',
-                                                handler: function (me) {
+                                                handler: function(me) {
                                                     let record = me.upVM().get('record');
                                                     record.reject();
                                                     this.up('dialog').destroy();
@@ -567,7 +545,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                             {
                                                 text: 'Save',
                                                 ui: 'action',
-                                                handler: function (item, el) {
+                                                handler: function(item, el) {
                                                     let me = this,
                                                         dialog = this.up('dialog'),
                                                         form = dialog.down('formpanel'),
@@ -578,7 +556,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
 
                                                     if (form.validate()) {
                                                         store.sync({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                                 dialog.destroy();
                                                             },
@@ -598,7 +576,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                 bind: {
                                     disabled: '{!restrictions.canDeleteColumns}',
                                 },
-                                handler: function () {
+                                handler: function() {
                                     let record = this.upVM().get('columnRecord'),
                                         store = this.upVM().get('columns');
                                     let selectionPort = this.upVM().get('calculatorPortSettingsGrid.selection');
@@ -606,11 +584,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                     Ext.Msg.confirm(
                                         'Delete',
                                         'Are you sure you would like to delete this column?',
-                                        function (answer) {
+                                        function(answer) {
                                             if (answer != 'yes') return;
                                             store.remove(record);
                                             store.sync({
-                                                success: function () {
+                                                success: function() {
                                                     Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                 },
                                             });
@@ -629,7 +607,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                 ui: 'decline alt',
                                                 text: 'Delete',
                                             },
-                                        ]
+                                        ],
                                     );
                                 },
                             },
@@ -684,13 +662,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                     stripCharsRe: /[^\x20-\x7E]*$/,
                 },
                 listeners: {
-                    beforestartedit: function (editor, context) {
+                    beforestartedit: function(editor, context) {
                         let recordIndex = editor.ownerCmp.getColumn().upVM().get('recordIndex'),
                             canEditYRows = this.upVM().get('restrictions.canEditYRows');
 
                         if (!recordIndex && !canEditYRows) return false;
                     },
-                    complete: function (editor, context) {
+                    complete: function(editor, context) {
                         let record = editor.ownerCmp.getRecord(),
                             yType = editor.ownerCmp.getColumn().upVM().get('tableSourceData.yType'),
                             xType = editor.ownerCmp.getColumn().upVM().get('tableSourceData.xType'),
@@ -708,7 +686,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                         //     record.set('splitX', true);
                         // }
                         store.sync({
-                            success: function () {
+                            success: function() {
                                 Abraxa.utils.Functions.updatePortCost(selectionPort);
                             },
                         });
@@ -755,14 +733,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                             disabled: '{!restrictions.canAddColumns}',
                             iconCls: 'md-icon-outlined md-icon-add-box',
                             ui: 'normal-light small round',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let store = me.up('grid').upVM().get('columns');
                                 me.setDisabled(true);
                                 let selectionPort = me.up('grid').upVM().get('calculatorPortSettingsGrid.selection');
 
                                 store.add({});
                                 store.sync({
-                                    success: function () {
+                                    success: function() {
                                         Abraxa.utils.Functions.updatePortCost(selectionPort);
                                         me.setDisabled(false);
                                     },
@@ -779,7 +757,8 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
     itemconfig: {
         viewModel: true,
         listeners: {
-            complete: function () {},
+            complete: function() {
+            },
         },
     },
     items: [
@@ -815,15 +794,15 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                 value: '{tariffTablesList.selection.label}',
                             },
                             listeners: {
-                                painted: function () {
+                                painted: function() {
                                     this.focus();
                                 },
-                                blur: function () {
+                                blur: function() {
                                     let record = this.upVM().get('tariffTablesList.selection');
 
                                     if (record.dirty && record.get('label')) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.toast('Record updated', 1000);
                                             },
                                         });
@@ -841,7 +820,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                     ui: 'tool-sm round',
                                     iconCls: 'md-icon-outlined md-icon-delete',
                                     margin: '0 0 0 8',
-                                    handler: function () {
+                                    handler: function() {
                                         let vm = this.upVM(),
                                             record = vm.get('tariffTablesList.selection'),
                                             store = vm.get('tarifftable');
@@ -850,13 +829,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         Ext.Msg.confirm(
                                             'Delete',
                                             'Are you sure you want to delete this tariff table?',
-                                            function (answer) {
+                                            function(answer) {
                                                 if (answer == 'yes') {
                                                     store.remove(record);
                                                     store.sync({
-                                                        success: function () {
+                                                        success: function() {
                                                             let list = Ext.ComponentQuery.query(
-                                                                'list[reference=tariffTablesList]'
+                                                                'list[reference=tariffTablesList]',
                                                             )[0];
 
                                                             if (store.getCount()) {
@@ -864,19 +843,19 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                 list.select(store.getAt(store.getCount() - 1));
                                                                 vm.set(
                                                                     'subpageXtype',
-                                                                    'calculator.portcostengine.portsettings.show.tarifftables.grid'
+                                                                    'calculator.portcostengine.portsettings.show.tarifftables.grid',
                                                                 );
                                                             } else {
                                                                 // Auto select the first nomenclature
                                                                 let nomenclatureList = Ext.ComponentQuery.query(
-                                                                    'list[reference=nomenclaturesList]'
+                                                                    'list[reference=nomenclaturesList]',
                                                                 )[0];
                                                                 nomenclatureList.select(
-                                                                    nomenclatureList.getStore().getAt(0)
+                                                                    nomenclatureList.getStore().getAt(0),
                                                                 );
                                                                 vm.set(
                                                                     'subpageXtype',
-                                                                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree'
+                                                                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree',
                                                                 );
                                                             }
                                                             Abraxa.utils.Functions.updatePortCost(selectionPort);
@@ -905,7 +884,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                     text: 'Delete',
                                                     separator: true,
                                                 },
-                                            ]
+                                            ],
                                         );
                                     },
                                 },
@@ -929,12 +908,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         permission: '{userPermissions}',
                                     },
                                     listeners: {
-                                        change: function (button, filePath) {
+                                        change: function(button, filePath) {
                                             if (!button.actionTriggered) {
                                                 Ext.Msg.confirm(
                                                     'Confirm',
                                                     'Importing a file will replace all the data in this table. Are you sure you want to import a file?',
-                                                    function (buttonId) {
+                                                    function(buttonId) {
                                                         if (buttonId === 'yes') {
                                                             let vm = button.up('grid').upVM();
                                                             let uploadController = button.up('grid').getController();
@@ -950,7 +929,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                 button,
                                                                 filePath,
                                                                 importPath,
-                                                                vm
+                                                                vm,
                                                             );
                                                         }
 
@@ -958,9 +937,9 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                         button.actionTriggered = true;
 
                                                         // Fixing same file upload bug
-                                                        document.querySelector("input[type='file']").value = '';
+                                                        document.querySelector('input[type=\'file\']').value = '';
                                                         button.setValue(null);
-                                                    }
+                                                    },
                                                 );
                                             }
 
@@ -981,15 +960,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                     bind: {
                                         permission: '{userPermissions}',
                                     },
-                                    handler: function (item, el, eOpts) {
+                                    handler: function(item, el, eOpts) {
                                         let vm = this.upVM();
 
                                         // Get the selections from the ViewModel
                                         let portSettingsId = vm.get('calculatorPortSettingsGrid.selection.id');
                                         let tariffTableId = vm.get('tariffTablesList.selection.id');
                                         let tariffTableName = vm.get('tariffTablesList.selection').get('label');
-
-                                        console.log(tariffTableName);
 
                                         Ext.Ajax.request({
                                             url:
@@ -1000,7 +977,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                 tariffTableId +
                                                 '/export',
                                             method: 'POST',
-                                            success: function (response, opts) {
+                                            success: function(response, opts) {
                                                 // Create a Blob with the response text
                                                 let blob = new Blob([response.responseText], { type: 'text/csv' });
 
@@ -1016,7 +993,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                 // Clean up the DOM by removing the link
                                                 document.body.removeChild(a);
                                             },
-                                            failure: function (response, opts) {
+                                            failure: function(response, opts) {
                                                 Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
                                             },
                                         });
@@ -1043,14 +1020,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                             bind: {
                                 disabled: '{!restrictions.canAddRows}',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let store = me.up('grid').upVM().get('rows');
                                 let selectionPort = me.up('grid').upVM().get('calculatorPortSettingsGrid.selection');
                                 me.setDisabled(true);
 
                                 store.add({});
                                 store.sync({
-                                    success: function () {
+                                    success: function() {
                                         Abraxa.utils.Functions.updatePortCost(selectionPort);
                                         me.setDisabled(false);
                                     },
@@ -1096,7 +1073,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                     margin: '0 12 0 0',
                                                 },
                                                 listeners: {
-                                                    select: function (me, list, selection) {
+                                                    select: function(me, list, selection) {
                                                         let tableSourceData = me.upVM().get('tableSourceData'),
                                                             columnStore = me.upVM().get('columns'),
                                                             rowStore = me.upVM().get('rows'),
@@ -1109,10 +1086,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                             });
                                                             // list.deselectAll();
                                                             tableSourceData.save({
-                                                                success: function () {
+                                                                success: function() {
                                                                     columnStore.load();
                                                                     rowStore.load({
-                                                                        success: function () {},
+                                                                        success: function() {
+                                                                        },
                                                                     });
                                                                     menu.hide();
                                                                 },
@@ -1126,14 +1104,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                 iconCls: 'md-icon-outlined md-icon-delete',
                                                 ui: 'decline',
                                                 separator: true,
-                                                handler: function (me) {
+                                                handler: function(me) {
                                                     let tableSourceData = me.upVM().get('tableSourceData'),
                                                         columnStore = me.upVM().get('columns'),
                                                         list = me.up('menu').down('nestedlist');
 
                                                     tableSourceData.set('ySource', null);
                                                     tableSourceData.save({
-                                                        success: function () {
+                                                        success: function() {
                                                             list.getStore().reload();
                                                             columnStore.load();
                                                         },
@@ -1154,12 +1132,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         // height: 260,
                                         minWidth: 180,
                                         defaults: {
-                                            handler: function (btn) {
+                                            handler: function(btn) {
                                                 let tableSourceData = btn.upVM().get('tableSourceData'),
                                                     columnStore = btn.upVM().get('columns');
                                                 tableSourceData.set('yType', btn.type);
                                                 tableSourceData.save({
-                                                    success: function () {
+                                                    success: function() {
                                                         columnStore.load();
                                                     },
                                                 });
@@ -1206,7 +1184,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                     margin: '0 12 0 0',
                                                 },
                                                 listeners: {
-                                                    select: function (me, list, selection) {
+                                                    select: function(me, list, selection) {
                                                         let tableSourceData = me.upVM().get('tableSourceData'),
                                                             columnStore = me.upVM().get('columns'),
                                                             menu = me.up('menu');
@@ -1217,7 +1195,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                                 reference: selection.get('text'),
                                                             });
                                                             tableSourceData.save({
-                                                                success: function () {
+                                                                success: function() {
                                                                     columnStore.load();
                                                                     menu.hide();
                                                                 },
@@ -1231,14 +1209,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                                 iconCls: 'md-icon-outlined md-icon-delete',
                                                 ui: 'decline',
                                                 separator: true,
-                                                handler: function (me) {
+                                                handler: function(me) {
                                                     let tableSourceData = me.upVM().get('tableSourceData'),
                                                         columnStore = me.upVM().get('columns'),
                                                         list = me.up('menu').down('nestedlist');
 
                                                     tableSourceData.set('xSource', null);
                                                     tableSourceData.save({
-                                                        success: function () {
+                                                        success: function() {
                                                             list.getStore().reload();
                                                             columnStore.load();
                                                         },
@@ -1259,12 +1237,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         // height: 260,
                                         minWidth: 180,
                                         defaults: {
-                                            handler: function (btn) {
+                                            handler: function(btn) {
                                                 let tableSourceData = btn.upVM().get('tableSourceData'),
                                                     columnStore = btn.upVM().get('columns');
                                                 tableSourceData.set('xType', btn.type);
                                                 tableSourceData.save({
-                                                    success: function () {
+                                                    success: function() {
                                                         columnStore.load();
                                                     },
                                                 });
@@ -1296,12 +1274,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                         // height: 260,
                                         minWidth: 180,
                                         defaults: {
-                                            handler: function (btn) {
+                                            handler: function(btn) {
                                                 let tableSourceData = btn.upVM().get('tableSourceData'),
                                                     columnStore = btn.upVM().get('columns');
                                                 tableSourceData.set('xCellsType', btn.type);
                                                 tableSourceData.save({
-                                                    success: function () {
+                                                    success: function() {
                                                         columnStore.load();
                                                     },
                                                 });
@@ -1365,13 +1343,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                     ui: 'action loading',
                     text: 'Save',
                     height: 36,
-                    handler: function (me) {
+                    handler: function(me) {
                         let record = this.upVM().get('tariffTablesList.selection');
 
                         record.set('updated_at', new Date());
 
                         record.save({
-                            success: function () {
+                            success: function() {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
@@ -1381,7 +1359,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
         },
     ],
     listeners: {
-        beforeedit: function (grid, cell) {
+        beforeedit: function(grid, cell) {
             let editor = cell.editor,
                 store = grid.getStore();
 
@@ -1393,7 +1371,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
             //     });
             // });
         },
-        painted: function (grid) {
+        painted: function(grid) {
             let editor = grid.getPlugin();
 
             // Ext.util.Observable.capture(editor, function (evname) {

@@ -1,4 +1,3 @@
-
 Ext.define('Abraxa.model.expense.ServiceCostCenter', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

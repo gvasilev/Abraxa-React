@@ -1,5 +1,6 @@
 import './CreateDepartment';
 import './DepartmentsEditMenu';
+
 Ext.define('Abraxa.view.cdb.company.contacts.DepartmentsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'departments.grid',
@@ -25,7 +26,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.DepartmentsGrid', {
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function () {
+        ESC: function() {
             let record = this.upVM().get('departmentsGrid.selection'),
                 grid = Ext.ComponentQuery.query('departments\\.grid')[0];
 

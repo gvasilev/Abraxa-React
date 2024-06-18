@@ -1,5 +1,4 @@
-
-import '../../model/expense/DefaultExpenseItem.jsx';
+import '../../model/expense/DefaultExpenseItem';
 
 Ext.define('Abraxa.store.common.DefaultExpenseItems', {
     extend: 'Ext.data.Store',

@@ -33,12 +33,11 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'fields',
             // critical: true,
             type: 'auto',
-            serialize: function (value) {
+            serialize: function(value) {
                 let data = [];
                 value.forEach((element) => {
                     if (element.children && element.children.length) {
                         element.children = JSON.parse(element.childrenRaw);
-                        // console.log(children);
                     }
                     data.push({
                         fieldID: element.fieldID,
@@ -64,7 +63,7 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
         {
             name: 'fieldsRaw',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 return JSON.stringify(data.offer_fields);
             },
         },
@@ -72,7 +71,7 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'display_amount',
             persists: false,
             depends: ['amount', 'custom_amount'],
-            convert: function (value, record) {
+            convert: function(value, record) {
                 if (record.get('custom_amount') !== null && record.get('custom_amount') >= 0)
                     return record.get('custom_amount');
 
@@ -83,13 +82,13 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'calculated_price',
             type: 'float',
             depends: ['exchange_rate', 'display_amount'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = parseFloat(rec.get('display_amount')),
                     exchangeRate = rec.get('exchange_rate');
 
                 return price * exchangeRate;
             },
-            validate: function (value) {
+            validate: function(value) {
                 return AbraxaFunctions.validateNonNegativeFieldValue('Calculated price', value);
             },
         },
@@ -97,13 +96,13 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'final_price',
             type: 'float',
             depends: ['calculated_price', 'discounted_price', 'vat'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('discounted_price') ? rec.get('discounted_price') : rec.get('calculated_price'),
                     vat = rec.get('vat'),
                     vatValue = vat ? price * (parseFloat(vat) / 100) : 0;
                 return price + vatValue;
             },
-            validate: function (value) {
+            validate: function(value) {
                 return AbraxaFunctions.validateNonNegativeFieldValue('Final price', value);
             },
         },
@@ -111,7 +110,7 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'final_amount',
             type: 'float',
             depends: ['final_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('final_price');
 
                 return price;
@@ -121,13 +120,13 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
             name: 'discounted_price',
             type: 'float',
             depends: ['discount', 'calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('discount'),
                     calculated_price = rec.get('calculated_price');
 
                 return rec.applyDiscount(calculated_price, discount);
             },
-            validate: function (value) {
+            validate: function(value) {
                 return AbraxaFunctions.validateNonNegativeFieldValue('Discounted price', value);
             },
         },
@@ -155,7 +154,7 @@ Ext.define('Abraxa.model.calculation.CalculationService', {
         },
     },
 
-    applyDiscount: function (calculated_price, discount) {
+    applyDiscount: function(calculated_price, discount) {
         var value = discount,
             original_price = calculated_price,
             discounted_price = 0;

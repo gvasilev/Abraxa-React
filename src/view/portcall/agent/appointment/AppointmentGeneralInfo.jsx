@@ -145,6 +145,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneralInfo', {
                                             reference: 'usersCombo',
                                             slug: 'portcallAssignTo',
                                             ui: 'classic hovered-border non-editable',
+                                            clearable: false,
                                             bind: {
                                                 cls: '{usersCombo.selection ? "a-field-icon icon-rounded":"a-field-icon icon-person icon-rounded"}',
                                                 value: '{object_record.assigned_to}',
@@ -222,8 +223,6 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneralInfo', {
                                         inputValue: '{object_record.port_name}',
                                         readOnly: '{editablePortName}',
                                         ui: '{editablePortName ? "viewonly classic" : "hovered-border classic"}',
-                                        // objectPermission: '{objectPermissions}',
-                                        // permission: '{userPermissions}',
                                     },
                                     listeners: {
                                         select: function () {

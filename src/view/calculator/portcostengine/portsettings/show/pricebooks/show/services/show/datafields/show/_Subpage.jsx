@@ -1,19 +1,19 @@
-import './ViewModel.jsx';
-import './ChoiceForm.jsx';
-import './ChoiceFormCustom.jsx';
-import './ChoiceFormCustomFormula.jsx';
-import './ChoiceFormNomenclature.jsx';
-import './ChoiceFormTariffTable.jsx';
-import './ComplexForm.jsx';
-import './ComplexPrefixFormCustom.jsx';
-import './ComplexPrefixFormCustomFormula.jsx';
-import './ComplexPrefixFormNomenclature.jsx';
-import './ComplexPrefixFormTariffTable.jsx';
-import './ComplexSuffixFormCustom.jsx';
-import './ComplexSuffixFormCustomFormula.jsx';
-import './ComplexSuffixFormNomenclature.jsx';
-import './ComplexSuffixFormTariffTable.jsx';
-import './NumberForm.jsx';
+import './ViewModel';
+import './ChoiceForm';
+import './ChoiceFormCustom';
+import './ChoiceFormCustomFormula';
+import './ChoiceFormNomenclature';
+import './ChoiceFormTariffTable';
+import './ComplexForm';
+import './ComplexPrefixFormCustom';
+import './ComplexPrefixFormCustomFormula';
+import './ComplexPrefixFormNomenclature';
+import './ComplexPrefixFormTariffTable';
+import './ComplexSuffixFormCustom';
+import './ComplexSuffixFormCustomFormula';
+import './ComplexSuffixFormNomenclature';
+import './ComplexSuffixFormTariffTable';
+import './NumberForm';
 
 Ext.define(
     'Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.services.show.datafields.show._Subpage',
@@ -30,5 +30,5 @@ Ext.define(
         bind: {
             items: '{dataFieldActiveItemForm}',
         },
-    }
+    },
 );

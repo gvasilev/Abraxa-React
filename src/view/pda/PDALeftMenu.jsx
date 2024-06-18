@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.pda.PDALeftMenu', {
                             align: 'bc-tc?',
                         },
                     },
-                    handler: function () {
+                    handler: function() {
                         let panel = Ext.ComponentQuery.query('[cls~=pda_left_menu]')[0],
                             cls = panel.getUserCls() == 'is-expanded';
 
@@ -180,7 +180,7 @@ Ext.define('Abraxa.view.pda.PDALeftMenu', {
         },
     ],
     listeners: {
-        painted: function (me) {
+        painted: function(me) {
             if (
                 Ext.ComponentQuery.query('[cls=pda_menu]')[0] &&
                 Ext.ComponentQuery.query('[cls=pda_menu]')[0].getStore() &&

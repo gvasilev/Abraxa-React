@@ -1,4 +1,5 @@
-import '../../model/calculator/Nomenclature.jsx';
+import '../../model/calculator/Nomenclature';
+
 Ext.define('Abraxa.store.calculator.Nomenclature', {
     extend: 'Ext.data.Store',
     alias: 'store.calcnomenclature',

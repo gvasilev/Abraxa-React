@@ -1,5 +1,6 @@
-import './OfficesGrid.jsx';
-import './CreateOffice.jsx';
+import './OfficesGrid';
+import './CreateOffice';
+
 Ext.define('Abraxa.view.settings.offices.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.offices.main.container',

@@ -1,4 +1,5 @@
-import '../../../store/chatter/Messages.jsx';
+import '../../../store/chatter/Messages';
+
 Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.PortcallViewModelPrincipal',
@@ -208,7 +209,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -224,7 +225,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -240,7 +241,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -263,7 +264,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -282,7 +283,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -298,7 +299,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -314,7 +315,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -330,7 +331,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -347,7 +348,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -363,7 +364,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -379,7 +380,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -389,13 +390,10 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
         },
         accounts: {
             source: '{object_record.accounts}',
-            extraParams: {
-                portcall_id: '{object_record.id}',
-            },
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -439,7 +437,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -452,7 +450,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -461,7 +459,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                 add: {
                     fn: function (store, record, index) {
                         let object_record = Ext.ComponentQuery.query(
-                            window.CurrentUser.get('company').type + 'portcall\\.main'
+                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                         )[0]
                             .upVM()
                             .get('object_record');
@@ -482,7 +480,7 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
             listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
-                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                     )[0]
                         .upVM()
                         .get('object_record');
@@ -1989,9 +1987,11 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                 let me = this;
                 if (date && me) {
                     var countDownDate = new Date(date).getTime();
-
+                    if (typeof portCallTimer !== 'undefined') {
+                        clearInterval(portCallTimer);
+                    }
                     // Update the count down every 1 second
-                    const portCallTimer = setInterval(function () {
+                    portCallTimer = setInterval(function () {
                         // Get today's date and time
                         var now = new Date().getTime();
 
@@ -2032,9 +2032,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                             );
                         }
                     }, 1000);
-                    if (typeof portCallTimer !== 'undefined') {
-                        clearInterval(portCallTimer);
-                    }
                 }
             },
         },

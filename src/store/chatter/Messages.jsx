@@ -1,4 +1,5 @@
-import '../../model/chatter/Message.jsx';
+import '../../model/chatter/Message';
+
 Ext.define('Abraxa.store.chatter.Messages', {
     extend: 'Ext.data.Store',
     alias: 'store.chatter-messages',

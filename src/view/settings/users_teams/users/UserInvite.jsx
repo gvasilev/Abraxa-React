@@ -1,9 +1,11 @@
-import './UserController.jsx';
-import '../../../common/combo/Role.jsx';
+import './UserController';
+import '../../../common/combo/Role';
+
 Ext.define('Abraxa.view.settings.users.UserInvite', {
     extend: 'Ext.Dialog',
     xtype: 'settings.users.invite',
     cls: 'a-dialog-create a-dialog-has-icon',
+    modal: true,
     draggable: false,
     floated: true,
     showAnimation: 'fadeIn',

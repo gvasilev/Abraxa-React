@@ -1,4 +1,5 @@
-import '../../model/calculator/TarrifTableRow.jsx';
+import '../../model/calculator/TarrifTableRow';
+
 Ext.define('Abraxa.store.calculator.TariffTableRows', {
     extend: 'Ext.data.Store',
     alias: 'store.tarifftable.row.store',

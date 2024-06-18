@@ -11,7 +11,6 @@ Ext.define('Abraxa.core.permissions.ObjectPermissionsToggle', {
     applySlug: function (slug) {
         let store = this.upVM().get('rolePermissions');
         if (store) {
-            // console.log(store);
             var action = this.getAction(),
                 index = store.findBy(function (rec) {
                     return rec.get('slug') == slug;
@@ -28,7 +27,6 @@ Ext.define('Abraxa.core.permissions.ObjectPermissionsToggle', {
 
     applyToggleValue: function (store) {
         if (store) {
-            // console.log(store);
             var action = this.getAction(),
                 slug = this.getSlug(),
                 index = store.findBy(function (rec) {
@@ -62,24 +60,6 @@ Ext.define('Abraxa.core.permissions.ObjectPermissionsToggle', {
         }
         me.setDirty(me.isDirty());
     },
-
-    // setToggleChecked: function (store) {
-    //     if (store) {
-    //         // console.log(store);
-    //         var action = this.getAction(),
-    //             slug = this.getSlug(),
-    //             index = store.findBy(function (rec) {
-    //                 return (rec.get('slug') == slug);
-    //             }),
-    //             rec = store.getAt(index);
-    //         if (rec) {
-    //             // console.log('has rec');
-    //             rec.get(action) ? this.setValue(true) : this.setValue(false);
-    //         } else {
-    //             this.setValue(false);
-    //         }
-    //     }
-    // },
 
     updateFieldValue: function (value, oldValue) {
         var me = this,

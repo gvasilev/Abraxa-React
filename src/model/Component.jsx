@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.Component', {
     extend: 'Ext.data.Model',
 

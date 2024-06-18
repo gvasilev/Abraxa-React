@@ -1,5 +1,6 @@
-import './AssignOfficeBank.jsx';
-import './AssignOfficeEmail.jsx';
+import './AssignOfficeBank';
+import './AssignOfficeEmail';
+
 Ext.define('Abraxa.view.settings.offices.OfficeSettings', {
     extend: 'Ext.Container',
     xtype: 'settings.offices.settings',

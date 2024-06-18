@@ -65,10 +65,12 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceLibraryController', {
     },
 
     updateCostCenterFields(field) {
-        let record = field.upVM().get('LibraryServicesGrid.selection');
+        const record = field.upVM().get('LibraryServicesGrid.selection');
+
         if (record) {
             let fieldModelName = field.fieldModelName;
             let alias = record.getAliases();
+            if (record.data[field.cost_center_value] === field.getValue()) return;
             if (alias) {
                 alias.set(fieldModelName, field.getValue());
                 if (alias.dirty) {

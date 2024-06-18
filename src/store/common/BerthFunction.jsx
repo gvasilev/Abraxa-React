@@ -1,4 +1,4 @@
-Ext.define('Abraxa.store.common.BerthFunction', {
+Ext.define('Abraxa.store.damanager.bnc.Function', {
     extend: 'Ext.data.Store',
     alias: 'store.berth.function',
 

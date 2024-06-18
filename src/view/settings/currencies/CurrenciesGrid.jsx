@@ -1,4 +1,5 @@
-import './AddCurrency.jsx';
+import './AddCurrency';
+
 Ext.define('Abraxa.view.settings.currencies.CurrenciesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.currencies.grid',
@@ -19,7 +20,7 @@ Ext.define('Abraxa.view.settings.currencies.CurrenciesGrid', {
                     get: function (record) {
                         var store = this.get('currencyRates');
                         if (store && store.count()) {
-                           const storeRecord = store.queryBy(function (rec) {
+                            storeRecord = store.queryBy(function (rec) {
                                 return rec.get('currency') == record.get('currency');
                             }).items[0];
 

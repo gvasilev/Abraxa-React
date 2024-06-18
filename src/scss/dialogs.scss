@@ -1026,6 +1026,41 @@
         background-color: $link-abraxa;
         box-shadow: 0 16px 48px 0 rgba($base-abraxa-dark, 0.48);
     }
+    .a-display-value {
+        flex: 1;
+        line-height: 1.4;
+
+        i {
+            font-size: 20px;
+            margin-right: 6px;
+        }
+
+        .a-value-yes,
+        .a-value-no {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-value-yes {
+            i {
+                color: material-color(teal, '500');
+
+                &::before {
+                    content: 'check';
+                }
+            }
+        }
+
+        .a-value-no {
+            i {
+                color: material-color(pink, '500');
+
+                &::before {
+                    content: 'close';
+                }
+            }
+        }
+    }
 }
 
 // Notification dialog

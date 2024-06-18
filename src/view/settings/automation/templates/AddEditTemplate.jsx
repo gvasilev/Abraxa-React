@@ -1,4 +1,5 @@
-import '../../../../core/components/combo/OfficeCombo.jsx';
+import '../../../../core/components/combo/OfficeCombo';
+
 Ext.define('Abraxa.view.settings.automation.templates.AddEditTemplate', {
     xtype: 'settings.automation.templates.add.edit.template',
     extend: 'Ext.Dialog',

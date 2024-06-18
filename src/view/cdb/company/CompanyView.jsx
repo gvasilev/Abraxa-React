@@ -1,5 +1,6 @@
-import './CompaniesGrid.jsx';
-import './CompaniesEditPanel.jsx';
+import './CompaniesGrid';
+import './CompaniesEditPanel';
+
 Ext.define('Abraxa.view.cdb.company.CompanyView', {
     extend: 'Ext.Container',
     xtype: 'cdb.companyview',

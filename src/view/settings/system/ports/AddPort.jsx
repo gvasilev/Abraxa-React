@@ -1,4 +1,5 @@
-import '../../../../core/components/combo/Port.jsx';
+import '../../../../core/components/combo/Port';
+
 Ext.define('Abraxa.view.settings.ports.AddPort', {
     xtype: 'settings.system,ports.add',
     extend: 'Ext.Dialog',

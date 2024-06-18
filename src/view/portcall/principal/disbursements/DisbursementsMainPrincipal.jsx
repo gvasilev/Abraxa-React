@@ -1,10 +1,10 @@
-import './BillingPartiesMenuListPrincipal.jsx';
-import './DisbursmentsViewModelPrincipal.jsx';
-import './BillingPartyDetails.jsx';
-import './BillingPartyBalance.jsx';
-import './BillingPartyDisbursementsList.jsx';
-import './DisbursementDetails.jsx';
-import './services/DisbursementServicesGrid.jsx';
+import './BillingPartiesMenuListPrincipal';
+import './DisbursmentsViewModelPrincipal';
+import './BillingPartyDetails';
+import './BillingPartyBalance';
+import './BillingPartyDisbursementsList';
+import './DisbursementDetails';
+import './services/DisbursementServicesGrid';
 
 Ext.define('Abraxa.view.portcall.principal.disbursements.DisbursementsMainPrincipal', {
     extend: 'Ext.Container',

@@ -1,5 +1,4 @@
-
-import "../../model/settings/company/CompanyCurrency.jsx";
+import '../../model/settings/company/CompanyCurrency';
 
 Ext.define('Abraxa.store.company.CompanyCurrencies', {
     extend: 'Ext.data.Store',

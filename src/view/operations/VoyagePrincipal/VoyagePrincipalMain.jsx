@@ -1,8 +1,9 @@
-import './VoyagePrincipalMainController.jsx';
-import './VoyagePrincipalMainViewModel.jsx';
-import './VoyagePrincipalGrid.jsx';
-import './VoyageDetailsRightCard.jsx';
-import '../../tasks/TaskRightContainer.jsx';
+import './VoyagePrincipalMainController';
+import './VoyagePrincipalMainViewModel';
+import './VoyagePrincipalGrid';
+import './VoyageDetailsRightCard';
+import '../../tasks/TaskRightContainer';
+
 Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMain', {
     extend: 'Ext.Container',
     xtype: 'VoyagePrincipalMain',
@@ -38,7 +39,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMain', {
                     listeners: {
                         change: {
                             buffer: 500,
-                            fn: function (field, newValue, oldValue, eOpts) {
+                            fn: function(field, newValue, oldValue, eOpts) {
                                 const store = field.up('VoyagePrincipalMain').down('VoyagesGrid').getStore();
                                 if (newValue.length === 0) store.removeFilter('searchFilter');
                                 if (newValue.length <= 2) return;

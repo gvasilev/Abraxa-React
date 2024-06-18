@@ -1,7 +1,8 @@
-import './DocumentController.jsx';
-import './DocumentInfoPanel.jsx';
-import './DocumentInvoicePanel.jsx';
-import '../vouchers/ItemForm.jsx';
+import './DocumentController';
+import './DocumentInfoPanel';
+import './DocumentInvoicePanel';
+import '../vouchers/ItemForm';
+
 Ext.define('Abraxa.view.documents.DocumentDialog', {
     extend: 'Ext.Dialog',
     xtype: 'document-dialog',
@@ -658,16 +659,15 @@ Ext.define('Abraxa.view.documents.DocumentDialog', {
                                                 if (record) {
                                                     let file_id = record.get('id'),
                                                         member = this.get('member'),
-                                                        currentUser = this.get('currentUser');
-
-                                                    let record_exists = store.queryBy(function (rec, id) {
-                                                        return (
-                                                            rec.get('assigned_company_id') ==
-                                                                currentUser.get('current_company_id') &&
-                                                            rec.get('approvable_id') == file_id &&
-                                                            rec.get('status') == 'pending'
-                                                        );
-                                                    }).items;
+                                                        currentUser = this.get('currentUser'),
+                                                        record_exists = store.queryBy(function (rec, id) {
+                                                            return (
+                                                                rec.get('assigned_company_id') ==
+                                                                    currentUser.get('current_company_id') &&
+                                                                rec.get('approvable_id') == file_id &&
+                                                                rec.get('status') == 'pending'
+                                                            );
+                                                        }).items;
                                                     if (record_exists.length) return record_exists[0];
 
                                                     return false;

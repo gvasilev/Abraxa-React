@@ -1,4 +1,5 @@
-import './AssignOfficeUsers.jsx';
+import './AssignOfficeUsers';
+
 Ext.define('Abraxa.view.settings.offices.OfficeUserGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.offices.users.grid',

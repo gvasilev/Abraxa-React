@@ -3,10 +3,12 @@ function _getActivePortCall(id, portCalls) {
         return portCalls.find((portCall) => portCall.id === id);
     }
 }
-import '../inquiry/Inquiry.jsx';
-import '../portcall/Portcall.jsx';
-import '../invitation/Invitation.jsx';
-import '../task/Task.jsx';
+
+import '../inquiry/Inquiry';
+import '../portcall/Portcall';
+import '../invitation/Invitation';
+import '../task/Task';
+
 Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
     extend: 'Ext.data.Model',
     fields: [
@@ -24,7 +26,7 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'port_prefix',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 if (!activePortCall) return AbraxaConstants.placeholders.emptyValue;
                 const statusName = activePortCall.status ? activePortCall.status.name : null;
@@ -44,14 +46,14 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         {
             name: 'vessel_name_string',
             depends: 'updated_at',
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.vessel && data.vessel.name) {
                     return data.vessel.name
                         ? '<div id=' +
-                              data.vessel.id +
-                              ' class="a-val-link-xl vessel-name-click">' +
-                              data.vessel.name +
-                              '</div>'
+                        data.vessel.id +
+                        ' class="a-val-link-xl vessel-name-click">' +
+                        data.vessel.name +
+                        '</div>'
                         : AbraxaConstants.placeholders.emptyValue;
                 }
 
@@ -60,14 +62,14 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'status_name', //TODO, need to be fixed after clarify the API or ask Joro Vasilev
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 return activePortCall.status ? activePortCall.status.name : AbraxaConstants.placeholders.emptyValue;
             },
         },
         {
             name: 'appointed_status_column',
-            mapping: function (data) {
+            mapping: function(data) {
                 const appointedStatusObject = {
                     hasAppointment: false,
                     appointmentCompanyName: null,
@@ -106,41 +108,41 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'status_string',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 return activePortCall.status ? activePortCall.status.string : AbraxaConstants.placeholders.emptyValue;
             },
         },
         {
             name: 'port_name',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 return activePortCall.port_name ? activePortCall.port_name : activePortCall.port.name;
             },
         },
         {
             name: 'port_id',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 return activePortCall.port ? activePortCall.port.id : null;
             },
         },
         {
             name: 'active_portcall',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 return activePortCall;
             },
         },
         {
             name: 'port_eta',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 if (!activePortCall) AbraxaConstants.placeholders.emptyValue;
                 if (activePortCall && activePortCall.port_eta) {
                     return Ext.Date.format(
                         new Date(_getActivePortCall(data.active_portcall_id, data.portcalls).port_eta),
-                        AbraxaConstants.formatters.date.dayMonthYearTime24Slash
+                        AbraxaConstants.formatters.date.dayMonthYearTime24Slash,
                     );
                 }
                 return AbraxaConstants.placeholders.emptyValue;
@@ -148,7 +150,7 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'commodity_quantity',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 if (!activePortCall) return;
                 const cargoes = activePortCall.cargoes;
@@ -156,7 +158,7 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
                 let id = null;
 
                 if (cargoes && cargoes.length > 0) {
-                    cargoes.forEach(function (cargo, index) {
+                    cargoes.forEach(function(cargo, index) {
                         if (cargo) {
                             let str = '';
 
@@ -230,7 +232,7 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'appointed_agent', //TODO, missing data
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 const agentName = activePortCall.nomination
                     ? activePortCall.nomination.lead_agent_name
@@ -246,13 +248,13 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'todo_count',
-            mapping: function (data) {
+            mapping: function(data) {
                 return data && data.tasks ? data.tasks.length : 0;
             },
         },
         {
             name: 'profile_image_url',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 if (data.assigned_user && data.assigned_user.profile_image) {
                     return data.assigned_user.profile_image;
@@ -262,7 +264,7 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'assigned_user_name',
-            mapping: function (data) {
+            mapping: function(data) {
                 const activePortCall = _getActivePortCall(data.active_portcall_id, data.portcalls);
                 if (data && data.assigned_user && data.assigned_user.first_name && data.assigned_user.last_name)
                     return data.assigned_user.first_name + ' ' + data.assigned_user.last_name;
@@ -272,13 +274,13 @@ Ext.define('Abraxa.model.voyage.VoyagePrincipal', {
         },
         {
             name: 'active_portcall_id',
-            mapping: function (data) {
+            mapping: function(data) {
                 return _getActivePortCall(data.active_portcall_id, data.portcalls).id;
             },
         },
         {
             name: 'assigned_to',
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.assigned_user) {
                     return data.assigned_user.id;
                 }

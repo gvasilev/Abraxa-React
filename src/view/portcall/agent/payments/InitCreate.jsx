@@ -8,9 +8,6 @@ Ext.define('Abraxa.view.portcall.payments.InitCreate', {
     },
     flex: 1,
     zIndex: 999,
-    layout: {
-        type: 'vbox',
-    },
     centered: true,
     items: [
         {

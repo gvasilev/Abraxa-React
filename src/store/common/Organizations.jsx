@@ -1,5 +1,5 @@
+import '../../model/company/Company';
 
-import '../../model/company/Company.jsx';
 Ext.define('Abraxa.store.CompanyDatabase', {
     extend: 'Ext.data.Store',
     storeId: 'cdb',
@@ -12,7 +12,6 @@ Ext.define('Abraxa.store.CompanyDatabase', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'organizations',
-        withCredentials: true,
         writer: {
             type: 'json',
             allDataOptions: {
@@ -36,7 +35,7 @@ Ext.define('Abraxa.store.CompanyDatabase', {
         },
     ],
     grouper: {
-        groupFn: function (record) {
+        groupFn: function(record) {
             return record.get('abbr').toUpperCase();
         },
     },

@@ -1,4 +1,5 @@
-import '../../../../core/components/AbraxaFormlist.jsx';
+import '../../../../core/components/AbraxaFormlist';
+
 Ext.define('Abraxa.view.portcall.payments.PaymentsList', {
     extend: 'Abraxa.core.AbraxaFormList',
     xtype: 'payments.list',

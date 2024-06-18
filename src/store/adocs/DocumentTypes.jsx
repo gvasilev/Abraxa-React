@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.store.adocs.DocumentTypes', {
     extend: 'Ext.data.Store',
     alias: 'store.document.types',

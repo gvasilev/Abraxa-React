@@ -1,4 +1,3 @@
-
 Ext.define('Abraxa.store.common.PaymentTerms', {
     extend: 'Ext.data.Store',
     alias: 'store.payment.terms',

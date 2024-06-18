@@ -1,5 +1,6 @@
-import './CrewingController.jsx';
+import './CrewingController';
 import './AssignServices';
+
 Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'husbandry.crewing.grid',
@@ -601,7 +602,6 @@ Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingGrid', {
             },
             renderer: function renderer(val) {
                 if (val) {
-                    let str = '';
                     if (val == 'yes') {
                         str = '<div class="a-check"><i class="md-icon-outlined c-green">done</i>Yes</div>';
                     } else if (val == 'pending') {

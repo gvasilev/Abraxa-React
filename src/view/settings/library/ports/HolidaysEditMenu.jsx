@@ -1,4 +1,5 @@
-import './DuplicateHoliday.jsx';
+import './DuplicateHoliday';
+
 Ext.define('Abraxa.view.settings.library.ports.HolidaysEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'settings.library.holidays.edit.menu',
@@ -71,7 +72,7 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysEditMenu', {
             handler: function (button, el, data) {
                 let me = this,
                     record = me.upVM().get('holiday'),
-                    portserveRecord = me.upVM().get('portserveRecord'),
+                    portServedRecord = me.upVM().get('portServedRecord'),
                     currentUser = me.upVM().get('currentUser'),
                     store = me.upVM().get('portsServerGrid.selection').holidays();
                 Ext.Msg.confirm(
@@ -82,9 +83,9 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysEditMenu', {
                         store.remove(record);
                         store.sync({
                             success: function (batch) {
-                                portserveRecord.set('updated_by_user', currentUser.getData());
-                                portserveRecord.set('updated_at', new Date());
-                                portserveRecord.save();
+                                portServedRecord.set('updated_by_user', currentUser.getData());
+                                portServedRecord.set('updated_at', new Date());
+                                portServedRecordd.save();
                                 Ext.toast('Record deleted', 1000);
                             },
                             failure: function (batch) {

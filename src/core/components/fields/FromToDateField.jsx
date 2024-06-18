@@ -24,146 +24,157 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
     focusable: true,
     mixins: ['Ext.field.Dirty'],
     inputElement: {
-        setStyle: function () {
+        setStyle: function() {
             return false;
         },
     },
-    privates: {
-        items: [
-            {
-                xtype: 'abraxa.datefield',
-                submitValue: false,
-                placeholder: 'dd/mm/yy',
-                dateFormat: 'd M y',
-                flex: 1,
-                // maxWidth: this.dateFieldMaxWidth,
-                // ui: this.ui,
-                // disabled: this.disabled,
-                cls: 'a-prepend',
-                triggers: {
-                    datetrigger: null,
-                    expand: null,
-                },
-
-                listeners: {
-                    change: function () {
-                        const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
-                        const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
-                        if (!secondDateField.validate() || !firstDateField.validate()) {
-                            secondDateField.addCls('x-invalid');
-                            firstDateField.addCls('x-invalid');
-                        } else {
-                            secondDateField.removeCls('x-invalid');
-                            firstDateField.removeCls('x-invalid');
-                        }
-                    },
-                    select: function () {
-                        Ext.defer(
-                            function () {
-                                this.blur();
-                            },
-                            500,
-                            this
-                        );
-                    },
-                    focus: function () {
-                        this.expand();
-                        const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
-                        secondDateField.addCls('x-focused');
-
-                        const picker = this.getPicker();
-                        const currentDate = new Date();
-                        currentDate.setDate(currentDate.getDate() - 1);
-                        picker.setMinDate(currentDate);
-
-                        if (secondDateField.getValue()) {
-                            this.getPicker().setMaxDate(secondDateField.getValue());
-                        }
-
-                        this.up('FromToDateField').fireEvent('focus', this.up('FromToDateField'));
-                    },
-                    blur: function () {
-                        // let value = this.getValue();
-                        this.removeCls('x-focused');
-                        this.up('FromToDateField').query('abraxa\\.datefield')[1].removeCls('x-focused');
-                        this.up('FromToDateField').removeCls('x-focused');
-                        if (this.isValid()) {
-                            this.up('FromToDateField').blur();
-                        }
-                    },
-                },
+    initConfig: function(instanceConfig) {
+        Ext.apply(instanceConfig, {
+            defaults: {
+                required: Ext.isDefined(instanceConfig.required) ? instanceConfig.required : false,
+                ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
             },
-            {
-                xtype: 'abraxa.datefield',
-                placeholder: 'dd/mm/yy',
-                dateFormat: 'd M y',
-                submitValue: false,
-                flex: 1,
-                // maxWidth: this.dateFieldMaxWidth,
-                // ui: this.ui,
-                // disabled: this.disabled,
-                cls: 'a-append',
-                triggers: {
-                    datetrigger: null,
-                    expand: null,
+            items: [
+                {
+                    xtype: 'abraxa.datefield',
+                    submitValue: false,
+                    placeholder: 'dd/mm/yy',
+                    dateFormat: 'd M y',
+                    // momentFormat: 'DD/MM/YY',
+                    // // parseValidator: null,
+                    // altFormats: 'j/m/Y|' + 'd/m/Y|' + 'dm|' + 'd/m|' + 'dmy|' + 'j|' + 'd|' + 'z',
+                    flex: 1,
+                    maxWidth: Ext.isDefined(instanceConfig.dateFieldMaxWidth) ? instanceConfig.dateFieldMaxWidth : null,
+                    ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
+                    disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
+                    cls: 'a-prepend',
+                    triggers: {
+                        datetrigger: null,
+                        expand: null,
+                    },
+
+                    listeners: {
+                        change: function() {
+                            const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
+                            const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
+                            if (!secondDateField.validate() || !firstDateField.validate()) {
+                                secondDateField.addCls('x-invalid');
+                                firstDateField.addCls('x-invalid');
+                            } else {
+                                secondDateField.removeCls('x-invalid');
+                                firstDateField.removeCls('x-invalid');
+                            }
+                        },
+                        select: function() {
+                            Ext.defer(
+                                function() {
+                                    this.blur();
+                                },
+                                500,
+                                this,
+                            );
+                        },
+                        focus: function() {
+                            this.expand();
+                            const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
+                            secondDateField.addCls('x-focused');
+
+                            const picker = this.getPicker();
+                            const currentDate = new Date();
+                            currentDate.setDate(currentDate.getDate() - 1);
+                            picker.setMinDate(currentDate);
+
+                            if (secondDateField.getValue()) {
+                                this.getPicker().setMaxDate(secondDateField.getValue());
+                            }
+
+                            this.up('FromToDateField').fireEvent('focus', this.up('FromToDateField'));
+                        },
+                        blur: function() {
+                            let value = this.getValue();
+                            this.removeCls('x-focused');
+                            this.up('FromToDateField').query('abraxa\\.datefield')[1].removeCls('x-focused');
+                            this.up('FromToDateField').removeCls('x-focused');
+                            if (this.isValid()) {
+                                this.up('FromToDateField').blur();
+                            }
+                        },
+                    },
                 },
-
-                listeners: {
-                    change: function () {
-                        const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
-                        const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
-                        if (!secondDateField.validate() || !firstDateField.validate()) {
-                            secondDateField.addCls('x-invalid');
-                            firstDateField.addCls('x-invalid');
-                        } else {
-                            secondDateField.removeCls('x-invalid');
-                            firstDateField.removeCls('x-invalid');
-                        }
+                {
+                    xtype: 'abraxa.datefield',
+                    placeholder: 'dd/mm/yy',
+                    dateFormat: 'd M y',
+                    submitValue: false,
+                    flex: 1,
+                    maxWidth: Ext.isDefined(instanceConfig.dateFieldMaxWidth) ? instanceConfig.dateFieldMaxWidth : null,
+                    ui: Ext.isDefined(instanceConfig.ui) ? instanceConfig.ui : null,
+                    disabled: Ext.isDefined(instanceConfig.disabled) ? instanceConfig.disabled : null,
+                    cls: 'a-append',
+                    triggers: {
+                        datetrigger: null,
+                        expand: null,
                     },
-                    select: function () {
-                        Ext.defer(
-                            function () {
-                                this.blur();
-                            },
-                            500,
-                            this
-                        );
-                    },
-                    focus: function () {
-                        const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
-                        this.expand();
-                        firstDateField.addCls('x-focused');
 
-                        if (firstDateField.getValue()) {
-                            this.getPicker().setMinDate(firstDateField.getValue());
-                        } else {
-                            this.getPicker().setMinDate(new Date(Date.now()));
-                        }
+                    listeners: {
+                        change: function() {
+                            const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
+                            const secondDateField = this.up('FromToDateField').query('abraxa\\.datefield')[1];
+                            if (!secondDateField.validate() || !firstDateField.validate()) {
+                                secondDateField.addCls('x-invalid');
+                                firstDateField.addCls('x-invalid');
+                            } else {
+                                secondDateField.removeCls('x-invalid');
+                                firstDateField.removeCls('x-invalid');
+                            }
+                        },
+                        select: function() {
+                            Ext.defer(
+                                function() {
+                                    this.blur();
+                                },
+                                500,
+                                this,
+                            );
+                        },
+                        focus: function() {
+                            const firstDateField = this.up('FromToDateField').query('abraxa\\.datefield')[0];
+                            this.expand();
+                            firstDateField.addCls('x-focused');
 
-                        this.up('FromToDateField').fireEvent('focus', this.up('FromToDateField'));
-                    },
-                    blur: function () {
-                        // let value = this.getValue();
+                            if (firstDateField.getValue()) {
+                                this.getPicker().setMinDate(firstDateField.getValue());
+                            } else {
+                                this.getPicker().setMinDate(new Date(Date.now()));
+                            }
 
-                        setTimeout(() => {
-                            this.up('FromToDateField').query('abraxa\\.datefield')[0].removeCls('x-focused');
-                        }, 0);
-                        this.up('FromToDateField').removeCls('x-focused');
+                            this.up('FromToDateField').fireEvent('focus', this.up('FromToDateField'));
+                        },
+                        blur: function() {
+                            let value = this.getValue();
 
-                        if (this.isValid()) {
-                            this.up('FromToDateField').blur();
-                        }
+                            setTimeout(() => {
+                                this.up('FromToDateField').query('abraxa\\.datefield')[0].removeCls('x-focused');
+                            }, 0);
+                            this.up('FromToDateField').removeCls('x-focused');
+
+                            if (this.isValid()) {
+                                this.up('FromToDateField').blur();
+                            }
+                        },
                     },
                 },
-            },
-        ],
+            ],
+        });
+
+// this.callParent(arguments);
     },
 
-    getRawValue: function () {
+    getRawValue: function() {
         return this.getDateTime();
     },
 
-    setDisabled: function (value) {
+    setDisabled: function(value) {
         var dateField = this.getAt(0);
         var timeField = this.getAt(1);
 
@@ -171,14 +182,14 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
         timeField.setDisabled(value);
     },
 
-    setReadOnly: function (value) {
+    setReadOnly: function(value) {
         var dateField = this.getAt(0);
         var timeField = this.getAt(1);
 
         dateField.setReadOnly(value);
         timeField.setReadOnly(value);
     },
-    applyReadOnly: function (value) {
+    applyReadOnly: function(value) {
         const dateField1 = this.getAt(0);
         const dateField2 = this.getAt(1);
 
@@ -186,7 +197,7 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
         dateField2.setReadOnly(value);
     },
 
-    setRequired: function (value) {
+    setRequired: function(value) {
         const dateField1 = this.getAt(0);
         const dateField2 = this.getAt(1);
 
@@ -198,32 +209,32 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
         dateField2.setRequired(value);
     },
 
-    getDateTime: function (value) {
+    getDateTime: function(value) {
         return this.getValue();
     },
 
-    getValue: function () {
+    getValue: function() {
         const dateField1 = this.getAt(0);
         const dateField2 = this.getAt(1);
 
         return [dateField1.getValue(), dateField2.getValue()];
     },
 
-    clearValue: function () {
+    clearValue: function() {
         const dateField1 = this.getAt(0);
         const dateField2 = this.getAt(1);
         dateField1.clearValue();
         dateField2.clearValue();
     },
 
-    setValue: function (dates) {
+    setValue: function(dates) {
         const fields = this.query('abraxa\\.datefield');
         for (let i = 0; i < dates.length; i++) {
             if (dates[i]) fields[i].setValue(dates[i]);
         }
     },
 
-    setError: function (error) {
+    setError: function(error) {
         if (!this.isValid()) {
             this.addCls('x-invalid');
         } else {
@@ -235,14 +246,7 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
         }
     },
 
-    setUi: function (ui) {
-        const dateField1 = this.getAt(0);
-        const dateField2 = this.getAt(1);
-        dateField1.setUi(ui);
-        dateField2.setUi(ui);
-    },
-
-    validate: function (skipLazy) {
+    validate: function(skipLazy) {
         var me = this,
             empty,
             errors,
@@ -312,11 +316,8 @@ Ext.define('Abraxa.core.components.fields.FromToDateField', {
 
         return true;
     },
-    clearInvalid: function () {
+    clearInvalid: function() {
         this.error = null;
         this.setErrorMessage(null);
-    },
-    addTrigger: function () {
-        console.log(arguments);
     },
 });

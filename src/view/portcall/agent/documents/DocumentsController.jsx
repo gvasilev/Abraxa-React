@@ -5,10 +5,48 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
     requires: ['Ext.drag.Target'],
 
     canEdit: function () {
-        let permission = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0]
+        let permission = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
             .upVM()
             .get('documentsEditable');
         return Object.keys(permission).length;
+    },
+
+    deleteSelectedDocuments: function (documentRecords, documentsViewModel) {
+        if (!documentRecords || !documentRecords.length) return;
+        const vouchers = documentsViewModel.get('vouchers');
+        const folderSection = documentsViewModel.get('selectedSection.selection');
+        const docStore = Ext.ComponentQuery.query('documents\\.list')[0].getStore();
+
+        const vouchersToDelete = [];
+
+        documentRecords.forEach(function (docRecord) {
+            const folderFile = docRecord.getFolderFile();
+            const queryRecArray = vouchers.queryRecords('document_id', docRecord.get('id'));
+            vouchersToDelete.push(...queryRecArray);
+            folderSection.documents().remove(folderFile);
+        });
+
+        docStore.getProxy().setExtraParams({
+            object_id: folderSection.get('object_id'),
+            object_meta_id: folderSection.get('object_meta_id'),
+            folder_id: folderSection.get('id'),
+        });
+
+        docStore.remove(documentRecords);
+
+        docStore.sync({
+            success: function (batch, opt) {
+                Ext.toast('Document deleted', 1500);
+                documentsViewModel.set('selectedFiles', null);
+                Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+                    .getController()
+                    .deleteVouchers(vouchersToDelete);
+                documentsViewModel.set('refreshFolderCount', new Date());
+            },
+            failure: function (batch, operations) {
+                Ext.Msg.alert('Something went wrong', 'Could not delete document.');
+            },
+        });
     },
 
     onDragLeave: function (target, info) {
@@ -114,57 +152,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         });
     },
 
-    upload2: function (files, el) {
-        let me = this,
-            view = me.getView(),
-            vm = view.upVM(),
-            store = vm.get('folderFiles'),
-            fd = new FormData(),
-            record = vm.get('selectedSection.selection'),
-            filesList = Ext.getCmp('documentList');
-
-        Ext.getCmp('uploadProgress').show();
-
-        fd.append('section', record.get('id'));
-        fd.append('object_id', record.get('object_id'));
-        fd.append('object_meta_id', record.get('object_meta_id'));
-        for (var i = 0; i < files.length; i++) {
-            fd.append('files[]', files.item(i));
-        }
-        Ext.Ajax.request({
-            url: Env.ApiEndpoint + 'folders_files',
-            rawData: fd,
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-                'Content-Type': null,
-            },
-            success: function (response) {
-                let res = JSON.parse(response.responseText);
-
-                Ext.each(res.data, function (file) {
-                    var actualFile = file.document;
-                    delete file.file;
-
-                    var newFile = new Abraxa.model.adocs.DocumentFolderFile();
-                    newFile.mergeData(file);
-                    newFile.setDocument(Ext.create('Abraxa.model.adocs.Document', actualFile));
-                    newFile.approvals().setData(file.approvals);
-                    store.add(newFile);
-                });
-                Ext.get('dropped-container').removeCls('a-dropped');
-                Ext.toast('Record updated', 2000);
-                mixpanel.track('Documents uploaded file');
-                Ext.getCmp('uploadProgress').hide();
-            },
-            failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
-                Ext.get('dropped-container').removeCls('a-dropped');
-                //store.reload();
-            },
-        });
-    },
-
     checkFilesMaxSize: function (files) {
         let totalSize = 0;
         for (var i = 0; i < files.length; i++) {
@@ -230,13 +217,14 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
 
                 if (selectedFiles) {
                     let recordExists = selectedFiles.findIndex(function (file) {
-                        return file.upVM().get('record').get('id') == record.get('id');
+                        return file.upVM().get('record').get('id') === record.get('id');
                     });
 
-                    multiple = '<div class="count">' + (selectedFiles.length + (recordExists != -1 ? 0 : 1)) + '</div>';
+                    multiple =
+                        '<div class="count">' + (selectedFiles.length + (recordExists !== -1 ? 0 : 1)) + '</div>';
                     cls = 'multiple';
 
-                    if (selectedFiles.length == 1 && recordExists > -1) {
+                    if (selectedFiles.length === 1 && recordExists > -1) {
                         multiple = '';
                         cls = '';
                     }
@@ -268,7 +256,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this,
             currentController = this,
             view = me.getView(),
-            sectionsView = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0];
+            sectionsView = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0];
 
         me.dropZone = Ext.create('Ext.plugin.dd.DropZone', {
             element: sectionsView.bodyElement,
@@ -297,7 +285,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                 folder_id = folder.get('id');
                 document_folder_id = info.data.dragData.fileData.get('document_folder_id');
 
-                if (folder && folder_id == document_folder_id) {
+                if (folder && folder_id === document_folder_id) {
                     return;
                 }
 
@@ -334,7 +322,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                 folders = component.upVM().get('folders');
                 old_folder_id = file ? file.get('document_folder_id') : null;
 
-                if (folder && folder_id == document_folder_id) {
+                if (folder && folder_id === document_folder_id) {
                     return;
                 }
 
@@ -353,7 +341,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                             'Confirmation',
                             'Are you sure you want to move the document/s to another folder?<br><br>The document/s have been submitted for approval.<br>Proceeding will cancel the approval process.',
                             function (answer) {
-                                if (answer == 'yes') {
+                                if (answer === 'yes') {
                                     Ext.each(selectedFiles, function (selection) {
                                         selection.setChecked(false);
                                         let document = selection.upVM().get('record'),
@@ -383,7 +371,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                     component.upVM().set('selectedFiles', null);
                                 } else {
                                     me.toggleDropMarker(info, false);
-                                    return;
                                 }
                             },
                             this,
@@ -439,7 +426,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                             'Confirmation',
                             'Are you sure you want to move the document/s to another folder?<br><br>The document/s have been submitted for approval.<br>Proceeding will cancel the approval process.',
                             function (answer) {
-                                if (answer == 'yes') {
+                                if (answer === 'yes') {
                                     let old_folder = folders.getById(old_folder_id),
                                         new_folder = folders.getById(folder_id);
 
@@ -462,7 +449,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                     me.toggleDropMarker(info, false);
                                 } else {
                                     me.toggleDropMarker(info, false);
-                                    return;
                                 }
                             },
                             this,
@@ -568,5 +554,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this;
 
         me.dragZone = me.dropZone = Ext.destroy(me.dragZone, me.dragZone);
+        me.callParent();
     },
 });

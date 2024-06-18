@@ -1,4 +1,5 @@
-import '../../../store/disbursements/DisbursementsPrincipal.jsx';
+import '../../../store/disbursements/DisbursementsPrincipal';
+
 Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipalMainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.DisbursementsPrincipalMainViewModel',
@@ -23,7 +24,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
                 bindTo: '{tabbarItems}',
                 deep: true,
             },
-            get: function (buttons) {
+            get: function(buttons) {
                 if (buttons.length === 0) return;
                 const stateProvider = Ext.state.Provider.get();
                 let record = stateProvider.get('disbursements-principal-tabbar');
@@ -50,7 +51,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
             bind: {
                 bindTo: '{disbursementsPrincipal}',
             },
-            get: function () {
+            get: function() {
                 const filterButtons = [];
                 const vm = this;
                 Ext.Ajax.request({
@@ -59,7 +60,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
                         'Content-Type': 'application/json',
                     },
                     method: 'GET',
-                    success: function (response, opts) {
+                    success: function(response, opts) {
                         const res = JSON.parse(response.responseText).data;
                         const filteredButtons = res.filter((item) => !item.hidden);
                         filterButtons.push(
@@ -77,7 +78,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
                                         item.disbursement_count +
                                         '</em>',
                                 };
-                            })
+                            }),
                         );
                         const totalPortCallRecords = res
                             .map((item) => item.disbursement_count)

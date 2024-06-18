@@ -1,26 +1,27 @@
-import '../voyage/Voyage.jsx';
-import './Instruction.jsx';
-import '../nomination/Nomination.jsx';
-import '../cargo/Cargo.jsx';
-import '../berth/Berth.jsx';
-import '../sof/SOF.jsx';
-import './CargoOps.jsx';
-import './Bunkers.jsx';
-import './Expense.jsx';
-import '../husbandry/Crewing.jsx';
-import '../disbursement/Disbursement.jsx';
-import '../invitation/Invitation.jsx';
-import '../adocs/DocumentFolder.jsx';
-import './Member.jsx';
-import './Master.jsx';
-import './Note.jsx';
-import '../task/Task.jsx';
-import '../distributionGroup/DistributionGroup.jsx';
-import '../amail/Amail.jsx';
-import '../account/Account.jsx';
-import '../disbursement/Voucher.jsx';
-import '../payment/Payment.jsx';
-import '../document/Document.jsx';
+import '../voyage/Voyage';
+import './Instruction';
+import '../nomination/Nomination';
+import '../cargo/Cargo';
+import '../berth/Berth';
+import '../sof/SOF';
+import './CargoOps';
+import './Bunkers';
+import './Expense';
+import '../husbandry/Crewing';
+import '../disbursement/Disbursement';
+import '../invitation/Invitation';
+import '../adocs/DocumentFolder';
+import './Member';
+import './Master';
+import './Note';
+import '../task/Task';
+import '../distributionGroup/DistributionGroup';
+import '../amail/Amail';
+import '../account/Account';
+import '../disbursement/Voucher';
+import '../payment/Payment';
+import '../document/Document';
+
 Ext.define('Abraxa.model.portcall.Portcall', {
     extend: 'Ext.data.Model',
     fields: [
@@ -237,16 +238,16 @@ Ext.define('Abraxa.model.portcall.Portcall', {
                 if (record && record.getNomination()) return record.getNomination().get('voyage_number');
             },
         },
-        // {
-        //     name: 'search_index',
-        //     depends: 'updated_at',
-        //     persist: false,
-        //     mapping: function (data) {
-        //         if (data) {
-        //             return this.buildSearchIndex(data);
-        //         }
-        //     },
-        // },
+        {
+            name: 'search_index',
+            depends: 'updated_at',
+            persist: false,
+            mapping: function (data) {
+                if (data) {
+                    return this.buildSearchIndex(data);
+                }
+            },
+        },
         {
             name: 'status_name',
             mapping: function (data) {
@@ -255,19 +256,19 @@ Ext.define('Abraxa.model.portcall.Portcall', {
                 }
             },
         },
-        // {
-        //     name: 'cargo_string',
-        //     depends: 'updated_at',
-        //     persist: false,
-        //     mapping: function (data) {
-        //         if (data && data.cargoes && data.cargoes.length) {
-        //             let cargo_names = data.cargoes.map(function (value) {
-        //                 return value.commodity;
-        //             });
-        //             return this.buildSearchIndex(cargo_names);
-        //         }
-        //     },
-        // },
+        {
+            name: 'cargo_string',
+            depends: 'updated_at',
+            persist: false,
+            mapping: function (data) {
+                if (data && data.cargoes && data.cargoes.length) {
+                    let cargo_names = data.cargoes.map(function (value) {
+                        return value.commodity;
+                    });
+                    return this.buildSearchIndex(cargo_names);
+                }
+            },
+        },
         {
             name: 'appointing_party',
             depends: 'updated_at',
@@ -457,11 +458,11 @@ Ext.define('Abraxa.model.portcall.Portcall', {
         },
         {
             name: 'is_watching',
-            mapping: function (data) {
-                if (data && data.watching) {
-                    return data.watching.find((e) => e.user_id === window.CurrentUser.get('id'));
-                }
-            },
+            //            mapping: function(data) {
+            //                if (data && data.watching) {
+            //                    return data.watching.find((e) => e.user_id === Ext.getCmp('main-viewport').upVM().get('currentUser').get('id'));
+            //                }
+            //            },
         },
         {
             name: 'agency_type_id',

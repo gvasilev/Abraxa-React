@@ -1,5 +1,6 @@
-import './RulesGrid.jsx';
-import '../TeamUsersGrid.jsx';
+import './RulesGrid';
+import '../TeamUsersGrid';
+
 Ext.define('Abraxa.view.settings.users_teams.teams.rules.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.users_teams.teams.rules.main.container',

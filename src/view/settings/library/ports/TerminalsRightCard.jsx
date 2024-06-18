@@ -4,19 +4,6 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
     cls: 'a-right-container',
     hidden: true,
     itemId: 'terminalRightCard',
-    // bind: {
-    //     hidden: '{terminalsGrid.selection ? false : true}',
-    // },
-    // viewModel: {
-    //     stores: {
-    //         terminalWorkingTimes: {
-    //             source: '{terminalsGrid.selection.working_times}',
-    //         },
-    //         terminalPortServices: {
-    //             source: '{terminalsGrid.selection.port_services}',
-    //         }
-    //     },
-    // },
     layout: 'vbox',
     flex: 1,
     items: [
@@ -104,7 +91,7 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
                                 let vm = this.upVM(),
                                     store = vm.get('portsServerGrid.selection').terminals(),
                                     container = this.find('terminalRightCard'),
-                                    portserveRecord = vm.get('portserveRecord'),
+                                    portServedRecord = vm.get('portServedRecord'),
                                     currentUser = vm.get('currentUser'),
                                     record = vm.get('terminalsGrid.selection');
                                 Ext.Msg.confirm(
@@ -116,9 +103,9 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
                                             store.remove(record);
                                             store.sync({
                                                 success: function (err, msg) {
-                                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                                    portserveRecord.set('updated_at', new Date());
-                                                    portserveRecord.save();
+                                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                                    portServedRecord.set('updated_at', new Date());
+                                                    portServedRecord.save();
                                                     Ext.toast('Record updated', 1000);
                                                 },
                                                 failure: function (batch) {
@@ -188,14 +175,14 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
                 listeners: {
                     blur: function (me) {
                         let record = me.upVM().get('terminalsGrid.selection'),
-                            portserveRecord = me.upVM().get('portserveRecord'),
+                            portServedRecord = me.upVM().get('portServedRecord'),
                             currentUser = me.upVM().get('currentUser');
                         if (record.dirty) {
                             record.save({
                                 success: function () {
-                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                    portserveRecord.set('updated_at', new Date());
-                                    portserveRecord.save();
+                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                    portServedRecord.set('updated_at', new Date());
+                                    portServedRecord.save();
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -223,14 +210,14 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
                     listeners: {
                         blur: function (me) {
                             let record = me.upVM().get('terminalsGrid.selection'),
-                                portserveRecord = me.upVM().get('portserveRecord'),
+                                portServedRecord = me.upVM().get('portServedRecord'),
                                 currentUser = me.upVM().get('currentUser');
                             if (record.dirty) {
                                 record.save({
                                     success: function () {
-                                        portserveRecord.set('updated_by_user', currentUser.getData());
-                                        portserveRecord.set('updated_at', new Date());
-                                        portserveRecord.save();
+                                        portServedRecord.set('updated_by_user', currentUser.getData());
+                                        portServedRecord.set('updated_at', new Date());
+                                        portServedRecord.save();
                                         Ext.toast('Record updated', 1000);
                                     },
                                 });
@@ -373,265 +360,6 @@ Ext.define('Abraxa.view.settings.library.ports.TerminalsRightCard', {
                         value: '{terminalsGrid.selection.description}',
                     },
                 },
-                // {
-                //     xtype: 'div',
-                //     cls: 'divider divider-offset offset-x24 my-0',
-                //     html: '<hr>'
-                // },
-                // // Working time
-                // {
-                //     xtype: 'container',
-                //     items: [{
-                //             xtype: 'container',
-                //             cls: 'a-titlebar',
-                //             padding: 0,
-                //             items: [{
-                //                 xtype: 'title',
-                //                 title: 'Working time'
-                //             }]
-                //         },
-                //         {
-                //             xtype: 'div',
-                //             hidden: true,
-                //             bind: {
-                //                 hidden: '{terminalWorkingTimes.count ? false:true}'
-                //             },
-                //             cls: 'a-list-titles',
-                //         },
-                //         {
-                //             xtype: 'abraxa.formlist',
-                //             bind: {
-                //                 store: '{terminalWorkingTimes}'
-                //             },
-                //             itemConfig: {
-                //                 viewModel: true,
-                //                 xtype: 'container',
-                //                 flex: 1,
-                //                 layout: {
-                //                     type: 'hbox',
-                //                     align: 'middle'
-                //                 },
-                //                 items: [{
-                //                         xtype: 'div',
-                //                         cls: 'hbox',
-                //                         flex: 1,
-                //                         bind: {
-                //                             html: '<div style="width:164px;"><span class="fs-13 c-blue-grey">{record.start_day:capitalize} - {record.end_day:capitalize}</span></div><div class="hbox"><i class="md-icon-outlined fs-18 c-light-grey mr-8">schedule</i><span class="">{record.start_time:date("H:i")} <span class="text-center c-blue-grey px-16">to</span> {record.end_time:date("H:i")}</span></div>',
-                //                         }
-                //                     },
-                //                     {
-                //                         xtype: 'button',
-                //                         iconCls: 'md-icon-outlined md-icon-delete',
-                //                         ui: 'round tool-round-md',
-                //                         tooltip: {
-                //                             anchorToTarget: true,
-                //                             html: "Delete",
-                //                             align: "bc-tc?",
-                //                             showDelay: 0,
-                //                             hideDelay: 0,
-                //                             dismissDelay: 0,
-                //                             allowOver: false,
-                //                             closeAction: 'destroy'
-                //                         },
-                //                         handler: function (me) {
-                //                             let record = me.upVM().get('record'),
-                //                                 portserveRecord = me.upVM().get('portserveRecord'),
-                //                                 currentUser = me.upVM().get('currentUser'),
-                //                                 store = me.upVM().get('terminalWorkingTimes');
-                //                             Ext.Msg.confirm(
-                //                                 'Delete',
-                //                                 'Are you sure you would like to delete this row?',
-                //                                 function (answer) {
-                //                                     if (answer != 'yes') return;
-                //                                     store.remove(record);
-                //                                     store.sync({
-                //                                         success: function (err, msg) {
-                //                                             portserveRecord.set('updated_by', currentUser.getData());
-                //                                             portserveRecord.set('updated_at', new Date());
-                //                                             portserveRecord.save();
-                //                                             Ext.toast('Record updated', 1000);
-                //                                         },
-                //                                         failure: function (batch) {
-                //                                             var response = batch.operations[0].error.response.responseJson;
-                //                                             Ext.Msg.alert('Something went wrong', response.message);
-                //                                         }
-                //                                     });
-                //                                 }, this, [{
-                //                                     xtype: 'button',
-                //                                     itemId: 'no',
-                //                                     margin: '0 8 0 0',
-                //                                     text: 'Cancel'
-                //                                 }, {
-                //                                     xtype: 'button',
-                //                                     itemId: 'yes',
-                //                                     ui: 'decline alt',
-                //                                     text: 'Delete'
-                //                                 }]
-                //                             );
-                //                         }
-                //                     }
-                //                 ]
-                //             }
-                //         },
-                //         {
-                //             xtype: 'button',
-                //             text: 'Add working time',
-                //             ui: 'normal small',
-                //             margin: '8 0',
-                //             height: 28,
-                //             bind: {
-                //                 hidden: '{terminalsGrid.selection.company_id ? false:true}'
-                //             },
-                //             iconCls: 'md-icon-add',
-                //             handler: function (btn, e) {
-                //                 Ext.create('Abraxa.view.settings.library.ports.CreateEditWorkingTime', {
-                //                     viewModel: {
-                //                         parent: btn.upVM(),
-                //                         data: {
-                //                             editMode: false,
-                //                             store: btn.upVM().get('terminalWorkingTimes'),
-                //                             workingTime: Ext.create('Abraxa.model.settings.port.WorkingTime', {
-                //                                 start_day: 'monday',
-                //                                 end_day: 'monday',
-                //                                 port_id: btn.upVM().get('portsServerGrid.selection').get('port_id'),
-                //                                 workable_id: btn.upVM().get('terminalsGrid.selection').get('id'),
-                //                                 workable_type: 'App\\Models\\Port\\Terminal'
-                //                             })
-                //                         },
-                //                     }
-                //                 }).show();
-                //             }
-                //         }
-                //     ]
-                // },
-                // {
-                //     xtype: 'div',
-                //     cls: 'divider divider-offset offset-x24 mb-0',
-                //     html: '<hr>'
-                // },
-                // // Services
-                // {
-                //     xtype: 'container',
-                //     items: [{
-                //             xtype: 'container',
-                //             cls: 'a-titlebar',
-                //             padding: 0,
-                //             items: [{
-                //                 xtype: 'title',
-                //                 title: 'Services'
-                //             }]
-                //         },
-                //         {
-                //             xtype: 'div',
-                //             hidden: true,
-                //             bind: {
-                //                 hidden: '{terminalPortServices.count ? false:true}'
-                //             }
-                //         },
-                //         {
-                //             xtype: 'abraxa.formlist',
-                //             bind: {
-                //                 store: '{terminalPortServices}'
-                //             },
-                //             itemConfig: {
-                //                 viewModel: true,
-                //                 xtype: 'container',
-                //                 flex: 1,
-                //                 layout: {
-                //                     type: 'hbox',
-                //                     align: 'middle'
-                //                 },
-                //                 items: [{
-                //                         xtype: 'div',
-                //                         flex: 1,
-                //                         cls: 'hbox',
-                //                         bind: {
-                //                             html: '<i class="md-icon md-18 c-green">check</i><span class="ml-12">{record.service_name}</span>',
-                //                         }
-                //                     },
-                //                     {
-                //                         xtype: 'button',
-                //                         iconCls: 'md-icon-outlined md-icon-delete',
-                //                         ui: 'round tool-round-md',
-                //                         tooltip: {
-                //                             anchorToTarget: true,
-                //                             html: "Delete",
-                //                             align: "bc-tc?",
-                //                             showDelay: 0,
-                //                             hideDelay: 0,
-                //                             dismissDelay: 0,
-                //                             allowOver: false,
-                //                             closeAction: 'destroy'
-                //                         },
-                //                         handler: function (me) {
-                //                             let record = me.upVM().get('record'),
-                //                                 portserveRecord = me.upVM().get('portserveRecord'),
-                //                                 currentUser = me.upVM().get('currentUser'),
-                //                                 store = me.upVM().get('terminalPortServices');
-                //                             Ext.Msg.confirm(
-                //                                 'Delete',
-                //                                 'Are you sure you would like to delete this row?',
-                //                                 function (answer) {
-                //                                     if (answer != 'yes') return;
-                //                                     store.remove(record);
-                //                                     store.sync({
-                //                                         success: function (err, msg) {
-                //                                             portserveRecord.set('updated_by', currentUser.getData());
-                //                                             portserveRecord.set('updated_at', new Date());
-                //                                             portserveRecord.save();
-                //                                             Ext.toast('Record updated', 1000);
-                //                                         },
-                //                                         failure: function (batch) {
-                //                                             var response = batch.operations[0].error.response.responseJson;
-                //                                             Ext.Msg.alert('Something went wrong', response.message);
-                //                                         }
-                //                                     });
-                //                                 }, this, [{
-                //                                     xtype: 'button',
-                //                                     itemId: 'no',
-                //                                     margin: '0 8 0 0',
-                //                                     text: 'Cancel'
-                //                                 }, {
-                //                                     xtype: 'button',
-                //                                     itemId: 'yes',
-                //                                     ui: 'decline alt',
-                //                                     text: 'Delete'
-                //                                 }]
-                //                             );
-                //                         }
-                //                     }
-                //                 ]
-                //             },
-                //         },
-                //         {
-                //             xtype: 'button',
-                //             text: 'Add services',
-                //             ui: 'normal small',
-                //             margin: '8 0 16 0',
-                //             bind: {
-                //                 hidden: '{terminalsGrid.selection.company_id ? false:true}'
-                //             },
-                //             height: 28,
-                //             iconCls: 'md-icon-add',
-                //             handler: function (btn, e) {
-                //                 Ext.create('Abraxa.view.settings.library.ports.CreateEditPortServices', {
-                //                     viewModel: {
-                //                         parent: btn.upVM(),
-                //                         data: {
-                //                             editMode: false,
-                //                             store: btn.upVM().get('terminalPortServices'),
-                //                             portService: Ext.create('Abraxa.model.settings.port.PortService', {
-                //                                 port_id: btn.upVM().get('portsServerGrid.selection').get('port_id'),
-                //                                 serviceable_id: btn.upVM().get('terminalsGrid.selection').get('id'),
-                //                                 serviceable_type: 'App\\Models\\Port\\Terminal'
-                //                             })
-                //                         },
-                //                     }
-                //                 }).show();
-                //             }
-                //         }
-                //     ]
-                // }
             ],
         },
     ],

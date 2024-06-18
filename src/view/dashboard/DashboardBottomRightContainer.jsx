@@ -68,32 +68,33 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
                                 maxHeight: 336,
                                 scrollable: true,
                                 listeners: {
-                                    initialize: function (me) {
+                                    initialize: function(me) {
                                         let store = me.upVM().get('portsServed'),
                                             data = store.getData().getRange(),
                                             items = [];
                                         let defaultTitem = {
                                             text: 'All',
-                                            handler: function () {
+                                            handler: function() {
                                                 this.find('portFilterButton').setText('All');
                                                 let chart = this.find('averageChart');
                                                 Ext.Ajax.request({
                                                     url: Env.ApiEndpoint + 'dashboard/average_port_stay/-1',
                                                     method: 'GET',
-                                                    success: function (response) {
+                                                    success: function(response) {
                                                         var obj = Ext.decode(response.responseText);
                                                         chart.getFusionChart().setJSONData(obj);
                                                     },
-                                                    failure: function failure(response) {},
+                                                    failure: function failure(response) {
+                                                    },
                                                 });
                                             },
                                         };
                                         items.push(defaultTitem);
-                                        Ext.each(data, function (value) {
+                                        Ext.each(data, function(value) {
                                             let item = {
                                                 text: value.get('port_name'),
                                                 record: value,
-                                                handler: function () {
+                                                handler: function() {
                                                     this.find('portFilterButton').setText(value.get('port_name'));
                                                     let chart = this.find('averageChart');
                                                     Ext.Ajax.request({
@@ -102,11 +103,12 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
                                                             'dashboard/average_port_stay/' +
                                                             value.get('port_id'),
                                                         method: 'GET',
-                                                        success: function (response) {
+                                                        success: function(response) {
                                                             var obj = Ext.decode(response.responseText);
                                                             chart.getFusionChart().setJSONData(obj);
                                                         },
-                                                        failure: function failure(response) {},
+                                                        failure: function failure(response) {
+                                                        },
                                                     });
                                                 },
                                             };
@@ -139,16 +141,17 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
                                         closeAction: 'destroy',
                                     },
 
-                                    handler: function () {
+                                    handler: function() {
                                         let chart = this.find('averageChart');
                                         Ext.Ajax.request({
                                             url: Env.ApiEndpoint + 'dashboard/average_port_stay/-1',
                                             method: 'GET',
-                                            success: function (response) {
+                                            success: function(response) {
                                                 var obj = Ext.decode(response.responseText);
                                                 chart.getFusionChart().setJSONData(obj);
                                             },
-                                            failure: function failure(response) {},
+                                            failure: function failure(response) {
+                                            },
                                         });
                                         this.up('container').find('portCombo').clearValue();
                                     },
@@ -161,7 +164,7 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
                                     placeholder: 'Choose port',
                                     label: null,
                                     listeners: {
-                                        select: function (me, selection) {
+                                        select: function(me, selection) {
                                             if (selection && Ext.isNumeric(parseInt(selection.get('port_id')))) {
                                                 let chart = this.find('averageChart');
                                                 Ext.Ajax.request({
@@ -170,11 +173,12 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomRightContainer', {
                                                         'dashboard/average_port_stay/' +
                                                         selection.get('port_id'),
                                                     method: 'GET',
-                                                    success: function (response) {
+                                                    success: function(response) {
                                                         var obj = Ext.decode(response.responseText);
                                                         chart.getFusionChart().setJSONData(obj);
                                                     },
-                                                    failure: function failure(response) {},
+                                                    failure: function failure(response) {
+                                                    },
                                                 });
                                             }
                                         },

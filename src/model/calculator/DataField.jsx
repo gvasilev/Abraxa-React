@@ -28,6 +28,7 @@ Ext.define('Abraxa.model.calculator.DataField', {
         {
             name: 'defaultValue',
             type: 'string',
+            critical: true,
             convert: function (value, model) {
                 return value !== '' ? value : null;
             },

@@ -1,5 +1,5 @@
-import '../notification/NotificationList.jsx';
-import '../main/DailyActions.jsx';
+import '../notification/NotificationList';
+import '../main/DailyActions';
 
 Ext.define('Abraxa.view.main.Notificationmenu', {
     extend: 'Ext.Sheet',
@@ -41,9 +41,9 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                     bindTo: '{notifications}',
                     deep: true,
                 },
-                get: function (store) {
+                get: function(store) {
                     if (store) {
-                        return (store = store.queryBy(function (record) {
+                        return (store = store.queryBy(function(record) {
                             return record.get('status') == 'new';
                         }).items.length);
                     }
@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                     bindTo: '{myTasks}',
                     deep: true,
                 },
-                get: function (store) {
+                get: function(store) {
                     if (store) {
                         let mentions = this.get('myMentions');
                         return store.count() + mentions.count();
@@ -63,7 +63,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
             },
         },
     },
-    toggle: function () {
+    toggle: function() {
         if (this.isVisible()) {
             // Ext.query('[class=x-mask]')[0].classList.remove('no-opacity');
             this.hide();
@@ -129,7 +129,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                     dismissDelay: 0,
                     closeAction: 'destroy',
                 },
-                handler: function (me) {
+                handler: function(me) {
                     me.up('main\\.notificationmenu').down('[cls~=a-filters]').toggleCls('is-hidden');
                 },
             },
@@ -137,7 +137,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                 xtype: 'button',
                 ui: 'round tool-round-md',
                 iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                handler: function (me) {
+                handler: function(me) {
                     me.up('main\\.notificationmenu').hide();
                 },
                 tooltip: {
@@ -177,12 +177,12 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                     placeholder: 'Search notifications',
                     ui: 'no-border classic',
                     listeners: {
-                        change: function (field, newValue, oldValue, eOpts) {
+                        change: function(field, newValue, oldValue, eOpts) {
                             var notifications = Ext.getCmp('main-viewport').getVM().get('notifications');
                             if (newValue == '') notifications.removeFilter('search');
                         },
-                        action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                        action: function(me, newValue, oldValue, eOpts) {
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var notifications = Ext.getCmp('main-viewport').getVM().get('notifications');
                             notifications.removeFilter('search');
                             if (query.length > 2) {
@@ -190,11 +190,11 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                                     new Ext.data.Query({
                                         id: 'search',
                                         source: 'text like "' + query + '"',
-                                    })
+                                    }),
                                 );
                             }
                         },
-                        painted: function (me) {
+                        painted: function(me) {
                             me.focus();
                         },
                     },
@@ -203,18 +203,18 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                     text: 'Type',
                     ui: 'filter round',
                     xtype: 'splitbutton',
-                    handler: function () {
+                    handler: function() {
                         this.showMenu();
                     },
-                    arrowHandler: function () {
+                    arrowHandler: function() {
                         let button = this,
                             arrowCls = this.splitArrowElement.hasCls('x-arrow-el'),
                             notifications = Ext.getCmp('main-viewport').getVM().get('notifications');
                         if (!arrowCls) {
                             let selected = Ext.ComponentQuery.query(
-                                'menuitem[cls~=notificationsFilterItem][checked="true"]'
+                                'menuitem[cls~=notificationsFilterItem][checked="true"]',
                             );
-                            Ext.each(selected, function (value, index) {
+                            Ext.each(selected, function(value, index) {
                                 value.setChecked(false);
                             });
                             button.setText('Type');
@@ -229,7 +229,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
                         cls: 'filter-menu',
                         defaults: {
                             cls: 'notificationsFilterItem',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let button = this.up('button'),
                                     store = Ext.getCmp('main-viewport').getVM().get('notifications');
 
@@ -241,7 +241,7 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
 
                                 store.addFilter({
                                     id: 'category',
-                                    filterFn: function (record) {
+                                    filterFn: function(record) {
                                         if (record.get('category') == me.getValue()) {
                                             return true;
                                         }
@@ -296,10 +296,10 @@ Ext.define('Abraxa.view.main.Notificationmenu', {
         },
     ],
     listeners: {
-        show: function () {
+        show: function() {
             let notifications = this.upVM().get('notifications');
 
-            notifications.each(function (record) {
+            notifications.each(function(record) {
                 record.set('is_seen', 1);
             });
 

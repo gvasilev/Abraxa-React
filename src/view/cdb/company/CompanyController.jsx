@@ -4,8 +4,9 @@ Ext.define('Abraxa.view.cdb.company.CompanyController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.cdb.company.controller',
 
-    init: function () {},
-    saveObjectRecordOnFieldBlur: function (field) {
+    init: function() {
+    },
+    saveObjectRecordOnFieldBlur: function(field) {
         if (!field || !field.upVM()) return;
 
         let record = field.upVM().get('object_record');
@@ -13,10 +14,10 @@ Ext.define('Abraxa.view.cdb.company.CompanyController', {
         if (!record || !record.dirty) return;
 
         record.save({
-            success: function (record, operation) {
+            success: function(record, operation) {
                 Ext.toast('Record updated', 1000);
             },
-            failure: function (record, response) {
+            failure: function(record, response) {
                 var msg =
                     response &&
                     response.error &&
@@ -28,7 +29,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyController', {
             },
         });
     },
-    onBalanceLinkClick: function (extEvent, domEl, eOpts) {
+    onBalanceLinkClick: function(extEvent, domEl, eOpts) {
         const controller = this;
         const cmp = controller.getView();
         if (!cmp || !cmp.upVM() || !cmp.upVM().get('object_record') || !cmp.upVM().get('object_record').get('org_id')) {
@@ -51,7 +52,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyController', {
 
         Ext.create('Abraxa.view.cdb.company.AppointmentsDialog', {
             bind: {
-                title: title + ' ({appointments.count})',
+                title: title + ' ({totalAppointmentRecords})',
             },
             viewModel: {
                 stores: {
@@ -59,6 +60,17 @@ Ext.define('Abraxa.view.cdb.company.CompanyController', {
                         type: 'CdbAppointmentsStore',
                         proxy: {
                             url: url,
+                        },
+                    },
+                },
+                formulas: {
+                    totalAppointmentRecords: {
+                        bind: {
+                            bindTo: '{appointments}',
+                            deep: true,
+                        },
+                        get: function(store) {
+                            return store.getTotalCount();
                         },
                     },
                 },

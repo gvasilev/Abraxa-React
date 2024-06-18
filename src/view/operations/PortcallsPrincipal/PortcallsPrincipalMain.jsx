@@ -1,13 +1,14 @@
-import './PortcallsPrincipalMainController.jsx';
-import './PortcallsPrincipalMainViewModel.jsx';
-import './grids/PortCallsPricipalGridsViewModel.jsx';
-import './grids/PortCallPrincipalGridsController.jsx';
-import './grids/PortCallsPricipalGridAll.jsx';
-import './grids/PortCallsPricipalGridClosed.jsx';
-import './grids/PortCallsPricipalGridEnRoute.jsx';
-import './grids/PortCallsPricipalGridInPort.jsx';
-import './grids/PortCallsPricipalGridPendingAppointments.jsx';
-import './grids/PortCallsPricipalGridSailed.jsx';
+import './PortcallsPrincipalMainController';
+import './PortcallsPrincipalMainViewModel';
+import './grids/PortCallsPricipalGridsViewModel';
+import './grids/PortCallPrincipalGridsController';
+import './grids/PortCallsPricipalGridAll';
+import './grids/PortCallsPricipalGridClosed';
+import './grids/PortCallsPricipalGridEnRoute';
+import './grids/PortCallsPricipalGridInPort';
+import './grids/PortCallsPricipalGridPendingAppointments';
+import './grids/PortCallsPricipalGridSailed';
+
 Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMain', {
     extend: 'Ext.Container',
     xtype: 'PortcallsPrincipalMain',
@@ -81,7 +82,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMain', {
                             iconCls: 'md-icon-outlined md-icon-settings',
                             text: 'Manage columns',
                             margin: '0 0 0 8',
-                            handler: function (button) {
+                            handler: function(button) {
                                 const currentTab = button.up('PortcallsPrincipalMain').getViewModel().get('currentTab');
                                 const grid = button
                                     .up('PortcallsPrincipalMain')

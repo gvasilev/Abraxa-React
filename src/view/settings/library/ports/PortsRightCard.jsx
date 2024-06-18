@@ -1,9 +1,10 @@
-import './PortInfo.jsx';
-import './TerminalsMainCointaner.jsx';
-import './BerthsMainCointaner.jsx';
-import './HolidaysMainCointaner.jsx';
-import './AdditionalMainContainer.jsx';
-import './FilesMainContainer.jsx';
+import './PortInfo';
+import './TerminalsMainCointaner';
+import './BerthsMainCointaner';
+import './HolidaysMainCointaner';
+import './AdditionalMainContainer';
+import './FilesMainContainer';
+
 Ext.define('Abraxa.view.settings.library.ports.PortsRightCard', {
     extend: 'Ext.Container',
     xtype: 'ports.right.card',
@@ -43,7 +44,7 @@ Ext.define('Abraxa.view.settings.library.ports.PortsRightCard', {
                         {
                             xtype: 'title',
                             bind: {
-                                title: '{portsServerGrid.selection.port_name} ({portsServerGrid.selection.port.flag_abv_2_letters})',
+                                title: '{portsServerGrid.selection.port_name} ({portsServerGrid.selection.port.countries.country_code})',
                             },
                         },
                     ],

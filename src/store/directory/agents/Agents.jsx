@@ -1,4 +1,5 @@
-import '../../../model/directory/agents/Agents.jsx';
+import '../../../model/directory/agents/Agents';
+
 Ext.define('Abraxa.store.directory.Agents', {
     extend: 'Ext.data.Store',
     alias: 'store.AgentsStore',

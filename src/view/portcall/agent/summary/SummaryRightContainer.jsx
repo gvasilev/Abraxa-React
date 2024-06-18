@@ -1,5 +1,6 @@
-import './SummaryBerthCard.js';
-import '../../../chatter/ChatterMain.jsx';
+import './SummaryBerthCard';
+import '../../../chatter/ChatterMain';
+
 Ext.define('Abraxa.view.portcall.summary.SummaryRightontainer', {
     extend: 'Ext.Container',
     xtype: 'portcall.summary.right.container',

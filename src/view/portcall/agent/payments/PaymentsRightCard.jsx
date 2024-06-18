@@ -30,29 +30,58 @@ Ext.define('Abraxa.view.portcall.payments.PaymentsRightCard', {
                 source: '{organizations}',
                 filters: '{paymentVirtualFilter}',
             },
-        },
-        formulas: {
             incomingBanksStore: {
-                bind: {
-                    bindTo: '{incomingPayment.selection.virtual_accounts}',
+                type: 'organizationVirtualAccounts',
+                autoLoad: true,
+                proxy: {
+                    extraParams: {
+                        org_id: '{incomingPayment.selection.org_id}',
+                    },
                 },
-                get: function (store) {
-                    if (store) {
-                        store.setGrouper({
-                            groupFn: function (record) {
-                                return record.get('type');
+                grouper: {
+                    groupFn: function (record) {
+                        return record.get('type');
+                    },
+                },
+                updateProxy: function (proxy) {
+                    if (proxy) {
+                        proxy.onAfter(
+                            'extraparamschanged',
+                            function () {
+                                if (this.getProxy().getExtraParams().org_id) this.load();
                             },
-                        });
-                        return store;
+                            this
+                        );
                     }
-                    return new Ext.data.Store({
-                        id: 'emptyBankStore',
-                        proxy: {
-                            type: 'memory',
-                        },
-                    });
                 },
             },
+            outgoingBanksStore: {
+                type: 'organizationVirtualAccounts',
+                autoLoad: true,
+                proxy: {
+                    extraParams: {
+                        org_id: '{outgoingPayment.selection.org_id}',
+                    },
+                },
+                grouper: {
+                    groupFn: function (record) {
+                        return record.get('type');
+                    },
+                },
+                updateProxy: function (proxy) {
+                    if (proxy) {
+                        proxy.onAfter(
+                            'extraparamschanged',
+                            function () {
+                                if (this.getProxy().getExtraParams().org_id) this.load();
+                            },
+                            this
+                        );
+                    }
+                },
+            },
+        },
+        formulas: {
             paymentVirtualFilter: {
                 bind: {
                     bindTo: '{billingParty.selection.org_id}',
@@ -73,28 +102,6 @@ Ext.define('Abraxa.view.portcall.payments.PaymentsRightCard', {
                             return false;
                         };
                     }
-                },
-            },
-            outgoingBanksStore: {
-                bind: {
-                    bindTo: '{outgoingPayment.selection.virtual_accounts}',
-                    deep: true,
-                },
-                get: function (store) {
-                    if (store) {
-                        store.setGrouper({
-                            groupFn: function (record) {
-                                return record.get('type');
-                            },
-                        });
-                        return store;
-                    }
-                    return new Ext.data.Store({
-                        id: 'emptyStore',
-                        proxy: {
-                            type: 'memory',
-                        },
-                    });
                 },
             },
             rightContent: {

@@ -296,7 +296,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.Sugges
                                     label: 'Country name',
                                     name: 'Country name',
                                     required: true,
-                                    forceSelection: false,
+                                    forceSelection: true,
                                     labelAlign: 'top',
                                     valueField: 'country_code',
                                     ui: 'classic field-md',

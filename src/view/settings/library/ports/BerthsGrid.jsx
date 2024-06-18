@@ -1,4 +1,5 @@
-import './SuggestDialogs/SuggestBerth/SuggestBerthDialog.jsx';
+import './SuggestDialogs/SuggestBerth/SuggestBerthDialog';
+
 Ext.define('Abraxa.view.settings.library.ports.BerthsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.berths.grid',
@@ -133,7 +134,7 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsGrid', {
                             if (newValue == '') berthStore.removeFilter('search');
                         },
                         action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var berthStore = this.upVM().get('portServedBerths');
                             berthStore.removeFilter('search');
                             if (query.length > 2) {
@@ -152,23 +153,23 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsGrid', {
                     ui: 'normal-light small',
                     iconCls: 'md-icon-add',
                     text: 'Suggest new entry',
+                    testId: 'settingsLibrarySuggestNewBerthBtn',
                     handler: function (me) {
-                        let port = me.upVM().get('portsServerGrid.selection'),
-                            currentUser = me.upVM().get('currentUser');
+                        const childSettingsMainVM = me.upVM(),
+                            port = childSettingsMainVM.get('portsServerGrid.selection'),
+                            currentUser = childSettingsMainVM.get('currentUser');
+
+                        childSettingsMainVM.set('addEditBerthTitle', AbraxaConstants.titles.addBerth);
+
                         Ext.create(
                             'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.SuggestBerthDialog',
                             {
                                 viewModel: {
-                                    parent: me.upVM(),
+                                    parent: childSettingsMainVM,
                                     data: {
                                         selectedPort: port,
                                         currentUser: currentUser,
-                                    },
-                                    links: {
-                                        record: {
-                                            type: 'Abraxa.model.suggestions.Berth',
-                                            create: true,
-                                        },
+                                        record: Ext.create('Abraxa.model.suggestions.Berth', {}),
                                     },
                                 },
                             }
@@ -285,56 +286,29 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsGrid', {
                             closeAction: 'destroy',
                         },
                         handler: function (me) {
-                            let vm = me.upVM(),
-                                berth = me.upVM().get('record'),
-                                currentUser = me.upVM().get('currentUser'),
-                                selectedPort = me.upVM().get('portsServerGrid.selection');
-                            if (Ext.Array.contains(me.upVM().get('userSubmissions'), currentUser.get('email'))) {
-                                Ext.Ajax.request({
-                                    url: Env.nomenclatureEndPoint + 'api/registry/v1/berths-legacy/' + berth.get('id'),
-                                    method: 'GET',
-                                    success: function (response) {
-                                        let data = Ext.decode(response.responseText);
-                                        if (data.coordinates_center) {
-                                            data.coordinates_center_latitude = data.coordinates_center.latitude;
-                                            data.coordinates_center_longitude = data.coordinates_center.longitude;
-                                        }
-                                        Ext.create(
-                                            'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.SuggestBerthDialog',
-                                            {
-                                                viewModel: {
-                                                    parent: me.upVM(),
-                                                    data: {
-                                                        selectedPort: selectedPort,
-                                                        record: new Abraxa.model.suggestions.Berth(
-                                                            Object.assign({}, data)
-                                                        ),
-                                                        currentUser: currentUser,
-                                                    },
-                                                },
-                                            }
-                                        ).show();
-                                    },
-                                    failure: function failure(response) {},
-                                });
-                            } else {
-                                Ext.create(
-                                    'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.SuggestBerthDialog',
-                                    {
-                                        viewModel: {
-                                            parent: vm,
-                                            data: {
-                                                selectedPort: selectedPort,
-                                                record: Ext.create('Abraxa.model.suggestions.Berth', {
-                                                    id: berth.get('id'),
-                                                    meta_name: berth.get('name'),
-                                                    legacy_parent_id: berth.get('terminal').id,
-                                                }),
-                                            },
+                            const childSettingsMainVM = me.upVM(),
+                                berth = childSettingsMainVM.get('record'),
+                                currentUser = childSettingsMainVM.get('currentUser'),
+                                selectedPort = childSettingsMainVM.get('portsServerGrid.selection');
+
+                            childSettingsMainVM.set('addEditBerthTitle', AbraxaConstants.titles.editBerth);
+                            Ext.create(
+                                'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.SuggestBerthDialog',
+                                {
+                                    viewModel: {
+                                        parent: childSettingsMainVM,
+                                        data: {
+                                            selectedPort: selectedPort,
+                                            currentUser: currentUser,
+                                            record: Ext.create('Abraxa.model.suggestions.Berth', {
+                                                uuid: berth.get('uuid'),
+                                                meta_name: berth.get('name'),
+                                                parent_uuid: berth.get('parent_uuid'),
+                                            }),
                                         },
-                                    }
-                                ).show();
-                            }
+                                    },
+                                }
+                            ).show();
                         },
                     },
                 ],

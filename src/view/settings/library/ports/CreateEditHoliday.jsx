@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditHoliday', {
                     let dialog = me.up('dialog'),
                         form = dialog.down('formpanel'),
                         vm = me.upVM(),
-                        portserveRecord = vm.get('portserveRecord'),
+                        portServedRecord = vm.get('portServedRecord'),
                         currentUser = vm.get('currentUser'),
                         store = vm.get('store');
                     if (form.validate()) {
@@ -130,9 +130,9 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditHoliday', {
                         if (editMode) {
                             store.sync({
                                 success: function (batch, opt) {
-                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                    portserveRecord.set('updated_at', new Date());
-                                    portserveRecord.save();
+                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                    portServedRecord.set('updated_at', new Date());
+                                    portServedRecord.save();
                                     Ext.toast('Record updated', 1000);
                                 },
                                 failure: function (batch, operations) {
@@ -144,9 +144,9 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditHoliday', {
                             store.add(record);
                             store.sync({
                                 success: function (batch, opt) {
-                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                    portserveRecord.set('updated_at', new Date());
-                                    portserveRecord.save();
+                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                    portServedRecord.set('updated_at', new Date());
+                                    portServedRecord.save();
                                     Ext.toast('Record created', 1000);
                                     dialog.destroy();
                                 },

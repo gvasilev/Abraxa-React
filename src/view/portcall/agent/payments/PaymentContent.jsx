@@ -1,4 +1,5 @@
-import './PaymentsGrid.jsx';
+import './PaymentsGrid';
+
 Ext.define('Abraxa.view.portcall.payments.PaymentContent', {
     extend: 'Ext.Container',
     xtype: 'payment.content',

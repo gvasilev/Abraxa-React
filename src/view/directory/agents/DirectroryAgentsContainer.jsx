@@ -1,6 +1,7 @@
-import '../DirectoryController.jsx';
-import './AgentDetailsViewModel.jsx';
-import './AgentPublicProfile.jsx';
+import '../DirectoryController';
+import './AgentDetailsViewModel';
+import './AgentPublicProfile';
+
 Ext.define('Abraxa.view.directory.agents.DirectoryAgentsContainer', {
     extend: 'Ext.Container',
     xtype: 'DirectoryAgentsContainer',

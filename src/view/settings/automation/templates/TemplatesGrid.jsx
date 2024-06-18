@@ -1,4 +1,5 @@
-import './AddEditTemplate.jsx';
+import './AddEditTemplate';
+
 Ext.define('Abraxa.view.settings.automation.templates.TemplatesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.automation.templates.grid',

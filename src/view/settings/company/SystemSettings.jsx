@@ -1,5 +1,6 @@
-import '../../../core/components/AbraxaTimeZoneCombo.jsx';
-import './AddEditBank.jsx';
+import '../../../core/components/AbraxaTimeZoneCombo';
+import './AddEditBank';
+
 Ext.define('Abraxa.view.settings.company.SystemSettings', {
     extend: 'Ext.Container',
     xtype: 'settings.company.systems.settings',
@@ -174,7 +175,7 @@ Ext.define('Abraxa.view.settings.company.SystemSettings', {
                                                     let company = me.upVM().get('currentCompany'),
                                                         disableDefault = false;
 
-                                                    const model = me.upVM().get('record');
+                                                    model = me.upVM().get('record');
                                                     model.getProxy().setExtraParams({
                                                         company_id: company.get('id'),
                                                     });

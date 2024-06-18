@@ -1,6 +1,7 @@
 Ext.define('Abraxa.view.settings.library.PortInfo', {
     extend: 'Ext.Container',
     xtype: 'settings.library.port.info',
+    testId: 'settingsLibraryPortInfo',
     flex: 1,
     layout: 'hbox',
     items: [
@@ -55,7 +56,7 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                     margin: '8 0',
                                     bind: {
                                         label: 'Port',
-                                        value: '<div class="hbox"><img data-qtip="{portsServerGrid.selection.port.country}" data-qalign="bc-tc" height="24" class="a-img-round mr-16" src="{portFlag}" alt="" />{portsServerGrid.selection.port_name} <span class="text-uppercase ml-2">({portsServerGrid.selection.port.flag_abv_2_letters})</span></div>',
+                                        value: '{portTitleComponent}',
                                     },
                                 },
                             ],
@@ -87,7 +88,9 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                     },
                                 },
                                 {
-                                    label: '',
+                                    // Need to put empty label, because without label the layout
+                                    // of the Longitude displayfield is above the Latitude field above.
+                                    label: AbraxaConstants.placeholders.emptyHtmlChar,
                                     bind: {
                                         value: '{lon}',
                                     },
@@ -100,13 +103,13 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                 {
                                     label: 'Season',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.season:capitalize}',
+                                        value: '{portSeason:capitalize}',
                                     },
                                 },
                                 {
                                     label: 'Water',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.water:capitalize}',
+                                        value: '{portWaterType:capitalize}',
                                     },
                                 },
                             ],
@@ -117,13 +120,13 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                 {
                                     label: '(S)ECA',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.is_seca}',
+                                        value: '{portsServerGrid.selection.port.is_seca === true ? "Yes" : "No"}',
                                     },
                                 },
                                 {
                                     label: 'Shelter Afforded',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.shelter_afforded_code}',
+                                        value: '{shelterAffordedCode:capitalize}',
                                     },
                                 },
                             ],
@@ -134,13 +137,13 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                 {
                                     label: 'Harbor Size',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.harbor_size_code}',
+                                        value: '{portsServerGrid.selection.port.harbor_size_code:capitalize}',
                                     },
                                 },
                                 {
                                     label: 'Harbor Type',
                                     bind: {
-                                        value: '{portsServerGrid.selection.port.harbor_type_code}',
+                                        value: '{portsServerGrid.selection.port.harbor_type_code:capitalize}',
                                     },
                                 },
                             ],
@@ -285,7 +288,7 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                             label: 'US Representative',
                                             margin: '0 0 0 24',
                                             bind: {
-                                                value: '{portsServerGrid.selection.port.us_representative ? portsServerGrid.selection.port.us_representative :"---"}',
+                                                value: '{portsServerGrid.selection.port.info_us_representative ? portsServerGrid.selection.port.info_us_representative :"---"}',
                                             },
                                         },
                                     ],
@@ -297,7 +300,7 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                             label: 'First Port Of Entry',
                                             margin: '0 24 0 0',
                                             bind: {
-                                                value: '{portsServerGrid.selection.port.first_port_of_entry ? portsServerGrid.selection.port.first_port_of_entry :"---"}',
+                                                value: '{portsServerGrid.selection.port.restriction_first_port_of_entry ? portsServerGrid.selection.port.restriction_first_port_of_entry :"---"}',
                                             },
                                         },
                                         {
@@ -347,7 +350,7 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                                             label: 'Load Offload Wharves',
                                             margin: '0 24 0 0',
                                             bind: {
-                                                value: '{portsServerGrid.selection.port.load_offload_wharves ? portsServerGrid.selection.port.load_offload_wharves :"---"}',
+                                                value: '{portsServerGrid.selection.port.load_offload_berth ? portsServerGrid.selection.port.load_offload_berth :"---"}',
                                             },
                                         },
                                         {

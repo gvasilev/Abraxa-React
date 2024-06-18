@@ -1,4 +1,5 @@
-import './rules/MainContainer.jsx';
+import './rules/MainContainer';
+
 Ext.define('Abraxa.view.settings.users_teams.teams.TeamDetails', {
     extend: 'Ext.Container',
     xtype: 'usersettings.teamdetails',

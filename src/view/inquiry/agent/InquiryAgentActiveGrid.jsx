@@ -41,7 +41,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     ui: 'tool-sm round',
                 },
                 listeners: {
-                    initialize: function () {
+                    initialize: function() {
                         this.add({
                             xtype: 'div',
                             margin: '0 16',
@@ -89,7 +89,6 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
             showInGroups: null,
         },
     },
-    scrollToTopOnRefresh: false,
     items: [
         {
             xtype: 'container',
@@ -120,12 +119,12 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             placeholder: 'Search...',
                             width: 280,
                             listeners: {
-                                change: function (field, newValue, oldValue, eOpts) {
+                                change: function(field, newValue, oldValue, eOpts) {
                                     var storeInquiries = this.upVM().get('inquiries');
-                                    if (newValue == '') storeInquiries.removeFilter('search');
+                                    if (newValue === '') storeInquiries.removeFilter('search');
                                 },
-                                action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                action: function(me, newValue, oldValue, eOpts) {
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var storeInquiries = this.upVM().get('inquiries');
                                     storeInquiries.removeFilter('search');
                                     if (query.length > 2) {
@@ -155,7 +154,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                                             enableToggle: true,
                                             iconCls: 'md-icon-inventory-2 md-icon-outlined',
                                             text: 'Archive',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let store = this.find('inquiry-grid-active').getStore(),
                                                     toggled = this.getPressed();
 
@@ -188,21 +187,11 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                                     },
                                     menu: {
                                         items: [
-                                            // {
-                                            //     text: 'Export to PDF',
-                                            //     slug: 'portcallExportPDF',
-                                            //     bind: {
-                                            //         permission: '{userPermissions}',
-                                            //     },
-                                            //     iconCls: 'md-icon-outlined md-icon-picture-as-pdf',
-                                            //     handler: function () {
-                                            //     },
-                                            // },
                                             {
                                                 text: 'Export to Excel',
                                                 separator: true,
                                                 iconCls: 'md-icon-outlined md-icon-difference',
-                                                handler: function (me) {
+                                                handler: function(me) {
                                                     let grid = this.find('inquiry-grid-active');
                                                     grid.saveDocumentAs({
                                                         type: 'xlsx', // exporter alias
@@ -225,7 +214,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                                         hidden: '{defaultHiddenItems}',
                                     },
                                     margin: '0 0 0 8',
-                                    handler: function () {
+                                    handler: function() {
                                         this.find('inquiry-grid-active').getPlugin('gridviewoptions').showViewOptions();
                                     },
                                 },
@@ -273,7 +262,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function (record) {
+                    get: function(record) {
                         if (record && record.get('status')) {
                             return record.get('status');
                         }
@@ -326,7 +315,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                                 record.set('is_watching', 1);
                             }
                             record.save({
-                                success: function () {
+                                success: function() {
                                     recentlyOpened.reload();
                                     Ext.toast('Record updated');
                                 },
@@ -357,7 +346,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     placeholder: 'ID',
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record && record.get('parent_id')) {
                     return '<span title="INQ-ID">' + record.get('inquiry_id') + '</span>';
                 } else {
@@ -408,24 +397,12 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             let imo,
                                 record = this.component.getRecord();
                             window.location.hash = '#inquiry/' + record.get('id');
-
-                            // if (record.get('vessel')) {
-                            //     imo = record.get('vessel').id
-                            // }
-                            // if (record.get('custom_vessel_id')) {
-                            //     if (record.get('custom_vessel').company_id != this.component.up('grid').upVM().get('currentUser').get('current_company_id')) {
-                            //         imo = record.get('custom_vessel').id;
-                            //     }
-                            // }
-                            // if (imo) {
-                            //     Abraxa.getApplication().getController('AbraxaController').showVesselDialog(imo);
-                            // }
                         },
                     },
                 },
             },
             sorter: {
-                sorterFn: function (a, b) {
+                sorterFn: function(a, b) {
                     if (a.getVoyage().get('vessel_name') < b.getVoyage().get('vessel_name')) {
                         return -1;
                     } else if (a.getVoyage().get('vessel_name') > b.getVoyage().get('vessel_name')) {
@@ -460,7 +437,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 encodeHtml: false,
             },
             exportRenderer: true,
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (value) {
                     return value;
                 } else {
@@ -494,7 +471,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     click: {
                         element: 'element',
                         delegate: 'a',
-                        fn: function (el) {
+                        fn: function(el) {
                             Ext.defer(() => {
                                 if (doubleClickInProgress) return;
                                 let portId = el.currentTarget.getAttribute('data-portid');
@@ -509,7 +486,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     dblclick: {
                         element: 'element',
                         delegate: 'a',
-                        fn: function (el) {
+                        fn: function(el) {
                             doubleClickInProgress = true;
                             Ext.defer(() => {
                                 doubleClickInProgress = false;
@@ -519,7 +496,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 },
             },
             sorter: {
-                sorterFn: function (a, b) {
+                sorterFn: function(a, b) {
                     if (a.ports().first() && b.ports().first()) {
                         let portName1 = a.ports().first().get('name'),
                             portName2 = b.ports().first().get('name');
@@ -528,7 +505,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     }
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record) {
                     let date = AbraxaConstants.placeholders.emptyValue,
                         port_requested = '',
@@ -608,7 +585,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 //     return;
                 // }
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (value) {
                     return moment(record.get('port_eta')).isValid()
                         ? moment(record.get('port_eta')).format('DD MMM - HH:mm')
@@ -640,8 +617,6 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     xtype: 'combobox',
                     ui: 'classic',
                     placeholder: 'Choose',
-                    valueField: 'full_name',
-                    displayField: 'full_name',
                     queryMode: 'local',
                     multiSelect: true,
                     displayField: 'name',
@@ -654,7 +629,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     // any Ext.form.field.Text configs accepted
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 return '<div class="a-function function-' + value + '"><span>' + value + '</span></div>';
             },
         },
@@ -705,7 +680,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     ],
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 return value;
             },
         },
@@ -728,10 +703,6 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     placeholder: 'Enter cargo',
                     // any Ext.form.field.Text configs accepted
                 },
-                // serializer: function (value) {
-
-                //     return;
-                // }
             },
             cell: {
                 cls: 'expand',
@@ -740,8 +711,8 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     // '<tpl for="record">',
                     '{[this.create(values.cargoes)]}',
                     {
-                        create: function (cargoes) {
-                            if (cargoes.length == 1) {
+                        create: function(cargoes) {
+                            if (cargoes.length === 1) {
                                 let cargo = cargoes[0],
                                     quantity = numeral(cargo.quantity).format('0,0.[000]');
 
@@ -765,14 +736,14 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             }
                             return '<span class="a-cell-placeholder">---</span>';
                         },
-                    }
+                    },
                     // '</tpl>'
                 ),
                 listeners: {
                     click: {
                         element: 'element',
                         delegate: '.a_grid_action',
-                        fn: function (item, el, eOpts) {
+                        fn: function(item, el, eOpts) {
                             var commodity_id = parseInt(item.currentTarget.getAttribute('data-commodityid'));
 
                             if (commodity_id) Abraxa.Global.showCommodityDialog(commodity_id);
@@ -781,7 +752,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 },
             },
             sorter: {
-                sorterFn: function (a, b) {
+                sorterFn: function(a, b) {
                     let cargoes1 = a.cargoes().getRange();
                     let cargoes2 = b.cargoes().getRange();
 
@@ -806,7 +777,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
             exportRenderer: function exportRenderer(value, record, dataIndex, cell, column) {
                 let cargoes = record.cargoes().getRange();
                 if (cargoes) {
-                    if (cargoes.length == 1) {
+                    if (cargoes.length === 1) {
                         let cargo = cargoes[0],
                             bl_unit = '',
                             commodity = '',
@@ -820,7 +791,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                         return quantity + bl_unit + ' ' + commodity;
                     } else if (cargoes.length > 1) {
                         let str = '';
-                        record.cargoes().each(function (rec, idx) {
+                        record.cargoes().each(function(rec, idx) {
                             let bl_unit = '',
                                 commodity = '',
                                 comma = ',',
@@ -831,7 +802,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             if (rec.get('commodity')) {
                                 commodity = rec.get('commodity');
                             }
-                            if (idx + 1 == cargoes.length) {
+                            if (idx + 1 === cargoes.length) {
                                 comma = '';
                             }
                             str += quantity + bl_unit + ' ' + commodity + comma;
@@ -865,7 +836,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     click: {
                         element: 'element',
                         delegate: 'a.company_details',
-                        fn: function (el) {
+                        fn: function(el) {
                             var company_id = el.target.getAttribute('data-company_id');
                             let vm = this.component.up('grid').upVM(),
                                 organizations = vm.get('organizations'),
@@ -882,7 +853,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             });
 
                             organizationsStore.load({
-                                callback: function (records, operation, success) {
+                                callback: function(records, operation, success) {
                                     if (records[0]) {
                                         Abraxa.getApplication()
                                             .getController('AbraxaController')
@@ -899,18 +870,17 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     },
                 },
                 encodeHtml: false,
-                renderer: function (value, record) {
+                renderer: function(value, record) {
                     if (record) {
-                        var label =
+                        return (
                             '<a class="a_grid_action company_details" href="javascript:void(0)" data-company_id="' +
                             record.get('requesting_party_id') +
                             '" data-email="' +
                             record.get('requesting_party_email') +
                             '">' +
                             record.get('requesting_party_name') +
-                            '</a>';
-
-                        return label;
+                            '</a>'
+                        );
                     }
                     return '<span class="a-cell-placeholder">---</span>';
                 },
@@ -943,7 +913,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     cls: 'a-filter-bl a-filter-br',
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record && record.offers() && record.offers().count() > 0) {
                     return '<span class="a-badge-counter">' + record.offers().getCount() + '</span>';
                 } else {
@@ -958,7 +928,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 }
             },
             sorter: {
-                sorterFn: function (a, b) {
+                sorterFn: function(a, b) {
                     let estimateCount1 = a.offers().getCount(),
                         estimateCount2 = b.offers().getCount();
 
@@ -1024,7 +994,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                         ],
                     },
                     listeners: {
-                        beforequery: function (me) {
+                        beforequery: function(me) {
                             let inquiryArchiveMode = this.up('grid').upVM().get('inquiryArchiveMode');
                             let store = this.getStore();
                             store.clearFilter();
@@ -1032,13 +1002,13 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             const statuses = [1, 2, 3];
                             if (inquiryArchiveMode) {
                                 store.filter({
-                                    filterFn: function (rec) {
+                                    filterFn: function(rec) {
                                         return archiveStatuses.includes(rec.get('id'));
                                     },
                                 });
                             } else {
                                 store.filter({
-                                    filterFn: function (rec) {
+                                    filterFn: function(rec) {
                                         return statuses.includes(rec.get('id'));
                                     },
                                 });
@@ -1048,7 +1018,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     // any Ext.form.field.Text configs accepted
                 },
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (value) {
                     return (
                         '<div class="a-status-badge a-status-md status-' +
@@ -1061,7 +1031,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     return '';
                 }
             },
-            exportRenderer: function (value, record) {
+            exportRenderer: function(value, record) {
                 if (value) {
                     return (
                         '<div class="a-status-badge a-status-md status-' +
@@ -1110,12 +1080,12 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                         element: 'element',
                         delegate: 'a.person_details',
                         fn: function fn(el) {
-                            var user = this.component.getRecord().get('assignee');
+                            const user = this.component.getRecord().get('assignee');
                             let tipExist = Ext.getCmp('createdByTool');
                             if (tipExist) {
                                 tipExist.destroy();
                             }
-                            var tooltip_el = Ext.create('Abraxa.view.common.tooltips.PublicPersonToolTip', {
+                            Ext.create('Abraxa.view.common.tooltips.PublicPersonToolTip', {
                                 target: el.target,
                                 id: 'createdByTool',
                                 viewModel: {
@@ -1130,7 +1100,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 },
             },
             grouper: {
-                groupFn: function (record) {
+                groupFn: function(record) {
                     let type = record.get('assigned_type');
                     if (type) {
                         var first_name = record.get('assigned_to_first_name');
@@ -1141,14 +1111,14 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     }
                 },
             },
-            renderer: function (val, record) {
+            renderer: function(val, record) {
                 if (val) {
                     if (record.get('assignee')) {
                         var assigned_to = record.get('assignee').first_name[0] + '.' + record.get('assignee').last_name,
                             user_img = record.get('assignee').profile_image
                                 ? '<img height="30" class="a_grid_action" src="' +
-                                  record.get('assignee').profile_image +
-                                  '"/>'
+                                record.get('assignee').profile_image +
+                                '"/>'
                                 : '<i class="md-icon-outlined a_grid_action">person</i>';
                         return (
                             '<a class="a-person a-icon-round a_grid_action person_details" href="javascript:void(0)">' +
@@ -1185,10 +1155,6 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     placeholder: 'dd/mm/yy',
                     // any Ext.form.field.Text configs accepted
                 },
-                // serializer: function (value) {
-
-                //     return;
-                // }
             },
             cell: {
                 cls: 'expand a-cell-date',
@@ -1220,7 +1186,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                     hidden: true,
                     ui: 'tool-md',
                     right: 4,
-                    handler: function () {
+                    handler: function() {
                         mixpanel.track('Customize button active tab');
                         this.up('grid').getPlugin('gridviewoptions').showViewOptions();
                     },
@@ -1281,7 +1247,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                             dismissDelay: 0,
                             closeAction: 'destroy',
                         },
-                        handler: function () {
+                        handler: function() {
                             let record = this.upVM().get('record');
                             Ext.getCmp('main-viewport')
                                 .getController()
@@ -1295,10 +1261,10 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
         },
     ],
     listeners: {
-        childtap: function (grid, location) {
+        childtap: function(grid, location) {
             if (location.event.target.classList.contains('a_grid_action')) return false;
         },
-        childdoubletap: function (grid, location, eOpts) {
+        childdoubletap: function(grid, location, eOpts) {
             Ext.getCmp('main-viewport').setMasked({
                 xtype: 'viewport.mask',
             });
@@ -1315,8 +1281,8 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 grid.deselectAll();
             }
         },
-        childmouseenter: function (item, location) {
-            if (location.column.getDataIndex() == 'cargoes') {
+        childmouseenter: function(item, location) {
+            if (location.column.getDataIndex() === 'cargoes') {
                 let label_str = '';
                 let cargoes = [];
                 if (location.record.cargoes()) {
@@ -1324,7 +1290,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                 }
                 let selected = Ext.getCmp(location.cell.getId());
                 if (cargoes && cargoes.length > 1) {
-                    cargoes.forEach(function (cargo) {
+                    cargoes.forEach(function(cargo) {
                         if (cargo) {
                             let str = '';
                             if (cargo.get('function')) {
@@ -1381,7 +1347,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryAgentActiveGrid', {
                         showOnTap: true,
                         title: 'Cargoes',
                         listeners: {
-                            beforeshow: function () {
+                            beforeshow: function() {
                                 this.setHtml(label_str);
                             },
                         },

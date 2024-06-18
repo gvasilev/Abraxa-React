@@ -1,4 +1,5 @@
-import '../../model/role/Role.jsx';
+import '../../model/role/Role';
+
 Ext.define('Abraxa.store.roles.Roles', {
     extend: 'Ext.data.Store',
     alias: 'store.roles',

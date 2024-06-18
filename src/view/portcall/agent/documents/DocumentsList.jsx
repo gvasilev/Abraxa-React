@@ -1,6 +1,8 @@
-import './DocumentsEditButton.jsx';
+import './DocumentsEditButton';
 import '../../../adocs/CreateDocumentPopup';
 import '../../../approval/SendForApprovalDialog';
+import '../../../../core/override/Abraxa.Gauge';
+
 Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
     extend: 'Ext.dataview.List',
     xtype: 'documents.list',
@@ -20,9 +22,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
         layout: {
             type: 'vbox',
         },
-        // bind: {
-        //     hidden: '{nonEditable && selectedSection.selection.is_shared ? true : false}'
-        // },
         centered: true,
         items: [
             {
@@ -115,15 +114,14 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             if (record) {
                                 let file_id = record.get('id'),
                                     member = this.get('member'),
-                                    currentUser = this.get('currentUser');
-
-                                let record_exists = store.queryBy(function (rec, id) {
-                                    return (
-                                        rec.get('assigned_company_id') == currentUser.get('current_company_id') &&
-                                        rec.get('approvable_id') == file_id &&
-                                        rec.get('status') == 'pending'
-                                    );
-                                }).items;
+                                    currentUser = this.get('currentUser'),
+                                    record_exists = store.queryBy(function (rec, id) {
+                                        return (
+                                            rec.get('assigned_company_id') == currentUser.get('current_company_id') &&
+                                            rec.get('approvable_id') == file_id &&
+                                            rec.get('status') == 'pending'
+                                        );
+                                    }).items;
                                 if (record_exists.length) return record_exists[0];
 
                                 return false;
@@ -461,7 +459,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                 subObject: 'documents',
                 testId: 'documentListCheckbox',
                 bind: {
-                    // hidden: '{nonEditable || selectedSection.selection.is_default}',
                     cls: '{nonEditable ? "file-checkbox" : "file-checkbox"}',
                     objectPermission: '{objectPermissions}',
                 },
@@ -512,8 +509,8 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                         vm = cmp.upVM(),
                                         selectedFile = vm.get('record'),
                                         documentForSelectId = selectedFile.get('id'),
-                                        needsPanel = false,
                                         documents = vm.get('filteredDocuments');
+
                                     let dialog = Ext.create('Abraxa.view.documents.DocumentDialog', {
                                         viewModel: {
                                             data: {
@@ -536,10 +533,9 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                         return record;
                                                     },
                                                 },
-                                                loadDodument: {
+                                                loadDocument: {
                                                     bind: {
                                                         bindTo: '{selectedDocument.id}',
-                                                        // deep: true
                                                     },
                                                     get: function (id) {
                                                         let record = this.get('selectedDocument');
@@ -548,32 +544,12 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                                 true
                                                             );
                                                             var me = this;
-                                                            let file = record,
-                                                                pdf = record.get('pdf') ? true : false;
 
                                                             me.getView()
                                                                 .getController()
                                                                 .loadDocument(
                                                                     Env.ApiEndpoint + 'get_pdf/' + record.get('id')
                                                                 );
-
-                                                            // if (!pdf) {
-                                                            //     record.loadPDF2().then(function (blob) {
-                                                            //         let test = {
-                                                            //             blob: blob,
-                                                            //             name: record.get('name') + '.' + file.get('extension')
-                                                            //         }
-                                                            //         me.getView().getController().loadDocument(test);
-                                                            //     });
-                                                            // } else {
-                                                            //
-                                                            //     let blob = record.get('pdf');
-                                                            //     let test = {
-                                                            //         blob: blob,
-                                                            //         name: record.get('name') + '.' + file.get('extension')
-                                                            //     }
-                                                            //     me.getView().getController().loadDocument(test);
-                                                            // }
                                                         }
                                                     },
                                                 },
@@ -609,45 +585,34 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             align: 'center',
                         },
                         items: [
-                            // {
-                            //     xtype: 'gauge',
-                            //     cls: 'a-gauge-fix',
-                            //     height: 53,
-                            //     width: 53,
-                            //     minValue: 0,
-                            //     maxValue: 3,
-                            //     value: 0,
-                            //     bind: {
-                            //         maxValue: '{recordApprovals.total}',
-                            //         value: '{recordApprovals.approved}',
-                            //         valueStyle: '{recordApprovals.valueStyle}',
-                            //     },
-                            //     textTpl: [
-                            //         '<div class="transformer-guage-text" class="fw-b">',
-                            //         '<div class="fs-11 fw-b">',
-                            //         '{value}/{maxValue}',
-                            //         '</div>',
-                            //         '</div>',
-                            //     ],
-                            //     trackStart: 270,
-                            //     trackLength: 360,
-                            //     trackStyle: {
-                            //         // stroke: '#ffc107',
-                            //         strokeWidth: 0,
-                            //         outerRadius: '100%',
-                            //         innerRadius: '100% - 2',
-                            //         // round: true,
-
-                            //         // fill: [{
-                            //         //     offset: 1,
-                            //         //     color: 'darkblue',
-                            //         //     opacity: 0.1
-                            //         // }, {
-                            //         //     offset: 1,
-                            //         //     color: 'lightblue'
-                            //         // }]
-                            //     },
-                            // },
+                            {
+                                xtype: 'gauge',
+                                cls: 'a-gauge-fix',
+                                height: 53,
+                                width: 53,
+                                minValue: 0,
+                                maxValue: 3,
+                                value: 0,
+                                bind: {
+                                    maxValue: '{recordApprovals.total}',
+                                    value: '{recordApprovals.approved}',
+                                    valueStyle: '{recordApprovals.valueStyle}',
+                                },
+                                textTpl: [
+                                    '<div class="transformer-guage-text" class="fw-b">',
+                                    '<div class="fs-11 fw-b">',
+                                    '{value}/{maxValue}',
+                                    '</div>',
+                                    '</div>',
+                                ],
+                                trackStart: 270,
+                                trackLength: 360,
+                                trackStyle: {
+                                    strokeWidth: 0,
+                                    outerRadius: '100%',
+                                    innerRadius: '100% - 2',
+                                },
+                            },
                             {
                                 xtype: 'div',
                                 hidden: true,
@@ -861,17 +826,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                 },
             },
         ],
-        // listeners: {
-        //     click: {
-        //         element: "element",
-        //         delegate: ".no_show",
-        //         fn: function fn(e, el, fn) {
-        //             e.browserEvent.preventDefault();
-        //             e.preventDefault();
-        //             e.browserEven.stopPropagation();
-        //         }
-        //     }
-        // }
     },
     items: [
         {
@@ -893,12 +847,10 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                     ui: 'action small',
                     slug: 'portcallDocuments',
                     testId: 'documentListAddDocumentButton',
-                    // subObject: 'documents',
                     hidden: true,
                     bind: {
                         hidden: '{nonEditable ? true : false}',
                         permission: '{userPermissions}',
-                        // objectPermission: '{objectPermissions}'
                     },
                     height: 30,
                     menu: {
@@ -907,6 +859,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                         items: [
                             {
                                 text: 'Operational',
+                                testId: 'documentListAddOperationalMenuButton',
                                 cls: 'a-menu-sof',
                                 iconCls: 'md-icon-timer md-icon-outlined',
                                 handler: function () {
@@ -924,6 +877,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             },
                             {
                                 text: 'Cargo',
+                                testId: 'documentListAddCargoMenuButton',
                                 cls: 'a-menu-cargo',
                                 iconCls: 'icon-cargo',
                                 bind: {
@@ -981,6 +935,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             },
                             {
                                 text: 'Disbursement',
+                                testId: 'documentListAddDisbursementMenuButton',
                                 cls: 'a-menu-financial',
                                 iconCls: 'md-icon-attach-money',
                                 handler: function () {
@@ -1032,24 +987,30 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             },
                             {
                                 text: 'Invoice',
+                                testId: 'documentListAddInvoiceMenuButton',
                                 cls: 'a-menu-invoice',
                                 iconCls: 'md-icon md-icon-file-copy',
-                                handler: function () {
+                                handler: function (btn) {
+                                    const documentsVM = btn.upVM();
+                                    const expensesStore = documentsVM.get('expenses');
+
+                                    if (AbraxaFunctions.checkIfExpensesPresent(expensesStore) === false) return false;
+
                                     let docForm = Ext.create('Abraxa.view.adocs.InvoiceDocumentForm', {
                                         viewModel: {
                                             data: {
-                                                object_record: this.upVM().get('object_record'),
-                                                organizations: this.upVM().get('organizations'),
-                                                documentTypes: this.upVM().get('documentTypes'),
+                                                object_record: documentsVM.get('object_record'),
+                                                organizations: documentsVM.get('organizations'),
+                                                documentTypes: documentsVM.get('documentTypes'),
                                                 document_data: {},
-                                                subObjects: this.upVM().get('subObjects'),
+                                                subObjects: documentsVM.get('subObjects'),
                                                 fromSuply: false,
-                                                currentUser: this.upVM().get('currentUser'),
-                                                expenses: this.upVM().get('expenses'),
-                                                recieptExpenses: this.upVM().get('recieptExpenses'),
-                                                accounts: this.upVM().get('accounts'),
-                                                vouchers: this.upVM().get('vouchers'),
-                                                bankAccounts: this.upVM().get('bankAccounts'),
+                                                currentUser: documentsVM.get('currentUser'),
+                                                expenses: expensesStore,
+                                                recieptExpenses: documentsVM.get('recieptExpenses'),
+                                                accounts: documentsVM.get('accounts'),
+                                                vouchers: documentsVM.get('vouchers'),
+                                                bankAccounts: documentsVM.get('bankAccounts'),
                                             },
                                             formulas: {
                                                 expenseItems: {
@@ -1058,40 +1019,40 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                         deep: true,
                                                     },
                                                     get: function (billingParty) {
-                                                        if (billingParty) {
-                                                            let expenses = this.get('expenses'),
-                                                                expense = this.get('expense'),
-                                                                data = [];
-                                                            if (expense) {
-                                                                expenses.each(function (item) {
-                                                                    if (item.get('id') === expense.get('id')) {
-                                                                        data.push(item);
-                                                                    }
-                                                                });
-                                                            } else {
-                                                                expenses.each(function (item) {
-                                                                    if (
-                                                                        item.get('default_expense_item_id') &&
-                                                                        item.get('account_id') ===
-                                                                            billingParty.get('id')
-                                                                    ) {
-                                                                        data.push(item);
-                                                                    }
-                                                                });
-                                                            }
-                                                            return data;
+                                                        if (!billingParty) return [];
+
+                                                        const docFormVM = this;
+                                                        const expenses = docFormVM.get('expenses'),
+                                                            expense = docFormVM.get('expense'),
+                                                            data = [];
+
+                                                        if (expense) {
+                                                            expenses.each(function (item) {
+                                                                if (item.get('id') === expense.get('id')) {
+                                                                    data.push(item);
+                                                                }
+                                                            });
+                                                        } else {
+                                                            expenses.each(function (item) {
+                                                                if (
+                                                                    item.get('default_expense_item_id') &&
+                                                                    item.get('account_id') === billingParty.get('id')
+                                                                ) {
+                                                                    data.push(item);
+                                                                }
+                                                            });
                                                         }
+                                                        return data;
                                                     },
                                                 },
                                             },
                                         },
                                     });
 
-                                    let selectedType = this.upVM()
-                                        .get('documentTypes')
-                                        .queryBy(function (rec, id) {
-                                            return rec.get('slug') == 'creditNote' || rec.get('slug') == 'invoice';
-                                        }).items;
+                                    let selectedType = documentsVM.get('documentTypes').queryBy((rec, id) => {
+                                        return rec.get('slug') === 'creditNote' || rec.get('slug') === 'invoice';
+                                    }).items;
+
                                     if (selectedType.length) {
                                         Ext.Array.sort(selectedType, function (a, b) {
                                             return a.get('id') > b.get('id') ? 1 : -1;
@@ -1101,30 +1062,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                     docForm.show();
                                 },
                             },
-
-                            // {
-                            //     separator: true,
-                            //     text: 'Upload',
-                            //     xtype: 'filebutton',
-                            //     cls: 'a-menu-bunkers',
-                            //     iconCls: "md-icon-cloud-upload md-icon-outlined",
-                            //     listeners: {
-                            //         change: function (me, newValue) {
-                            //             if (newValue) {
-                            //                 var files = this.getFiles(),
-                            //                     uploadController = me.up('documents\\.main').getController(),
-                            //                     len = files.length;
-
-                            //                 for (var i = 0; i < len; i++) {
-                            //                     files.item(i).split = null;
-                            //                 }
-                            //                 uploadController.upload(files, this);
-                            //             }
-                            //             document.querySelector("input[type='file']").value = "";
-                            //             me.setValue(null);
-                            //         }
-                            //     }
-                            // }
                         ],
                     },
                     handler: function () {
@@ -1348,7 +1285,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                         text: 'Cancel',
                                                         margin: '0 8 0 0',
                                                         handler: function () {
-                                                            const record = file.upVM().get('record');
                                                             record.reject();
                                                             this.up('dialog').destroy();
                                                         },
@@ -1418,75 +1354,30 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                         objectPermission: '{objectPermissions}',
                                         permission: '{userPermissions}',
                                     },
-                                    handler: function (me) {
-                                        let files = this.upVM().get('selectedFiles'),
-                                            vouchers = this.upVM().get('vouchers'),
-                                            selection = this.upVM().get('selectedSection.selection');
-
+                                    handler: function (deleteBtn) {
                                         Ext.Msg.confirm(
                                             'Delete',
-                                            'Are you sure you want to delete the selected document/s?',
+                                            'Are you sure you want to delete the selected documents?',
                                             function (answer) {
-                                                if (answer == 'yes') {
-                                                    let store =
-                                                            Ext.ComponentQuery.query('documents\\.list')[0].getStore(),
-                                                        documentStore = this.upVM().get('documents'),
-                                                        folder = this.upVM().get('selectedSection.selection'),
-                                                        records = [];
+                                                if (answer !== 'yes') return;
+                                                const documentsViewModel = deleteBtn.upVM();
+                                                const checkboxes = documentsViewModel.get('selectedFiles');
+                                                const docRecords = [];
 
-                                                    store.getProxy().setExtraParams({
-                                                        object_id: selection.get('object_id'),
-                                                        object_meta_id: selection.get('object_meta_id'),
-                                                        folder_id: selection.get('id'),
-                                                    });
-
-                                                    Ext.each(files, function (file) {
-                                                        let doc = file.upVM().get('record');
-                                                        records.push(doc);
-                                                        file.setChecked(false);
-                                                    });
-
-                                                    if (records.length) {
-                                                        let vouchersForDelete;
-                                                        records.forEach(function (doc) {
-                                                            let folderFile = doc.getFolderFile();
-                                                            vouchersForDelete = vouchers.queryRecords(
-                                                                'document_id',
-                                                                doc.get('id')
-                                                            );
-                                                            folder.documents().remove(folderFile);
-                                                        });
-                                                        // documentStore.each(function (record, index) {
-                                                        //     if (item.data.id == records[0].getDocument().get('id')) {
-                                                        //         object.splice(index, 1);
-                                                        //     }
-                                                        // });
-
-                                                        store.remove(records);
-
-                                                        store.sync({
-                                                            success: function (batch, opt) {
-                                                                Ext.toast('Document deleted', 1500);
-                                                                me.upVM().set('selectedFiles', null);
-                                                                Ext.ComponentQuery.query(
-                                                                    window.CurrentUser.get('company').type +
-                                                                        'portcall\\.main'
-                                                                )[0]
-                                                                    .getController()
-                                                                    .deleteVouchers(vouchersForDelete);
-                                                                me.upVM().set('refreshFolderCount', new Date());
-                                                            },
-                                                            failure: function (batch, operations) {
-                                                                Ext.Msg.alert(
-                                                                    'Something went wrong',
-                                                                    'Could not delete document.'
-                                                                );
-                                                            },
-                                                        });
-                                                    }
-                                                }
+                                                if (!checkboxes || !checkboxes.length) return;
+                                                checkboxes.forEach(function (checkbox) {
+                                                    checkbox.setChecked(false);
+                                                    const docRecord = checkbox.upVM().get('record');
+                                                    docRecords.push(docRecord);
+                                                });
+                                                const documentsController = deleteBtn.lookupController();
+                                                documentsController.deleteSelectedDocuments(
+                                                    docRecords,
+                                                    documentsViewModel
+                                                );
                                             },
-                                            this,
+                                            // The scope (this reference) in which the callback is executed.
+                                            deleteBtn,
                                             [
                                                 {
                                                     xtype: 'button',
@@ -1549,20 +1440,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                 mixpanel.track('Request approval button clicked (Disbursement)');
                             },
                         },
-                        // {
-                        //     xtype: 'button',
-                        //     margin: '0 0 0 8',
-                        //     ui: 'tool-text-sm',
-                        //     iconCls: 'md-icon-outlined md-icon-folder',
-                        //     text: 'Change folder',
-                        // },
-                        // {
-                        //     xtype: 'button',
-                        //     margin: '0 0 0 8',
-                        //     ui: 'tool-text-sm',
-                        //     iconCls: 'md-icon-outlined md-icon-save-alt',
-                        //     text: 'Download',
-                        // }
                     ],
                 },
             ],

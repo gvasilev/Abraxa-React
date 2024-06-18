@@ -1,4 +1,5 @@
-import './AgentInfo.jsx';
+import './AgentInfo';
+
 Ext.define('Abraxa.view.directory.agents.AgentPublicProfile', {
     extend: 'Ext.Container',
     xtype: 'AgentPublicProfile',
@@ -31,7 +32,7 @@ Ext.define('Abraxa.view.directory.agents.AgentPublicProfile', {
                             xtype: 'tool',
                             iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                             ui: 'tool-lg',
-                            handler: function () {
+                            handler: function() {
                                 Ext.getCmp('main-viewport').getController().redirectTo('directory');
                             },
                         },

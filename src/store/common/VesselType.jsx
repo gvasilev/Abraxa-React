@@ -1,5 +1,5 @@
-// table: vessel_type
-import '../../model/common/VesselType.jsx';
+import '../../model/common/VesselType';
+
 Ext.define('Abraxa.store.common.VesselType', {
     extend: 'Ext.data.Store',
     alias: 'store.vesselTypeStore',

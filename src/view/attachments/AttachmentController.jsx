@@ -1,4 +1,3 @@
-
 Ext.define('Abraxa.view.attachments.AttachmentController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.attachment.controller',
@@ -30,7 +29,6 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
         if (me.viewerHasLoaded) {
             let instance = WebViewer.getInstance();
             instance.UI.loadDocument(data, {
-                withCredentials: true,
                 customHeaders: {
                     Authorization: 'Basic YWxhZGRpbjpvcGVuc2VzYW1l',
                 },
@@ -49,9 +47,9 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
             username = Ext.getCmp('main-viewport').upVM().get('currentUser.full_name');
 
         if (this.viewerHasLoaded) return;
-        WebViewer(
+        WebViewer.default(
             {
-                path: 'node_modules/@pdftron/webviewer/public',
+                path: '/public/webviewer/',
                 licenseKey:
                     'Abraxa Group Ltd (abraxa.com):OEM:Abraxa::B+:AMS(20240616):61DCB4C3076A84F3FB313BC9B263192E4E6F4FA156DD73040486F424E718C634D2B6F5C7',
                 css: '/src/css/webviewer.css',
@@ -75,15 +73,9 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
                     'viewControlsButton',
                 ],
                 annotationUser: username,
-                withCredentials: true,
                 fullAPI: true,
-                // isReadOnly: true,
                 disableLogs: true,
-                // disabledElements: ['viewControlsButton', 'themeChangeButton', 'menuButton', 'moreButton', 'leftPanelButton', 'panToolButton', 'selectToolButton'],
-                // disableFlattenedAnnotations: true,
-                // ui: 'beta'
-                // disableStreaming: true,
-                // enableAnnotations: false
+                useDownloader: false,
             },
             document.getElementById('pdf-attachment-viewer')
         ).then((instance) => {
@@ -100,9 +92,7 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
             // instance.setFitMode(instance.FitMode.FitWidth);
 
             if (me.documentForLoad) {
-                instance.UI.loadDocument(me.documentForLoad, {
-                    withCredentials: true,
-                });
+                instance.UI.loadDocument(me.documentForLoad, {});
             }
 
             const tool = documentViewer.getTool('AnnotationCreateRubberStamp');
@@ -576,9 +566,9 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
 
     clearFileUpload(id) {
         // get the file upload element
-        let fileField = document.getElementById(id),
+        fileField = document.getElementById(id);
         // get the file upload parent element
-        parentNod = fileField.parentNode,
+        parentNod = fileField.parentNode;
         // create new element
         tmpForm = document.createElement('form');
         parentNod.replaceChild(tmpForm, fileField);

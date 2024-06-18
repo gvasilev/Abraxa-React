@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.cdb.Compliance', {
     extend: 'Ext.data.Model',
     fields: [

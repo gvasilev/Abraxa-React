@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.cdb.Type', {
     extend: 'Ext.data.Model',
     idProperty: 'org_t_id',

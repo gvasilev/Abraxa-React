@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.cdb.Contact', {
     extend: 'Ext.data.Model',
     name: 'contact',

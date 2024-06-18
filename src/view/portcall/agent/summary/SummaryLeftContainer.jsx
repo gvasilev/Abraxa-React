@@ -1,4 +1,5 @@
-import './SummaryCargoCard.jsx';
+import './SummaryCargoCard';
+
 Ext.define('Abraxa.view.portcall.summary.SummaryLeftContainer', {
     extend: 'Ext.Container',
     xtype: 'portcall.summary.left.container',

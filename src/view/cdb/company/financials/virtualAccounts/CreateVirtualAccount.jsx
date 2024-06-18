@@ -1,4 +1,5 @@
 import '../../../../../core/components/AbraxaNumberfield';
+
 Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
     extend: 'Ext.Dialog',
     xtype: 'virtual.accounts.create',
@@ -69,7 +70,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
                                             },
                                             required: true,
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.focus();
                                                 },
                                             },
@@ -138,7 +139,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
             text: 'Cancel',
             testId: 'virtAccountsCreateCancelBtn',
             margin: '0 8 0 0',
-            handler: function () {
+            handler: function() {
                 let record = this.upVM().get('virtualAccount');
                 if (record) {
                     record.reject();
@@ -153,20 +154,19 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
             enableToggle: true,
             testId: 'virtAccountsCreateSaveBtn',
             ui: 'action loading',
-            handler: function (me) {
+            handler: function(me) {
                 let vm = me.upVM(),
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     editMode = vm.get('editMode'),
                     virtualAccounts = vm.get('virtualAccounts'),
-                    virtualAccount = vm.get('virtualAccount'),
-                    form = dialog.down('formpanel');
-
+                    virtualAccount = vm.get('virtualAccount');
+                form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     if (editMode) {
                         virtualAccounts.sync({
-                            success: function () {
+                            success: function() {
                                 Ext.toast('Record updated', 1000);
                                 dialog.destroy();
                             },
@@ -176,7 +176,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
                             org_id: company.get('org_id'),
                         });
                         virtualAccount.save({
-                            success: function (rec) {
+                            success: function(rec) {
                                 virtualAccounts.add(rec);
                                 virtualAccounts.commitChanges();
                                 Ext.ComponentQuery.query('[xtype=company]')[0].getVM().set('newUpdate', new Date());

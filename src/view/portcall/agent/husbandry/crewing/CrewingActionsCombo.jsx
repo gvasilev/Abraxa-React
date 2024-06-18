@@ -1,4 +1,5 @@
-import '../../../../../store/portcalls/CrewingActions.jsx';
+import '../../../../../store/portcalls/CrewingActions';
+
 Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingActionsCombo', {
     extend: 'Ext.field.Select',
     xtype: 'husbandry.crewing.actions.combo',

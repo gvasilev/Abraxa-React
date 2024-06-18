@@ -116,6 +116,35 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountTransactions',
                 gridfilterbar: {
                     hidden: true,
                 },
+                pagingtoolbar: {
+                    classCls: 'a-bt-100 a-wps-paging-toolbar',
+                    pageSize: 25,
+                    toolbar: {
+                        bordered: true,
+                        nextButton: {
+                            ui: 'tool-sm round',
+                        },
+                        prevButton: {
+                            ui: 'tool-sm round',
+                        },
+                        listeners: {
+                            initialize: function () {
+                                this.add({
+                                    xtype: 'div',
+                                    margin: '0 16',
+                                    cls: 'sm-title',
+                                    bind: {
+                                        html: '<strong>{totalVirtualPaymentsRecords}</strong> records',
+                                    },
+                                });
+                                this.add({
+                                    xtype: 'div',
+                                    width: '60%',
+                                });
+                            },
+                        },
+                    },
+                },
             },
             selectable: {
                 mode: 'single',
@@ -145,27 +174,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountTransactions',
             },
             itemConfig: {
                 height: 56,
-                // userCls: 'gridrow-height-56',
                 viewModel: {},
-                // bind: {
-                //     cls: "a-detailed-item {styleRow}"
-                // },
-                // viewModel: {
-                //     formulas: {
-                //         styleRow: {
-                //             bind: {
-                //                 bindTo: "{record}",
-                //                 deep: true
-                //             },
-                //             get: function (record) {
-                //
-                //                 if (record && record.get("status_data")) {
-                //                     return record.get("status_data").string;
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }
             },
             columns: [
                 {

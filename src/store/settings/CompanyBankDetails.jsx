@@ -1,4 +1,5 @@
-import '../../model/settings/CompanyBankDetails.jsx';
+import '../../model/settings/CompanyBankDetails';
+
 Ext.define('Abraxa.store.settings.CompanyBankDetails', {
     extend: 'Ext.data.Store',
     alias: 'store.settingsCompanyBankDetails',

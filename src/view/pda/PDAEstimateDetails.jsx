@@ -24,7 +24,7 @@ Ext.define('Abraxa.view.pda.PDAEstimateDetails', {
                         click: {
                             element: 'element',
                             delegate: 'a.a-port-link',
-                            fn: function (el) {
+                            fn: function(el) {
                                 let portId = el.target.getAttribute('data-portid');
                                 if (portId) {
                                     Abraxa.getApplication()
@@ -55,19 +55,19 @@ Ext.define('Abraxa.view.pda.PDAEstimateDetails', {
                                 disabled: '{nonEditable}',
                             },
                             listeners: {
-                                select: function (me, selection) {
+                                select: function(me, selection) {
                                     if (selection) {
                                         let record = me.upVM().get('pda');
                                         record.set('berth_id', null);
                                     }
                                 },
-                                focusleave: function (me) {
+                                focusleave: function(me) {
                                     let inquiryOffer = me.upVM().get('pda'),
                                         object_record = me.upVM().get('object_record');
 
                                     if (inquiryOffer.dirty) {
                                         inquiryOffer.save({
-                                            success: function (record, operation) {
+                                            success: function(record, operation) {
                                                 Abraxa.utils.Functions.updateInquiry(object_record);
                                                 Ext.toast('Record updated');
                                             },
@@ -91,13 +91,13 @@ Ext.define('Abraxa.view.pda.PDAEstimateDetails', {
                                 disabled: '{nonEditable}',
                             },
                             listeners: {
-                                focusleave: function (me) {
+                                focusleave: function(me) {
                                     let inquiryOffer = me.upVM().get('pda'),
                                         object_record = me.upVM().get('object_record');
 
                                     if (inquiryOffer.dirty) {
                                         inquiryOffer.save({
-                                            success: function (record, operation) {
+                                            success: function(record, operation) {
                                                 Abraxa.utils.Functions.updateInquiry(object_record);
                                                 Ext.toast('Record updated');
                                             },
@@ -134,7 +134,7 @@ Ext.define('Abraxa.view.pda.PDAEstimateDetails', {
                                                         bindTo: '{record}',
                                                         deep: true,
                                                     },
-                                                    get: function (record) {
+                                                    get: function(record) {
                                                         if (record) {
                                                             let store = record.store;
                                                             return store.indexOf(record);

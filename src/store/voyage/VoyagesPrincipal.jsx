@@ -1,4 +1,5 @@
-import '../../model/voyage/VoyagePrincipal.jsx';
+import '../../model/voyage/VoyagePrincipal';
+
 Ext.define('Abraxa.store.voyage.VoyagesPrincipal', {
     extend: 'Ext.data.Store',
     alias: 'store.voyagesPrincipal',

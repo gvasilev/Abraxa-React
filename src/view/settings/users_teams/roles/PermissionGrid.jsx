@@ -398,590 +398,594 @@ Ext.define('Abraxa.view.settings.users_teams.roles.PermissionGrid', {
                 align: 'stretch',
             },
             flex: 1,
-            items: [
-                {
-                    xtype: 'tabbar',
-                    activeTab: 0,
-                    padding: '0 16',
-                    layout: {
-                        type: 'hbox',
-                        pack: 'start',
-                    },
-                    defaults: {
-                        ripple: false,
-                    },
+            plugins: {
+                lazygridrow: {
                     items: [
                         {
-                            text: 'Fields',
+                            xtype: 'tabbar',
+                            activeTab: 0,
+                            padding: '0 16',
+                            layout: {
+                                type: 'hbox',
+                                pack: 'start',
+                            },
+                            defaults: {
+                                ripple: false,
+                            },
+                            items: [
+                                {
+                                    text: 'Fields',
+                                },
+                                {
+                                    text: 'Buttons',
+                                },
+                            ],
+                            listeners: {
+                                activeTabchange: function (me, value) {
+                                    var activeTab = me.getActiveTab();
+                                    let mainContainerItems = me
+                                        .up('container')
+                                        .down('[cls~=inner_container]')
+                                        .getItems();
+                                    if (me.items.indexOf(activeTab) == 0) {
+                                        mainContainerItems.items[1].hide(null);
+                                        mainContainerItems.items[0].show(null);
+                                    } else if (me.items.indexOf(activeTab) == 1) {
+                                        mainContainerItems.items[0].hide(null);
+                                        mainContainerItems.items[1].show(null);
+                                    }
+                                },
+                            },
                         },
                         {
-                            text: 'Buttons',
-                        },
-                    ],
-                    listeners: {
-                        activeTabchange: function (me, value) {
-                            var activeTab = me.getActiveTab();
-                            let mainContainerItems = me
-                                .up('container')
-                                .down('[cls~=inner_container]')
-                                .getItems();
-                            if (me.items.indexOf(activeTab) == 0) {
-                                mainContainerItems.items[1].hide(null);
-                                mainContainerItems.items[0].show(null);
-                            } else if (me.items.indexOf(activeTab) == 1) {
-                                mainContainerItems.items[0].hide(null);
-                                mainContainerItems.items[1].show(null);
-                            }
-                        },
-                    },
-                },
-                {
-                    xtype: 'container',
-                    cls: 'inner_container',
-                    flex: 1,
-                    hideMode: 'offsets',
-                    items: [
-                        {
-                            xtype: 'grid',
-                            ui: 'bordered',
+                            xtype: 'container',
+                            cls: 'inner_container',
+                            flex: 1,
                             hideMode: 'offsets',
-                            cls: 'field_grid a-fields-grid',
-                            flex: 1,
-                            infinite: false,
-                            hideHeaders: true,
-                            bind: {
-                                store: '{fieldStore}',
-                            },
-                            itemConfig: {
-                                viewModel: {
-                                    formulas: {
-                                        subObjectRecord: {
-                                            bind: {
-                                                bindTo: '{parentRecord}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                return record;
-                                            },
-                                        },
-                                        updateParent: {
-                                            bind: {
-                                                bindTo: '{record}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                if (
-                                                    record &&
-                                                    this.get('rolePermissions') &&
-                                                    this.get('rolePermissions').count() > 0
-                                                ) {
-                                                    this.get('rolePermissions')
-                                                        .getData()
-                                                        .getAt(0)
-                                                        .set('updated', new Date());
-                                                }
-                                            },
-                                        },
-                                        checkedSubObjectViewRecord: {
-                                            bind: {
-                                                bindTo: '{permissions}',
-                                                deep: true,
-                                            },
-                                            get: function (store) {
-                                                let subObjectRecord = this.get('subObjectRecord'),
-                                                    company_id = this.get('rolesGrid.selection.company_id'),
-                                                    disabled = true;
-                                                if (subObjectRecord) {
-                                                    if (company_id) {
-                                                        let index = store.findBy(function (permRec) {
-                                                                return (
-                                                                    permRec.get('slug') ==
-                                                                    subObjectRecord.get('slug')
-                                                                );
-                                                            }),
-                                                            record = store.getAt(index);
-                                                        if (record && record.get('view')) {
-                                                            disabled = false;
-                                                        }
-                                                    }
-                                                }
-                                                return disabled;
-                                            },
-                                        },
-                                        checkedSubObjectEditRecord: {
-                                            bind: {
-                                                bindTo: '{permissions}',
-                                                deep: true,
-                                            },
-                                            get: function (store) {
-                                                let subObjectRecord = this.get('subObjectRecord'),
-                                                    company_id = this.get('rolesGrid.selection.company_id'),
-                                                    disabled = true;
-                                                if (subObjectRecord) {
-                                                    if (company_id) {
-                                                        let index = store.findBy(function (permRec) {
-                                                                return (
-                                                                    permRec.get('slug') ==
-                                                                    subObjectRecord.get('slug')
-                                                                );
-                                                            }),
-                                                            record = store.getAt(index);
-                                                        if (record && record.get('edit')) {
-                                                            disabled = false;
-                                                        }
-                                                    }
-                                                }
-                                                return disabled;
-                                            },
-                                        },
-                                        currentFieldRecord: {
-                                            bind: {
-                                                bindTo: '{record}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                return record;
-                                            },
-                                        },
-                                    },
-                                },
-                            },
-                            columns: [
+                            items: [
                                 {
-                                    dataIndex: 'name',
-                                    minWidth: 160,
+                                    xtype: 'grid',
+                                    ui: 'bordered',
+                                    hideMode: 'offsets',
+                                    cls: 'field_grid a-fields-grid',
                                     flex: 1,
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        encodeHtml: false,
+                                    infinite: false,
+                                    hideHeaders: true,
+                                    bind: {
+                                        store: '{fieldStore}',
                                     },
-                                },
-                                {
-                                    text: 'View',
-                                    align: 'center',
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        xtype: 'widgetcell',
-                                        widget: {
-                                            xtype: 'object.permissions.checkbox',
-                                            ui: 'large',
-                                            action: 'view',
-                                            bodyAlign: 'center',
-                                            bind: {
-                                                slug: '{currentFieldRecord.slug}',
-                                                disabled: '{checkedSubObjectViewRecord}',
-                                                toggleChecked: {
-                                                    bindTo: '{rolePermissions}',
-                                                    deep: true,
+                                    itemConfig: {
+                                        viewModel: {
+                                            formulas: {
+                                                subObjectRecord: {
+                                                    bind: {
+                                                        bindTo: '{parentRecord}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        return record;
+                                                    },
                                                 },
-                                            },
-                                            listeners: {
-                                                beforecheckchange: function (me, newValue) {
-                                                    let store = me.upVM().get('rolePermissions'),
-                                                        slug = me.getSlug(),
-                                                        index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        }),
-                                                        record = store.getAt(index);
-                                                    if (newValue) {
-                                                        //checked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('view', true);
-                                                        } else {
-                                                            //we dont have record so we need to add it
-                                                            let newRecord = {
-                                                                slug: slug,
-                                                                object_id: me
-                                                                    .upVM()
-                                                                    .get(
-                                                                        'objectTabs.activeTab.object_record.object_id'
-                                                                    ),
-                                                                role_id: me
-                                                                    .upVM()
-                                                                    .get('rolesGrid.selection.id'),
-                                                                sub_object_id: me
-                                                                    .upVM()
-                                                                    .get('currentFieldRecord').id,
-                                                                view: true,
-                                                            };
-                                                            store.add(newRecord);
+                                                updateParent: {
+                                                    bind: {
+                                                        bindTo: '{record}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        if (
+                                                            record &&
+                                                            this.get('rolePermissions') &&
+                                                            this.get('rolePermissions').count() > 0
+                                                        ) {
+                                                            this.get('rolePermissions')
+                                                                .getData()
+                                                                .getAt(0)
+                                                                .set('updated', new Date());
                                                         }
-                                                    } else {
-                                                        //unchecked
-                                                        let index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        });
-                                                        if (index >= 0) {
-                                                            let record = store.getAt(index);
-                                                            store.remove(record);
-                                                        }
-                                                    }
+                                                    },
                                                 },
-                                            },
-                                        },
-                                    },
-                                },
-                                {
-                                    text: 'Edit',
-                                    align: 'center',
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        xtype: 'widgetcell',
-                                        widget: {
-                                            xtype: 'object.permissions.checkbox',
-                                            ui: 'large',
-                                            action: 'edit',
-                                            bodyAlign: 'center',
-                                            bind: {
-                                                disabled: '{checkedSubObjectEditRecord}',
-                                                slug: '{currentFieldRecord.slug}',
-                                                toggleChecked: {
-                                                    bindTo: '{rolePermissions}',
-                                                    deep: true,
+                                                checkedSubObjectViewRecord: {
+                                                    bind: {
+                                                        bindTo: '{permissions}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (store) {
+                                                        let subObjectRecord = this.get('subObjectRecord'),
+                                                            company_id = this.get('rolesGrid.selection.company_id'),
+                                                            disabled = true;
+                                                        if (subObjectRecord) {
+                                                            if (company_id) {
+                                                                let index = store.findBy(function (permRec) {
+                                                                        return (
+                                                                            permRec.get('slug') ==
+                                                                            subObjectRecord.get('slug')
+                                                                        );
+                                                                    }),
+                                                                    record = store.getAt(index);
+                                                                if (record && record.get('view')) {
+                                                                    disabled = false;
+                                                                }
+                                                            }
+                                                        }
+                                                        return disabled;
+                                                    },
                                                 },
-                                            },
-                                            listeners: {
-                                                beforecheckchange: function (me, newValue) {
-                                                    let store = me.upVM().get('rolePermissions'),
-                                                        slug = me.getSlug(),
-                                                        index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        }),
-                                                        record = store.getAt(index);
-                                                    if (newValue) {
-                                                        //checked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('edit', true);
-                                                            record.set('view', true);
-                                                        } else {
-                                                            //we dont have record so we need to add it
-                                                            let newRecord = {
-                                                                slug: slug,
-                                                                object_id: me
-                                                                    .upVM()
-                                                                    .get(
-                                                                        'objectTabs.activeTab.object_record.object_id'
-                                                                    ),
-                                                                role_id: me
-                                                                    .upVM()
-                                                                    .get('rolesGrid.selection.id'),
-                                                                sub_object_id: me
-                                                                    .upVM()
-                                                                    .get('currentFieldRecord').id,
-                                                                edit: true,
-                                                                view: true,
-                                                            };
-                                                            store.add(newRecord);
+                                                checkedSubObjectEditRecord: {
+                                                    bind: {
+                                                        bindTo: '{permissions}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (store) {
+                                                        let subObjectRecord = this.get('subObjectRecord'),
+                                                            company_id = this.get('rolesGrid.selection.company_id'),
+                                                            disabled = true;
+                                                        if (subObjectRecord) {
+                                                            if (company_id) {
+                                                                let index = store.findBy(function (permRec) {
+                                                                        return (
+                                                                            permRec.get('slug') ==
+                                                                            subObjectRecord.get('slug')
+                                                                        );
+                                                                    }),
+                                                                    record = store.getAt(index);
+                                                                if (record && record.get('edit')) {
+                                                                    disabled = false;
+                                                                }
+                                                            }
                                                         }
-                                                    } else {
-                                                        //unchecked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('edit', false);
-                                                        }
-                                                    }
+                                                        return disabled;
+                                                    },
+                                                },
+                                                currentFieldRecord: {
+                                                    bind: {
+                                                        bindTo: '{record}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        return record;
+                                                    },
                                                 },
                                             },
                                         },
                                     },
+                                    columns: [
+                                        {
+                                            dataIndex: 'name',
+                                            minWidth: 160,
+                                            flex: 1,
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                encodeHtml: false,
+                                            },
+                                        },
+                                        {
+                                            text: 'View',
+                                            align: 'center',
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                xtype: 'widgetcell',
+                                                widget: {
+                                                    xtype: 'object.permissions.checkbox',
+                                                    ui: 'large',
+                                                    action: 'view',
+                                                    bodyAlign: 'center',
+                                                    bind: {
+                                                        slug: '{currentFieldRecord.slug}',
+                                                        disabled: '{checkedSubObjectViewRecord}',
+                                                        toggleChecked: {
+                                                            bindTo: '{rolePermissions}',
+                                                            deep: true,
+                                                        },
+                                                    },
+                                                    listeners: {
+                                                        beforecheckchange: function (me, newValue) {
+                                                            let store = me.upVM().get('rolePermissions'),
+                                                                slug = me.getSlug(),
+                                                                index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                }),
+                                                                record = store.getAt(index);
+                                                            if (newValue) {
+                                                                //checked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('view', true);
+                                                                } else {
+                                                                    //we dont have record so we need to add it
+                                                                    let newRecord = {
+                                                                        slug: slug,
+                                                                        object_id: me
+                                                                            .upVM()
+                                                                            .get(
+                                                                                'objectTabs.activeTab.object_record.object_id'
+                                                                            ),
+                                                                        role_id: me
+                                                                            .upVM()
+                                                                            .get('rolesGrid.selection.id'),
+                                                                        sub_object_id: me
+                                                                            .upVM()
+                                                                            .get('currentFieldRecord').id,
+                                                                        view: true,
+                                                                    };
+                                                                    store.add(newRecord);
+                                                                }
+                                                            } else {
+                                                                //unchecked
+                                                                let index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                });
+                                                                if (index >= 0) {
+                                                                    let record = store.getAt(index);
+                                                                    store.remove(record);
+                                                                }
+                                                            }
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                        },
+                                        {
+                                            text: 'Edit',
+                                            align: 'center',
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                xtype: 'widgetcell',
+                                                widget: {
+                                                    xtype: 'object.permissions.checkbox',
+                                                    ui: 'large',
+                                                    action: 'edit',
+                                                    bodyAlign: 'center',
+                                                    bind: {
+                                                        disabled: '{checkedSubObjectEditRecord}',
+                                                        slug: '{currentFieldRecord.slug}',
+                                                        toggleChecked: {
+                                                            bindTo: '{rolePermissions}',
+                                                            deep: true,
+                                                        },
+                                                    },
+                                                    listeners: {
+                                                        beforecheckchange: function (me, newValue) {
+                                                            let store = me.upVM().get('rolePermissions'),
+                                                                slug = me.getSlug(),
+                                                                index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                }),
+                                                                record = store.getAt(index);
+                                                            if (newValue) {
+                                                                //checked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('edit', true);
+                                                                    record.set('view', true);
+                                                                } else {
+                                                                    //we dont have record so we need to add it
+                                                                    let newRecord = {
+                                                                        slug: slug,
+                                                                        object_id: me
+                                                                            .upVM()
+                                                                            .get(
+                                                                                'objectTabs.activeTab.object_record.object_id'
+                                                                            ),
+                                                                        role_id: me
+                                                                            .upVM()
+                                                                            .get('rolesGrid.selection.id'),
+                                                                        sub_object_id: me
+                                                                            .upVM()
+                                                                            .get('currentFieldRecord').id,
+                                                                        edit: true,
+                                                                        view: true,
+                                                                    };
+                                                                    store.add(newRecord);
+                                                                }
+                                                            } else {
+                                                                //unchecked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('edit', false);
+                                                                }
+                                                            }
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                        },
+                                        {
+                                            width: 16,
+                                        },
+                                    ],
                                 },
                                 {
-                                    width: 16,
-                                },
-                            ],
-                        },
-                        {
-                            xtype: 'grid',
-                            ui: 'bordered',
-                            cls: 'a-fields-grid',
-                            flex: 1,
-                            hidden: true,
-                            infinite: false,
-                            hideHeaders: true,
-                            bind: {
-                                store: '{buttonStore}',
-                            },
-                            itemConfig: {
-                                viewModel: {
-                                    formulas: {
-                                        subObjectRecord: {
-                                            bind: {
-                                                bindTo: '{parentRecord}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                return record;
-                                            },
-                                        },
-                                        updateParent: {
-                                            bind: {
-                                                bindTo: '{record}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                if (
-                                                    record &&
-                                                    this.get('rolePermissions') &&
-                                                    this.get('rolePermissions').count() > 0
-                                                ) {
-                                                    this.get('rolePermissions')
-                                                        .getData()
-                                                        .getAt(0)
-                                                        .set('updated', new Date());
-                                                }
-                                            },
-                                        },
-                                        checkedSubObjectViewRecord: {
-                                            bind: {
-                                                bindTo: '{permissions}',
-                                                deep: true,
-                                            },
-                                            get: function (store) {
-                                                let subObjectRecord = this.get('subObjectRecord'),
-                                                    company_id = this.get('rolesGrid.selection.company_id'),
-                                                    disabled = true;
-                                                if (subObjectRecord) {
-                                                    if (company_id) {
-                                                        let index = store.findBy(function (permRec) {
-                                                                return (
-                                                                    permRec.get('slug') ==
-                                                                    subObjectRecord.get('slug')
-                                                                );
-                                                            }),
-                                                            record = store.getAt(index);
-                                                        if (record && record.get('view')) {
-                                                            disabled = false;
-                                                        }
-                                                    }
-                                                }
-                                                return disabled;
-                                            },
-                                        },
-                                        checkedSubObjectEditRecord: {
-                                            bind: {
-                                                bindTo: '{permissions}',
-                                                deep: true,
-                                            },
-                                            get: function (store) {
-                                                let subObjectRecord = this.get('subObjectRecord'),
-                                                    company_id = this.get('rolesGrid.selection.company_id'),
-                                                    disabled = true;
-                                                if (subObjectRecord) {
-                                                    if (company_id) {
-                                                        let index = store.findBy(function (permRec) {
-                                                                return (
-                                                                    permRec.get('slug') ==
-                                                                    subObjectRecord.get('slug')
-                                                                );
-                                                            }),
-                                                            record = store.getAt(index);
-                                                        if (record && record.get('edit')) {
-                                                            disabled = false;
-                                                        }
-                                                    }
-                                                }
-                                                return disabled;
-                                            },
-                                        },
-                                        currentButtonRecord: {
-                                            bind: {
-                                                bindTo: '{record}',
-                                                deep: true,
-                                            },
-                                            get: function (record) {
-                                                return record;
-                                            },
-                                        },
-                                    },
-                                },
-                            },
-                            columns: [
-                                {
-                                    dataIndex: 'name',
-                                    minWidth: 160,
+                                    xtype: 'grid',
+                                    ui: 'bordered',
+                                    cls: 'a-fields-grid',
                                     flex: 1,
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        encodeHtml: false,
+                                    hidden: true,
+                                    infinite: false,
+                                    hideHeaders: true,
+                                    bind: {
+                                        store: '{buttonStore}',
                                     },
-                                },
-                                {
-                                    text: 'View',
-                                    align: 'center',
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        xtype: 'widgetcell',
-                                        widget: {
-                                            xtype: 'object.permissions.checkbox',
-                                            ui: 'large',
-                                            action: 'view',
-                                            bodyAlign: 'center',
-                                            bind: {
-                                                slug: '{currentButtonRecord.slug}',
-                                                disabled: '{checkedSubObjectViewRecord}',
-                                                toggleChecked: {
-                                                    bindTo: '{rolePermissions}',
-                                                    deep: true,
+                                    itemConfig: {
+                                        viewModel: {
+                                            formulas: {
+                                                subObjectRecord: {
+                                                    bind: {
+                                                        bindTo: '{parentRecord}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        return record;
+                                                    },
                                                 },
-                                            },
-                                            listeners: {
-                                                beforecheckchange: function (me, newValue) {
-                                                    let store = me.upVM().get('rolePermissions'),
-                                                        slug = me.getSlug(),
-                                                        index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        }),
-                                                        record = store.getAt(index);
-                                                    if (newValue) {
-                                                        //checked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('view', true);
-                                                        } else {
-                                                            //we dont have record so we need to add it
-                                                            let newRecord = {
-                                                                slug: slug,
-                                                                object_id: me
-                                                                    .upVM()
-                                                                    .get(
-                                                                        'objectTabs.activeTab.object_record.object_id'
-                                                                    ),
-                                                                role_id: me
-                                                                    .upVM()
-                                                                    .get('rolesGrid.selection.id'),
-                                                                sub_object_id: me
-                                                                    .upVM()
-                                                                    .get('currentButtonRecord').id,
-                                                                view: true,
-                                                            };
-                                                            store.add(newRecord);
+                                                updateParent: {
+                                                    bind: {
+                                                        bindTo: '{record}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        if (
+                                                            record &&
+                                                            this.get('rolePermissions') &&
+                                                            this.get('rolePermissions').count() > 0
+                                                        ) {
+                                                            this.get('rolePermissions')
+                                                                .getData()
+                                                                .getAt(0)
+                                                                .set('updated', new Date());
                                                         }
-                                                    } else {
-                                                        //unchecked
-                                                        let index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        });
-                                                        if (index >= 0) {
-                                                            let record = store.getAt(index);
-                                                            store.remove(record);
+                                                    },
+                                                },
+                                                checkedSubObjectViewRecord: {
+                                                    bind: {
+                                                        bindTo: '{permissions}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (store) {
+                                                        let subObjectRecord = this.get('subObjectRecord'),
+                                                            company_id = this.get('rolesGrid.selection.company_id'),
+                                                            disabled = true;
+                                                        if (subObjectRecord) {
+                                                            if (company_id) {
+                                                                let index = store.findBy(function (permRec) {
+                                                                        return (
+                                                                            permRec.get('slug') ==
+                                                                            subObjectRecord.get('slug')
+                                                                        );
+                                                                    }),
+                                                                    record = store.getAt(index);
+                                                                if (record && record.get('view')) {
+                                                                    disabled = false;
+                                                                }
+                                                            }
                                                         }
-                                                    }
+                                                        return disabled;
+                                                    },
+                                                },
+                                                checkedSubObjectEditRecord: {
+                                                    bind: {
+                                                        bindTo: '{permissions}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (store) {
+                                                        let subObjectRecord = this.get('subObjectRecord'),
+                                                            company_id = this.get('rolesGrid.selection.company_id'),
+                                                            disabled = true;
+                                                        if (subObjectRecord) {
+                                                            if (company_id) {
+                                                                let index = store.findBy(function (permRec) {
+                                                                        return (
+                                                                            permRec.get('slug') ==
+                                                                            subObjectRecord.get('slug')
+                                                                        );
+                                                                    }),
+                                                                    record = store.getAt(index);
+                                                                if (record && record.get('edit')) {
+                                                                    disabled = false;
+                                                                }
+                                                            }
+                                                        }
+                                                        return disabled;
+                                                    },
+                                                },
+                                                currentButtonRecord: {
+                                                    bind: {
+                                                        bindTo: '{record}',
+                                                        deep: true,
+                                                    },
+                                                    get: function (record) {
+                                                        return record;
+                                                    },
                                                 },
                                             },
                                         },
                                     },
-                                },
-                                {
-                                    text: 'Edit',
-                                    align: 'center',
-                                    hidden: false,
-                                    menuDisabled: true,
-                                    resizable: false,
-                                    hideable: false,
-                                    sortable: false,
-                                    editable: false,
-                                    ignore: true,
-                                    cell: {
-                                        xtype: 'widgetcell',
-                                        widget: {
-                                            xtype: 'object.permissions.checkbox',
-                                            ui: 'large',
-                                            action: 'edit',
-                                            bodyAlign: 'center',
-                                            bind: {
-                                                slug: '{currentButtonRecord.slug}',
-                                                disabled: '{checkedSubObjectEditRecord}',
-                                                toggleChecked: {
-                                                    bindTo: '{rolePermissions}',
-                                                    deep: true,
-                                                },
+                                    columns: [
+                                        {
+                                            dataIndex: 'name',
+                                            minWidth: 160,
+                                            flex: 1,
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                encodeHtml: false,
                                             },
-                                            listeners: {
-                                                beforecheckchange: function (me, newValue) {
-                                                    let store = me.upVM().get('rolePermissions'),
-                                                        slug = me.getSlug(),
-                                                        index = store.findBy(function (rec) {
-                                                            return rec.get('slug') == slug;
-                                                        }),
-                                                        record = store.getAt(index);
-                                                    if (newValue) {
-                                                        //checked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('edit', true);
-                                                            record.set('view', true);
-                                                        } else {
-                                                            //we dont have record so we need to add it
-                                                            let newRecord = {
-                                                                slug: slug,
-                                                                object_id: me
-                                                                    .upVM()
-                                                                    .get(
-                                                                        'objectTabs.activeTab.object_record.object_id'
-                                                                    ),
-                                                                role_id: me
-                                                                    .upVM()
-                                                                    .get('rolesGrid.selection.id'),
-                                                                sub_object_id: me
-                                                                    .upVM()
-                                                                    .get('currentButtonRecord').id,
-                                                                edit: true,
-                                                                view: true,
-                                                            };
-                                                            store.add(newRecord);
-                                                        }
-                                                    } else {
-                                                        //unchecked
-                                                        //if we have record update it
-                                                        if (record) {
-                                                            record.set('edit', false);
-                                                        }
-                                                    }
+                                        },
+                                        {
+                                            text: 'View',
+                                            align: 'center',
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                xtype: 'widgetcell',
+                                                widget: {
+                                                    xtype: 'object.permissions.checkbox',
+                                                    ui: 'large',
+                                                    action: 'view',
+                                                    bodyAlign: 'center',
+                                                    bind: {
+                                                        slug: '{currentButtonRecord.slug}',
+                                                        disabled: '{checkedSubObjectViewRecord}',
+                                                        toggleChecked: {
+                                                            bindTo: '{rolePermissions}',
+                                                            deep: true,
+                                                        },
+                                                    },
+                                                    listeners: {
+                                                        beforecheckchange: function (me, newValue) {
+                                                            let store = me.upVM().get('rolePermissions'),
+                                                                slug = me.getSlug(),
+                                                                index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                }),
+                                                                record = store.getAt(index);
+                                                            if (newValue) {
+                                                                //checked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('view', true);
+                                                                } else {
+                                                                    //we dont have record so we need to add it
+                                                                    let newRecord = {
+                                                                        slug: slug,
+                                                                        object_id: me
+                                                                            .upVM()
+                                                                            .get(
+                                                                                'objectTabs.activeTab.object_record.object_id'
+                                                                            ),
+                                                                        role_id: me
+                                                                            .upVM()
+                                                                            .get('rolesGrid.selection.id'),
+                                                                        sub_object_id: me
+                                                                            .upVM()
+                                                                            .get('currentButtonRecord').id,
+                                                                        view: true,
+                                                                    };
+                                                                    store.add(newRecord);
+                                                                }
+                                                            } else {
+                                                                //unchecked
+                                                                let index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                });
+                                                                if (index >= 0) {
+                                                                    let record = store.getAt(index);
+                                                                    store.remove(record);
+                                                                }
+                                                            }
+                                                        },
+                                                    },
                                                 },
                                             },
                                         },
-                                    },
-                                },
-                                {
-                                    width: 16,
+                                        {
+                                            text: 'Edit',
+                                            align: 'center',
+                                            hidden: false,
+                                            menuDisabled: true,
+                                            resizable: false,
+                                            hideable: false,
+                                            sortable: false,
+                                            editable: false,
+                                            ignore: true,
+                                            cell: {
+                                                xtype: 'widgetcell',
+                                                widget: {
+                                                    xtype: 'object.permissions.checkbox',
+                                                    ui: 'large',
+                                                    action: 'edit',
+                                                    bodyAlign: 'center',
+                                                    bind: {
+                                                        slug: '{currentButtonRecord.slug}',
+                                                        disabled: '{checkedSubObjectEditRecord}',
+                                                        toggleChecked: {
+                                                            bindTo: '{rolePermissions}',
+                                                            deep: true,
+                                                        },
+                                                    },
+                                                    listeners: {
+                                                        beforecheckchange: function (me, newValue) {
+                                                            let store = me.upVM().get('rolePermissions'),
+                                                                slug = me.getSlug(),
+                                                                index = store.findBy(function (rec) {
+                                                                    return rec.get('slug') == slug;
+                                                                }),
+                                                                record = store.getAt(index);
+                                                            if (newValue) {
+                                                                //checked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('edit', true);
+                                                                    record.set('view', true);
+                                                                } else {
+                                                                    //we dont have record so we need to add it
+                                                                    let newRecord = {
+                                                                        slug: slug,
+                                                                        object_id: me
+                                                                            .upVM()
+                                                                            .get(
+                                                                                'objectTabs.activeTab.object_record.object_id'
+                                                                            ),
+                                                                        role_id: me
+                                                                            .upVM()
+                                                                            .get('rolesGrid.selection.id'),
+                                                                        sub_object_id: me
+                                                                            .upVM()
+                                                                            .get('currentButtonRecord').id,
+                                                                        edit: true,
+                                                                        view: true,
+                                                                    };
+                                                                    store.add(newRecord);
+                                                                }
+                                                            } else {
+                                                                //unchecked
+                                                                //if we have record update it
+                                                                if (record) {
+                                                                    record.set('edit', false);
+                                                                }
+                                                            }
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                        },
+                                        {
+                                            width: 16,
+                                        },
+                                    ],
                                 },
                             ],
                         },
                     ],
                 },
-            ],
+            },
         },
     },
     listeners: {

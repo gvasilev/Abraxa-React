@@ -1,7 +1,8 @@
-import './SuggestBerthCoordinates.jsx';
-import './SuggestBerthGeneral.jsx';
-import './SuggestBerthRestrictions.jsx';
-import '../../../../../../model/suggestions/Berth.jsx';
+import './SuggestBerthCoordinates';
+import './SuggestBerthGeneral';
+import './SuggestBerthRestrictions';
+import '../../../../../../model/suggestions/Berth';
+
 Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.SuggestBerthDialog', {
     extend: 'Ext.Dialog',
     xtype: 'SuggestBerthDialog',
@@ -15,37 +16,37 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
     title: false,
     controller: 'suggests.controller',
     keyMapEnabled: true,
-    keyMap: {
-        scope: 'this',
-        ESC: function () {
-            let dialog = Ext.ComponentQuery.query('[xtype=SuggestBerthDialog]')[0];
-            Ext.Msg.confirm(
-                'Confirmation',
-                'Would you like to discard all changes?',
-                function (answer) {
-                    if (answer == 'yes') {
-                        dialog.destroy();
-                    }
-                },
-                this,
-                [
-                    {
-                        xtype: 'button',
-                        itemId: 'no',
-                        margin: '0 8 0 0',
-                        text: 'Cancel',
-                    },
-                    {
-                        xtype: 'button',
-                        itemId: 'yes',
-                        enableToggle: true,
-                        ui: 'action loading',
-                        text: 'Discard',
-                    },
-                ]
-            );
-        },
-    },
+    //    keyMap: {
+    //        scope: 'this',
+    //        ESC: function () {
+    //            let dialog = Ext.ComponentQuery.query('[xtype=SuggestBerthDialog]')[0];
+    //            Ext.Msg.confirm(
+    //                'Confirmation',
+    //                'Would you like to discard all changes?',
+    //                function (answer) {
+    //                    if (answer == 'yes') {
+    //                        dialog.destroy();
+    //                    }
+    //                },
+    //                this,
+    //                [
+    //                    {
+    //                        xtype: 'button',
+    //                        itemId: 'no',
+    //                        margin: '0 8 0 0',
+    //                        text: 'Cancel',
+    //                    },
+    //                    {
+    //                        xtype: 'button',
+    //                        itemId: 'yes',
+    //                        enableToggle: true,
+    //                        ui: 'action loading',
+    //                        text: 'Discard',
+    //                    },
+    //                ]
+    //            );
+    //        },
+    //    },
     tools: {
         close: {
             tooltip: {
@@ -92,7 +93,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
             xtype: 'div',
             cls: 'a-dialog-card-title a-dialog-has-icon',
             bind: {
-                html: "Let's add a Berth",
+                html: '{addEditBertTitle}',
             },
         },
         {

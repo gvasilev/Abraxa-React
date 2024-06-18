@@ -1,5 +1,6 @@
 import './SuppliesController';
 import './SupplyEditMenu';
+
 Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'husbandry.supplies.grid',

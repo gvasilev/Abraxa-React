@@ -1,5 +1,5 @@
-import './AnnouncementController.jsx';
-import '../../core/components/AbraxaComponentDataview.jsx';
+import './AnnouncementController';
+import '../../core/components/AbraxaComponentDataview';
 
 Ext.define('Abraxa.view.main.DailyActions', {
     extend: 'Ext.Container',
@@ -29,7 +29,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                             xtype: 'div',
                             cls: 'a-collapsible-title',
                             bind: {
-                                html: "<div class='hbox'><div class='a-badge a-badge-announcement'><i class='material-icons-outlined'>campaign</i></div><div class='a-panel-title'>Announcements <em>({announcements.count})</em></div></div>",
+                                html: '<div class=\'hbox\'><div class=\'a-badge a-badge-announcement\'><i class=\'material-icons-outlined\'>campaign</i></div><div class=\'a-panel-title\'>Announcements <em>({announcements.count})</em></div></div>',
                             },
                         },
                         {
@@ -55,12 +55,10 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                         allowOver: false,
                                         closeAction: 'destroy',
                                     },
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         let store = this.upVM().get('announcements'),
                                             createAnnouncement = me.upVM().get('createAnnouncement'),
-                                            form = me.up('[xtype=daily\\.actions]').down('[itemId=announcementForm]'),
-                                            record;
-
+                                            form = me.up('[xtype=daily\\.actions]').down('[itemId=announcementForm]');
                                         if (store.getCount() > 0 && createAnnouncement) {
                                             if (createAnnouncement && form.validate() && !store.needsSync) {
                                                 record = store.add({
@@ -138,7 +136,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                         value: '{announcementRecord.announcement}',
                                     },
                                     listeners: {
-                                        painted: function (me) {
+                                        painted: function(me) {
                                             me.setError(null);
                                         },
                                     },
@@ -155,7 +153,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                             xtype: 'button',
                                             text: 'Cancel',
                                             ui: 'small',
-                                            handler: function () {
+                                            handler: function() {
                                                 let store = this.upVM().get('announcements');
                                                 this.upVM().set('createAnnouncement', false);
                                                 this.upVM().set('editAnnouncement', false);
@@ -168,14 +166,14 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                 text: '{createAnnouncement ? "Create" : "Save"}',
                                             },
                                             ui: 'small normal',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let store = this.upVM().get('announcements'),
                                                     vm = this.upVM(),
                                                     form = me.up('formpanel');
                                                 if (form.validate()) {
                                                     if (store.needsSync) {
                                                         store.sync({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.Toast('Record updated');
                                                                 vm.set('createAnnouncement', false);
                                                                 vm.set('editAnnouncement', false);
@@ -264,11 +262,11 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                             html: 'Edit',
                                                             align: 'bc-tc?',
                                                         },
-                                                        handler: function () {
+                                                        handler: function() {
                                                             this.upVM().set('editAnnouncement', true);
                                                             this.upVM().set(
                                                                 'announcementRecord',
-                                                                this.upVM().get('record')
+                                                                this.upVM().get('record'),
                                                             );
                                                         },
                                                     },
@@ -280,17 +278,17 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                             html: 'Delete',
                                                             align: 'bc-tc?',
                                                         },
-                                                        handler: function () {
+                                                        handler: function() {
                                                             let store = this.upVM().get('announcements'),
                                                                 record = this.upVM().get('record');
                                                             Ext.Msg.confirm(
                                                                 'Delete',
                                                                 'Are you sure you would like to delete this entry?',
-                                                                function (answer) {
+                                                                function(answer) {
                                                                     if (answer == 'yes') {
                                                                         store.remove(record);
                                                                         store.sync({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record deleted', 1000);
                                                                             },
                                                                         });
@@ -311,7 +309,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                                         ui: 'decline alt',
                                                                         separator: true,
                                                                     },
-                                                                ]
+                                                                ],
                                                             );
                                                         },
                                                     },
@@ -374,7 +372,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                         {
                             xtype: 'div',
                             bind: {
-                                html: "<div class='hbox'><div class='a-badge a-badge-tasks'><i class='md-icon-outlined md-icon-task-alt'></i></div><div class='a-panel-title'>Tasks <em>({myTasks.count})</em></div></div>",
+                                html: '<div class=\'hbox\'><div class=\'a-badge a-badge-tasks\'><i class=\'md-icon-outlined md-icon-task-alt\'></i></div><div class=\'a-panel-title\'>Tasks <em>({myTasks.count})</em></div></div>',
                                 cls: 'a-collapsible-title a-collapsible-trigger a-trigger-right',
                             },
                             listeners: {
@@ -415,7 +413,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                 bindTo: '{record.ownerable}',
                                                 deep: true,
                                             },
-                                            get: function (record) {
+                                            get: function(record) {
                                                 let task = this.get('record');
                                                 if (record) {
                                                     if (record.voyage) {
@@ -475,7 +473,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                 ],
                             },
                             listeners: {
-                                childtap: function (list, location, eOpts) {
+                                childtap: function(list, location, eOpts) {
                                     list.up('main\\.notificationmenu').hide(false);
                                     window.location.hash = '#taskmanager';
                                 },
@@ -495,7 +493,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                         {
                             xtype: 'div',
                             bind: {
-                                html: "<div class='hbox'><div class='a-badge a-badge-mentions'><i class='material-icons-outlined'>alternate_email</i></div><div class='a-panel-title'>Mentions <em>({myMentions.count})</em></div></div>",
+                                html: '<div class=\'hbox\'><div class=\'a-badge a-badge-mentions\'><i class=\'material-icons-outlined\'>alternate_email</i></div><div class=\'a-panel-title\'>Mentions <em>({myMentions.count})</em></div></div>',
                                 cls: 'a-collapsible-title a-collapsible-trigger a-trigger-right',
                             },
                             listeners: {
@@ -535,7 +533,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                 bindTo: '{record}',
                                                 deep: true,
                                             },
-                                            get: function (record) {
+                                            get: function(record) {
                                                 let commentator = record.get('commentator');
 
                                                 if (commentator)
@@ -547,7 +545,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                 bindTo: '{record}',
                                                 deep: true,
                                             },
-                                            get: function (record) {
+                                            get: function(record) {
                                                 if (record && record.get('ownerable')) {
                                                     let value = record.get('ownerable');
                                                     if (
@@ -581,13 +579,13 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                                 bindTo: '{record.created_at}',
                                                 deep: true,
                                             },
-                                            get: function (createdAt) {
+                                            get: function(createdAt) {
                                                 if (createdAt) {
                                                     return Abraxa.getApplication()
                                                         .getController('AbraxaController')
                                                         .parseMomentDate(
                                                             createdAt,
-                                                            AbraxaConstants.formatters.date.dayMonYearHyphenTime24
+                                                            AbraxaConstants.formatters.date.dayMonYearHyphenTime24,
                                                         );
                                                 } else {
                                                     return '';
@@ -647,7 +645,7 @@ Ext.define('Abraxa.view.main.DailyActions', {
                                 ],
                             },
                             listeners: {
-                                childtap: function (list, location, eOpts) {
+                                childtap: function(list, location, eOpts) {
                                     let record = location.record;
                                     // record.set('notification_status', 'read');
                                     if (record.get('object_record')) {

@@ -1,5 +1,6 @@
-import './CreateSubCostCenterPopup.jsx';
-import './AssignServiceToCostCenterPopup.jsx';
+import './CreateSubCostCenterPopup';
+import './AssignServiceToCostCenterPopup';
+
 Ext.define('Abraxa.view.settings.library.cost_center.CostCenterTree', {
     extend: 'Ext.grid.Tree',
     xtype: 'CostCenterTree',

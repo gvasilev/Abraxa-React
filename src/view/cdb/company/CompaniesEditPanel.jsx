@@ -1,10 +1,8 @@
-import '../../../core/plugins/Abraxa.LazyItems.jsx';
-import '../../../core/components/AbraxaPhoneField.jsx';
-import '../../../core/components/AbraxaComponentDataview.jsx';
-import '../../../core/components/Abraxa.CityCombo.jsx';
-import '../../../core/components/combo/OrganizationCombo.jsx';
-
-import MultiActionAreaCard from '../../../react/ReactCard';
+import '../../../core/plugins/Abraxa.LazyItems';
+import '../../../core/components/AbraxaPhoneField';
+import '../../../core/components/AbraxaComponentDataview';
+import '../../../core/components/Abraxa.CityCombo';
+import '../../../core/components/combo/OrganizationCombo';
 
 Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
     extend: 'Ext.Container',
@@ -67,27 +65,27 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                             },
                                             menu: {
                                                 defaults: {
-                                                    handler: function () {
+                                                    handler: function() {
                                                         var record = this.upVM().get('companyGrid.selection'),
                                                             status_id = this.statusId;
 
                                                         record.set('credit_rating', status_id);
 
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
                                                     },
                                                 },
                                                 listeners: {
-                                                    painted: function (me) {
+                                                    painted: function(me) {
                                                         let store = Ext.ComponentQuery.query('[xtype=cdb\\.main]')[0]
                                                                 .getVM()
                                                                 .get('creditRatings'),
                                                             data = store.getData().getRange(),
                                                             items = [];
-                                                        Ext.each(data, function (value) {
+                                                        Ext.each(data, function(value) {
                                                             let item = {
                                                                 text: value.get('name'),
                                                                 record: value,
@@ -130,7 +128,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                 permission: '{userPermissions}',
                                             },
                                             iconCls: 'md-icon-outlined md-icon-delete',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 const myTasks = Ext.getCmp('main-viewport').getVM().get('myTasks'),
                                                     taskStore = Ext.getStore('tasks'),
                                                     agreements = Ext.getCmp('main-viewport').getVM().get('agreements'),
@@ -140,12 +138,12 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you would like to delete this entry?',
-                                                    function (answer) {
+                                                    function(answer) {
                                                         if (answer == 'yes') {
                                                             if (compEditPanel) compEditPanel.hide();
 
                                                             record.erase({
-                                                                success: function () {
+                                                                success: function() {
                                                                     if (myTasks) myTasks.reload();
                                                                     if (taskStore) taskStore.reload();
                                                                     if (agreements) agreements.reload();
@@ -170,7 +168,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ]
+                                                    ],
                                                 );
                                             },
                                         },
@@ -189,7 +187,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                 allowOver: false,
                                                 closeAction: 'destroy',
                                             },
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 this.find('companies-grid').deselectAll();
                                             },
                                         },
@@ -207,11 +205,6 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                     itemId: 'mainForm',
                                     testId: 'companyEditPanelForm',
                                     items: [
-                                         {
-                                            xtype: 'react-container',
-                                            padding: '16 0',
-                                            reactComponent: MultiActionAreaCard()
-                                        },
                                         {
                                             xtype: 'container',
                                             items: [
@@ -242,14 +235,14 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_name}',
                                                             },
                                                             listeners: {
-                                                                painted: function (me) {
+                                                                painted: function(me) {
                                                                     me.focus();
                                                                 },
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -269,7 +262,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_email}',
                                                             },
                                                             listeners: {
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (!me.isValid()) {
                                                                         record.reject();
@@ -278,10 +271,10 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                     }
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
-                                                                            failure: function (record, response) {
+                                                                            failure: function(record, response) {
                                                                                 var result =
                                                                                     response.error.response
                                                                                         .responseJson;
@@ -321,16 +314,16 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                         value: '{companyGrid.selection.org_phone}',
                                                                     },
                                                                     listeners: {
-                                                                        blur: function (me) {
+                                                                        blur: function(me) {
                                                                             let record = me
                                                                                 .upVM()
                                                                                 .get('companyGrid.selection');
                                                                             if (record.dirty) {
                                                                                 record.save({
-                                                                                    success: function () {
+                                                                                    success: function() {
                                                                                         Ext.toast(
                                                                                             'Record updated',
-                                                                                            1000
+                                                                                            1000,
                                                                                         );
                                                                                     },
                                                                                 });
@@ -354,11 +347,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                         allowOver: false,
                                                                         closeAction: 'destroy',
                                                                     },
-                                                                    handler: function () {
+                                                                    handler: function() {
                                                                         let store = this.upVM().get('phones'),
                                                                             organization =
                                                                                 this.upVM().get(
-                                                                                    'companyGrid.selection'
+                                                                                    'companyGrid.selection',
                                                                                 );
 
                                                                         store.add({
@@ -403,11 +396,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                             value: '{record.phone}',
                                                                         },
                                                                         listeners: {
-                                                                            blur: function () {
+                                                                            blur: function() {
                                                                                 let store = this.upVM().get('phones');
 
                                                                                 store.sync({
-                                                                                    success: function () {
+                                                                                    success: function() {
                                                                                         Ext.toast('Record updated');
                                                                                     },
                                                                                 });
@@ -430,13 +423,13 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                             allowOver: false,
                                                                             closeAction: 'destroy',
                                                                         },
-                                                                        handler: function (btn) {
+                                                                        handler: function(btn) {
                                                                             let store = this.upVM().get('phones'),
                                                                                 record = btn.upVM().get('record');
 
                                                                             store.remove(record);
                                                                             store.sync({
-                                                                                success: function () {
+                                                                                success: function() {
                                                                                     Ext.toast('Record updated');
                                                                                 },
                                                                             });
@@ -455,11 +448,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_website}',
                                                             },
                                                             listeners: {
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -485,11 +478,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                             },
                                                             cls: 'a-field-icon icon-short icon-rounded',
                                                             listeners: {
-                                                                focusleave: function (me) {
+                                                                focusleave: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -545,7 +538,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 store: '{countryStore}',
                                                             },
                                                             listeners: {
-                                                                change: function (el, countryId, oldValue) {
+                                                                change: function(el, countryId, oldValue) {
                                                                     if (countryId) {
                                                                         let me = this,
                                                                             cityStore = Ext.getStore('cityStore');
@@ -554,19 +547,19 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                                 .getProxy()
                                                                                 .setUrl(
                                                                                     Env.ApiEndpoint +
-                                                                                        'countries/' +
-                                                                                        countryId +
-                                                                                        '/cities'
+                                                                                    'countries/' +
+                                                                                    countryId +
+                                                                                    '/cities',
                                                                                 );
                                                                             cityStore.load();
                                                                         }
                                                                     }
                                                                 },
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -683,11 +676,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_registration_number}',
                                                             },
                                                             listeners: {
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -705,11 +698,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_eori}',
                                                             },
                                                             listeners: {
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -727,11 +720,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 value: '{companyGrid.selection.org_debtor_number}',
                                                             },
                                                             listeners: {
-                                                                blur: function (me) {
+                                                                blur: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -752,11 +745,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                                                 inputValue: '{companyGrid.selection.parent.org_name}',
                                                             },
                                                             listeners: {
-                                                                focusleave: function (me) {
+                                                                focusleave: function(me) {
                                                                     let record = me.upVM().get('companyGrid.selection');
                                                                     if (record.dirty) {
                                                                         record.save({
-                                                                            success: function () {
+                                                                            success: function() {
                                                                                 Ext.toast('Record updated', 1000);
                                                                             },
                                                                         });
@@ -788,11 +781,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                     bind: {
                                         hidden: '{view_details ? true:false}',
                                     },
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         Ext.getCmp('main-viewport')
                                             .getController()
                                             .redirectTo(
-                                                'company/' + me.upVM().get('companyGrid.selection').get('org_id')
+                                                'company/' + me.upVM().get('companyGrid.selection').get('org_id'),
                                             );
                                         this.find('companies-grid').deselectAll();
                                         let storeCompanies = this.upVM().get('organizations');

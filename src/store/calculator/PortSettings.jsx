@@ -1,4 +1,5 @@
-import '../../model/calculator/PortSettings.jsx';
+import '../../model/calculator/PortSettings';
+
 Ext.define('Abraxa.store.calculator.PortSettings', {
     extend: 'Ext.data.Store',
     alias: 'store.portsettings',

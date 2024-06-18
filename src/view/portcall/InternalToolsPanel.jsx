@@ -1,5 +1,6 @@
-import '../tasks/TaskController.jsx';
-import '../../core/components/AbraxaFormlist.jsx';
+import '../tasks/TaskController';
+import '../../core/components/AbraxaFormlist';
+
 Ext.define('Abraxa.view.portcall.InternalToolsPanel', {
     extend: 'Ext.Sheet',
     xtype: 'internal.tools.panel',
@@ -207,7 +208,7 @@ Ext.define('Abraxa.view.portcall.InternalToolsPanel', {
                             if (newValue == '') notes.removeFilter('search');
                         },
                         action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var notes = this.upVM().get('notes');
                             notes.removeFilter('search');
                             if (query.length > 2) {

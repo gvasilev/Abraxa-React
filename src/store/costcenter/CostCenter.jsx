@@ -1,4 +1,5 @@
-import '../../model/costcenter/CostCenter.jsx';
+import '../../model/costcenter/CostCenter';
+
 Ext.define('Abraxa.store.costcenter.CostCenter', {
     extend: 'Ext.data.Store',
     alias: 'store.CostCenter',

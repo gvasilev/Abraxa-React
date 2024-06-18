@@ -1,4 +1,5 @@
-import '../../model/calculator/Variable.jsx';
+import '../../model/calculator/Variable';
+
 Ext.define('Abraxa.store.calculator.PriceBookVariable', {
     extend: 'Ext.data.Store',
     alias: 'store.calcpricebookvariable',

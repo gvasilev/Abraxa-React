@@ -1,4 +1,5 @@
-import './MainContainer.jsx';
+import './MainContainer';
+
 Ext.define('Abraxa.view.settings.offices.OfficesMain', {
     extend: 'Ext.Container',
     xtype: 'settings.offices.main',

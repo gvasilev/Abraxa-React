@@ -48,7 +48,7 @@ Ext.define('Abraxa.core.plugins.GridStatefulFilterBar', {
     },
 
     setStore: function (store) {
-        // this.callParent(arguments);
+// this.callParent(arguments);
         if (this.getStateful()) {
             this.restoreState();
         }

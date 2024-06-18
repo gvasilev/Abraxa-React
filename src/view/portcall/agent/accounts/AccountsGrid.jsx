@@ -18,18 +18,18 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
     },
     keyMapEnabled: true,
     loadingText: false,
-    keyMap: {
-        scope: 'this',
-        ESC: function () {
-            let record = this.upVM().get('accountsGrid.selection'),
-                grid = Ext.ComponentQuery.query('accounts\\.grid')[0];
+    // keyMap: {
+    //     scope: 'this',
+    //     ESC: function() {
+    //         let record = this.upVM().get('accountsGrid.selection'),
+    //             grid = Ext.ComponentQuery.query('accounts\\.grid')[0];
 
-            if (record) {
-                record.reject();
-            }
-            grid.deselectAll();
-        },
-    },
+    //         if (record) {
+    //             record.reject();
+    //         }
+    //         grid.deselectAll();
+    //     },
+    // },
     bind: {
         store: '{accounts}',
         cls: '{nonEditable ? "a-accounts-grid a-offset-grid abraxa-grid" : ""} a-accounts-grid a-offset-grid abraxa-grid',
@@ -66,7 +66,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                     cls: '{nonEditable ? "hidden a-no-content-btn" : "a-no-content-btn"}',
                     permission: '{userPermissions}',
                 },
-                handler: function (me) {
+                handler: function(me) {
                     let currentUser = me.upVM().get('currentUser'),
                         dialog = Ext.create('Abraxa.view.portcall.accounts.AccountCreate', {
                             viewModel: {
@@ -110,38 +110,6 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                                 title: '<span>Billing parties</span>',
                             },
                         },
-                        // {
-                        //     xtype: 'container',
-                        //     items: [
-                        //         {
-                        //             xtype: 'button',
-                        //             text: 'PaymentsDELETE',
-                        //             ui: 'completed-light color-default small',
-                        //             skipEditPermission: true,
-                        //             slug: 'portcallPayments',
-                        //             bind: {
-                        //                 permission: '{userPermissions}',
-                        //                 hidden: '{!is_owner}',
-                        //             },
-                        //             iconCls: 'md-icon-outlined md-icon-attach-money',
-                        //             handler: function (me) {
-                        //                 console.log('Old paymenst');
-                        //                 console.log(me.upVM().getRoot());
-                        //                 let object_record = me.upVM().get('object_record');
-                        //                 if (me.upVM().get('accounts').count()) {
-                        //                     let params = {
-                        //                         object_record: object_record,
-                        //                         vm: me.upVM(),
-                        //                         account: me.upVM().get('accounts').getAt(0),
-                        //                     };
-                        //                     Abraxa.getApplication()
-                        //                         .getController('AbraxaController')
-                        //                         .createPayment(params);
-                        //                 }
-                        //             },
-                        //         },
-                        //     ],
-                        // },
                     ],
                 },
                 {
@@ -166,7 +134,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                                 permission: '{userPermissions}',
                                 objectPermission: '{objectPermissions}',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let currentUser = me.upVM().get('currentUser'),
                                     dialog = Ext.create('Abraxa.view.portcall.accounts.AccountCreate', {
                                         viewModel: {
@@ -212,7 +180,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                                             text: 'Customize',
                                             testId: 'portCallAccountsGridCustomizeButton',
                                             margin: '0 0 0 8',
-                                            handler: function () {
+                                            handler: function() {
                                                 this.find('accountsGrid')
                                                     .getPlugin('gridviewoptions')
                                                     .showViewOptions();
@@ -238,7 +206,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                 cls: 'a-cell-offset-x24',
                 encodeHtml: false,
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record) {
                     return (
                         '<div class="hbox"><div class="a-badge a-badge-x32 a-badge-account"><i class="md-icon-outlined">corporate_fare</i></div><div class="ml-12 text-truncate"><a href="javascript:void(0)" class="fw-b text-truncate">' +
@@ -258,7 +226,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record && record.get('co_name')) {
                     return (
                         '<div class="hbox"><div class="a-badge a-badge-account"><i class="md-icon-outlined">corporate_fare</i></div><div class="ml-12"><div class="fw-b">' +
@@ -291,7 +259,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                 align: 'right',
                 encodeHtml: false,
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (record) {
                     let currentUserType = this.upVM().get('currentUserType'),
                         colorCls;
@@ -345,15 +313,15 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                                     bindTo: '{disbursements}',
                                     deep: true,
                                 },
-                                get: function (store) {
+                                get: function(store) {
                                     if (store) {
                                         let account = this.getView().up('widgetcell').getRecord();
                                         if (account) {
-                                            let accountDisbursements = store.queryBy(function (disbursement) {
+                                            let accountDisbursements = store.queryBy(function(disbursement) {
                                                     return disbursement.get('account_id') == account.get('id');
                                                 }),
                                                 total = accountDisbursements.count(),
-                                                draft = accountDisbursements.filterBy(function (rec) {
+                                                draft = accountDisbursements.filterBy(function(rec) {
                                                     return (
                                                         rec.get('status') == 'completed' ||
                                                         rec.get('status') == 'settled'
@@ -411,7 +379,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
                 bodyCls: 'a-cell-status',
                 encodeHtml: false,
             },
-            renderer: function (value, record) {
+            renderer: function(value, record) {
                 if (value) {
                     return (
                         '<div class="a-status-badge rounded no-border a-has-icon status-' +
@@ -433,7 +401,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 return value || AbraxaConstants.placeholders.emptyValue;
             },
         },
@@ -445,7 +413,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountsGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 return value || AbraxaConstants.placeholders.emptyValue;
             },
         },

@@ -90,7 +90,7 @@ Ext.define('Abraxa.view.mail.MailPreview', {
                             str = '';
                         if (userRecord) {
                             if (userRecord.get('profile_image')) {
-                                let userImage = userRecord.get('profile_image');
+                                userImage = userRecord.get('profile_image');
                                 str =
                                     '<div class="a-person a-icon-round"><img class="a-profile-image a-user" src="' +
                                     userImage +

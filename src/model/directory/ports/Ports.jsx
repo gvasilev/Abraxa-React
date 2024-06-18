@@ -1,7 +1,8 @@
-import './Terminals.jsx';
-import './Berths.jsx';
-import './Holidays.jsx';
-import '../../company/Company.jsx';
+import './Terminals';
+import './Berths';
+import './Holidays';
+import '../../company/Company';
+
 Ext.define('Abraxa.model.directory.Ports', {
     extend: 'Ext.data.Model',
     fields: [
@@ -10,13 +11,13 @@ Ext.define('Abraxa.model.directory.Ports', {
             type: 'string',
         },
         {
-            name: 'flag_abv_2_letters',
-            type: 'string',
+            name: 'countries',
+            type: 'auto',
         },
         {
             name: 'country',
             type: 'string',
-            convert: function (value) {
+            convert: function(value) {
                 if (value) {
                     return value;
                 }
@@ -26,7 +27,7 @@ Ext.define('Abraxa.model.directory.Ports', {
         {
             name: 'timezone',
             type: 'string',
-            convert: function (value) {
+            convert: function(value) {
                 if (value && value != 'NULL') {
                     return value;
                 }

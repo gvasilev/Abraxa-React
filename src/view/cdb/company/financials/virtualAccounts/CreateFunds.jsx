@@ -250,13 +250,13 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateFunds', {
                     editMode = vm.get('editMode'),
                     virtualAccountPayments = vm.get('virtualAccountPayments'),
                     virtualAccounts = me.upVM().get('virtualAccounts'),
-                    payment = vm.get('payment'),
-                    form = dialog.down('formpanel');
+                    payment = vm.get('payment');
 
                 virtualAccounts.getProxy().setExtraParams({
-                    org_id: company.get('id'),
+                    org_id: company.get('org_id'),
                 });
 
+                form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     if (editMode) {

@@ -1,5 +1,6 @@
-import '../adocs/DocumentFolderFile.jsx';
-import '../approval/Approval.jsx'
+import '../adocs/DocumentFolderFile';
+import '../approval/Approval';
+
 Ext.define('Abraxa.model.document.Document', {
     extend: 'Ext.data.Model',
     fields: [
@@ -9,7 +10,7 @@ Ext.define('Abraxa.model.document.Document', {
         },
         {
             name: 'size',
-            convert: function (size) {
+            convert: function(size) {
                 var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                 if (size == 0) return '0 Byte';
                 var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
@@ -43,7 +44,7 @@ Ext.define('Abraxa.model.document.Document', {
             type: 'boolean',
             depends: ['status', 'approvals', 'shared_document'],
             persist: false,
-            convert: function (val, record) {
+            convert: function(val, record) {
                 let approvalMatters = false;
                 if (record.get('approvals') && record.get('approvals').length) {
                     record.get('approvals').forEach((approval) => {
@@ -67,7 +68,7 @@ Ext.define('Abraxa.model.document.Document', {
             type: 'boolean',
             depends: ['approvals', 'shared_document'],
             persist: false,
-            convert: function (val, record) {
+            convert: function(val, record) {
                 if (val) {
                     return val;
                 } else {
@@ -98,7 +99,7 @@ Ext.define('Abraxa.model.document.Document', {
             name: 'folder_id',
             depends: ['folder_file'],
             persist: false,
-            convert: function (val, record) {
+            convert: function(val, record) {
                 if (record.get('folder_file')) return record.get('folder_file').document_folder_id;
 
                 return null;
@@ -122,32 +123,5 @@ Ext.define('Abraxa.model.document.Document', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'document',
-    },
-
-    loadPDF2: function () {
-        let me = this;
-        return new Ext.Promise(function (resolve, reject) {
-            let file = me,
-                sendData = {
-                    id: file.get('id'),
-                    object_meta_id: file.get('object_meta_id'),
-                    object_id: file.get('object_id'),
-                };
-
-            Ext.Ajax.request({
-                url: Env.ApiEndpoint + 'get_pdf',
-                jsonData: sendData,
-                withCredentials: true,
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'Accept-Encoding': 'gzip'
-                // },
-                method: 'POST',
-            }).then(function (response) {
-                var pdf = response.responseText;
-                me.set('pdf', pdf);
-                resolve(pdf);
-            });
-        });
     },
 });

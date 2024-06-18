@@ -1,8 +1,9 @@
-import './ViewModel.jsx';
-import './portsettings/show/Controller.jsx';
-import './portsettings/show/_Page.jsx';
-import './PremiumPage.jsx';
-import '../../../store/calculator/Nomenclature.jsx';
+import './ViewModel';
+import './portsettings/show/Controller';
+import './portsettings/show/_Page';
+import './PremiumPage';
+import '../../../store/calculator/Nomenclature';
+
 Ext.define('Abraxa.view.calculator.portcostengine.MainPage', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.main',
@@ -27,7 +28,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.MainPage', {
         },
     ],
     listeners: {
-        painted: function (me) {
+        painted: function(me) {
             if (me.upVM().get('currentUserType') !== 'agent') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

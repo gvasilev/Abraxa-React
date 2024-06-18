@@ -1,4 +1,5 @@
-import './RoleObject.jsx';
+import './RoleObject';
+
 Ext.define('Abraxa.model.role.Role', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

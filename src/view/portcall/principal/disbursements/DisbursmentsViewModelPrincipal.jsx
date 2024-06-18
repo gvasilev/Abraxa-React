@@ -106,7 +106,10 @@ Ext.define('Abraxa.view.portcall.principal.DisbursementsViewModelPrincipal', {
             get: function (store) {
                 let me = this;
                 if (store && store.count()) {
-                    let approval = store.findRecord('to_company_id', window.CurrentUser.get('current_company_id'));
+                    let approval = store.findRecord(
+                        'to_company_id',
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('current_company_id')
+                    );
                     if (approval) {
                         approval.set('current_approval_data', me.get('selectedDisbursement.current_approval_data'));
                         return approval;
@@ -318,46 +321,10 @@ Ext.define('Abraxa.view.portcall.principal.DisbursementsViewModelPrincipal', {
             },
             get: function (store) {
                 if (store) {
-                    let pda_price = store.sum('pda_final_price'),
-                        dda_price = store.sum('dda_final_price'),
-                        final_price = store.sum('fda_final_price')
-                            ? store.sum('fda_final_price')
-                            : store.sum('dda_final_price');
-
-                    let start_price = pda_price ? pda_price : dda_price;
-
-                    if (!start_price && !final_price) return;
-
-                    if (final_price == 0 && start_price) final_price = start_price;
-
-                    if (start_price == 0 && final_price) start_price = final_price;
-
-                    const reDiff = function relDiff(a, b) {
-                        return Math.abs((b - a) / a) * 100;
-                    };
-
-                    let variance = parseFloat(reDiff(start_price, final_price)).toFixed(1),
-                        sign = start_price > final_price ? '-' : start_price < final_price ? '+' : '',
-                        cls = start_price > final_price ? 'c-red' : start_price < final_price ? 'c-green' : 'c-blue',
-                        icon =
-                            start_price > final_price
-                                ? 'trending_down'
-                                : start_price < final_price
-                                  ? 'trending_up'
-                                  : 'trending_flat';
-
-                    return (
-                        '<div class="hbox ' +
-                        cls +
-                        '"><i class="material-icons-outlined md-16 ' +
-                        cls +
-                        '">' +
-                        icon +
-                        '</i><span class="ml-8">' +
-                        sign +
-                        '' +
-                        variance +
-                        '%</span></div>'
+                    return Abraxa.utils.Functions.calculateVariance(
+                        store.sum('pda_final_price'),
+                        store.sum('dda_final_price'),
+                        store.sum('fda_final_price')
                     );
                 }
             },

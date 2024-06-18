@@ -1,6 +1,7 @@
-import './Attachment.jsx';
-import '../disbursement/Voucher.jsx';
-import '../comments/Comment.jsx';
+import './Attachment';
+import '../disbursement/Voucher';
+import '../comments/Comment';
+
 Ext.define('Abraxa.model.portcall.Expense', {
     extend: 'Ext.data.Model',
     fields: [
@@ -85,7 +86,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'discounted_price',
             type: 'float',
             depends: ['discount_amount', 'calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('discount_amount'),
                     calculated_price = rec.get('calculated_price');
 
@@ -96,7 +97,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_discounted_price',
             type: 'float',
             depends: ['pda_discount_amount', 'pda_calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('pda_discount_amount'),
                     calculated_price = rec.get('pda_calculated_price');
 
@@ -107,7 +108,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'dda_discounted_price',
             type: 'float',
             depends: ['dda_discount_amount', 'dda_calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('dda_discount_amount'),
                     calculated_price = rec.get('dda_calculated_price');
 
@@ -118,7 +119,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'fda_discounted_price',
             type: 'float',
             depends: ['fda_discount_amount', 'fda_calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('fda_discount_amount'),
                     calculated_price = rec.get('fda_calculated_price');
 
@@ -129,7 +130,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'sda_discounted_price',
             type: 'float',
             depends: ['sda_discount_amount', 'sda_calculated_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 var discount = rec.get('sda_discount_amount'),
                     calculated_price = rec.get('sda_calculated_price');
 
@@ -140,7 +141,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_final_price',
             type: 'float',
             depends: ['pda_calculated_price', 'pda_discounted_price', 'pda_vat_amount'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('pda_discount_amount')
                         ? rec.get('pda_discounted_price')
                         : rec.get('pda_calculated_price'),
@@ -153,12 +154,11 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'dda_final_price',
             type: 'float',
             depends: ['dda_calculated_price', 'dda_discounted_price', 'dda_vat_amount'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('dda_discount_amount')
                         ? rec.get('dda_discounted_price')
                         : rec.get('dda_calculated_price'),
                     vat = rec.get('dda_vat_amount');
-
                 return price + price * (parseFloat(vat) / 100);
             },
         },
@@ -166,7 +166,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'fda_final_price',
             type: 'float',
             depends: ['fda_calculated_price', 'fda_discounted_price', 'fda_vat_amount'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('fda_discount_amount')
                         ? rec.get('fda_discounted_price')
                         : rec.get('fda_calculated_price'),
@@ -179,7 +179,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'sda_final_price',
             type: 'float',
             depends: ['sda_calculated_price', 'sda_discounted_price', 'sda_vat_amount'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 let price = rec.get('sda_discount_amount')
                         ? rec.get('sda_discounted_price')
                         : rec.get('sda_calculated_price'),
@@ -192,7 +192,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'calculated_price',
             type: 'float',
             depends: ['fda_price', 'dda_price'],
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 return rec.get('fda_price');
             },
         },
@@ -200,64 +200,32 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_calculated_price',
             type: 'float',
             depends: ['pda_price', 'currency', 'exchange_rate'],
-            convert: function (v, rec) {
-                let currency = rec.get('currency'),
-                    rate = rec.get('exchange_rate'),
-                    price = rec.get('pda_price');
-
-                if (rec.vouchers().count()) return price;
-
-                if (rate) return price * rate;
-
-                return price;
+            convert: function(v, rec) {
+                return rec.calculateColumnPrice(rec, 'pda_price');
             },
         },
         {
             name: 'dda_calculated_price',
             type: 'float',
             depends: ['dda_price', 'currency', 'exchange_rate'],
-            convert: function (v, rec) {
-                let currency = rec.get('currency'),
-                    rate = rec.get('exchange_rate'),
-                    price = rec.get('dda_price');
-
-                if (rec.vouchers().count()) return price;
-
-                if (rate) return price * rate;
-
-                return price;
+            convert: function(v, rec) {
+                return rec.calculateColumnPrice(rec, 'dda_price');
             },
         },
         {
             name: 'fda_calculated_price',
             type: 'float',
             depends: ['fda_price', 'currency', 'exchange_rate'],
-            convert: function (v, rec) {
-                let currency = rec.get('currency'),
-                    rate = rec.get('exchange_rate'),
-                    price = rec.get('fda_price');
-
-                if (rec.vouchers().count()) return price;
-
-                if (rate) return price * rate;
-
-                return price;
+            convert: function(v, rec) {
+                return rec.calculateColumnPrice(rec, 'fda_price');
             },
         },
         {
             name: 'sda_calculated_price',
             type: 'float',
             depends: ['sda_price', 'currency', 'exchange_rate'],
-            convert: function (v, rec) {
-                let currency = rec.get('currency'),
-                    rate = rec.get('exchange_rate'),
-                    price = rec.get('sda_price');
-
-                if (rec.vouchers().count()) return price;
-
-                if (rate) return price * rate;
-
-                return price;
+            convert: function(v, rec) {
+                return rec.calculateColumnPrice(rec, 'sda_price');
             },
         },
         {
@@ -349,55 +317,11 @@ Ext.define('Abraxa.model.portcall.Expense', {
             type: 'auto',
             persist: false,
             depends: ['pda_final_price', 'dda_final_price', 'fda_final_price'],
-            convert: function (v, rec) {
-                let start_price = rec.get('pda_final_price') ? rec.get('pda_final_price') : rec.get('dda_final_price'),
-                    final_price = rec.get('fda_final_price') ? rec.get('fda_final_price') : rec.get('dda_final_price');
-
-                //OLD BETTER LOGIC
-
-                // if (final_price == 0 && start_price)
-                //     final_price = start_price;
-
-                // if (start_price == 0 && final_price)
-                //     start_price = final_price;
-
-                // if (!start_price && !final_price)
-                //     return;
-
-                if (final_price == 0 && start_price) return '<span class="a-cell-placeholder">---</span>';
-
-                if (!start_price && final_price) return '<span class="a-cell-placeholder">---</span>';
-
-                if (!start_price && !final_price) return '<span class="a-cell-placeholder">---</span>';
-
-                if (start_price == final_price) return '<span class="a-cell-placeholder">---</span>';
-
-                const reDiff = function relDiff(a, b) {
-                    return Math.abs((b - a) / a) * 100;
-                };
-
-                let variance = parseFloat(reDiff(start_price, final_price)).toFixed(1),
-                    sign = start_price > final_price ? '-' : start_price < final_price ? '+' : '',
-                    cls = start_price > final_price ? 'c-red' : start_price < final_price ? 'c-green' : 'c-blue',
-                    icon =
-                        start_price > final_price
-                            ? 'trending_down'
-                            : start_price < final_price
-                              ? 'trending_up'
-                              : 'trending_flat';
-
-                return (
-                    '<div class="hbox ' +
-                    cls +
-                    '"><i class="material-icons-outlined md-16 ' +
-                    cls +
-                    '">' +
-                    icon +
-                    '</i><span class="ml-8">' +
-                    sign +
-                    '' +
-                    variance +
-                    '%</span></div>'
+            convert: function(v, rec) {
+                return Abraxa.utils.Functions.calculateVariance(
+                    rec.get('pda_final_price'),
+                    rec.get('dda_final_price'),
+                    rec.get('fda_final_price'),
                 );
             },
         },
@@ -437,7 +361,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'accounting_code',
             type: 'string',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data.default_expense_item && data.default_expense_item.aliases) {
                     if (data.default_expense_item.cost_center_accounting_code) {
                         return data.default_expense_item.cost_center_accounting_code;
@@ -503,7 +427,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
         },
     },
 
-    applyDiscount: function (calculated_price, discount) {
+    applyDiscount: function(calculated_price, discount) {
         var value = discount,
             original_price = calculated_price,
             discounted_price = 0;
@@ -523,5 +447,18 @@ Ext.define('Abraxa.model.portcall.Expense', {
             discounted_price = original_price;
         }
         return discounted_price;
+    },
+
+    calculateColumnPrice: function(expense, column) {
+        let exchangeRate = expense.get('exchange_rate'),
+            price = expense.get(column);
+        if (
+            (expense.data.vouchers && expense.data.vouchers.length > 0) ||
+            (expense.vouchers() && expense.vouchers().count() > 0)
+        )
+            return price;
+
+        if (exchangeRate) return price * exchangeRate;
+        return price;
     },
 });

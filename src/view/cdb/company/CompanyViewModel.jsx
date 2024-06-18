@@ -1,10 +1,10 @@
-import '../../../store/common/Organizations.jsx';
-import '../../../store/common/OrganizationsRemote.jsx';
-import '../../../store/common/City.jsx';
-import '../../../store/company/CreditRatings.jsx';
-import '../../../store/common/DefaultExpenseItems.jsx';
+import '../../../store/common/Organizations';
+import '../../../store/common/OrganizationsRemote';
+import '../../../store/common/City';
+import '../../../store/company/CreditRatings';
+import '../../../store/common/DefaultExpenseItems';
 import '../../../store/company/CompanyPortcalls';
-import moment from 'moment';
+import '../../../store/cdb/OrganizationOpenBalances';
 
 Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
     extend: 'Ext.app.ViewModel',
@@ -23,6 +23,26 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
         },
         cityStore: {
             type: 'cityStore',
+        },
+        organizationOpenBalances: {
+            type: 'OrganizationOpenBalances',
+            autoLoad: true,
+            proxy: {
+                extraParams: {
+                    org_id: '{object_record.org_id}',
+                },
+            },
+            updateProxy: function (proxy) {
+                if (proxy) {
+                    proxy.onAfter(
+                        'extraparamschanged',
+                        function () {
+                            if (this.getProxy().getExtraParams().org_id) this.load();
+                        },
+                        this
+                    );
+                }
+            },
         },
         companyPortcalls: {
             type: 'company_portcalls',
@@ -448,13 +468,13 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
         },
         reportingCurrency: {
             bind: {
-                preferred_currency: '{object_record.preferred_currency}',
-                companyCurrencies: '{companyCurrencies}',
+                bindTo: '{object_record.preferred_currency}',
+                deep: true,
             },
-            get: function (data) {
-                if (data) {
-                    let companyCurrencies = data.companyCurrencies;
-                    let currencyRecord = companyCurrencies.findRecord('currency', data.preferred_currency, 0, false, false, true);
+            get: function (currency) {
+                if (currency) {
+                    let companyCurrencies = this.get('companyCurrencies');
+                    let currencyRecord = companyCurrencies.findRecord('currency', currency, 0, false, false, true);
                     if (currencyRecord) {
                         return currencyRecord;
                     }
@@ -715,6 +735,15 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
                     }
                     return data;
                 }
+            },
+        },
+        totalBalanceRecords: {
+            bind: {
+                bindTo: '{organizationOpenBalances}',
+                deep: true,
+            },
+            get: function (store) {
+                return store.getTotalCount();
             },
         },
     },

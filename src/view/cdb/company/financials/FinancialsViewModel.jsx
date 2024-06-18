@@ -1,3 +1,5 @@
+import '../../../../store/cdb/OrganizationVirtualAccounts';
+
 Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.financials-viewmodel',
@@ -6,63 +8,105 @@ Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
     },
     stores: {
         banks: {
-            source: '{object_record.virtual_accounts}',
-            extraParams: {
-                org_id: '{object_record.org_id}',
-            },
+            type: 'organizationVirtualAccounts',
+            autoLoad: true,
+            remoteFilter: true,
             filters: [
                 {
-                    filterFn: function (record) {
-                        return record.get('type') == 'bank';
-                    },
+                    property: 'accountType',
+                    value: 'bank',
                 },
             ],
+            proxy: {
+                extraParams: {
+                    org_id: '{object_record.org_id}',
+                },
+            },
+            updateProxy: function (proxy) {
+                if (proxy) {
+                    proxy.onAfter(
+                        'extraparamschanged',
+                        function () {
+                            if (this.getProxy().getExtraParams().org_id) this.load();
+                        },
+                        this
+                    );
+                }
+            },
         },
         virtualAccounts: {
-            source: '{object_record.virtual_accounts}',
-            // autoLoad: true,
-            extraParams: {
-                org_id: '{object_record.org_id}',
+            type: 'organizationVirtualAccounts',
+            remoteFilter: true,
+            autoLoad: true,
+            proxy: {
+                extraParams: {
+                    org_id: '{object_record.org_id}',
+                },
             },
             filters: [
                 {
-                    filterFn: function (record) {
-                        return record.get('type') == 'virtual_account';
-                    },
+                    property: 'accountType',
+                    value: 'virtual_account',
                 },
             ],
             grouper: {
                 property: 'disabled',
                 direction: 'ASC',
             },
+            updateProxy: function (proxy) {
+                if (proxy) {
+                    proxy.onAfter(
+                        'extraparamschanged',
+                        function () {
+                            if (this.getProxy().getExtraParams().org_id) this.load();
+                        },
+                        this
+                    );
+                }
+            },
         },
         virtualAccountPayments: {
-            source: '{virtualAccountsGrid.selection.payments}',
-            sorters: [
-                {
-                    property: 'id',
-                    direction: 'DESC',
+            type: 'organizationVirtualAccountPayments',
+            autoLoad: true,
+            proxy: {
+                extraParams: {
+                    virtual_account: '{virtualAccountsGrid.selection.id}',
+                    organization: '{object_record.org_id}',
                 },
-            ],
-            filters: [
-                {
-                    filterFn: function (record) {
-                        if (record.get('owner_id') && record.get('owner_type') && !record.get('owner')) {
-                            return false;
-                        }
-                        return true;
-                    },
-                },
-            ],
+            },
+            updateProxy: function (proxy) {
+                if (proxy) {
+                    proxy.onAfter(
+                        'extraparamschanged',
+                        function () {
+                            if (this.getProxy().getExtraParams().virtual_account) this.load();
+                        },
+                        this
+                    );
+                }
+            },
         },
+
         virtualAccountPaymentsChartStore: {
-            source: '{virtualAccountsGrid.selection.payments}',
-            sorters: [
-                {
-                    property: 'created_at',
-                    direction: 'ASC',
+            type: 'organizationVirtualAccountChart',
+            autoLoad: true,
+            proxy: {
+                extraParams: {
+                    virtual_account: '{virtualAccountsGrid.selection.id}',
+                    organization: '{object_record.org_id}',
                 },
-            ],
+            },
+            updateProxy: function (proxy) {
+                if (proxy) {
+                    proxy.onAfter(
+                        'extraparamschanged',
+                        function () {
+                            if (this.getProxy().getExtraParams().virtual_account) this.load();
+                        },
+                        this
+                    );
+                }
+            },
         },
     },
     formulas: {
@@ -81,7 +125,6 @@ Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
                 deep: true,
             },
             get: function (currency) {
-                // this.get('virtualAccounts').load();
                 if (currency) {
                     let companyCurrencies = this.get('companyCurrencies');
                     let currencyRecord = companyCurrencies.findRecord('currency', currency, 0, false, false, true);
@@ -128,44 +171,15 @@ Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
                     clean.push(grouped[i]);
                 }
                 return clean;
-                // Ext.ComponentQuery.query('balanceChart').fusionChart.data = clean;
-            },
-        },
-        virtualBalanceTotal: {
-            bind: {
-                bindTo: '{object_record.virtual_accounts}',
-                deep: true,
-            },
-            get: function (store) {
-                let balance = 0,
-                    companyCurrencies = this.get('companyCurrencies');
-
-                // companyCurrencies.queryBy(function (rec) {
-
-                // })
-                if (store) {
-                    store.each(function (va) {
-                        let currency = companyCurrencies.queryBy(function (rec) {
-                            return rec.get('currency') == va.get('currency');
-                        }).items[0];
-                        if (currency) balance += va.get('balance') * currency.get('exchange_rate');
-                    });
-                }
-                return balance;
             },
         },
         latestTransaction: {
             bind: {
-                bindTo: '{object_record.virtual_accounts}',
+                bindTo: '{organizationVirtualAccounts}',
                 deep: true,
             },
             get: function (store) {
-                let fakeStore = new Ext.data.Store(),
-                    companyCurrencies = this.get('companyCurrencies');
-
-                // companyCurrencies.queryBy(function (rec) {
-
-                // })
+                let fakeStore = new Ext.data.Store();
                 if (store) {
                     store.each(function (va) {
                         fakeStore.add(va.payments().getRange());
@@ -176,6 +190,15 @@ Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
                     direction: 'DESC',
                 });
                 return fakeStore.first();
+            },
+        },
+        totalVirtualPaymentsRecords: {
+            bind: {
+                bindTo: '{virtualAccountPayments}',
+                deep: true,
+            },
+            get: function (store) {
+                return store.getTotalCount();
             },
         },
     },

@@ -1,4 +1,5 @@
-import './ExpensesGrid.jsx';
+import './ExpensesGrid';
+
 Ext.define('Abraxa.view.settings.library.expenses.ExpensesMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.expenses.main',

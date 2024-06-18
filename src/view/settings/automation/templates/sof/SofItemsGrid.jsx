@@ -1,4 +1,5 @@
-import '../../../../../view/common/combo/SofGeneralEvents.js';
+import '../../../../../view/common/combo/SofGeneralEvents';
+
 Ext.define('Abraxa.view.settings.automation.templates.sof.SofItemsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.automation.sof.items.grid',

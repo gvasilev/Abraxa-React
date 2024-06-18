@@ -1,5 +1,6 @@
-import '../common/User.jsx';
-import '../rule/Rule.jsx';
+import '../common/User';
+import '../rule/Rule';
+
 Ext.define('Abraxa.model.team.Team', {
     extend: 'Ext.data.Model',
     fields: [

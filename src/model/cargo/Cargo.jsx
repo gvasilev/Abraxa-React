@@ -1,5 +1,6 @@
-import './CargoDocuments.jsx';
-import './CargoAdditional.jsx';
+import './CargoDocuments';
+import './CargoAdditional';
+
 Ext.define('Abraxa.model.cargo.Cargo', {
     extend: 'Ext.data.Model',
 
@@ -153,7 +154,7 @@ Ext.define('Abraxa.model.cargo.Cargo', {
             name: 'function_abbr',
             persist: false,
             depends: 'function',
-            convert: function (v, record) {
+            convert: function(v, record) {
                 let str = '',
                     func = record.get('function');
 

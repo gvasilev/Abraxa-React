@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.commodity.Commodity', {
     extend: 'Ext.data.Model',
     fields: [

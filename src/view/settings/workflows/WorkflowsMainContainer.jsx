@@ -51,7 +51,7 @@ Ext.define('Abraxa.view.settings.workflows.WorkflowsMainContainer', {
                                                     workflow: {
                                                         type: 'Abraxa.model.settings.workflows.Workflow',
                                                         create: {
-                                                            type: 'disbursement',
+                                                            type: null,
                                                         },
                                                     },
                                                 },

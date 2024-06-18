@@ -1,5 +1,6 @@
-import './CompanyController.jsx';
-import './AddEmail.jsx';
+import './CompanyController';
+import './AddEmail';
+
 Ext.define('Abraxa.view.settings.company.EmailSettings', {
     extend: 'Ext.Container',
     xtype: 'settings.company.systems.email.settings',
@@ -192,7 +193,7 @@ Ext.define('Abraxa.view.settings.company.EmailSettings', {
                                                             let company = me.upVM().get('currentCompany'),
                                                                 disableDefault = false;
 
-                                                           const model = me.upVM().get('record');
+                                                            model = me.upVM().get('record');
                                                             model.getProxy().setExtraParams({
                                                                 company_id: company.get('id'),
                                                             });

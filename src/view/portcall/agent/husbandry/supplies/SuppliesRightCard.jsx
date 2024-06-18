@@ -44,16 +44,19 @@ Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesRightCard', {
                 },
                 get: function (record) {
                     if (record) {
-                        let store = this.get('invoices');
-                        if (store) store.clearFilter();
+                        const invoicesStore = this.get('invoices');
+                        if (invoicesStore) invoicesStore.clearFilter();
 
                         return function (rec) {
-                            if (rec.get('expense_id') == record.get('id')) {
+                            // Avoid displaying vouchers which were not deleted, but their documents were deleted
+                            if (rec.get('document') === null) return false;
+
+                            if (rec.get('expense_id') === record.get('id')) {
                                 return true;
                             }
                         };
                     } else {
-                        return function (item) {
+                        return function () {
                             return false;
                         };
                     }
@@ -1152,210 +1155,179 @@ Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesRightCard', {
                                         let vm = this.component.upVM(),
                                             supply = this.component.upVM().get('suppliesGrid.selection');
                                         var record = this.component.getSelection();
-                                        if (cmp.currentTarget.className == 'a-attachment') {
-                                            if (record) {
-                                                Ext.create('Abraxa.view.vouchers.VouchersDialog', {
-                                                    viewModel: {
-                                                        parent: vm,
-                                                        data: {
-                                                            selectVoucher: record,
-                                                            account_id: supply.get('account_id'),
-                                                            accounts: vm.get('accounts'),
-                                                            nonEditable: vm.get('nonEditable'),
+                                        if (!record) return null;
+                                        if (cmp.currentTarget.className === 'a-attachment') {
+                                            Ext.create('Abraxa.view.vouchers.VouchersDialog', {
+                                                viewModel: {
+                                                    parent: vm,
+                                                    data: {
+                                                        selectVoucher: record,
+                                                        account_id: supply.get('account_id'),
+                                                        accounts: vm.get('accounts'),
+                                                        nonEditable: vm.get('nonEditable'),
+                                                    },
+                                                    formulas: {
+                                                        selectedVoucher: {
+                                                            bind: {
+                                                                bindTo: '{vouchersList.selection}',
+                                                                deep: true,
+                                                            },
+                                                            get: function (record) {
+                                                                if (record) {
+                                                                    return record;
+                                                                }
+                                                            },
                                                         },
-                                                        formulas: {
-                                                            selectedVoucher: {
-                                                                bind: {
-                                                                    bindTo: '{vouchersList.selection}',
-                                                                    deep: true,
-                                                                },
-                                                                get: function (record) {
-                                                                    if (record) {
-                                                                        return record;
-                                                                    }
-                                                                },
+                                                        loadDocument: {
+                                                            bind: {
+                                                                bindTo: '{vouchersList.selection.id}',
                                                             },
-                                                            loadDodument: {
-                                                                bind: {
-                                                                    bindTo: '{vouchersList.selection.id}',
-                                                                    // deep: true
-                                                                },
-                                                                get: function (id) {
-                                                                    let record = this.get('vouchersList.selection');
-                                                                    if (record) {
-                                                                        Ext.ComponentQuery.query(
-                                                                            '[cls~=pdf-preview]'
-                                                                        )[0].setMasked(true);
-                                                                        var me = this;
-                                                                        let file = record.getDocument(),
-                                                                            pdf = record.get('pdf') ? true : false;
+                                                            get: function (id) {
+                                                                let record = this.get('vouchersList.selection');
+                                                                if (record) {
+                                                                    Ext.ComponentQuery.query(
+                                                                        '[cls~=pdf-preview]'
+                                                                    )[0].setMasked(true);
+                                                                    var me = this;
+                                                                    let file = record.getDocument();
 
-                                                                        // return me.getView().getController().previewFile(file);
-
-                                                                        me.getView()
-                                                                            .getController()
-                                                                            .loadDocument(
-                                                                                Env.ApiEndpoint +
-                                                                                    'get_pdf/' +
-                                                                                    file.get('id')
-                                                                            );
-
-                                                                        // if (!pdf) {
-                                                                        //     record.loadPDF2().then(function (blob) {
-                                                                        //         let test = {
-                                                                        //             blob: blob,
-                                                                        //             name: record.get('name') + '.' + file.get('extension')
-                                                                        //         }
-                                                                        //         me.getView().getController().loadDocument(test);
-                                                                        //     });
-                                                                        // } else {
-                                                                        //
-                                                                        //     let blob = record.get('pdf');
-                                                                        //     let test = {
-                                                                        //         blob: blob,
-                                                                        //         name: record.get('name') + '.' + file.get('extension')
-                                                                        //     }
-                                                                        //     me.getView().getController().loadDocument(test);
-                                                                        // }
-                                                                    }
-                                                                },
+                                                                    me.getView()
+                                                                        .getController()
+                                                                        .loadDocument(
+                                                                            Env.ApiEndpoint +
+                                                                                'get_pdf/' +
+                                                                                file.get('id')
+                                                                        );
+                                                                }
                                                             },
-                                                            canEditPerm: {
-                                                                bind: {
-                                                                    bindTo: '{disbursementRecord}',
-                                                                    deep: true,
-                                                                },
-                                                                get: function (record) {
-                                                                    if (record) {
-                                                                        let objectPermissions =
-                                                                                this.get('objectPermissions'),
-                                                                            nonEditable = this.get('nonEditable'),
-                                                                            store = this.get('userPermissions'),
-                                                                            result = false;
-                                                                        if (record.get('is_locked')) {
-                                                                            return false;
-                                                                        } else {
-                                                                            if (!nonEditable) {
-                                                                                if (
-                                                                                    store &&
-                                                                                    Object.keys(store).length > 0
-                                                                                ) {
-                                                                                    let record = store['disbursements'];
-                                                                                    if (record && record.edit) {
-                                                                                        return true;
-                                                                                    } else {
-                                                                                        return false;
-                                                                                    }
+                                                        },
+                                                        canEditPerm: {
+                                                            bind: {
+                                                                bindTo: '{disbursementRecord}',
+                                                                deep: true,
+                                                            },
+                                                            get: function (record) {
+                                                                if (record) {
+                                                                    let objectPermissions =
+                                                                            this.get('objectPermissions'),
+                                                                        nonEditable = this.get('nonEditable'),
+                                                                        store = this.get('userPermissions'),
+                                                                        result = false;
+                                                                    if (record.get('is_locked')) {
+                                                                        return false;
+                                                                    } else {
+                                                                        if (!nonEditable) {
+                                                                            if (
+                                                                                store &&
+                                                                                Object.keys(store).length > 0
+                                                                            ) {
+                                                                                let record = store['disbursements'];
+                                                                                if (record && record.edit) {
+                                                                                    return true;
+                                                                                } else {
+                                                                                    return false;
                                                                                 }
-                                                                            } else {
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                objectPermissions &&
+                                                                                objectPermissions['disbursements']
+                                                                            ) {
                                                                                 if (
-                                                                                    objectPermissions &&
                                                                                     objectPermissions['disbursements']
+                                                                                        .can_edit
                                                                                 ) {
+                                                                                    result = true;
                                                                                     if (
-                                                                                        objectPermissions[
-                                                                                            'disbursements'
-                                                                                        ].can_edit
+                                                                                        store &&
+                                                                                        Object.keys(store).length > 0
                                                                                     ) {
-                                                                                        result = true;
-                                                                                        if (
-                                                                                            store &&
-                                                                                            Object.keys(store).length >
-                                                                                                0
-                                                                                        ) {
-                                                                                            let record =
-                                                                                                store['disbursements'];
-                                                                                            if (
-                                                                                                record &&
-                                                                                                !record.edit
-                                                                                            ) {
-                                                                                                result = false;
-                                                                                            }
+                                                                                        let record =
+                                                                                            store['disbursements'];
+                                                                                        if (record && !record.edit) {
+                                                                                            result = false;
                                                                                         }
                                                                                     }
                                                                                 }
-                                                                                return result;
                                                                             }
+                                                                            return result;
                                                                         }
-                                                                    } else {
-                                                                        return false;
                                                                     }
-                                                                },
+                                                                } else {
+                                                                    return false;
+                                                                }
                                                             },
-                                                            dragListeners: {
-                                                                bind: {
-                                                                    bindTo: '{userPermissions}',
-                                                                    deeP: true,
-                                                                },
-                                                                get: function (store) {
-                                                                    if (store && Object.keys(store).length > 0) {
-                                                                        let record = store['portcallInvoiceCreate'];
-                                                                        if (record && record.edit) {
-                                                                            return {
-                                                                                element: 'element',
-                                                                                drop: 'onDrop',
-                                                                                dragleave: 'onDragLeaveListItem',
-                                                                                dragover: 'onDragOverListItem',
-                                                                            };
-                                                                        } else {
-                                                                            return {};
-                                                                        }
+                                                        },
+                                                        dragListeners: {
+                                                            bind: {
+                                                                bindTo: '{userPermissions}',
+                                                                deeP: true,
+                                                            },
+                                                            get: function (store) {
+                                                                if (store && Object.keys(store).length > 0) {
+                                                                    let record = store['portcallInvoiceCreate'];
+                                                                    if (record && record.edit) {
+                                                                        return {
+                                                                            element: 'element',
+                                                                            drop: 'onDrop',
+                                                                            dragleave: 'onDragLeaveListItem',
+                                                                            dragover: 'onDragOverListItem',
+                                                                        };
                                                                     } else {
                                                                         return {};
                                                                     }
-                                                                },
+                                                                } else {
+                                                                    return {};
+                                                                }
                                                             },
-                                                            nonEditableForSharing: {
-                                                                bind: {
-                                                                    bindTo: '{member}',
-                                                                    deep: true,
-                                                                },
-                                                                get: function (member) {
-                                                                    if (member && member.get('role') == 'can edit') {
-                                                                        this.set('nonEditable', false);
-                                                                    }
-                                                                },
+                                                        },
+                                                        nonEditableForSharing: {
+                                                            bind: {
+                                                                bindTo: '{member}',
+                                                                deep: true,
+                                                            },
+                                                            get: function (member) {
+                                                                if (member && member.get('role') == 'can edit') {
+                                                                    this.set('nonEditable', false);
+                                                                }
                                                             },
                                                         },
                                                     },
-                                                }).show();
-                                            }
+                                                },
+                                            }).show();
                                         }
                                         if (cmp.currentTarget.className.indexOf('remove_attachment') !== -1) {
-                                            if (record) {
-                                                Ext.Msg.confirm(
-                                                    'Delete',
-                                                    'Are you sure you want to delete this invoice?',
-                                                    function (answer) {
-                                                        if (answer == 'yes') {
-                                                            Ext.ComponentQuery.query(
-                                                                window.CurrentUser.get('company').type +
-                                                                    'portcall\\.main'
-                                                            )[0]
-                                                                .getController()
-                                                                .deleteVouchers([record]);
-                                                        }
+                                            Ext.Msg.confirm(
+                                                'Delete',
+                                                'Are you sure you want to delete this invoice?',
+                                                function (answer) {
+                                                    if (answer === 'yes') {
+                                                        Ext.ComponentQuery.query(
+                                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                                        )[0]
+                                                            .getController()
+                                                            .deleteVouchers([record]);
+                                                    }
+                                                },
+                                                this,
+                                                [
+                                                    {
+                                                        xtype: 'button',
+                                                        itemId: 'no',
+                                                        margin: '0 8 0 0',
+                                                        text: 'Cancel',
+                                                        testId: 'suppliesRightCardDeleteInvoiceNoBtn',
                                                     },
-                                                    this,
-                                                    [
-                                                        {
-                                                            xtype: 'button',
-                                                            itemId: 'no',
-                                                            margin: '0 8 0 0',
-                                                            text: 'Cancel',
-                                                            testId: 'suppliesRightCardDeleteInvoiceNoBtn',
-                                                        },
-                                                        {
-                                                            xtype: 'button',
-                                                            itemId: 'yes',
-                                                            ui: 'decline alt',
-                                                            text: 'Delete',
-                                                            separator: true,
-                                                            testId: 'suppliesRightCardDeleteInvoiceYesBtn',
-                                                        },
-                                                    ]
-                                                );
-                                            }
+                                                    {
+                                                        xtype: 'button',
+                                                        itemId: 'yes',
+                                                        ui: 'decline alt',
+                                                        text: 'Delete',
+                                                        separator: true,
+                                                        testId: 'suppliesRightCardDeleteInvoiceYesBtn',
+                                                    },
+                                                ]
+                                            );
                                         }
                                     },
                                 },

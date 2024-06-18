@@ -1,5 +1,5 @@
 import '../../core/components/InfoIcon';
-import '../../core/components/charts/Abraxa.Chart.jsx';
+import '../../core/components/charts/Abraxa.Chart';
 
 Ext.define('Abraxa.view.dashboard.DashboardRightContainer', {
     extend: 'Ext.Container',

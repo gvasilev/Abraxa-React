@@ -1,4 +1,5 @@
-import './File.jsx';
+import './File';
+
 Ext.define('Abraxa.model.amail.Amail', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

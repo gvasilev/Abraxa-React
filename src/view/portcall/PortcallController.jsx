@@ -2,59 +2,75 @@ Ext.define('Abraxa.view.portcall.PortcallController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.PortCallController',
     id: 'portcallController',
-    bindings: {
-        onWaspId: {
-            waspId: '{portCallRecord.integration_data.wasp_id}',
-            customComponents: '{currentCompany.custom_components}',
+
+    control: {
+        'field[cls~=current_port_combo]': {
+            painted: 'onWaspId',
         },
     },
-    onWaspId: function (data) {
-        if (
-            data.waspId ||
-            data.customComponents.query('customComponentId', 'waspIdPortCall', false, false, true).length > 0
-        ) {
-            Ext.ComponentQuery.query('[cls~=current_port_combo]').forEach(function (field) {
-                field.setDisabled(true);
-            });
+
+    onWaspId: function (field) {
+        let wasp_id = this.getViewModel().get('portCallRecord.integration_data.wasp_id'),
+            customComponents = this.getViewModel().get('currentCompany.custom_components');
+
+        if (wasp_id || customComponents.query('customComponentId', 'waspIdPortCall', false, false, true).length > 0) {
+            field.setDisabled(true);
         }
     },
     deleteVouchers: function (vouchers) {
-        let view = this.getView(),
+        const me = this,
+            view = me.getView(),
             vm = view.getVM(),
-            store = vm.get('vouchers'),
+            vouchersStore = vm.get('vouchers'),
             payments = vm.get('payments'),
             expenses = vm.get('expenses');
-        if (vouchers) {
-            vouchers.forEach(function (voucher) {
-                if (voucher) {
-                    let expense = expenses.getById(voucher.get('expense_id'));
-                    if (expense) {
-                        if (expense.get('fda_id')) {
-                            expense.set('fda_price', expense.get('fda_price') - voucher.get('calculated_price'));
-                        } else if (expense.get('dda_id')) {
-                            expense.set('dda_price', expense.get('dda_price') - voucher.get('calculated_price'));
-                        } else if (expense.get('pda_id')) {
-                            expense.set('pda_price', expense.get('pda_price') - voucher.get('calculated_price'));
-                        }
-                    }
+        if (!vouchers || !vouchers.length) return;
+        vouchers.forEach(function (voucher) {
+            if (!voucher || !voucher.get('expense_id')) return;
+            const expense = expenses.getById(voucher.get('expense_id'));
+            // Subtract the deleted voucher amount from the expense
+            if (expense.get('fda_id')) {
+                me.updateExpensePrice(expense, 'fda_price', voucher);
+            } else if (expense.get('dda_id')) {
+                me.updateExpensePrice(expense, 'dda_price', voucher);
+            } else if (expense.get('pda_id')) {
+                me.updateExpensePrice(expense, 'pda_price', voucher);
+            }
+        });
+
+        vouchersStore.remove(vouchers);
+        // TODO: CORE-2969 Rework deletion of vouchers to send a single bulk request
+        vouchersStore.sync({
+            success: function (err, msg) {
+                if (expenses.getSource().needsSync) {
+                    expenses.sync();
+                } else {
+                    expenses.reload();
                 }
-            });
-            store.remove(vouchers);
-            store.sync({
-                success: function (err, msg) {
-                    if (expenses.needsSync) {
-                        expenses.sync();
-                    } else {
-                        expenses.reload();
-                    }
-                    payments.reload();
-                    Ext.toast('Record updated', 1000);
-                },
-                failure: function (batch) {
-                    var response = batch.operations[0].error.response.responseJson;
-                    Ext.Msg.alert('Something went wrong', response.message);
-                },
-            });
+                payments.reload();
+                Ext.toast(AbraxaConstants.messages.updateRecord, 1000);
+            },
+            failure: function (batch) {
+                var response = batch.operations[0].error.response.responseJson;
+                Ext.Msg.alert('Something went wrong', response.message);
+            },
+        });
+    },
+
+    updateExpensePrice: function (expense, priceKey, voucher) {
+        const expensePrice = this.convertToNumber(expense.get(priceKey));
+        const voucherPrice = this.convertToNumber(voucher.get('calculated_price'));
+        let newPrice = expensePrice - voucherPrice;
+        if (newPrice < 0) {
+            newPrice = 0;
         }
+        expense.set(priceKey, newPrice);
+        expense.vouchers().remove(voucher);
+        expense.vouchers().commitChanges();
+    },
+
+    convertToNumber: function (value) {
+        const num = parseFloat(value);
+        return isNaN(num) ? 0 : num;
     },
 });

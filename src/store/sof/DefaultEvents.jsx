@@ -1,4 +1,5 @@
-import '../../model/sof/DefaultEvents.jsx';
+import '../../model/sof/DefaultEvents';
+
 Ext.define('Abraxa.store.sof.DefaultEvents', {
     extend: 'Ext.data.Store',
     alias: 'store.sof-general-events',

@@ -15,7 +15,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
             bind: {
                 hidden: '{inquiry.is_archived ? true:false}',
             },
-            handler: function (me) {
+            handler: function(me) {
                 let vm = me.upVM(),
                     record = vm.get('inquiry'),
                     recordClone = record.clone(null),
@@ -39,11 +39,11 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                 recordData.company_id = current_company_id;
                 voyage_data.vessel_id = voyage_data.vessel.id;
 
-                portsStore.each(function (record) {
+                portsStore.each(function(record) {
                     ports.push(record.getData());
                 });
 
-                cargoStore.each(function (record) {
+                cargoStore.each(function(record) {
                     let cargo = record.getData();
                     cargo.quantity = parseInt(cargo.quantity);
                     cargoes.push(cargo);
@@ -87,7 +87,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     bindTo: '{object_record.ports}',
                                     deep: true,
                                 },
-                                get: function (store) {
+                                get: function(store) {
                                     if (store && store.getCount()) {
                                         return store.first();
                                     }
@@ -98,11 +98,11 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     bindTo: '{firstPort}',
                                     deep: true,
                                 },
-                                get: function (record) {
+                                get: function(record) {
                                     if (record) {
                                         let store = this.get('additionalPortsFiltered');
                                         if (store) store.clearFilter();
-                                        return function (rec) {
+                                        return function(rec) {
                                             if (rec.get('id') != record.get('id')) {
                                                 return true;
                                             }
@@ -115,7 +115,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     filesCount: '{files.count}',
                                     editMode: '{editMode}',
                                 },
-                                get: function (data) {
+                                get: function(data) {
                                     if (data) {
                                         if (data.editMode) {
                                             return true;
@@ -133,7 +133,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     bindTo: '{usersCombo.selection}',
                                     deep: true,
                                 },
-                                get: function (selection) {
+                                get: function(selection) {
                                     if (selection) {
                                         if (selection.get('profile_image')) {
                                             let userImage = selection.get('profile_image');
@@ -161,7 +161,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     bindTo: '{userPermissions}',
                                     deeP: true,
                                 },
-                                get: function (store) {
+                                get: function(store) {
                                     return {
                                         element: 'element',
                                         drop: 'onDrop',
@@ -174,7 +174,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                 bind: {
                                     instructions: '{visibleInstruction}',
                                 },
-                                get: function (data) {
+                                get: function(data) {
                                     if (data) {
                                         if (data.instructions) {
                                             return '<span class="a-dialog-instructions-title">Voyage instructions</span>';
@@ -187,7 +187,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                 bind: {
                                     bindTo: '{object_record.port_id}',
                                 },
-                                get: async function (port_id) {
+                                get: async function(port_id) {
                                     let vm = this,
                                         filter = [
                                             {
@@ -203,14 +203,15 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                             params: {
                                                 filter: JSON.stringify(filter),
                                             },
-                                            success: function (response) {
+                                            success: function(response) {
                                                 if (response) {
                                                     vm.get('suggestedOrganizations').add(
-                                                        Ext.decode(response.responseText)
+                                                        Ext.decode(response.responseText),
                                                     );
                                                 }
                                             },
-                                            failure: function failure(response) {},
+                                            failure: function failure(response) {
+                                            },
                                         });
                                     }
                                 },
@@ -229,7 +230,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                 permission: '{userPermissions}',
                 hidden: '{inquiry.is_archived ? true:false}',
             },
-            handler: function (me) {
+            handler: function(me) {
                 let vm = me.upVM(),
                     record = vm.get('inquiry'),
                     store = vm.get('inquiries');
@@ -253,7 +254,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                 permission: '{userPermissions}',
                 hidden: '{inquiry.is_archived ? true:false}',
             },
-            handler: function (me) {
+            handler: function(me) {
                 let vm = me.upVM(),
                     record = vm.get('inquiry'),
                     container = this.find('agentActiveRightContainer'),
@@ -276,7 +277,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
             bind: {
                 hidden: '{inquiry.is_archived ? false : true}',
             },
-            handler: function () {
+            handler: function() {
                 let vm = this.lookupViewModel(),
                     record = vm.get('inquiry'),
                     call_from_grid = vm.get('call_from_grid'),
@@ -288,13 +289,13 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                 Ext.Msg.confirm(
                     'Restore enquiry',
                     '<div class="pl-48"><strong>Are you sure you want to restore the inquiry?</strong></div>',
-                    function (btn) {
+                    function(btn) {
                         if (btn === 'yes') {
                             record.set('is_archived', 0);
                             record.set('archived_reason', null);
                             record.set('status', 1);
                             record.save({
-                                success: function (batch) {
+                                success: function(batch) {
                                     Ext.toast('Record updated', 1000);
                                     if (store) store.remove(record);
                                     store.commitChanges();
@@ -303,7 +304,8 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     if (estimateStore) estimateStore.reload();
                                     if (!call_from_grid) record.load();
                                 },
-                                failure: function (batch) {},
+                                failure: function(batch) {
+                                },
                             });
                         }
                     },
@@ -323,7 +325,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                             separator: true,
                         },
                     ],
-                    '<div class="a-badge a-badge-default mr-16 my-8"><i class="material-icons-outlined">settings_backup_restore</i></div>'
+                    '<div class="a-badge a-badge-default mr-16 my-8"><i class="material-icons-outlined">settings_backup_restore</i></div>',
                 );
             },
         },
@@ -336,49 +338,23 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
             bind: {
                 permission: '{userPermissions}',
             },
-            handler: function (me) {
+            handler: function(me) {
                 let vm = me.upVM(),
                     record = vm.get('inquiry'),
                     call_from_grid = vm.get('call_from_grid'),
                     inquiries = vm.get('inquiries'),
                     recentlyOpened = vm.get('recentlyOpened'),
-                    estimateStore = Ext.getStore('inquiriesPdas'),
-                    container = this.find('inquiryRightContainer'),
-                    portcalls_archived = vm.get('portcallsArchived'),
-                    is_archived = vm.get('is_archived');
-                // Ext.create('Abraxa.view.portcall.PortcallDeleteDialog', {
-                //     viewModel: {
-                //         data: {
-                //             record: record,
-                //             portcalls: portcalls,
-                //             recentlyOpened: recentlyOpened,
-                //             call_from_grid: call_from_grid,
-                //         },
-                //         formulas: {
-                //             showWarning: {
-                //                 bind: {
-                //                     bindTo: '{record.members}',
-                //                     deep: true
-                //                 },
-                //                 get: function (store) {
-                //                     if (store && store.getCount() > 1) {
-                //                         return false;
-                //                     }
-                //                     return true;
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }).show();
+                    estimateStore = Ext.getStore('inquiriesPdas');
+
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you would like to delete this entry?',
-                    function (answer) {
+                    function(answer) {
                         if (answer == 'yes') {
                             if (call_from_grid) {
                                 inquiries.remove(record);
                                 inquiries.sync({
-                                    success: function () {
+                                    success: function() {
                                         recentlyOpened.reload();
                                         if (estimateStore) estimateStore.reload();
                                         Ext.toast('Record deleted', 2500);
@@ -391,7 +367,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                                     headers: {
                                         'Content-Type': null,
                                     },
-                                    success: function (response) {
+                                    success: function(response) {
                                         Ext.toast('Record deleted', 2500);
                                         window.location.hash = 'inquiries';
                                     },
@@ -414,7 +390,7 @@ Ext.define('Abraxa.view.inquiry.agent.InquiryEditMenu', {
                             ui: 'decline alt',
                             text: 'Delete',
                         },
-                    ]
+                    ],
                 );
             },
         },

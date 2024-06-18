@@ -1,14 +1,14 @@
+import '../../../model/notification/Notification';
 
-import '../../../model/notification/Notification.jsx';
 Ext.define('Abraxa.store.common.system.Notifications', {
     extend: 'Ext.data.Store',
     alias: 'store.notifications',
     model: 'Abraxa.model.notification.Notification',
     grouper: {
-        groupFn: function (record) {
+        groupFn: function(record) {
             return record.get('grouper');
         },
-        sorterFn: function (a, b) {
+        sorterFn: function(a, b) {
             return a.get('id') < b.get('id') ? 1 : -1;
         },
     },

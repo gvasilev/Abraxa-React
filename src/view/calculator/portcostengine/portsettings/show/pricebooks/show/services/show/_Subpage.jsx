@@ -1,6 +1,7 @@
-import './ViewModel.jsx';
-import './DataFieldAddModal.jsx';
-import './DataFieldEditMenu.jsx';
+import './ViewModel';
+import './DataFieldAddModal';
+import './DataFieldEditMenu';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.services.show._Subpage', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.portsettings.show.pricebooks.show.services.show.subpage',
@@ -32,13 +33,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                             iconCls: 'md-icon-keyboard-backspace',
                             ui: 'round default',
                             margin: '0 12 0 0',
-                            handler: function (me) {
+                            handler: function(me) {
                                 me.upVM().set(
                                     'subpageXtype',
-                                    'calculator.portcostengine.portsettings.show.pricebooks.show.subpage'
+                                    'calculator.portcostengine.portsettings.show.pricebooks.show.subpage',
                                 );
                                 let grid = Ext.ComponentQuery.query(
-                                    'grid[reference=calculatorPriceBookServicesGrid]'
+                                    'grid[reference=calculatorPriceBookServicesGrid]',
                                 )[0];
                                 grid.deselectAll();
                             },
@@ -72,7 +73,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                             ui: 'tool-sm round',
                             iconCls: 'md-icon-outlined md-icon-delete',
                             margin: '0 0 0 8',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let record = me.upVM().get('templateServiceRecord');
                                 let store = me.upVM().getParent().getStore('calcpricebookservice');
                                 let selectionPort = me.upVM().getParent().get('calculatorPortSettingsGrid.selection');
@@ -81,23 +82,23 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function (answer) {
+                                    function(answer) {
                                         if (answer === 'yes') {
                                             store.remove(record);
 
                                             store.sync({
-                                                success: function () {
+                                                success: function() {
                                                     let newServiceCount = priceBookRecord.get('serviceCount') - 1;
                                                     priceBookRecord.set('serviceCount', newServiceCount);
 
                                                     me.upVM().set(
                                                         'subpageXtype',
-                                                        'calculator.portcostengine.portsettings.show.pricebooks.show.subpage'
+                                                        'calculator.portcostengine.portsettings.show.pricebooks.show.subpage',
                                                     );
                                                     Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                     Ext.toast('Record deleted', 1000);
                                                 },
-                                                failure: function (batch, functions) {
+                                                failure: function(batch, functions) {
                                                     store.rejectChanges();
                                                 },
                                             });
@@ -118,7 +119,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                             ui: 'decline alt',
                                             separator: true,
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
@@ -156,7 +157,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                             text: 'Add set',
                             ui: 'action small',
                             iconCls: 'md-icon-add',
-                            handler: function (button) {
+                            handler: function(button) {
                                 let newBlock = Ext.create('Abraxa.model.calculator.PriceBookServiceFormulaBlock', {});
                                 button.upVM().get('templateServiceRecord').formula_blocks().add(newBlock);
 
@@ -245,7 +246,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         ],
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -286,7 +287,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.operator}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -324,7 +325,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.operator}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -347,7 +348,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.value}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -377,7 +378,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -407,7 +408,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -437,7 +438,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -467,7 +468,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -497,7 +498,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -527,7 +528,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         },
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -542,7 +543,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                     margin: '26 0 0 0',
                                                     ui: 'tool-sm round',
                                                     iconCls: 'md-icon-outlined md-icon-delete',
-                                                    handler: function () {
+                                                    handler: function() {
                                                         this.up('componentdataview')
                                                             .getStore()
                                                             .remove(this.upVM().get('record'));
@@ -562,7 +563,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                         handler: (button) => {
                                             let newRule = Ext.create(
                                                 'Abraxa.model.calculator.PriceBookServiceFormulaBlockRule',
-                                                {}
+                                                {},
                                             );
                                             button.upVM().get('record').rules().add(newRule);
 
@@ -584,7 +585,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                             value: '{record.formula}',
                                         },
                                         listeners: {
-                                            change: function (field, newValue, oldValue, eOpts) {
+                                            change: function(field, newValue, oldValue, eOpts) {
                                                 let templateServiceRecord = field.upVM().get('templateServiceRecord');
                                                 templateServiceRecord.dirty = true;
                                             },
@@ -595,7 +596,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     {
                                         type: 'close',
                                         iconCls: 'md-icon-outlined md-icon-delete',
-                                        handler: function () {
+                                        handler: function() {
                                             this.up('componentdataview').getStore().remove(this.upVM().get('record'));
                                             let templateServiceRecord = this.upVM().get('templateServiceRecord');
                                             templateServiceRecord.dirty = true;
@@ -678,7 +679,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                             cell: {
                                 encodeHtml: false,
                             },
-                            renderer: function (val, record) {
+                            renderer: function(val, record) {
                                 return (
                                     '<span class="a-badge-clc">' +
                                     record.get('slug') +
@@ -729,7 +730,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                             store: store,
                                                         },
                                                     },
-                                                }
+                                                },
                                             ).showBy(this);
                                         },
                                     },
@@ -764,7 +765,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     ui: 'action small',
                                     iconCls: 'md-icon-add',
                                     text: 'Add question',
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         let vm = me.upVM();
                                         let questionStore = me.upVM().getStore('calcservicedatafield');
 
@@ -778,7 +779,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         questionStore: questionStore,
                                                     },
                                                 },
-                                            }
+                                            },
                                         );
 
                                         dialog.show();
@@ -788,16 +789,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                         },
                     ],
                     listeners: {
-                        childtap: function (me, selection, events) {
+                        childtap: function(me, selection, events) {
                             if (!selection.cell.hasCls('stop_propagation')) {
                                 me.upVM().set(
                                     'subpageXtype',
-                                    'calculator.portcostengine.portsettings.show.pricebooks.show.services.show.datafields.show.subpage'
+                                    'calculator.portcostengine.portsettings.show.pricebooks.show.services.show.datafields.show.subpage',
                                 );
                                 me.upVM().set('templateServiceDataFieldRecord', selection.record);
                             }
                         },
-                        drop: function (node, data, overModel, dropPosition) {
+                        drop: function(node, data, overModel, dropPosition) {
                             if (!overModel) {
                                 return false;
                             }
@@ -809,18 +810,18 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 .getProxy()
                                 .setUrl(
                                     Env.ApiEndpoint +
-                                        'pc/${portSettingsId}/templates/${priceBookId}/services/${serviceId}/fields/orders'
+                                    'pc/${portSettingsId}/templates/${priceBookId}/services/${serviceId}/fields/orders',
                                 );
                             store.getProxy().getWriter().setRootProperty('data');
 
-                            store.each(function (val, index) {
+                            store.each(function(val, index) {
                                 val.set('order', index + 1);
                                 val.dirty = true;
                                 store.addSorted(val);
                             });
 
                             store.sync({
-                                success: function () {
+                                success: function() {
                                     Abraxa.utils.Functions.updatePortCost(selectionPort);
                                     Ext.toast('Record updated');
                                 },
@@ -832,7 +833,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 .getProxy()
                                 .setUrl(
                                     Env.ApiEndpoint +
-                                        'pc/${portSettingsId}/templates/${priceBookId}/services/${serviceId}/fields'
+                                    'pc/${portSettingsId}/templates/${priceBookId}/services/${serviceId}/fields',
                                 );
                             store.getProxy().getWriter().setRootProperty(null);
                         },
@@ -873,10 +874,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                             text: 'Add condition',
                             ui: 'action small',
                             iconCls: 'md-icon-add',
-                            handler: function (button) {
+                            handler: function(button) {
                                 let newBlock = Ext.create(
                                     'Abraxa.model.calculator.PriceBookServiceVisibilityFormulaBlock',
-                                    {}
+                                    {},
                                 );
                                 button.upVM().get('templateServiceRecord').visibility_formula_blocks().add(newBlock);
 
@@ -962,7 +963,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         ],
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1003,7 +1004,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.operator}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1041,7 +1042,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.operator}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1064,7 +1065,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         value: '{record.value}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1092,7 +1093,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureRegionComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1120,7 +1121,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureCargoComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1148,7 +1149,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureVesselComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1176,7 +1177,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureRegionItemsComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1204,7 +1205,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureCargoItemsComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1232,7 +1233,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                         store: '{nomenclatureVesselItemsComboStore}',
                                                     },
                                                     listeners: {
-                                                        change: function (field, newValue, oldValue, eOpts) {
+                                                        change: function(field, newValue, oldValue, eOpts) {
                                                             let templateServiceRecord = field
                                                                 .upVM()
                                                                 .get('templateServiceRecord');
@@ -1247,7 +1248,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                     margin: '26 0 0 0',
                                                     ui: 'tool-sm round',
                                                     iconCls: 'md-icon-outlined md-icon-delete',
-                                                    handler: function () {
+                                                    handler: function() {
                                                         this.up('componentdataview')
                                                             .getStore()
                                                             .remove(this.upVM().get('record'));
@@ -1267,7 +1268,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                         handler: (button) => {
                                             let newRule = Ext.create(
                                                 'Abraxa.model.calculator.PriceBookServiceVisibilityFormulaBlockRule',
-                                                {}
+                                                {},
                                             );
                                             button.upVM().get('record').rules().add(newRule);
 
@@ -1289,7 +1290,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                             value: '{record.formula}',
                                         },
                                         listeners: {
-                                            change: function (field, newValue, oldValue, eOpts) {
+                                            change: function(field, newValue, oldValue, eOpts) {
                                                 let templateServiceRecord = field.upVM().get('templateServiceRecord');
                                                 templateServiceRecord.dirty = true;
                                             },
@@ -1300,7 +1301,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     {
                                         type: 'close',
                                         iconCls: 'md-icon-outlined md-icon-delete',
-                                        handler: function () {
+                                        handler: function() {
                                             this.up('componentdataview').getStore().remove(this.upVM().get('record'));
                                             let templateServiceRecord = this.upVM().get('templateServiceRecord');
                                             templateServiceRecord.dirty = true;
@@ -1323,7 +1324,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     bind: {
                         value: '{templateServiceRecord.visibility_formula}',
                     },
-                    validators: function (value) {
+                    validators: function(value) {
                         let validationRegex = /^[\x20-\x7E]*$/;
                         if (!validationRegex.test(value)) {
                             return 'Prohibited character';
@@ -1369,7 +1370,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     ui: 'action loading',
                     text: 'Save',
                     height: 36,
-                    handler: function (me) {
+                    handler: function(me) {
                         let record = me.upVM().get('templateServiceRecord');
                         let form = me.up('formpanel');
                         let store = me.upVM().getParent().getStore('calcpricebookservice');
@@ -1377,10 +1378,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
 
                         if (record.dirty) {
                             store.sync({
-                                success: function () {
+                                success: function() {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, functions) {
+                                failure: function(batch, functions) {
                                     store.rejectChanges();
                                     Ext.ComponentQuery.query('container[reference=serviceForm]')[0]
                                         .down('form\\.error')

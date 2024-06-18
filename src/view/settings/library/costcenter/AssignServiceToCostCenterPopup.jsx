@@ -86,7 +86,7 @@ Ext.define('Abraxa.view.settings.library.cost_center.AssignServiceToCostCenterPo
                     if (newValue == '') serviceStore.removeFilter('search');
                 },
                 action: function (me, newValue, oldValue, eOpts) {
-                    var query = this.getValue().toLowerCase();
+                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                     var serviceStore = this.upVM().get('serviceStore');
                     serviceStore.removeFilter('search');
                     if (query.length > 2) {

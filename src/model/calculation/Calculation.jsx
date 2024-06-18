@@ -12,7 +12,7 @@ Ext.define('Abraxa.model.calculation.Calculation', {
         {
             name: 'status',
             type: 'auto',
-            convert: function (val, record) {
+            convert: function(val, record) {
                 let statuses = ['draft', 'submitted', 'approved', 'rejected'];
                 return statuses[val];
             },
@@ -25,7 +25,7 @@ Ext.define('Abraxa.model.calculation.Calculation', {
         {
             name: 'dataFields',
             critical: true,
-            mapping: function (data) {
+            mapping: function(data) {
                 return data.offer_fields;
             },
         },

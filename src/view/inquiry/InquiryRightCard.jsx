@@ -47,7 +47,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiryGrid.selection}',
                     deep: true,
                 },
-                get: function (selection) {
+                get: function(selection) {
                     if (selection) {
                         this.set('inquiry', selection);
                     } else {
@@ -75,7 +75,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiry.voyage}',
                     deep: true,
                 },
-                get: function (voyage) {
+                get: function(voyage) {
                     if (voyage) {
                         if (voyage.get('custom_vessel')) {
                             return voyage.get('custom_vessel');
@@ -90,7 +90,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{vessel}',
                     deep: true,
                 },
-                get: function (vessel) {
+                get: function(vessel) {
                     if (vessel) {
                         if (vessel.company_id && vessel.vessel_img) {
                             return vessel.vessel_img;
@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{vessel}',
                     deep: true,
                 },
-                get: function (vessel) {
+                get: function(vessel) {
                     if (vessel) {
                         let flag = null,
                             voyage = this.get('inquiry').getVoyage();
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{vessel}',
                     deep: true,
                 },
-                get: function (vessel) {
+                get: function(vessel) {
                     if (vessel && vessel.types) {
                         return vessel.types.name;
                     } else {
@@ -148,7 +148,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiry}',
                     deep: true,
                 },
-                get: function (inquiry) {
+                get: function(inquiry) {
                     if (inquiry) {
                         if (inquiry.get('status')) {
                             let status = inquiry.get('status'),
@@ -188,7 +188,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{portcall.watching}',
                     deep: true,
                 },
-                get: function (store) {
+                get: function(store) {
                     if (store) return store;
                 },
             },
@@ -197,7 +197,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiry}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) return record;
                 },
             },
@@ -206,7 +206,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{portcall}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         return record.status_data;
                     }
@@ -218,7 +218,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     deep: true,
                 },
 
-                get: function (visible) {
+                get: function(visible) {
                     if (visible) {
                         return true;
                     }
@@ -230,7 +230,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{object_record}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         return record.getVoyage();
                     }
@@ -241,7 +241,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiry.port_eta}',
                     deep: true,
                 },
-                get: function (date) {
+                get: function(date) {
                     if (date) {
                         return moment(date).format(AbraxaConstants.formatters.date.dayMonYearHyphenTime24);
                     }
@@ -253,7 +253,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{inquiry}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         if (record.get('assigned_to')) {
                             let storeUsers = this.get('users');
@@ -289,11 +289,11 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{portcall.members}',
                     deep: true,
                 },
-                get: function (store) {
+                get: function(store) {
                     if (store) {
                         let currentUser = this.get('currentUser');
 
-                        let member = store.queryBy(function (rec, id) {
+                        let member = store.queryBy(function(rec, id) {
                             return rec.get('tenant_id') == currentUser.get('current_company_id');
                         }).items[0];
 
@@ -306,12 +306,12 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{member}',
                     deep: true,
                 },
-                get: function (member) {
+                get: function(member) {
                     if (member) {
                         let permissions = member.permissions(),
                             object_permissions = {};
 
-                        permissions.each(function (record) {
+                        permissions.each(function(record) {
                             let slug = record.get('sub_object_slug');
                             object_permissions[slug] = {
                                 can_edit: record.get('can_edit'),
@@ -328,7 +328,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{objectPermissions}',
                     deep: true,
                 },
-                get: function (permissions) {
+                get: function(permissions) {
                     let portcall = this.get('portcall');
                     if (portcall && portcall.get('portcall.is_archived')) return false;
                     if (permissions) {
@@ -349,7 +349,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     inquiry: '{inquiry}',
                     editablePermissions: '{editablePermissions}',
                 },
-                get: function (data) {
+                get: function(data) {
                     if (data.inquiry) {
                         if (data.inquiry.get('is_archived')) {
                             return false;
@@ -363,7 +363,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{portcall.nomination}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         return record.get('port_function');
                     }
@@ -374,7 +374,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     bindTo: '{portcall.nomination.date_received}',
                     deep: true,
                 },
-                get: function (date) {
+                get: function(date) {
                     if (date) {
                         return moment(date).format(AbraxaConstants.formatters.date.dayMonYearHyphenTime24);
                     }
@@ -418,7 +418,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                         ],
                     },
                     listeners: {
-                        painted: function (list) {
+                        painted: function(list) {
                             list.select(0);
                         },
                     },
@@ -481,14 +481,14 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                             },
                             menu: {
                                 defaults: {
-                                    handler: function () {
+                                    handler: function() {
                                         var record = this.upVM().get('inquiry'),
                                             status_id = this.statusId;
 
                                         record.set('status', status_id);
 
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.toast('Record updated', 1000);
                                             },
                                         });
@@ -544,7 +544,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let vm = me.upVM();
                                 let inquiry = vm.get('inquiry');
                                 Ext.create('Abraxa.view.inquiry.appoint.AppointList', {
@@ -650,7 +650,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                     if (record) {
                                         if (
                                             record.get('company_id') ==
-                                                vm.get('currentUser').get('current_company_id') &&
+                                            vm.get('currentUser').get('current_company_id') &&
                                             !record.get('parent_id')
                                         ) {
                                             //full menu
@@ -685,7 +685,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                             xtype: 'button',
                             ui: 'round tool-round',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let activeGrid = Ext.ComponentQuery.query('[xtype=inquiry\\.agent\\.active\\.grid]')[0],
                                     archiveGrid = Ext.ComponentQuery.query('[xtype=portcalls\\.grid\\.closed]')[0];
                                 activeGrid.deselectAll();
@@ -879,7 +879,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                         click: {
                                             element: 'element',
                                             delegate: 'a',
-                                            fn: function (el) {
+                                            fn: function(el) {
                                                 let email = el.currentTarget.getAttribute('data-email');
                                                 if (email) {
                                                     let organizations = this.component.upVM().get('organizations'),
@@ -889,7 +889,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                                             0,
                                                             false,
                                                             false,
-                                                            true
+                                                            true,
                                                         );
                                                     if (orgRecord) {
                                                         Abraxa.getApplication()
@@ -999,7 +999,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                             click: {
                                                 element: 'element',
                                                 delegate: 'a',
-                                                fn: function (el) {
+                                                fn: function(el) {
                                                     let me = this,
                                                         cmp = me.component,
                                                         porstsServed = cmp.upVM().get('portsServed'),
@@ -1207,7 +1207,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                                     click: {
                                                         element: 'element',
                                                         delegate: 'a.instruction_link',
-                                                        fn: function () {
+                                                        fn: function() {
                                                             var record = this.component.upVM().get('record');
                                                             Ext.ComponentQuery.query('[xtype=appointment\\.main]')[0]
                                                                 .getVM()
@@ -1227,7 +1227,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                                                     click: {
                                                         element: 'element',
                                                         delegate: 'a.instruction_link',
-                                                        fn: function () {
+                                                        fn: function() {
                                                             var record = this.component.upVM().get('record');
                                                             Ext.ComponentQuery.query('[xtype=appointment\\.main]')[0]
                                                                 .getVM()
@@ -1270,7 +1270,7 @@ Ext.define('Abraxa.view.inquiry.InquiryAgentCard', {
                     // bind: {
                     //     hidden: '{portcallsAgentTabbar.activeTabIndex == 0 ? false : true}'
                     // },
-                    handler: function (me) {
+                    handler: function(me) {
                         let vm = me.upVM(),
                             activeTab = vm.get('portcallsAgentTabbar.activeTabIndex');
                         inquiry = vm.get('inquiry');

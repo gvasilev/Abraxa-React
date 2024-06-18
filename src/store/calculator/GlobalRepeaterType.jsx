@@ -1,4 +1,5 @@
-import '../../model/calculator/RepeaterType.jsx';
+import '../../model/calculator/RepeaterType';
+
 Ext.define('Abraxa.store.calculator.GlobalRepeaterType', {
     extend: 'Ext.data.Store',
     alias: 'store.calcglobalrepeatertype',

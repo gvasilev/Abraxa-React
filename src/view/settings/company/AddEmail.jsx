@@ -1,4 +1,5 @@
-import './CompanyController.jsx';
+import './CompanyController';
+
 Ext.define('Abraxa.view.settings.company.AddEmail', {
     xtype: 'settings.company.add.email',
     extend: 'Ext.Dialog',

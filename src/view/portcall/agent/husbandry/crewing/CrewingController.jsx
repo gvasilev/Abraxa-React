@@ -345,7 +345,7 @@ Ext.define('Abraxa.view.portcall.husbandary.crewing.CrewingController', {
     },
 
     deleteFiles: function (ids) {
-        let object_record = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0]
+        let object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
             .upVM()
             .get('object_record');
         Ext.Ajax.request({

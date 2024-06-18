@@ -1,5 +1,4 @@
-
-import '../../model/unit/DefaultUnit.jsx';
+import '../../model/unit/DefaultUnit';
 
 Ext.define('Abraxa.store.common.DefaultUnits', {
     extend: 'Ext.data.Store',

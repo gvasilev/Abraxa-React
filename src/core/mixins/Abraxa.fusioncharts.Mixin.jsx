@@ -2,7 +2,7 @@ import FusionCharts from 'fusioncharts';
 import Widgets from 'fusioncharts/fusioncharts.widgets';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import Gantt from 'fusioncharts/fusioncharts.gantt';
-import Charts from "fusioncharts/fusioncharts.charts";
+import Charts from 'fusioncharts/fusioncharts.charts';
 
 FusionTheme(FusionCharts);
 Gantt(FusionCharts);

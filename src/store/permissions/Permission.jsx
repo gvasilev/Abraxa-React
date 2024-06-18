@@ -1,4 +1,5 @@
-import '../../model/permission/Permission.jsx';
+import '../../model/permission/Permission';
+
 Ext.define('Abraxa.store.permissions.Permissions', {
     extend: 'Ext.data.Store',
     alias: 'store.permissions',

@@ -1,4 +1,5 @@
-import './DisbursementServicesGridController.jsx';
+import './DisbursementServicesGridController';
+
 Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementServicesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'DisbursementServicesGrid',
@@ -18,17 +19,10 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
         gridsummaryrow: {
             row: {
                 xtype: 'gridsummaryrow',
-                // docked: null,
-                // scrollDock: 'end',
-                // // weight: -2,
                 itemId: 'disb-grid-summary',
-                // cls: 'a-bb-100',
                 bind: {
                     hidden: '{disbursementServicesStore.count ? false : true}',
                 },
-                // body: {
-                //     html: 'Total',
-                // },
             },
         },
     },
@@ -111,13 +105,6 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                     return '<span class="a-cell-placeholder">Choose item</span>';
                 }
             },
-            exportRenderer: function exportRenderer(value, selection) {
-                if (value) {
-                    return selection.get('default_expense_item_name');
-                } else {
-                    return 'Choose item';
-                }
-            },
         },
         {
             menuDisabled: true,
@@ -198,47 +185,6 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
             },
         },
-
-        {
-            //TODO: this columns needs to me removed after implement BE for cost centers - WDEV-46
-            text: 'Customer code',
-            dataIndex: 'account_number',
-            resizable: false,
-            width: 130,
-            menuDisabled: true,
-            sortable: false,
-            hidden: true,
-            cell: {
-                encodeHtml: false,
-            },
-            renderer: function (val) {
-                if (val) {
-                    return val;
-                } else {
-                    return '<span class="a-cell-placeholder">---</span>';
-                }
-            },
-        },
-        {
-            //TODO: this columns needs to me removed after implement BE for cost centers - WDEV-46
-            text: 'Customer center',
-            dataIndex: 'customer_cost_center',
-            resizable: false,
-            width: 130,
-            menuDisabled: true,
-            hidden: true,
-            sortable: false,
-            cell: {
-                encodeHtml: false,
-            },
-            renderer: function (val) {
-                if (val) {
-                    return val;
-                } else {
-                    return '<span class="a-cell-placeholder">---</span>';
-                }
-            },
-        },
         {
             text: 'Vendor',
             width: 180,
@@ -249,31 +195,21 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
             cell: {
                 encodeHtml: false,
             },
+            summaryRenderer: function () {
+                return '<div class="fs-16 fw-b text-right">Total:</div>';
+            },
             renderer: function (value, record) {
                 if (value) {
                     return record.get('vendor_name');
                 } else {
-                    return '<span class="a-cell-placeholder">---</span>';
+                    return AbraxaConstants.placeholders.emptySpan;
                 }
-            },
-            exportRenderer: function exportRenderer(value, record) {
-                if (value) {
-                    return record.get('vendor_name');
-                } else {
-                    return AbraxaConstants.placeholders.emptyValue;
-                }
-            },
-            summaryRenderer: function () {
-                return '<div class="fs-16 fw-b text-right">Total:</div>';
-            },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                return '<div class="fs-16 fw-b text-right">Total:</div>';
             },
         },
         {
+            text: 'PDA price',
             dataIndex: 'pda_final_price',
             resizable: false,
-            text: 'PDA price',
             sortable: false,
             menuDisabled: true,
             align: 'right',
@@ -310,34 +246,12 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 align: 'right',
                 zeroValue: '<span class="a-cell-placeholder c-grey">0.00</span>',
             },
-            listeners: {
-                click: {
-                    element: 'element',
-                    delegate: 'a.disbursement_pda_link',
-                    fn: function () {
-                        let disbursement = this.component.upVM().get('selectedDisbursement');
-                        Ext.getCmp('main-viewport')
-                            .getController()
-                            .redirectTo(
-                                'portcall/' +
-                                    disbursement.get('portcall_id') +
-                                    '/disbursements/' +
-                                    disbursement.get('pda_id')
-                            );
-                    },
-                },
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Right',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
-            dataIndex: 'dda_final_price',
             text: 'DDA price',
+            dataIndex: 'dda_final_price',
             sortable: false,
             menuDisabled: true,
             resizable: false,
@@ -373,29 +287,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
                 zeroValue: '<span class="a-cell-placeholder c-grey">0.00</span>',
             },
-            listeners: {
-                click: {
-                    element: 'element',
-                    delegate: 'a.disbursement_dda_link',
-                    fn: function () {
-                        let disbursement = this.component.upVM().get('selectedDisbursement');
-                        Ext.getCmp('main-viewport')
-                            .getController()
-                            .redirectTo(
-                                'portcall/' +
-                                    disbursement.get('portcall_id') +
-                                    '/disbursements/' +
-                                    disbursement.get('dda_id')
-                            );
-                    },
-                },
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Right',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
@@ -451,23 +343,8 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                     return '';
                 }
             },
-            exportRenderer: function exportRenderer(value) {
-                if (value) {
-                    return Abraxa.utils.Functions.formatROE(value);
-                } else {
-                    return '';
-                }
-            },
             summaryRenderer: function () {
                 return '';
-            },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                return '';
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Center',
-                },
             },
         },
         {
@@ -507,19 +384,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
                 align: 'right',
             },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
-                let type = grid.upVM().get('selectedDisbursement.type'),
-                    value = grid.getStore().sum(type + '_final_price');
-
-                return Ext.util.Format.number(value, '0,000.00');
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Center',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
@@ -559,19 +424,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
                 align: 'right',
             },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
-                let type = grid.upVM().get('selectedDisbursement.type'),
-                    value = grid.getStore().sum(type + '_final_price');
-
-                return Ext.util.Format.number(value, '0,000.00');
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Center',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
@@ -593,7 +446,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 {
                     xtype: 'div',
                     bind: {
-                        html: '<span class="disbursement_dda_link fw-b">FDA price</span>',
+                        html: '<a class="disbursement_dda_link fw-b" href="javascript:void(0);">FDA price</a>',
                     },
                 },
                 {
@@ -611,19 +464,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
                 align: 'right',
             },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
-                let type = grid.upVM().get('selectedDisbursement.type'),
-                    value = grid.getStore().sum(type + '_final_price');
-
-                return Ext.util.Format.number(value, '0,000.00');
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Center',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
@@ -663,19 +504,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                 },
                 align: 'right',
             },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
-                let type = grid.upVM().get('selectedDisbursement.type'),
-                    value = grid.getStore().sum(type + '_final_price');
-
-                return Ext.util.Format.number(value, '0,000.00');
-            },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Center',
-                },
-            },
-            renderer: 'currencyWithAmountRenderer',
+            renderer: 'cellAmountRenderer',
             summaryRenderer: 'currencyWithAmountRenderer',
         },
         {
@@ -686,84 +515,20 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
             menuDisabled: true,
             cls: 'a-column-bl',
             resizable: false,
-            summaryRenderer: function (val, data) {
-                let store = data.store,
-                    pda_price = store.sum('pda_final_price'),
-                    dda_price = store.sum('dda_final_price'),
-                    final_price = store.sum('fda_final_price')
-                        ? store.sum('fda_final_price')
-                        : store.sum('dda_final_price');
-
-                let start_price = pda_price ? pda_price : dda_price;
-
-                if (!start_price && !final_price) return;
-
-                if (final_price === 0 && start_price) final_price = start_price;
-
-                if (start_price === 0 && final_price) start_price = final_price;
-
-                const reDiff = function relDiff(a, b) {
-                    return Math.abs((b - a) / a) * 100;
-                };
-
-                let variance = parseFloat(reDiff(start_price, final_price)).toFixed(1),
-                    sign = start_price > final_price ? '-' : start_price < final_price ? '+' : '',
-                    cls = start_price > final_price ? 'c-red' : start_price < final_price ? 'c-green' : 'c-blue',
-                    icon =
-                        start_price > final_price
-                            ? 'trending_down'
-                            : start_price < final_price
-                              ? 'trending_up'
-                              : 'trending_flat';
-
-                return (
-                    '<div class="hbox ' +
-                    cls +
-                    '"><i class="material-icons-outlined md-16 ' +
-                    cls +
-                    '">' +
-                    icon +
-                    '</i><span class="ml-8">' +
-                    sign +
-                    '' +
-                    variance +
-                    '%</span></div>'
-                );
-            },
-            exportSummaryRenderer: function exportSummaryRenderer() {
-                let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
-                let store = grid.getStore(),
-                    pda_price = store.sum('pda_final_price'),
-                    dda_price = store.sum('dda_final_price'),
-                    final_price = store.sum('fda_final_price')
-                        ? store.sum('fda_final_price')
-                        : store.sum('dda_final_price');
-
-                let start_price = pda_price ? pda_price : dda_price;
-
-                if (!start_price && !final_price) return;
-
-                if (final_price === 0 && start_price) final_price = start_price;
-
-                if (start_price === 0 && final_price) start_price = final_price;
-
-                const reDiff = function relDiff(a, b) {
-                    return Math.abs((b - a) / a) * 100;
-                };
-
-                let variance = parseFloat(reDiff(start_price, final_price)).toFixed(1),
-                    sign = start_price > final_price ? '-' : start_price < final_price ? '+' : '';
-
-                return sign + variance + '%';
-            },
             cell: {
                 encodeHtml: false,
                 cls: 'variance_cell a-cell-bl',
             },
-            exportStyle: {
-                alignment: {
-                    horizontal: 'Right',
-                },
+            summaryRenderer: function (val, row) {
+                let pda_price = 0,
+                    dda_price = 0,
+                    final_price = 0;
+                row.store.queryBy(function (rec) {
+                    pda_price += rec.get('pda_final_price');
+                    dda_price += rec.get('dda_final_price');
+                    final_price += rec.get('fda_final_price');
+                });
+                return Abraxa.utils.Functions.calculateVariance(pda_price, dda_price, final_price);
             },
         },
         {

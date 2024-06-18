@@ -1,4 +1,5 @@
-import '../../../model/common/port/PortBerths.jsx';
+import '../../../model/common/port/PortBerths';
+
 Ext.define('Abraxa.store.common.port.PortServedBerths', {
     extend: 'Ext.data.Store',
     storeId: 'store-portServedBerths',

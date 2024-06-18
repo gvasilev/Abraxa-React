@@ -1,9 +1,10 @@
-import '../../core/components/AbraxaDiv.jsx';
-import '../../core/components/combo/SubObjects.jsx';
-import '../../core/UserCombo.jsx';
-import '../../core/components/fields/DateTimeField.jsx';
-import '../comments/CommentsList.jsx';
-Ext.define('Abraxa.view.tasks.TaskRightContainer.js', {
+import '../../core/components/AbraxaDiv';
+import '../../core/components/combo/SubObjects';
+import '../common/combo/User';
+import '../../core/components/fields/DateTimeField';
+import '../comments/CommentsList';
+
+Ext.define('Abraxa.view.tasks.TaskRightContainer', {
     extend: 'Ext.Sheet',
     xtype: 'tasks.right.container',
     testId: 'tasksRightContainer',

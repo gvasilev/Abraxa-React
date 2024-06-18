@@ -1,8 +1,5 @@
 Ext.define('Abraxa.core.components.AbraxaCityCombo', {
     extend: 'Ext.form.field.ComboBox',
-    requires: [
-        'Ext.form.field.ComboBox',
-    ],
     xtype: 'city.combo',
     label: 'City',
     required: true,

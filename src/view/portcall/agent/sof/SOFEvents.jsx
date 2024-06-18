@@ -1,8 +1,10 @@
-import './SOFEventForm.jsx';
+import './SOFEventForm';
 import '../../../../core/plugins/SOFRowEditing';
+
 Ext.define('Abraxa.view.portcall.sof.SOFEvents', {
     extend: 'Ext.Container',
     xtype: 'sof.events',
+    // controller: 'SofController',
     // cls: 'a-bnc-main a-bnc-sof',
     flex: 1,
     layout: {
@@ -31,6 +33,10 @@ Ext.define('Abraxa.view.portcall.sof.SOFEvents', {
                     },
                     bind: {
                         hidden: '{nonEditable}',
+                    },
+                    customComponentHolderId: 'sofButtonToolbar',
+                    bind: {
+                        customComponents: '{currentCompany.custom_components}',
                     },
                     items: [
                         {

@@ -1,4 +1,5 @@
-import '../../../model/directory/ports/Ports.jsx';
+import '../../../model/directory/ports/Ports';
+
 Ext.define('Abraxa.store.directory.Ports', {
     extend: 'Ext.data.Store',
     alias: 'store.DirectoryPortsStore',
@@ -12,6 +13,7 @@ Ext.define('Abraxa.store.directory.Ports', {
         reader: {
             type: 'json',
             rootProperty: 'data',
+            totalProperty: 'meta.total',
         },
     },
 });

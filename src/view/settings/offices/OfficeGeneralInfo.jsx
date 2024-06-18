@@ -1,4 +1,5 @@
-import './OfficeController.jsx';
+import './OfficeController';
+
 Ext.define('Abraxa.view.settings.offices.OfficeGeneralInfo', {
     extend: 'Ext.Container',
     xtype: 'settings.offices.general.info',

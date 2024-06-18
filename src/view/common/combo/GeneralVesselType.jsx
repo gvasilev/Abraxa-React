@@ -1,4 +1,5 @@
-import '../../../store/common/VesselType.jsx';
+import '../../../store/common/VesselType';
+
 Ext.define('Abraxa.view.common.combo.GeneralVesselType', {
     extend: 'Ext.field.Select',
     xtype: 'vesseltype.combo',

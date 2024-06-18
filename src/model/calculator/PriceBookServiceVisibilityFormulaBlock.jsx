@@ -1,5 +1,6 @@
-import './PriceBookService.jsx';
-import './PriceBookServiceVisibilityFormulaBlockRule.jsx';
+import './PriceBookService';
+import './PriceBookServiceVisibilityFormulaBlockRule';
+
 Ext.define('Abraxa.model.calculator.PriceBookServiceVisibilityFormulaBlock', {
     extend: 'Ext.data.Model',
 
