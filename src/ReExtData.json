@@ -14,7 +14,7 @@
         "pivotlocale": false,
         "froalaeditor": true
     },
-    "debug": true,
+    "debug": false,
     "license": "b116e32e-0847-4764-94ef-a16987070409",
     "urlbase": "./",
     "location": "local"

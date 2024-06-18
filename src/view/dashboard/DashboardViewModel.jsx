@@ -198,7 +198,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
                                     if (obj) {
-                                        Ext.ComponentQuery.query('[xtype=dashboard\\.right\\.container]')[0].setMasked(
+                                        Ext.ComponentQuery.query('[xtype=dashboard\\.right\\.container]')[0]?.setMasked(
                                             false,
                                         );
                                         fusionchart.setJSONData(obj);
