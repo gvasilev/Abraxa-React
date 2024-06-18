@@ -1,5 +1,5 @@
-import '../tasks/TasksList.jsx';
-import '../tasks/TaskRightContainer.jsx';
+import '../tasks/TasksList';
+import '../tasks/TaskRightContainer';
 
 Ext.define('Abraxa.view.internal.TasksPanel', {
     extend: 'Ext.Sheet',
@@ -40,7 +40,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
             items: [
                 {
                     xtype: 'title',
-                    title: "<div class='hbox'><div class='a-badge a-badge-notes'><i class='md-icon-outlined md-icon-task-alt'></i></div><div><span class='a-panel-title'>Tasks</span><span class='a-panel-subtitle'><i class='md-icon-outlined md-icon-lock'></i>Visible only to my organization</span></div></div>",
+                    title: '<div class=\'hbox\'><div class=\'a-badge a-badge-notes\'><i class=\'md-icon-outlined md-icon-task-alt\'></i></div><div><span class=\'a-panel-title\'>Tasks</span><span class=\'a-panel-subtitle\'><i class=\'md-icon-outlined md-icon-lock\'></i>Visible only to my organization</span></div></div>',
                 },
                 {
                     xtype: 'container',
@@ -70,7 +70,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function () {
+                            handler: function() {
                                 let button = this;
 
                                 // Check if a note is already opened
@@ -125,7 +125,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                 dismissDelay: 0,
                                 closeAction: 'destroy',
                             },
-                            handler: function () {
+                            handler: function() {
                                 Ext.select('.a-filters').toggleCls('is-hidden');
                             },
                         },
@@ -145,7 +145,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                 closeAction: 'destroy',
                             },
                             arrow: false,
-                            handler: function () {
+                            handler: function() {
                                 let vm = this.upVM();
                                 Ext.create('Ext.menu.Menu', {
                                     viewModel: {
@@ -155,7 +155,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                         {
                                             iconCls: 'md-icon-outlined md-icon-picture-as-pdf',
                                             text: 'Export',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let record = me.upVM().get('object_record'),
                                                     sections = ['tasks'];
                                                 Abraxa.export.portcall(record.get('id'), sections);
@@ -170,7 +170,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                                 html: '{(currentUserPlan == "starter") ? "<span style=\\"margin-right: 12px; color: #FFB74D;\\"><i class=\\"far fa-gem\\"></i></span>":""}',
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function () {
+                                            handler: function() {
                                                 // Ext.create('Abraxa.view.main.UpgradeDialog').show();
                                                 let vm = Ext.ComponentQuery.query('internal\\.tasks\\.panel')[0].upVM(),
                                                     currentUserPlan = vm.get('currentUserPlan');
@@ -205,7 +205,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                                 disabled: '{object_record.is_archived ? true : false}',
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function () {
+                                            handler: function() {
                                                 let vm = Ext.ComponentQuery.query('internal\\.tasks\\.panel')[0].upVM(),
                                                     currentUserPlan = vm.get('currentUserPlan');
                                                 if (currentUserPlan == 'starter') {
@@ -242,11 +242,11 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                                                                 '{selectedTemplate.selection.id}',
                                                                         },
                                                                     },
-                                                                    updateProxy: function (proxy) {
+                                                                    updateProxy: function(proxy) {
                                                                         if (proxy) {
                                                                             proxy.onAfter(
                                                                                 'extraparamschanged',
-                                                                                function () {
+                                                                                function() {
                                                                                     if (
                                                                                         this.getProxy().getExtraParams()
                                                                                             .template_id
@@ -254,7 +254,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                                                                         this.load();
                                                                                     }
                                                                                 },
-                                                                                this
+                                                                                this,
                                                                             );
                                                                         }
                                                                     },
@@ -266,7 +266,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                                                         bindTo: '{taskTemplates}',
                                                                         deep: true,
                                                                     },
-                                                                    get: function (store) {
+                                                                    get: function(store) {
                                                                         if (store && store.getCount() > 0) {
                                                                             let firstRecord = store.getAt(0);
                                                                             if (firstRecord) {
@@ -301,7 +301,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function () {
+                            handler: function() {
                                 Ext.ComponentQuery.query('internal\\.tasks\\.panel')[0].hide();
                             },
                         },
@@ -325,16 +325,16 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                     ui: 'filter round',
                     xtype: 'splitbutton',
                     testId: 'internalTasksPanelStatusBtn',
-                    handler: function () {
+                    handler: function() {
                         this.showMenu();
                     },
-                    arrowHandler: function () {
+                    arrowHandler: function() {
                         let button = this,
                             arrowCls = this.splitArrowElement.hasCls('x-arrow-el'),
                             tasks = this.upVM().get('tasks');
                         if (!arrowCls) {
                             let selected = Ext.ComponentQuery.query('menuitem[cls~=taskFilterItem][checked="true"]');
-                            Ext.each(selected, function (value, index) {
+                            Ext.each(selected, function(value, index) {
                                 value.setChecked(false);
                             });
                             button.setText('Status');
@@ -349,7 +349,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                         cls: 'filter-menu',
                         defaults: {
                             cls: 'taskFilterItem',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let button = this.up('button'),
                                     store = this.upVM().get('tasks');
 
@@ -361,7 +361,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
 
                                 store.addFilter({
                                     id: 'status',
-                                    filterFn: function (record) {
+                                    filterFn: function(record) {
                                         if (record.get('status') == me.getValue()) {
                                             return true;
                                         }
@@ -398,18 +398,18 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                     ui: 'filter round',
                     xtype: 'splitbutton',
                     testId: 'internalTasksPanelPriorityBtn',
-                    handler: function () {
+                    handler: function() {
                         this.showMenu();
                     },
-                    arrowHandler: function () {
+                    arrowHandler: function() {
                         let button = this,
                             arrowCls = this.splitArrowElement.hasCls('x-arrow-el'),
                             tasks = this.upVM().get('tasks');
                         if (!arrowCls) {
                             let selected = Ext.ComponentQuery.query(
-                                'menuitem[cls~=taskFilterItemPriority][checked="true"]'
+                                'menuitem[cls~=taskFilterItemPriority][checked="true"]',
                             );
-                            Ext.each(selected, function (value, index) {
+                            Ext.each(selected, function(value, index) {
                                 value.setChecked(false);
                             });
                             button.setText('Priority');
@@ -424,7 +424,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                         cls: 'filter-menu',
                         defaults: {
                             cls: 'taskFilterItemPriority',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let button = this.up('button'),
                                     store = this.upVM().get('tasks');
 
@@ -436,7 +436,7 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
 
                                 store.addFilter({
                                     id: 'priority',
-                                    filterFn: function (record) {
+                                    filterFn: function(record) {
                                         if (record.get('priority') == me.getValue()) {
                                             return true;
                                         }
@@ -474,14 +474,14 @@ Ext.define('Abraxa.view.internal.TasksPanel', {
                         dismissDelay: 0,
                         closeAction: 'destroy',
                     },
-                    handler: function (me) {
+                    handler: function(me) {
                         let store = this.upVM().get('tasks');
                         if (!this.getPressed()) {
                             store.removeFilter('assigned_to');
                         } else {
                             store.addFilter({
                                 id: 'assigned_to',
-                                filterFn: function (record) {
+                                filterFn: function(record) {
                                     if (record.get('assigned_to') == me.upVM().get('currentUser').get('id')) {
                                         return true;
                                     }

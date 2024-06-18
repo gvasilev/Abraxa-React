@@ -1,6 +1,7 @@
-import '../../../../../core/components/Abraxa.PriceField.jsx';
-import '../../../../../core/components/Abraxa.CurrencyField.jsx';
-import '../../../../common/combo/BankAccount.jsx';
+import '../../../../../core/components/Abraxa.PriceField';
+import '../../../../../core/components/Abraxa.CurrencyField';
+import '../../../../common/combo/BankAccount';
+
 Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
     extend: 'Ext.Container',
     xtype: 'transactions.right.card',
@@ -22,7 +23,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                     bindTo: '{virtualAccountTransaction.selection}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     return record;
                 },
             },
@@ -31,7 +32,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                     bindTo: '{payment}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record && record.isModel) {
                         let virtualAccount = this.get('virtualAccountsGrid.selection');
                         if (record.get('is_refund')) {
@@ -65,7 +66,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                     payment_currency: '{payment.currency}',
                     currency: '{virtualAccountsGrid.selection.currency}',
                 },
-                get: function (data) {
+                get: function(data) {
                     if (data.payment_currency && data.currency) {
                         if (data.payment_currency != data.currency) {
                             return false;
@@ -81,7 +82,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                     bindTo: '{payment}',
                     deep: true,
                 },
-                get: function (payment) {
+                get: function(payment) {
                     if (payment && payment.isModel) {
                         let virtualAccount = this.get('virtualAccountsGrid.selection');
                         if (payment.get('is_refund')) {
@@ -103,10 +104,10 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                     bindTo: '{payment}',
                     deep: true,
                 },
-                get: function (payment) {
+                get: function(payment) {
                     if (payment && payment.isModel) {
                         let owner = payment.get('owner');
-                        if (owner.model_name.toLowerCase().indexOf('portcall') > -1) {
+                        if (owner && owner.model_name.toLowerCase().indexOf('portcall') > -1) {
                             return true;
                         }
                     }
@@ -153,7 +154,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (item, el, eOpts) {
+                            handler: function(item, el, eOpts) {
                                 let vm = this.upVM(),
                                     store = vm.get('virtualAccountPayments'),
                                     container = this.up('[xtype=transactions\\.right\\.card]'),
@@ -161,15 +162,15 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function (answer) {
+                                    function(answer) {
                                         if (answer == 'yes') {
                                             container.hide();
                                             store.remove(record);
                                             store.sync({
-                                                success: function (err, msg) {
+                                                success: function(err, msg) {
                                                     Ext.toast('Record updated', 1000);
                                                 },
-                                                failure: function (batch) {
+                                                failure: function(batch) {
                                                     Ext.Msg.alert('Something went wrong', 'Could not delete record!');
                                                 },
                                             });
@@ -189,7 +190,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                             ui: 'decline alt',
                                             text: 'Delete',
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
@@ -197,7 +198,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                             xtype: 'button',
                             ui: 'round tool-round-md',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let record = this.upVM().get('payment'),
                                     grid = Ext.ComponentQuery.query('[cls~=transactions_grid]')[0];
 
@@ -273,7 +274,6 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                             flex: 1,
                                             ui: 'field-xl no-border classic',
                                             label: '',
-                                            // cls: 'a-field-icon icon-money icon-rounded',
                                             slug: 'portcallPaymentAmount',
                                             bind: {
                                                 value: '{payment.amount * payment.from_exchange_rate}',
@@ -288,7 +288,6 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                             flex: 1,
                                             ui: 'field-xl no-border classic',
                                             label: '',
-                                            // cls: 'a-field-icon icon-money icon-rounded',
                                             slug: 'portcallPaymentAmount',
                                             bind: {
                                                 value: '{payment.amount * payment.to_exchange_rate}',
@@ -297,11 +296,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 hidden: '{kind == "incoming" || kind == "refund" ? false:true}',
                                             },
                                             listeners: {
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -338,17 +337,17 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.setError(null);
                                                 },
-                                                select: function (me, selection) {
+                                                select: function(me, selection) {
                                                     if (selection) {
                                                         let record = me.upVM().get('payment');
                                                         record.set('org_name', selection.get('org_name'));
                                                         record.set('from_type', selection.get('model_name'));
                                                     }
                                                 },
-                                                clearicontap: function (me) {
+                                                clearicontap: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     record.set('org_name', null);
                                                     record.set('from_type', null);
@@ -369,7 +368,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.setError(null);
                                                 },
                                             },
@@ -406,7 +405,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                     },
                                                     floatedPicker: {
                                                         listeners: {
-                                                            select: function (me, selection) {
+                                                            select: function(me, selection) {
                                                                 let payment = me.upVM().get('payment'),
                                                                     defaultCurrency = me.upVM().get('defaultCurrency');
                                                                 if (selection) {
@@ -415,13 +414,13 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                                             .getController('AbraxaController')
                                                                             .getExchange(
                                                                                 selection.get('currency'),
-                                                                                defaultCurrency
+                                                                                defaultCurrency,
                                                                             )
-                                                                            .then(function (response) {
+                                                                            .then(function(response) {
                                                                                 if (response && response.length) {
                                                                                     payment.set(
                                                                                         'exchange_rate',
-                                                                                        response[0].exchange_rate
+                                                                                        response[0].exchange_rate,
                                                                                     );
                                                                                 }
                                                                             });
@@ -462,7 +461,6 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                     required: false,
                                                     bind: {
                                                         value: '{payment.to_exchange_rate}',
-                                                        // required: '{payment.to_exchange_rate ? true:false}',
                                                         disabled: '{nonEditable ? true : false}',
                                                     },
                                                 },
@@ -489,11 +487,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                         labelAlign: 'left',
                                         ui: 'classic hovered-border',
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let record = me.upVM().get('payment');
                                                 if (record.dirty) {
                                                     record.save({
-                                                        success: function () {
+                                                        success: function() {
                                                             Ext.toast('Record updated', 1000);
                                                         },
                                                     });
@@ -522,16 +520,16 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.setError(null);
                                                 },
-                                                select: function (me, selection) {
+                                                select: function(me, selection) {
                                                     if (selection) {
                                                         let record = me.upVM().get('payment');
                                                         record.set('org_name', selection.get('org_name'));
                                                     }
                                                 },
-                                                clearicontap: function (me) {
+                                                clearicontap: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     record.set('org_name', null);
                                                 },
@@ -558,29 +556,9 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.setError(null);
                                                 },
-                                                // select: function (me, selection) {
-                                                //     if (selection) {
-                                                //         let record = me.upVM().get('payment');
-                                                //         record.set('org_name', selection.get('org_name'));
-                                                //     }
-                                                // },
-                                                // clearicontap: function (me) {
-                                                //     let record = me.upVM().get('payment');
-                                                //     record.set('org_name', null);
-                                                // },
-                                                // blur: function (me) {
-                                                //     let record = me.upVM().get('payment');
-                                                //     if (record.dirty) {
-                                                //         record.save({
-                                                //             success: function () {
-                                                //                 Ext.toast('Record updated', 1000);
-                                                //             },
-                                                //         });
-                                                //     }
-                                                // },
                                             },
                                         },
                                         {
@@ -603,21 +581,21 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                select: function (me, selection) {
+                                                select: function(me, selection) {
                                                     if (selection) {
                                                         let record = me.upVM().get('payment');
                                                         record.set('org_name', selection.get('org_name'));
                                                     }
                                                 },
-                                                clearicontap: function (me) {
+                                                clearicontap: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     record.set('org_name', null);
                                                 },
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -648,11 +626,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 permission: '{userPermissions}',
                                             },
                                             listeners: {
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -676,11 +654,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 permission: '{userPermissions}',
                                             },
                                             listeners: {
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -713,14 +691,14 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function (me) {
+                                                painted: function(me) {
                                                     me.setError(null);
                                                 },
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -747,7 +725,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 permission: '{userPermissions}',
                                             },
                                             listeners: {
-                                                beforequery: function () {
+                                                beforequery: function() {
                                                     let store = this.getStore(),
                                                         account = this.upVM().get('accountMainCombo.selection');
 
@@ -762,17 +740,17 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                         });
                                                     }
                                                 },
-                                                select: function (me, selection) {
+                                                select: function(me, selection) {
                                                     if (selection) {
                                                         let record = me.upVM().get('payment');
                                                         record.set('paymentable_type', selection.get('model_name'));
                                                     }
                                                 },
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -808,11 +786,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                 disabled: '{nonEditable ? true : false}',
                                             },
                                             listeners: {
-                                                blur: function (me) {
+                                                blur: function(me) {
                                                     let record = me.upVM().get('payment');
                                                     if (record.dirty) {
                                                         record.save({
-                                                            success: function () {
+                                                            success: function() {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
                                                         });
@@ -844,11 +822,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                         permission: '{userPermissions}',
                                                     },
                                                     listeners: {
-                                                        blur: function (me) {
+                                                        blur: function(me) {
                                                             let record = me.upVM().get('payment');
                                                             if (record.dirty) {
                                                                 record.save({
-                                                                    success: function () {
+                                                                    success: function() {
                                                                         Ext.toast('Record updated', 1000);
                                                                     },
                                                                 });
@@ -869,7 +847,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                     },
                                                     floatedPicker: {
                                                         listeners: {
-                                                            select: function (me, selection) {
+                                                            select: function(me, selection) {
                                                                 let billingParty = me
                                                                         .upVM()
                                                                         .get('billingParty.selection'),
@@ -887,13 +865,13 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                                                 .getController('AbraxaController')
                                                                                 .getExchange(
                                                                                     selection.get('currency'),
-                                                                                    billingParty.get('account_currency')
+                                                                                    billingParty.get('account_currency'),
                                                                                 )
-                                                                                .then(function (response) {
+                                                                                .then(function(response) {
                                                                                     if (response && response.length) {
                                                                                         payment.set(
                                                                                             'exchange_rate',
-                                                                                            response[0].exchange_rate
+                                                                                            response[0].exchange_rate,
                                                                                         );
                                                                                     }
                                                                                 });
@@ -909,11 +887,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                         },
                                                     },
                                                     listeners: {
-                                                        blur: function (me) {
+                                                        blur: function(me) {
                                                             let record = me.upVM().get('payment');
                                                             if (record.dirty) {
                                                                 record.save({
-                                                                    success: function () {
+                                                                    success: function() {
                                                                         Ext.toast('Record updated', 1000);
                                                                     },
                                                                 });
@@ -954,11 +932,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                         hidden: '{kind == "outgoing" ? false:true}',
                                                     },
                                                     listeners: {
-                                                        blur: function (me) {
+                                                        blur: function(me) {
                                                             let record = me.upVM().get('payment');
                                                             if (record.dirty) {
                                                                 record.save({
-                                                                    success: function () {
+                                                                    success: function() {
                                                                         Ext.toast('Record updated', 1000);
                                                                     },
                                                                 });
@@ -980,11 +958,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                                         hidden: '{kind == "incoming" || kind == "refund" ? false:true}',
                                                     },
                                                     listeners: {
-                                                        blur: function (me) {
+                                                        blur: function(me) {
                                                             let record = me.upVM().get('payment');
                                                             if (record.dirty) {
                                                                 record.save({
-                                                                    success: function () {
+                                                                    success: function() {
                                                                         Ext.toast('Record updated', 1000);
                                                                     },
                                                                 });
@@ -1032,11 +1010,11 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.TransactionsRightCard', {
                                         permission: '{userPermissions}',
                                     },
                                     listeners: {
-                                        blur: function (me) {
+                                        blur: function(me) {
                                             let record = me.upVM().get('payment');
                                             if (record.dirty) {
                                                 record.save({
-                                                    success: function () {
+                                                    success: function() {
                                                         Ext.toast('Record updated', 1000);
                                                     },
                                                 });

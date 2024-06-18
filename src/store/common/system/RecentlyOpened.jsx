@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.store.common.system.RecentlyOpened', {
     extend: 'Ext.data.Store',
     alias: 'store.recently-opened',

@@ -1,5 +1,6 @@
-import './AgentsController.jsx';
-import '../../../core/components/charts/AbraxaGoogleMap.jsx';
+import './AgentsController';
+import '../../../core/components/charts/AbraxaGoogleMap';
+
 Ext.define('Abraxa.view.directory.agents.AgentInfo', {
     extend: 'Ext.Container',
     xtype: 'AgentInfo',
@@ -205,7 +206,7 @@ Ext.define('Abraxa.view.directory.agents.AgentInfo', {
                                     click: {
                                         element: 'element',
                                         delegate: 'a',
-                                        fn: function (el) {
+                                        fn: function(el) {
                                             let me = this,
                                                 cmp = me.component,
                                                 portId = cmp.upVM().get('record').get('port_id');

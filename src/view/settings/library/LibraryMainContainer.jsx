@@ -1,21 +1,22 @@
-import './SharedCostCentersButton.jsx';
-import './ports/PortsMainContainer.jsx';
-import './sof/SofMainContainer.jsx';
-import './expenses/ExpensesMainContainer.jsx';
-import './costcenter/CostCenterMainContainer.jsx';
-import './cargoes/CargoesMainContainer.jsx';
-import './vessels/VesselsMainContainer.jsx';
-import './taxes/TaxesMainContainer.jsx';
-import './ports/PortsRightCard.jsx';
-import './cargoes/CargoesRightCard.jsx';
-import './vessels/VesselsRightCard.jsx';
-import './ports/FilesInfo.jsx';
-import './ports/TerminalsRightCard.jsx';
-import './ports/BerthsRightCard.jsx';
-import './ports/HolidaysRightCard.jsx';
-import './taxes/TaxesRightCard.jsx';
-import './expenses/ServiceRightPanel.jsx';
-import './costcenter/CostCenterDetails.jsx';
+import './SharedCostCentersButton';
+import './ports/PortsMainContainer';
+import './sof/SofMainContainer';
+import './expenses/ExpensesMainContainer';
+import './costcenter/CostCenterMainContainer';
+import './cargoes/CargoesMainContainer';
+import './vessels/VesselsMainContainer';
+import './taxes/TaxesMainContainer';
+import './ports/PortsRightCard';
+import './cargoes/CargoesRightCard';
+import './vessels/VesselsRightCard';
+import './ports/FilesInfo';
+import './ports/TerminalsRightCard';
+import './ports/BerthsRightCard';
+import './ports/HolidaysRightCard';
+import './taxes/TaxesRightCard';
+import './expenses/ServiceRightPanel';
+import './costcenter/CostCenterDetails';
+
 Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.main',
@@ -27,16 +28,7 @@ Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
             dialogHasBeenShown: false,
             agentsCounts: 0,
             LibraryServicesGrid: null,
-            legacyPort: null,
-            //hardcoded email for use Dimo Dimitrov to send submissions to nomenclature module
-            //must be remove in feature!!
-            userSubmissions: [
-                'dimitrov@abraxa.com',
-                'zapryanov@abraxa.com',
-                'marin.zapryanov@gmail.com',
-                'test503@abv.bg',
-                'boyan.stoyanov@abraxa.com',
-            ],
+            portFlag: null,
         },
         stores: {
             portServedBerths: {
@@ -61,47 +53,94 @@ Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
                     }
                 },
             },
+            portTitleComponent: {
+                bind: {
+                    bindTo: '{portsServerGrid.selection}',
+                },
+                get: function (selectedPort) {
+                    if (!selectedPort) return AbraxaConstants.placeholders.emptySpan;
+                    const libraryMainVM = this;
+                    let countryObj = null;
+                    if (selectedPort.get('port') && selectedPort.get('port').countries)
+                        countryObj = selectedPort.get('port').countries;
+
+                    let country = AbraxaConstants.placeholders.emptyValue;
+                    if (countryObj && countryObj.country_name) {
+                        country = countryObj.country_name;
+                    }
+                    let countryCode = '';
+                    if (countryObj && countryObj.country_code) {
+                        countryCode = `(${countryObj.country_code})`;
+                    }
+                    let portName = AbraxaConstants.placeholders.emptyValue;
+                    if (selectedPort.get('port_name')) portName = selectedPort.get('port_name');
+
+                    let htmlString =
+                        `<div class="hbox">` +
+                        `<img data-qtip="${country}" data-qalign="bc-tc" height="24" class="a-img-round mr-16" src="${libraryMainVM.get('portFlag')}"/>` +
+                        `${portName} <span class="text-uppercase ml-2">${countryCode}</span></div>`;
+
+                    return htmlString;
+                },
+            },
+
             portFlag: {
                 bind: {
                     bindTo: '{portsServerGrid.selection.port}',
                 },
                 get: function (port) {
-                    if (port && port.flag_abv_2_letters) {
-                        return 'https://static.abraxa.com/flags/1x1/' + port.flag_abv_2_letters.toLowerCase() + '.svg';
-                    }
+                    if (!port || !port.countries || !port.countries.country_code) return null;
+
+                    return 'https://static.abraxa.com/flags/1x1/' + port.countries.country_code.toLowerCase() + '.svg';
+                },
+            },
+            portWaterType: {
+                bind: {
+                    bindTo: '{portsServerGrid.selection.port}',
+                },
+                get: function (port) {
+                    if (!port || !port.water || !port.water[0]) return AbraxaConstants.placeholders.emptyValue;
+                    return port.water[0];
                 },
             },
 
-            point: {
+            portSeason: {
                 bind: {
-                    bindTo: '{portsServerGrid.selection.port.point}',
+                    bindTo: '{portsServerGrid.selection.port}',
+                },
+                get: function (port) {
+                    if (!port || !port.season) return AbraxaConstants.placeholders.emptyValue;
+                    return port.season;
+                },
+            },
+
+            portCoordinates: {
+                bind: {
+                    bindTo: '{portsServerGrid.selection.port.center}',
                     deep: true,
                 },
-                get: function (point) {
-                    if (point) {
-                        return JSON.parse(point);
+                get: function (coordinates) {
+                    if (coordinates) {
+                        return coordinates;
                     }
+                    return null;
                 },
             },
             lat: {
                 bind: {
-                    bindTo: '{point}',
+                    bindTo: '{portCoordinates}',
                     deep: true,
                 },
-                get: function (point) {
-                    if (point) return convertLatDDtoDMS(null, point.coordinates[1]);
-                },
+                get: (coordinates) => AbraxaFunctions.getPortLatitude(coordinates),
             },
             lon: {
                 bind: {
-                    bindTo: '{point}',
+                    bindTo: '{portCoordinates}',
                     deep: true,
                 },
-                get: function (point) {
-                    if (point) return convertLatDDtoDMS(null, point.coordinates[0]);
-                },
+                get: (coordinates) => AbraxaFunctions.getPortLongitude(coordinates),
             },
-            portserveRecord: {
+            portServedRecord: {
                 bind: {
                     bindTo: '{portsServerGrid.selection}',
                     deep: true,
@@ -110,6 +149,7 @@ Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
                     if (record) {
                         return record;
                     }
+                    return null;
                 },
             },
             portServedHolidays: {
@@ -124,37 +164,25 @@ Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
                     }
                 },
             },
-            terminalCollection: {
+            shelterAffordedCode: {
                 bind: {
-                    bindTo: '{legacyPort}',
-                    deep: true,
+                    bindTo: '{portsServerGrid.selection.port}',
                 },
-                get: function (legacyPort) {
-                    if (legacyPort) {
-                        return legacyPort.terminals;
+                get: function (port) {
+                    if (port) {
+                        return port.shelter_afforded_code;
                     }
-                    return null;
+                    return '';
                 },
             },
-
-            //Uncoment when BE is ready
-            // selectedAgents: function (get) {
-            //     const vm = this;
-            //     Ext.Ajax.request({
-            //         url: Env.ApiEndpoint + 'cost-structure-shares/',
-            //         method: 'GET',
-            //         headers: {
-            //             Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-            //             'Content-Type': 'application/json',
-            //         },
-            //         jsonData: {},
-            //         success: function (response) {
-            //             const data = JSON.parse(response.responseText).data;
-            //             vm.set('agentsCounts', data.length);
-            //         },
-            //         failure: function (response) {},
-            //     });
-            // },
+            terminalCollection: {
+                bind: {
+                    bindTo: '{portsServerGrid.selection}',
+                },
+                get: function (portSelected) {
+                    return portSelected?.terminals() ?? null;
+                },
+            },
         },
     },
     items: [
@@ -250,7 +278,7 @@ Ext.define('Abraxa.view.settings.lirbrary.LibraryMainContainer', {
                                     listeners: {
                                         activeTabchange: function (me, value) {
                                             //DEV-2926
-                                            if (value && value.getText() == 'Services') {
+                                            if (value && value.getText() === 'Services') {
                                                 Ext.ComponentQuery.query('#LibraryServicesGrid')[0].getStore().load();
                                             }
 

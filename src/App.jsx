@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Cookies from 'js-cookie';
-import './preloader/Preloader.jsx';
-import Preloader from './preloader/Preloader.jsx';
-import TempView from './TempView.jsx';
+import './preloader/Preloader';
+import Preloader from './preloader/Preloader';
+import TempView from './TempView';
 
 const App = () => {
     const { isLoading, isAuthenticated, error, getIdTokenClaims, loginWithRedirect, logout } = useAuth0();

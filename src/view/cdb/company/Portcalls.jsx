@@ -1,4 +1,4 @@
-import '../../../core/components/charts/Abraxa.Chart.jsx';
+import '../../../core/components/charts/Abraxa.Chart';
 
 Ext.define('Abraxa.view.cdb.company.Portcalls', {
     extend: 'Ext.Container',
@@ -45,7 +45,7 @@ Ext.define('Abraxa.view.cdb.company.Portcalls', {
                                     height: '100%',
                                     width: '100%',
                                     events: {
-                                        dataPlotClick: function (e) {
+                                        dataPlotClick: function(e) {
                                             let vm = this.component.upVM(),
                                                 months = vm.get('months');
                                             if (months) {
@@ -57,9 +57,6 @@ Ext.define('Abraxa.view.cdb.company.Portcalls', {
                             ],
                         },
                     ],
-                },
-                {
-                    xtype: 'financials.open.balances',
                 },
             ],
         },

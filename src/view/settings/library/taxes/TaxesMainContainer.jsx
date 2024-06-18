@@ -1,4 +1,5 @@
-import './TaxesGrid.jsx';
+import './TaxesGrid';
+
 Ext.define('Abraxa.view.settings.library.taxes.TaxesMainContaine', {
     extend: 'Ext.Container',
     xtype: 'settings.library.taxes.taxes.main',

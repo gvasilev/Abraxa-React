@@ -1,4 +1,5 @@
-import '../office/Office.jsx';
+import '../office/Office';
+
 Ext.define('Abraxa.model.template.Template', {
     extend: 'Ext.data.Model',
     fields: [

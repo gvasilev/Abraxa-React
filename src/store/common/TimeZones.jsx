@@ -1,4 +1,5 @@
-import '../../model/common/TimeZone.jsx';
+import '../../model/common/TimeZone';
+
 Ext.define('Abraxa.store.common.TimeZones', {
     extend: 'Ext.data.Store',
     alias: 'store.common.timezones',

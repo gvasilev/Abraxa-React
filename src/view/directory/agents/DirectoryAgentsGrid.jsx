@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.directory.agents.DirectoryAgentsGrid', {
                                     if (newValue == '') agentsStore.removeFilter('search');
                                 },
                                 action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var agentsStore = this.upVM().get('agentsStore');
                                     agentsStore.removeFilter('search');
                                     if (query.length > 2) {

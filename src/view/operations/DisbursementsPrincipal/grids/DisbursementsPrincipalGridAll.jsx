@@ -522,7 +522,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.grids.DisbursementsPri
                 encodeHtml: false,
             },
             renderer: function (value) {
-                let colorCls = '';
+                colorCls = '';
                 if (Ext.isNumber(value)) {
                     if (Ext.Number.sign(value) === -1) {
                         colorCls = 'c-red';

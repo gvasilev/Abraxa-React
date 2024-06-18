@@ -1,4 +1,5 @@
-import './ChangeUserRole.jsx';
+import './ChangeUserRole';
+
 Ext.define('Abraxa.view.settings.users_teams.users.UserDetailsMain', {
     extend: 'Ext.Container',
     xtype: 'user.details.main',
@@ -133,7 +134,7 @@ Ext.define('Abraxa.view.settings.users_teams.users.UserDetailsMain', {
                                             delegate: 'i.edit_role',
                                             fn: function (cmp, a) {
                                                 let vm = this.component.upVM();
-                                                const record = vm.get('userGrid.selection');
+                                                var record = vm.get('userGrid.selection');
                                                 Ext.create('Abraxa.view.settings.user_teams.users.ChangeUserRole', {
                                                     viewModel: {
                                                         parent: vm,

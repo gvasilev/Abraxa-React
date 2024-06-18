@@ -87,7 +87,6 @@ Ext.define('Abraxa.view.inquiry.InquiryAssingTo', {
                             placeholder: 'Choose assignee',
                             labelAlign: 'left',
                             reference: 'usersCombo',
-                            clearable: true,
                             ui: 'classic hovered-border',
                             cls: 'a-field-icon icon-person icon-rounded',
                             flex: 1,

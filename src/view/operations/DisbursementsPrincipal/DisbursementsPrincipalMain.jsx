@@ -1,12 +1,13 @@
-import './DisbursementsPrincipalMainViewModel.jsx';
-import './DisbursementsPrincipalMainController.jsx';
-import './grids/DisbursementsPrincipalGridsViewModel.jsx';
-import './grids/DisbursementsPrincipalGridsController.jsx';
-import './grids/DisbursementsPrincipalGridAll.jsx';
-import './grids/DisbursementsPrincipalGridApproved.jsx';
-import './grids/DisbursementsPrincipalGridAwaitingApproval.jsx';
-import './grids/DisbursementsPrincipalGridCompleted.jsx';
-import './grids/DisbursementsPrincipalGridSubmitted.jsx';
+import './DisbursementsPrincipalMainViewModel';
+import './DisbursementsPrincipalMainController';
+import './grids/DisbursementsPrincipalGridsViewModel';
+import './grids/DisbursementsPrincipalGridsController';
+import './grids/DisbursementsPrincipalGridAll';
+import './grids/DisbursementsPrincipalGridApproved';
+import './grids/DisbursementsPrincipalGridAwaitingApproval';
+import './grids/DisbursementsPrincipalGridCompleted';
+import './grids/DisbursementsPrincipalGridSubmitted';
+
 Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipalMain', {
     extend: 'Ext.Container',
     xtype: 'DisbursementsPrincipalMain',
@@ -72,7 +73,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
                             iconCls: 'md-icon-outlined md-icon-settings',
                             text: 'Manage columns',
                             margin: '0 0 0 8',
-                            handler: function (button) {
+                            handler: function(button) {
                                 const currentTab = button
                                     .up('DisbursementsPrincipalMain')
                                     .getViewModel()

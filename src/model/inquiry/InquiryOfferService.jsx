@@ -32,6 +32,9 @@ Ext.define('Abraxa.model.inquiry.InquiryOfferService', {
 
                 return price * exchangeRate;
             },
+            validate: function (value) {
+                return AbraxaFunctions.validateNonNegativeFieldValue('Calculated price', value);
+            },
         },
         {
             name: 'final_price',
@@ -44,6 +47,9 @@ Ext.define('Abraxa.model.inquiry.InquiryOfferService', {
 
                 return price + vatValue;
             },
+            validate: function (value) {
+                return AbraxaFunctions.validateNonNegativeFieldValue('Final price', value);
+            },
         },
         {
             name: 'discounted_price',
@@ -54,6 +60,9 @@ Ext.define('Abraxa.model.inquiry.InquiryOfferService', {
                     calculated_price = rec.get('calculated_price');
 
                 return rec.applyDiscount(calculated_price, discount);
+            },
+            validate: function (value) {
+                return AbraxaFunctions.validateNonNegativeFieldValue('Discounted price', value);
             },
         },
         {

@@ -1,12 +1,13 @@
-import './prefunding/PreFundingGrid.jsx';
-import './AgreementsViewModel.jsx';
-import './discounts/DiscountGrid.jsx';
-import './billing/BillingGrid.jsx';
-import './prefunding/PreFundingRightCard.jsx';
-import './discounts/DiscountRightCard.jsx';
-import './billing/BillingRightCard.jsx';
-import './standardInstructions/InstructionsGrid.jsx';
-import './standardInstructions/InstructionsRightCard.jsx';
+import './prefunding/PreFundingGrid';
+import './AgreementsViewModel';
+import './discounts/DiscountGrid';
+import './billing/BillingGrid';
+import './prefunding/PreFundingRightCard';
+import './discounts/DiscountRightCard';
+import './billing/BillingRightCard';
+import './standardInstructions/InstructionsGrid';
+import './standardInstructions/InstructionsRightCard';
+
 Ext.define('Abraxa.view.cdb.company.agreements.Main', {
     extend: 'Ext.Container',
     xtype: 'cdb.company.agreements.main',
@@ -64,7 +65,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.Main', {
                                     align: 'bc-tc?',
                                 },
                             },
-                            handler: function () {
+                            handler: function() {
                                 let panel = Ext.ComponentQuery.query('[cls~=agreements_left_menu]')[0],
                                     cls = panel.getUserCls() == 'is-expanded';
 
@@ -134,7 +135,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.Main', {
                         ],
                     },
                     listeners: {
-                        childsingletap: function () {
+                        childsingletap: function() {
                             Ext.ComponentQuery.query('agreements\\.prefunding\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('agreements\\.discounts\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('agreements\\.billing\\.grid')[0].deselectAll();

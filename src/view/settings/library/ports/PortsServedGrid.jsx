@@ -1,6 +1,7 @@
-import './SuggestDialogs/SuggestPort/SuggestPortDialog.jsx';
-import '../../../../model/suggestions/Port.jsx';
-import '../../system/ports/AddPort.jsx';
+import './SuggestDialogs/SuggestPort/SuggestPortDialog';
+import '../../../../model/suggestions/Port';
+import '../../system/ports/AddPort';
+
 Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.portsserved.grid',
@@ -104,7 +105,7 @@ Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
                             if (newValue == '') storeportsServed.removeFilter('search');
                         },
                         action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var storeportsServed = this.up('grid').getStore();
                             storeportsServed.removeFilter('search');
                             if (query.length > 2) {
@@ -135,10 +136,10 @@ Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
                     let data = AbraxaConstants.placeholders.emptyValue;
                     if (values && values.port_id) {
                         let flag = '';
-                        if (values.port && values.port.flag_abv_2_letters) {
+                        if (values.port && values.port.countries && values.port.countries.country_code) {
                             flag =
                                 'https://static.abraxa.com/flags/1x1/' +
-                                values.port.flag_abv_2_letters.toLowerCase() +
+                                values.port.countries.country_code.toLowerCase() +
                                 '.svg';
                         }
                         data =
@@ -154,21 +155,8 @@ Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
                 },
             }),
             cell: {
-                // cls: "expand a-cell-port",
                 cls: 'a-cell-offset-x32',
                 encodeHtml: false,
-                // listeners: {
-                //     click: {
-                //         element: "element",
-                //         delegate: "a",
-                //         fn: function (el) {
-                //             let portId = el.currentTarget.getAttribute("data-portid");
-                //             if (portId) {
-                //                 Abraxa.getApplication().getController('AbraxaController').showPortDialogById(portId);
-                //             }
-                //         }
-                //     }
-                // }
             },
         },
         {
@@ -327,85 +315,77 @@ Ext.define('Abraxa.view.settings.library.ports.PortsServedGrid', {
                             closeAction: 'destroy',
                         },
                         handler: function (me) {
-                            let port = this.upVM().get('record'),
-                                currentUser = this.upVM().get('currentUser'),
-                                grid = this.up('grid');
+                            const childSettingsMainVM = me.upVM(),
+                                currentUser = childSettingsMainVM.get('currentUser'),
+                                grid = me.up('grid');
+
                             grid.deselectAll();
-                            if (Ext.Array.contains(me.upVM().get('userSubmissions'), currentUser.get('email'))) {
-                                Ext.Ajax.request({
-                                    url:
-                                        Env.nomenclatureEndPoint +
-                                        'api/registry/v1/ports-legacy/' +
-                                        port.get('port_id'),
-                                    method: 'GET',
-                                    success: function (response) {
-                                        let data = Ext.decode(response.responseText);
-                                        if (data.info_work_days) {
-                                            data.info_work_days_start = data.info_work_days.start;
-                                            data.info_work_days_end = data.info_work_days.end;
-                                        }
-                                        if (data.info_work_hours) {
-                                            data.info_work_hours_start = moment(
-                                                data.info_work_hours.start,
-                                                'HH:mm'
-                                            ).toDate();
-                                            data.info_work_hours_end = moment(
-                                                data.info_work_hours.end,
-                                                'HH:mm'
-                                            ).toDate();
-                                        }
-                                        if (data.coordinates_center) {
-                                            data.coordinates_center_latitude = data.coordinates_center.latitude;
-                                            data.coordinates_center_longitude = data.coordinates_center.longitude;
-                                        }
-                                        if (data.coordinates_entrance) {
-                                            data.coordinates_entrance_latitude = data.coordinates_entrance.latitude;
-                                            data.coordinates_entrance_longitude = data.coordinates_entrance.longitude;
-                                        }
-                                        if (data.coordinates_pilot_station) {
-                                            data.coordinates_pilot_station_latitude =
-                                                data.coordinates_pilot_station.latitude;
-                                            data.coordinates_pilot_station_longitude =
-                                                data.coordinates_pilot_station.longitude;
-                                        }
-                                        Ext.create(
-                                            'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.SuggestPortDialog',
-                                            {
-                                                viewModel: {
-                                                    parent: me.upVM(),
-                                                    data: {
-                                                        record: new Abraxa.model.suggestions.Port(
-                                                            Object.assign({}, data)
-                                                        ),
-                                                        currentUser: currentUser,
-                                                    },
-                                                },
-                                            }
-                                        ).show();
-                                    },
-                                    failure: function failure(response) {},
-                                });
-                            } else {
-                                Ext.create(
-                                    'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.SuggestPortDialog',
-                                    {
-                                        viewModel: {
-                                            data: {
-                                                record: Ext.create('Abraxa.model.suggestions.Port', {
-                                                    id: port.get('port_id'),
-                                                    meta_name: port.get('port').name,
-                                                    meta_locode: port.get('port').code,
-                                                    meta_country_id: Abraxa.utils.Functions.getNestedProperty(
-                                                        port,
-                                                        'data.port.countries.country_code'
-                                                    ),
-                                                    meta_country_name: port.get('port').country,
-                                                }),
-                                            },
-                                        },
-                                    }
-                                ).show();
+
+                            const suggestionPort = Ext.create('Abraxa.model.suggestions.Port', {});
+                            const portServedRec = childSettingsMainVM.get('record').get('port');
+                            // Merge fields with same name
+                            suggestionPort.mergeData(portServedRec);
+
+                            const mappedSuggestRecData = {
+                                info_harbour_size: portServedRec.harbor_size_code,
+                                info_harbour_type: portServedRec.harbor_type_code,
+                                info_salinity: portServedRec.water,
+                                info_shelter_afforded: portServedRec.shelter_afforded_code,
+                                meta_locode: portServedRec.code,
+                                meta_name: portServedRec.name,
+                                restriction_seca: portServedRec.is_seca,
+                            };
+                            const countryData = portServedRec.countries;
+                            if (countryData) {
+                                mappedSuggestRecData.meta_country_id = countryData.country_code || '';
+                                mappedSuggestRecData.meta_country_name = countryData.country_name || '';
                             }
+                            const loadLinesData = portServedRec.restriction_load_lines_summer;
+                            if (loadLinesData) {
+                                mappedSuggestRecData.load_lines = loadLinesData.load_lines || '';
+                                mappedSuggestRecData.load_lines_start = loadLinesData.load_lines_start || '';
+                                mappedSuggestRecData.load_lines_end = loadLinesData.load_lines_end || '';
+                            }
+
+                            const coordinatesData = portServedRec.center;
+                            if (coordinatesData) {
+                                mappedSuggestRecData.coordinates_center_latitude = coordinatesData.latitude || null;
+                                mappedSuggestRecData.coordinates_center_longitude = coordinatesData.longitude || null;
+                            }
+
+                            const coordinatesEntranceData = portServedRec.coordinates_entrance;
+                            if (coordinatesEntranceData) {
+                                mappedSuggestRecData.coordinates_entrance_latitude =
+                                    coordinatesEntranceData.latitude || null;
+                                mappedSuggestRecData.coordinates_entrance_longitude =
+                                    coordinatesEntranceData.longitude || null;
+                            }
+
+                            const coordinatesPilotData = portServedRec.coordinates_pilot_station;
+                            if (coordinatesPilotData) {
+                                mappedSuggestRecData.coordinates_pilot_station_latitude =
+                                    coordinatesPilotData.latitude || null;
+                                mappedSuggestRecData.coordinates_pilot_station_longitude =
+                                    coordinatesPilotData.longitude || null;
+                            }
+
+                            // Map fields with different names
+                            suggestionPort.mergeData(mappedSuggestRecData);
+
+                            childSettingsMainVM.set('addEditPortTitle', AbraxaConstants.titles.editPort);
+
+                            Ext.create(
+                                'Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.SuggestPortDialog',
+                                {
+                                    viewModel: {
+                                        parent: childSettingsMainVM,
+                                        data: {
+                                            currentUser: currentUser,
+                                            record: suggestionPort,
+                                        },
+                                    },
+                                }
+                            ).show();
                         },
                     },
                     {

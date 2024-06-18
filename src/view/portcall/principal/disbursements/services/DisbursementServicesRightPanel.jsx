@@ -393,7 +393,7 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.services.DisbursementSe
                                                             }
                                                         },
                                                     },
-                                                    loadDodument: {
+                                                    loadDocument: {
                                                         bind: {
                                                             bindTo: '{vouchersList.selection.id}',
                                                             // deep: true

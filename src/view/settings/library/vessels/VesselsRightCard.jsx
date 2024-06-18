@@ -1,7 +1,8 @@
-import './VesselMainDetails.jsx';
-import './VesselTechnical.jsx';
-import './VesselManagment.jsx';
-import './Certificates.jsx';
+import './VesselMainDetails';
+import './VesselTechnical';
+import './VesselManagment';
+import './Certificates';
+
 Ext.define('Abraxa.view.settings.library.vessels.CargoesRightCard', {
     extend: 'Ext.Container',
     xtype: 'vessels.right.card',

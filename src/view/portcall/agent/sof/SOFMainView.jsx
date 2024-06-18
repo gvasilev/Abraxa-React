@@ -1,15 +1,17 @@
-import './SOFViewModel.jsx';
-import './SOFPortInfo.jsx';
-import './SOFBerths.jsx';
-import './SOFEvents.jsx';
-import './SOFRemarks.jsx';
-import './SOFSignatures.jsx';
-import './SOFCargoProgress.jsx';
-import './CargoRightCard.jsx';
+import './SOFViewModel';
+import './SOFPortInfo';
+import './SOFBerths';
+import './SOFEvents';
+import './SOFRemarks';
+import './SOFSignatures';
+import './SOFCargoProgress';
+import './CargoRightCard';
 import './BerthMenu';
 import './CreateSOFTemplate';
 import './ApplySOFTemplate';
 import './AddRemark';
+import './SofController';
+
 Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
     extend: 'Ext.Container',
     xtype: 'sof.main',
@@ -23,6 +25,7 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
     items: [
         {
             layout: 'hbox',
+            controller: 'SofController',
             items: [
                 {
                     xtype: 'container',
@@ -38,6 +41,8 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
                             xtype: 'container',
                             cls: 'a-titlebar',
                             height: 64,
+                            itemId: 'sofTitleBar',
+                            hideMode: 'opacity',
                             items: [
                                 {
                                     xtype: 'div',
@@ -266,7 +271,8 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
                                 },
                                 select: function (list, record) {
                                     let VM = Ext.ComponentQuery.query(
-                                            window.CurrentUser.get('company').type + 'portcall\\.main'
+                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                                'portcall\\.main'
                                         )[0].upVM(),
                                         store = list.getStore();
                                     VM.set('selectedOpsSection', store.indexOf(record));
@@ -275,7 +281,7 @@ Ext.define('Abraxa.view.portcall.sof.SOFMainView', {
                                     this.select(0);
                                 },
                                 // initialize: function () {
-                                //     Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].upVM().set('opsMenuPainted', true);
+                                //     Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].upVM().set('opsMenuPainted', true);
                                 // }
                             },
                         },

@@ -15,6 +15,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
     pinHeaders: false,
     variableHeights: true,
     itemId: 'pdateItemsGrid',
+    controller: 'pda-controller',
     plugins: {
         gridcellediting: {
             triggerEvent: 'tap',
@@ -27,8 +28,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
         hideHeaders: '{services.count ? false : true}',
         store: '{services}',
     },
-    // collapsible: true,
-    pinHeaders: false,
     itemConfig: {
         viewModel: true,
     },
@@ -85,9 +84,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
             cell: {
                 encodeHtml: false,
                 bind: {
-                    cls: 'a-cell-item', //{record.type === "template"? "a-cell-non-editable" : ""}',
-                    //old cls bind
-                    // {record.type && record.type != "financial" ? "a-supply-locked" : ""}
+                    cls: 'a-cell-item',
                 },
             },
             summaryCell: {
@@ -105,15 +102,9 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     matchFieldWidth: false,
                 },
                 listeners: {
-                    // beforecomplete: function (editor) {
-                    //     var val = editor.getField().getInputValue(),
-                    //         gridRecord = editor.ownerCmp.getRecord();
-                    // },
                     complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services'),
-                            gridRecord = editor.ownerCmp.getRecord();
-
-                        let selection = editor.getField().getSelection();
+                        const gridRecord = editor.ownerCmp.getRecord();
+                        const selection = editor.getField().getSelection();
 
                         if (!selection) return;
 
@@ -121,18 +112,11 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                             'default_expense_item_category_id',
                             selection.get('default_expense_item_category_id')
                         );
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                            failure: function () {
-                                Ext.Msg.alert('Something went wrong', 'Error while updating record.');
-                            },
-                        });
+                        editor.lookupController().onPDAItemsFieldComplete(editor);
                     },
                     beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
-                        if (record && record.get('type') == 'template') return false;
+                        if (record && record.get('type') === 'template') return false;
                     },
                 },
             },
@@ -193,35 +177,20 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                 },
                 listeners: {
                     complete: function (editor, value) {
-                        let store = editor.up('grid').upVM().get('sertvices'),
-                            selectedAccount = editor.up('grid').upVM().get('selectedAccount'),
+                        const selectedAccount = editor.up('grid').upVM().get('selectedAccount'),
                             record = editor.upVM().get('record');
 
-                        if (selectedAccount.get('account_currency') == value) record.set('exchange_rate', 1);
+                        if (selectedAccount.get('account_currency') === value) record.set('exchange_rate', 1);
 
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
+                        editor.lookupController().onPDAItemsFieldComplete(editor);
                     },
                     beforestartedit: function (editor, boundEl, value, eOpts) {
-                        let record = eOpts.record,
-                            disbursement = editor.upVM().get('selectedDisbursement'),
-                            disbursementType = editor.upVM().get('selectedDisbursement.type');
+                        let record = eOpts.record;
 
                         if (record && record.vouchers().count()) return false;
                     },
                 },
             },
-            // renderer: function (value, record) {
-            //     if (record) {
-            //         let pda = this.up('grid').upVM().get('pda');
-            //         return pda.get('currency');
-            //     } else {
-            //         return '';
-            //     }
-            // },
         },
         {
             dataIndex: 'value',
@@ -230,7 +199,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
             menuDisabled: true,
             align: 'right',
             width: 120,
-            // editable: false,
             cls: 'a-column-bl',
             cell: {
                 encodeHtml: false,
@@ -249,20 +217,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     xtype: 'abraxa.pricefield',
                 },
                 listeners: {
-                    complete: function (editor, value) {
-                        let store = editor.up('grid').upVM().get('services'),
-                            record = editor.ownerCmp.getRecord();
-
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
-                    // beforestartedit: function (editor, boundEl, value, eOpts) {
-
-                    //     // if (boundEl.event.target.localName === 'button') return false;
-                    // },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             summary: 'sum',
@@ -296,15 +251,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     ui: 'classic',
                 },
                 listeners: {
-                    complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services');
-
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             renderer: function (value) {
@@ -356,21 +303,12 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     placeholder: '0',
                     clearable: false,
                     xtype: 'textfield',
-                    // validators: [new RegExp("^[-+]?[0-9]*?[.]?[0-9]{1}?[%]?$")],
-                    // maskRe: [new RegExp("^[0-9]*?[.]?[0-9]{1}?[%]?$")],
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
                     validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
                 },
                 listeners: {
-                    complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services');
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             renderer: function (value) {
@@ -429,14 +367,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     textAlign: 'center',
                 },
                 listeners: {
-                    complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services');
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             renderer: function (value) {
@@ -491,14 +422,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     xtype: 'textfield',
                 },
                 listeners: {
-                    complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services');
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             renderer: function (val, selection) {
@@ -532,14 +456,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                     xtype: 'textfield',
                 },
                 listeners: {
-                    complete: function (editor) {
-                        let store = editor.up('grid').upVM().get('services');
-                        store.sync({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
-                    },
+                    complete: 'onPDAItemsFieldComplete',
                 },
             },
             renderer: function (val, selection) {
@@ -560,7 +477,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
                 xtype: 'widgetcell',
                 cls: 'a-cell-more',
                 align: 'right',
-                // hideMode: 'visibility',
                 focusable: false,
                 widget: {
                     xtype: 'container',
@@ -683,18 +599,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
     },
     listeners: {
         beforeedit: function () {
-            let nonEditable = this.upVM().get('nonEditable');
-            // if (!canEdit) {
-            //     return false;
-            // }
-            let store = this.upVM().get('userPermissions');
-            // if (store && Object.keys(store).length > 0) {
-            //     let record = store['portcallDisbursements'];
-            //     if (record && !record.edit)
-            //         return false;
-            // }
-            // let disbursement = this.upVM().get('selectedDisbursement');
-
+            const nonEditable = this.upVM().get('nonEditable');
             if (nonEditable) return false;
         },
         dragenter: {
@@ -703,7 +608,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGrid', {
             fn: function (me, element) {
                 let type = this.component.upVM().get('selectedDisbursement.type');
 
-                if (type == 'pda') return;
+                if (type === 'pda') return;
                 if (this.component.upVM().get('nonEditable')) {
                     return;
                 }

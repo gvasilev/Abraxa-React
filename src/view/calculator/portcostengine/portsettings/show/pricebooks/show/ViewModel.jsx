@@ -1,4 +1,5 @@
-import '../../../../../../../store/calculator/PriceBookVariable.jsx';
+import '../../../../../../../store/calculator/PriceBookVariable';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.ViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.calculator.portcostengine.pricebooks.show',
@@ -6,7 +7,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
         calcpricebookvariable: {
             type: 'calcpricebookvariable',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -17,11 +18,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     priceBookId: '{priceBooksList.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (
                                 this.getProxy().getExtraParams().portSettingsId &&
                                 this.getProxy().getExtraParams().priceBookId
@@ -29,7 +30,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -38,7 +39,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
     formulas: {
         recordCopy: {
             bind: '{priceBooksList.selection}',
-            get: function (value) {
+            get: function(value) {
                 return value ? value.copy() : null;
             },
         },

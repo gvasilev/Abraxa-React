@@ -452,7 +452,7 @@ Ext.define('Abraxa.view.tasks.TasksGrid', {
                                     if (newValue == '') storeTasks.removeFilter('search');
                                 },
                                 action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var storeTasks = this.upVM().get('tasks');
                                     storeTasks.removeFilter('search');
                                     if (query.length > 2) {
@@ -1356,7 +1356,6 @@ Ext.define('Abraxa.view.tasks.TasksGrid', {
     ],
     listeners: {
         childtap: function (grid, location) {
-            // console.log(location.event.target.classList);
             if (location.event.target.classList.contains('a_grid_action')) return false;
 
             this.upVM().set('selectedTask', location.record);

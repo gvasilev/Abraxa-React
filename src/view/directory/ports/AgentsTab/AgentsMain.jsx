@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.directory.ports.AgentsTab.AgentsMain', {
                                     if (newValue == '') agentsStore.removeFilter('search');
                                 },
                                 action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var agentsStore = this.upVM().get('agents');
                                     agentsStore.removeFilter('search');
                                     if (query.length > 2) {

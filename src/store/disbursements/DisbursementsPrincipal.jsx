@@ -1,4 +1,5 @@
-import '../../model/disbursement/DisbursementPrincipal.jsx';
+import '../../model/disbursement/DisbursementPrincipal';
+
 Ext.define('Abraxa.store.disbursements.DisbursementPrincipal', {
     extend: 'Ext.data.Store',
     alias: 'store.disbursementsPrincipal',

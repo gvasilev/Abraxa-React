@@ -1,6 +1,7 @@
-import './_Page.jsx';
-import './EditMenu.jsx';
-import './AddModal.jsx';
+import './_Page';
+import './EditMenu';
+import './AddModal';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
     extend: 'Ext.grid.Grid',
     xtype: 'calculator.portcostengine.portsettings.index.grid',
@@ -45,7 +46,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
                     iconCls: 'md-icon-add',
                     hideMode: 'opacity',
                     ui: 'action small',
-                    handler: function (btn, e) {
+                    handler: function(btn, e) {
                         let vm = this.upVM();
                         let dialog = Ext.create('Abraxa.view.calculator.portcostengine.portsettings.index.AddModal', {
                             viewModel: {
@@ -71,7 +72,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
             },
             cell: {
                 encodeHtml: false,
-                renderer: function (value, record) {
+                renderer: function(value, record) {
                     return (
                         '<div class="hbox">' +
                         '<div class="a-badge a-badge-x32 a-badge-default"><i class="md-icon-outlined">anchor</i></div>' +
@@ -144,7 +145,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
                     hidden: true,
                     ui: 'tool-md',
                     right: 4,
-                    handler: function () {
+                    handler: function() {
                         this.up('grid').getPlugin('gridviewoptions').showViewOptions();
                     },
                     tooltip: {
@@ -228,7 +229,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
                 ui: 'normal-light medium',
                 iconCls: 'md-icon-add',
                 hideMode: 'opacity',
-                handler: function (btn, e) {
+                handler: function(btn, e) {
                     let vm = this.upVM();
                     let dialog = Ext.create('Abraxa.view.calculator.portcostengine.portsettings.index.AddModal', {
                         viewModel: {
@@ -244,16 +245,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.Grid', {
         ],
     },
     listeners: {
-        childtap: function (me, selection, events) {
+        childtap: function(me, selection, events) {
             if (!selection.cell.hasCls('stop_propagation')) {
                 me.upVM().set('pageXtype', 'calculator.portcostengine.portsettings.show.page');
                 me.upVM().set(
                     'subpageXtype',
-                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree'
+                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree',
                 );
             }
         },
-        deselect: function (me, record, index) {
+        deselect: function(me, record, index) {
             me.upVM().set('pageXtype', null);
         },
     },

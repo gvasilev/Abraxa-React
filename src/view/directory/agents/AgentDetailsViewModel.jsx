@@ -130,11 +130,6 @@ Ext.define('Abraxa.view.directory.agents.AgentDetailsViewModel', {
                         marker.addListener('mouseout', () => {
                             meView.getController().customMarkerMouseOut(marker);
                         });
-
-                        // google.maps.event.addListener(marker, "mouseover", function () {
-                        // 	// Your mouseover code here
-                        // 	console.log("Mouseover event triggered on marker with label: " + this.labelContent);
-                        // });
                     });
                 }
 

@@ -1,4 +1,5 @@
-import '../../../../../../../../../store/calculator/ServiceDataField.jsx';
+import '../../../../../../../../../store/calculator/ServiceDataField';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.services.show.ViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.calculator.portcostengine.pricebooks.show.services.show',
@@ -6,7 +7,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
         calcservicedatafield: {
             type: 'calcservicedatafield',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -18,11 +19,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     serviceId: '{templateServiceRecord.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (
                                 this.getProxy().getExtraParams().portSettingsId &&
                                 this.getProxy().getExtraParams().priceBookId &&
@@ -31,7 +32,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -40,215 +41,119 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
     formulas: {
         recordCopy: {
             bind: '{calculatorPriceBookServicesGrid.selection}',
-            get: function (value) {
+            get: function(value) {
                 return value ? value.copy() : null;
             },
         },
         nomenclatureRegionComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'region');
-
-                    if (nomenclature) {
-                        let categories = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === false;
-                        });
-
-                        categories.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
+                        me.notify();
+                    });
                 }
 
                 return options;
             },
         },
         nomenclatureCargoComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'cargo');
-
-                    if (nomenclature) {
-                        let categories = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === false;
-                        });
-
-                        categories.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
+                        me.notify();
+                    });
                 }
 
                 return options;
             },
         },
         nomenclatureVesselComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'vessel');
-
-                    if (nomenclature) {
-                        let categories = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === false;
-                        });
-
-                        categories.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
+                        me.notify();
+                    });
                 }
 
                 return options;
             },
         },
         nomenclatureRegionItemsComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'region');
-
-                    if (nomenclature) {
-                        let items = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === true;
-                        });
-
-                        items.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
+                        me.notify();
+                    });
                 }
 
                 return options;
             },
         },
         nomenclatureCargoItemsComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'cargo');
-
-                    if (nomenclature) {
-                        let items = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === true;
-                        });
-
-                        items.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
+                        me.notify();
+                    });
                 }
 
                 return options;
             },
         },
         nomenclatureVesselItemsComboStore: {
-            get: function (value) {
+            get: function(value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
 
-                if (nomenclatureStore.isLoaded()) {
-                    traverseNomenclature();
-                } else {
-                    nomenclatureStore.on('load', traverseNomenclature);
-                }
-
-                function traverseNomenclature() {
-                    let nomenclature = nomenclatureStore.findRecord('type', 'vessel');
-
-                    if (nomenclature) {
-                        let items = nomenclature.data.items.filter(function (item) {
-                            return item.leaf === true;
-                        });
-
-                        items.forEach((category, index) => {
-                            options.push({
-                                name: category.text,
-                                value: category.id,
-                            });
-                        });
-                    }
-
-                    // Notify that the options are updated
+                if (nomenclatureStore && nomenclatureStore.isLoaded()) {
+                    options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                     me.notify();
+                } else {
+                    nomenclatureStore.on('load', function() {
+                        options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
+                        me.notify();
+                    });
                 }
 
                 return options;

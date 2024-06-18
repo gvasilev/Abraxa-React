@@ -1,21 +1,21 @@
 {
-  "sdkversion": "7.7.0",
-  "toolkit": "modern",
-  "theme": "material",
-  "packages": {
-    "charts": true,
-    "fontawesome": false,
-    "ux": false,
-    "calendar": false,
-    "d3": false,
-    "exporter": true,
-    "pivot": false,
-    "pivotd3": false,
-    "pivotlocale": false,
-    "froalaeditor": true
-  },
-  "debug": true,
-  "license": "b116e32e-0847-4764-94ef-a16987070409",
-  "urlbase": "./",
-  "location": "local"
+    "sdkversion": "7.8.0",
+    "toolkit": "modern",
+    "theme": "material",
+    "packages": {
+        "charts": true,
+        "fontawesome": false,
+        "ux": true,
+        "calendar": false,
+        "d3": false,
+        "exporter": true,
+        "pivot": false,
+        "pivotd3": false,
+        "pivotlocale": false,
+        "froalaeditor": true
+    },
+    "debug": true,
+    "license": "b116e32e-0847-4764-94ef-a16987070409",
+    "urlbase": "./",
+    "location": "local"
 }

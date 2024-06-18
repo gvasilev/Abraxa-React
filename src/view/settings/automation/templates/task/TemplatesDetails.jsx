@@ -1,6 +1,7 @@
-import './TaskItemsGrid.jsx';
-import '../sof/SofItemsGrid.jsx';
-import '../disbursement/DisbursementItemsGrid.jsx';
+import './TaskItemsGrid';
+import '../sof/SofItemsGrid';
+import '../disbursement/DisbursementItemsGrid';
+
 Ext.define('Abraxa.view.settings.templates.task.TemplatesDetails', {
     extend: 'Ext.Container',
     xtype: 'settings.templates.details',

@@ -1,4 +1,5 @@
-import './PermissionGrid.jsx';
+import './PermissionGrid';
+
 Ext.define('Abraxa.view.settings.users_teams.roles.PermissionSettings', {
     extend: 'Ext.Container',
     xtype: 'usersettings.permission.settings',

@@ -1,14 +1,15 @@
-import '../SuggestController.jsx';
-import './SuggestPortAdditional.jsx';
-import './SuggestPortCoordinates.jsx';
-import './SuggestPortFacilities.jsx';
-import './SuggestPortGeneral.jsx';
-import './SuggestPortHealth.jsx';
-import './SuggestPortLDLocations.jsx';
-import './SuggestPortPilotage.jsx';
-import './SuggestPortRestrictions.jsx';
-import './SuggestPortServices.jsx';
-import './SuggestPortSupplies.jsx';
+import '../SuggestController';
+import './SuggestPortAdditional';
+import './SuggestPortCoordinates';
+import './SuggestPortFacilities';
+import './SuggestPortGeneral';
+import './SuggestPortHealth';
+import './SuggestPortLDLocations';
+import './SuggestPortPilotage';
+import './SuggestPortRestrictions';
+import './SuggestPortServices';
+import './SuggestPortSupplies';
+
 Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.SuggestPortDialog', {
     extend: 'Ext.Dialog',
     xtype: 'SuggestPortDialog',
@@ -22,37 +23,37 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.Sugges
     title: false,
     controller: 'suggests.controller',
     keyMapEnabled: true,
-    keyMap: {
-        scope: 'this',
-        ESC: function () {
-            let dialog = Ext.ComponentQuery.query('[xtype=SuggestPortDialog]')[0];
-            Ext.Msg.confirm(
-                'Confirmation',
-                'Would you like to discard all changes?',
-                function (answer) {
-                    if (answer == 'yes') {
-                        dialog.destroy();
-                    }
-                },
-                this,
-                [
-                    {
-                        xtype: 'button',
-                        itemId: 'no',
-                        margin: '0 8 0 0',
-                        text: 'Cancel',
-                    },
-                    {
-                        xtype: 'button',
-                        itemId: 'yes',
-                        enableToggle: true,
-                        ui: 'action loading',
-                        text: 'Discard',
-                    },
-                ]
-            );
-        },
-    },
+    //    keyMap: {
+    //        scope: 'this',
+    //        ESC: function () {
+    //            let dialog = Ext.ComponentQuery.query('[xtype=SuggestPortDialog]')[0];
+    //            Ext.Msg.confirm(
+    //                'Confirmation',
+    //                'Would you like to discard all changes?',
+    //                function (answer) {
+    //                    if (answer == 'yes') {
+    //                        dialog.destroy();
+    //                    }
+    //                },
+    //                this,
+    //                [
+    //                    {
+    //                        xtype: 'button',
+    //                        itemId: 'no',
+    //                        margin: '0 8 0 0',
+    //                        text: 'Cancel',
+    //                    },
+    //                    {
+    //                        xtype: 'button',
+    //                        itemId: 'yes',
+    //                        enableToggle: true,
+    //                        ui: 'action loading',
+    //                        text: 'Discard',
+    //                    },
+    //                ]
+    //            );
+    //        },
+    //    },
     tools: {
         close: {
             tooltip: {
@@ -99,7 +100,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.Sugges
             xtype: 'div',
             cls: 'a-dialog-card-title a-dialog-has-icon',
             bind: {
-                html: "Let's add a Port",
+                html: '{addEditPortTitle}',
             },
         },
         {

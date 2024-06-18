@@ -1,5 +1,6 @@
-import '../../../../../view/common/combo/PortsServed.jsx';
-import '../../../../../core/components/combo/PortRemote.jsx';
+import '../../../../../view/common/combo/PortsServed';
+import '../../../../../core/components/combo/PortRemote';
+
 Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
     extend: 'Ext.Dialog',
     xtype: 'settings.rules.create',

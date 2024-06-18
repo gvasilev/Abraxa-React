@@ -1,4 +1,5 @@
-import './CostCenterTree.jsx';
+import './CostCenterTree';
+
 Ext.define('Abraxa.view.settings.library.cost_center.CostCenterDetails', {
     extend: 'Ext.Container',
     xtype: 'CostCenterDetails',

@@ -106,11 +106,6 @@ Ext.define('Abraxa.model.suggestions.Berth', {
             type: 'auto',
             allowNull: true,
         },
-        {
-            name: 'legacy_parent_id',
-            type: 'auto',
-            allowNull: true,
-        },
     ],
     idProperty: 'submission_id',
     proxy: {

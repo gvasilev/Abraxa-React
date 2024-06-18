@@ -1,7 +1,10 @@
 import '../../../approval/SendForApprovalDialog';
+
 Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'documents.edit.menu',
+    testId: 'documentsEditeMenu',
+    controller: 'documents.controller',
     ui: 'has-icons medium',
     minWidth: 180,
     items: [
@@ -372,6 +375,7 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
         },
         {
             text: 'Delete',
+            testId: 'documentsEditMenuDeleteButton',
             slug: 'portcallDocumentDelete',
             bind: {
                 permission: '{userPermissions}',
@@ -379,40 +383,19 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
             separator: true,
             ui: 'decline',
             iconCls: 'md-icon-outlined md-icon-delete',
-            handler: function (me) {
-                var record = this.upVM().get('record'),
-                    selection = this.upVM().get('selectedSection.selection');
+            handler: function (deleteBtn) {
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you want to delete this document?<br>Uploaded files will be <b>permanently</b> deleted.',
                     function (answer) {
-                        if (answer == 'yes') {
-                            let store = Ext.ComponentQuery.query('documents\\.list')[0].getStore(),
-                                folderfile = record.getFolderFile(),
-                                folderStore = this.upVM().get('selectedSection.selection').documents(),
-                                allDocuments = this.upVM().get('documents');
-
-                            store.remove(record);
-
-                            store.sync({
-                                success: function (batch, opt) {
-                                    const documentSections = Ext.ComponentQuery.query('[itemId=documentSections]');
-                                    if (documentSections && documentSections.length) {
-                                        Ext.ComponentQuery.query('[itemId=documentSections]')[0]
-                                            .upVM()
-                                            .set('refreshFolderCount', new Date());
-                                    }
-
-                                    // me.upVM().getParent().set('refreshFolderCount', new Date());
-                                    Ext.toast('Document deleted', 1500);
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Could not delete document.');
-                                },
-                            });
-                        }
+                        if (answer !== 'yes') return;
+                        const documentsViewModel = deleteBtn.upVM();
+                        const docRecord = documentsViewModel.get('record');
+                        const documentsController = deleteBtn.lookupController();
+                        documentsController.deleteSelectedDocuments([docRecord], documentsViewModel);
                     },
-                    this,
+                    // The scope (this reference) in which the callback is executed.
+                    deleteBtn,
                     [
                         {
                             xtype: 'button',

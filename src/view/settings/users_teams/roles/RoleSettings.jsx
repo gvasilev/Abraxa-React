@@ -1,7 +1,8 @@
-import '../../../../core/components/AbraxaTitleBar.jsx';
-import './ObjectTabs.jsx';
-import '../../../../core/components/permissions/ObjectPermissionsToggle.jsx';
-import '../../../../core/components/permissions/ObjectPermissionsCheckbox.jsx';
+import '../../../../core/components/AbraxaTitleBar';
+import './ObjectTabs';
+import '../../../../core/components/permissions/ObjectPermissionsToggle';
+import '../../../../core/components/permissions/ObjectPermissionsCheckbox';
+
 Ext.define('Abraxa.view.settings.users_teams.roles.RoleSettings', {
     extend: 'Ext.Container',
     xtype: 'usersettings.rolesettings',

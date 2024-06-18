@@ -1,4 +1,5 @@
-import '../../model/calculator/Variable.jsx';
+import '../../model/calculator/Variable';
+
 Ext.define('Abraxa.store.calculator.GlobalVariable', {
     extend: 'Ext.data.Store',
     alias: 'store.calcglobalvariable',

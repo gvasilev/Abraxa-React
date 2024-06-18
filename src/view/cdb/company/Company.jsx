@@ -1,22 +1,23 @@
-import './CompanyController.jsx';
-import '../../../core/plugins/Abraxa.LazyItems.jsx';
-import './CompanyViewModel.jsx';
-import '../../portcall/InternalToolsPanel.jsx';
-import '../../internal/TasksPanel.jsx';
-import '../../main/MainHeader.jsx';
-import './Summary.jsx';
-import './Balance.jsx';
-import './Portcalls.jsx';
-import '../../../core/components/InfoIcon.jsx';
-import './financials/overview/OpenBalances.jsx';
-import './contacts/Main.jsx';
-import './financials/Main.jsx';
-import './financials/virtualAccounts/VirtualAccountsGrid.jsx';
-import './financials/virtualAccounts/VirtualAccountRightCard.jsx';
-import './agreements/Main.jsx';
-import './Compliance.jsx';
-import './Documents.jsx';
+import './CompanyController';
+import '../../../core/plugins/Abraxa.LazyItems';
+import './CompanyViewModel';
+import '../../portcall/InternalToolsPanel';
+import '../../internal/TasksPanel';
+import '../../main/MainHeader';
+import './Summary';
+import './Balance';
+import './Portcalls';
+import '../../../core/components/InfoIcon';
+import './financials/overview/OpenBalances';
+import './contacts/Main';
+import './financials/Main';
+import './financials/virtualAccounts/VirtualAccountsGrid';
+import './financials/virtualAccounts/VirtualAccountRightCard';
+import './agreements/Main';
+import './Compliance';
+import './Documents';
 import './CompanyHeader';
+
 Ext.define('Abraxa.view.cdb.company.Company', {
     extend: 'Ext.Container',
     alias: 'widget.company',
@@ -61,7 +62,7 @@ Ext.define('Abraxa.view.cdb.company.Company', {
                         allowOver: false,
                         closeAction: 'destroy',
                     },
-                    handler: function () {
+                    handler: function() {
                         Ext.ComponentQuery.query('internal\\.tools\\.panel')[0].show();
                     },
                 },
@@ -91,7 +92,7 @@ Ext.define('Abraxa.view.cdb.company.Company', {
                         closeAction: 'destroy',
                     },
                     iconCls: 'md-icon-outlined md-icon-task-alt',
-                    handler: function () {
+                    handler: function() {
                         Ext.ComponentQuery.query('internal\\.tasks\\.panel')[0].show();
                     },
                 },
@@ -161,9 +162,9 @@ Ext.define('Abraxa.view.cdb.company.Company', {
         },
     },
     listeners: {
-        painted: function (me) {
+        painted: function(me) {
             if (me.upVM().get('currentUserType') !== 'agent') {
-                // Ext.getCmp('main-viewport').getController().redirectTo('404');
+                Ext.getCmp('main-viewport').getController().redirectTo('404');
             }
         },
     },

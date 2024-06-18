@@ -35,7 +35,7 @@ Ext.define('Abraxa.view.settings.user_teams.teams.AssignTeamUsers', {
                     if (newValue == '') usersWithoutTeam.removeFilter('search');
                 },
                 action: function (me, newValue, oldValue, eOpts) {
-                    var query = this.getValue().toLowerCase();
+                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                     var usersWithoutTeam = this.upVM().get('usersWithoutTeam');
                     usersWithoutTeam.removeFilter('search');
                     if (query.length > 2) {

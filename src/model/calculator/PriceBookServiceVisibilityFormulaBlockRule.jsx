@@ -1,4 +1,5 @@
-import './PriceBookServiceFormulaBlock.jsx';
+import './PriceBookServiceFormulaBlock';
+
 Ext.define('Abraxa.model.calculator.PriceBookServiceVisibilityFormulaBlockRule', {
     extend: 'Ext.data.Model',
 
@@ -9,7 +10,7 @@ Ext.define('Abraxa.model.calculator.PriceBookServiceVisibilityFormulaBlockRule',
             name: 'value',
             type: 'auto',
             critical: true,
-            convert: function (value) {
+            convert: function(value) {
                 if (Ext.isArray(value)) {
                     return value;
                 } else {

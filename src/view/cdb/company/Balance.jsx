@@ -1,5 +1,6 @@
 Ext.define('Abraxa.view.cdb.company.Balance', {
     extend: 'Ext.Container',
+
     xtype: 'cdb.balance',
     layout: 'hbox',
     plugins: {
@@ -54,7 +55,7 @@ Ext.define('Abraxa.view.cdb.company.Balance', {
                                     xtype: 'container',
                                     margin: '12 0 0 0',
                                     bind: {
-                                        html: '<div class="sm-title"><strong>Total:</strong> {object_record.open_balances.count} appointments</div>',
+                                        html: '<div class="sm-title"><strong>Total:</strong> {totalBalanceRecords} appointments</div>',
                                     },
                                 },
                             ],

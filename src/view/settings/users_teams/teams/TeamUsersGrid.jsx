@@ -1,4 +1,5 @@
-import './AssignTeamUsers.jsx';
+import './AssignTeamUsers';
+
 Ext.define('Abraxa.view.settings.user_teams.teams.UserGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.team.users.grid',
@@ -149,7 +150,7 @@ Ext.define('Abraxa.view.settings.user_teams.teams.UserGrid', {
                         handler: function (owner, tool, event) {
                             let record = owner.upVM().get('record'),
                                 teams = this.upVM().get('teams');
-                            const team = this.upVM().get('teamsGrid.selection');
+                            team = this.upVM().get('teamsGrid.selection');
                             Ext.Msg.confirm(
                                 'Unassign',
                                 'Do you want to unassign this user?',

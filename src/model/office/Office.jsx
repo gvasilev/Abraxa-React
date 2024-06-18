@@ -1,7 +1,8 @@
-import './OfficeUser.jsx';
-import './OfficeBank.jsx';
-import './OfficeEmail.jsx';
-import '../settings/CustomFileNumber.jsx';
+import './OfficeUser';
+import './OfficeBank';
+import './OfficeEmail';
+import '../settings/CustomFileNumber';
+
 Ext.define('Abraxa.model.office.Office', {
     extend: 'Ext.data.Model',
     fields: [
@@ -82,7 +83,7 @@ Ext.define('Abraxa.model.office.Office', {
         {
             name: 'users_count',
             type: 'integer',
-            mapping: function (data) {
+            mapping: function(data) {
                 return data.users_count || 0;
             },
         },

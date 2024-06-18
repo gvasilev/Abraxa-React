@@ -1,3 +1,5 @@
+import '../../../store/common/Commodity';
+
 Ext.define('Abraxa.view.common.combo.Commodity', {
     extend: 'Ext.form.field.ComboBox',
     // extend: 'Abraxa.core.components.combo.Generic',
@@ -31,6 +33,166 @@ Ext.define('Abraxa.view.common.combo.Commodity', {
         '</div>',
     queryMode: 'remote',
     minChars: 2,
+    config: {
+        initialStore: null,
+        value: null,
+    },
+    initialize: function () {
+        // this.callParent(arguments);
+
+        const vm = this.getViewModel();
+        const combo = this;
+        if (!combo._multiSelect) return;
+
+        combo.on(
+            'keydown',
+            function (combo, error, eOpts) {
+                Ext.ComponentQuery.query('commodity\\.combo').forEach((element) => {
+                    if (element.containsFocus) {
+                        element.config.value = element.getValue() ? [...element.getValue()] : [];
+                        if (!element.getValue()) {
+                            element.config.initialStore = [];
+                        }
+                    }
+                });
+            },
+            this
+        );
+
+        combo.on(
+            'mousedown',
+            function (combo, error, eOpts) {
+                Ext.ComponentQuery.query('commodity\\.combo').forEach((element) => {
+                    if (element.containsFocus) {
+                        element.config.value = element.getValue() ? [...element.getValue()] : [];
+                        if (!element.getValue()) {
+                            element.config.initialStore = [];
+                        }
+                    }
+                });
+            },
+            this
+        );
+
+        combo.on('change', function (combo, newValue, oldValue, eOpts) {
+            if (newValue && newValue.length > 0) {
+                const selectedRecord = combo
+                    .getStore()
+                    .getData()
+                    .items.filter((record) => newValue.includes(record.get(combo.getValueField())));
+                if (combo.config.initialStore) {
+                    combo.config.initialStore = [...combo.config.initialStore, ...selectedRecord];
+                } else {
+                    combo.setValue([...newValue]);
+                }
+            }
+        }),
+            combo.getStore().on(
+                'load',
+                function (store, records, successful, operation, eOpts) {
+                    setTimeout(() => {
+                        if (!combo.config.initialStore && combo.getStore().getCount() > 0) {
+                            combo.config.initialStore = [...combo.getStore().getData().items];
+                        }
+                        if (combo.config.initialStore && combo.config.initialStore.length > 0) {
+                            const array = [...combo.config.initialStore, ...combo.getStore().getData().items];
+
+                            const uniqueArray = array.filter((current, index, self) => {
+                                return (
+                                    index ===
+                                    self.findIndex(
+                                        (item) =>
+                                            item.data[combo.getValueField()] === current.data[combo.getValueField()]
+                                    )
+                                );
+                            });
+                            combo.getStore().loadData(uniqueArray.reverse());
+                            combo.setValue(combo.config.value ? [...combo.config.value] : []);
+                        }
+                    }, 0);
+                },
+                this
+                // { single: true }
+            );
+    },
+    // initialize: function () {
+    //     this.callParent(arguments);
+
+    //     const vm = this.getViewModel();
+    //     const combo = this;
+    //     if (!combo._multiSelect) return;
+
+    //     combo.on(
+    //         'keydown',
+    //         function (combo, error, eOpts) {
+    //             Ext.ComponentQuery.query('commodity\\.combo').forEach((element) => {
+    //                 if (element.containsFocus) {
+    //                     element.config.value = element.getValue() ? [...element.getValue()] : [];
+    //                     if (!element.getValue()) {
+    //                         element.config.initialStore = [];
+    //                     }
+    //                 }
+    //             });
+    //         },
+    //         this
+    //     );
+
+    //     combo.on(
+    //         'mousedown',
+    //         function (combo, error, eOpts) {
+    //             Ext.ComponentQuery.query('commodity\\.combo').forEach((element) => {
+    //                 if (element.containsFocus) {
+    //                     element.config.value = element.getValue() ? [...element.getValue()] : [];
+    //                     if (!element.getValue()) {
+    //                         element.config.initialStore = [];
+    //                     }
+    //                 }
+    //             });
+    //         },
+    //         this
+    //     );
+
+    //     combo.on('change', function (combo, newValue, oldValue, eOpts) {
+    //         if (newValue && newValue.length > 0) {
+    //             const selectedRecord = combo
+    //                 .getStore()
+    //                 .getData()
+    //                 .items.filter((record) => newValue.includes(record.get(combo.getValueField())));
+    //                 if (combo.config.initialStore) {
+    //                     combo.config.initialStore = [...combo.config.initialStore, ...selectedRecord];
+    //                 } else {
+    //                     combo.setValue([...newValue]);
+    //                 }
+    //         }
+    //     }),
+    //         combo.getStore().on(
+    //             'load',
+    //             function (store, records, successful, operation, eOpts) {
+    //                 setTimeout(() => {
+    //                     if (!combo.config.initialStore && combo.getStore().getCount() > 0) {
+    //                         combo.config.initialStore = [...combo.getStore().getData().items];
+    //                     }
+    //                     if (combo.config.initialStore && combo.config.initialStore.length > 0) {
+    //                         const array = [...combo.config.initialStore, ...combo.getStore().getData().items];
+
+    //                         const uniqueArray = array.filter((current, index, self) => {
+    //                             return (
+    //                                 index ===
+    //                                 self.findIndex(
+    //                                     (item) =>
+    //                                         item.data[combo.getValueField()] === current.data[combo.getValueField()]
+    //                                 )
+    //                             );
+    //                         });
+    //                         combo.getStore().loadData(uniqueArray.reverse());
+    //                         combo.setValue(combo.config.value ? [...combo.config.value] : []);
+    //                     }
+    //                 }, 0);
+    //             },
+    //             this
+    //             // { single: true }
+    //         );
+    // },
     listeners: {
         beforequery: function () {
             let store = this.getStore();

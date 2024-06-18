@@ -1,4 +1,5 @@
-import './SofEventAliasForm.jsx';
+import './SofEventAliasForm';
+
 Ext.define('Abraxa.view.settings.library.sof.SofEventsGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.sof.grid',
@@ -69,7 +70,7 @@ Ext.define('Abraxa.view.settings.library.sof.SofEventsGrid', {
                             if (newValue == '') storeEvents.removeFilter('search');
                         },
                         action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var storeEvents = this.upVM().get('sofEvents');
                             storeEvents.removeFilter('search');
                             if (query.length > 2) {

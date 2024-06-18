@@ -1,5 +1,6 @@
-import './UploadController.jsx';
-import './DocumentsFileInfo.jsx';
+import './UploadController';
+import './DocumentsFileInfo';
+
 Ext.define('Abraxa.view.cdb.company.Documents', {
     extend: 'Ext.Container',
     controller: 'company.uploadcontroller',
@@ -102,7 +103,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                 bindTo: '{record}',
                                                 deep: true,
                                             },
-                                            get: function (record) {
+                                            get: function(record) {
                                                 return record;
                                             },
                                         },
@@ -113,7 +114,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                 keyMapEnabled: true,
                                 keyMap: {
                                     scope: 'this',
-                                    ESC: function () {
+                                    ESC: function() {
                                         let record = this.upVM().get('crewingGrid.selection'),
                                             grid = Ext.ComponentQuery.query('[cls~=a-files-grid]')[0];
 
@@ -157,7 +158,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                             var selectedFile = vm.get('record'),
                                                                 documents = [];
 
-                                                            vm.get('documents').each(function (attachment) {
+                                                            vm.get('documents').each(function(attachment) {
                                                                 if (!vm.get('userPermissions.cdbFiles.edit')) {
                                                                     attachment.getDocument().set('status', 'disabled');
                                                                     attachment.getDocument().commit();
@@ -171,7 +172,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                                 .previewFile(
                                                                     this.component,
                                                                     selectedFile.getDocument(),
-                                                                    documents
+                                                                    documents,
                                                                 );
                                                         },
                                                     },
@@ -213,7 +214,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                     bind: {
                                                         permission: '{userPermissions}',
                                                     },
-                                                    handler: function (me) {
+                                                    handler: function(me) {
                                                         let record = this.up('menu').upVM().get('record').getDocument();
                                                         Ext.create('Ext.Dialog', {
                                                             closable: true,
@@ -238,7 +239,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                                         // inputMask: "*.{record.extension}"
                                                                     },
                                                                     listeners: {
-                                                                        painted: function () {
+                                                                        painted: function() {
                                                                             this.focus();
                                                                         },
                                                                     },
@@ -248,7 +249,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                                 {
                                                                     text: 'Cancel',
                                                                     margin: '0 8 0 0',
-                                                                    handler: function () {
+                                                                    handler: function() {
                                                                         record.reject();
                                                                         this.up('dialog').destroy();
                                                                     },
@@ -256,19 +257,19 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                                 {
                                                                     text: 'Save',
                                                                     ui: 'action',
-                                                                    handler: function () {
+                                                                    handler: function() {
                                                                         // record.getProxy().setExtraParams({
                                                                         //     object_id: record.get('object_id'),
                                                                         //     object_meta_id: record.get('object_meta_id'),
                                                                         // });
                                                                         record.save({
-                                                                            success: function (batch, opt) {
+                                                                            success: function(batch, opt) {
                                                                                 Ext.toast('Document updated', 1500);
                                                                             },
-                                                                            failure: function (batch, operations) {
+                                                                            failure: function(batch, operations) {
                                                                                 Ext.Msg.alert(
                                                                                     'Something went wrong',
-                                                                                    'Could not update file.'
+                                                                                    'Could not update file.',
                                                                                 );
                                                                             },
                                                                         });
@@ -301,7 +302,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                 {
                                                     text: 'Download',
                                                     iconCls: 'md-icon-outlined md-icon-save-alt',
-                                                    handler: function () {
+                                                    handler: function() {
                                                         var record = this.upVM().get('record').getDocument(),
                                                             name = record.get('name'),
                                                             urlToSend =
@@ -330,7 +331,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                     bind: {
                                                         permission: '{userPermissions}',
                                                     },
-                                                    handler: function (me) {
+                                                    handler: function(me) {
                                                         let record = me.upVM().get('record'),
                                                             controller = this.find('cdbDocuments').getController(),
                                                             organization = this.upVM().get('object_record'),
@@ -339,7 +340,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                         Ext.Msg.confirm(
                                                             'Delete',
                                                             'Are you sure you would like to delete this entry?',
-                                                            function (answer) {
+                                                            function(answer) {
                                                                 if (answer != 'yes') return;
                                                                 store.remove(record);
                                                                 ids.push(record.get('id'));
@@ -362,7 +363,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                                                     text: 'Delete',
                                                                     separator: true,
                                                                 },
-                                                            ]
+                                                            ],
                                                         );
                                                     },
                                                 },
@@ -372,7 +373,7 @@ Ext.define('Abraxa.view.cdb.company.Documents', {
                                 ],
                             },
                             listeners: {
-                                childtap: function (item, location, eOpts) {
+                                childtap: function(item, location, eOpts) {
                                     let record = location.record;
                                     if (record && location.source.target.tagName == 'BUTTON') {
                                         return false;

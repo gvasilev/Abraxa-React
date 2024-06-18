@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.store.common.Objects', {
     extend: 'Ext.data.Store',
     alias: 'store.objects',

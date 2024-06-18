@@ -100,6 +100,14 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestPort.Sugges
                                             value: 'river tide gate',
                                         },
                                         {
+                                            text: 'Lake or Canal',
+                                            value: 'lake or canal',
+                                        },
+                                        {
+                                            text: 'Typhoon Harbor',
+                                            value: 'typhoon harbor',
+                                        },
+                                        {
                                             text: 'Unknown',
                                             value: 'unknown',
                                         },

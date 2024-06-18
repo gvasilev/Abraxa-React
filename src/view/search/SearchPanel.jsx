@@ -1,9 +1,3 @@
-import '../../store/common/Berth';
-import '../../store/common/Vessel';
-import '../../store/common/Port';
-import '../../store/common/Commodity';
-import '../../store/common/port/Terminals';
-
 Ext.define('Abraxa.view.search.SearchPanel', {
     extend: 'Ext.Dialog',
     xtype: 'search.panel',
@@ -339,33 +333,6 @@ Ext.define('Abraxa.view.search.SearchPanel', {
                                 html: '<div class="">Berths <span class="a-count">({berthsCount})</span></div>',
                             },
                         },
-                        {
-                            xtype: 'button',
-                            margin: '0 0 0 8',
-                            ui: 'normal small',
-                            iconCls: 'md-icon-add',
-                            text: 'Add berth',
-                            handler: function () {
-                                let vm = this.upVM();
-
-                                Ext.create('Abraxa.view.common.port.AddEditBerth', {
-                                    title: 'Add Berth',
-                                    viewModel: {
-                                        parent: vm,
-                                        data: {
-                                            selectedBerth: Ext.create('Abraxa.model.common.Berth'),
-                                            portId: null,
-                                            portName: null,
-                                            action: 'create',
-                                        },
-                                    },
-                                }).show();
-                                let mainDialog = Ext.ComponentQuery.query('[xtype=search\\.panel]')[0];
-                                if (mainDialog) {
-                                    mainDialog.hide();
-                                }
-                            },
-                        },
                     ],
                 },
                 {
@@ -426,51 +393,6 @@ Ext.define('Abraxa.view.search.SearchPanel', {
                             xtype: 'container',
                             bind: {
                                 html: '<div>Commodities <span class="a-count">({commoditiesCount})</span></div>',
-                            },
-                        },
-                        {
-                            xtype: 'button',
-                            margin: '0 0 0 8',
-                            ui: 'normal small',
-                            iconCls: 'md-icon-add',
-                            text: 'Add commodity',
-                            handler: function (btn, e) {
-                                let dialog = Ext.create('Abraxa.view.settings.library.cargoes.AddCargoes', {
-                                    viewModel: {
-                                        parent: btn.upVM(),
-                                        data: {
-                                            cargo: Ext.create('Abraxa.model.commodity.Commodity'),
-                                            file: null,
-                                            editMode: false,
-                                        },
-                                        formulas: {
-                                            commodityImg: {
-                                                bind: {
-                                                    bindTo: '{cargo}',
-                                                    deep: true,
-                                                },
-                                                get: function (selection) {
-                                                    if (selection) {
-                                                        if (selection.get('image_name')) {
-                                                            return (
-                                                                'https://static.abraxa.com/images/commodities/' +
-                                                                selection.get('image_name')
-                                                            );
-                                                        } else {
-                                                            if (selection.get('image_url')) {
-                                                                return selection.get('image_url');
-                                                            }
-                                                            return 'https://static.abraxa.com/images/bgr-no-cargo.svg';
-                                                        }
-                                                    } else {
-                                                        return 'https://static.abraxa.com/images/bgr-no-cargo.svg';
-                                                    }
-                                                },
-                                            },
-                                        },
-                                    },
-                                });
-                                dialog.show();
                             },
                         },
                     ],

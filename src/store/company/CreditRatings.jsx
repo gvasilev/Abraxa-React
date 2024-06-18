@@ -1,5 +1,4 @@
-
-import '../../model/cdb/CreditRating.jsx';
+import '../../model/cdb/CreditRating';
 
 Ext.define('Abraxa.store.company.CreditRatings', {
     extend: 'Ext.data.Store',

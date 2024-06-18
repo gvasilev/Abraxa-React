@@ -1,4 +1,5 @@
-import './SofEventsGrid.jsx';
+import './SofEventsGrid';
+
 Ext.define('Abraxa.view.settings.library.sof.SofMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.sof.main',

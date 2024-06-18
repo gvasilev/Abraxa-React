@@ -1,10 +1,11 @@
-import './HusbandryViewModel.jsx';
-import './supplies/SuppliesGrid.jsx';
-import './crewing/CrewingGrid.jsx';
-import './supplies/SuppliesRightCard.jsx';
-import './crewing/CrewingRightCard.jsx';
-import '../../agent/accounts/AccountsCombo.jsx';
-import './crewing/CrewingActionsCombo.jsx';
+import './HusbandryViewModel';
+import './supplies/SuppliesGrid';
+import './crewing/CrewingGrid';
+import './supplies/SuppliesRightCard';
+import './crewing/CrewingRightCard';
+import '../../agent/accounts/AccountsCombo';
+import './crewing/CrewingActionsCombo';
+
 Ext.define('Abraxa.view.portcall.husbandry.HusbandryMain', {
     extend: 'Ext.Container',
     xtype: 'husbandry.main',
@@ -133,7 +134,7 @@ Ext.define('Abraxa.view.portcall.husbandry.HusbandryMain', {
                                 },
                                 select: function (list, record) {
                                     let VM = Ext.ComponentQuery.query(
-                                            window.CurrentUser.get('company').type + 'portcall\\.main'
+                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                                         )[0].upVM(),
                                         store = list.getStore();
                                     VM.set('selectedInquirySection', store.indexOf(record));
@@ -142,7 +143,7 @@ Ext.define('Abraxa.view.portcall.husbandry.HusbandryMain', {
                                     this.select(0);
                                 },
                                 // initialize: function () {
-                                //     Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].upVM().set('husbandryMenuPainted', true);
+                                //     Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].upVM().set('husbandryMenuPainted', true);
                                 // }
                             },
                         },

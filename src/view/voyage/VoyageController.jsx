@@ -1,4 +1,5 @@
-import './SuccessfullyAppointDialog.jsx';
+import './SuccessfullyAppointDialog';
+
 Ext.define('Abraxa.view.voyage.VoyageController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.VoyageController',

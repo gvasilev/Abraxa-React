@@ -20,10 +20,10 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
             pdaOriginExchangeRate: null,
         },
         formulas: {
-            currency: function (get) {
+            currency: function(get) {
                 return get('pda.currency');
             },
-            setExchangeRate: function (get) {
+            setExchangeRate: function(get) {
                 if (!get('pdaOriginExchangeRate')) {
                     this.set('pdaOriginExchangeRate', get('pda.exchange_rate'));
                     this.set({ exchangeRate: get('pda.exchange_rate') });
@@ -31,7 +31,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                     this.set({ exchangeRate: get('pdaOriginExchangeRate') });
                 }
             },
-            menuButtonFormatROE: function (get) {
+            menuButtonFormatROE: function(get) {
                 return Abraxa.utils.Functions.formatROE(get('pdaOriginExchangeRate'));
             },
         },
@@ -56,7 +56,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                             iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                             margin: '0 16 0 0',
                             ui: 'tool-md',
-                            handler: function (me) {
+                            handler: function(me) {
                                 Ext.getCmp('main-viewport')
                                     .getController()
                                     .redirectTo('inquiry/' + me.upVM().get('object_record').get('id'));
@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                     },
                                     menu: {
                                         defaults: {
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let selection = me.upVM().get('pda'),
                                                     object_record = me.upVM().get('object_record'),
                                                     calculation = me.upVM().get('calculation');
@@ -124,7 +124,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                 }
                                                 if (selection.dirty) {
                                                     selection.save({
-                                                        success: function () {
+                                                        success: function() {
                                                             Abraxa.utils.Functions.updateInquiry(object_record);
                                                             Ext.toast('Record updated', 1000);
                                                         },
@@ -267,7 +267,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                         },
                                                         floatedPicker: {
                                                             listeners: {
-                                                                select: function (me, record) {
+                                                                select: function(me, record) {
                                                                     let pda = me.upVM().get('pda'),
                                                                         currency = record.get('currency'),
                                                                         portCurrency = me
@@ -289,12 +289,12 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                                         Abraxa.getApplication()
                                                                             .getController('AbraxaController')
                                                                             .getExchange(portCurrency, currency)
-                                                                            .then(function (response) {
+                                                                            .then(function(response) {
                                                                                 if (response && response.length) {
                                                                                     applyButton.setDisabled(false);
                                                                                     me.upVM().set({
                                                                                         exchangeRate:
-                                                                                            response[0].exchange_rate,
+                                                                                        response[0].exchange_rate,
                                                                                     });
                                                                                 }
                                                                             });
@@ -328,7 +328,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                                     required: '{currencyData ? true:false}',
                                                                 },
                                                                 listeners: {
-                                                                    change: function (me, newValue, oldValue) {
+                                                                    change: function(me, newValue, oldValue) {
                                                                         const applyButton = this.up('container')
                                                                             .up()
                                                                             .up()
@@ -337,7 +337,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                                             newValue &&
                                                                             oldValue &&
                                                                             oldValue.toFixed(100) !==
-                                                                                newValue.toFixed(100)
+                                                                            newValue.toFixed(100)
                                                                         ) {
                                                                             applyButton.setDisabled(false);
                                                                         }
@@ -374,7 +374,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                         bind: {
                                                             disabled: '{!(selectedCurrency || pda.dirty)}',
                                                         },
-                                                        handler: function (me) {
+                                                        handler: function(me) {
                                                             const menuButton = me.up('menu').up('button');
                                                             const pdaCalculationItemsVm = me
                                                                 .up('pda\\.calculation\\.items')
@@ -400,11 +400,11 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
 
                                                             vm.set(
                                                                 'pdaOriginExchangeRate',
-                                                                Abraxa.utils.Functions.formatROE(exchangeRate)
+                                                                Abraxa.utils.Functions.formatROE(exchangeRate),
                                                             );
                                                             pda.save({
-                                                                success: function (record, operation) {
-                                                                    services.each(function (service) {
+                                                                success: function(record, operation) {
+                                                                    services.each(function(service) {
                                                                         service.dirty = true;
                                                                         service.set('exchange_rate', exchangeRate);
                                                                     });
@@ -414,15 +414,15 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                                     Abraxa.utils.Functions.updateInquiry(object_record);
                                                                     pda.load();
                                                                 },
-                                                                failure: function (record, operation) {
+                                                                failure: function(record, operation) {
                                                                     vm.set(
                                                                         'pdaOriginExchangeRate',
                                                                         Abraxa.utils.Functions.formatROE(
-                                                                            tempOrigExchangeRate
-                                                                        )
+                                                                            tempOrigExchangeRate,
+                                                                        ),
                                                                     );
                                                                 },
-                                                                callback: function () {
+                                                                callback: function() {
                                                                     menuButton.setDisabled(false);
                                                                 },
                                                             });
@@ -432,7 +432,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                             },
                                         ],
                                         listeners: {
-                                            hide: function (me) {
+                                            hide: function(me) {
                                                 let pda = this.upVM().get('pda');
                                                 pda.reject();
                                             },
@@ -470,7 +470,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                         ],
                                     },
                                     listeners: {
-                                        tap: function () {
+                                        tap: function() {
                                             mixpanel.track('Agreements (disb screen) - button');
                                         },
                                     },
@@ -503,7 +503,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                             bind: {
                                 disabled: '{(pda.status !="draft" || nonEditable) || isSyncingPdaGrid}',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 let store = me.upVM().get('calculationServices'),
                                     pda = me.upVM().get('pda'),
@@ -517,7 +517,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                 store.add({ custom_amount: 0, exchange_rate: pda.get('exchange_rate') });
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 store.sync({
-                                    success: function (rec) {
+                                    success: function(rec) {
                                         Ext.toast('Record updated');
                                         Abraxa.utils.Functions.updateInquiry(object_record);
                                         me.upVM().set('isSyncingPdaGrid', false);
@@ -597,7 +597,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                             bind: {
                                 disabled: '{isSyncingPdaGrid}',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 const pdaCalculations = me.up('pda\\.calculation\\.items');
 
@@ -640,15 +640,15 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                     bind: {
                                                         bindTo: '{documentsList.selection}',
                                                     },
-                                                    get: function (record) {
+                                                    get: function(record) {
                                                         return record;
                                                     },
                                                 },
-                                                loadDodument: {
+                                                loadDocument: {
                                                     bind: {
                                                         bindTo: '{selectedDocument.id}',
                                                     },
-                                                    get: function (id) {
+                                                    get: function(id) {
                                                         let record = this.get('selectedDocument');
                                                         if (record) {
                                                             var me = this;
@@ -659,9 +659,9 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationGridView', {
                                                                 .getController()
                                                                 .loadDocument(
                                                                     Env.ApiEndpoint +
-                                                                        'pdf/generate/' +
-                                                                        pda.get('id') +
-                                                                        '/inquiryOffer'
+                                                                    'pdf/generate/' +
+                                                                    pda.get('id') +
+                                                                    '/inquiryOffer',
                                                                 );
                                                         }
                                                     },

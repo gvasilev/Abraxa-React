@@ -1,5 +1,3 @@
-import './templates/MainContainer.jsx';
-import './AutomationContainer.jsx';
 Ext.define('Abraxa.view.settings.automation.AutomationMain', {
     extend: 'Ext.Container',
     xtype: 'settings.automation.main',

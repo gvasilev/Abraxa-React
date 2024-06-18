@@ -1,4 +1,3 @@
-
 Ext.define('Abraxa.store.common.AgencyTypes', {
     extend: 'Ext.data.Store',
     alias: 'store.agency.types',

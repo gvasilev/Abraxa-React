@@ -12,20 +12,4 @@ Ext.define('Abraxa.Datefield', {
         startDay: 1,
         floated: true,
     },
-
-    // applyInputValue: function (value, oldValue) {
-    //     console.log(this.isValid());
-    //     if (!this.isValid()) {
-    //         this.clearValue();
-    //     }
-    //     return this.callParent([value, oldValue]);
-    // },
-
-    // parseValue: function (value, errors) {
-    //     if (!this.isValid()) {
-    //         this.clearValue();
-    //     }
-
-    //     return this.callParent([value, errors]);
-    // },
 });

@@ -1,4 +1,5 @@
-import './ViewModel.jsx';
+import './ViewModel';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.variables.show._Subpage', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.portsettings.show.pricebooks.show.variables.show.subpage',
@@ -26,13 +27,13 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     iconCls: 'md-icon-keyboard-backspace',
                                     ui: 'round default',
                                     margin: '0 12 0 0',
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         me.upVM().set(
                                             'subpageXtype',
-                                            'calculator.portcostengine.portsettings.show.pricebooks.show.subpage'
+                                            'calculator.portcostengine.portsettings.show.pricebooks.show.subpage',
                                         );
                                         let grid = Ext.ComponentQuery.query(
-                                            'grid[reference=calculatorPriceBookVariablesGrid]'
+                                            'grid[reference=calculatorPriceBookVariablesGrid]',
                                         )[0];
                                         grid.deselectAll();
                                     },
@@ -67,7 +68,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     ui: 'tool-sm round',
                                     iconCls: 'md-icon-outlined md-icon-delete',
                                     margin: '0 0 0 8',
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         let record = me.upVM().get('templateVariableRecord');
                                         let store = record.store;
                                         let selectionPort = me.upVM().get('calculatorPortSettingsGrid.selection');
@@ -75,20 +76,20 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                         Ext.Msg.confirm(
                                             'Delete',
                                             'Are you sure you would like to delete this entry?',
-                                            function (answer) {
+                                            function(answer) {
                                                 if (answer === 'yes') {
                                                     store.remove(record);
 
                                                     store.sync({
-                                                        success: function () {
+                                                        success: function() {
                                                             me.upVM().set(
                                                                 'subpageXtype',
-                                                                'calculator.portcostengine.portsettings.show.pricebooks.show.subpage'
+                                                                'calculator.portcostengine.portsettings.show.pricebooks.show.subpage',
                                                             );
                                                             Ext.toast('Record deleted', 1000);
                                                             Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                         },
-                                                        failure: function (batch, functions) {
+                                                        failure: function(batch, functions) {
                                                             store.rejectChanges();
                                                         },
                                                     });
@@ -109,7 +110,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                                     ui: 'decline alt',
                                                     separator: true,
                                                 },
-                                            ]
+                                            ],
                                         );
                                     },
                                 },
@@ -186,7 +187,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                         value: '{recordCopy.control}',
                                     },
                                     listeners: {
-                                        select: function (me, selection) {
+                                        select: function(me, selection) {
                                             if (selection.get('value') === 'variable') {
                                                 let recordCopy = me.upVM().get('recordCopy');
                                                 recordCopy.set('repeater', null);
@@ -282,7 +283,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                     bind: {
                                         value: '{recordCopy.formula}',
                                     },
-                                    validators: function (value) {
+                                    validators: function(value) {
                                         let validationRegex = /^[\x20-\x7E]*$/;
                                         if (!validationRegex.test(value)) {
                                             return 'Prohibited character';
@@ -337,11 +338,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     ui: 'action loading',
                     text: 'Save',
                     height: 36,
-                    handler: function (me) {
+                    handler: function(me) {
                         let record = me.upVM().get('templateVariableRecord');
                         let recordCopy = me.upVM().get('recordCopy');
                         let form = Ext.ComponentQuery.query('container[reference=templateVariableForm]')[0].down(
-                            'formpanel'
+                            'formpanel',
                         );
                         let store = record.store;
                         let selectionPort = me.upVM().get('calculatorPortSettingsGrid.selection');
@@ -350,7 +351,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
 
                         if (record.dirty) {
                             store.sync({
-                                success: function () {
+                                success: function() {
                                     Ext.toast('Record updated', 1000);
                                     Ext.ComponentQuery.query('container[reference=templateVariableForm]')[0]
                                         .down('form\\.error')
@@ -358,7 +359,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                         .removeCls('error');
                                     Abraxa.utils.Functions.updatePortCost(selectionPort);
                                 },
-                                failure: function (batch, functions) {
+                                failure: function(batch, functions) {
                                     store.rejectChanges();
                                     Ext.ComponentQuery.query('container[reference=templateVariableForm]')[0]
                                         .down('form\\.error')

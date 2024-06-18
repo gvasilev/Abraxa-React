@@ -247,12 +247,11 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                             }
                         },
                         failure: function failure(response, batch) {
-                            var msg = 'Cannot update payment!';
-                            let title = 'Update Cancelled';
-                            const error = Abraxa.utils.Functions.getNestedProperty(
-                                batch,
-                                'batch.error.response.responseJson.error'
-                            );
+                            let title = 'Create Cancelled';
+                            if (editMode) {
+                                title = 'Update Cancelled';
+                            }
+                            const error = batch.error.response.responseJson.error;
                             if (error) {
                                 title = 'Insufficient funds';
                                 msg = error;
@@ -392,7 +391,7 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
     },
 
     sendEmailDialog(object_record, payment) {
-        let portCallVM = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0].upVM(),
+        let portCallVM = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].upVM(),
             view = Ext.ComponentQuery.query('[xtype=payments\\.create\\.payment]')[0],
             me = view,
             subject = null,
@@ -400,8 +399,8 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                 proxy: {
                     type: 'memory',
                 },
-            }),
-            companyVerified = portCallVM.get('currentCompany').get('verified');
+            });
+        companyVerified = portCallVM.get('currentCompany').get('verified');
         if (payment && payment.attachments() && payment.attachments().getRange().count) {
             Ext.Array.each(files, function (file) {
                 attachments.add(file);

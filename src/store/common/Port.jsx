@@ -9,6 +9,10 @@ Ext.define('Abraxa.store.common.Port', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'ports',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        },
     },
     sorters: {
         property: 'name',

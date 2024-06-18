@@ -440,8 +440,5 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionRightCard', {
         drop: 'onDropRight',
         dragleave: 'onDragLeaveListItemRight',
         dragover: 'onDragOverListItemRight',
-        hide: function (me) {
-            console.log(me);
-        },
     },
 });

@@ -1,4 +1,5 @@
-import './TeamsGrid.jsx';
+import './TeamsGrid';
+
 Ext.define('Abraxa.view.settings.users_teams.teams.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.users_teams.teams.main.container',

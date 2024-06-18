@@ -1,4 +1,5 @@
-import './SOFCargoProgressForm.jsx';
+import './SOFCargoProgressForm';
+
 Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
     extend: 'Ext.Container',
     xtype: 'sof.cargo.progress',
@@ -203,9 +204,9 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                             if (cargoStore) {
                                                 let record = cargoStore.getById(value);
                                                 let str = record.get('commodity'),
-                                                    cargoFunction = record.get('function') || '',
-                                                    quantityStr = '';
+                                                    cargoFunction = record.get('function') || '';
 
+                                                quantityStr = '';
                                                 if (record.get('bl_quantity')) {
                                                     let unitStr = '';
                                                     if (record.get('bl_unit')) {

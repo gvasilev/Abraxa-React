@@ -28,18 +28,8 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                 bind: {
                     hidden: '{disbursementItems.count ? false : true}',
                 },
-                // body: {
-                //     itemId: 'disb-grid-totals',
-                //     cls: 'a-bt-100',
-                //     weight: -1,
-                //     xtype: 'disbursements.grid.totals',
-                //     bind: {
-                //         hidden: '{disbursementItems.count ? false : true}'
-                //     }
-                // }
             },
         },
-        // rowexpander: true
     },
     weighted: true,
     store: [],
@@ -54,16 +44,8 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             margin: '0 0 0 2',
         },
     },
-    // collapsible: true,
     grouped: true,
-    pinHeaders: false,
     groupHeader: {
-        // listeners: {
-        //     painted: function () {
-        //         if (!this._group.data.items[0].get('default_expense_item'))
-        //             this.hide(false);
-        //     }
-        // },
         cls: 'a-bt-100',
         padding: '12 14',
         tpl: new Ext.XTemplate(
@@ -138,8 +120,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                 encodeHtml: false,
                 bind: {
                     cls: 'a-br-100 a-main-costs',
-                    //old cls bind
-                    // {record.type && record.type != "financial" ? "a-supply-locked" : ""}
                 },
             },
             summaryCell: {
@@ -182,11 +162,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
-                    },
-                    beforestartedit: function (editor, boundEl, value, eOpts) {
-                        // let record = eOpts.record;
-                        // if (record && record.get('lockItem'))
-                        //     return false;
                     },
                 },
             },
@@ -233,21 +208,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                             },
                         });
                     },
-                    beforestartedit: function (editor, boundEl, value, eOpts) {
-                        let record = eOpts.record,
-                            disbursement = editor.upVM().get('selectedDisbursement'),
-                            disbursementType = editor.upVM().get('selectedDisbursement.type');
-                        // if (record && disbursement) {
-                        //     if (disbursement.get('status') != 'draft')
-                        //         return false
-
-                        //     if (disbursementType == 'pda' && record.vouchers().count())
-                        //         return false
-
-                        //     if (record.vouchers().count() && disbursementType != 'pda')
-                        //         return false;
-                        // }
-                    },
                 },
             },
             summary: 'sum',
@@ -285,7 +245,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                             selectedAccount = editor.up('grid').upVM().get('selectedAccount'),
                             record = editor.upVM().get('record');
 
-                        if (selectedAccount.get('account_currency') == value) record.set('exchange_rate', 1);
+                        if (selectedAccount.get('account_currency') === value) record.set('exchange_rate', 1);
 
                         store.sync({
                             success: function () {
@@ -294,9 +254,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                         });
                     },
                     beforestartedit: function (editor, boundEl, value, eOpts) {
-                        let record = eOpts.record,
-                            disbursement = editor.upVM().get('selectedDisbursement'),
-                            disbursementType = editor.upVM().get('selectedDisbursement.type');
+                        let record = eOpts.record;
 
                         if (record && record.vouchers().count()) return false;
                     },
@@ -318,11 +276,9 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             sortable: false,
             menuDisabled: true,
             align: 'center',
-            // hidden: true,
             slug: 'portcallDisbursementCurrency',
             bind: {
                 permission: '{userPermissions}',
-                // hidden: '{selectedDisbursement.multi_currency ? false : true}',
             },
             cell: {
                 encodeHtml: false,
@@ -363,13 +319,9 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                     return '';
                 }
             },
-            summaryRenderer: function (grid, context) {
-                return;
-            },
         },
         {
             text: 'Calc. price',
-            // hidden: true,
             dataIndex: 'pda_calculated_price',
             summaryDataIndex: 'pda_calculated_price',
             sortable: false,
@@ -397,7 +349,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             width: 120,
             align: 'center',
             menuDisabled: true,
-            // hidden: true,
             summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalDiscount');
 
@@ -415,8 +366,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                     placeholder: '0',
                     clearable: false,
                     xtype: 'textfield',
-                    // validators: [new RegExp("^[-+]?[0-9]*?[.]?[0-9]{1}?[%]?$")],
-                    // maskRe: [new RegExp("^[0-9]*?[.]?[0-9]{1}?[%]?$")],
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
                     validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
@@ -446,7 +395,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             sortable: false,
             menuDisabled: true,
             align: 'right',
-            // hidden: true,
             width: 120,
             cell: {
                 encodeHtml: false,
@@ -469,13 +417,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             sortable: false,
             menuDisabled: true,
             align: 'center',
-            // hidden: true,
-            bind: {
-                // hidden: '{selectedDisbursement.show_vat && selectedDisbursement.type == "pda" ? false : true}'
-            },
-            summaryRenderer: function (val) {
-                return '';
-            },
             cell: {
                 encodeHtml: false,
                 align: 'center',
@@ -522,7 +463,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             menuDisabled: true,
             align: 'right',
             width: 120,
-            // hidden: true,
             cell: {
                 encodeHtml: false,
                 zeroValue: '<span class="a-cell-value">0.00</span>',
@@ -586,7 +526,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                 xtype: 'widgetcell',
                 cls: 'a-cell-more',
                 align: 'right',
-                // hideMode: 'visibility',
                 focusable: false,
                 widget: {
                     xtype: 'container',
@@ -615,8 +554,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                             },
                             handler: function (me) {
                                 let service = me.upVM().get('record'),
-                                    services = me.upVM().get('services'),
-                                    invoices = me.upVM().get('invoices');
+                                    services = me.upVM().get('services');
 
                                 Ext.Msg.confirm(
                                     'Delete',
@@ -684,7 +622,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                 iconCls: 'md-icon-add',
                 handler: function (me) {
                     let store = me.upVM().get('expenses'),
-                        currentUser = me.upVM().get('currentUser'),
                         disbursement = me.upVM().get('selectedDisbursement'),
                         disbursementTypeId = me.upVM().get('selectedDisbursement.type') + '_id',
                         record = Ext.create('Abraxa.model.portcall.Expense', {
@@ -696,8 +633,6 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
                             currency: disbursement.get('disbursement_currency'),
                             exchange_rate: 1,
                         });
-
-                    // me.up('grid').remove(item);
 
                     let vouchers = new Abraxa.model.disbursement.Voucher(Object.assign({}, [])),
                         attachments = new Abraxa.model.portcall.Attachment(Object.assign({}, []));
@@ -727,7 +662,7 @@ Ext.define('Abraxa.view.pda.PDAItemsGridReadOnly', {
             fn: function (me, element) {
                 let type = this.component.upVM().get('selectedDisbursement.type');
 
-                if (type == 'pda') return;
+                if (type === 'pda') return;
                 if (this.component.upVM().get('nonEditable')) {
                     return;
                 }

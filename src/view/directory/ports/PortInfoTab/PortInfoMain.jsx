@@ -1,13 +1,14 @@
-import './PortInfoGeneral.jsx';
-import './PortInfoCoordinates.jsx';
-import './PortInfoAdditional.jsx';
-import './PortInfoRestrictions.jsx';
-import './PortInfoHealth.jsx';
-import './PortInfoPilotage.jsx';
-import './PortInfoLDLocations.jsx';
-import './PortInfoFacilities.jsx';
-import './PortInfoServices.jsx';
-import './PortInfoSupplies.jsx';
+import './PortInfoGeneral';
+import './PortInfoCoordinates';
+import './PortInfoAdditional';
+import './PortInfoRestrictions';
+import './PortInfoHealth';
+import './PortInfoPilotage';
+import './PortInfoLDLocations';
+import './PortInfoFacilities';
+import './PortInfoServices';
+import './PortInfoSupplies';
+
 Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoMain', {
     extend: 'Ext.Container',
     xtype: 'PortInfoMain',

@@ -1,4 +1,5 @@
-import '../../mixins/Abraxa.fusioncharts.Mixin.jsx';
+import '../../mixins/Abraxa.fusioncharts.Mixin';
+
 Ext.define('Abraxa.Chart', {
     extend: 'Ext.Component',
     xtype: 'fusionchart',
@@ -15,10 +16,10 @@ Ext.define('Abraxa.Chart', {
             },
         ],
     },
-    initialize: function () {
+    initialize: function() {
         this.on(
             'activate',
-            function () {
+            function() {
                 var container = this.getParent().el;
                 if (container) {
                     let me = this,
@@ -28,12 +29,12 @@ Ext.define('Abraxa.Chart', {
                     }
                 }
             },
-            this
+            this,
         );
     },
     // twoWayBindable: ['data'],
     defaultBindProperty: 'data',
-    getFusionChartDomElement: function () {
+    getFusionChartDomElement: function() {
         return this.chartElement.dom;
     },
 
@@ -46,15 +47,15 @@ Ext.define('Abraxa.Chart', {
     //     console.log('doDestroy', arguments);
     // },
 
-    updateValue: function (value) {
+    updateValue: function(value) {
         this.mixins.fusionchart.updateValue.call(this, value);
     },
 
-    updateDisabled: function (disabled) {
+    updateDisabled: function(disabled) {
         this.mixins.fusionchart.updateDisabled.call(this, disabled);
     },
 
-    updateData: function (data) {
+    updateData: function(data) {
         this.mixins.fusionchart.updateData.call(this, data);
     },
 });

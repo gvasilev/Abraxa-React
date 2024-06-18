@@ -26,7 +26,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function () {
+            handler: function() {
                 let record = this.upVM().get('selectedCompany');
                 if (record) {
                     record.reject();
@@ -36,7 +36,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
         },
     },
     listeners: {
-        destroy: function (me) {
+        destroy: function(me) {
             if (me.upVM().get('organizations') && me.upVM().get('organizations').needsSync) {
                 me.upVM().get('organizations').rejectChanges();
             }
@@ -76,7 +76,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
                             required: true,
                             bind: '{selectedCompany.org_name}',
                             listeners: {
-                                painted: function (me) {
+                                painted: function(me) {
                                     me.focus();
                                 },
                             },
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
                             placeholder: 'Choose country',
                             floatedPicker: {
                                 listeners: {
-                                    select: function (el, selection) {
+                                    select: function(el, selection) {
                                         let countryId = selection.get('id');
                                         if (countryId) {
                                             let cityStore = Ext.getStore('cityStore');
@@ -176,7 +176,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
                             },
                             placeholder: 'Choose city',
                             listeners: {
-                                painted: function (me) {
+                                painted: function(me) {
                                     let selectedCompany = me.upVM().get('selectedCompany');
                                     if (selectedCompany && selectedCompany.get('org_country')) {
                                         let cityStore = Ext.getStore('cityStore');
@@ -312,7 +312,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganization', {
             text: 'Cancel',
             testId: 'addOrganizationCancelButton',
             margin: '0 8 0 0',
-            handler: function () {
+            handler: function() {
                 let combo = this.upVM().get('targetCombo');
                 if (combo) {
                     combo.clearValue();

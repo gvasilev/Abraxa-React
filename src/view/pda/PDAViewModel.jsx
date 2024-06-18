@@ -1,5 +1,5 @@
 import '../../store/pda/PdaOfferServices';
-import '../../store/common/port/Berths.js';
+import '../../store/common/port/Berths';
 
 Ext.define('Abraxa.view.pda.PDAViewModel', {
     extend: 'Ext.app.ViewModel',
@@ -59,21 +59,21 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                     calculation_id: '{calculationId}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     if (proxy) {
                         proxy.onAfter(
                             'extraparamschanged',
-                            function () {
+                            function() {
                                 if (this.getProxy().getExtraParams().calculation_id) this.load();
                             },
-                            this
+                            this,
                         );
                     }
                 }
             },
             listeners: {
-                beforesync: function (store) {
+                beforesync: function(store) {
                     let object_record = Ext.ComponentQuery.query('[xtype=pda]')[0].getVM().get('object_record');
                     Abraxa.utils.Functions.updateInquiry(object_record);
                 },
@@ -92,7 +92,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 },
             ],
             listeners: {
-                update: function (store) {
+                update: function(store) {
                     let object_record = Ext.ComponentQuery.query('[xtype=pda]')[0].getVM().get('object_record');
                     Abraxa.utils.Functions.updateInquiry(object_record);
                 },
@@ -117,15 +117,15 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                     port_id: '{pda.port_id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     if (proxy) {
                         proxy.onAfter(
                             'extraparamschanged',
-                            function () {
+                            function() {
                                 if (this.getProxy().getExtraParams().port_id) this.load();
                             },
-                            this
+                            this,
                         );
                     }
                 }
@@ -180,7 +180,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
         },
     },
     formulas: {
-        isDocumentReadOnly: function (get) {
+        isDocumentReadOnly: function(get) {
             return get('pda.status') !== 'draft';
         },
         totalDisbursementCosts: {
@@ -188,12 +188,12 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{calculationServices}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 if (store) {
                     let pda = this.get('pda'),
                         total = 0;
 
-                    store.each(function (rec) {
+                    store.each(function(rec) {
                         if (rec.get('enabled')) total += rec.get('final_price');
                     });
                     total = parseFloat(total).toFixed(2);
@@ -210,12 +210,12 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{services}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 if (store) {
                     let pda = this.get('pda'),
                         total = 0;
 
-                    store.each(function (rec) {
+                    store.each(function(rec) {
                         total += rec.get('final_price');
                     });
                     total = parseFloat(total).toFixed(2);
@@ -232,7 +232,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{execPdaDefaults}',
                 deep: true,
             },
-            get: function (rec) {
+            get: function(rec) {
                 if (rec) {
                     return rec;
                 }
@@ -242,7 +242,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{doDefaults}',
             },
-            get: function (doDefaults) {
+            get: function(doDefaults) {
                 let id = this.get('pda_id');
                 if (id) {
                     if (this.get('routeHash') == '#pda') {
@@ -253,7 +253,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                             inquiry_id: this.get('inquiry_id'),
                         });
                         record.load({
-                            success: function (rec) {
+                            success: function(rec) {
                                 if (
                                     Ext.ComponentQuery.query('[cls=pda_menu]')[0] &&
                                     Ext.ComponentQuery.query('[cls=pda_menu]')[0].getStore() &&
@@ -280,7 +280,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{pda.pc_calculation.id}',
                 deep: true,
             },
-            get: function (calculation) {
+            get: function(calculation) {
                 return this.get('pda.pc_calculation');
             },
         },
@@ -289,7 +289,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{calculation.id}',
                 deep: true,
             },
-            get: function (id) {
+            get: function(id) {
                 if (id) {
                     this.set('calculationId', id);
                 }
@@ -299,7 +299,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{calculation}',
             },
-            get: function (calculation) {
+            get: function(calculation) {
                 if (calculation) {
                     let VM = this;
                     let controller = VM.getView().getController();
@@ -311,7 +311,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{pda.status}',
             },
-            get: function (status) {
+            get: function(status) {
                 let pda = this.get('pda');
                 if (!pda.get('template_id')) {
                     return [
@@ -341,7 +341,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{pda.template_id}',
             },
-            get: function (calculation) {
+            get: function(calculation) {
                 return calculation ? true : false;
             },
         },
@@ -349,7 +349,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{pda}',
             },
-            get: function (pda) {
+            get: function(pda) {
                 if (pda && pda.getVessel()) {
                     return pda.getVessel();
                 }
@@ -360,7 +360,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{vessel}',
                 deep: true,
             },
-            get: function (vessel) {
+            get: function(vessel) {
                 if (vessel) {
                     let flag = null;
                     if (vessel && vessel.get('flags') && vessel.get('flags').country_code) {
@@ -387,7 +387,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{pda}',
             },
-            get: function (record) {
+            get: function(record) {
                 if (record) {
                     if (record.get('template_id') && record.getPc_calculation()) {
                         return Object.assign({}, record.getPc_calculation().get('vessel_params'));
@@ -402,7 +402,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{pda.port}',
                 deep: true,
             },
-            get: function (port) {
+            get: function(port) {
                 if (port) {
                     return (
                         // '<img height=24" ' +
@@ -424,7 +424,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{pda}',
                 deep: true,
             },
-            get: function (pda) {
+            get: function(pda) {
                 if (pda && pda.get('port').pc_configuration) {
                     return pda.get('currency') === pda.get('port').pc_configuration.currency;
                 }
@@ -435,7 +435,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{pda}',
                 deep: true,
             },
-            get: function (pda) {
+            get: function(pda) {
                 if (pda && (pda.get('show_vat') || pda.get('show_discount'))) {
                     return true;
                 }
@@ -447,7 +447,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{pda}',
                 deep: true,
             },
-            get: function (pda) {
+            get: function(pda) {
                 if (pda && pda.get('port').pc_configuration) {
                     return {
                         offer_currency: pda.get('currency'),
@@ -462,7 +462,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{pda}',
             },
-            get: function (pda) {
+            get: function(pda) {
                 if (pda) {
                     let store = this.get('pdaAgreements'),
                         inquiry = pda.getInquiry(),
@@ -472,7 +472,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
 
                     if (store) store.clearFilter();
 
-                    return function (rec) {
+                    return function(rec) {
                         if (rec.get('organization_org_id') == inquiry.get('requesting_party_id')) {
                             let agreementable = rec.get('agreementable'),
                                 port_array = agreementable ? agreementable.port_ids : null,
@@ -488,10 +488,10 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                                                     if (
                                                         eval(
                                                             total_billed_converted.toString() +
-                                                                ' ' +
-                                                                agreementable.threshold_operator +
-                                                                ' ' +
-                                                                agreementable.threshold_amount
+                                                            ' ' +
+                                                            agreementable.threshold_operator +
+                                                            ' ' +
+                                                            agreementable.threshold_amount,
                                                         )
                                                     ) {
                                                         sholdReturn = true;
@@ -508,10 +508,10 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                                                 if (
                                                     eval(
                                                         total_billed_converted.toString() +
-                                                            ' ' +
-                                                            agreementable.threshold_operator +
-                                                            ' ' +
-                                                            agreementable.threshold_amount
+                                                        ' ' +
+                                                        agreementable.threshold_operator +
+                                                        ' ' +
+                                                        agreementable.threshold_amount,
                                                     )
                                                 ) {
                                                     sholdReturn = true;
@@ -528,10 +528,10 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                                         if (
                                             eval(
                                                 total_billed_converted.toString() +
-                                                    ' ' +
-                                                    agreementable.threshold_operator +
-                                                    ' ' +
-                                                    agreementable.threshold_amount
+                                                ' ' +
+                                                agreementable.threshold_operator +
+                                                ' ' +
+                                                agreementable.threshold_amount,
                                             )
                                         ) {
                                             sholdReturn = true;
@@ -547,7 +547,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                         }
                     };
                 } else {
-                    return function (item) {
+                    return function(item) {
                         return false;
                     };
                 }
@@ -557,7 +557,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
             bind: {
                 bindTo: '{amails}',
             },
-            get: function (store) {
+            get: function(store) {
                 if (store) {
                     store.getProxy().setUrl(Env.ApiEndpoint + 'inquiry/${object_meta_id}/amails');
                 }
@@ -568,7 +568,7 @@ Ext.define('Abraxa.view.pda.PDAViewModel', {
                 bindTo: '{object_record}',
                 deep: true,
             },
-            get: function (record) {
+            get: function(record) {
                 if (record && this.get('currentUser')) {
                     if (
                         record.get('company_id') != this.get('currentUser').get('current_company_id') ||

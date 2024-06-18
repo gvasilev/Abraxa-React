@@ -1,4 +1,5 @@
-import '../cargo/Cargo.jsx';
+import '../cargo/Cargo';
+
 Ext.define('Abraxa.model.nomination.Nomination', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

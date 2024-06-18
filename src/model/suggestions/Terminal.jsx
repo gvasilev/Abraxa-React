@@ -15,10 +15,6 @@ Ext.define('Abraxa.model.suggestions.Terminal', {
             type: 'auto',
         },
         {
-            name: 'id',
-            type: 'integer',
-        },
-        {
             name: 'meta_name',
             type: 'string',
         },

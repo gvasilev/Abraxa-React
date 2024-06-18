@@ -1,4 +1,5 @@
-import './CargoesGrid.jsx';
+import './CargoesGrid';
+
 Ext.define('Abraxa.view.settings.library.CargoesMainContaine', {
     extend: 'Ext.Container',
     xtype: 'settings.library.cargoes.main',

@@ -1,4 +1,5 @@
-import './BerthsGrid.jsx';
+import './BerthsGrid';
+
 Ext.define('Abraxa.view.settings.library.ports.BerthsMainContaianer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.berths.main',

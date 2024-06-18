@@ -1219,8 +1219,7 @@ Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingRightCard', {
                                                             store.remove(record);
                                                             ids.push(record.get('id'));
                                                             let object_record = Ext.ComponentQuery.query(
-                                                                window.CurrentUser.get('company').type +
-                                                                    'portcall\\.main'
+                                                                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
                                                             )[0]
                                                                 .upVM()
                                                                 .get('object_record');

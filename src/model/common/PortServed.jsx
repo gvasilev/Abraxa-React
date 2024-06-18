@@ -1,9 +1,10 @@
-import './Terminal.jsx';
-import './Berth.jsx';
-import './Holiday.jsx';
-import '../settings/port/WorkingTime.jsx';
-import '../settings/port/PortService.jsx';
-import '../portcall/Attachment.jsx';
+import './Terminal';
+import './Berth';
+import './Holiday';
+import '../settings/port/WorkingTime';
+import '../settings/port/PortService';
+import '../portcall/Attachment';
+
 Ext.define('Abraxa.model.common.PortServed', {
     extend: 'Ext.data.Model',
     fields: [
@@ -18,14 +19,14 @@ Ext.define('Abraxa.model.common.PortServed', {
         {
             name: 'port_name',
             persist: false,
-            convert: function (value, record) {
+            convert: function(value, record) {
                 if (record.get('port')) return record.get('port').name;
             },
         },
         {
             name: 'timezone',
             persist: false,
-            convert: function (value, record) {
+            convert: function(value, record) {
                 if (record.get('port')) return record.get('port').time_zone;
             },
         },

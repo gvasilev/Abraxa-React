@@ -16,7 +16,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
     id: 'dropped-container-attachments',
     tools: {
         close: {
-            handler: function () {
+            handler: function() {
                 if (WebViewer.getInstance()) WebViewer.getInstance().UI.dispose();
 
                 this.up('dialog').destroy();
@@ -80,7 +80,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                             hideDelay: 0,
                             dismissDelay: 0,
                         },
-                        handler: function (me) {
+                        handler: function(me) {
                             let record = this.upVM().get('selectedAttachment');
 
                             Ext.create('Ext.Dialog', {
@@ -104,7 +104,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                             value: '{selectedAttachment.name}',
                                         },
                                         listeners: {
-                                            painted: function () {
+                                            painted: function() {
                                                 this.focus();
                                             },
                                         },
@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                     {
                                         text: 'Cancel',
                                         margin: '0 8 0 0',
-                                        handler: function () {
+                                        handler: function() {
                                             record.reject();
                                             this.up('dialog').destroy();
                                         },
@@ -122,9 +122,9 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                     {
                                         text: 'Save',
                                         ui: 'action',
-                                        handler: function () {
+                                        handler: function() {
                                             record.save({
-                                                success: function (rec) {
+                                                success: function(rec) {
                                                     WebViewer.getInstance().Core.documentViewer.getDocument().filename =
                                                         rec.get('name');
                                                     Ext.toast('Record updated');
@@ -187,7 +187,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                 align: 'bc-tc?',
                             },
                         },
-                        handler: function () {
+                        handler: function() {
                             let panel = Ext.ComponentQuery.query('[cls~=attachments_menu]')[0],
                                 cls = panel.getUserCls() == 'is-expanded';
 
@@ -237,14 +237,14 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                     store: '{attachments}',
                 },
                 listeners: {
-                    painted: function (me) {
+                    painted: function(me) {
                         if (!me.upVM().get('selectedAttachment')) {
                             me.select(me.getStore().getAt(0));
                         } else {
                             me.select(me.upVM().get('selectedAttachment'));
                         }
                     },
-                    select: function (list, record) {
+                    select: function(list, record) {
                         list.ensureVisible(record);
                     },
                 },
@@ -271,7 +271,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                             hidden: '{nonEditable}',
                         },
                         listeners: {
-                            change: function (me, newValue) {
+                            change: function(me, newValue) {
                                 if (newValue) {
                                     var files = this.getFiles(),
                                         uploadController = me.up('dialog').getController(),
@@ -282,7 +282,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                     }
                                     uploadController.upload(files, this);
                                 }
-                                document.querySelector("input[type='file']").value = '';
+                                document.querySelector('input[type=\'file\']').value = '';
                                 me.setValue(null);
                             },
                         },
@@ -327,7 +327,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                         hidden: '{nonEditable}',
                     },
                     listeners: {
-                        change: function (me, newValue) {
+                        change: function(me, newValue) {
                             if (newValue) {
                                 var files = this.getFiles(),
                                     uploadController = me.up('dialog').getController(),
@@ -338,7 +338,7 @@ Ext.define('Abraxa.view.attachments.AttachmentsDialog', {
                                 }
                                 uploadController.upload(files, this);
                             }
-                            document.querySelector("input[type='file']").value = '';
+                            document.querySelector('input[type=\'file\']').value = '';
                             me.setValue(null);
                         },
                     },

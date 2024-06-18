@@ -1,4 +1,5 @@
-import './VesselsGrid.jsx';
+import './VesselsGrid';
+
 Ext.define('Abraxa.view.settings.library.vessels.VesselsMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.vessels.main',

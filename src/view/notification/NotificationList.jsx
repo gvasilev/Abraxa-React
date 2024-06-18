@@ -228,8 +228,8 @@ Ext.define('Abraxa.view.notification.NotificationList', {
     },
     listeners: {
         childtap: function (list, location, eOpts) {
-            let record = location.record,
-                store = this.upVM().get('notifications');
+            let record = location.record;
+            store = this.upVM().get('notifications');
 
             if (record) {
                 record.set('status', 'read');

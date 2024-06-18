@@ -1,5 +1,6 @@
-import './CreateEditWorkingTime.jsx';
-import './CreateEditPortServices.jsx';
+import './CreateEditWorkingTime';
+import './CreateEditPortServices';
+
 Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.additional.main',
@@ -78,7 +79,7 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                 },
                                                 handler: function (me) {
                                                     let record = me.upVM().get('record'),
-                                                        portserveRecord = me.upVM().get('portserveRecord'),
+                                                        portServedRecord = me.upVM().get('portServedRecord'),
                                                         currentUser = me.upVM().get('currentUser'),
                                                         store = me.upVM().get('portWorkingTimes');
                                                     Ext.Msg.confirm(
@@ -89,12 +90,12 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                             store.remove(record);
                                                             store.sync({
                                                                 success: function (err, msg) {
-                                                                    portserveRecord.set(
+                                                                    portServedRecord.set(
                                                                         'updated_by_user',
                                                                         currentUser.getData()
                                                                     );
-                                                                    portserveRecord.set('updated_at', new Date());
-                                                                    portserveRecord.save();
+                                                                    portServedRecord.set('updated_at', new Date());
+                                                                    portServedRecord.save();
                                                                     Ext.toast('Record updated', 1000);
                                                                 },
                                                                 failure: function (batch) {
@@ -226,7 +227,7 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                 },
                                                 handler: function (me) {
                                                     let record = me.upVM().get('record'),
-                                                        portserveRecord = me.upVM().get('portserveRecord'),
+                                                        portServedRecord = me.upVM().get('portServedRecord'),
                                                         currentUser = me.upVM().get('currentUser'),
                                                         store = me.upVM().get('portServices');
                                                     Ext.Msg.confirm(
@@ -237,12 +238,12 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                             store.remove(record);
                                                             store.sync({
                                                                 success: function (err, msg) {
-                                                                    portserveRecord.set(
+                                                                    portServedRecord.set(
                                                                         'updated_by_user',
                                                                         currentUser.getData()
                                                                     );
-                                                                    portserveRecord.set('updated_at', new Date());
-                                                                    portserveRecord.save();
+                                                                    portServedRecord.set('updated_at', new Date());
+                                                                    portServedRecord.save();
                                                                     Ext.toast('Record updated', 1000);
                                                                 },
                                                                 failure: function (batch) {

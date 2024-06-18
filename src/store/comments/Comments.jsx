@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.store.comments.Comments', {
     extend: 'Ext.data.Store',
     alias: 'store.comments',

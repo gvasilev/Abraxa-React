@@ -1,5 +1,6 @@
 import './CreateBank';
 import './BanksEditMenu';
+
 Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'financials.banks',
@@ -16,11 +17,10 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
     },
     reference: 'banksGrid',
     scrollToTopOnRefresh: false,
-    loadingText: false,
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function () {
+        ESC: function() {
             let record = this.upVM().get('banksGrid.selection'),
                 grid = Ext.ComponentQuery.query('financials\\.banks')[0];
 
@@ -35,14 +35,14 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
         tpl: new Ext.XTemplate(
             '<div class="a-header-{[this.parceString(values.name)]}">{[this.parceString(values.name)]} ({count})</div>',
             {
-                parceString: function (value) {
+                parceString: function(value) {
                     if (value == '1') {
                         return 'Active';
                     } else {
                         return 'Disabled';
                     }
                 },
-            }
+            },
         ),
     },
     emptyText: {
@@ -68,7 +68,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                     permission: '{userPermissions}',
                 },
                 iconCls: 'md-icon-add',
-                handler: function (me) {
+                handler: function(me) {
                     let record = me.upVM().get('object_record'),
                         currentUser = me.upVM().get('currentUser');
                     Ext.create('Abraxa.view.cdb.company.financials.banks.CreateBank', {
@@ -94,28 +94,8 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
     },
     itemConfig: {
         height: 56,
-        bind: {
-            cls: 'a-detailed-item {styleRow}',
-        },
-        viewModel: {
-            formulas: {
-                styleRow: {
-                    bind: {
-                        bindTo: '{record}',
-                        deep: true,
-                    },
-                    get: function (record) {
-                        if (record) {
-                            if (record.get('active')) {
-                                return 'item-active';
-                            } else {
-                                return 'item-inactive';
-                            }
-                        }
-                    },
-                },
-            },
-        },
+        cls: 'a-detailed-item',
+        viewModel: true,
     },
     items: [
         {
@@ -145,7 +125,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                 permission: '{userPermissions}',
                             },
                             height: 30,
-                            handler: function (me) {
+                            handler: function(me) {
                                 let record = me.upVM().get('object_record'),
                                     currentUser = me.upVM().get('currentUser');
                                 Ext.create('Abraxa.view.cdb.company.financials.banks.CreateBank', {
@@ -187,7 +167,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                             ui: 'tool-text-sm',
                                             iconCls: 'md-icon-outlined md-icon-visibility',
                                             text: 'Enable',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     banks = vm.get('banks'),
@@ -195,19 +175,19 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                 Ext.Msg.confirm(
                                                     'Enable',
                                                     'Are you sure you want to enable this bank?',
-                                                    function (answer) {
+                                                    function(answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function (rec, index) {
+                                                            Ext.each(selections, function(rec, index) {
                                                                 rec.set('active', 1);
                                                             });
                                                             banks.sync({
-                                                                success: function (err, msg) {
+                                                                success: function(err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                 },
-                                                                failure: function (batch) {
+                                                                failure: function(batch) {
                                                                     Ext.Msg.alert(
                                                                         'Something went wrong',
-                                                                        'Could not enable record!'
+                                                                        'Could not enable record!',
                                                                     );
                                                                 },
                                                             });
@@ -227,7 +207,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                             ui: 'action loading',
                                                             text: 'Enable',
                                                         },
-                                                    ]
+                                                    ],
                                                 );
                                             },
                                         },
@@ -237,7 +217,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                             ui: 'tool-text-sm',
                                             iconCls: 'md-icon-outlined md-icon-visibility-off',
                                             text: 'Disable',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     billings = vm.get('billings'),
@@ -245,20 +225,20 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                 Ext.Msg.confirm(
                                                     'Disable',
                                                     'Are you sure you want to disable this direct billings?',
-                                                    function (answer) {
+                                                    function(answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function (rec, index) {
+                                                            Ext.each(selections, function(rec, index) {
                                                                 rec.set('active', 0);
                                                             });
                                                             billings.sync({
-                                                                success: function (err, msg) {
+                                                                success: function(err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
                                                                 },
-                                                                failure: function (batch) {
+                                                                failure: function(batch) {
                                                                     Ext.Msg.alert(
                                                                         'Something went wrong',
-                                                                        'Could not disable record!'
+                                                                        'Could not disable record!',
                                                                     );
                                                                 },
                                                             });
@@ -278,7 +258,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Disable',
                                                         },
-                                                    ]
+                                                    ],
                                                 );
                                             },
                                         },
@@ -288,7 +268,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                             ui: 'tool-text-sm',
                                             iconCls: 'md-icon-outlined md-icon-delete',
                                             text: 'Delete',
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     billings = vm.get('billings'),
@@ -297,20 +277,20 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete this pre-fundings?',
-                                                    function (answer) {
+                                                    function(answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function (rec, index) {
+                                                            Ext.each(selections, function(rec, index) {
                                                                 billings.remove(rec);
                                                             });
                                                             billings.sync({
-                                                                success: function (err, msg) {
+                                                                success: function(err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
                                                                 },
-                                                                failure: function (batch) {
+                                                                failure: function(batch) {
                                                                     Ext.Msg.alert(
                                                                         'Something went wrong',
-                                                                        'Could not delete record!'
+                                                                        'Could not delete record!',
                                                                     );
                                                                 },
                                                             });
@@ -330,7 +310,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ]
+                                                    ],
                                                 );
                                             },
                                         },
@@ -355,7 +335,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                 encodeHtml: false,
             },
             flex: 4,
-            renderer: function (val, record) {
+            renderer: function(val, record) {
                 if (val) {
                     let iban = record.get('iban'),
                         number_type = record.get('number_type'),
@@ -385,7 +365,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                 cls: 'expand a-cell-port',
                 encodeHtml: false,
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 if (value) {
                     return '<span>' + value + '</span>';
                 } else {
@@ -402,7 +382,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
                 cls: 'a-cell-bl a-cell-br',
                 encodeHtml: false,
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 if (value) {
                     return value;
                 } else {
@@ -492,7 +472,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksGrid', {
         },
     ],
     listeners: {
-        childtap: function (grid, location) {
+        childtap: function(grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }

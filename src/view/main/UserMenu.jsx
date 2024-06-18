@@ -50,7 +50,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                     permission: '{userPermissions}',
                                 },
                                 iconCls: 'md-icon-outlined md-icon-task-alt',
-                                handler: function () {
+                                handler: function() {
                                     let button = this;
 
                                     // Check if a note is already opened
@@ -99,9 +99,9 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                     hidden: '{nonEditable}',
                                     permission: '{userPermissions}',
                                 },
-                                handler: function () {
+                                handler: function() {
                                     let portCallVM = Ext.ComponentQuery.query(
-                                        window.CurrentUser.get('company').type + 'portcall\\.main'
+                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main',
                                     )[0].upVM();
 
                                     Ext.create('Abraxa.view.adocs.CreateDocumentPopup', {
@@ -125,7 +125,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                     permission: '{userPermissions}',
                                 },
                                 iconCls: 'md-icon-mode-comment md-icon-outlined',
-                                handler: function () {
+                                handler: function() {
                                     let button = this;
 
                                     // Check if a note is already opened
@@ -203,7 +203,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                         hideDelay: 0,
                         align: 't50-b50',
                     },
-                    handler: function () {
+                    handler: function() {
                         mixpanel.track('Search icon – main header');
                         if (Ext.getCmp('searchPanel')) {
                             Ext.getCmp('searchPanel').show();
@@ -326,7 +326,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                 click: {
                                     element: 'element',
                                     delegate: 'div.user-info',
-                                    fn: function (el) {
+                                    fn: function(el) {
                                         this.component.up('menu').hide();
                                         Ext.getCmp('main-menu').deselectAll();
                                         window.location.hash = '#settings/profile';
@@ -366,27 +366,27 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                         hidden: '{currentUser.current_office_id ? false : true}',
                                     },
                                     listeners: {
-                                        painted: function () {
+                                        painted: function() {
                                             let user = this.upVM().get('currentUser');
                                             this.setValue(user.get('current_office_id'));
                                         },
                                     },
                                     floatedPicker: {
                                         listeners: {
-                                            select: function (me, selection) {
+                                            select: function(me, selection) {
                                                 let vm = this.upVM(),
                                                     user = vm.get('currentUser');
                                                 if (user.get('current_office_id') != selection.get('office_id')) {
                                                     Ext.Msg.confirm(
                                                         'Switch office',
                                                         'Are you sure you would like to switch to <strong>' +
-                                                            selection.get('office').office_name +
-                                                            '</strong> ?',
-                                                        function (answer) {
+                                                        selection.get('office').office_name +
+                                                        '</strong> ?',
+                                                        function(answer) {
                                                             if (answer != 'yes') return;
                                                             user.set('current_office_id', selection.get('office_id'));
                                                             user.save({
-                                                                success: function () {
+                                                                success: function() {
                                                                     window.location.hash = '#dashboard';
                                                                     window.location.reload();
                                                                 },
@@ -406,7 +406,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                                                                 ui: 'action',
                                                                 text: 'Switch',
                                                             },
-                                                        ]
+                                                        ],
                                                     );
                                                 }
                                             },
@@ -484,10 +484,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                             cls: 'a-menu-logout',
                             iconCls: 'md-icon-exit-to-app',
                             handler: function handler() {
-                                const logoutButton = document.getElementById('logoutButton');
-                                if (logoutButton) {
-                                    logoutButton.click(); // Simulate a click on the hidden logout button
-                                }
+                                Ext.getApplication().logout();
                             },
                         },
                     ],

@@ -1,6 +1,118 @@
 Ext.define('Abraxa.utils.Functions', {
     alternateClassName: ['AbraxaFunctions'],
     statics: {
+        alertNoServicesForInvoiceSelected: function () {
+            Ext.Msg.alert(
+                'No services selected',
+                'Please select at least one service to generate an Invoice or a Credit note.'
+            );
+        },
+        checkIfExpensesPresent: function (expensesStore) {
+            if (!expensesStore || !expensesStore.count()) {
+                Ext.Msg.alert(
+                    'No services added',
+                    'Please create at least one service to generate an Invoice or a Credit note.'
+                );
+                return false;
+            }
+            return true;
+        },
+        // Converts a coordinates number in decimal degrees to DMS(degrees, minutes, seconds) string
+        convertCoordinatesDDtoDMS: function ddToDms(lng, lat) {
+            // Make sure that you are working with numbers.
+            lat = parseFloat(lat);
+            lng = parseFloat(lng);
+            let latResult = '';
+            let lngResult = '';
+
+            // Check the correspondence of the coordinates for latitude: North or South.
+            let latLetter = lat >= 0 ? 'N' : 'S';
+
+            latResult += this.getDms(lat) + ' ' + latLetter;
+
+            // Check the correspondence of the coordinates for longitude: East or West.
+            let lngLetter = lng >= 0 ? 'E' : 'W';
+
+            // Call getDms(lng) function for the coordinates of Longitude in DMS.
+            lngResult += this.getDms(lng) + ' ' + lngLetter;
+
+            return { latitude: latResult, longitute: lngResult };
+        },
+        getDms: function (val) {
+            // Required variables
+            let valDeg, valMin, valSec, result;
+
+            // Here you'll convert the value received in the parameter to an absolute value.
+            // Conversion of negative to positive.
+            // In this step does not matter if it's North, South, East or West,
+            // such verification was performed earlier.
+            val = Math.abs(val); // -40.601203 = 40.601203
+
+            // ---- Degrees ----
+            // Stores the integer of DD for the Degrees value in DMS
+            valDeg = Math.floor(val); // 40.601203 = 40
+
+            // Add the degrees value to the result by adding the degrees symbol.
+            result = valDeg + '\u00B0 ';
+
+            // ---- Minutes ----
+            // Removing the integer of the inicial value you get the decimal portion.
+            // Multiply the decimal portion by 60.
+            // Math.floor returns an integer discarding the decimal portion.
+            // ((40.601203 - 40 = 0.601203) * 60 = 36.07218) = 36
+            valMin = Math.floor((val - valDeg) * 60); // 36.07218 = 36
+
+            // Add minutes to the result, adding the symbol minutes "'".
+            result += valMin + "' ";
+
+            // ---- Seconds ----
+            // To get the value in seconds is required:
+            // 1Âº - removing the degree value to the initial value: 40 - 40.601203 = 0.601203;
+            // 2Âº - convert the value minutes (36') in decimal ( valMin/60 = 0.6) so
+            // you can subtract the previous value: 0.601203 - 0.6 = 0.001203;
+            // 3Âº - now that you have the seconds value in decimal,
+            // you need to convert it into seconds of degree.
+            // To do so multiply this value (0.001203) by 3600, which is
+            // the number of seconds in a degree.
+            // You get 0.001203 * 3600 = 4.3308
+            // As you are using the function Math.round(),
+            // which rounds a value to the next unit,
+            // you can control the number of decimal places
+            // by multiplying by 1000 before Math.round
+            // and subsequent division by 1000 after Math.round function.
+            // You get 4.3308 * 1000 = 4330.8 -> Math.round = 4331 -> 4331 / 1000 = 4.331
+            // In this case the final value will have three decimal places.
+            // If you only want two decimal places
+            // just replace the value 1000 by 100.
+            valSec = parseFloat(Math.round((val - valDeg - valMin / 60) * 3600 * 1000) / 1000).toFixed(2); // 40.601203 = 4.331
+
+            // Add the seconds value to the result,
+            // adding the seconds symbol " " ".
+            result += valSec + '" '; // 40Âº36'4.331"
+
+            // Returns the resulting string.
+            return result;
+        },
+        getPortLatitude: function (coordinates) {
+            if (!coordinates || !coordinates.latitude) return null;
+            const lat = coordinates.latitude;
+            const convertedObj = this.convertCoordinatesDDtoDMS(null, lat);
+            return convertedObj.latitude;
+        },
+        getPortLongitude: function (coordinates) {
+            if (!coordinates || !coordinates.longitude) return null;
+            const lon = coordinates.longitude;
+            const convertedObj = this.convertCoordinatesDDtoDMS(lon, null);
+            return convertedObj.longitute;
+        },
+        getYesNoWithIcon: function (value) {
+            const placeholders = AbraxaConstants.placeholders;
+            let htmlString = placeholders.noValueWithIcon;
+            if (value === true) {
+                htmlString = placeholders.yesValueWithIcon;
+            }
+            return htmlString;
+        },
         reloadStore: function (store) {
             return new Promise(function (resolve, reject) {
                 if (store) {
@@ -208,17 +320,18 @@ Ext.define('Abraxa.utils.Functions', {
             return true;
         },
 
-        formatPortInfoInGridRenderer: function (portRequestedId, portRequested, eta) {
-            return (
-                '<div>' + '<a href="javascript:void(0);" data-portid="' + portRequestedId ||
-                '---' + '" class="a_grid_action a-port-eta">' + portRequested ||
-                '---' + '</a>' + '<span class="a-sm-action"><span class="sm-title text-truncate">' + eta ||
-                '---' + '</span></span></div>'
-            );
+        formatPortInfoInGridRenderer: function (portRequestedId, portRequested, etaRequested) {
+            const emptyValue = AbraxaConstants.placeholders.emptyValue;
+            const port = portRequested ? portRequested : emptyValue;
+            const portId = portRequestedId ? portRequestedId : emptyValue;
+            const eta = etaRequested ? etaRequested : emptyValue;
+            const resHtml = `<div><a href="javascript:void(0);" data-portid="${portId}" class="a_grid_action a-port-eta">${port}</a><span class="a-sm-action"><span class="sm-title text-truncate">${eta}</span></span></div>`;
+
+            return resHtml;
         },
 
         portRendererType: function (record, type, isExport) {
-            if (record && type) {
+            if (record && !record.phantom && type && record.get(type)) {
                 let eta = 'ETA: ---',
                     date = '',
                     port_requested = '',
@@ -316,6 +429,210 @@ Ext.define('Abraxa.utils.Functions', {
             return store.queryBy(function (rec, id) {
                 return rec.get('tenant_id') === currentUser.get('current_company_id') && !rec.get('has_left');
             }).items[0];
+        },
+
+        traverseNomenclature: function (store, type) {
+            let nomenclature = store.findRecord('type', type);
+            let options = [];
+
+            if (nomenclature) {
+                let items = nomenclature.data.items.filter(function (item) {
+                    return item.leaf === true;
+                });
+
+                items.forEach((category, index) => {
+                    options.push({
+                        name: category.text,
+                        value: category.id,
+                    });
+                });
+            }
+
+            return options;
+        },
+
+        getLowerCaseValue: function (value) {
+            return value ? value.toLowerCase() : '';
+        },
+
+        exportVesselNameFileId: function (record, type) {
+            if (record.get(type).voyage.vessel_name) {
+                let fileID = record.get(type).file_id
+                    ? record.get(type).file_id
+                    : AbraxaConstants.placeholders.emptyValue;
+                return record.get(type).voyage.vessel_name + ' / File ID: ' + fileID;
+            } else {
+                return AbraxaConstants.placeholders.emptyValue;
+            }
+        },
+
+        calculateVariance: function (pda, dda, fda, returnWithTemplate = true) {
+            let startPrice = pda || dda,
+                finalPrice = fda || dda;
+
+            if (finalPrice === 0 && startPrice) {
+                return AbraxaConstants.placeholders.emptySpan;
+            }
+
+            if (!startPrice && finalPrice) {
+                return AbraxaConstants.placeholders.emptySpan;
+            }
+
+            if (!startPrice && !finalPrice) {
+                return AbraxaConstants.placeholders.emptySpan;
+            }
+
+            if (startPrice === finalPrice) {
+                return AbraxaConstants.placeholders.emptySpan;
+            }
+
+            let variance = parseFloat(this.calculatePercentageVariance(startPrice, finalPrice)).toFixed(1),
+                sign = startPrice > finalPrice ? '-' : startPrice < finalPrice ? '+' : '',
+                cls = startPrice > finalPrice ? 'c-red' : startPrice < finalPrice ? 'c-green' : 'c-blue',
+                icon =
+                    startPrice > finalPrice
+                        ? 'trending_down'
+                        : startPrice < finalPrice
+                          ? 'trending_up'
+                          : 'trending_flat';
+            if (returnWithTemplate) {
+                return this.formatVarianceText(sign, variance, cls, icon);
+            } else {
+                return sign + '' + variance;
+            }
+        },
+
+        calculatePercentageVariance: function (startPrice, finalPrice) {
+            return Math.abs((finalPrice - startPrice) / startPrice) * 100;
+        },
+
+        formatVarianceText: function (sign, variance, cls, icon) {
+            return (
+                '<div class="hbox ' +
+                cls +
+                '"><i class="material-icons-outlined md-16 ' +
+                cls +
+                '">' +
+                icon +
+                '</i><span class="ml-8">' +
+                sign +
+                '' +
+                variance +
+                '%</span></div>'
+            );
+        },
+
+        disbursementGetNameByType: function (type) {
+            switch (type) {
+                case 'pda':
+                    return 'Proforma DA';
+                case 'dda':
+                    return 'Departure DA';
+                case 'fda':
+                    return 'Final DA';
+                case 'sda':
+                    return 'Supplementary DA';
+
+                default:
+                    return AbraxaConstants.placeholders.emptyValue;
+            }
+        },
+        getFromToStringValue: function (data, fromPropName, toPropName, unit) {
+            let htmlString = AbraxaConstants.placeholders.emptyValue;
+            if (!data) return htmlString;
+            const fromVal = data[fromPropName];
+            const toVal = data[toPropName];
+            if (fromVal || fromVal === 0) {
+                htmlString = `${fromVal}${unit}`;
+            }
+            if (toVal || toVal === 0) {
+                htmlString = `${htmlString} - ${toVal}${unit}`;
+            }
+            return htmlString;
+        },
+        getMinMaxValue: function (data, minPropName, maxPropName, digits, unit) {
+            let htmlString = AbraxaConstants.placeholders.emptyValue;
+            if (!data) return htmlString;
+            const minVal = parseFloat(data[minPropName]).toFixed(digits);
+            const maxVal = parseFloat(data[maxPropName]).toFixed(digits);
+            if ((minVal && !isNaN(minVal)) || minVal === 0) {
+                htmlString = `${minVal}${unit}`;
+            }
+            if ((maxVal && !isNaN(maxVal)) || maxVal === 0) {
+                htmlString = `${htmlString} - ${maxVal}${unit}`;
+            }
+            return htmlString;
+        },
+        getWorkflowConditionValue: function (rulesData, conditionType) {
+            let value = null;
+            if (rulesData.rules && rulesData.rules[0].conditions) {
+                Ext.Array.each(rulesData.rules[0].conditions, function (condition) {
+                    switch (conditionType) {
+                        case 'invitation_companies':
+                            if (condition.type === 'companies') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'disbursement_value_max':
+                            if (condition.type === 'disbursementAmount') {
+                                if (condition.operator === 'between') {
+                                    value = condition.data[1];
+                                }
+                            }
+                            break;
+                        case 'disbursement_value_min':
+                            if (condition.type === 'disbursementAmount') {
+                                if (condition.operator === 'between') {
+                                    value = condition.data[0];
+                                } else {
+                                    value = condition.data;
+                                }
+                            }
+                            break;
+                        case 'vessel_type':
+                            if (condition.type === 'vesselTypes') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'agency_type':
+                            if (condition.type === 'agencyTypes') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'disbursement_amount':
+                            if (condition.type === 'disbursementAmount') {
+                                if (condition.operator != 'in') {
+                                    value = condition.operator;
+                                }
+                            }
+                            break;
+                        case 'port_function':
+                            if (condition.type === 'portFunctions') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'port':
+                            if (condition.type === 'ports') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'label':
+                            if (condition.type === 'disbursementLabels') {
+                                value = condition.data;
+                            }
+                            break;
+                        case 'disbursement_type':
+                            if (condition.type === 'disbursementTypes') {
+                                value = condition.data;
+                            }
+                            break;
+                        default:
+                            value = null;
+                            break;
+                    }
+                });
+            }
+            return value;
         },
     },
 });

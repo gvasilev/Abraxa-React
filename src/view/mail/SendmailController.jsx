@@ -209,20 +209,16 @@ Ext.define('Abraxa.view.mail.SendmailController', {
                             return record;
                         },
                     },
-                    loadDodument: {
+                    loadDocument: {
                         bind: {
                             bindTo: '{selectedDocument.id}',
                             // deep: true
                         },
                         get: function (id) {
-                            let record = this.get('selectedDocument');
-                            if (record) {
-                                // Ext.ComponentQuery.query('[cls~=pdf-preview]')[0].setMasked(true);
-                                var me = this;
-                                let file = record,
-                                    pdf = record.get('pdf') ? true : false;
-
-                                if (record.get('shouldGenerate')) {
+                            let selectedDocument = this.get('selectedDocument');
+                            if (selectedDocument) {
+                                const me = this;
+                                if (selectedDocument.get('shouldGenerate')) {
                                     me.getView()
                                         .getController()
                                         .loadDocument(
@@ -235,26 +231,8 @@ Ext.define('Abraxa.view.mail.SendmailController', {
                                 } else {
                                     me.getView()
                                         .getController()
-                                        .loadDocument(Env.ApiEndpoint + 'get_pdf/' + record.get('id'));
+                                        .loadDocument(Env.ApiEndpoint + 'get_pdf/' + selectedDocument.get('id'));
                                 }
-
-                                // if (!pdf) {
-                                //     record.loadPDF2().then(function (blob) {
-                                //         let test = {
-                                //             blob: blob,
-                                //             name: record.get('name') + '.' + file.get('extension')
-                                //         }
-                                //         me.getView().getController().loadDocument(test);
-                                //     });
-                                // } else {
-                                //
-                                //     let blob = record.get('pdf');
-                                //     let test = {
-                                //         blob: blob,
-                                //         name: record.get('name') + '.' + file.get('extension')
-                                //     }
-                                //     me.getView().getController().loadDocument(test);
-                                // }
                             }
                         },
                     },

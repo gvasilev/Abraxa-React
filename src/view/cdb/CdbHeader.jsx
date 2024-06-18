@@ -1,5 +1,6 @@
 import '../../core/override/Abraxa.tab.Bar';
 import './company/CompanyEditMenu';
+
 Ext.define('Abraxa.view.cdb.CdbHeader', {
     extend: 'Ext.Container',
     xtype: 'cdb.header',

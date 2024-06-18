@@ -1,5 +1,4 @@
-
-import '../model/Component.jsx';
+import '../model/Component';
 
 Ext.define('Abraxa.store.Components', {
     extend: 'Ext.data.Store',

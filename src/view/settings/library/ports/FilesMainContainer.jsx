@@ -1,4 +1,5 @@
-import './UploadController.jsx'
+import './UploadController'
+
 Ext.define('Abraxa.view.settings.library.ports.FilesMainContainer', {
     extend: 'Ext.Container',
     controller: 'ports.uploadcontroller',

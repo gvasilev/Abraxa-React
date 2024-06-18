@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.expense.DefaultExpenseItemAlias', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

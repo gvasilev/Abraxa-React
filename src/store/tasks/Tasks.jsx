@@ -1,5 +1,4 @@
-
-import '../../model/task/Task.jsx';
+import '../../model/task/Task';
 
 Ext.define('Abraxa.store.task.Tasks', {
     extend: 'Ext.data.Store',
@@ -16,4 +15,8 @@ Ext.define('Abraxa.store.task.Tasks', {
             rootProperty: 'data',
         },
     },
+    // sorters: [{
+    //     property: 'id',
+    //     direction: 'DESC'
+    // }],
 });

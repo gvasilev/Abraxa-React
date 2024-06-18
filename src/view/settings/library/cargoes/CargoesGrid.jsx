@@ -1,5 +1,6 @@
-import './AddCargoes.jsx';
-import './CargoesEditMenu.jsx';
+import './AddCargoes';
+import './CargoesEditMenu';
+
 Ext.define('Abraxa.view.settings.library.cargoes.CargoesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.cargoes.grid',

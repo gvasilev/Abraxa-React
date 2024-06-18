@@ -12,10 +12,6 @@ Ext.define('Abraxa.model.suggestions.Port', {
             type: 'auto',
         },
         {
-            name: 'id',
-            type: 'integer',
-        },
-        {
             name: 'meta_name',
             type: 'string',
         },
@@ -175,6 +171,11 @@ Ext.define('Abraxa.model.suggestions.Port', {
         {
             name: 'coordinates_pilot_station_longitude',
             type: 'number',
+            allowNull: true,
+        },
+        {
+            name: 'info_harbour_size',
+            type: 'string',
             allowNull: true,
         },
         {
@@ -577,11 +578,6 @@ Ext.define('Abraxa.model.suggestions.Port', {
         {
             name: 'infrastructure_drydock',
             type: 'boolean',
-            allowNull: true,
-        },
-        {
-            name: 'legacy_id',
-            type: 'number',
             allowNull: true,
         },
         {

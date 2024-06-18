@@ -17,13 +17,6 @@ Ext.define('Abraxa.view.common.combo.DefaultExpenseItemsCombo', {
     config: {
         category: null,
     },
-
-    itemTpl:
-        '<div class="combo-item hbox">' +
-        '<div class="mini-icon" data-type="{category.name}"><i class="md-icon-outlined {icon} md-24"></i></div>' +
-        '<div>{name}</div>' +
-        '</div>',
-
     itemTpl: Ext.create(
         'Ext.XTemplate',
         '<tpl><div class="hbox">' +

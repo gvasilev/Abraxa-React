@@ -1,5 +1,6 @@
-import './CreateEditHoliday.jsx';
-import './HolidaysEditMenu.jsx';
+import './CreateEditHoliday';
+import './HolidaysEditMenu';
+
 Ext.define('Abraxa.view.settings.library.ports.HolidaysGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.holidays.grid',

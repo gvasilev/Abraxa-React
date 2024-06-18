@@ -1,6 +1,7 @@
-import '../portcall/Attachment.jsx';
-import '../portcall/Service.jsx';
-import '../comments/Comment.jsx';
+import '../portcall/Attachment';
+import '../portcall/Service';
+import '../comments/Comment';
+
 Ext.define('Abraxa.model.husbandry.Crewing', {
     extend: 'Ext.data.Model',
     fields: [

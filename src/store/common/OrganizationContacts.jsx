@@ -1,5 +1,4 @@
-
-import '../../model/cdb/Contact.jsx';
+import '../../model/cdb/Contact';
 
 Ext.define('Abraxa.store.common.OrganizationContacts', {
     extend: 'Ext.data.Store',

@@ -1,4 +1,5 @@
-import './InstructionController.jsx';
+import './InstructionController';
+
 Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.InstructionsRightCard', {
     extend: 'Ext.Container',
     xtype: 'agreements.instructions.right.card',
@@ -226,7 +227,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                         quickInsertEnabled: false,
                         theme: 'royal',
                         pastePlain: true,
-                        // enter: 2, THROW error comment for now
+                        enter: 2,
                         imagePaste: false,
                         height: 300,
                         charCounterCount: false,

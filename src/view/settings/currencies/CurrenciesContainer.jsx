@@ -1,4 +1,5 @@
-import './CurrenciesGrid.jsx';
+import './CurrenciesGrid';
+
 Ext.define('Abraxa.view.settings.currencies.CurrenciesContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.currencies.currencies.container',

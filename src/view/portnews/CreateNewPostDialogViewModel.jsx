@@ -1,5 +1,3 @@
-import '../../store/portnews/PortNewsType';
-
 Ext.define('Abraxa.view.portnews.CreateNewPostDialogViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.createNewPostDialogViewModel',

@@ -1,4 +1,3 @@
-import '../../store/voyage/VoyageTypes.jsx';
 Ext.define('Abraxa.view.voyage.VoyageViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.VoyageViewModel',
@@ -151,15 +150,6 @@ Ext.define('Abraxa.view.voyage.VoyageViewModel', {
                         this.set('voyageType', AbraxaConstants.placeholders.emptyValue);
                     }
                 }
-            },
-        },
-        formValid: {
-            bind: {
-                bindTo: '{appointmentForm.dirty}',
-                deep: true,
-            },
-            get: function (valid) {
-                console.log(valid);
             },
         },
         pendingAgent: {

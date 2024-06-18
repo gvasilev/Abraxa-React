@@ -51,7 +51,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageDetailsRightCardViewMod
                     const latestEvent = newStore.count() > 1 ? newStore.last().get('event_name') : null;
                     const latestEventType = newStore.count() > 1 ? newStore.last().get('type').name : null;
 
-                   const currentUserCompanyId = vm.get('currentUser.company.id');
+                    currentUserCompanyId = vm.get('currentUser.company.id');
 
                     const data = portcall.data;
                     // const invitations = portcall.invitations().getData().items;

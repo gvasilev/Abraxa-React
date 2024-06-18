@@ -1,4 +1,5 @@
-import './VesselController.jsx';
+import './VesselController';
+
 Ext.define('Abraxa.view.settings.library.vessels.Certificates', {
     extend: 'Ext.Container',
     xtype: 'settings.library.vessels.certificates',

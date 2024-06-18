@@ -1,4 +1,5 @@
-import './ObjectComponents.js';
+import './ObjectComponents';
+
 Ext.define('Abraxa.model.object.SubObject', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

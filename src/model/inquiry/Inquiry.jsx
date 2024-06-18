@@ -1,5 +1,5 @@
-import '../voyage/Voyage.jsx';
-import '../portcall/Instruction.jsx';
+import '../voyage/Voyage';
+import '../portcall/Instruction';
 import './InquiryOffer';
 import '../amail/Amail';
 import '../cargo/Cargo';
@@ -135,9 +135,9 @@ Ext.define('Abraxa.model.inquiry.Inquiry', {
         },
         {
             name: 'is_watching',
-            mapping: function (data) {
-                return data.watching.find((e) => e.user_id === window.CurrentUser.get('id'));
-            },
+            //            mapping: function(data) {
+            //                return data.watching.find((e) => e.user_id === Ext.getCmp('main-viewport').upVM().get('currentUser').get('id'));
+            //            },
         },
     ],
     idProperty: 'id',

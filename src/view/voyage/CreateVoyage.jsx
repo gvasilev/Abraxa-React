@@ -1,6 +1,7 @@
-import './VoyageController.jsx';
-import './CreateVoyageViewModel.jsx';
-import '../../store/voyage/VoyageTypes.jsx';
+import './VoyageController';
+import './CreateVoyageViewModel';
+import '../../store/voyage/VoyageTypes';
+
 Ext.define('Abraxa.view.voyage.CreateVoyage', {
     extend: 'Ext.Container',
     xtype: 'CreateVoyage',

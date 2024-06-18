@@ -1,4 +1,5 @@
-import '../../model/template/TemplateItem.jsx';
+import '../../model/template/TemplateItem';
+
 Ext.define('Abraxa.store.templates.TemplateItems', {
     extend: 'Ext.data.Store',
     alias: 'store.template.items',

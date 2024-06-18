@@ -1,4 +1,5 @@
-import '../../../common/combo/Role.jsx';
+import '../../../common/combo/Role';
+
 Ext.define('Abraxa.view.settings.user_teams.users.ChangeUserRole', {
     xtype: 'settings.users_teams.users.change.user.role',
     extend: 'Ext.Dialog',

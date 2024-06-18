@@ -1,4 +1,5 @@
-import '../voyage/Voyage.jsx';
+import '../voyage/Voyage';
+
 Ext.define('Abraxa.model.invitation.Invitation', {
     extend: 'Ext.data.Model',
     fields: [
@@ -66,7 +67,7 @@ Ext.define('Abraxa.model.invitation.Invitation', {
         {
             name: 'object_name',
             type: 'string',
-            convert: function (v, record) {
+            convert: function(v, record) {
                 var object_id = record.get('object_id');
                 if (object_id == 3) return 'appointment';
 
@@ -76,7 +77,7 @@ Ext.define('Abraxa.model.invitation.Invitation', {
         {
             name: 'abbr',
             type: 'string',
-            convert: function (v, record) {
+            convert: function(v, record) {
                 var company_name = record.get('org_name');
                 var abbrArray = company_name.split(' ');
                 var abbr = abbrArray[0][0];
@@ -92,7 +93,7 @@ Ext.define('Abraxa.model.invitation.Invitation', {
         {
             name: 'status_order',
             persist: false,
-            convert: function (v, record) {
+            convert: function(v, record) {
                 let order_id = 0;
                 switch (record.get('status')) {
                     case 'Pending':
@@ -117,7 +118,7 @@ Ext.define('Abraxa.model.invitation.Invitation', {
         {
             name: 'port_function',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data.voyage && data.voyage.portcall && data.voyage.portcall.nomination)
                     return data.voyage.portcall.nomination.port_function;
             },

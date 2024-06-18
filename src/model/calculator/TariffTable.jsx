@@ -1,4 +1,5 @@
-import './TariffTableColumn.jsx';
+import './TariffTableColumn';
+
 Ext.define('Abraxa.model.calculator.TariffTable', {
     extend: 'Ext.data.Model',
 

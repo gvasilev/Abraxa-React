@@ -1,28 +1,6 @@
-// Core Components
-// import '../core/components/AbraxaContainer.js';
-// import '../core/components/AbraxaDiv.jsx';
-// import '../core/components/AbraxaPanel.js';
-
-// // Common Components
-// import '../../../common/components/UpdatedBy';
-// import '../../../common/components/PublicUpdatedBy';
-// import '../../../common/button/ImportButton';
-
-// // Portcall Components
-// import '../../MembersPreviewMenu.js';
-// import '../../MembersCombo.js';
-import './AccountData'; // Assuming AccountData is in the same directory
-import './AccountBalance'; // Assuming AccountBalance is in the same directory
+import './AccountData';
+import './AccountBalance';
 import '../disbursements/DisbursementsGrid';
-
-// // Agreements Components
-// import './AgreementsList';
-
-// // Voucher Components
-// import '../../../vouchers/VouchersDialog.js';
-
-// // ADocs Components
-// import '../../../adocs/FinancialDocumentForm.js';
 import '../disbursements/DisbursementRightCard';
 import '../disbursements/DisbursementDetails';
 
@@ -53,7 +31,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
             scope: 'this',
             shift: true,
             //event: 'keydown',
-            handler: function (event, component) {
+            handler: function(event, component) {
                 let grid = Ext.ComponentQuery.query('accounts\\.grid')[0];
 
                 if (grid) {
@@ -105,7 +83,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                         anchor: true,
                                         align: 'bc-tc?',
                                     },
-                                    handler: function () {
+                                    handler: function() {
                                         let grid = Ext.ComponentQuery.query('accounts\\.grid')[0];
 
                                         if (grid) {
@@ -136,7 +114,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                             listeners: {
                                                 click: {
                                                     element: 'element',
-                                                    fn: function () {
+                                                    fn: function() {
                                                         let vm = this.component.upVM(),
                                                             menu = Ext.create(
                                                                 'Abraxa.view.portcall.MembersPreviewMenu',
@@ -144,7 +122,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                     viewModel: {
                                                                         parent: vm,
                                                                     },
-                                                                }
+                                                                },
                                                             );
                                                         menu.showBy(this);
                                                     },
@@ -203,7 +181,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                 ],
                                             },
                                             listeners: {
-                                                tap: function () {
+                                                tap: function() {
                                                     mixpanel.track('Agreements (disb screen) - button');
                                                 },
                                             },
@@ -223,7 +201,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                 objectPermission: '{objectPermissions}',
                                                 text: 'Invoices <em>{accountVouchers.count}</em>',
                                             },
-                                            handler: function () {
+                                            handler: function() {
                                                 let account_id = this.upVM().get('selectedAccount').get('id'),
                                                     vouchers = this.upVM().get('accountVouchers'),
                                                     expenses = this.upVM().get('accountExpenses'),
@@ -245,64 +223,33 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                     bindTo: '{vouchersList.selection}',
                                                                     deep: true,
                                                                 },
-                                                                get: function (record) {
+                                                                get: function(record) {
                                                                     if (record) {
                                                                         return record;
                                                                     }
                                                                 },
                                                             },
-                                                            loadDodument: {
+                                                            loadDocument: {
                                                                 bind: {
                                                                     bindTo: '{vouchersList.selection.id}',
-                                                                    // deep: true
                                                                 },
-                                                                get: function (id) {
-                                                                    let record = this.get('vouchersList.selection');
-                                                                    if (record) {
+                                                                get: function(id) {
+                                                                    let selectedDocument =
+                                                                        this.get('vouchersList.selection');
+                                                                    if (selectedDocument) {
                                                                         Ext.ComponentQuery.query(
-                                                                            '[cls~=pdf-preview]'
+                                                                            '[cls~=pdf-preview]',
                                                                         )[0].setMasked(true);
-                                                                        var me = this;
-                                                                        let file = record.getDocument(),
-                                                                            pdf = record.get('pdf') ? true : false;
+                                                                        const me = this;
+                                                                        let file = selectedDocument.getDocument();
 
                                                                         me.getView()
                                                                             .getController()
                                                                             .loadDocument(
                                                                                 Env.ApiEndpoint +
-                                                                                    'get_pdf/' +
-                                                                                    file.get('id')
+                                                                                'get_pdf/' +
+                                                                                file.get('id'),
                                                                             );
-
-                                                                        // return me.getView().getController().previewFile(file);
-
-                                                                        // if (!pdf) {
-                                                                        // 	record.loadPDF2().then(function (blob) {
-                                                                        // 		let test = {
-                                                                        // 			blob: blob,
-                                                                        // 			name:
-                                                                        // 				record.get('name') +
-                                                                        // 				'.' +
-                                                                        // 				file.get('extension'),
-                                                                        // 		};
-                                                                        // 		me.getView()
-                                                                        // 			.getController()
-                                                                        // 			.loadDocument(test);
-                                                                        // 	});
-                                                                        // } else {
-                                                                        //
-                                                                        // 	let blob = record.get('pdf');
-                                                                        // 	let test = {
-                                                                        // 		blob: blob,
-                                                                        // 		name:
-                                                                        // 			record.get('name') +
-                                                                        // 			'.' +
-                                                                        // 			file.get('extension'),
-                                                                        // 	};
-                                                                        // 	me.getView()
-                                                                        // 		.getController()
-                                                                        // 		.loadDocument(test);
-                                                                        // }
                                                                     }
                                                                 },
                                                             },
@@ -311,7 +258,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                     bindTo: '{disbursementRecord}',
                                                                     deep: true,
                                                                 },
-                                                                get: function (record) {
+                                                                get: function(record) {
                                                                     if (record) {
                                                                         let objectPermissions =
                                                                                 this.get('objectPermissions'),
@@ -341,13 +288,13 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                                     if (
                                                                                         objectPermissions[
                                                                                             'disbursements'
-                                                                                        ].can_edit
+                                                                                            ].can_edit
                                                                                     ) {
                                                                                         result = true;
                                                                                         if (
                                                                                             store &&
                                                                                             Object.keys(store).length >
-                                                                                                0
+                                                                                            0
                                                                                         ) {
                                                                                             let record =
                                                                                                 store['disbursements'];
@@ -373,7 +320,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                     bindTo: '{userPermissions}',
                                                                     deeP: true,
                                                                 },
-                                                                get: function (store) {
+                                                                get: function(store) {
                                                                     if (store && Object.keys(store).length > 0) {
                                                                         let record = store['portcallInvoiceCreate'];
                                                                         if (record && record.edit) {
@@ -396,7 +343,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                     bindTo: '{member}',
                                                                     deep: true,
                                                                 },
-                                                                get: function (member) {
+                                                                get: function(member) {
                                                                     if (member && member.get('role') == 'can edit') {
                                                                         this.set('nonEditable', false);
                                                                     }
@@ -467,13 +414,13 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                         objectPermission: '{objectPermissions}',
                                         permission: '{userPermissions}',
                                     },
-                                    handler: function (me) {
+                                    handler: function(me) {
                                         mixpanel.track('FDA document (disb screen) - button');
                                         let record = me.upVM().get('selectedAccount'),
                                             selectedAccounts = me
                                                 .upVM()
                                                 .get('expenses')
-                                                .queryBy(function (rec, id) {
+                                                .queryBy(function(rec, id) {
                                                     return (
                                                         rec.get('disbursement_id') == record.get('id') &&
                                                         rec.get('checked')
@@ -502,15 +449,15 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                                                 bindTo: '{selectedDisbursement.selection}',
                                                                 deep: true,
                                                             },
-                                                            get: function (record) {
+                                                            get: function(record) {
                                                                 if (record) {
                                                                     let expenses = this.get('expenses'),
                                                                         data = [];
 
-                                                                    expenses.each(function (item) {
+                                                                    expenses.each(function(item) {
                                                                         if (
                                                                             item.get(record.get('type') + '_id') ==
-                                                                                record.get('id') &&
+                                                                            record.get('id') &&
                                                                             item.get('default_expense_item_id')
                                                                         ) {
                                                                             data.push(item);
@@ -528,7 +475,7 @@ Ext.define('Abraxa.view.portcall.account.AccountDetails', {
                                         docForm.upVM().set('document_data.care_of', record.get('co_id'));
                                         docForm.down('[cls~=document_items_grid]').select(selectedAccounts);
                                         docForm.show();
-                                        Ext.each(selectedAccounts, function (rec) {
+                                        Ext.each(selectedAccounts, function(rec) {
                                             rec.set('checked', false);
                                         });
                                     },

@@ -1,5 +1,6 @@
-import './UsersGrid.jsx';
-import './UserInvite.jsx';
+import './UsersGrid';
+import './UserInvite';
+
 Ext.define('Abraxa.view.settings.users_teams.users.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.users_teams.users.main.container',

@@ -149,35 +149,7 @@ Ext.define('Abraxa.view.sof.portcall.sof.SOFEventForm', {
             },
             zIndex: 100,
             handler: function () {
-                var form = this.find('formGeneralEvents');
-                if (form.validate()) {
-                    let values = form.getValues(),
-                        berthCombo = this.up('sof\\.event\\.form').getFields('da_berth_id'),
-                        selectedEvent = this.up('sof\\.event\\.form').down('sof\\.general\\.events').getSelection(),
-                        store = this.upVM().get('events');
-                    if (values.da_berth_id) {
-                        values.da_berth_name = berthCombo.getSelection().get('name');
-                    }
-                    values.default_sof_event_category_id = selectedEvent.get('type').category.id;
-                    values.default_sof_event_type_id = selectedEvent.get('type').id;
-                    values.event_name = selectedEvent.get('name');
-                    values.event_alias = selectedEvent.get('event_alias');
-
-                    store.add(values);
-                    store.sync({
-                        success: function () {
-                            Ext.toast('Record updated', 1000);
-                            mixpanel.track('Add new sof event');
-                        },
-                    });
-                    store.sort();
-                    var picker = this.find('formSplit');
-                    picker.inputElement.dom.value = '';
-                    picker.getPicker().deselectAll();
-                    form.reset(true);
-                    form.find('formEvent').clearValue();
-                    form.find('formEvent').focus();
-                }
+                this.lookupController().submitSofForm(this.up('formpanel'));
             },
         },
     ],

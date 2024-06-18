@@ -1,5 +1,6 @@
-import '../index/_Page.jsx';
-import './LeftMenu.jsx';
+import '../index/_Page';
+import './LeftMenu';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show._Page', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.portsettings.show.page',

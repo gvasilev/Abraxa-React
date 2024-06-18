@@ -1,5 +1,6 @@
-import '../../../../../common/filelds/latitude.jsx';
-import '../../../../../common/filelds/longtitude.jsx';
+import '../../../../../common/filelds/latitude';
+import '../../../../../common/filelds/longtitude';
+
 Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestTerminal.SuggestTerminalCoordinates', {
     extend: 'Ext.Container',
     xtype: 'SuggestTerminalCoordinates',

@@ -1,8 +1,8 @@
-import './MainController.js';
-import '../main/MainHeader.jsx';
-import '../../core/components/AbraxaDiv.jsx';
-import './CdbMainViewModel.jsx';
-import './company/CompanyView.jsx';
+import './MainController';
+import '../main/MainHeader';
+import '../../core/components/AbraxaDiv';
+import './CdbMainViewModel';
+import './company/CompanyView';
 import './CdbHeader';
 
 Ext.define('Abraxa.view.cdb.MainView', {
@@ -22,24 +22,24 @@ Ext.define('Abraxa.view.cdb.MainView', {
             flex: 1,
         },
     ],
-    loadRecord: function (id) {
+    loadRecord: function(id) {
         let company = Ext.create('Abraxa.model.company.Company', {
             id: id,
         });
         company.load({
             scope: this,
-            success: function (record, operation) {
+            success: function(record, operation) {
                 this.getViewModel().set('object_record', record);
             },
-            failure: function (record, operation) {
+            failure: function(record, operation) {
                 Ext.Msg.alert('Error', 'Could not load record');
             },
         });
     },
     listeners: {
-        painted: function (me) {
+        painted: function(me) {
             if (me.upVM().get('currentUserType') !== 'agent') {
-                //Ext.getCmp('main-viewport').getController().redirectTo('404');
+                Ext.getCmp('main-viewport').getController().redirectTo('404');
             }
         },
     },

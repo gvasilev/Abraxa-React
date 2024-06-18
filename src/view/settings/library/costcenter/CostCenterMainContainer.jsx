@@ -1,4 +1,5 @@
-import './CostCenterGrid.jsx';
+import './CostCenterGrid';
+
 Ext.define('Abraxa.view.settings.library.costCenter.CostCenterMainContainer', {
     extend: 'Ext.Container',
     xtype: 'CostCenterMainContainer',

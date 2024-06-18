@@ -1,6 +1,7 @@
-import './RoleSettings.jsx';
-import '../../../../store/permissions/Permission.jsx';
-import './PermissionSettings.jsx';
+import './RoleSettings';
+import '../../../../store/permissions/Permission';
+import './PermissionSettings';
+
 Ext.define('Abraxa.view.settings.users_teams.roles.RoleDetails', {
     extend: 'Ext.Container',
     xtype: 'usersettings.roledetails',

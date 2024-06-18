@@ -1,9 +1,10 @@
-import './DocumentsViewModel.jsx';
-import './DocumentsController.jsx';
-import './DocumentsList.jsx';
-import './DocumentsFileInfo.jsx';
-import './DocumentsSections.jsx';
+import './DocumentsViewModel';
+import './DocumentsController';
+import './DocumentsList';
+import './DocumentsFileInfo';
+import './DocumentsSections';
 import './DocumentsFolderMenu';
+
 Ext.define('Abraxa.view.portcall.documents.DocumentsMainView', {
     extend: 'Ext.Container',
     xtype: 'documents.main',

@@ -1,4 +1,5 @@
-import './ServiceLibraryController.jsx';
+import './ServiceLibraryController';
+
 Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.library.expenses.grid',
@@ -34,7 +35,6 @@ Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
     plugins: {
         gridviewoptions: true,
     },
-    selectable: true,
     items: [
         {
             xtype: 'container',
@@ -61,10 +61,10 @@ Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
                     listeners: {
                         change: function (field, newValue, oldValue, eOpts) {
                             var disbursementsItems = this.upVM().get('defaultExpenseItems');
-                            if (newValue == '') disbursementsItems.removeFilter('search');
+                            if (newValue === '') disbursementsItems.removeFilter('search');
                         },
                         action: function (me, newValue, oldValue, eOpts) {
-                            var query = this.getValue().toLowerCase();
+                            const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                             var disbursementsItems = this.upVM().get('defaultExpenseItems');
                             disbursementsItems.removeFilter('disbursementsItems');
                             if (query.length > 2) {
@@ -162,6 +162,36 @@ Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
             },
         },
         {
+            text: 'Category',
+            dataIndex: 'category',
+            groupable: false,
+            minWidth: 220,
+            cell: {
+                encodeHtml: false,
+            },
+            renderer: function (value, record) {
+                if (record && record.get('category')) {
+                    return Ext.util.Format.capitalize(record.get('category').name);
+                }
+                return AbraxaConstants.placeholders.emptyCellSpan;
+            },
+        },
+        {
+            text: 'type',
+            dataIndex: 'type',
+            groupable: false,
+            minWidth: 220,
+            cell: {
+                encodeHtml: false,
+            },
+            renderer: function (value, record) {
+                if (record && record.get('type')) {
+                    return Ext.util.Format.capitalize(record.get('type').name);
+                }
+                return AbraxaConstants.placeholders.emptyCellSpan;
+            },
+        },
+        {
             text: 'Accounting code',
             dataIndex: 'accounting_code',
             groupable: false,
@@ -183,7 +213,7 @@ Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
                 encodeHtml: false,
             },
             renderer: function (value, record) {
-                if (record && record.cost_centers().count() == 2) {
+                if (record && record.cost_centers().count() === 2) {
                     return record.cost_centers().getAt(1).get('name');
                 } else if (record && record.cost_centers().count() > 2) {
                     return (
@@ -272,7 +302,4 @@ Ext.define('Abraxa.view.settings.library.expenses.ExpensesGrid', {
             },
         },
     ],
-    listeners: {
-        childtap: function (me, selection) {},
-    },
 });

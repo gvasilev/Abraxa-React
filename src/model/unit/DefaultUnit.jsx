@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.unit.DefaultUnit', {
     extend: 'Ext.data.Model',
     idProperty: 'id',

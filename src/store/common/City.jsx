@@ -1,5 +1,5 @@
+import '../../model/common/City';
 
-import '../../model/common/City.js';
 Ext.define('Abraxa.store.common.City', {
     extend: 'Ext.data.Store',
     alias: 'store.cityStore',

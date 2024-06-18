@@ -1,6 +1,7 @@
-import './users/MainContainer.jsx';
-import './roles/MainContainer.jsx';
-import './teams/MainContainer.jsx';
+import './users/MainContainer';
+import './roles/MainContainer';
+import './teams/MainContainer';
+
 Ext.define('Abraxa.view.settings.users_teams.MainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.users_teams.main.container',

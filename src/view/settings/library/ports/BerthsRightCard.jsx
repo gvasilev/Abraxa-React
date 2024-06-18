@@ -1,4 +1,5 @@
-import '../../../common/combo/Terminal.jsx';
+import '../../../common/combo/Terminal';
+
 Ext.define('Abraxa.view.settings.library.ports.BerthsRightCard', {
     extend: 'Ext.Container',
     xtype: 'settings.library.berths.right.card',
@@ -107,7 +108,7 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsRightCard', {
                                 let vm = this.upVM(),
                                     store = vm.get('portsServerGrid.selection').berths(),
                                     container = this.find('berthRightCard'),
-                                    portserveRecord = vm.get('portserveRecord'),
+                                    portServedRecord = vm.get('portServedRecord'),
                                     currentUser = vm.get('currentUser'),
                                     record = vm.get('berthsGrid.selection');
                                 Ext.Msg.confirm(
@@ -119,9 +120,9 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsRightCard', {
                                             store.remove(record);
                                             store.sync({
                                                 success: function (err, msg) {
-                                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                                    portserveRecord.set('updated_at', new Date());
-                                                    portserveRecord.save();
+                                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                                    portServedRecord.set('updated_at', new Date());
+                                                    portServedRecord.save();
                                                     Ext.toast('Record updated', 1000);
                                                 },
                                                 failure: function (batch) {
@@ -192,14 +193,14 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsRightCard', {
                 listeners: {
                     blur: function (me) {
                         let record = me.upVM().get('berthsGrid.selection'),
-                            portserveRecord = me.upVM().get('portserveRecord'),
+                            portServedRecord = me.upVM().get('portServedRecord'),
                             currentUser = me.upVM().get('currentUser');
                         if (record.dirty) {
                             record.save({
                                 success: function () {
-                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                    portserveRecord.set('updated_at', new Date());
-                                    portserveRecord.save();
+                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                    portServedRecord.set('updated_at', new Date());
+                                    portServedRecord.save();
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -231,14 +232,14 @@ Ext.define('Abraxa.view.settings.library.ports.BerthsRightCard', {
                             listeners: {
                                 blur: function (me) {
                                     let record = me.upVM().get('berthsGrid.selection'),
-                                        portserveRecord = me.upVM().get('portserveRecord'),
+                                        portServedRecord = me.upVM().get('portServedRecord'),
                                         currentUser = me.upVM().get('currentUser');
                                     if (record.dirty) {
                                         record.save({
                                             success: function () {
-                                                portserveRecord.set('updated_by_user', currentUser.getData());
-                                                portserveRecord.set('updated_at', new Date());
-                                                portserveRecord.save();
+                                                portServedRecord.set('updated_by_user', currentUser.getData());
+                                                portServedRecord.set('updated_at', new Date());
+                                                portServedRecord.save();
                                                 Ext.toast('Record updated', 1000);
                                             },
                                         });

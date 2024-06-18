@@ -1,5 +1,4 @@
-
-import '../../model/common/Commodity.jsx'
+import '../../model/common/Commodity';
 
 Ext.define('Abraxa.store.common.Commodity', {
     extend: 'Ext.data.Store',

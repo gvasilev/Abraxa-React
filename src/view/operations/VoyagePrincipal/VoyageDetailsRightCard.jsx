@@ -1,7 +1,8 @@
-import './VoyageDetailsRightCardController.jsx';
-import './VoyageDetailsRightCardViewModel.jsx';
-import './VoyagePortItineryPanel.jsx';
-import './VoyageTasksRightPanel.jsx';
+import './VoyageDetailsRightCardController';
+import './VoyageDetailsRightCardViewModel';
+import './VoyagePortItineryPanel';
+import './VoyageTasksRightPanel';
+
 Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageDetailsRightCard', {
     extend: 'Ext.Container',
     cls: 'a-right-container a-right-container-voyage-planer a-right-container-sticky',
@@ -10,7 +11,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageDetailsRightCard', {
     controller: 'VoyageDetailsRightCardController',
     viewModel: 'VoyageDetailsRightCardViewModel',
 
-    setSelectedVoyage: function (record) {
+    setSelectedVoyage: function(record) {
         const vm = this.getViewModel();
         vm.set('selectedVoyage', record);
     },

@@ -87,7 +87,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                         bindTo: '{record}',
                                         deep: true,
                                     },
-                                    get: function (record) {
+                                    get: function(record) {
                                         return record;
                                     },
                                 },
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                         keyMapEnabled: true,
                         keyMap: {
                             scope: 'this',
-                            ESC: function () {
+                            ESC: function() {
                                 let record = this.upVM().get('crewingGrid.selection'),
                                     grid = Ext.ComponentQuery.query('[cls~=a-files-grid]')[0];
 
@@ -145,7 +145,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
 
                                                     vm.get('pda')
                                                         .attachments()
-                                                        .each(function (attachment) {
+                                                        .each(function(attachment) {
                                                             documents.push(attachment.getDocument());
                                                         });
 
@@ -161,7 +161,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                         .previewFile(
                                                             this.component,
                                                             selectedFile.getDocument(),
-                                                            documents
+                                                            documents,
                                                         );
                                                 },
                                             },
@@ -205,7 +205,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                 permission: '{userPermissions}',
                                                 disabled: '{pda.status !== "draft"}',
                                             },
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let record = this.up('menu').upVM().get('record').getDocument();
                                                 Ext.create('Ext.Dialog', {
                                                     closable: true,
@@ -230,7 +230,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                                 // inputMask: "*.{record.extension}"
                                                             },
                                                             listeners: {
-                                                                painted: function () {
+                                                                painted: function() {
                                                                     this.focus();
                                                                 },
                                                             },
@@ -240,7 +240,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                         {
                                                             text: 'Cancel',
                                                             margin: '0 8 0 0',
-                                                            handler: function () {
+                                                            handler: function() {
                                                                 record.reject();
                                                                 this.up('dialog').destroy();
                                                             },
@@ -248,19 +248,19 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                         {
                                                             text: 'Save',
                                                             ui: 'action',
-                                                            handler: function () {
+                                                            handler: function() {
                                                                 // record.getProxy().setExtraParams({
                                                                 //     object_id: record.get('object_id'),
                                                                 //     object_meta_id: record.get('object_meta_id'),
                                                                 // });
                                                                 record.save({
-                                                                    success: function (batch, opt) {
+                                                                    success: function(batch, opt) {
                                                                         Ext.toast('Document updated', 1500);
                                                                     },
-                                                                    failure: function (batch, operations) {
+                                                                    failure: function(batch, operations) {
                                                                         Ext.Msg.alert(
                                                                             'Something went wrong',
-                                                                            'Could not update file.'
+                                                                            'Could not update file.',
                                                                         );
                                                                     },
                                                                 });
@@ -293,7 +293,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                         {
                                             text: 'Download',
                                             iconCls: 'md-icon-outlined md-icon-save-alt',
-                                            handler: function () {
+                                            handler: function() {
                                                 var record = this.upVM().get('record').getDocument(),
                                                     name = record.get('name'),
                                                     urlToSend =
@@ -320,7 +320,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                 permission: '{userPermissions}',
                                                 disabled: '{pda.status !== "draft"}',
                                             },
-                                            handler: function (me) {
+                                            handler: function(me) {
                                                 let record = me.upVM().get('record'),
                                                     object_record = this.upVM().get('object_record'),
                                                     controller = me.getController(),
@@ -329,7 +329,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you would like to delete this entry?',
-                                                    function (answer) {
+                                                    function(answer) {
                                                         if (answer != 'yes') return;
                                                         store.remove(record);
                                                         ids.push(record.get('id'));
@@ -352,7 +352,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                                                             text: 'Delete',
                                                             separator: true,
                                                         },
-                                                    ]
+                                                    ],
                                                 );
                                             },
                                         },
@@ -362,7 +362,7 @@ Ext.define('Abraxa.view.pda.PDAAttachments', {
                         ],
                     },
                     listeners: {
-                        childtap: function (item, location, eOpts) {
+                        childtap: function(item, location, eOpts) {
                             let record = location.record;
                             if (record && location.source.target.tagName == 'BUTTON') {
                                 return false;

@@ -268,7 +268,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                 click: {
                                     element: 'element',
                                     delegate: 'a',
-                                    fn: function (el) {
+                                    fn: function(el) {
                                         let me = this,
                                             cmp = me.component,
                                             portId = null;
@@ -352,7 +352,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                     bindTo: '{portcall}',
                                                     deep: true,
                                                 },
-                                                get: function (portcall) {
+                                                get: function(portcall) {
                                                     if (!portcall || !portcall.getNomination()) return '';
                                                     const nomination = portcall.getNomination();
                                                     const name = nomination.get('appointing_party_name');
@@ -367,7 +367,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                     bindTo: '{invitation}',
                                                     deep: true,
                                                 },
-                                                get: function (invitation) {
+                                                get: function(invitation) {
                                                     if (!invitation || !invitation.company) return '';
                                                     const name = invitation.company.name;
                                                     const email = invitation.company.email;
@@ -376,7 +376,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                 },
                                             },
                                         },
-                                        getHtmlString: function (name, email) {
+                                        getHtmlString: function(name, email) {
                                             if (!name) return '';
                                             let htmlString = '<div class="x-before-input-el"></div>';
                                             htmlString += '<div class="x-text-el">';
@@ -398,7 +398,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                         click: {
                                             element: 'element',
                                             delegate: 'a',
-                                            fn: function (el) {
+                                            fn: function(el) {
                                                 let email = el.currentTarget.getAttribute('data-email');
                                                 if (email) {
                                                     let organizations = this.component.upVM().get('organizations'),
@@ -408,7 +408,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                             0,
                                                             false,
                                                             false,
-                                                            true
+                                                            true,
                                                         );
                                                     if (orgRecord) {
                                                         Abraxa.getApplication()
@@ -473,7 +473,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                         click: {
                                             element: 'element',
                                             delegate: 'a',
-                                            fn: function (el) {
+                                            fn: function(el) {
                                                 let email = el.currentTarget.getAttribute('data-email');
                                                 if (email) {
                                                     let organizations = this.component.upVM().get('organizations'),
@@ -483,7 +483,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                             0,
                                                             false,
                                                             false,
-                                                            true
+                                                            true,
                                                         );
                                                     if (orgRecord) {
                                                         Abraxa.getApplication()
@@ -620,7 +620,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                         click: {
                                             element: 'element',
                                             delegate: 'a',
-                                            fn: function (el) {
+                                            fn: function(el) {
                                                 let email = el.currentTarget.getAttribute('data-email');
                                                 if (email) {
                                                     let organizations = this.component.upVM().get('organizations'),
@@ -630,7 +630,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                                             0,
                                                             false,
                                                             false,
-                                                            true
+                                                            true,
                                                         );
                                                     if (orgRecord) {
                                                         Abraxa.getApplication()
@@ -720,7 +720,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                 bindTo: '{record}',
                                 deep: true,
                             },
-                            get: function (record) {
+                            get: function(record) {
                                 if (record) {
                                     let store = record.store;
                                     return store.indexOf(record);
@@ -732,7 +732,7 @@ Ext.define('Abraxa.view.invitations.invite.InvitationContent', {
                                 bindTo: '{record.function}',
                                 deep: true,
                             },
-                            get: function (func) {
+                            get: function(func) {
                                 let str = '';
                                 if (func) {
                                     switch (func) {

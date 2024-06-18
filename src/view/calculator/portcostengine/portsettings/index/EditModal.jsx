@@ -1,4 +1,5 @@
-import '../../../../../core/components/combo/Currency.jsx';
+import '../../../../../core/components/combo/Currency';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditModal', {
     xtype: 'calculator.portcostengine.portsettings.index.edit',
     extend: 'Ext.Dialog',
@@ -51,7 +52,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditModal',
         {
             text: 'Cancel',
             margin: '0 8 0 0',
-            handler: function () {
+            handler: function() {
                 this.up('dialog').destroy();
             },
             ui: 'default',
@@ -59,16 +60,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditModal',
         {
             text: 'Save',
             ui: 'action',
-            handler: function (me) {
+            handler: function(me) {
                 let store = me.upVM().get('portsettings'),
                     form = me.up('dialog').down('formpanel');
                 if (form.validate()) {
                     store.sync({
-                        success: function () {
+                        success: function() {
                             Ext.toast('Record updated', 1000);
                             me.up('dialog').destroy();
                         },
-                        failure: function (batch, functions) {
+                        failure: function(batch, functions) {
                             store.rejectChanges();
                             me.up('dialog')
                                 .down('form\\.error')

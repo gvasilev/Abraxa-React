@@ -1,4 +1,4 @@
-Ext.define('Abraxa.view.portcall.expenses.ExpensesCombo', {
+Ext.define('Abraxa.view.portcall.expesnes.ExpensesCombo', {
     extend: 'Ext.field.ComboBox',
     xtype: 'portcall.expenses.combo',
     queryModel: 'local',
@@ -17,13 +17,6 @@ Ext.define('Abraxa.view.portcall.expenses.ExpensesCombo', {
     config: {
         category: null,
     },
-
-    itemTpl:
-        '<div class="combo-item hbox">' +
-        '<div class="mini-icon" data-type="{type}"><i class="md-icon-outlined {icon} md-24"></i></div>' +
-        '<div>{name}</div>' +
-        '</div>',
-
     itemTpl: Ext.create(
         'Ext.XTemplate',
         '<tpl><div class="hbox">' +

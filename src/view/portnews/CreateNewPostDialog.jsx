@@ -16,7 +16,6 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialog', {
     draggable: false,
     width: '100%',
     height: '100%',
-    top: 0,
     title: false,
     viewModel: 'createNewPostDialogViewModel',
     tools: {
@@ -34,18 +33,8 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialog', {
         },
     },
 
-    prevetBrowserBackButton: function (event) {
-        const curentRoute = Ext.ComponentQuery.query('dialog')
-            .filter((el) => el.isVisible())[0]
-            .getViewModel()
-            .get('currentRoute');
-        window.history.pushState({}, '', curentRoute);
-        Ext.toast('Dialog is not closed!', 1000);
-    },
-
-    initialize: function () {
-        const vm = this.getViewModel();
-        vm.set('files', Ext.create('Ext.data.Store'));
+    constructor: function () {
+// this.callParent(arguments);
         this.getViewModel().set('currentRoute', window.location.href);
         this.getViewModel().set('addedFiles', Ext.create('Ext.data.Store'), { data: [] });
 
@@ -57,6 +46,21 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialog', {
         this.on('destroy', function () {
             window.removeEventListener('popstate', this.prevetBrowserBackButton);
         });
+    },
+
+    prevetBrowserBackButton: function (event) {
+        const curentRoute = Ext.ComponentQuery.query('dialog')
+            .filter((el) => el.isVisible())[0]
+            .getViewModel()
+            .get('currentRoute');
+        window.history.pushState({}, '', curentRoute);
+        Ext.toast('Dialog is not closed!', 1000);
+    },
+
+    initialize: function () {
+// this.callParent(arguments);
+        const vm = this.getViewModel();
+        vm.set('files', Ext.create('Ext.data.Store'));
     },
 
     setRecord(record) {

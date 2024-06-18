@@ -1,29 +1,33 @@
-import '../../store/roles/Roles.jsx';
-import '../../store/settings/CustomFileNumber.jsx';
-import '../../store/common/port/PortServedBerths.jsx';
-import '../../store/settings/SettingsMenu.jsx';
-import '../../store/common/user/Invitations.jsx';
-import '../../store/sof/DefaultEvents.jsx';
-import '../../store/sof/DefaultEventCategories.jsx';
-import '../../store/sof/DefaultSofEventTypes.jsx';
-import '../../store/templates/Templates.jsx';
-import '../../store/templates/TemplateItems.jsx';
-import '../../store/common/DefaultExpenseItems.jsx';
-import '../../store/portcalls/Statuses.jsx';
-import '../../store/common/Rules.jsx';
-import '../../store/common/AgencyTypes.jsx';
-import '../../store/common/BerthFunction.jsx';
-import '../../store/taxes/Taxes.js';
-import '../../store/integrations/Integrations.jsx';
-import '../../store/settings/workflows/Workflows.jsx';
-import '../../store/costcenter/CostCenter.jsx';
-import '../../store/settings/company/AppointmentFlowSettings.jsx';
-import '../../store/settings/CompanyBankDetails.jsx';
-import '../../store/settings/company/AppointmentFlowSettings.jsx';
+import '../../store/roles/Roles';
+import '../../store/settings/CustomFileNumber';
+import '../../store/common/port/PortServedBerths';
+import '../../store/settings/SettingsMenu';
+import '../../store/common/user/Invitations';
+import '../../store/sof/DefaultEvents';
+import '../../store/sof/DefaultEventCategories';
+import '../../store/sof/DefaultSofEventTypes';
+import '../../store/templates/Templates';
+import '../../store/templates/TemplateItems';
+import '../../store/common/DefaultExpenseItems';
+import '../../store/portcalls/Statuses';
+import '../../store/common/Rules';
+import '../../store/common/AgencyTypes';
+import '../../store/common/BerthFunction';
+import '../../store/taxes/Taxes';
+import '../../store/integrations/Integrations';
+import '../../store/settings/workflows/Workflows';
+import '../../store/costcenter/CostCenter';
+import '../../store/settings/company/AppointmentFlowSettings';
+import '../../store/settings/CompanyBankDetails';
+import '../../store/settings/company/AppointmentFlowSettings';
+
 Ext.define('Abraxa.view.settings.MainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.settings-main-viewmodel',
     data: {
+        addEditBerthTitle: AbraxaConstants.titles.addBerth,
+        addEditPortTitle: AbraxaConstants.titles.addPort,
+        addEditTerminalTitle: AbraxaConstants.titles.addTerminal,
         // Needed to toggl off grid store grouping temporaly to avoid bug when TemplatesDetails is shown
         // but the grid in the background regroups and loses the chosen record.
         groupedInitial: false,
@@ -322,25 +326,6 @@ Ext.define('Abraxa.view.settings.MainViewModel', {
                 }
             },
         },
-        // userTeam: {
-        //     bind: {
-        //         bindTo: '{teams}',
-        //         deep: true
-        //     },
-        //     get: function (store) {
-        //         if (store) {
-        //             let currentUser = this.get('currentUser');
-        //             if (currentUser && currentUser.get('team_id')) {
-        //                 let team = store.getById(currentUser.get('team_id'));
-        //                 if (team) {
-        //                     return '<div class="a-status-badge status-admin status-round ml-8"><i class="md-icon-outlined fs-16 mr-8">groups</i>' + team.get('name') + '</div>';
-        //                 }
-        //             }
-        //         }
-
-        //         return '';
-        //     }
-        // },
         isActiveUser: {
             bind: {
                 bindTo: '{userGrid.selection}',

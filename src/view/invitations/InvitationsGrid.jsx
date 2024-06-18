@@ -8,7 +8,7 @@ Ext.define('Abraxa.view.invitations.InvitationsGrid', {
     slug: 'portcallInvitations',
     cls: 'a-detailed-grid abraxa-grid a-invitations-grid a-offset-grid',
     bind: {
-        store: '{invitations}',
+        store: 'invitations',
         permission: '{userPermissions}',
     },
     pinHeaders: false,
@@ -319,7 +319,7 @@ Ext.define('Abraxa.view.invitations.InvitationsGrid', {
                 tpl: new Ext.XTemplate('{[this.create(values.company)]}', {
                     create: function (company) {
                         if (company) {
-                            const label =
+                            label =
                                 '<a class="a_grid_action company_details" href="javascript:void(0)" data-company_id="' +
                                 company.id +
                                 '">' +
@@ -507,9 +507,6 @@ Ext.define('Abraxa.view.invitations.InvitationsGrid', {
         },
     ],
     listeners: {
-        painted:function () {
-            console.log('painted');
-        },
         childtap: function (item, location, eOpts) {
             if (location.event.target.classList.contains('a_grid_action')) return false;
 

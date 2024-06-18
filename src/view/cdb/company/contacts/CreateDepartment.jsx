@@ -147,9 +147,8 @@ Ext.define('Abraxa.view.cdb.company.contacts.CreateDepartment', {
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     departments = vm.get('departments'),
-                    department = vm.get('department'),
-                    form = dialog.down('formpanel');
-
+                    department = vm.get('department');
+                form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     department.getProxy().setExtraParams({

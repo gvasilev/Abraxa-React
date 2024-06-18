@@ -1,6 +1,6 @@
-import '../portcall/agent/expenses/ExpensesCombo.jsx';
-import '../portcall/agent/payments/PaymentsList.jsx';
-// import '../../core/components/fields/UnitField.jsx';
+import '../portcall/agent/expenses/ExpensesCombo';
+import '../portcall/agent/payments/PaymentsList';
+
 Ext.define('Abraxa.view.vouchers.Itemform', {
     extend: 'Ext.Container',
     xtype: 'voucher-item-form',
@@ -154,28 +154,28 @@ Ext.define('Abraxa.view.vouchers.Itemform', {
                     },
                     listeners: {},
                 },
-                // {TEMP COMMENT UNTIL FIX
-                //     xtype: 'unit.field',
-                //     padding: '4 0',
-                //     label: 'Quantity',
-                //     cls: 'a-field-icon icon-short icon-rounded',
-                //     labelAlign: 'left',
-                //     slug: 'portcallServices',
-                //     subObject: 'supply',
-                //     bind: {
-                //         disabled: '{!service || service.lockItem ? true : false}',
-                //         value: '{service.quantity}',
-                //         valueUnit: '{service.quantity_unit}',
-                //         readOnly: '{nonEditable ? true : false}',
-                //         ui: '{nonEditable ? "viewonly dark" : "hovered-border dark classic"}',
-                //         permission: '{userPermissions}',
-                //         objectPermission: '{objectPermissions}',
-                //         // hidden: '{service.quantity ? false : true}',
-                //         options: '{defaultServiceUnits}',
-                //         unitFilter: '{selectedServiceType.selection.type.default_units_id}',
-                //     },
-                //     options: ['mts', 'cbm', 'kg', 'units', 'pallets', 'pieces', 'drums', 'box', 'envelope'],
-                // },
+                {
+                    xtype: 'unit.field',
+                    padding: '4 0',
+                    label: 'Quantity',
+                    cls: 'a-field-icon icon-short icon-rounded',
+                    labelAlign: 'left',
+                    slug: 'portcallServices',
+                    subObject: 'supply',
+                    bind: {
+                        disabled: '{!service || service.lockItem ? true : false}',
+                        value: '{service.quantity}',
+                        valueUnit: '{service.quantity_unit}',
+                        readOnly: '{nonEditable ? true : false}',
+                        ui: '{nonEditable ? "viewonly dark" : "hovered-border dark classic"}',
+                        permission: '{userPermissions}',
+                        objectPermission: '{objectPermissions}',
+                        // hidden: '{service.quantity ? false : true}',
+                        options: '{defaultServiceUnits}',
+                        unitFilter: '{selectedServiceType.selection.type.default_units_id}',
+                    },
+                    options: ['mts', 'cbm', 'kg', 'units', 'pallets', 'pieces', 'drums', 'box', 'envelope'],
+                },
                 {
                     xtype: 'organization.combo',
                     placeholder: 'Choose Company',
@@ -816,8 +816,6 @@ Ext.define('Abraxa.view.vouchers.Itemform', {
                         disabled: '{isLocked ? true : false}',
                     },
                     handler: async function (me) {
-                        // Ext.toast('All changes have been saved', 1000);
-                        // return;
                         let document = me.upVM().get('selectedVoucher').getDocument();
                         const dialog = me.up('dialog');
                         const controller = dialog.getController();
@@ -830,7 +828,7 @@ Ext.define('Abraxa.view.vouchers.Itemform', {
                         }
                         const doc = documentViewer.getDocument();
                         const xfdfString = await annotManager.exportAnnotations();
-                        const data = await doc.getFileData({
+                        const data = await doc?.getFileData({
                                 // saves the document with annotations in it
                                 xfdfString,
                             }),
@@ -870,7 +868,6 @@ Ext.define('Abraxa.view.vouchers.Itemform', {
                         };
                         request.send(formData);
                         Ext.toast('All changes have been saved', 1000);
-                        // this.up('dialog').destroy();
                     },
                 },
             ],

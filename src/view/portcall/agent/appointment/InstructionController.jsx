@@ -264,7 +264,7 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
         return new Ext.Promise(function (resolve, reject) {
             let me = this,
                 fd = new FormData(),
-                object_record = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0]
+                object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
                     .upVM()
                     .get('object_record');
             fd.append('ownerable_id', object_record.get('id'));
@@ -303,7 +303,7 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
             totalSize = 0,
             files = element.getFiles(),
             fd = new FormData(),
-            object_record = Ext.ComponentQuery.query(window.CurrentUser.get('company').type + 'portcall\\.main')[0]
+            object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
                 .upVM()
                 .get('object_record');
         Ext.getCmp('uploadProgress').show();

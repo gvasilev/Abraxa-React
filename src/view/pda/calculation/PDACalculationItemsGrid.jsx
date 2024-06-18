@@ -22,8 +22,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
     onFocusEnter: Ext.emptyFn,
     onFocusLeave: Ext.emptyFn,
     selectable: false,
-    ripple: false,
-    itemRipple: false,
     plugins: {
         gridcellediting: {
             triggerEvent: 'tap',
@@ -43,7 +41,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     bind: {
                         bindTo: '{record}',
                     },
-                    get: function (record) {
+                    get: function(record) {
                         if (record) {
                             const controller = Abraxa.getApplication()
                                 .getController('AbraxaController')
@@ -91,7 +89,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
             },
             menuDisabled: true,
             editable: false,
-            renderer: function (val, record) {
+            renderer: function(val, record) {
                 if (record) {
                     return (
                         '<div class="a-supply"><div class="a-badge small a-badge-' +
@@ -118,9 +116,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
             cell: {
                 encodeHtml: false,
                 bind: {
-                    cls: 'a-cell-item', //{record.type === "template"? "a-cell-non-editable" : ""}',
-                    //old cls bind
-                    // {record.type && record.type != "financial" ? "a-supply-locked" : ""}
+                    cls: 'a-cell-item',
                 },
             },
             summaryCell: {
@@ -138,7 +134,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     valueField: 'name',
                     matchFieldWidth: false,
                     listeners: {
-                        painted: function (field) {
+                        painted: function(field) {
                             let record = field.up().ownerCmp.getRecord();
 
                             if (record && record.get('name')) this.setInputValue(record.get('name'));
@@ -146,11 +142,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     },
                 },
                 listeners: {
-                    // beforecomplete: function (editor) {
-                    //     var val = editor.getField().getInputValue(),
-                    //         gridRecord = editor.ownerCmp.getRecord();
-                    // },
-                    complete: function (editor) {
+                    complete: function(editor) {
                         let store = editor.up('grid').upVM().get('calculationServices'),
                             gridRecord = editor.ownerCmp.getRecord();
                         const defaultExpenseItem =
@@ -160,21 +152,21 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                         gridRecord.set('default_expense_item_id', defaultExpenseItem);
                         gridRecord.set('name', editor.getField().getValue());
                         store.sync({
-                            success: function () {
+                            success: function() {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
                     },
-                    beforestartedit: function (editor, boundEl, value, eOpts) {
+                    beforestartedit: function(editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
-                        if (record && record.get('type') == 'template') return false;
+                        if (record && record.get('type') === 'template') return false;
                     },
                 },
             },
-            summaryRenderer: function (val) {
+            summaryRenderer: function(val) {
                 return '<span style="display:block; text-align: right;">Total</span>';
             },
-            renderer: function (val, selection) {
+            renderer: function(val, selection) {
                 if (val) {
                     return (
                         '<div class="hbox"><div class="a-badge small mr-16 a-badge-services"><i class="md-icon-outlined md-icon-layers"></i></div>' +
@@ -224,39 +216,28 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     bind: {
                         permission: '{userPermissions}',
                     },
-                    // forceSelection: true,
                 },
                 listeners: {
-                    complete: function (editor, value) {
+                    complete: function(editor, value) {
                         let store = editor.up('grid').upVM().get('sertvices'),
                             selectedAccount = editor.up('grid').upVM().get('selectedAccount'),
                             record = editor.upVM().get('record');
 
-                        if (selectedAccount.get('account_currency') == value) record.set('exchange_rate', 1);
+                        if (selectedAccount.get('account_currency') === value) record.set('exchange_rate', 1);
 
                         store.sync({
-                            success: function () {
+                            success: function() {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
                     },
-                    beforestartedit: function (editor, boundEl, value, eOpts) {
-                        let record = eOpts.record,
-                            disbursement = editor.upVM().get('selectedDisbursement'),
-                            disbursementType = editor.upVM().get('selectedDisbursement.type');
+                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                        let record = eOpts.record;
 
                         if (record && record.vouchers().count()) return false;
                     },
                 },
             },
-            // renderer: function (value, record) {
-            //     if (record) {
-            //         let pda = this.up('grid').upVM().get('pda');
-            //         return pda.get('currency');
-            //     } else {
-            //         return '';
-            //     }
-            // },
         },
         {
             dataIndex: 'display_amount',
@@ -265,7 +246,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
             menuDisabled: true,
             align: 'right',
             width: 120,
-            // editable: false,
             cls: 'a-column-bl',
             cell: {
                 encodeHtml: false,
@@ -293,14 +273,14 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                             hideDelay: 0,
                             dismissDelay: 0,
                         },
-                        handler: function (me) {
+                        handler: function(me) {
                             let store = me.up('grid').upVM().get('calculationServices'),
                                 record = me.upVM().get('record');
 
                             record.set('custom_amount', null);
 
                             store.sync({
-                                success: function () {
+                                success: function() {
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -320,25 +300,21 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     minValue: 0,
                 },
                 listeners: {
-                    complete: function (editor, value) {
+                    complete: function(editor, value) {
                         let store = editor.up('grid').upVM().get('calculationServices'),
                             record = editor.ownerCmp.getRecord();
 
-                        if (record.get('amount') != value) {
+                        if (record.get('amount') !== value) {
                             record.set('custom_amount', value);
                         }
 
                         //BEWARE: this to make sure the record is updated with the custom_amount
                         store.sync({
-                            success: function () {
+                            success: function() {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
                     },
-                    // beforestartedit: function (editor, boundEl, value, eOpts) {
-
-                    //     // if (boundEl.event.target.localName === 'button') return false;
-                    // },
                 },
             },
             summary: 'sum',
@@ -373,7 +349,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     complete: 'onCalculationServiceFieldComplete',
                 },
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 return Abraxa.utils.Functions.formatROE(value);
             },
         },
@@ -422,17 +398,15 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     placeholder: '0',
                     clearable: false,
                     xtype: 'textfield',
-                    // validators: [new RegExp("^[-+]?[0-9]*?[.]?[0-9]{1}?[%]?$")],
-                    // maskRe: [new RegExp("^[0-9]*?[.]?[0-9]{1}?[%]?$")],
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
-                    validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
+                    validationMessage: 'Use only numbers and +-% ex. \'+22%\', or -125',
                     textAlign: 'center',
                 },
                 listeners: {
                     complete: 'onCalculationServiceFieldComplete',
                 },
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 if (value) {
                     return value;
                 } else {
@@ -491,7 +465,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     complete: 'onCalculationServiceFieldComplete',
                 },
             },
-            renderer: function (value) {
+            renderer: function(value) {
                 if (value) {
                     return value + '%';
                 } else {
@@ -516,7 +490,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                 align: 'right',
             },
             formatter: 'number("0,000.00")',
-            summaryRenderer: function (grid, context) {
+            summaryRenderer: function(grid, context) {
                 let type = context.grid.upVM().get('selectedDisbursement.type'),
                     value = context.grid.getStore().sum(type + '_final_price');
 
@@ -546,7 +520,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     complete: 'onCalculationServiceFieldComplete',
                 },
             },
-            renderer: function (val, selection) {
+            renderer: function(val, selection) {
                 if (val) {
                     return val;
                 } else {
@@ -580,7 +554,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     complete: 'onCalculationServiceFieldComplete',
                 },
             },
-            renderer: function (val, selection) {
+            renderer: function(val, selection) {
                 if (val) {
                     return val;
                 } else {
@@ -598,7 +572,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                 xtype: 'widgetcell',
                 cls: 'a-cell-more',
                 align: 'right',
-                // hideMode: 'visibility',
                 focusable: false,
                 widget: {
                     xtype: 'container',
@@ -610,7 +583,6 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                     items: [
                         {
                             xtype: 'button',
-                            // hideMode: 'opacity',
                             arrow: false,
                             focusable: false,
                             iconCls: 'md-icon-remove-circle-outline',
@@ -630,7 +602,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let service = me.upVM().get('record'),
                                     services = me.upVM().get('calculationServices'),
                                     object_record = me.upVM().get('object_record');
@@ -638,11 +610,11 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you want to delete this item?',
-                                    function (answer) {
+                                    function(answer) {
                                         if (answer == 'yes') {
                                             services.remove(service);
                                             services.sync({
-                                                success: function () {
+                                                success: function() {
                                                     Abraxa.utils.Functions.updateInquiry(object_record);
                                                     Ext.toast('Record updated', 1000);
                                                 },
@@ -664,13 +636,12 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                                             text: 'Delete',
                                             separator: true,
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
                         {
                             xtype: 'button',
-                            // hideMode: 'opacity',
                             arrow: false,
                             focusable: false,
                             ui: 'tool-xs round',
@@ -690,22 +661,21 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                                     closeAction: 'destroy',
                                 },
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let service = me.upVM().get('record'),
                                     services = me.upVM().get('calculationServices'),
-                                    invoices = me.upVM().get('invoices'),
                                     enabled = service.get('enabled');
 
                                 Ext.Msg.confirm(
                                     enabled ? 'Exclude service' : 'Include service',
                                     'Are you sure you want to do ' +
-                                        (enabled ? 'exclude' : 'include') +
-                                        ' this service?',
-                                    function (answer) {
+                                    (enabled ? 'exclude' : 'include') +
+                                    ' this service?',
+                                    function(answer) {
                                         if (answer == 'yes') {
                                             service.set('enabled', !enabled);
                                             services.sync({
-                                                success: function () {
+                                                success: function() {
                                                     Ext.toast('Record updated', 1000);
                                                 },
                                             });
@@ -726,7 +696,7 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                                             text: 'Confirm',
                                             separator: true,
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
@@ -762,12 +732,13 @@ Ext.define('Abraxa.view.pda.calculation.PDACalculationItemsGrid', {
                 },
                 ui: 'normal-light medium',
                 iconCls: 'md-icon-add',
-                handler: function (me) {},
+                handler: function(me) {
+                },
             },
         ],
     },
     listeners: {
-        beforeedit: function (me, boundEl) {
+        beforeedit: function(me, boundEl) {
             let record = boundEl.cell.lookupViewModel().get('record'),
                 pda = boundEl.cell.lookupViewModel().get('pda');
 

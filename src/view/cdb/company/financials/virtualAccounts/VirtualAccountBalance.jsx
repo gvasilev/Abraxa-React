@@ -8,7 +8,6 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountBalance', {
             xtype: 'container',
             cls: 'a-card-container br-16',
             flex: 1,
-            // width: '680',
             items: [
                 {
                     xtype: 'title',
@@ -17,120 +16,62 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountBalance', {
                     top: 16,
                     left: 24,
                 },
-                // {
-                //     xtype: 'fusionchart',
-                //     itemId: 'balanceChart',
-                //     renderAt: 'chart-container',
-                //     width: '100%',
-                //     height: '100%',
-                //     type: 'splinearea',
-                //     chart: {
-                //         // caption: "Balance",
-                //         // "xAxisLineThickness": "2",
-                //         // yaxisname: "Velocity (in mph)",
-                //         // subcaption: "[2005-2016]",
-                //         numbersuffix: '',
-                //         // captionAlignment: "left",
-                //         // alignCaptionWithCanvas: "1",
-                //         // captionHorizontalPadding: "0",
-                //         showToolTip: '1',
-                //         drawAnchors: '1',
-                //         showHoverEffect: '1',
-                //         anchorHoverEffect: '1',
-                //         anchorHoverDip: '1',
-                //         anchorBorderThickness: '1.5',
-                //         anchorBgColor: 'FFFFFF',
-                //         anchorBorderColor: '00B6C8',
-                //         divLineThickness: '1',
-                //         showhovereffect: '1',
-                //         anchorRadius: '4',
-                //         // anchorBorderHoverThickness: "3",
-                //         canvasPadding: '0',
-                //         setAdaptiveYMin: '1',
-                //         showvalues: '0',
-                //         setadaptiveymin: '1',
-                //         // showXAxisLine: "1",
-                //         canvasBgColor: '#66D3DE, #FFFFFF',
-                //         showPlotBorder: '1',
-                //         drawFullAreaBorder: '0',
-                //         plotFillColor: 'FFFFFF',
-                //         plotBorderColor: '00B6C8',
-                //         plotGradientColor: '66D3DE',
-                //         usePlotGradientColor: '1',
-                //         canvasBgColor: '#FFF',
-                //         plotBorderThickness: '2',
-                //         theme: 'fusion',
-                //         baseFontSize: '12',
-                //         baseFontColor: '6B7C93',
-                //         showLegend: '0',
-                //         chartTopMargin: '64',
-                //         chartLeftMargin: '24',
-                //         chartRightMargin: '24',
-                //         chartBottomMargin: '16',
-                //     },
-                //     bind: {
-                //         data: '{virtualAccountChartData}',
-                //     },
-                //     events: {
-                //         dataUpdated: function (e) {
-                //             let data = e.data.data;
-                //             let isEmpty = false;
-                //             if (data && data.data) {
-                //                 isEmpty = Object.keys(data.data).length;
-                //             }
-                //             if (this.container && isEmpty) this.render();
-                //         },
-                //     },
-                //     // data: [{
-                //     //         label: "Jan",
-                //     //         value: "1"
-                //     //     },
-                //     //     {
-                //     //         label: "Feb",
-                //     //         value: "5"
-                //     //     },
-                //     //     {
-                //     //         label: "Mar",
-                //     //         value: "10"
-                //     //     },
-                //     //     {
-                //     //         label: "Apr",
-                //     //         value: "12"
-                //     //     },
-                //     //     {
-                //     //         label: "May",
-                //     //         value: "14"
-                //     //     },
-                //     //     {
-                //     //         label: "Jun",
-                //     //         value: "16"
-                //     //     },
-                //     //     {
-                //     //         label: "Jul",
-                //     //         value: "20"
-                //     //     },
-                //     //     {
-                //     //         label: "Aug",
-                //     //         value: "22"
-                //     //     },
-                //     //     {
-                //     //         label: "Sep",
-                //     //         value: "20"
-                //     //     },
-                //     //     {
-                //     //         label: "Oct",
-                //     //         value: "16"
-                //     //     },
-                //     //     {
-                //     //         label: "Nov",
-                //     //         value: "7"
-                //     //     },
-                //     //     {
-                //     //         label: "Dec",
-                //     //         value: "2"
-                //     //     }
-                //     // ]
-                // },
+                {
+                    xtype: 'fusionchart',
+                    itemId: 'balanceChart',
+                    renderAt: 'chart-container',
+                    width: '100%',
+                    height: '100%',
+                    type: 'splinearea',
+                    chart: {
+                        numbersuffix: '',
+                        showToolTip: '1',
+                        drawAnchors: '1',
+                        showHoverEffect: '1',
+                        anchorHoverEffect: '1',
+                        anchorHoverDip: '1',
+                        anchorBorderThickness: '1.5',
+                        anchorBgColor: 'FFFFFF',
+                        anchorBorderColor: '00B6C8',
+                        divLineThickness: '1',
+                        showhovereffect: '1',
+                        anchorRadius: '4',
+                        canvasPadding: '0',
+                        setAdaptiveYMin: '1',
+                        showvalues: '0',
+                        setadaptiveymin: '1',
+                        canvasBgColor: '#66D3DE, #FFFFFF',
+                        showPlotBorder: '1',
+                        drawFullAreaBorder: '0',
+                        plotFillColor: 'FFFFFF',
+                        plotBorderColor: '00B6C8',
+                        plotGradientColor: '66D3DE',
+                        usePlotGradientColor: '1',
+                        canvasBgColor: '#FFF',
+                        plotBorderThickness: '2',
+                        theme: 'fusion',
+                        baseFontSize: '12',
+                        baseFontColor: '6B7C93',
+                        showLegend: '0',
+                        chartTopMargin: '64',
+                        chartLeftMargin: '24',
+                        chartRightMargin: '24',
+                        chartBottomMargin: '16',
+                    },
+                    bind: {
+                        data: '{virtualAccountChartData}',
+                    },
+                    events: {
+                        dataUpdated: function (e) {
+                            let data = e.data.data;
+                            let isEmpty = false;
+                            if (data && data.data) {
+                                isEmpty = Object.keys(data.data).length;
+                            }
+                            if (this.container && isEmpty) this.render();
+                        },
+                    },
+                },
             ],
         },
         {

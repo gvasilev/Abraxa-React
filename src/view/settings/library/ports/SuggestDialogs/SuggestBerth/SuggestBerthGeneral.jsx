@@ -12,7 +12,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
                 click: {
                     element: 'element',
                     fn: function fn() {
-                        let component = this.component;
+                        const component = this.component;
                         component.toggleCls('is-collapsed');
                         component.up('container').down('[cls~=a-collapsible-container]').toggleCls('is-collapsed');
                     },
@@ -51,30 +51,44 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
                                     },
                                     listeners: {
                                         painted: function (me, selection) {
-                                            let record = me.upVM().get('record');
-                                            let legacyTerminals = me.upVM().get('terminalCollection');
+                                            const childSettingsMainVM = me.upVM();
+                                            const record = childSettingsMainVM.get('record');
+                                            const legacyTerminals = childSettingsMainVM
+                                                ?.get('terminalCollection')
+                                                ?.getData().items;
+
                                             if (legacyTerminals) {
-                                                let legacyTerminal = Ext.Array.findBy(legacyTerminals, function (rec) {
-                                                    if (rec.uuid === record.get('parent_uuid')) {
-                                                        return rec;
+                                                const legacyTerminal = Ext.Array.findBy(
+                                                    legacyTerminals,
+                                                    function (rec) {
+                                                        if (rec?.get('uuid') === record.get('parent_uuid')) {
+                                                            return rec;
+                                                        }
                                                     }
-                                                });
+                                                );
+
                                                 if (legacyTerminal) {
                                                     me.setValue(legacyTerminal.id);
                                                 }
                                             }
                                         },
                                         select: function (me, selection) {
-                                            let record = me.upVM().get('record');
-                                            let legacyTerminals = me.upVM().get('terminalCollection');
+                                            const childSettingsMainVM = me.upVM();
+                                            const record = childSettingsMainVM.get('record');
+                                            const legacyTerminals = childSettingsMainVM
+                                                ?.get('terminalCollection')
+                                                ?.getData().items;
                                             if (legacyTerminals) {
-                                                let legacyTerminal = Ext.Array.findBy(legacyTerminals, function (rec) {
-                                                    if (rec.id === selection.get('id')) {
-                                                        return rec;
+                                                const legacyTerminal = Ext.Array.findBy(
+                                                    legacyTerminals,
+                                                    function (rec) {
+                                                        if (rec.get('id') === selection.get('id')) {
+                                                            return rec;
+                                                        }
                                                     }
-                                                });
+                                                );
                                                 if (legacyTerminal) {
-                                                    record.set('parent_uuid', legacyTerminal.uuid);
+                                                    record.set('parent_uuid', legacyTerminal.get('uuid'));
                                                 }
                                             }
                                         },
@@ -104,7 +118,7 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
                                             },
                                             get: function (record) {
                                                 if (record) {
-                                                    let store = record.store;
+                                                    const store = record.store;
                                                     return store.indexOf(record) + 1;
                                                 }
                                             },
@@ -181,14 +195,16 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestBerth.Sugge
                             },
                             listeners: {
                                 painted: function (me) {
-                                    let record = me.upVM().get('record');
-                                    if (record.get('meta_name_alternatives')) {
-                                        let store = new Ext.data.Store({
+                                    const childSettingsMainVM = me.upVM();
+                                    const record = childSettingsMainVM.get('record');
+                                    const nameAlternatives = record?.get('meta_name_alternatives');
+                                    if (nameAlternatives?.length) {
+                                        const store = new Ext.data.Store({
                                             proxy: {
                                                 type: 'memory',
                                             },
                                         });
-                                        Ext.Array.each(record.get('meta_name_alternatives'), function (name) {
+                                        Ext.Array.each(nameAlternatives, function (name) {
                                             store.add({
                                                 name: name,
                                             });

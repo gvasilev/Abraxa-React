@@ -1,5 +1,5 @@
+import '../../../model/common/PortServed';
 
-import '../../../model/common/PortServed.jsx';
 Ext.define('Abraxa.store.common.port.PortsServedAll', {
     extend: 'Ext.data.Store',
     alias: 'store.ports.served.all',
@@ -11,6 +11,7 @@ Ext.define('Abraxa.store.common.port.PortsServedAll', {
         url: Env.ApiEndpoint + 'ports_served/all',
         reader: {
             type: 'json',
+            rootProperty: 'data',
         },
     },
 });

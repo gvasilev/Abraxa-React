@@ -1,4 +1,5 @@
-import './ChoiceForm.jsx';
+import './ChoiceForm';
+
 Ext.define(
     'Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.show.services.show.datafields.show.ViewModel',
     {
@@ -62,13 +63,13 @@ Ext.define(
                     bindTo: '{templateServiceDataFieldRecord}',
                     deep: true,
                 },
-                get: function (value) {
+                get: function(value) {
                     return value ? value.copy() : null;
                 },
             },
             dataFieldActiveItemForm: {
                 bind: '{templateServiceDataFieldRecord.control}',
-                get: function (value) {
+                get: function(value) {
                     let xtype =
                         'calculator.portcostengine.portsettings.show.pricebooks.show.services.show.datafields.show.' +
                         value +
@@ -83,7 +84,7 @@ Ext.define(
             },
             choiceFieldActiveItemForm: {
                 bind: '{pbs_optionsSourceEdit.value}',
-                get: function (value) {
+                get: function(value) {
                     let xtype = null;
 
                     switch (value) {
@@ -126,7 +127,7 @@ Ext.define(
             },
             complexFieldPrefixActiveItemForm: {
                 bind: '{pbs_prefix_optionsSourceEdit.value}',
-                get: function (value) {
+                get: function(value) {
                     let xtype = null;
 
                     switch (value) {
@@ -169,7 +170,7 @@ Ext.define(
             },
             complexFieldSuffixActiveItemForm: {
                 bind: '{pbs_suffix_optionsSourceEdit.value}',
-                get: function (value) {
+                get: function(value) {
                     let xtype = null;
 
                     switch (value) {
@@ -212,12 +213,12 @@ Ext.define(
             },
             optionSourceDropdownOptions: {
                 bind: '{templateServiceDataFieldRecord}',
-                get: function (value) {
+                get: function(value) {
                     if (value) {
                         let choiceOptionSources = this.data.choiceOptionSources;
                         let recordValidSources = value.get('validSources') ? value.get('validSources') : [];
 
-                        return choiceOptionSources.filter(function (source) {
+                        return choiceOptionSources.filter(function(source) {
                             return recordValidSources.includes(source.value);
                         });
                     }
@@ -227,14 +228,14 @@ Ext.define(
             },
             prefix_optionSourceDropdownOptions: {
                 bind: '{templateServiceDataFieldRecord}',
-                get: function (value) {
+                get: function(value) {
                     if (value && value.get('subFields').length > 0) {
                         let choiceOptionSources = this.data.choiceOptionSources;
                         let recordValidSources = value.get('subFields')[0].data.validSources
                             ? value.get('subFields')[0].data.validSources
                             : [];
 
-                        return choiceOptionSources.filter(function (source) {
+                        return choiceOptionSources.filter(function(source) {
                             return recordValidSources.includes(source.value);
                         });
                     }
@@ -244,14 +245,14 @@ Ext.define(
             },
             suffix_optionSourceDropdownOptions: {
                 bind: '{templateServiceDataFieldRecord}',
-                get: function (value) {
+                get: function(value) {
                     if (value && value.get('subFields').length > 0) {
                         let choiceOptionSources = this.data.choiceOptionSources;
                         let recordValidSources = value.get('subFields')[1].data.validSources
                             ? value.get('subFields')[1].data.validSources
                             : [];
 
-                        return choiceOptionSources.filter(function (source) {
+                        return choiceOptionSources.filter(function(source) {
                             return recordValidSources.includes(source.value);
                         });
                     }
@@ -264,7 +265,7 @@ Ext.define(
                     bindTo: '{tarifftable.data}',
                     deep: true,
                 },
-                get: function (value) {
+                get: function(value) {
                     let options = [];
                     let tableStore = value;
                     let tableRecords = (tableStore.getSource() || tableStore).getRange();
@@ -290,7 +291,7 @@ Ext.define(
                     bindTo: '{recordCopy.sourceDataTableID}',
                     deep: true,
                 },
-                get: function (value) {
+                get: function(value) {
                     let options = [];
                     let tableStore = this.getParent().getStore('tarifftable');
                     let tableID = value;
@@ -322,7 +323,7 @@ Ext.define(
                 bind: {
                     tableEdit: '{recordCopy.prefix_sourceDataTableID}',
                 },
-                get: function (value) {
+                get: function(value) {
                     let options = [];
                     let tableStore = this.getParent().getStore('tarifftable');
                     let tableID = value.tableEdit;
@@ -354,7 +355,7 @@ Ext.define(
                 bind: {
                     tableEdit: '{recordCopy.suffix_sourceDataTableID}',
                 },
-                get: function (value) {
+                get: function(value) {
                     let options = [];
                     let tableStore = this.getParent().getStore('tarifftable');
                     let tableID = value.tableEdit;
@@ -383,5 +384,5 @@ Ext.define(
                 },
             },
         },
-    }
+    },
 );

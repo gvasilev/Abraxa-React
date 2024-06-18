@@ -1,4 +1,5 @@
-import './Grid.jsx';
+import './Grid';
+
 Ext.define('Abraxa.view.calculator.portcostengine.pricebooks.index._Page', {
     extend: 'Ext.Container',
     xtype: 'calculator.portcostengine.portsettings.index.page',

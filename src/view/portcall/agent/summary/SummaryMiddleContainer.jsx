@@ -1,4 +1,5 @@
-import './SummaryEventsChart.jsx';
+import './SummaryEventsChart';
+
 Ext.define('Abraxa.view.portcall.summary.SummaryMiddleContainer', {
     extend: 'Ext.Container',
     xtype: 'portcall.summary.middle.container',

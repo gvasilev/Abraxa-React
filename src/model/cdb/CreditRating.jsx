@@ -1,5 +1,3 @@
-
-
 Ext.define('Abraxa.model.cdb.CreditRating', {
     extend: 'Ext.data.Model',
     fields: [

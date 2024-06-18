@@ -4,16 +4,10 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestController'
 
     bindings: {
         setCurrentUserEmail: '{currentUser}',
-        setUserSubmission: '{userSubmissions}',
     },
     setCurrentUserEmail: function (user) {
         if (user && user.get('email')) {
             this.userEmail = user.get('email');
-        }
-    },
-    setUserSubmission: function (emails) {
-        if (emails) {
-            this.userSubmissions = emails;
         }
     },
     control: {
@@ -84,52 +78,33 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestController'
         });
     },
     sendPortSuggestion: function (button) {
-        let me = this;
-        let view = this.getView();
-        let componentDataview = view.down('componentdataview');
-        let portRecord = view.upVM().get('record');
-        let form = view.down('formpanel');
-        let alternativeNames = componentDataview.getStore().collect('name');
-        if (form.validate()) {
-            if (alternativeNames.length) {
-                portRecord.set('meta_name_alternatives', alternativeNames);
-            }
-            let data = {
-                type: 'port',
-                legacy_id: portRecord.get('legacy_id'),
-                data: portRecord.getData(),
-            };
-            let url = Env.ApiEndpoint + 'submissions';
+        const me = this;
+        const view = this.getView();
+        const componentDataview = view.down('componentdataview');
+        const portRecord = view.upVM().get('record');
+        const form = view.down('formpanel');
+        const alternativeNames = componentDataview.getStore()?.collect('name');
 
-            if (Ext.Array.contains(me.userSubmissions, me.userEmail)) {
-                url = Env.nomenclatureEndPoint + 'api/submission/v1/ports/' + portRecord.get('submission_id');
-                data = portRecord.getData();
-                if (!portRecord.get('uuid')) {
-                    delete data['id'];
-                }
-            }
-            me.sendNomenclature(data, url)
-                .then(function (response) {
-                    Ext.toast('Your suggestion has been submitted', 1000);
-                    view.destroy();
-                })
-                .catch(function () {
-                    Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
-                });
-        } else {
-            view.down('[cls~="errors_div"]').setHidden(false);
-            let htmlTpl = '<div class="fs-16 fw-b">Fill all required fields:</div><ul></ul>';
-            let validationErrors = form.getErrors();
-            Ext.Object.each(validationErrors, function (error, value) {
-                if (value) {
-                    htmlTpl += '<li><b>' + error + '</b> is required</li>';
-                }
-            });
-            htmlTpl += '</ul>';
-            view.down('[cls~="errors_div"]').getItems().getAt(1).setHtml(htmlTpl);
-            view.getScrollable().scrollTo(0, 0, true);
-            button.toggle();
+        if (!form.validate()) return me.showRequiredFieldsError(view, button);
+
+        if (alternativeNames?.length) {
+            portRecord.set('meta_name_alternatives', alternativeNames);
         }
+
+        const url = Env.nomenclatureEndPoint + 'api/submission/v1/ports/' + portRecord.get('submission_id');
+        const data = portRecord.getData();
+
+        // Nomencalture BE does not need id anymore. Delete it in case of old records.
+        delete data['id'];
+
+        me.sendNomenclature(data, url)
+            .then(function (response) {
+                Ext.toast('Your suggestion has been submitted', 1000);
+                view.destroy();
+            })
+            .catch(function () {
+                Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
+            });
     },
     sendTerminalSuggestion: function (button) {
         let me = this;
@@ -138,99 +113,74 @@ Ext.define('Abraxa.view.settings.library.ports.SuggestDialogs.SuggestController'
         let terminalRecord = view.upVM().get('record');
         let form = view.down('formpanel');
         let alternativeNames = componentDataview.getStore().collect('name');
-        if (form.validate()) {
-            if (alternativeNames.length) {
-                terminalRecord.set('meta_name_alternatives', alternativeNames);
-            }
-            let data = {
-                type: 'terminal',
-                legacy_id: terminalRecord.get('id'),
-                // parent_id: terminalRecord.get('legacy_parent_id'),
-                data: terminalRecord.getData(),
-            };
 
-            let url = Env.ApiEndpoint + 'submissions';
-            if (Ext.Array.contains(me.userSubmissions, me.userEmail)) {
-                url = Env.nomenclatureEndPoint + 'api/submission/v1/terminals/' + terminalRecord.get('submission_id');
-                data = terminalRecord.getData();
-                data.legacy_id = terminalRecord.get('id');
-                // data.parent_id = terminalRecord.get('legacy_parent_id');
+        if (!form.validate()) return me.showRequiredFieldsError(view, button);
 
-                if (!terminalRecord.get('uuid')) {
-                    delete data['id'];
-                }
-            }
-            me.sendNomenclature(data, url)
-                .then(function (response) {
-                    Ext.toast('Your suggestion has been submitted', 1000);
-                    view.destroy();
-                })
-                .catch(function () {
-                    Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
-                });
-        } else {
-            view.down('[cls~="errors_div"]').setHidden(false);
-            let htmlTpl = '<div class="fs-16 fw-b">Fill all required fields:</div><ul></ul>';
-            let validationErrors = form.getErrors();
-            Ext.Object.each(validationErrors, function (error, value) {
-                if (value) {
-                    htmlTpl += '<li><b>' + error + '</b> is required</li>';
-                }
-            });
-            htmlTpl += '</ul>';
-            view.down('[cls~="errors_div"]').getItems().getAt(1).setHtml(htmlTpl);
-            view.getScrollable().scrollTo(0, 0, true);
-            button.toggle();
+        if (alternativeNames?.length) {
+            terminalRecord.set('meta_name_alternatives', alternativeNames);
         }
+
+        const url = Env.nomenclatureEndPoint + 'api/submission/v1/terminals/' + terminalRecord.get('submission_id');
+        const data = terminalRecord.getData();
+
+        // Nomencalture BE does not need id anymore. Delete it in case of old records.
+        delete data['id'];
+
+        me.sendNomenclature(data, url)
+            .then(function (response) {
+                Ext.toast('Your suggestion has been submitted', 1000);
+                view.destroy();
+            })
+            .catch(function () {
+                Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
+            });
     },
     sendBerthSuggestion: function (button) {
-        let me = this;
-        let view = this.getView();
-        let componentDataview = view.down('[cls~=alternative_names]');
-        let berthRecord = view.upVM().get('record');
-        let form = view.down('formpanel');
-        let alternativeNames = componentDataview.getStore().collect('name');
-        if (form.validate()) {
-            if (alternativeNames.length) {
-                berthRecord.set('meta_name_alternatives', alternativeNames);
-            }
-            berthRecord.set('legacy_parent_id', berthRecord.get('id'));
-            let data = {
-                type: 'berth',
-                legacy_id: berthRecord.get('id'),
-                parent_id: berthRecord.get('parent_id'),
-                data: berthRecord.getData(),
-            };
-            let url = Env.ApiEndpoint + 'submissions';
-            if (Ext.Array.contains(me.userSubmissions, me.userEmail)) {
-                url = Env.nomenclatureEndPoint + 'api/submission/v1/berths/' + berthRecord.get('submission_id');
-                data = berthRecord.getData();
+        const me = this;
+        const view = this.getView();
+        const componentDataview = view.down('[cls~=alternative_names]');
+        const berthRecord = view.upVM().get('record');
+        const form = view.down('formpanel');
+        const alternativeNames = componentDataview.getStore()?.collect('name');
 
-                if (!berthRecord.get('uuid')) {
-                    delete data['id'];
-                }
-            }
-            me.sendNomenclature(data, url)
-                .then(function (response) {
-                    Ext.toast('Your suggestion has been submitted', 1000);
-                    view.destroy();
-                })
-                .catch(function () {
-                    Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
-                });
-        } else {
-            view.down('[cls~="errors_div"]').setHidden(false);
-            let htmlTpl = '<div class="fs-16 fw-b">Fill all required fields:</div><ul></ul>';
-            let validationErrors = form.getErrors();
-            Ext.Object.each(validationErrors, function (error, value) {
-                if (value) {
-                    htmlTpl += '<li><b>' + error + '</b> is required</li>';
-                }
-            });
-            htmlTpl += '</ul>';
-            view.down('[cls~="errors_div"]').getItems().getAt(1).setHtml(htmlTpl);
-            view.getScrollable().scrollTo(0, 0, true);
-            button.toggle();
+        if (!form.validate()) return me.showRequiredFieldsError(view, button);
+
+        if (alternativeNames?.length) {
+            berthRecord.set('meta_name_alternatives', alternativeNames);
         }
+
+        const url = Env.nomenclatureEndPoint + 'api/submission/v1/berths/' + berthRecord.get('submission_id');
+        const data = berthRecord.getData();
+
+        // Nomencalture BE does not need id anymore. Delete it in case of old records.
+        delete data['id'];
+
+        me.sendNomenclature(data, url)
+            .then(function (response) {
+                Ext.toast('Your suggestion has been submitted', 1000);
+                view.destroy();
+            })
+            .catch(function () {
+                Ext.Msg.alert('Something went wrong', 'Cannot send suggestion!');
+            });
+    },
+    showRequiredFieldsError: function (view, button) {
+        const form = view.down('formpanel');
+
+        view.down('[cls~="errors_div"]').setHidden(false);
+
+        const validationErrors = form.getErrors();
+        let htmlTpl = '<div class="fs-16 fw-b">Fill all required fields:</div><ul>';
+
+        Ext.Object.each(validationErrors, function (error, value) {
+            if (value) {
+                htmlTpl += '<li><b>' + error + '</b> is required</li>';
+            }
+        });
+
+        htmlTpl += '</ul>';
+        view.down('[cls~="errors_div"]').getItems().getAt(1).setHtml(htmlTpl);
+        view.getScrollable().scrollTo(0, 0, true);
+        button.toggle();
     },
 });

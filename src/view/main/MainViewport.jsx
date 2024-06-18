@@ -5,12 +5,12 @@ import '../../core/components/AbraxaDiv';
 import '../../core/override/Abraxa.Component';
 import '../common/tooltips/PublicPersonToolTip';
 import '../common/tooltips/CompanyToolTip';
-import './NotificationsMenu.jsx';
+import './NotificationsMenu';
 import './MainHeader';
 import '../dashboard/DashboardMainContainer';
 import '../cdb/MainView';
 import '../inbox/InboxMainView';
-import '../cdb/company/Company.jsx';
+import '../cdb/company/Company';
 import '../profile/ProfileMainContainer';
 import '../billing/BillingMainContainer';
 import '../search/SearchPanel';
@@ -40,7 +40,7 @@ Ext.define('Abraxa.view.main.MainViewport', {
     // },
     // flex: 1,
     masked: {
-        xtype: 'viewport.mask'
+        xtype: 'viewport.mask',
     },
     items: [
         {

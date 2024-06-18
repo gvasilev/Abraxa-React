@@ -1,4 +1,5 @@
-import '../../../store/voyage/VoyagesPrincipal.jsx';
+import '../../../store/voyage/VoyagesPrincipal';
+
 Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.VoyagePrincipalMainViewModel',
@@ -27,7 +28,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel'
                 bindTo: '{voyagesPrincipal}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 return store.getTotalCount();
             },
         },
@@ -37,7 +38,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel'
                 bindTo: '{tabbarItems}',
                 deep: true,
             },
-            get: function (buttons) {
+            get: function(buttons) {
                 if (buttons.length === 0) return;
                 const stateProvider = Ext.state.Provider.get();
                 let record = stateProvider.get('voyages-tabbar-principal');
@@ -60,7 +61,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel'
             },
         },
 
-        filterButtons: function (get) {
+        filterButtons: function(get) {
             let filterButtons = [];
             // filterButtons.push({
             //     text: 'All',
@@ -80,7 +81,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel'
                     'Content-Type': 'application/json',
                 },
                 method: 'GET',
-                success: function (response, opts) {
+                success: function(response, opts) {
                     const res = JSON.parse(response.responseText).data;
                     const buttonsToAdd = res.map((item) => ({
                         text: item.name,
@@ -98,7 +99,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMainViewModel'
                     vm.set('tabbarItems', filterButtons);
                 },
 
-                failure: function (response, opts) {
+                failure: function(response, opts) {
                     // Ext.Msg.warning('Warning', 'The right data could not be loaded. Please try again later.');
                     // return response;
                 },

@@ -1,4 +1,3 @@
-
 Ext.define('Abraxa.view.operations.PortCallsPricipal.grids.PortCallsPricipalGridAll', {
     extend: 'Ext.grid.Grid',
     xtype: 'PortCallsPricipalGridAll',

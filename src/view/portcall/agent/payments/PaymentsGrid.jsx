@@ -515,13 +515,13 @@ Ext.define('Abraxa.view.portcall.payments.PaymentsGrid', {
             },
             renderer: function renderer(val, record) {
                 if (val) {
-                    let store = this.upVM().get('relatedObjects');
-                    subObject = Ext.Array.filter(store, function (rec) {
-                        return (
-                            rec.get('id') == record.get('paymentable_id') &&
-                            rec.get('model_name') == record.get('paymentable_type')
-                        );
-                    })[0];
+                    let store = this.upVM().get('relatedObjects'),
+                        subObject = Ext.Array.filter(store, function (rec) {
+                            return (
+                                rec.get('id') == record.get('paymentable_id') &&
+                                rec.get('model_name') == record.get('paymentable_type')
+                            );
+                        })[0];
                     if (subObject) {
                         return (
                             '<div class="hbox"><span class="file-icon-new file-icon-xs-new" data-type="pdf"></span>' +

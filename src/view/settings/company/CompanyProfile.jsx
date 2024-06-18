@@ -1,7 +1,8 @@
-import '../../../core/components/AbraxaCountryCombo.jsx';
-import '../../../core/components/Abraxa.CityCombo.jsx';
-import '../../../core/components/Abraxa.EmailField.jsx';
-import './AssignBanksToPublicProfile.jsx';
+import '../../../core/components/AbraxaCountryCombo';
+import '../../../core/components/Abraxa.CityCombo';
+import '../../../core/components/Abraxa.EmailField';
+import './AssignBanksToPublicProfile';
+
 Ext.define('Abraxa.view.settings.company.CompanyProfile', {
     extend: 'Ext.Container',
     xtype: 'settings.company.profile',
@@ -49,29 +50,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                 },
                             });
                         }
-                        // Ext.toast('Form saved', 1500);
-                        // TODO: What to do here, store is already synced?
-
-                        // let store = me.upVM().get('companyBankDetails'),
-                        //     currentUser = me.upVM().get('currentUser'),
-                        //     record = me.upVM().get('record');
-
-                        // console.log('Save!!!!!!!!');
-                        // console.log(record);
-                        // console.log(store);
-
-                        // store.sync({
-                        //     success: function () {
-                        //         currentUser.set(
-                        //             'update_user',
-                        //             new Date()
-                        //         );
-                        //         Ext.toast('Bank removed from public profile', 1500);
-                        //     },
-                        //     failure: function (batch, operations) {
-                        //         Ext.Msg.alert('Something went wrong', 'Cannot update user');
-                        //     }
-                        // });
                     },
                 },
             ],
@@ -884,7 +862,7 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                         quickInsertEnabled: false,
                                                         theme: 'royal',
                                                         pastePlain: true,
-                                                        // enter: 2,
+                                                        enter: 2,
                                                         imagePaste: false,
                                                         height: 180,
                                                         charCounterCount: false,

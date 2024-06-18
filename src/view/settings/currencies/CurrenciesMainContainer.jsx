@@ -1,4 +1,5 @@
-import './CurrenciesContainer.jsx';
+import './CurrenciesContainer';
+
 Ext.define('Abraxa.view.settings.currencies.CurrenciesMainContainer', {
     extend: 'Ext.Container',
     xtype: 'settings.currencies.main',

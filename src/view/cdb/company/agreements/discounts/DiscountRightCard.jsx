@@ -1,5 +1,4 @@
-import '../../../../common/combo/DefaultExpensesCombo.jsx';
-
+import '../../../../common/combo/DefaultExpensesCombo';
 
 Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
     extend: 'Ext.Container',
@@ -19,7 +18,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                     bindTo: '{discountGrid.selection}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         return (
                             '<div class="a-badge a-badge-discount"><i class="md-icon-outlined">percent</i></div><div><span class="a-panel-title">' +
@@ -36,7 +35,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                     bindTo: '{discountGrid.selection}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         return record;
                     } else {
@@ -83,7 +82,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (item, el, eOpts) {
+                            handler: function(item, el, eOpts) {
                                 let vm = this.upVM(),
                                     store = vm.get('discounts'),
                                     container = this.find('discountRightCard'),
@@ -91,18 +90,18 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function (answer) {
+                                    function(answer) {
                                         if (answer == 'yes') {
                                             container.hide();
                                             store.remove(record);
                                             store.sync({
-                                                success: function (err, msg) {
+                                                success: function(err, msg) {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
                                                     Ext.toast('Record updated', 1000);
                                                 },
-                                                failure: function (batch) {
+                                                failure: function(batch) {
                                                     Ext.Msg.alert('Something went wrong', 'Could not delete record!');
                                                 },
                                             });
@@ -122,7 +121,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                             ui: 'decline alt',
                                             text: 'Delete',
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
@@ -130,7 +129,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                             xtype: 'button',
                             ui: 'round tool-round-md',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function (me) {
+                            handler: function(me) {
                                 let record = this.upVM().get('discountGrid.selection'),
                                     grid = Ext.ComponentQuery.query('agreements\\.discounts\\.grid')[0];
 
@@ -180,11 +179,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                     },
                     required: true,
                     listeners: {
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -209,11 +208,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                         value: '{discount.port_ids}',
                     },
                     listeners: {
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -244,11 +243,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                         type: 'berth.function',
                     },
                     listeners: {
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -271,17 +270,17 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                         value: '{discount.default_expense_item_id}',
                     },
                     listeners: {
-                        select: function (me, selection) {
+                        select: function(me, selection) {
                             if (selection) {
                                 let record = me.upVM().get('discount');
                                 record.set('default_expense_item_name', selection.get('name'));
                             }
                         },
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -325,7 +324,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                         value: '{discount.type}',
                     },
                     listeners: {
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 if (record.get('type') == 'percent') {
@@ -339,7 +338,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                     record.set('percentage', 0);
                                 }
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -384,11 +383,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 hidden: '{discountType.selection.value == "percent" ? false:true}',
                             },
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -432,11 +431,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 hidden: '{discountType.selection.value == "amount" ? false:true}',
                             },
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -462,11 +461,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                             ui: 'classic hovered-border',
                             editable: false,
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -509,7 +508,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 value: '{discount.validity_from}',
                             },
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record.get('validity_to') && record.get('validity_from')) {
                                         if (moment(record.get('validity_from')).isAfter(record.get('validity_to'))) {
@@ -518,7 +517,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                     }
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -549,7 +548,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 value: '{discount.validity_to}',
                             },
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record.get('validity_from') && record.get('validity_to')) {
                                         if (moment(record.get('validity_to')).isBefore(record.get('validity_from'))) {
@@ -558,7 +557,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                     }
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -597,13 +596,13 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                 checked: '{discountGrid.selection.active ? true:false}',
                             },
                             listeners: {
-                                check: function (me) {
+                                check: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record) {
                                         record.set('active', 1);
                                         if (record.dirty) {
                                             record.save({
-                                                success: function () {
+                                                success: function() {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
@@ -614,13 +613,13 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                                         }
                                     }
                                 },
-                                uncheck: function (me) {
+                                uncheck: function(me) {
                                     let record = me.upVM().get('discount');
                                     if (record) {
                                         record.set('active', 0);
                                         if (record.dirty) {
                                             record.save({
-                                                success: function () {
+                                                success: function() {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
@@ -651,11 +650,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.discounts.DiscountRightCard', {
                         value: '{discount.description}',
                     },
                     listeners: {
-                        blur: function (me) {
+                        blur: function(me) {
                             let record = me.upVM().get('discount');
                             if (record.dirty) {
                                 record.save({
-                                    success: function () {
+                                    success: function() {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());

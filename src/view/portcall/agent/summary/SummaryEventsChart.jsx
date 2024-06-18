@@ -400,8 +400,8 @@ Ext.define('Abraxa.view.portcall.summary.SummaryEventsChart', {
                                                         if (berthCargoes.length) {
                                                             Ext.Array.each(berthCargoes, function (cargo) {
                                                                 let handled = 0,
-                                                                percentage = 0,
-                                                                quantity= 0,
+                                                                    percentage = 0,
+                                                                    quantity = 0,
                                                                     cargo_function;
 
                                                                 cargo_ops.each(function (operation) {

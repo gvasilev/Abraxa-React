@@ -1,4 +1,5 @@
-import './TerminalsGrid.jsx';
+import './TerminalsGrid';
+
 Ext.define('Abraxa.view.settings.library.ports.TerminalsMainContaianer', {
     extend: 'Ext.Container',
     xtype: 'settings.library.terminals.main',

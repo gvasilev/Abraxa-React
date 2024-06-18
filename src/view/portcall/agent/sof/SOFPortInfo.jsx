@@ -1,4 +1,5 @@
 import './BunkersUnitCombo';
+
 Ext.define('Abraxa.view.portcall.sof.SOFPortInfo', {
     extend: 'Ext.Container',
     xtype: 'sof.port.info',
@@ -353,6 +354,11 @@ Ext.define('Abraxa.view.portcall.sof.SOFPortInfo', {
                                         objectPermission: '{objectPermissions}',
                                     },
                                     listeners: {
+                                        painted: function () {
+                                            let record = this.upVM().get('object_record');
+
+                                            if (record) this.setInputValue(record.get('port_name'));
+                                        },
                                         select: function () {
                                             if (this.getSelection()) {
                                                 let record = this.upVM().get('object_record');
@@ -364,11 +370,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFPortInfo', {
                                                     record.set('port_code', this.getSelection().get('port').code);
                                                 }
                                             }
-                                        },
-                                        painted: function () {
-                                            let record = this.upVM().get('object_record');
-
-                                            if (record) this.setInputValue(record.get('port_name'));
                                         },
                                         blur: function () {
                                             let record = this.upVM().get('object_record');
@@ -1001,7 +1002,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFPortInfo', {
                             slug: 'portcallPortItinerary',
                             ui: 'hovered-border classic',
                             subObject: 'general',
-                            // liveFieldId: 'next_port',
                             floatedPicker: {
                                 listeners: {
                                     select: function () {

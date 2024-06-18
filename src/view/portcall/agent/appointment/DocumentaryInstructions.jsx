@@ -10,7 +10,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
             items: [
                 {
                     xtype: 'div',
-                    html: "<div class='hbox'><div class='a-badge a-badge-default'><i class='md-icon-outlined'>description</i></div><div class='a-panel-title fs-14'>Documentary instructions</div></div>",
+                    html: '<div class=\'hbox\'><div class=\'a-badge a-badge-default\'><i class=\'md-icon-outlined\'>description</i></div><div class=\'a-panel-title fs-14\'>Documentary instructions</div></div>',
                     cls: 'a-collapsible-title a-collapsible-trigger a-trigger-right',
                     listeners: {
                         click: {
@@ -57,10 +57,10 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         ui: 'hovered-border classic',
                                         flex: 1,
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let store = this.upVM().get('cargoes');
                                                 store.sync({
-                                                    success: function () {
+                                                    success: function() {
                                                         let portcall = me.upVM().get('object_record');
                                                         if (portcall) {
                                                             portcall.set('updated_at', new Date());
@@ -101,18 +101,18 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                         options: '{defaultCargoUnits}',
                                                     },
                                                     listeners: {
-                                                        blur: function (me) {
+                                                        blur: function(me) {
                                                             let store = this.upVM().get('additionalQuantity'),
                                                                 cargo = me.upVM().get('cargoesGrid.selection');
 
                                                             cargo.set('bl_quantity', me.getParent().getValue());
                                                             cargo.set(
                                                                 'bl_quantity_unit',
-                                                                me.getParent().getValueUnit()
+                                                                me.getParent().getValueUnit(),
                                                             );
 
                                                             store.sync({
-                                                                success: function () {
+                                                                success: function() {
                                                                     let portcall = me.upVM().get('object_record');
                                                                     if (portcall) {
                                                                         portcall.set('updated_at', new Date());
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                     // bind: {
                                                     //     badgeText: '{additionalQuantity.count}'
                                                     // },
-                                                    handler: function (me) {
+                                                    handler: function(me) {
                                                         let cargo = me.upVM().get('cargoesGrid.selection');
                                                         Ext.create(
                                                             'Abraxa.view.portcall.appointment.AddAdditionalQuantity',
@@ -163,12 +163,12 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                                             {
                                                                                 portcall_id: cargo.get('portcall_id'),
                                                                                 cargo_id: cargo.get('id'),
-                                                                            }
+                                                                            },
                                                                         ),
                                                                         cargo: cargo,
                                                                     },
                                                                 },
-                                                            }
+                                                            },
                                                         ).show();
                                                     },
                                                 },
@@ -184,7 +184,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                         click: {
                                                             element: 'element',
                                                             delegate: 'a',
-                                                            fn: function (el) {
+                                                            fn: function(el) {
                                                                 let me = this,
                                                                     cmp = me.component,
                                                                     cargo = cmp.upVM().get('cargoesGrid.selection');
@@ -200,12 +200,12 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                                                         portcall_id:
                                                                                             cargo.get('portcall_id'),
                                                                                         cargo_id: cargo.get('id'),
-                                                                                    }
+                                                                                    },
                                                                                 ),
                                                                                 cargo: cargo,
                                                                             },
                                                                         },
-                                                                    }
+                                                                    },
                                                                 ).show();
                                                             },
                                                         },
@@ -287,11 +287,11 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         ui: 'classic hovered-border',
                                         flex: 1,
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let store = this.upVM().get('cargoes');
 
                                                 store.sync({
-                                                    success: function () {
+                                                    success: function() {
                                                         let portcall = me.upVM().get('object_record');
                                                         if (portcall) {
                                                             portcall.set('updated_at', new Date());
@@ -405,10 +405,10 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         ui: 'classic',
                                         flex: 1,
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let store = this.upVM().get('cargoes');
                                                 store.sync({
-                                                    success: function () {
+                                                    success: function() {
                                                         let portcall = me.upVM().get('object_record');
                                                         if (portcall) {
                                                             portcall.set('updated_at', new Date());
@@ -439,11 +439,11 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                             floatedPicker: {
                                                 minWidth: 386,
                                                 listeners: {
-                                                    select: function (cmp, newValue) {
+                                                    select: function(cmp, newValue) {
                                                         let record = this.upVM().get('cargoesGrid.selection');
                                                         record.set(
                                                             'consignee_name',
-                                                            this.getSelection().get('org_name')
+                                                            this.getSelection().get('org_name'),
                                                         );
                                                         if (newValue) {
                                                             var company = newValue.get('org_name')
@@ -465,7 +465,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                 },
                                             },
                                             listeners: {
-                                                clearicontap: function () {
+                                                clearicontap: function() {
                                                     let record = this.upVM().get('cargoesGrid.selection');
                                                     record.set('consignee_address', null);
                                                 },
@@ -498,10 +498,10 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         ui: 'classic',
                                         flex: 1,
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let store = this.upVM().get('cargoes');
                                                 store.sync({
-                                                    success: function () {
+                                                    success: function() {
                                                         let portcall = me.upVM().get('object_record');
                                                         if (portcall) {
                                                             portcall.set('updated_at', new Date());
@@ -532,7 +532,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                             floatedPicker: {
                                                 minWidth: 386,
                                                 listeners: {
-                                                    select: function (cmp, newValue) {
+                                                    select: function(cmp, newValue) {
                                                         let record = this.upVM().get('cargoesGrid.selection');
                                                         record.set('shipper', this.getSelection().get('org_name'));
                                                         if (newValue) {
@@ -555,7 +555,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                 },
                                             },
                                             listeners: {
-                                                clearicontap: function () {
+                                                clearicontap: function() {
                                                     let record = this.upVM().get('cargoesGrid.selection');
                                                     record.set('shipper_address', null);
                                                 },
@@ -587,10 +587,10 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         ui: 'classic',
                                         flex: 1,
                                         listeners: {
-                                            blur: function (me) {
+                                            blur: function(me) {
                                                 let store = this.upVM().get('cargoes');
                                                 store.sync({
-                                                    success: function () {
+                                                    success: function() {
                                                         let portcall = me.upVM().get('object_record');
                                                         if (portcall) {
                                                             portcall.set('updated_at', new Date());
@@ -621,7 +621,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                             floatedPicker: {
                                                 minWidth: 386,
                                                 listeners: {
-                                                    select: function (cmp, newValue) {
+                                                    select: function(cmp, newValue) {
                                                         let record = this.upVM().get('cargoesGrid.selection');
                                                         record.set('notify_name', this.getSelection().get('org_name'));
                                                         if (newValue) {
@@ -644,7 +644,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                                 },
                                             },
                                             listeners: {
-                                                clearicontap: function () {
+                                                clearicontap: function() {
                                                     let record = this.upVM().get('cargoesGrid.selection');
                                                     record.set('notify_address', null);
                                                 },
@@ -678,10 +678,10 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                 ui: 'classic',
                                 flex: 1,
                                 listeners: {
-                                    blur: function (me) {
+                                    blur: function(me) {
                                         let store = this.upVM().get('cargoes');
                                         store.sync({
-                                            success: function () {
+                                            success: function() {
                                                 let portcall = me.upVM().get('object_record');
                                                 if (portcall) {
                                                     portcall.set('updated_at', new Date());
@@ -714,7 +714,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                         objectPermission: '{objectPermissions}',
                                     },
                                     listeners: {
-                                        change: function () {
+                                        change: function() {
                                             if (this.initialConfig.height) return;
                                             if (!this.inputElement.dom.style.overflow)
                                                 this.inputElement.dom.style.overflow = 'hidden';
@@ -723,7 +723,7 @@ Ext.define('Abraxa.view.portcall.appointment.DocumentaryInstructions', {
                                             this.setHeight(reqHeight + 2);
                                             return;
                                         },
-                                        painted: function () {
+                                        painted: function() {
                                             if (this.initialConfig.height) return;
                                             if (!this.inputElement.dom.style.overflow)
                                                 this.inputElement.dom.style.overflow = 'hidden';

@@ -33,7 +33,7 @@ Ext.define('Abraxa.view.inquiry.InquiryViewModel', {
                 bindTo: '{currentUserType}',
                 deep: true,
             },
-            get: function (type) {
+            get: function(type) {
                 return [
                     {
                         xtype: 'main.header',
@@ -64,7 +64,7 @@ Ext.define('Abraxa.view.inquiry.InquiryViewModel', {
                 bindTo: '{inquiries}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 return store.getTotalCount();
             },
         },
@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.inquiry.InquiryViewModel', {
                 bindTo: '{inquiriesPdas}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 return store.getTotalCount();
             },
         },
@@ -82,7 +82,7 @@ Ext.define('Abraxa.view.inquiry.InquiryViewModel', {
                 bindTo: '{inquiries}',
                 deep: true,
             },
-            get: function (store) {
+            get: function(store) {
                 if (store) {
                     if (store.getCount()) {
                         return false;

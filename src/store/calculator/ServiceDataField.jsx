@@ -1,4 +1,5 @@
-import '../../model/calculator/DataField.jsx';
+import '../../model/calculator/DataField';
+
 Ext.define('Abraxa.store.calculator.ServiceDataField', {
     extend: 'Ext.data.Store',
     alias: 'store.calcservicedatafield',

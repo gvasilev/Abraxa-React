@@ -1597,3 +1597,39 @@
         color: black;
     }
 }
+.border-radius-5 {
+    border-radius: 5px !important;
+}
+
+.ocr-mask {
+    opacity: 1 !important;
+    background-color: rgba(0, 41, 69, 0.3) !important;
+    .ocr-mask-message {
+        color: #fff;
+        text-align: center;
+        padding: 0.4em;
+        font-size: 0.95em;
+        font-weight: 500;
+    }
+    .x-innerhtml {
+        background-color: rgba(0, 41, 69, 0.5);
+        width: 400px;
+        height: 120px;
+        border-radius: 8px;
+        align-content: center;
+        flex-direction: column;
+        .inner-ocr {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+    .x-mask-inner {
+        display: none;
+        width: 400px;
+        border-radius: 5px;
+        top: 21px;
+        left: 176px;
+        position: absolute;
+    }
+}

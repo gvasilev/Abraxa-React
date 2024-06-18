@@ -59,13 +59,13 @@ Ext.define('Abraxa.view.directory.ports.DirectoryPortsGrid', {
     reference: 'directoryPortsGrid',
     scrollToTopOnRefresh: false,
     keyMapEnabled: true,
-    keyMap: {
-        scope: 'this',
-        ESC: function () {
-            let activeGrid = Ext.ComponentQuery.query('[xtype=portcalls\\.grid\\.active]')[0];
-            activeGrid.deselectAll();
-        },
-    },
+    // keyMap: {
+    //     scope: 'this',
+    //     ESC: function () {
+    //         let activeGrid = Ext.ComponentQuery.query('[xtype=portcalls\\.grid\\.active]')[0];
+    //         activeGrid.deselectAll();
+    //     },
+    // },
     itemConfig: {
         viewModel: true,
     },
@@ -102,7 +102,7 @@ Ext.define('Abraxa.view.directory.ports.DirectoryPortsGrid', {
                                     if (newValue == '') portsStore.removeFilter('search');
                                 },
                                 action: function (me, newValue, oldValue, eOpts) {
-                                    var query = this.getValue().toLowerCase();
+                                    const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var portsStore = this.upVM().get('directoryPorts');
                                     portsStore.removeFilter('search');
                                     if (query.length > 2) {
@@ -122,29 +122,6 @@ Ext.define('Abraxa.view.directory.ports.DirectoryPortsGrid', {
                             flex: 1,
                             // Empty container to center the search bar
                         },
-                        // NOTE: Currently only show Search field!
-                        // {
-                        //     xtype: 'container',
-                        //     flex: 1,
-                        //     layout: {
-                        //         type: 'hbox',
-                        //         alignm: 'middle',
-                        //         pack: 'end',
-                        //     },
-                        //     cls: 'a-tools',
-                        //     items: [
-                        //         {
-                        //             xtype: 'button',
-                        //             ui: 'tool-text-sm',
-                        //             enableToggle: true,
-                        //             iconCls: 'md-icon-filter-alt md-icon-outlined',
-                        //             text: 'Filter',
-                        //             handler: function () {
-
-                        //             },
-                        //         },
-                        //     ],
-                        // },
                     ],
                 },
             ],
@@ -154,68 +131,50 @@ Ext.define('Abraxa.view.directory.ports.DirectoryPortsGrid', {
         {
             text: 'Port',
             dataIndex: 'name',
-            // xtype: 'templatecolumn',
             cls: 'a-column-offset-x24',
             minWidth: 220,
             flex: 3,
-            // tpl: new Ext.XTemplate('{[this.create(values)]}', {
-            //     create: function (values) {
-            //         if (values && values.id) {
-            //             let flag = '';
-            //             if (values.flag_abv_2_letters && values.flag_abv_2_letters != 'NULL' && values.flag_abv_2_letters.length) {
-            //                 flag = 'https://static.abraxa.com/flags/1x1/' + values.flag_abv_2_letters.toLowerCase() + '.svg';
-            //                 return '<div class="a-person cursor-pointer" data-portid="' + values.id + '"><img src="' + flag + '" class="a-flag-x24 a-img-round"><div class="ml-16"><div class="fw-b c-blue fs-16">' +
-            //                     values.name + ' (' + values.flag_abv_2_letters + ')' +
-            //                     '</div><div class="sm-title">' +
-            //                     values.locode +
-            //                     '</div></div></div>'
-
-            //             }
-            //             return '<div class="a-person cursor-pointer" data-portid="' + values.id + '"><div class="ml-16"><div class="fw-b c-blue fs-16">' + values.name + '</div><div class="sm-title">' + values.locode + '</div></div></div>';
-            //         }
-            //     },
-            // }),
             renderer: function (value, record) {
-                if (record && record.id) {
-                    var name = value || (record && record.get(name)) || AbraxaConstants.placeholders.emptyValue;
+                if (!record || !record.id) return AbraxaConstants.placeholders.emptyValue;
+                let name = AbraxaConstants.placeholders.emptyValue;
+                if (value) {
+                    name = value;
+                } else if (record && record.get('name')) {
+                    name = record.get('name');
+                }
 
-                    let flag = '';
-                    if (
-                        record.get('flag_abv_2_letters') &&
-                        record.get('flag_abv_2_letters') != 'NULL' &&
-                        record.get('flag_abv_2_letters').length
-                    ) {
-                        flag =
-                            'https://static.abraxa.com/flags/1x1/' +
-                            record.get('flag_abv_2_letters').toLowerCase() +
-                            '.svg';
+                let flag = '';
+                const countryInfo = record.get('countries');
+                const countryCode = countryInfo.country_code ? countryInfo.country_code : null;
+                if (countryCode && countryCode !== 'NULL' && countryCode.length) {
+                    flag = 'https://static.abraxa.com/flags/1x1/' + countryCode.toLowerCase() + '.svg';
 
-                        var onerror = "this.onerror=null;this.src='https://static.abraxa.com/flags/1x1/no-flag.svg';";
+                    let onerror = "this.onerror=null;this.src='https://static.abraxa.com/flags/1x1/no-flag.svg';";
 
-                        return (
-                            '<div class="a-person cursor-pointer" data-portid="' +
-                            record.id +
-                            '"><img src="' +
-                            flag +
-                            '" onerror="' +
-                            onerror +
-                            '" class="a-flag-x24 a-img-round"><div class="ml-16"><div class="fw-b c-blue fs-16">' +
-                            name +
-                            ' (' +
-                            record.get('flag_abv_2_letters') +
-                            ')' +
-                            '</div><div class="sm-title">' +
-                            record.get('locode') +
-                            '</div></div></div>'
-                        );
-                    }
+                    return (
+                        '<div class="a-person cursor-pointer" data-portid="' +
+                        record.id +
+                        '"><img src="' +
+                        flag +
+                        '" onerror="' +
+                        onerror +
+                        '" class="a-flag-x24 a-img-round"><div class="ml-16"><div class="fw-b c-blue fs-16">' +
+                        name +
+                        ' (' +
+                        countryCode +
+                        ')' +
+                        '</div><div class="sm-title">' +
+                        record.get('code') +
+                        '</div></div></div>'
+                    );
+                } else {
                     return (
                         '<div class="a-person cursor-pointer" data-portid="' +
                         record.id +
                         '"><div class="ml-16"><div class="fw-b c-blue fs-16">' +
                         name +
                         '</div><div class="sm-title">' +
-                        record.get('locode') +
+                        record.get('code') +
                         '</div></div></div>'
                     );
                 }

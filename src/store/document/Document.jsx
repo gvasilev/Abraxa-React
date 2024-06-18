@@ -1,4 +1,5 @@
-import '../../model/document/Document.jsx';
+import '../../model/document/Document';
+
 Ext.define('Abraxa.store.document.Document', {
     extend: 'Ext.data.Store',
     alias: 'store.document',

@@ -1,4 +1,5 @@
-import '../../store/invitations/Invitations.jsx';
+import '../../store/invitations/Invitations';
+
 Ext.define('Abraxa.view.invitations.InvitationViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.invitations-viewmodel',
@@ -7,11 +8,11 @@ Ext.define('Abraxa.view.invitations.InvitationViewModel', {
             type: 'invitations',
             autoLoad: true,
             filters: '{invitationFilter}',
-            grouper: {
-                groupFn: function groupFn(record) {
-                    return record.get("object_name");
-                }
-            },
+            // grouper: {
+            //     groupFn: function groupFn(record) {
+            //         return record.get("object_name");
+            //     }
+            // },
         },
     },
     formulas: {
@@ -20,13 +21,12 @@ Ext.define('Abraxa.view.invitations.InvitationViewModel', {
                 bindTo: '{currentUser}',
                 deep: true,
             },
-            get: function (user) {
-                console.log(user);
+            get: function(user) {
                 if (user) {
                     if (this.get('invitations')) {
                         this.get('invitations').clearFilter();
                     }
-                    return function (item) {
+                    return function(item) {
                         return item.get('tenant_id') == user.get('current_company_id');
                     };
                 }

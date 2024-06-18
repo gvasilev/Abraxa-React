@@ -456,6 +456,14 @@
         }
     }
 
+    &.icon-bookmark {
+        .x-before-input-el {
+            &::before {
+                content: 'bookmark';
+            }
+        }
+    }
+
     &.icon-filter {
         .x-before-input-el {
             &::before {

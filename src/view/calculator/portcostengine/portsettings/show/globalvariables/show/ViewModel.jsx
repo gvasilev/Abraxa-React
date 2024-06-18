@@ -1,4 +1,5 @@
-import '../../../../../../../store/calculator/GlobalRepeaterType.jsx';
+import '../../../../../../../store/calculator/GlobalRepeaterType';
+
 Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariables.show.ViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.calculator.portcostengine.globalvariables.show',
@@ -6,7 +7,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
         calcglobalrepeatertype: {
             type: 'calcglobalrepeatertype',
             filters: [
-                function (record) {
+                function(record) {
                     return !record.phantom;
                 },
             ],
@@ -16,16 +17,16 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                     portSettingsId: '{calculatorPortSettingsGrid.selection.id}',
                 },
             },
-            updateProxy: function (proxy) {
+            updateProxy: function(proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function () {
+                        function() {
                             if (this.getProxy().getExtraParams().portSettingsId) {
                                 this.load();
                             }
                         },
-                        this
+                        this,
                     );
                 }
             },
@@ -37,7 +38,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                 bindTo: '{calcGlobalVariablesList.selection}',
                 deep: true,
             },
-            get: function (value) {
+            get: function(value) {
                 return value ? value.copy() : null;
             },
         },

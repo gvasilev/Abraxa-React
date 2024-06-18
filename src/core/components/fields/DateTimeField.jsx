@@ -1,5 +1,5 @@
-import '../AbraxaDateField.jsx';
-import '../AbraxaTimeField.jsx';
+import '../AbraxaDateField';
+import '../AbraxaTimeField';
 Ext.define('Abraxa.core.components.fields.DateTimeField', {
     extend: 'Ext.field.Container',
     xtype: 'abraxa.datetimefield',
@@ -108,10 +108,7 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
                         this.up('abraxa\\.datetimefield').removeCls('x-focused');
                     },
                     focusleave: function (me) {
-                        this.up('abraxa\\.datetimefield').fireEvent(
-                            'focusleave',
-                            this.up('abraxa\\.datetimefield')
-                        );
+                        this.up('abraxa\\.datetimefield').fireEvent('focusleave', this.up('abraxa\\.datetimefield'));
                         this.up('abraxa\\.datetimefield').removeCls('x-focused');
                     },
                     focus: function () {

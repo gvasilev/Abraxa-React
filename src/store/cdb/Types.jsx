@@ -1,5 +1,4 @@
-
-import '../../model/cdb/Type.jsx';
+import '../../model/cdb/Type';
 
 Ext.define('Abraxa.store.cdb.Types', {
     extend: 'Ext.data.Store',

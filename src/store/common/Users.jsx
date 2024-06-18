@@ -1,5 +1,4 @@
-
-import '../../model/common/User.jsx';
+import '../../model/common/User';
 
 Ext.define('Abraxa.store.common.Users', {
     extend: 'Ext.data.Store',

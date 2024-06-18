@@ -11,6 +11,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'string',
         },
         {
+            name: 'type',
+            type: 'string',
+        },
+        {
             name: 'rules_data_response',
             persist: false,
             type: 'auto',
@@ -24,6 +28,7 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
                 'disbursement_value_min',
                 'disbursement_value_max',
                 'port_function',
+                'invitation_companies',
             ],
             convert: function (value, record) {
                 //push disbursement type value
@@ -78,6 +83,13 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
                     operator: 'in',
                     data: record.get('vessel_type') || null,
                 });
+
+                //push companies values
+                conditions.push({
+                    type: 'companies',
+                    operator: 'in',
+                    data: record.get('invitation_companies') || null,
+                });
                 return conditions;
             },
         },
@@ -86,17 +98,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'disbursementTypes') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'disbursement_type');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -104,17 +109,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'disbursementLabels') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'label');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -122,17 +120,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'ports') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'port');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -140,17 +131,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'portFunctions') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'port_function');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -158,19 +142,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'disbursementAmount') {
-                                if (condition.operator != 'in') {
-                                    value = condition.operator;
-                                }
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'disbursement_amount');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -178,17 +153,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'agencyTypes') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'agency_type');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -196,17 +164,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'vesselTypes') {
-                                value = condition.data;
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'vessel_type');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -215,21 +176,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             allowNull: true,
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'disbursementAmount') {
-                                if (condition.operator === 'between') {
-                                    value = condition.data[0];
-                                } else {
-                                    value = condition.data;
-                                }
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'disbursement_value_min');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -238,19 +188,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             allowNull: true,
             persist: false,
             mapping: function (data) {
-                let value = null;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules && data.rules_data.rules[0].conditions) {
-                        Ext.Array.each(data.rules_data.rules[0].conditions, function (condition) {
-                            if (condition.type === 'disbursementAmount') {
-                                if (condition.operator === 'between') {
-                                    value = condition.data[1];
-                                }
-                            }
-                        });
-                    }
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'disbursement_value_max');
                 }
-                return value;
+                return null;
             },
         },
         {
@@ -272,9 +213,10 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
             mapping: function (data) {
                 let count = 0;
                 if (data && data.rules_data) {
-                    if (data.rules_data.rules) {
-                        if (data.rules_data.rules[0].conditions) {
-                            count = data.rules_data.rules[0].conditions.length;
+                    let rulesData = data.rules_data;
+                    if (rulesData.rules) {
+                        if (rulesData.rules[0].conditions) {
+                            count = rulesData.rules[0].conditions.length;
                         }
                     }
                 }
@@ -297,6 +239,17 @@ Ext.define('Abraxa.model.settings.workflows.Workflow', {
                         },
                     ];
                 }
+            },
+        },
+        {
+            name: 'invitation_companies',
+            type: 'auto',
+            persist: false,
+            mapping: function (data) {
+                if (data && data.rules_data) {
+                    return Abraxa.utils.Functions.getWorkflowConditionValue(data.rules_data, 'invitation_companies');
+                }
+                return null;
             },
         },
     ],

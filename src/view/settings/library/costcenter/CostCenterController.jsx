@@ -1,5 +1,6 @@
-import '../../../../model/costcenter/CostCenterService.jsx';
-import '../../../../model/costcenter/SubCostCenter.jsx';
+import '../../../../model/costcenter/CostCenterService';
+import '../../../../model/costcenter/SubCostCenter';
+
 Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.CostCenterController',
@@ -134,32 +135,6 @@ Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
                 }
             },
         });
-
-        // costCenter.sort(function (node1, node2) {
-        //     const isLeaf1 = node1.isLeaf();
-        //     const isLeaf2 = node2.isLeaf();
-
-        //     // If both nodes are leaf nodes, sort by ID in descending order
-        //     if (isLeaf1 && isLeaf2) {
-        //         const id1 = node1.getId();
-        //         const id2 = node2.getId();
-        //         return id2 - id1;
-        //     }
-
-        //     // If only one of the nodes is a leaf, the leaf should come first
-        //     if (isLeaf1) {
-        //         return -1;
-        //     } else if (isLeaf2) {
-        //         return 1;
-        //     }
-
-        //     // If none of the nodes are leaf nodes, sort them by other criteria if needed
-        //     // For example, you can sort them by text property
-        //     const id1 = node1.getId();
-        //     const id2 = node2.getId();
-        //     return id2 - id1;
-        // });
-        // cmp.up('dialog').destroy();
     },
 
     removeServiceFromCostCenter: function (cmp) {
@@ -182,11 +157,10 @@ Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
                         id: costCenterItem.id,
                     });
 
-                    console.log(model);
-
                     model.getProxy().setExtraParams({
                         costCenterId: costCenter.get('id'),
                     });
+
                     model.erase({
                         callback: function () {
                             costCenterStore.reload({
@@ -218,27 +192,58 @@ Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
     },
 
     updateCostCenterService: function (cmp) {
+        //get  all kind of updated field in data view component
+
         let service = cmp.lookupViewModel().get('selectedService');
         if (service) {
-            let costCenter = cmp.lookupViewModel().get('record'),
-                costCenterStore = cmp.lookupViewModel().get('costCenterStore'),
-                costCenterFromStore = costCenterStore.getById(costCenter.get('id'));
+            const costCenter = cmp.lookupViewModel().get('record');
+            const costCenterStore = cmp.lookupViewModel().get('costCenterStore');
+            const costCenterFromStore = costCenterStore.getById(costCenter.get('id'));
+            const origValue = costCenter.data[cmp.cost_center_value];
+
+            //Avoid unwanted update BE calls
+            if (origValue === cmp.getValue() || (!origValue && !cmp.getValue())) return;
+
+            const getElements = function (cmp) {
+                const origValue = costCenter.data[cmp.cost_center_value];
+
+                if (origValue === cmp.getValue() || (!origValue && !cmp.getValue())) return;
+
+                return cmp.up('abraxa\\.componentdataview').queryBy((el) => {
+                    return el.cost_center_value === cmp.cost_center_value;
+                });
+            };
             let costCenterItem = costCenterFromStore
                     .get('items')
-                    .find((item) => item.default_expense_item_id === service.get('id'));
-           const model = Ext.create('Abraxa.model.costcenter.CostCenterService', {
+                    .find((item) => item.default_expense_item_id === service.get('id')),
+                model;
+            model = Ext.create('Abraxa.model.costcenter.CostCenterService', {
                 id: costCenterItem.id,
             });
+
+            const elements = getElements(cmp) || [];
+
+            //disable all fields
+            //because if user edit the same kind of field and the previous one was not saved there will be posible issue!!
+            elements.forEach((element) => {
+                element.setDisabled(true);
+            });
+
             model.set(cmp.cost_center_value, cmp.getValue());
             model.getProxy().setExtraParams({
                 costCenterId: costCenter.get('id'),
             });
+
             model.save({
                 success: function () {
                     costCenterStore.reload({
                         callback: function () {
                             service.load();
                             Ext.toast('Record updated');
+                            //after update enable all fields
+                            elements.forEach((element) => {
+                                element.setDisabled(false);
+                            });
                         },
                     });
                 },

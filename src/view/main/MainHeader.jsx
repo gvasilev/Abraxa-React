@@ -4,6 +4,7 @@ import '../../react/ReactContainer';
 import '../../react/Button';
 import ButtonUsage from '../../react/Button';
 import ReactButton from '../../react/Button';
+
 Ext.define('Abraxa.view.main.MainHeader', {
     extend: 'Ext.Container',
     xtype: 'main.header',
@@ -56,11 +57,6 @@ Ext.define('Abraxa.view.main.MainHeader', {
                 {
                     xtype: 'user.header.menu',
                     cls: 'a-user-header-menu',
-                },
-                {
-                    xtype: 'react-container',
-                    margin: '0 0 0 16',
-                    reactComponent: ReactButton(),
                 },
             ],
         },

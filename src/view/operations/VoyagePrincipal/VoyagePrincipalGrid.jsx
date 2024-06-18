@@ -1,5 +1,6 @@
-import './VoyagePrincipalGridViewModel.jsx';
-import './VoyagePrincipalGridController.jsx';
+import './VoyagePrincipalGridViewModel';
+import './VoyagePrincipalGridController';
+
 Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'VoyagesGrid',
@@ -31,7 +32,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     ui: 'tool-sm round',
                 },
                 listeners: {
-                    initialize: function () {
+                    initialize: function() {
                         this.add({
                             xtype: 'div',
                             margin: '0 16',
@@ -80,7 +81,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     },
                 },
             },
-            exportRenderer: function (val, record) {
+            exportRenderer: function(val, record) {
                 let voyageName = record.get('vessel') ? record.get('vessel').name : record.get('vessel_name');
                 let voyageId = record.get('voyage_number')
                     ? '#VOY-' + record.get('voyage_number')
@@ -157,7 +158,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     click: {
                         element: 'element',
                         delegate: 'div.main',
-                        fn: function (me, el, eOpts) {
+                        fn: function(me, el, eOpts) {
                             if (me.target.className === 'a-val-link single') {
                                 const recordId = +me.target.id;
                                 if (recordId) {
@@ -174,7 +175,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     },
                 },
             },
-            exportRenderer: function (val, record) {
+            exportRenderer: function(val, record) {
                 const commodities =
                     record && record.get('commodity_quantity') && record.get('commodity_quantity').commodities
                         ? record.get('commodity_quantity').commodities
@@ -213,7 +214,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     },
                 },
             },
-            exportRenderer: function (val, record) {
+            exportRenderer: function(val, record) {
                 if (val && val.appointmentCompanyName) {
                     return val.appointmentCompanyName;
                 }
@@ -241,11 +242,10 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                                 bindTo: '{tabChanged}',
                                 deep: true,
                             },
-                            get: function (tabChanged) {
-                                // console.log('tabChanged', tabChanged);
+                            get: function(tabChanged) {
                                 setTimeout(() => {
                                     let count = 0;
-                                    if (this.getView().getRecord() && this.getView().getRecord().tasks().count() > 0) {
+                                    if (this.getView().getRecord().tasks().count() > 0) {
                                         count = this.getView()
                                             .getRecord()
                                             .tasks()
@@ -261,10 +261,9 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                                 bindTo: '{currentVoyage}',
                                 deep: true,
                             },
-                            get: function (currentVoyage) {
-                                // console.log('currentVoyage', currentVoyage);
+                            get: function(currentVoyage) {
                                 let count = 0;
-                                if (this.getView().getRecord() && this.getView().getRecord().tasks().count() > 0) {
+                                if (this.getView().getRecord().tasks().count() > 0) {
                                     count = this.getView()
                                         .getRecord()
                                         .tasks()
@@ -278,7 +277,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                 },
             },
 
-            exportRenderer: function (val, record) {
+            exportRenderer: function(val, record) {
                 let count = 0;
 
                 if (record._tasks && record.tasks() && record.tasks().count() > 0) {
@@ -303,8 +302,8 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                     '<img data-qtip="{assigned_user_name}"  data-qalign="bc-tc" data-qanchor="true" src="{profile_image_url}" height="30" alt="">',
                     '<tpl else>',
                     '<img data-qtip="{assigned_user_name}"  data-qalign="bc-tc" data-qanchor="true" src="' +
-                        AbraxaConstants.urls.staticAbraxa +
-                        'images/profile/no-image.svg" height="30" alt="">',
+                    AbraxaConstants.urls.staticAbraxa +
+                    'images/profile/no-image.svg" height="30" alt="">',
                     '</tpl>',
                     '</div>',
                 ],
@@ -312,7 +311,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalGrid', {
                 encodeHtml: false,
             },
 
-            exportRenderer: function (val, record) {
+            exportRenderer: function(val, record) {
                 if (val) {
                     return val;
                 }

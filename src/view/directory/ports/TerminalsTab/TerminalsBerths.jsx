@@ -93,8 +93,6 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsBerths', {
                             },
                             listeners: {
                                 childtap: function (me, selected, eOpts) {
-                                    // console.log(selected);
-                                    // Ext.getCmp('main-viewport').getController().redirectTo('port-info/' + me.upVM().get('object_record.id') + '/berths/' + me.upVM().get('record.id'));
                                     Ext.getCmp('main-viewport')
                                         .getController()
                                         .redirectTo(

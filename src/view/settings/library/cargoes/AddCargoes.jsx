@@ -1,5 +1,6 @@
-import './CargoController.jsx';
-import '../../../../store/common/commodity/CommodityTypes.jsx';
+import './CargoController';
+import '../../../../store/common/commodity/CommodityTypes';
+
 Ext.define('Abraxa.view.settings.library.cargoes.AddCargoes', {
     extend: 'Ext.Dialog',
     xtype: 'settings.library.cargoes.add.dialog',

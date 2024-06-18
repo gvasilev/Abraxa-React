@@ -1,4 +1,5 @@
-import './IntegrationsMainContainer.jsx';
+import './IntegrationsMainContainer';
+
 Ext.define('Abraxa.view.settings.integrations.IntegrationsMain', {
     extend: 'Ext.Container',
     xtype: 'settings.integrations.main',

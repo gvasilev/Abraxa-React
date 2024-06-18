@@ -138,7 +138,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Terminal</div><div class="a-header-info-value c-blue cursor-pointer">{selectedRecord.terminal_name ? selectedRecord.terminal_name : "<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '<div class="a-header-info-title sm-title">Terminal</div><div class="a-header-info-value c-blue cursor-pointer">{selectedRecord.terminal.name ? selectedRecord.terminal.name : "<span class=\'a-placeholder\'>---</span>"}</div>',
                                     },
                                     listeners: {
                                         click: {

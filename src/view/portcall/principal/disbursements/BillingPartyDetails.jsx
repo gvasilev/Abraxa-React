@@ -1,7 +1,6 @@
 Ext.define('Abraxa.view.portcall.principal.disbursements.BillingPartyDetails', {
     extend: 'Ext.Container',
     xtype: 'BillingPartyDetails',
-    // padding: 0,
     layout: {
         type: 'vbox',
         align: 'stretch',
@@ -14,14 +13,12 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.BillingPartyDetails', {
                     deep: true,
                 },
                 get: function (billingParty) {
-                    if (billingParty && billingParty.get('pre_funding')) {
-                        return (
-                            billingParty.get('payment_term_value') +
-                            '%&nbsp;' +
-                            billingParty.get('pre_funding').term_name
-                        );
+                    const paymentName = billingParty?.get('payment_term_name');
+                    const paymentValue = billingParty?.get('payment_term_value');
+                    if (paymentName) {
+                        return `${paymentValue}% ${paymentName}`;
                     }
-                    return null;
+                    return '';
                 },
             },
         },

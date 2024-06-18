@@ -1,5 +1,6 @@
-import './CurrenciesHistoricalGrid.jsx';
-import '../../../store/settings/HistoricalRates.jsx';
+import './CurrenciesHistoricalGrid';
+import '../../../store/settings/HistoricalRates';
+
 Ext.define('Abraxa.view.settings.currencies.CurrenciesDetails', {
     extend: 'Ext.Container',
     xtype: 'settings.currencies.details',

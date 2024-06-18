@@ -1,4 +1,5 @@
-import '../../model/calculator/PriceBookService.jsx';
+import '../../model/calculator/PriceBookService';
+
 Ext.define('Abraxa.store.calculator.PriceBookService', {
     extend: 'Ext.data.Store',
     alias: 'store.calcpricebookservice',

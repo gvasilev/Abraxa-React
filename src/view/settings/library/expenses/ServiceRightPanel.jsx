@@ -1,5 +1,6 @@
-import './ServiceLibraryController.jsx';
-import './AssignCostCenterPopup.jsx';
+import './ServiceLibraryController';
+import './AssignCostCenterPopup';
+
 Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
     extend: 'Ext.Container',
     xtype: 'ServiceRightPanel',
@@ -158,6 +159,7 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
                             xtype: 'textfield',
                             label: 'Alias name',
                             placeholder: 'Enter alias name',
+                            cost_center_value: 'alias_name',
                             bind: {
                                 value: '{LibraryServicesGrid.selection.alias_name}',
                             },
@@ -178,6 +180,7 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
                             xtype: 'textfield',
                             label: 'Accounting code',
                             placeholder: 'Enter accounting code',
+                            cost_center_value: 'accounting_code',
                             bind: {
                                 value: '{LibraryServicesGrid.selection.accounting_code}',
                             },
@@ -311,8 +314,17 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
                                         placeholder: 'Enter accounting code',
                                         cost_center_value: 'accounting_code',
                                         bind: {
-                                            value: '{record.accounting_code}',
                                             disabled: '{record.reference_id === "abraxa_default" ? true:false}',
+                                        },
+                                        viewModel: {
+                                            formulas: {
+                                                setValue: {
+                                                    bind: '{record.accounting_code}',
+                                                    get: function (value) {
+                                                        this.getView().setValue(value);
+                                                    },
+                                                },
+                                            },
                                         },
                                     },
                                     {
@@ -323,8 +335,15 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceRightPanel', {
                                         cls: 'a-field-icon icon-short cost_center_field',
                                         placeholder: 'Enter description',
                                         cost_center_value: 'description',
-                                        bind: {
-                                            value: '{record.description}',
+                                        viewModel: {
+                                            formulas: {
+                                                setValue: {
+                                                    bind: '{record.description}',
+                                                    get: function (value) {
+                                                        this.getView().setValue(value);
+                                                    },
+                                                },
+                                            },
                                         },
                                     },
                                 ],

@@ -1,6 +1,7 @@
-import '../../../../core/components/Abraxa.EmailField.jsx';
-import '../../../tasks/AddTaskPopup.jsx';
+import '../../../../core/components/Abraxa.EmailField';
+import '../../../tasks/AddTaskPopup';
 import './ContactEditMenu';
+
 Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
     extend: 'Ext.Container',
     xtype: 'contacts.right.card',
@@ -30,12 +31,12 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                     bindTo: '{contactsGrid.selection}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         let store = this.get('comments');
                         if (store) store.clearFilter();
 
-                        return function (rec) {
+                        return function(rec) {
                             if (
                                 rec.get('noteable_type') == record.get('model_name') &&
                                 rec.get('noteable_id') == record.get('id')
@@ -44,7 +45,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             }
                         };
                     } else {
-                        return function (item) {
+                        return function(item) {
                             return true;
                         };
                     }
@@ -55,12 +56,12 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                     bindTo: '{contactsGrid.selection}',
                     deep: true,
                 },
-                get: function (record) {
+                get: function(record) {
                     if (record) {
                         let store = this.get('objectTasks');
                         if (store) store.clearFilter();
 
-                        return function (rec) {
+                        return function(rec) {
                             if (
                                 rec.get('taskable_type') == record.get('model_name') &&
                                 rec.get('taskable_id') == record.get('id')
@@ -69,7 +70,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             }
                         };
                     } else {
-                        return function (item) {
+                        return function(item) {
                             return true;
                         };
                     }
@@ -116,7 +117,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function () {
+                            handler: function() {
                                 let button = this;
 
                                 // Check if a note is already opened
@@ -128,7 +129,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
 
                                 let record = this.upVM().get('contactsGrid.selection'),
                                     subObjects = this.upVM().get('subObjects'),
-                                    subObject = Ext.Array.filter(subObjects, function (rec) {
+                                    subObject = Ext.Array.filter(subObjects, function(rec) {
                                         return rec.id == record.get('id') && rec.model == record.get('model_name');
                                     })[0];
 
@@ -187,21 +188,21 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 let container = this.find('contactsRightCard'),
                                     companyRecord = me.upVM().get('object_record'),
-                                    record = me.upVM().get('contactsGrid.selection'),
-                                    store = companyRecord.contacts();
+                                    record = me.upVM().get('contactsGrid.selection');
+                                store = companyRecord.contacts();
 
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function (answer) {
+                                    function(answer) {
                                         if (answer == 'yes') {
                                             container.hide();
                                             store.remove(record);
                                             store.sync({
-                                                success: function () {
+                                                success: function() {
                                                     me.upVM().get('organizations').reload();
                                                     Ext.toast('Record deleted', 1000);
                                                 },
@@ -223,7 +224,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                                             ui: 'decline alt',
                                             separator: true,
                                         },
-                                    ]
+                                    ],
                                 );
                             },
                         },
@@ -242,7 +243,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function (me) {
+                            handler: function(me) {
                                 me.up('[xtype=contacts\\.right\\.card]').hide();
                                 let companyContactsGrid = Ext.ComponentQuery.query('[cls~=contact_grid]')[0];
                                 if (companyContactsGrid) companyContactsGrid.deselectAll();
@@ -271,13 +272,13 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             permission: '{userPermissions}',
                         },
                         listeners: {
-                            blur: function (me) {
+                            blur: function(me) {
                                 let record = me.upVM().get('contactsGrid.selection'),
                                     object_record = me.upVM().get('object_record'),
                                     currentUser = me.upVM().get('currentUser');
                                 if (record.dirty) {
                                     record.save({
-                                        success: function () {
+                                        success: function() {
                                             object_record.set('updated_by_user', currentUser.getData());
                                             object_record.set('updated_at', new Date());
                                             Ext.toast('Record updated', 1000);
@@ -305,7 +306,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                                     placeholder: 'First name',
                                     testId: 'contactsRightCardFirstNameField',
                                     listeners: {
-                                        painted: function (me) {
+                                        painted: function(me) {
                                             me.focus();
                                         },
                                     },
@@ -381,7 +382,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             reference: 'company_combo',
                             placeholder: 'Choose company',
                             listeners: {
-                                change: function (me, newValue, oldValue) {
+                                change: function(me, newValue, oldValue) {
                                     if (!oldValue) return;
                                     // this.find('dept-combo').clearValue();
                                 },
@@ -442,13 +443,13 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsRightCard', {
                             placeholder: 'Short description',
                             testId: 'contactsRightCardDescriptionField',
                             listeners: {
-                                blur: function (me) {
+                                blur: function(me) {
                                     let record = me.upVM().get('contactsGrid.selection'),
                                         object_record = me.upVM().get('object_record'),
                                         currentUser = me.upVM().get('currentUser');
                                     if (record.dirty) {
                                         record.save({
-                                            success: function () {
+                                            success: function() {
                                                 object_record.set('updated_by_user', currentUser.getData());
                                                 object_record.set('updated_at', new Date());
                                                 Ext.toast('Record updated', 1000);

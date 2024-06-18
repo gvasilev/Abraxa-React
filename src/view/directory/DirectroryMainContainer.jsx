@@ -1,8 +1,9 @@
-import './DirectoryController.jsx';
-import './DirectoryViewModel.jsx';
-import '../main/MainHeader.jsx';
-import './agents/DirectoryAgentsGrid.jsx';
-import './ports/DirectoryPortsGrid.jsx';
+import './DirectoryController';
+import './DirectoryViewModel';
+import '../main/MainHeader';
+import './agents/DirectoryAgentsGrid';
+import './ports/DirectoryPortsGrid';
+
 Ext.define('Abraxa.view.directory.DirectoryMainContainer', {
     extend: 'Ext.Container',
     xtype: 'DirectoryMainContainer',
@@ -42,7 +43,7 @@ Ext.define('Abraxa.view.directory.DirectoryMainContainer', {
         },
     },
     listeners: {
-        painted: function (me) {
+        painted: function(me) {
             if (me.upVM().get('currentUserType') !== 'principal') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

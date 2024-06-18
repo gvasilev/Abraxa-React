@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysRightCard', {
                                 let vm = this.upVM(),
                                     store = vm.get('portsServerGrid.selection').holidays(),
                                     container = this.find('holidaysRightCard'),
-                                    portserveRecord = vm.get('portserveRecord'),
+                                    portServedRecord = vm.get('portServedRecord'),
                                     currentUser = vm.get('currentUser'),
                                     record = vm.get('holidaysGrid.selection');
                                 Ext.Msg.confirm(
@@ -126,9 +126,9 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysRightCard', {
                                             store.remove(record);
                                             store.sync({
                                                 success: function (err, msg) {
-                                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                                    portserveRecord.set('updated_at', new Date());
-                                                    portserveRecord.save();
+                                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                                    portServedRecord.set('updated_at', new Date());
+                                                    portServedRecord.save();
                                                     Ext.toast('Record updated', 1000);
                                                 },
                                                 failure: function (batch) {
@@ -197,14 +197,14 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysRightCard', {
                 listeners: {
                     blur: function (me) {
                         let record = me.upVM().get('holidaysGrid.selection'),
-                            portserveRecord = me.upVM().get('portserveRecord'),
+                            portServedRecord = me.upVM().get('portServedRecord'),
                             currentUser = me.upVM().get('currentUser');
                         if (record.dirty) {
                             record.save({
                                 success: function (rec) {
-                                    portserveRecord.set('updated_by_user', currentUser.getData());
-                                    portserveRecord.set('updated_at', new Date());
-                                    portserveRecord.save();
+                                    portServedRecord.set('updated_by_user', currentUser.getData());
+                                    portServedRecord.set('updated_at', new Date());
+                                    portServedRecord.save();
                                     Ext.toast('Record updated', 1000);
                                 },
                             });

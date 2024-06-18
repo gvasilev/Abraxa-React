@@ -1,5 +1,6 @@
-import '../settings/port/WorkingTime.jsx';
-import '../settings/port/PortService.jsx';
+import '../settings/port/WorkingTime';
+import '../settings/port/PortService';
+
 Ext.define('Abraxa.model.common.Terminal', {
     extend: 'Ext.data.Model',
     fields: [

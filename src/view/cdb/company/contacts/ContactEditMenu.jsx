@@ -14,7 +14,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactEditMenu', {
                 permission: '{userPermissions}',
             },
             iconCls: 'md-icon-outlined md-icon-edit',
-            handler: function (me) {
+            handler: function(me) {
                 let record = me.upVM().get('selectedContact');
                 if (record) {
                     Ext.create('Abraxa.view.cdb.company.contacts.AddContact', {
@@ -39,23 +39,23 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactEditMenu', {
                 permission: '{userPermissions}',
             },
             separator: true,
-            handler: function (me) {
+            handler: function(me) {
                 let container = this.find('contactsRightCard'),
                     organizations = Ext.getCmp('main-viewport').getViewModel().get('organizations'),
                     currentUser = Ext.getCmp('main-viewport').getViewModel().get('currentUser'),
-                    record = me.upVM().get('selectedContact'),
-                    store = me.upVM().get('contacts');
+                    record = me.upVM().get('selectedContact');
+                store = me.upVM().get('contacts');
 
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you would like to delete this entry?',
-                    function (answer) {
+                    function(answer) {
                         if (answer == 'yes') {
                             container.hide();
                             store.remove(record);
 
                             store.sync({
-                                success: function () {
+                                success: function() {
                                     let organization = organizations.getById(record.get('contact_org_id'));
                                     if (organization) {
                                         organization.set('updated_by_user', currentUser.getData());
@@ -82,7 +82,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactEditMenu', {
                             ui: 'decline alt',
                             separator: true,
                         },
-                    ]
+                    ],
                 );
             },
         },

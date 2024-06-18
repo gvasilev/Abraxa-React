@@ -1,9 +1,10 @@
 import '../../controller/CalculationController';
 
-Ext.define('Abraxa.view.pda.PDAConmtroller', {
+Ext.define('Abraxa.view.pda.PDAController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.pda-controller',
-    init: function () {},
+    init: function() {
+    },
 
     listen: {
         controller: {
@@ -33,20 +34,40 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         },
     },
 
-    onCalculationServiceFieldComplete: function (editor) {
-        const store = editor.up('grid').upVM().get('calculationServices');
+    onPDAItemsFieldComplete: function(editor) {
+        const store = editor.up('grid').upVM().get('services');
+        this.syncGridStore(store);
+    },
 
+    onCalculationServiceFieldComplete: function(editor) {
+        const store = editor.up('grid').upVM().get('calculationServices');
+        this.syncGridStore(store);
+    },
+
+    syncGridStore: function(store) {
         store.sync({
-            success: function () {
+            success: function() {
                 Ext.toast('Record updated', 1000);
             },
-            failure: function (error) {
-                store.reload();
+            failure: function(batch, options) {
+                let { title, message } = AbraxaConstants.messages.anErrorOccured;
+                if (
+                    batch.operations &&
+                    batch.operations[0] &&
+                    batch.operations[0].error &&
+                    batch.operations[0].error.response &&
+                    batch.operations[0].error.response.responseJson &&
+                    batch.operations[0].error.response.responseJson.message
+                ) {
+                    message = batch.operations[0].error.response.responseJson.message;
+                }
+
+                Ext.Msg.alert(title, message);
             },
         });
     },
 
-    updateOfferDataFieldComponentDataView: function (field) {
+    updateOfferDataFieldComponentDataView: function(field) {
         let subField = field,
             record = subField.getParent().serviceField;
 
@@ -57,8 +78,8 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
                 offerDataFields = subField.upVM().get('offerDataFieldsStore'),
                 calculation = subField.upVM().get('calculation');
 
-            Ext.Object.each(data, function (key, value) {
-                value.items.forEach(function (item) {
+            Ext.Object.each(data, function(key, value) {
+                value.items.forEach(function(item) {
                     if (item.fieldID === fieldID) {
                         item.value = subField.getValue();
                     }
@@ -68,9 +89,9 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             record.set('children', data);
             if (record.dirty) {
                 record.save({
-                    success: function () {
+                    success: function() {
                         calculation.load({
-                            callback: function () {
+                            callback: function() {
                                 calculationServices.reload();
                                 Ext.toast('Record updated');
                             },
@@ -81,7 +102,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         }
     },
 
-    updateOfferDataFieldComboboxComponentDataView: function (field) {
+    updateOfferDataFieldComboboxComponentDataView: function(field) {
         let subField = field.ownerCmp,
             record = subField.getParent().serviceField;
 
@@ -92,8 +113,8 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
                 offerDataFields = this.getView().upVM().get('offerDataFieldsStore'),
                 calculation = subField.upVM().get('calculation');
 
-            Ext.Object.each(data, function (key, value) {
-                value.items.forEach(function (item) {
+            Ext.Object.each(data, function(key, value) {
+                value.items.forEach(function(item) {
                     if (item.fieldID === fieldID) {
                         item.value = subField.getValue();
                     }
@@ -103,10 +124,10 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             record.set('children', data);
             if (record.dirty) {
                 record.save({
-                    success: function () {
+                    success: function() {
                         subField.blur();
                         calculation.load({
-                            callback: function () {
+                            callback: function() {
                                 calculationServices.reload();
                                 Ext.toast('Record updated');
                             },
@@ -117,12 +138,12 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         }
     },
 
-    updateOfferDataField: function (field) {
+    updateOfferDataField: function(field) {
         let record = field.upVM().get('record'),
             fieldsStore = field.upVM().get('offerDataFieldsStore');
         if (record.dirty) {
             record.save({
-                success: function (record, operation) {
+                success: function(record, operation) {
                     field.blur();
                     // field.upVM().get('calculation').load();
                     field.upVM().get('calculationServices').reload();
@@ -132,13 +153,13 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             });
         }
     },
-    updateOfferDataFieldCombobox: function (field) {
+    updateOfferDataFieldCombobox: function(field) {
         let record = field.upVM().get('record'),
             fieldsStore = field.upVM().get('offerDataFieldsStore');
 
         if (record.dirty) {
             record.save({
-                success: function (record, operation) {
+                success: function(record, operation) {
                     field.ownerCmp.blur();
                     // field.upVM().get('calculation').load();
                     field.upVM().get('calculationServices').reload();
@@ -149,37 +170,37 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         }
     },
 
-    applyFields: function (fields) {
+    applyFields: function(fields) {
         this.getView().upVM().set('offerDataFields', fields);
     },
 
-    applyItemFields: function (fields, vm) {
+    applyItemFields: function(fields, vm) {
         vm.set('itemFields', fields);
     },
 
-    onOfferDataFieldsLoad: function (store) {
+    onOfferDataFieldsLoad: function(store) {
         this.fireEvent(
             'buildOfferDataFields',
             {
                 fields: store,
                 calculation_id: this.getView().lookupViewModel().get('calculationId'),
             },
-            this.getView().upVM()
+            this.getView().upVM(),
         );
     },
 
-    buildOfferDataFields: function (record, vm) {
+    buildOfferDataFields: function(record, vm) {
         this.fireEvent(
             'buildOfferDataFields',
             {
                 fields: record.dataFields(),
                 calculation_id: record.get('id'),
             },
-            vm
+            vm,
         );
     },
 
-    buildItemFields: function (record, vm) {
+    buildItemFields: function(record, vm) {
         this.fireEvent('buildItemFields', {
             fields: record.serviceFields(),
             calculation_id: Ext.ComponentQuery.query('[xtype=pda]')[0].getVM().get('calculationId'),
@@ -188,7 +209,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         });
     },
 
-    save: function (cmp) {
+    save: function(cmp) {
         let vm = cmp.upVM(),
             record = vm.get('pda_record'),
             updated = false,
@@ -217,24 +238,24 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
 
         if (updated) Ext.toast('Record updated', 1000);
     },
-    sumPdaRender: function (value) {
+    sumPdaRender: function(value) {
         return Ext.util.Format.number(value, '0,000.00');
     },
-    onDragLeave: function (target, info) {
+    onDragLeave: function(target, info) {
         this.getView().element.removeCls('active');
     },
 
-    onDragOverListItem: function (target, info) {
+    onDragOverListItem: function(target, info) {
         if (this.getViewModel().get('pda.status') !== 'draft') return;
         Ext.get('pda-attachments-container').addCls('a-dropped');
     },
 
-    onDragLeaveListItem: function (target, info) {
+    onDragLeaveListItem: function(target, info) {
         if (this.getViewModel().get('pda.status') !== 'draft') return;
         Ext.get('pda-attachments-container').removeCls('a-dropped');
     },
 
-    onDrop: function (event, info, eOpts) {
+    onDrop: function(event, info, eOpts) {
         if (this.getViewModel().get('pda.status') !== 'draft') return;
 
         if (event.browserEvent) {
@@ -265,9 +286,9 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
                 Ext.Msg.warning(
                     'Upload Cancelled',
                     'Your file(s) payload size (' +
-                        (totalSize / 1024 / 1024).toFixed(2) +
-                        ' MB) <br /> is exceeding the maximum allowed size (10 MB) per upload. </br>' +
-                        '<br/>Please try uploading on smaller chunks, or reduce the size of your files <br />'
+                    (totalSize / 1024 / 1024).toFixed(2) +
+                    ' MB) <br /> is exceeding the maximum allowed size (10 MB) per upload. </br>' +
+                    '<br/>Please try uploading on smaller chunks, or reduce the size of your files <br />',
                 );
                 fileStore.remove(fileStore.last());
                 return;
@@ -276,7 +297,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             this.upload(files, targetComponent);
         }
     },
-    upload: function (files, el) {
+    upload: function(files, el) {
         var me = this,
             view = me.getView(),
             vm = view.upVM(),
@@ -314,7 +335,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
                             xtype: 'button',
                             ui: 'action',
                             text: 'Ok',
-                            handler: function () {
+                            handler: function() {
                                 this.up('dialog').destroy();
                             },
                         },
@@ -330,7 +351,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             headers: {
                 'Content-Type': null,
             },
-            success: function (response) {
+            success: function(response) {
                 record.load();
                 Ext.getCmp('uploadProgress').hide();
                 Abraxa.utils.Functions.updateInquiry(vm.get('object_record'));
@@ -344,7 +365,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             },
         });
     },
-    uploadFiles: function (element) {
+    uploadFiles: function(element) {
         var me = this,
             view = me.getView(),
             vm = view.upVM(),
@@ -383,7 +404,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
                             xtype: 'button',
                             ui: 'action',
                             text: 'Ok',
-                            handler: function () {
+                            handler: function() {
                                 this.up('dialog').destroy();
                             },
                         },
@@ -400,7 +421,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             headers: {
                 'Content-Type': null,
             },
-            success: function (response) {
+            success: function(response) {
                 let jsonData = JSON.parse(response.responseText);
                 record.load();
                 Ext.getCmp('uploadProgress').hide();
@@ -427,7 +448,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
         tmpForm.reset();
         parentNod.replaceChild(fileField, tmpForm);
     },
-    deleteFiles: function (ids, record, object_record) {
+    deleteFiles: function(ids, record, object_record) {
         Ext.Ajax.request({
             url: Env.ApiEndpoint + 'attachments/' + record.get('id'),
             jsonData: {
@@ -437,7 +458,7 @@ Ext.define('Abraxa.view.pda.PDAConmtroller', {
             headers: {
                 'Content-Type': null,
             },
-            success: function (response) {
+            success: function(response) {
                 Abraxa.utils.Functions.updateInquiry(object_record);
             },
             failure: function failure(response) {

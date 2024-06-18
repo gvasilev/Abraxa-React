@@ -1,7 +1,8 @@
-import './OperationsMainContainerViewModel.jsx';
-import './PortcallsPrincipal/PortcallsPrincipalMain.jsx';
-import './DisbursementsPrincipal/DisbursementsPrincipalMain.jsx';
-import './VoyagePrincipal/VoyagePrincipalMain.jsx';
+import './OperationsMainContainerViewModel';
+import './PortcallsPrincipal/PortcallsPrincipalMain';
+import './DisbursementsPrincipal/DisbursementsPrincipalMain';
+import './VoyagePrincipal/VoyagePrincipalMain';
+
 Ext.define('Abraxa.view.operations.OperationsMainContainer', {
     extend: 'Ext.Container',
     xtype: 'OperationsMainContainer',

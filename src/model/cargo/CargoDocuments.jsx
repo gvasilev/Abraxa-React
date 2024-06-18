@@ -1,4 +1,5 @@
-import '../adocs/Document.jsx';
+import '../adocs/Document';
+
 Ext.define('Abraxa.model.cargo.CargoDocument', {
     extend: 'Abraxa.model.adocs.DocumentData',
     belongsTo: [

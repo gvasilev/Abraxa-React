@@ -1,4 +1,5 @@
 import './TaskForm';
+
 Ext.define('Abraxa.view.tasks.AddTaskPopup', {
     extend: 'Ext.Dialog',
     xtype: 'add.task',
@@ -6,7 +7,6 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
     bind: {
         title: '{taskEdit ? "Edit Task" : "New Task"}',
     },
-    cls: 'constrain_horizontal',
     right: 80,
     bottom: 0,
     // alwaysOnTop: true,
@@ -20,19 +20,6 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
         tool: false,
     },
     draggable: false,
-    // listeners: {
-    //     painted: function (me) {
-    //         var drag = new Ext.drag.Source({
-    //             element: me.element,
-    //             constrain: {
-    //                 // Constrain dragging vertically only. Also to the parent container.
-    //                 element: Ext.getCmp('main-viewport').element,
-    //                 horizontal: true
-    //             }
-    //         });
-    //     }
-    // },
-    // constrainDrag: false,
     focusable: false,
     closable: false,
     minHeight: 410,
@@ -57,10 +44,9 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
                 },
                 get: function (record) {
                     if (record) {
-                        let object_type = record.get('model_name'),
-                            html = '';
+                        let html = '';
 
-                        var str = object_type;
+                        var str = record.get('model_name');
                         var n = str.lastIndexOf('\\');
                         var result = str.substring(n + 1);
 
@@ -172,16 +158,6 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
                         },
                     ]
                 );
-
-                // Ext.Msg.confirm(
-                //     'Confirmation',
-                //     'Are you sure you want to close?',
-                //     function (answer) {
-                //         if (answer == 'yes') {
-                //             dialog.destroy();
-                //         }
-                //     }
-                // );
             },
         },
     },

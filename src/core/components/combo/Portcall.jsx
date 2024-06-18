@@ -1,4 +1,4 @@
-import '../../../store/common/PortcallsRemote.jsx'
+import '../../../store/common/PortcallsRemote';
 
 Ext.define('Abraxa.core.components.combo.Portcall', {
     extend: 'Ext.field.ComboBox',
@@ -14,7 +14,7 @@ Ext.define('Abraxa.core.components.combo.Portcall', {
         '</div>',
     valueField: 'id',
     displayTpl: new Ext.XTemplate('{[this.create(values)]}', {
-        create: function (values) {
+        create: function(values) {
             let store = Ext.ComponentQuery.query('portcall\\.combo')[0].getStore(),
                 record = store.getById(values.id);
 
@@ -37,7 +37,7 @@ Ext.define('Abraxa.core.components.combo.Portcall', {
     },
     queryMode: 'remote',
     listeners: {
-        beforequery: function () {
+        beforequery: function() {
             let store = this.getStore();
             if (!store.loadCount) store.load();
         },

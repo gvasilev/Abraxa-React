@@ -1,5 +1,4 @@
-
-import '../../model/cdb/Department.jsx';
+import '../../model/cdb/Department';
 
 Ext.define('Abraxa.store.cdb.Departments', {
     extend: 'Ext.data.Store',

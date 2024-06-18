@@ -1,13 +1,14 @@
-import '../account/Account.jsx';
-import '../payment/Payment.jsx';
-import './Voucher.jsx';
-import './Sharing.jsx';
-import './DisbursementMember.jsx';
-import '../approval/Approval.jsx';
-import '../portcall/Note.jsx';
-import '../task/Task.jsx';
-import '../document/Document.jsx';
-import '../portcall/Expense.jsx';
+import '../account/Account';
+import '../payment/Payment';
+import './Voucher';
+import './Sharing';
+import './DisbursementMember';
+import '../approval/Approval';
+import '../portcall/Note';
+import '../task/Task';
+import '../document/Document';
+import '../portcall/Expense';
+
 Ext.define('Abraxa.model.disbursement.Disbursement', {
     extend: 'Ext.data.Model',
     idProperty: 'id',
@@ -82,7 +83,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
         {
             name: 'is_locked',
             type: 'boolean',
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 if (rec.get('status') != 'draft') {
                     return true;
                 }
@@ -95,7 +96,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
         {
             name: 'show_variance',
             type: 'boolean',
-            mapping: function (res) {
+            mapping: function(res) {
                 if (res.data && res.data.show_variance) return true;
                 return false;
             },
@@ -129,7 +130,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             persist: false,
             depends: ['show_vat', 'show_discount'],
             type: 'boolean',
-            convert: function (v, rec) {
+            convert: function(v, rec) {
                 if (rec.get('show_vat') || rec.get('show_discount')) {
                     return true;
                 }
@@ -186,7 +187,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'portcall_eta',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.portcall && data.portcall.port_eta) return Date.parse(data.portcall.port_eta);
             },
         },
@@ -194,7 +195,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'portcall_etd',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.portcall && data.portcall.port_etd) return Date.parse(data.portcall.port_etd);
             },
         },
@@ -202,7 +203,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'voyage_number',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.portcall && data.portcall.nomination && data.portcall.nomination.voyage_number)
                     return data.portcall.nomination.voyage_number;
                 return AbraxaConstants.placeholders.emptyValue;
@@ -212,7 +213,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'agency_type',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 if (data && data.portcall && data.portcall.nomination && data.portcall.nomination.agency_type_name)
                     return data.portcall.nomination.agency_type_name;
                 return AbraxaConstants.placeholders.emptyValue;
@@ -222,7 +223,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'sub_agent',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 let subAgent = {
                     org_name: null,
                     org_id: null,
@@ -239,11 +240,11 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'pda_final_price',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 let expenses = data.expenses;
                 let total = 0;
                 if (expenses) {
-                    expenses.forEach(function (expense) {
+                    expenses.forEach(function(expense) {
                         total += parseFloat(expense.pda_final_price);
                     });
                 }
@@ -254,11 +255,11 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'dda_final_price',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 let expenses = data.expenses;
                 let total = 0;
                 if (expenses) {
-                    expenses.forEach(function (expense) {
+                    expenses.forEach(function(expense) {
                         total += parseFloat(expense.dda_final_price);
                     });
                 }
@@ -269,11 +270,11 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
             name: 'fda_final_price',
             depends: 'updated_at',
             persist: false,
-            mapping: function (data) {
+            mapping: function(data) {
                 let expenses = data.expenses;
                 let total = 0;
                 if (expenses) {
-                    expenses.forEach(function (expense) {
+                    expenses.forEach(function(expense) {
                         if (expense && expense.fda_final_price) total += parseFloat(expense.fda_final_price);
                     });
                 }
@@ -303,7 +304,7 @@ Ext.define('Abraxa.model.disbursement.Disbursement', {
         {
             name: 'show_quantity',
             type: 'boolean',
-            mapping: function (res) {
+            mapping: function(res) {
                 if (res.data && res.data.show_quantity) return true;
                 return false;
             },

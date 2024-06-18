@@ -1,6 +1,7 @@
-import './CreateAppointmentViewModel.jsx';
-import '../../voyage/VoyageAppointmentCargo.jsx';
-import '../../voyage/VoyageAppointmentInstruction.jsx';
+import './CreateAppointmentViewModel';
+import '../../voyage/VoyageAppointmentCargo';
+import '../../voyage/VoyageAppointmentInstruction';
+
 Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
     extend: 'Ext.Container',
     xtype: 'CreateAppointment',
@@ -116,7 +117,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                             },
                                                                             cls: 'a-field-icon icon-rounded icon-vessel a-classic-has-tbn',
                                                                             listeners: {
-                                                                                painted: function (me) {
+                                                                                painted: function(me) {
                                                                                     me.focus();
                                                                                     me.setError(null);
                                                                                     let record = me
@@ -127,12 +128,12 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                         if (record.get('vessel')) {
                                                                                             me.setInputValue(
                                                                                                 record.get('vessel')
-                                                                                                    .name
+                                                                                                    .name,
                                                                                             );
                                                                                         }
                                                                                     }
                                                                                 },
-                                                                                select: function () {
+                                                                                select: function() {
                                                                                     let selection = this.getSelection(),
                                                                                         voyage = this.upVM()
                                                                                             .get('portcall')
@@ -140,15 +141,15 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                     if (selection) {
                                                                                         voyage.set(
                                                                                             'vessel_name',
-                                                                                            selection.get('name')
+                                                                                            selection.get('name'),
                                                                                         );
                                                                                         voyage.set(
                                                                                             'vessel_imo',
-                                                                                            selection.get('imo')
+                                                                                            selection.get('imo'),
                                                                                         );
                                                                                         voyage.set(
                                                                                             'vessel_id',
-                                                                                            selection.get('id')
+                                                                                            selection.get('id'),
                                                                                         );
                                                                                     }
                                                                                 },
@@ -170,7 +171,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 value: '{portcall.voyage.voyage_number}',
                                                                             },
                                                                             listeners: {
-                                                                                painted: function (me) {
+                                                                                painted: function(me) {
                                                                                     me.setError(null);
                                                                                 },
                                                                             },
@@ -210,14 +211,14 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                             },
                                                                             cls: 'a-field-icon icon-rounded icon-business-center',
                                                                             listeners: {
-                                                                                select: function (me, selection) {
+                                                                                select: function(me, selection) {
                                                                                     if (selection) {
                                                                                         let voyage = this.upVM()
                                                                                             .get('portcall')
                                                                                             .getVoyage();
                                                                                         voyage.set(
                                                                                             'office_name',
-                                                                                            selection.get('office_name')
+                                                                                            selection.get('office_name'),
                                                                                         );
                                                                                     }
                                                                                 },
@@ -316,7 +317,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 inputValue: '{portcall.port_name}',
                                                                             },
                                                                             listeners: {
-                                                                                painted: function (me) {
+                                                                                painted: function(me) {
                                                                                     let comboStore = me.getStore();
                                                                                     if (comboStore) {
                                                                                         comboStore.addFilter({
@@ -336,13 +337,13 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                                 query: me
                                                                                                     .upVM()
                                                                                                     .get(
-                                                                                                        'portcall.port_id'
+                                                                                                        'portcall.port_id',
                                                                                                     ),
                                                                                             },
-                                                                                            callback: function (
+                                                                                            callback: function(
                                                                                                 records,
                                                                                                 operation,
-                                                                                                success
+                                                                                                success,
                                                                                             ) {
                                                                                                 // do something after the load finishes
                                                                                             },
@@ -351,20 +352,20 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                         me.setValue(
                                                                                             me
                                                                                                 .upVM()
-                                                                                                .get('portcall.port_id')
+                                                                                                .get('portcall.port_id'),
                                                                                         );
                                                                                     }
                                                                                 },
-                                                                                select: function (me, selection) {
+                                                                                select: function(me, selection) {
                                                                                     let record =
                                                                                         this.upVM().get('portcall');
 
                                                                                     record.set(
                                                                                         'port_name',
-                                                                                        selection.get('port_name')
+                                                                                        selection.get('port_name'),
                                                                                     );
                                                                                 },
-                                                                                clearicontap: function () {
+                                                                                clearicontap: function() {
                                                                                     let record =
                                                                                         this.upVM().get('portcall');
                                                                                     record.set('port_id', null);
@@ -428,19 +429,19 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                             forceSelection: false,
                                                                             floatedPicker: {
                                                                                 listeners: {
-                                                                                    select: function () {
+                                                                                    select: function() {
                                                                                         let record =
                                                                                                 this.upVM().get(
-                                                                                                    'portcall'
+                                                                                                    'portcall',
                                                                                                 ),
                                                                                             port_id =
                                                                                                 this.getSelection().get(
-                                                                                                    'port_id'
+                                                                                                    'port_id',
                                                                                                 );
 
                                                                                         record.set(
                                                                                             'previous_port_id',
-                                                                                            port_id
+                                                                                            port_id,
                                                                                         );
                                                                                     },
                                                                                 },
@@ -450,12 +451,12 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 inputValue: '{portcall.previous_port}',
                                                                             },
                                                                             listeners: {
-                                                                                painted: function (me) {
+                                                                                painted: function(me) {
                                                                                     if (
                                                                                         me
                                                                                             .upVM()
                                                                                             .get(
-                                                                                                'portcall.previous_port'
+                                                                                                'portcall.previous_port',
                                                                                             )
                                                                                     ) {
                                                                                         me.getStore().load({
@@ -463,13 +464,13 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                                 query: me
                                                                                                     .upVM()
                                                                                                     .get(
-                                                                                                        'portcall.previous_port'
+                                                                                                        'portcall.previous_port',
                                                                                                     ),
                                                                                             },
-                                                                                            callback: function (
+                                                                                            callback: function(
                                                                                                 records,
                                                                                                 operation,
-                                                                                                success
+                                                                                                success,
                                                                                             ) {
                                                                                                 // do something after the load finishes
                                                                                             },
@@ -479,17 +480,17 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                             me
                                                                                                 .upVM()
                                                                                                 .get(
-                                                                                                    'portcall.previous_port'
-                                                                                                )
+                                                                                                    'portcall.previous_port',
+                                                                                                ),
                                                                                         );
                                                                                     }
                                                                                 },
-                                                                                clearicontap: function () {
+                                                                                clearicontap: function() {
                                                                                     let record =
                                                                                         this.upVM().get('portcall');
                                                                                     record.set(
                                                                                         'previous_port_id',
-                                                                                        null
+                                                                                        null,
                                                                                     );
                                                                                 },
                                                                             },
@@ -511,19 +512,19 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                             forceSelection: false,
                                                                             floatedPicker: {
                                                                                 listeners: {
-                                                                                    select: function () {
+                                                                                    select: function() {
                                                                                         let record =
                                                                                                 this.upVM().get(
-                                                                                                    'portcall'
+                                                                                                    'portcall',
                                                                                                 ),
                                                                                             port_id =
                                                                                                 this.getSelection().get(
-                                                                                                    'port_id'
+                                                                                                    'port_id',
                                                                                                 );
 
                                                                                         record.set(
                                                                                             'next_port_id',
-                                                                                            port_id
+                                                                                            port_id,
                                                                                         );
                                                                                     },
                                                                                 },
@@ -533,7 +534,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 inputValue: '{portcall.next_port}',
                                                                             },
                                                                             listeners: {
-                                                                                painted: function (me) {
+                                                                                painted: function(me) {
                                                                                     if (
                                                                                         me
                                                                                             .upVM()
@@ -544,13 +545,13 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                                 query: me
                                                                                                     .upVM()
                                                                                                     .get(
-                                                                                                        'portcall.next_port'
+                                                                                                        'portcall.next_port',
                                                                                                     ),
                                                                                             },
-                                                                                            callback: function (
+                                                                                            callback: function(
                                                                                                 records,
                                                                                                 operation,
-                                                                                                success
+                                                                                                success,
                                                                                             ) {
                                                                                                 // do something after the load finishes
                                                                                             },
@@ -560,12 +561,12 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                             me
                                                                                                 .upVM()
                                                                                                 .get(
-                                                                                                    'portcall.next_port'
-                                                                                                )
+                                                                                                    'portcall.next_port',
+                                                                                                ),
                                                                                         );
                                                                                     }
                                                                                 },
-                                                                                clearicontap: function () {
+                                                                                clearicontap: function() {
                                                                                     let record =
                                                                                         this.upVM().get('portcall');
                                                                                     record.set('next_port_id', null);
@@ -653,8 +654,8 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                         value: '{nomination.lead_agent_id}',
                                                                     },
                                                                     listeners: {
-                                                                        initialize: function () {
-                                                                            this.on('painted', function (me) {
+                                                                        initialize: function() {
+                                                                            this.on('painted', function(me) {
                                                                                 const currentUser = me
                                                                                     .upVM()
                                                                                     .get('currentUser');
@@ -665,35 +666,35 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 if (
                                                                                     currentUser &&
                                                                                     currentUser.get(
-                                                                                        'preferred_hub_agent_id'
+                                                                                        'preferred_hub_agent_id',
                                                                                     )
                                                                                 ) {
                                                                                     nomination.set(
                                                                                         'lead_agent_id',
                                                                                         currentUser.get(
-                                                                                            'preferred_hub_agent_id'
-                                                                                        )
+                                                                                            'preferred_hub_agent_id',
+                                                                                        ),
                                                                                     );
                                                                                     //pre-select HUB agent
                                                                                     nomination.set('agency_type_id', 9);
                                                                                 }
                                                                             });
                                                                         },
-                                                                        select: function () {
+                                                                        select: function() {
                                                                             let selection = this.getSelection(),
                                                                                 record = this.upVM()
                                                                                     .get('portcall')
                                                                                     .getNomination();
                                                                             record.set(
                                                                                 'lead_agent_name',
-                                                                                selection.get('name')
+                                                                                selection.get('name'),
                                                                             );
                                                                             record.set(
                                                                                 'lead_agent_email',
-                                                                                selection.get('email')
+                                                                                selection.get('email'),
                                                                             );
                                                                         },
-                                                                        painted: function (me) {
+                                                                        painted: function(me) {
                                                                             me.setError(null);
                                                                         },
                                                                     },
@@ -712,20 +713,20 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                         padding: '0 4',
                                                                         height: 22,
                                                                         listeners: {
-                                                                            check: function (me) {
+                                                                            check: function(me) {
                                                                                 let nomination = me
                                                                                     .upVM()
                                                                                     .get('portcall')
                                                                                     .getNomination();
                                                                                 nomination.set(
                                                                                     'agency_type_name',
-                                                                                    me.getLabel()
+                                                                                    me.getLabel(),
                                                                                 );
                                                                             },
                                                                         },
                                                                     },
                                                                     listeners: {
-                                                                        painted: function (me) {
+                                                                        painted: function(me) {
                                                                             let nomination = me
                                                                                 .upVM()
                                                                                 .get('portcall')
@@ -735,7 +736,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
                                                                                 nomination.get('agency_type_id')
                                                                             ) {
                                                                                 me.setValue(
-                                                                                    nomination.get('agency_type_id')
+                                                                                    nomination.get('agency_type_id'),
                                                                                 );
                                                                             } else {
                                                                                 me.setValue(8);
@@ -944,7 +945,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
             right: 16,
         },
     ],
-    initializeRecord: function () {
+    initializeRecord: function() {
         Ext.getCmp('main-viewport').setMasked({
             xtype: 'viewport.mask',
         });
@@ -956,7 +957,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.CreateAppointment', {
         });
         let voyage = Ext.create('Abraxa.model.voyage.Voyage');
         let nomination = Ext.create('Abraxa.model.nomination.Nomination');
-            portcall.setVoyage(voyage);
+        portcall.setVoyage(voyage);
         portcall.setNomination(nomination);
         this.setRecord(portcall);
         Ext.getCmp('main-viewport').setMasked(false);

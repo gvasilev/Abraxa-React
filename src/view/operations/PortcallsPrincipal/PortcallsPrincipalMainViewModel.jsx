@@ -1,4 +1,5 @@
-import '../../../store/portcalls/PortcallsPrincipal.js';
+import '../../../store/portcalls/PortcallsPrincipal';
+
 Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.PortcallsPrincipalMainViewModel',
@@ -20,7 +21,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainView
                 bindTo: '{tabbarItems}',
                 deep: true,
             },
-            get: function (buttons) {
+            get: function(buttons) {
                 if (buttons.length === 0) return;
                 const stateProvider = Ext.state.Provider.get();
                 let record = stateProvider.get('portcall-principal-tabbar');
@@ -46,7 +47,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainView
             bind: {
                 bindTo: '{portcallsPrincipal}',
             },
-            get: function (store) {
+            get: function(store) {
                 let filterButtons = [];
 
                 const vm = this;
@@ -56,7 +57,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainView
                         'Content-Type': 'application/json',
                     },
                     method: 'GET',
-                    success: function (response, opts) {
+                    success: function(response, opts) {
                         const res = JSON.parse(response.responseText);
                         filterButtons.push(
                             ...res.map((item) => {
@@ -72,14 +73,14 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainView
                                         item.portcalls_count +
                                         '</em>',
                                 };
-                            })
+                            }),
                         );
                         const totalPortCallRecords = res.map((item) => item.portcalls_count).reduce((a, b) => a + b, 0);
 
                         vm.set('totalPortCallRecords', totalPortCallRecords);
                         vm.set('tabbarItems', filterButtons);
                     },
-                    failure: function (response, opts) {
+                    failure: function(response, opts) {
                         // Ext.Msg.warning('Warning', 'The right data could not be loaded. Please try again later.');
                         // return response;
                     },

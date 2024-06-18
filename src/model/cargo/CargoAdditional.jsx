@@ -31,7 +31,6 @@ Ext.define('Abraxa.model.cargo.CargoAdditional', {
         url: Env.ApiEndpoint + 'cargo/${cargo_id}/additional_quantity',
         writer: {
             allowSingle: false,
-            rootProperty: 'cargo_additionals',
         },
     },
 });

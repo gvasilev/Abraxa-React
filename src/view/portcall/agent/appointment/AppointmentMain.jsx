@@ -1,7 +1,8 @@
-import './AppointmentViewModel.jsx';
-import './AppointmentGeneral.jsx';
-import './AppointmentRightCard.jsx';
-import './InstructionRightCard.jsx';
+import './AppointmentViewModel';
+import './AppointmentGeneral';
+import './AppointmentRightCard';
+import './InstructionRightCard';
+
 Ext.define('Abraxa.view.portcall.appointment.AppointmentMain', {
     extend: 'Ext.Container',
     xtype: 'appointment.main',
@@ -60,7 +61,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentMain', {
                                                     align: 'bc-tc?',
                                                 },
                                             },
-                                            handler: function () {
+                                            handler: function() {
                                                 let panel = Ext.ComponentQuery.query('[cls~=appointment_left_menu]')[0],
                                                     cls = panel.getUserCls() == 'is-expanded';
 
@@ -121,7 +122,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentMain', {
                                         ],
                                     },
                                     listeners: {
-                                        painted: function (me) {
+                                        painted: function(me) {
                                             me.select(0);
                                         },
                                     },

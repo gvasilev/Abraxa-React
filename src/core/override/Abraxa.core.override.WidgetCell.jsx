@@ -11,24 +11,9 @@ Ext.define('Abraxa.core.override.WidgetCell', {
         let subObject = this.getSubObject();
         if (subObject && permissions) {
             if (permissions[subObject]) {
-                // this.setBind({
-                //     permissions: null
-                // });
                 var action = permissions[subObject];
-                // if (this.getXTypes().indexOf('commodity.combo') > -1)
-                // console.log(this, action);
 
                 if (action.can_edit) {
-                    // if (this.getXTypes().indexOf('field') > -1 && this.getBaseCls() != 'x-formpanel') {
-                    //     this.setBind({
-                    //         readOnly: null
-                    //     });
-                    //     this.setBind({
-                    //         ui: null
-                    //     });
-                    //     this.setUi(this.config.ui);
-                    //     this.setReadOnly(false);
-                    // }
                     this.setBind({
                         cls: null,
                     });
@@ -40,13 +25,8 @@ Ext.define('Abraxa.core.override.WidgetCell', {
                     hidden: null,
                 });
                 this.hide();
-                // if (this.getXTypes().indexOf('gridcolumn') > -1) {
-                //     this.setHidden(true);
-                //     this.setHideable(false);
-                // }
             }
         }
-        // this.setBind(this.getBind());
     },
     applyPermission: function (permissions) {
         let slug = this.getSlug();

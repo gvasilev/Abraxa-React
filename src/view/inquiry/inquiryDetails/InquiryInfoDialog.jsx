@@ -8,11 +8,9 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
     maxWidth: 640,
     maxHeight: '90%',
     showAnimation: 'pop',
-    scrollable: 'y',
     closable: true,
     draggable: false,
     padding: 0,
-    closable: true,
     viewModel: {
         data: {
             inquiry: null,
@@ -36,21 +34,6 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                     }
                 },
             },
-            // portcall: {
-            //     bind: {
-            //         activeGrid: '{portcallGridActive.selection}',
-            //         archiveGrid: '{portcallsGridArchived.selection}'
-            //     },
-            //     get: function (data) {
-
-            //         if (data.activeGrid) {
-            //             return data.activeGrid;
-            //         }
-            //         if (data.archiveGrid) {
-            //             return data.archiveGrid;
-            //         }
-            //     }
-            // },
             vessel: {
                 bind: {
                     bindTo: '{inquiry.voyage}',
@@ -235,7 +218,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                             if (recordUser) {
                                 var assigned_to = recordUser.get('first_name')[0] + '. ' + recordUser.get('last_name');
                                 let str = '<span class="a-int">' + recordUser.get('abbr') + '</span>';
-                                if (recordUser.get('profile_image') && recordUser.get('profile_image') != '') {
+                                if (recordUser.get('profile_image') && recordUser.get('profile_image') !== '') {
                                     let img = recordUser.get('profile_image');
                                     str =
                                         '<img data-id="last_updated_by_appointments" class="a-profile-image" height="24" src="' +
@@ -268,7 +251,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                         let currentUser = this.get('currentUser');
 
                         let member = store.queryBy(function (rec, id) {
-                            return rec.get('tenant_id') == currentUser.get('current_company_id');
+                            return rec.get('tenant_id') === currentUser.get('current_company_id');
                         }).items[0];
 
                         return member;
@@ -292,8 +275,6 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                             };
                         });
                         return object_permissions;
-                    } else {
-                        return;
                     }
                 },
             },
@@ -367,18 +348,11 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                 element: 'element',
                 delegate: 'a.vessel',
                 fn: function () {
-                    let imo,
-                        record = this.component.upVM().get('portcall').getVoyage();
-                    if (record.get('vessel')) {
-                        imo = record.get('vessel').id;
-                    }
-                    if (record.get('custom_vessel_id')) {
-                        if (record.get('custom_vessel').company_id) {
-                            imo = record.get('custom_vessel').id;
-                        }
-                    }
-                    if (imo) {
-                        Abraxa.getApplication().getController('AbraxaController').showVesselDialog(imo);
+                    let inquiry = this.component.upVM().get('inquiry').getVoyage();
+                    if (inquiry?.get('vessel')) {
+                        Abraxa.getApplication()
+                            .getController('AbraxaController')
+                            .showVesselDialog(inquiry.get('vessel').id);
                     }
                 },
             },
@@ -491,10 +465,6 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryInfoDialog', {
                         },
                         {
                             xtype: 'container',
-                            // slug: 'portcallAssignTo',
-                            // bind: {
-                            // 	permission: '{userPermissions}',
-                            // },
                             items: [
                                 {
                                     xtype: 'label',

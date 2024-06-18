@@ -1,4 +1,5 @@
-import './UserEditMenu.jsx'
+import './UserEditMenu';
+
 Ext.define('Abraxa.view.settings.user_teams.users.UserGrid', {
     extend: 'Ext.grid.Grid',
     xtype: 'settings.users.grid',

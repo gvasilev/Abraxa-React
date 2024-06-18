@@ -1,4 +1,4 @@
-import '../../model/common/Vessel.jsx';
+import '../../model/common/Vessel';
 
 Ext.define('Abraxa.store.vessels.Vessels', {
     extend: 'Ext.data.virtual.Store',
