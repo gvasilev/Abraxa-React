@@ -4,6 +4,8 @@ import '../../../core/components/AbraxaComponentDataview';
 import '../../../core/components/Abraxa.CityCombo';
 import '../../../core/components/combo/OrganizationCombo';
 
+import MultiActionAreaCard from '../../../react/ReactCard';
+
 Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
     extend: 'Ext.Container',
     layout: 'hbox',
@@ -205,6 +207,11 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                     itemId: 'mainForm',
                                     testId: 'companyEditPanelForm',
                                     items: [
+                                        {
+                                            xtype: 'react-container',
+                                            padding: '16 0',
+                                            reactComponent: MultiActionAreaCard()
+                                        },
                                         {
                                             xtype: 'container',
                                             items: [
