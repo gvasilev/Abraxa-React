@@ -554,6 +554,5 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this;
 
         me.dragZone = me.dropZone = Ext.destroy(me.dragZone, me.dragZone);
-        me.callParent();
     },
 });

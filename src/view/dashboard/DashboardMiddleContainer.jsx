@@ -1,6 +1,8 @@
 import '../../core/components/AbraxaDateField';
 import './KPIExport';
 
+import ChartsOverviewDemo from '../../react/ReactChart';
+
 Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
     extend: 'Ext.Container',
     xtype: 'dashboard.middle.container',
@@ -44,57 +46,54 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                     {
                                         text: 'Month',
                                         iconCls: 'md-icon-date-range',
-                                        handler: function() {
+                                        handler: function () {
                                             this.find('filterButtonAppointments').setText('Month');
                                             let chart = this.find('chart'),
                                                 url = Env.ApiEndpoint + 'dashboard/appointments/month';
                                             Ext.Ajax.request({
                                                 url: url,
                                                 method: 'GET',
-                                                success: function(response) {
+                                                success: function (response) {
                                                     var obj = Ext.decode(response.responseText);
                                                     chart.getFusionChart().setJSONData(obj);
                                                 },
-                                                failure: function failure(response) {
-                                                },
+                                                failure: function failure(response) {},
                                             });
                                         },
                                     },
                                     {
                                         text: 'Annual',
                                         iconCls: 'md-icon-date-range',
-                                        handler: function() {
+                                        handler: function () {
                                             this.find('filterButtonAppointments').setText('Annual');
                                             let chart = this.find('chart'),
                                                 url = Env.ApiEndpoint + 'dashboard/appointments/annual';
                                             Ext.Ajax.request({
                                                 url: url,
                                                 method: 'GET',
-                                                success: function(response) {
+                                                success: function (response) {
                                                     var obj = Ext.decode(response.responseText);
                                                     chart.getFusionChart().setJSONData(obj);
                                                 },
-                                                failure: function failure(response) {
-                                                },
+                                                failure: function failure(response) {},
                                             });
                                         },
                                     },
                                     {
                                         text: 'Quarter',
                                         iconCls: 'md-icon-date-range',
-                                        handler: function() {
+                                        handler: function () {
                                             this.find('filterButtonAppointments').setText('Quarter');
                                             let chart = this.find('chart'),
                                                 url = Env.ApiEndpoint + 'dashboard/appointments/quarter';
                                             Ext.Ajax.request({
                                                 url: url,
                                                 method: 'GET',
-                                                success: function(response) {
+                                                success: function (response) {
                                                     var obj = Ext.decode(response.responseText);
                                                     chart.getFusionChart().setJSONData(obj);
                                                 },
-                                                failure: function failure(response) {
-                                                },
+                                                failure: function failure(response) {},
                                             });
                                         },
                                     },
@@ -153,7 +152,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                     text: 'Apply',
                                                     seperator: true,
                                                     hideOnClick: false,
-                                                    handler: function() {
+                                                    handler: function () {
                                                         let form = this.up('menu').down('formpanel');
                                                         if (form.validate()) {
                                                             let values = form.getValues();
@@ -174,12 +173,12 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                             Ext.Ajax.request({
                                                                 url: url,
                                                                 method: 'GET',
-                                                                success: function(response) {
+                                                                success: function (response) {
                                                                     var obj = Ext.decode(response.responseText);
                                                                     if (obj.statusCode === 500)
                                                                         Ext.Msg.warning(
                                                                             'Warning',
-                                                                            'You have selected too wide time frame period.',
+                                                                            'You have selected too wide time frame period.'
                                                                         );
                                                                     chart.getFusionChart().setJSONData(obj);
                                                                 },
@@ -209,7 +208,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(item, el, eOpts) {
+                            handler: function (item, el, eOpts) {
                                 let vm = this.upVM(),
                                     dialog = Ext.create('Abraxa.view.Dashboard.KPIExport', {
                                         viewModel: {
@@ -230,7 +229,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                         bindTo: '{vesselTypes}',
                                                         deep: true,
                                                     },
-                                                    get: function(store) {
+                                                    get: function (store) {
                                                         if (store) {
                                                             let data = store.getData().getRange();
                                                             let newData = [];
@@ -239,7 +238,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                                 name: 'All',
                                                             };
                                                             newData.push(allRecord);
-                                                            Ext.each(data, function(value, index) {
+                                                            Ext.each(data, function (value, index) {
                                                                 newData.push(value.getData());
                                                             });
                                                             return newData;
@@ -251,7 +250,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                         bindTo: '{portsServed}',
                                                         deep: true,
                                                     },
-                                                    get: function(store) {
+                                                    get: function (store) {
                                                         if (store) {
                                                             let data = store.getData().getRange();
                                                             let newData = [];
@@ -260,7 +259,7 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
                                                                 port_name: 'All ports',
                                                             };
                                                             newData.push(allRecord);
-                                                            Ext.each(data, function(value, index) {
+                                                            Ext.each(data, function (value, index) {
                                                                 newData.push(value.getData());
                                                             });
                                                             return newData;
@@ -283,37 +282,43 @@ Ext.define('Abraxa.view.dashboard.DashboardMiddleContainer', {
             bind: {
                 permission: '{userPermissions}',
             },
+            layout: 'hbox',
+            defaults: {
+                width: '50%',
+            },
             items: [
                 {
-                    xtype: 'fusionchart',
-                    cls: 'abraxa-chart a-stakedcolumn',
-                    type: 'stackedcolumn2d',
-                    itemId: 'chart',
-                    layout: 'fit',
-                    width: '100%',
-                    height: '100%',
-                    // dataFormat: 'jsonurl',
-                    // dataSource: Env.ApiEndpoint + 'dashboard/appointments/month',
-                    // listeners: {
-                    //     painted: function () {
-                    //         let chart = this.getFusionChart();
-                    //         Ext.Ajax.request({
-                    //             url: Env.ApiEndpoint + 'dashboard/appointments/month',
-                    //             method: 'GET',
-                    //             success: function (response) {
-                    //                 var obj = Ext.decode(response.responseText);
-                    //                 if (chart && !chart.disposed) {
-                    //                     if (obj) {
-                    //                         chart.setJSONData(obj);
-                    //                     }
-                    //                 }
-                    //             },
-                    //             failure: function failure(response) {
-
-                    //             }
-                    //         });
-                    //     }
-                    // }
+                    xtype: 'container',
+                    items: [
+                        {
+                            xtype: 'div',
+                            cls: 'a-sub-title',
+                            html: 'ExtJS (FusionCharts)'
+                        },
+                        {
+                            xtype: 'fusionchart',
+                            cls: 'abraxa-chart a-stakedcolumn',
+                            type: 'stackedcolumn2d',
+                            itemId: 'chart',
+                            layout: 'fit',
+                            width: '100%',
+                            height: '100%',
+                        }
+                    ]
+                },
+                {
+                    xtype: 'container',
+                    items: [
+                        {
+                            xtype: 'div',
+                            cls: 'a-sub-title',
+                            html: 'React (Chart.js)'
+                        },
+                        {
+                            xtype: 'react-container',
+                            reactComponent: ChartsOverviewDemo()
+                        }
+                    ]
                 },
             ],
         },

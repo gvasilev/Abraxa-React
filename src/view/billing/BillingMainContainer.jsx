@@ -1,5 +1,6 @@
 import '../../model/billing/BillingCompanyInfo';
 import '../../react/Grid';
+
 import DataGridDemo from '../../react/Grid';
 
 Ext.define('Abraxa.view.billing.BillingMainContainer', {
@@ -17,7 +18,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
             },
         },
         formulas: {
-            selectFirst: function(get) {
+            selectFirst: function (get) {
                 Ext.ComponentQuery.query('[cls=billing_menu]')[0].select(0);
             },
             billingInfoRecord: {
@@ -25,7 +26,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                     bindTo: '{currentUser.current_company_id}',
                     deep: true,
                 },
-                get: function(id) {
+                get: function (id) {
                     if (id) {
                         let model = Ext.create('Abraxa.model.biling.Biling');
                         model.load();
@@ -41,6 +42,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
         },
         {
             xtype: 'container',
+            scrollable: true,
             items: [
                 {
                     xtype: 'container',
@@ -85,7 +87,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                             align: 'bc-tc?',
                                         },
                                     },
-                                    handler: function() {
+                                    handler: function () {
                                         let panel = Ext.ComponentQuery.query('[cls~=billing_left_menu]')[0],
                                             cls = panel.getUserCls() == 'is-expanded';
 
@@ -227,7 +229,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                 hidden: '{currentUserPlan == "premium" || currentUserPlan == "enterprise" ? true:false}',
                                             },
                                             text: 'Upgrade to Premium',
-                                            handler: function() {
+                                            handler: function () {
                                                 window.open('https://www.abraxa.com/pricing/');
                                             },
                                         },
@@ -263,7 +265,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                 hidden: '{currentUserPlan == "enterprise" ? true:false}',
                                             },
                                             text: 'Contact us',
-                                            handler: function() {
+                                            handler: function () {
                                                 window.open('https://www.abraxa.com/contact-us/');
                                             },
                                         },
@@ -300,11 +302,11 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                             xtype: 'button',
                                             ui: 'decline alt',
                                             text: 'Delete account',
-                                            handler: function() {
+                                            handler: function () {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete your account?<br><br>This action cannot be undone and the account cannot be retrieved.',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
                                                             Ext.Ajax.request({
                                                                 url: Env.ApiEndpoint + 'request_delete_accout',
@@ -338,12 +340,38 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
                                     ],
+                                }
+                            ],
+                        },
+                        {
+                            xtype: 'container',
+                            flex: 1,
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch',
+                            },
+                            items: [
+                                {
+                                    xtype: 'div',
+                                    html: '<h1 class="fw-n">React grid</h1><p class="text-info">This is a react data grid component.</p>',
                                 },
+                                {
+                                    xtype: 'react-container',
+                                    reactComponent: DataGridDemo(),
+                                },
+                                // {
+                                //     xtype: 'div',
+                                //     html: '<h1 class="fw-n">Data grid Pro</h1><p class="text-info">This is a data grid pro component.</p>',
+                                // },
+                                // {
+                                //     xtype: 'react-container',
+                                //     reactComponent: DataGridProDemo(),
+                                // },
                             ],
                         },
                     ],
@@ -499,23 +527,23 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                     xtype: 'button',
                                     ui: 'action',
                                     text: 'Save',
-                                    handler: function() {
+                                    handler: function () {
                                         let vm = this.upVM(),
                                             record = vm.get('billingInfoRecord');
                                         if (record.dirty) {
                                             Ext.Msg.confirm(
                                                 'Confirmation',
                                                 'Are you sure you want to save this information?',
-                                                function(answer) {
+                                                function (answer) {
                                                     if (answer == 'yes') {
                                                         record.save({
-                                                            success: function() {
+                                                            success: function () {
                                                                 Ext.toast('Record updated');
                                                             },
-                                                            failure: function() {
+                                                            failure: function () {
                                                                 Ext.Msg.alert(
                                                                     'Something went wrong',
-                                                                    'Could not update record.',
+                                                                    'Could not update record.'
                                                                 );
                                                             },
                                                         });
@@ -538,7 +566,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                         ui: 'action loading',
                                                         text: 'Yes',
                                                     },
-                                                ],
+                                                ]
                                             );
                                         }
                                     },
@@ -628,7 +656,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                     hidden: '{record.company_integration || !record.available ? true : false}',
                                                 },
                                                 text: 'Contact us',
-                                                handler: function() {
+                                                handler: function () {
                                                     window.open('https://www.abraxa.com/contact-us/');
                                                 },
                                             },
@@ -670,7 +698,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
         },
     ],
     listeners: {
-        show: function(me) {
+        show: function (me) {
             if (
                 !Ext.ComponentQuery.query('[itemId=billingMain]')[0].getVM().get('billingMenu.selection') &&
                 Ext.ComponentQuery.query('[cls~=billing_menu]')[0]
