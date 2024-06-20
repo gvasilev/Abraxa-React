@@ -619,7 +619,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
             default:
                 break;
         }
-        files = null;
+        let files = null;
         if (Ext.isNumber(payment.get('id'))) {
             editMode = true;
             files = payment.attachments();
