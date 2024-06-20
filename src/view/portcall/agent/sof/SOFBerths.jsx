@@ -229,7 +229,7 @@ Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
                                                                             if (count > 1 && recordIndex == 0) {
                                                                                 selectedRecord = recordIndex;
                                                                             }
-                                                                            expenses = this.upVM().get('expenses');
+                                                                            const expenses = this.upVM().get('expenses');
 
                                                                             if (reassignedBerth) {
                                                                                 cargoes.each(function (cargo) {
