@@ -340,10 +340,6 @@ Ext.define('Abraxa.view.settings.workflows.CreateWorkflow', {
                                                 me.up('dialog').destroy();
                                                 Ext.toast('Record updated', 1000);
                                             },
-                                            failure: function (record, operation) {
-                                                let response = operation.error.response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message);
-                                            },
                                         });
                                     } else {
                                         me.up('dialog').down('[cls~="errors_div"]').setHidden(false);

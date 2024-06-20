@@ -99,7 +99,6 @@ Ext.define('Abraxa.view.settings.library.ports.PortServedAliasForm', {
                             },
                             failure: function (batch, operations) {
                                 me.toggle();
-                                Ext.Msg.alert('Something went wrong', 'Cannot update record.');
                             },
                         });
                     } else {

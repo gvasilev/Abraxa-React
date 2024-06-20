@@ -132,8 +132,6 @@ Ext.define('Abraxa.view.documents.DocumentInvoicePanel', {
         hidden: '{vouchers.count ? false : true}',
         collapsible: {
             direction: 'right',
-            // dynamic: true,
-            // collapsed: true,
             collapseAnimation: false,
             expandAnimation: false,
             tool: {
@@ -141,7 +139,6 @@ Ext.define('Abraxa.view.documents.DocumentInvoicePanel', {
             },
             drawer: {
                 xtype: 'panel',
-                cls: 'dark rotate_header collapsible_test a-docs-panel',
                 top: 0,
                 left: 0,
                 cls: Ext.baseCSSPrefix + 'drawer dark collapsible_test a-docs-panel',

@@ -276,10 +276,6 @@ Ext.define('Abraxa.view.settings.offices.AssignOfficeUsers', {
 
                                             failure: function () {
                                                 Ext.Viewport.unmask();
-                                                Ext.Msg.alert(
-                                                    'Assign user failed',
-                                                    'There was a problem while assigning a user.'
-                                                );
                                             },
                                         });
                                     },
@@ -287,8 +283,6 @@ Ext.define('Abraxa.view.settings.offices.AssignOfficeUsers', {
                             },
                             failure: function (response) {
                                 Ext.Viewport.unmask();
-
-                                Ext.Msg.alert('Status', 'Request Failed.');
                             },
                         });
                     }

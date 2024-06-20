@@ -67,17 +67,17 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
         tpl: new Ext.XTemplate(
             '<div class="hbox"><div class="a-badge small a-badge-{[this.icon(values.children[0])]}"><i></i></div><div class="ml-16">{[this.title(values.children[0])]}</div></div>',
             {
-                icon: function(record) {
+                icon: function (record) {
                     if (record.get('default_expense_item')) return record.get('default_expense_item').category.name;
                     return '';
                 },
-                title: function(record) {
+                title: function (record) {
                     if (record.get('default_expense_item'))
                         return Ext.String.capitalize(record.get('default_expense_item').category.name);
 
                     return 'Empty';
                 },
-            },
+            }
         ),
     },
     itemConfig: {
@@ -98,15 +98,15 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             let store = this.get('disbursementInvoices');
                             if (store) store.clearFilter();
-                            return function(rec) {
+                            return function (rec) {
                                 return rec.get('expense_id') === record.get('id');
                             };
                         } else {
-                            return function() {
+                            return function () {
                                 return false;
                             };
                         }
@@ -117,7 +117,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         return record;
                     },
                 },
@@ -126,7 +126,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         bindTo: '{selectedDisbursement.status}',
                         deep: true,
                     },
-                    get: function(status) {
+                    get: function (status) {
                         if (status) {
                             let record = this.get('record');
                             if (record) {
@@ -181,7 +181,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
             },
             menuDisabled: true,
             editable: false,
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 if (record) {
                     return (
                         '<div class="a-supply"><div class="a-badge small a-badge-' +
@@ -224,7 +224,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     placeholder: 'Choose item',
                     matchFieldWidth: false,
                     listeners: {
-                        painted: function(field) {
+                        painted: function (field) {
                             let record = field.up().ownerCmp.getRecord();
                             if (record && record.get('default_expense_item_name'))
                                 this.setInputValue(record.get('default_expense_item_name'));
@@ -232,19 +232,19 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     },
                 },
                 listeners: {
-                    beforecomplete: function(editor) {
+                    beforecomplete: function (editor) {
                         let value = editor.getField().getInputValue();
                         let gridRecord = editor.ownerCmp.getRecord();
                         gridRecord.set('default_expense_item_name', value);
                     },
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
 
                         if (record && record.get('lockItem')) return false;
                     },
                 },
             },
-            renderer: function(value, selection) {
+            renderer: function (value, selection) {
                 if (value) {
                     return selection.get('default_expense_item_name');
                 } else {
@@ -258,7 +258,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     return 'Choose item';
                 }
             },
-            summaryRenderer: function() {
+            summaryRenderer: function () {
                 let currency = this.row.upVM().get('selectedDisbursement.disbursement_currency');
                 return (
                     '<span style="display:block; text-align: right;">Total <span class="fw-n">(' +
@@ -266,7 +266,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     ')</span></span>'
                 );
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let currency = grid.upVM().get('selectedDisbursement.disbursement_currency');
                 return 'Total (' + currency + ')';
@@ -285,7 +285,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 }
@@ -305,7 +305,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 const defaultExpenseItemsLabel = AbraxaConstants.labels.defaultExpenseItem;
                 if (
                     record &&
@@ -350,7 +350,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     decimalPrecision: 2,
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
 
                         if (record && record.get('lockItem')) return false;
@@ -385,20 +385,20 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     },
                 },
                 listeners: {
-                    beforecomplete: function(editor) {
+                    beforecomplete: function (editor) {
                         const val = editor.getField().getInputValue();
 
                         let gridRecord = editor.ownerCmp.getRecord();
                         gridRecord.set('vendor_name', val);
                     },
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
 
                         if (record && record.get('lockItem')) return false;
                     },
                 },
             },
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 if (value) {
                     return record.get('vendor_name');
                 } else {
@@ -457,7 +457,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                 click: {
                     element: 'element',
                     delegate: 'a.disbursement_pda_link',
-                    fn: function(el) {
+                    fn: function (el) {
                         let disbursement_id = el.target.getAttribute('data-disbursement-id'),
                             component = this.component,
                             store = component.upVM().get('disbursements'),
@@ -520,7 +520,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                 click: {
                     element: 'element',
                     delegate: 'a.disbursement_dda_link',
-                    fn: function(el) {
+                    fn: function (el) {
                         let disbursement_id = el.target.getAttribute('data-disbursement-id'),
                             component = this.component,
                             store = component.upVM().get('disbursements'),
@@ -570,7 +570,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'abraxa.pricefield',
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record,
                             disbursement = editor.upVM().get('selectedDisbursement'),
                             disbursementType = editor.upVM().get('selectedDisbursement.type');
@@ -620,7 +620,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'abraxa.pricefield',
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record,
                             disbursement = editor.upVM().get('selectedDisbursement'),
                             disbursementType = editor.upVM().get('selectedDisbursement.type');
@@ -668,7 +668,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'abraxa.pricefield',
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record,
                             disbursement = editor.upVM().get('selectedDisbursement'),
                             disbursementType = editor.upVM().get('selectedDisbursement.type');
@@ -716,7 +716,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'abraxa.pricefield',
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record,
                             disbursement = editor.upVM().get('selectedDisbursement'),
                             disbursementType = editor.upVM().get('selectedDisbursement.type');
@@ -763,19 +763,19 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     },
                 },
                 listeners: {
-                    complete: function(editor, value) {
+                    complete: function (editor, value) {
                         let store = editor.up('grid').upVM().get('expenses'),
                             selectedAccount = editor.up('grid').upVM().get('selectedAccount'),
                             record = editor.ownerCmp.getRecord();
                         if (record && selectedAccount.get('account_currency') === value) record.set('exchange_rate', 1);
 
                         store.sync({
-                            success: function() {
+                            success: function () {
                                 Ext.toast('Record updated', 1000);
                             },
                         });
                     },
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
 
                         if (record && record.vouchers().count()) return false;
@@ -818,21 +818,21 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     ui: 'classic',
                 },
                 listeners: {
-                    beforestartedit: function(editor, boundEl, value, eOpts) {
+                    beforestartedit: function (editor, boundEl, value, eOpts) {
                         let record = eOpts.record;
 
                         if (record && record.vouchers().count()) return false;
                     },
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return Abraxa.utils.Functions.formatROE(value);
                 } else {
                     return '';
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return Abraxa.utils.Functions.formatROE(value);
                 } else {
@@ -978,11 +978,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     clearable: false,
                     xtype: 'textfield',
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
-                    validationMessage: 'Use only numbers and +-% ex. \'+22%\', or -125',
+                    validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -996,11 +996,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     return '0';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalDiscount');
                 return '<b class="fw-b c-yellow">-' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalDiscount');
                 return '-' + Ext.util.Format.number(value, '0,000.00');
@@ -1035,30 +1035,30 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     clearable: false,
                     xtype: 'textfield',
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
-                    validationMessage: 'Use only numbers and +-% ex. \'+22%\', or -125',
+                    validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroValue;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return '0';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalDiscount');
 
                 return '<b class="fw-b c-yellow">-' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalDiscount');
                 return '-' + Ext.util.Format.number(value, '0,000.00');
@@ -1093,29 +1093,29 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     clearable: false,
                     xtype: 'textfield',
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
-                    validationMessage: 'Use only numbers and +-% ex. \'+22%\', or -125',
+                    validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroValue;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return '0';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalDiscount');
                 return '<b class="fw-b c-yellow">-' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalDiscount');
                 return '-' + Ext.util.Format.number(value, '0,000.00');
@@ -1150,25 +1150,25 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     clearable: false,
                     xtype: 'textfield',
                     validators: [new RegExp('^[0-9]*?[.]?[0-9]{1}?[%]?$')],
-                    validationMessage: 'Use only numbers and +-% ex. \'+22%\', or -125',
+                    validationMessage: "Use only numbers and +-% ex. '+22%', or -125",
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroValue;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return '0';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalDiscount');
 
                 return '<b class="fw-b c-yellow">-' + Ext.util.Format.number(value, '0,000.00') + '</b>';
@@ -1314,26 +1314,26 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroPercentage;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
                     return '0%';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalVAT');
 
                 return '<b class="fw-b">' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalVAT');
 
@@ -1372,26 +1372,26 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroPercentage;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
                     return '0%';
                 }
             },
-            summaryRenderer: function(cellValue, context) {
+            summaryRenderer: function (cellValue, context) {
                 let value = context.grid.upVM().get('totalVAT');
 
                 return '<b class="fw-b">' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalVAT');
 
@@ -1430,7 +1430,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
@@ -1444,7 +1444,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     return '0%';
                 }
             },
-            summaryRenderer: function(grid, context) {
+            summaryRenderer: function (grid, context) {
                 let value = context.grid.upVM().get('totalVAT');
 
                 return '<b class="fw-b">' + Ext.util.Format.number(value, '0,000.00') + '</b>';
@@ -1488,7 +1488,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value + '%';
                 } else {
@@ -1502,12 +1502,12 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     return '0%';
                 }
             },
-            summaryRenderer: function(cellValue, context) {
+            summaryRenderer: function (cellValue, context) {
                 let value = context.grid.upVM().get('totalVAT');
 
                 return '<b class="fw-b">' + Ext.util.Format.number(value, '0,000.00') + '</b>';
             },
-            exportSummaryRenderer: function() {
+            exportSummaryRenderer: function () {
                 let grid = Ext.ComponentQuery.query('grid[reference=disbursementItemsGrid]')[0];
                 let value = grid.upVM().get('totalVAT');
 
@@ -1674,14 +1674,14 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'textfield',
                 },
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 if (val) {
                     return val;
                 } else {
                     return AbraxaConstants.placeholders.emptySpan;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -1718,14 +1718,14 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     textAlign: 'center',
                 },
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
                     return AbraxaConstants.placeholders.emptySpanWithZeroValue;
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -1768,10 +1768,10 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         '<div class="cost-center-combo-item"><div class="_value">{[this.formatValue(values.accounting_code)]}</div> <div  class="align-item">{[this.qtip(values.description)]}</div></div>',
                         '<div lass="cost-center-item-secod-value">{[this.formatValue(values.name)]}</div>',
                         {
-                            formatValue: function(value) {
+                            formatValue: function (value) {
                                 return value ? value : AbraxaConstants.placeholders.emptyValue;
                             },
-                            qtip: function(value) {
+                            qtip: function (value) {
                                 if (value) {
                                     let description =
                                         '<i  class="align-icon material-icons md-icon-info info-icon-hovered align-icon" data-qtip="' +
@@ -1783,11 +1783,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                     return '';
                                 }
                             },
-                        },
+                        }
                     ),
                 },
             },
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 const defaultExpenseItems =
                     record && record.get('default_expense_item') ? record.get('default_expense_item') : null;
                 const sharedCostCenters = defaultExpenseItems ? defaultExpenseItems.shared_cost_centers : null;
@@ -1801,8 +1801,8 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         : null;
                 const qtip = description
                     ? '<i  class="material-icons md-icon-info info-icon-hovered" data-qtip="' +
-                    description +
-                    '" data-qalign="bc-tc" data-qanchor="true" ></i>'
+                      description +
+                      '" data-qalign="bc-tc" data-qanchor="true" ></i>'
                     : '';
                 if (val) {
                     return '<div class="cost-center-info">' + val + qtip + ' </div> ';
@@ -1848,10 +1848,10 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         '<div class="cost-center-combo-item"><div class="_value">{[this.formatValue(values.name)]}</div> <div  class="align-item"> {[this.qtip(values.description)]}</div></div>',
                         '<div lass="cost-center-item-secod-value">{[this.formatValue(values.accounting_code)]}</div>',
                         {
-                            formatValue: function(value) {
+                            formatValue: function (value) {
                                 return value ? value : AbraxaConstants.placeholders.emptyValue;
                             },
-                            qtip: function(value) {
+                            qtip: function (value) {
                                 if (value) {
                                     let description =
                                         '<i  class="align-icon material-icons md-icon-info info-icon-hovered align-icon" data-qtip="' +
@@ -1863,11 +1863,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                     return '';
                                 }
                             },
-                        },
+                        }
                     ),
                 },
             },
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 const defaultExpenseItems =
                     record && record.get('default_expense_item') ? record.get('default_expense_item') : null;
                 const sharedCostCenters = defaultExpenseItems ? defaultExpenseItems.shared_cost_centers : null;
@@ -1881,8 +1881,8 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                         : null;
                 const qtip = description
                     ? '<i  class="material-icons md-icon-info info-icon-hovered" data-qtip="' +
-                    description +
-                    '" data-qalign="bc-tc" data-qanchor="true" ></i>'
+                      description +
+                      '" data-qalign="bc-tc" data-qanchor="true" ></i>'
                     : '';
                 if (val) {
                     return '<div class="cost-center-info">' + val + qtip + ' </div> ';
@@ -1890,7 +1890,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     return '<span class="a-cell-placeholder">---</span>';
                 }
             },
-            exportRenderer: function(value, record) {
+            exportRenderer: function (value, record) {
                 if (record && record.get('customer_cost_center')) {
                     return record.get('customer_cost_center');
                 } else {
@@ -1923,14 +1923,14 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     xtype: 'textfield',
                 },
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 if (val) {
                     return val;
                 } else {
                     return '<span class="a-cell-placeholder">---</span>';
                 }
             },
-            exportRenderer: function(value) {
+            exportRenderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -1990,7 +1990,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let expense = me.upVM().get('record');
                                 Ext.create('Abraxa.view.adocs.CreateFinancialPopup', {
                                     viewModel: {
@@ -2029,7 +2029,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let expense = me.upVM().get('record'),
                                     selectedDisbursement = me.upVM().get('selectedDisbursement'),
                                     invoices = me.upVM().get('disbursementInvoices');
@@ -2037,13 +2037,13 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you want to delete this item?',
-                                    function(answer) {
+                                    function (answer) {
                                         if (answer === 'yes') {
                                             let allTypes = ['pda_id', 'dda_id', 'sda_id', 'fda_id'];
                                             expense.set(selectedDisbursement.get('type') + '_id', null);
                                             //check for others if is null
                                             let allNull = true;
-                                            Ext.Array.each(allTypes, function(type) {
+                                            Ext.Array.each(allTypes, function (type) {
                                                 if (type !== selectedDisbursement.get('type') + '_id') {
                                                     if (expense.get(type)) {
                                                         allNull = false;
@@ -2059,9 +2059,9 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                                     portcall_id: expense.get('portcall_id'),
                                                 });
                                                 expense.save({
-                                                    success: function() {
+                                                    success: function () {
                                                         if (invoices.count()) {
-                                                            invoices.each(function(invoice) {
+                                                            invoices.each(function (invoice) {
                                                                 invoice.set('expense_id', null);
                                                             });
                                                             invoices.sync();
@@ -2087,7 +2087,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                                             text: 'Delete',
                                             separator: true,
                                         },
-                                    ],
+                                    ]
                                 );
                             },
                         },
@@ -2124,7 +2124,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                 },
                 ui: 'normal-light medium',
                 iconCls: 'md-icon-add',
-                handler: function(me) {
+                handler: function (me) {
                     let store = me.upVM().get('expenses'),
                         disbursement = me.upVM().get('selectedDisbursement'),
                         disbursementTypeId = me.upVM().get('selectedDisbursement.type') + '_id',
@@ -2144,7 +2144,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
                     record.attachments().setData(attachments);
                     store.add(record);
                     store.sync({
-                        success: function() {
+                        success: function () {
                             me.upVM().set('updateGridItems', new Date());
                             me.upVM()
                                 .get('selectedDisbursement')
@@ -2159,7 +2159,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
         ],
     },
     listeners: {
-        painted: function() {
+        painted: function () {
             let grouped = this.upVM().get('selectedDisbursement')
                 ? this.upVM().get('selectedDisbursement').get('grouped')
                 : false;
@@ -2168,10 +2168,10 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
             this.syncRows();
             this.syncRowsToHeight(true);
         },
-        refresh: function() {
+        refresh: function () {
             this.find('disbursementDetails').setMasked(false);
         },
-        beforeedit: function() {
+        beforeedit: function () {
             let canEdit = this.upVM().get('editableDisbursementPermissions');
             if (!canEdit) {
                 return false;
@@ -2188,7 +2188,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
         dragenter: {
             element: 'outerCt',
             delegate: '.voucher_drop',
-            fn: function(me, element) {
+            fn: function (me, element) {
                 let type = this.component.upVM().get('selectedDisbursement.type');
 
                 if (type === 'pda') return;
@@ -2204,7 +2204,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementItemsGrid', {
         dragleave: {
             element: 'outerCt',
             delegate: '*',
-            fn: function(me, element) {
+            fn: function (me, element) {
                 if (element && element.id) Ext.get(element.id).removeCls('disb-grid-drop-candidate');
             },
         },

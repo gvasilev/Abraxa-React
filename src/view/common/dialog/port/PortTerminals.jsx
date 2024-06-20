@@ -12,7 +12,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
         selectedTerminal: null,
 
         formulas: {
-            getIsPortServed: function(get) {
+            getIsPortServed: function (get) {
                 var me = this;
                 return get('isPortServed');
             },
@@ -21,7 +21,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                     bindTo: '{selectedTerminal.type}',
                     deep: true,
                 },
-                get: function(name) {
+                get: function (name) {
                     if (name) {
                         if (name == 'ro-ro') {
                             return 'Ro-Ro';
@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                     text: 'Terminal',
                                     iconCls: 'md-icon-add',
                                     ui: 'action small',
-                                    handler: function(btn, e) {
+                                    handler: function (btn, e) {
                                         let me = this,
                                             dialog = me.up('dialog'),
                                             vm = dialog.getViewModel(),
@@ -107,7 +107,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                             placeholder: 'Search terminals',
                             width: 280,
                             listeners: {
-                                change: function(me, newValue, oldValue, eOpts) {
+                                change: function (me, newValue, oldValue, eOpts) {
                                     let store = me.upVM().get('terminals');
                                     store.removeFilter(1000);
                                     if (newValue) {
@@ -160,9 +160,9 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                     margin: '0 16 0 0',
                                     ui: 'round',
                                     iconCls: 'md-icon-keyboard-backspace',
-                                    handler: function(btn, el, eOpts) {
+                                    handler: function (btn, el, eOpts) {
                                         var mainContainer = Ext.ComponentQuery.query(
-                                            '#portTerminalssMainContainerItemId',
+                                            '#portTerminalssMainContainerItemId'
                                         )[0];
                                         mainContainer.setActiveItem(0);
                                         mainContainer.getViewModel().set('selectedTerminal', null);
@@ -199,7 +199,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                         allowOver: false,
                                         closeAction: 'destroy',
                                     },
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let vm = this.upVM(),
                                             portRecord = vm.get('port'),
                                             record = vm.get('selectedTerminal'),
@@ -250,31 +250,25 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                         allowOver: false,
                                         closeAction: 'destroy',
                                     },
-                                    handler: function(button, el, data) {
+                                    handler: function (button, el, data) {
                                         let me = this,
                                             record = me.upVM().get('selectedTerminal'),
                                             mainContainer = Ext.ComponentQuery.query(
-                                                '#portTerminalssMainContainerItemId',
+                                                '#portTerminalssMainContainerItemId'
                                             )[0];
                                         store = me.upVM().get('terminals');
 
                                         Ext.Msg.confirm(
                                             'Delete',
                                             'Are you sure you want to delete this record?',
-                                            function(btn) {
+                                            function (btn) {
                                                 if (btn === 'yes') {
                                                     store.remove(record);
                                                     store.sync({
-                                                        success: function(batch) {
+                                                        success: function (batch) {
                                                             mainContainer.setActiveItem(0);
                                                             mainContainer.getViewModel().set('selectedTerminal', null);
                                                             Ext.toast('Record deleted', 1000);
-                                                        },
-                                                        failure: function(batch) {
-                                                            Ext.Msg.alert(
-                                                                'Something went wrong',
-                                                                'Unable to delete this record!',
-                                                            );
                                                         },
                                                     });
                                                 }
@@ -294,7 +288,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortTerminals', {
                                                     ui: 'decline alt loading',
                                                     text: 'Delete',
                                                 },
-                                            ],
+                                            ]
                                         );
                                     },
                                 },

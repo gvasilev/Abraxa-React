@@ -429,9 +429,6 @@ Ext.define('Abraxa.view.voyage.VoyageController', {
                         me.showSuccessDialog(nomination);
                     }, 0);
                 },
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             button.toggle();
@@ -475,10 +472,6 @@ Ext.define('Abraxa.view.voyage.VoyageController', {
                             .getController()
                             .redirectTo('voyage/' + rec.get('id') + '/appoint');
                     },
-                    failure: function (record, response) {
-                        let result = response.error.response.responseJson;
-                        Ext.Msg.alert('Oops', result.message);
-                    },
                 });
             } else {
                 record.save({
@@ -487,10 +480,6 @@ Ext.define('Abraxa.view.voyage.VoyageController', {
                         Ext.getCmp('main-viewport')
                             .getController()
                             .redirectTo('voyage/' + rec.get('id') + '/appoint');
-                    },
-                    failure: function (record, response) {
-                        let result = response.error.response.responseJson;
-                        Ext.Msg.alert('Oops', result.message);
                     },
                 });
             }

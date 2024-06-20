@@ -235,7 +235,10 @@ Ext.define('Abraxa.view.operations.PortCallsPricipal.grids.PortCallsPricipalGrid
             renderer: function (value, record) {
                 let invitation = record
                     .invitations()
-                    .findRecord('tenant_id', Ext.getCmp('main-viewport').upVM().get('currentUser').get('current_company_id'));
+                    .findRecord(
+                        'tenant_id',
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('current_company_id')
+                    );
                 if (invitation) {
                     return Ext.util.Format.date(invitation.get('created_at'), 'd M - H:m');
                 }
@@ -245,7 +248,10 @@ Ext.define('Abraxa.view.operations.PortCallsPricipal.grids.PortCallsPricipalGrid
                 if (record && record._invitations) {
                     let invitation = record
                         .invitations()
-                        .findRecord('tenant_id', Ext.getCmp('main-viewport').upVM().get('currentUser').get('current_company_id'));
+                        .findRecord(
+                            'tenant_id',
+                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('current_company_id')
+                        );
                     if (invitation) {
                         return Ext.util.Format.date(invitation.get('created_at'), 'd M - H:m');
                     }

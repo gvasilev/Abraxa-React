@@ -43,7 +43,6 @@ Ext.define('Abraxa.view.portcalls.principal.PortcallsPrincipalArchivedMenu', {
                                 if (disbursementStore) disbursementStore.reload();
                                 if (paymentStore) paymentStore.reload();
                             },
-                            failure: function (batch) {},
                         });
                     }
                 });

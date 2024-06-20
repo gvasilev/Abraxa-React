@@ -37,9 +37,6 @@ Ext.define('Abraxa.view.settings.users_teams.UserEditMenu', {
                                 success: function (batch, opt) {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update user!');
-                                },
                             });
                         }
                     },
@@ -88,9 +85,6 @@ Ext.define('Abraxa.view.settings.users_teams.UserEditMenu', {
                                     success: function (response, opts) {
                                         Ext.toast('Request sent', 2000);
                                     },
-                                    failure: function (response, opts) {
-                                        Ext.Msg.alert('Something went wrong', 'Could not request password change!');
-                                    },
                                 });
                             }
                         }
@@ -126,9 +120,6 @@ Ext.define('Abraxa.view.settings.users_teams.UserEditMenu', {
                                     params: params,
                                     success: function (response, opts) {
                                         Ext.toast('Request sent', 2000);
-                                    },
-                                    failure: function (response, opts) {
-                                        Ext.Msg.alert('Something went wrong', 'Could not resend invitation!');
                                     },
                                 });
                             }

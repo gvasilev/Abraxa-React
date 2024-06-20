@@ -109,9 +109,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
                                                         vm.set('refreshFolderCount', new Date());
                                                         cmp.up('dialog').destroy();
                                                     },
-                                                    failure: function (batch, operations) {
-                                                        Ext.Msg.alert('Something went wrong', 'Could not update file.');
-                                                    },
                                                 });
                                             },
                                         },
@@ -192,34 +189,12 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenu', {
                                             Ext.toast('Document updated', 1500);
                                             cmp.up('dialog').destroy();
                                         },
-                                        failure: function (batch, operations) {
-                                            Ext.Msg.alert('Something went wrong', 'Could not update file.');
-                                        },
                                     });
                                 },
                             },
                         ],
                     }).show();
                 }
-
-                // Ext.Msg.prompt('Rename folder', 'Folder', function (btn, value) {
-                //     if (btn == 'ok') {
-                //         store.sync({
-                //             success: function () {
-                //                 Ext.ComponentQuery.query('portcall\\.document\\.sections')[0].select(record);
-                //                 Ext.toast('Record updated');
-                //             }
-                //         });
-                //     } else {
-                //         this.destroy();
-                //     }
-                // }, null, false, null, {
-                //     viewModel: me.upVM(),
-                //     ui: 'hovered-underline',
-                //     cls: 'a-field-icon icon-folder',
-                //     placeholder: 'Enter folder name',
-                //     value: name
-                // });
             },
         },
         {

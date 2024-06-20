@@ -120,7 +120,6 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditPortServices', {
                                 },
                                 failure: function (batch, operations) {
                                     me.toggle();
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update office!');
                                 },
                             });
                             dialog.destroy();
@@ -136,7 +135,6 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditPortServices', {
                                 },
                                 failure: function (batch, operations) {
                                     me.toggle();
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create office!');
                                 },
                             });
                         }

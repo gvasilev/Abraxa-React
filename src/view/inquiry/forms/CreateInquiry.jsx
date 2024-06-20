@@ -31,7 +31,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
             },
             cls: 'backTool',
             iconCls: 'md-icon-keyboard-backspace',
-            handler: function(me) {
+            handler: function (me) {
                 me.down('[xtype=inquiry\\.instructions\\.container]').hide();
                 me.upVM().set('visibleInstruction', false);
                 if (me.down('[itemId=showVoyageInstructions]').getPressed()) {
@@ -50,14 +50,14 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function() {
+            handler: function () {
                 let dialog = this.up('dialog'),
                     record = this.upVM().get('object_record');
                 if (record.phantom || record.dirty || record.cargoes().needsSync) {
                     Ext.Msg.confirm(
                         'Confirmation',
                         'Would you like to discard all changes?',
-                        function(answer) {
+                        function (answer) {
                             if (answer == 'yes') {
                                 record.cargoes().rejectChanges();
                                 record.reject();
@@ -79,7 +79,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                 ui: 'action loading',
                                 text: 'Discard',
                             },
-                        ],
+                        ]
                     );
                 } else {
                     dialog.destroy();
@@ -110,7 +110,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                 closeAction: 'destroy',
             },
             listeners: {
-                tap: function(me, newValue) {
+                tap: function (me, newValue) {
                     if (me.upVM().get('visibleInstruction')) {
                         me.up('dialog').down('[xtype=inquiry\\.instructions\\.container]').hide();
                         me.upVM().set('visibleInstruction', false);
@@ -148,7 +148,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                 closeAction: 'destroy',
             },
             listeners: {
-                change: function(me, newValue) {
+                change: function (me, newValue) {
                     if (newValue) {
                         var files = this.getFiles(),
                             len = files.length,
@@ -156,7 +156,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                             fileStore = me.upVM().get('files'),
                             totalSize = 0;
 
-                        let size = function(size) {
+                        let size = function (size) {
                             var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                             if (size == 0) return '0 Byte';
                             var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
@@ -188,7 +188,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                             xtype: 'button',
                                             ui: 'action',
                                             text: 'Ok',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.up('dialog').destroy();
                                             },
                                         },
@@ -204,7 +204,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                             tmpForm.appendChild(fileField);
                             tmpForm.reset();
                             parentNod.replaceChild(fileField, tmpForm);
-                            document.querySelector('input[type=\'file\']').value = '';
+                            document.querySelector("input[type='file']").value = '';
                             me.setValue(null);
                             return;
                         }
@@ -219,7 +219,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                             fileStore.add(record);
                         }
                     }
-                    document.querySelector('input[type=\'file\']').value = '';
+                    document.querySelector("input[type='file']").value = '';
                     me.setValue(null);
                 },
             },
@@ -272,7 +272,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                         inputValue: '{voyage_data.vessel_name}',
                                     },
                                     listeners: {
-                                        painted: function(me) {
+                                        painted: function (me) {
                                             me.focus();
                                             var record = me.upVM().get('voyage_data');
                                             if (record) {
@@ -281,7 +281,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                 }
                                             }
                                         },
-                                        select: function() {
+                                        select: function () {
                                             let selection = this.getSelection(),
                                                 voyage_data = this.upVM().get('voyage_data');
 
@@ -377,7 +377,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                 inputValue: '{object_record.requesting_party_name}',
                                             },
                                             listeners: {
-                                                select: function() {
+                                                select: function () {
                                                     let selection = this.getSelection(),
                                                         record = this.upVM().get('object_record');
                                                     record.set('requesting_party_name', selection.get('org_name'));
@@ -433,7 +433,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                             },
                                             required: true,
                                             listeners: {
-                                                focusleave: function(me) {
+                                                focusleave: function (me) {
                                                     var record = this.upVM().get('object_record');
                                                     record.set({
                                                         port_eta: me.getValue(),
@@ -462,7 +462,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                         value: '{firstPort.port_id}',
                                                     },
                                                     listeners: {
-                                                        painted: function(me) {
+                                                        painted: function (me) {
                                                             me.setError(false);
                                                             if (this.upVM().get('firstPort')) {
                                                                 let record = this.upVM().get('firstPort');
@@ -471,13 +471,13 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                 }
                                                             }
                                                         },
-                                                        select: function() {
+                                                        select: function () {
                                                             if (this.getSelection()) {
                                                                 let record = this.upVM().get('firstPort');
                                                                 if (record) {
                                                                     record.set(
                                                                         'name',
-                                                                        this.getSelection().get('port_name'),
+                                                                        this.getSelection().get('port_name')
                                                                     );
                                                                 }
                                                             }
@@ -502,7 +502,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                         allowOver: false,
                                                         closeAction: 'destroy',
                                                     },
-                                                    handler: function(me) {
+                                                    handler: function (me) {
                                                         me.upVM().get('object_record').ports().add({});
                                                     },
                                                 },
@@ -542,15 +542,15 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                     value: '{record.port_id}',
                                                                 },
                                                                 listeners: {
-                                                                    painted: function(me) {
+                                                                    painted: function (me) {
                                                                         me.setError(false);
                                                                     },
-                                                                    select: function() {
+                                                                    select: function () {
                                                                         if (this.getSelection()) {
                                                                             let record = this.upVM().get('record');
                                                                             record.set(
                                                                                 'name',
-                                                                                this.getSelection().get('port_name'),
+                                                                                this.getSelection().get('port_name')
                                                                             );
                                                                         }
                                                                     },
@@ -574,11 +574,11 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                     allowOver: false,
                                                                     closeAction: 'destroy',
                                                                 },
-                                                                handler: function(me) {
+                                                                handler: function (me) {
                                                                     Ext.Msg.confirm(
                                                                         'Delete',
                                                                         'Are you sure you would like to delete this row?',
-                                                                        function(answer) {
+                                                                        function (answer) {
                                                                             if (answer != 'yes') return;
                                                                             let viewModel = me.upVM();
                                                                             let record = me.upVM().get('record');
@@ -603,7 +603,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                                 ui: 'decline alt',
                                                                                 text: 'Delete',
                                                                             },
-                                                                        ],
+                                                                        ]
                                                                     );
                                                                 },
                                                             },
@@ -641,7 +641,6 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                             cls: 'a-field-icon icon-short icon-rounded',
                                             placeholder: 'Choose agency type',
                                             autoFocus: false,
-                                            valueField: 'id',
                                             displayField: 'name',
                                             valueField: 'id',
                                             disabled: false,
@@ -653,7 +652,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                 value: '{object_record.agency_type_id}',
                                             },
                                             listeners: {
-                                                select: function() {
+                                                select: function () {
                                                     let selection = this.getSelection(),
                                                         record = this.upVM().get('object_record');
                                                     record.set('agency_type_name', selection.get('name'));
@@ -707,7 +706,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                         cls: 'a-title-md',
                                                                         margin: '0 0 0 -8',
                                                                         bind: {
-                                                                            title: '<span class=\'a-cargo-title\'>Cargo {recordIndex + 1}</span>',
+                                                                            title: "<span class='a-cargo-title'>Cargo {recordIndex + 1}</span>",
                                                                         },
                                                                     },
                                                                     {
@@ -739,7 +738,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                                         .down('[itemId=createCargo]')
                                                                                         .getStore()
                                                                                         .remove(
-                                                                                            this.upVM().get('record'),
+                                                                                            this.upVM().get('record')
                                                                                         );
                                                                                 },
                                                                             },
@@ -793,7 +792,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                     permission: '{userPermissions}',
                                                                 },
                                                                 listeners: {
-                                                                    change: function(combo, value, eOpts) {
+                                                                    change: function (combo, value, eOpts) {
                                                                         if (value && value != '') {
                                                                             // All cargoes as cargoes array
                                                                             var allCargoesRecord = combo
@@ -805,12 +804,12 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                                                     selection.get('name');
                                                                                 allCargoesRecord.set(
                                                                                     'commodity',
-                                                                                    commodity_name,
+                                                                                    commodity_name
                                                                                 );
                                                                             }
                                                                         }
                                                                     },
-                                                                    painted: function() {
+                                                                    painted: function () {
                                                                         let record = this.upVM().get('record');
 
                                                                         if (record.get('commodity')) {
@@ -865,7 +864,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
                                                 } else {
                                                     Ext.Msg.warning(
                                                         ' Oops, Something went wrong.',
-                                                        'Please refresh the page.',
+                                                        'Please refresh the page.'
                                                     );
                                                 }
                                             },
@@ -907,7 +906,7 @@ Ext.define('Abraxa.view.inquiry.forms.CreateInquiry', {
             {
                 text: 'Cancel',
                 margin: '0 8 0 0',
-                handler: function() {
+                handler: function () {
                     let combo = this.upVM().get('targetCombo');
                     if (combo) {
                         combo.clearValue();

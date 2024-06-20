@@ -189,7 +189,6 @@ Ext.define('Abraxa.view.inquiry.InquiryController', {
                                             vm.get('suggestedOrganizations').add(Ext.decode(response.responseText));
                                         }
                                     },
-                                    failure: function failure(response) {},
                                 });
                             }
                         },

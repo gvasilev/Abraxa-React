@@ -34,7 +34,7 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialog', {
     },
 
     constructor: function () {
-// this.callParent(arguments);
+        // this.callParent(arguments);
         this.getViewModel().set('currentRoute', window.location.href);
         this.getViewModel().set('addedFiles', Ext.create('Ext.data.Store'), { data: [] });
 
@@ -58,7 +58,7 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialog', {
     },
 
     initialize: function () {
-// this.callParent(arguments);
+        // this.callParent(arguments);
         const vm = this.getViewModel();
         vm.set('files', Ext.create('Ext.data.Store'));
     },

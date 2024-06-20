@@ -1,6 +1,5 @@
 import '../../model/billing/BillingCompanyInfo';
 import '../../react/Grid';
-
 import DataGridDemo from '../../react/Grid';
 
 Ext.define('Abraxa.view.billing.BillingMainContainer', {
@@ -42,7 +41,6 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
         },
         {
             xtype: 'container',
-            scrollable: true,
             items: [
                 {
                     xtype: 'container',
@@ -320,9 +318,6 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                                         Abraxa.popup.showSuccessDialog(title, content);
                                                                     }
                                                                 },
-                                                                failure: function failure(response) {
-                                                                    Ext.Msg.alert('Status', 'Request Failed.');
-                                                                },
                                                             });
                                                         }
                                                     },
@@ -345,33 +340,7 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                             },
                                         },
                                     ],
-                                }
-                            ],
-                        },
-                        {
-                            xtype: 'container',
-                            flex: 1,
-                            layout: {
-                                type: 'vbox',
-                                align: 'stretch',
-                            },
-                            items: [
-                                {
-                                    xtype: 'div',
-                                    html: '<h1 class="fw-n">React grid</h1><p class="text-info">This is a react data grid component.</p>',
                                 },
-                                {
-                                    xtype: 'react-container',
-                                    reactComponent: DataGridDemo(),
-                                },
-                                // {
-                                //     xtype: 'div',
-                                //     html: '<h1 class="fw-n">Data grid Pro</h1><p class="text-info">This is a data grid pro component.</p>',
-                                // },
-                                // {
-                                //     xtype: 'react-container',
-                                //     reactComponent: DataGridProDemo(),
-                                // },
                             ],
                         },
                     ],
@@ -539,12 +508,6 @@ Ext.define('Abraxa.view.billing.BillingMainContainer', {
                                                         record.save({
                                                             success: function () {
                                                                 Ext.toast('Record updated');
-                                                            },
-                                                            failure: function () {
-                                                                Ext.Msg.alert(
-                                                                    'Something went wrong',
-                                                                    'Could not update record.'
-                                                                );
                                                             },
                                                         });
                                                     } else {

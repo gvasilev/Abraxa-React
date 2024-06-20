@@ -227,24 +227,8 @@ Ext.define('Abraxa.view.settings.user_teams.teams.AssignTeamUsers', {
                                 team.getProxy().setExtraParams({
                                     company_id: team.get('id'),
                                 });
-                                // team.load({
-                                //     success: function () {
-                                //         let teamUsers = team.users();
-                                //         if (teamUsers && teamUsers.count()) {
-                                //             teamUsers.each(function (rec) {
-                                //                 let userRec = users.getById(rec.get('id'));
-                                //                 if (userRec) {
-                                //                     userRec.set('team_id', team.get('id'))
-                                //                 }
-                                //             });
-                                //         }
-                                //     }
-                                // });
                                 teams.reload();
                                 Ext.toast('Users assigned', 1500);
-                            },
-                            failure: function (response) {
-                                Ext.Msg.alert('Status', 'Request Failed.');
                             },
                         });
                     }

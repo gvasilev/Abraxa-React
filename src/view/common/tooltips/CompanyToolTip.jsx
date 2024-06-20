@@ -25,30 +25,30 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
     anchorToTarget: true,
     tpl: [
         '<div class="tooltip-body">' +
-        '<div class="tooltip-title company-head-badge" data-company-id="{org_id}"><div class="badge"><i class="material-icons">business</i></div>' +
-        '<tpl if="country_name"><div class="sm-label">{country_name}</div><tpl else><div class="sm-label">Country</div></tpl>' +
-        '<div class="label hbox">{[this.getOrgIsVerified(values)]}{org_name}<div class="a-status-badge a-has-icon status-sm status-{rating.name}"><i class="material-icons">star</i>{rating.name}</div></div></div>' +
-        '<div class="tooltip-content">' +
-        '<ul>' +
-        '<tpl if="org_type_names"><li><div class="hbox"><i class="md-icon-outlined">label</i><div class="a-company-type">{[this.getTags(values.org_type_names)]}</div></div></li></tpl>' +
-        '<tpl if="org_email"><li><div class="hbox"><i class="md-icon-outlined">email</i><a class="c-blue" href="mailto:{org_email}">{org_email}</a></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">email</i><a class="c-blue" href="javascript:void(0)">---</a></div></li></tpl>' +
-        '<tpl if="org_phone"><li><div class="hbox"><i class="md-icon-outlined">phone</i><a class="c-blue" href="tel:{org_phone}">{org_phone}</a></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">phone</i><span class="c-blue">---</span></div></li></tpl>' +
-        '{[this.getPhones(values.phones)]}' +
-        '<tpl if="contacts_count"><li><div class="hbox"><i class="md-icon-outlined">group</i><span href="javascript:void(0);" class="fw-b contacts_count" data-company-id="{org_id}">{contacts_count} contacts</span></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">group</i><span href="javascript:void(0);" class="fw-b">---</span></div></li></tpl>' +
-        '<tpl if="org_registration_number"><li><div class="hbox"><i class="material-icons-outlined">assured_workload</i><span class="fw-b">{org_registration_number}</span></div></li><tpl else><li><div class="hbox"><i class="material-icons-outlined">assured_workload</i>---</div></li></tpl>' +
-        '</ul>' +
-        '<ul>' +
-        '<tpl if="balance"><li><div class="hbox a-company-balance {[this.getBalanceColor(values)]}"><i class="material-icons">attach_money</i><span class="fw-b">{[this.getBalance(values)]} </span></div></li><tpl else><li><div class="hbox a-company-balance"><i class="material-icons">attach_money</i>---</div></li></tpl>' +
-        '<tpl if="deals"><li><div class="hbox a-company-deals"><i class="material-icons-outlined">local_offer</i><span class="fw-b">{deals.appointed_active} appointments</span></div></li><tpl else><li><div class="hbox a-company-deals"><i class="material-icons">local_offer</i>---</div></li></tpl>' +
-        // '<tpl><li><div class="hbox"><i class="md-icon">short_text</i><span class="a-placeholder">Some company note</span></div></li></tpl>' +
-        '</ul>' +
-        '</div>' +
-        '</div>',
+            '<div class="tooltip-title company-head-badge" data-company-id="{org_id}"><div class="badge"><i class="material-icons">business</i></div>' +
+            '<tpl if="country_name"><div class="sm-label">{country_name}</div><tpl else><div class="sm-label">Country</div></tpl>' +
+            '<div class="label hbox">{[this.getOrgIsVerified(values)]}{org_name}<div class="a-status-badge a-has-icon status-sm status-{rating.name}"><i class="material-icons">star</i>{rating.name}</div></div></div>' +
+            '<div class="tooltip-content">' +
+            '<ul>' +
+            '<tpl if="org_type_names"><li><div class="hbox"><i class="md-icon-outlined">label</i><div class="a-company-type">{[this.getTags(values.org_type_names)]}</div></div></li></tpl>' +
+            '<tpl if="org_email"><li><div class="hbox"><i class="md-icon-outlined">email</i><a class="c-blue" href="mailto:{org_email}">{org_email}</a></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">email</i><a class="c-blue" href="javascript:void(0)">---</a></div></li></tpl>' +
+            '<tpl if="org_phone"><li><div class="hbox"><i class="md-icon-outlined">phone</i><a class="c-blue" href="tel:{org_phone}">{org_phone}</a></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">phone</i><span class="c-blue">---</span></div></li></tpl>' +
+            '{[this.getPhones(values.phones)]}' +
+            '<tpl if="contacts_count"><li><div class="hbox"><i class="md-icon-outlined">group</i><span href="javascript:void(0);" class="fw-b contacts_count" data-company-id="{org_id}">{contacts_count} contacts</span></div></li><tpl else><li><div class="hbox"><i class="md-icon-outlined">group</i><span href="javascript:void(0);" class="fw-b">---</span></div></li></tpl>' +
+            '<tpl if="org_registration_number"><li><div class="hbox"><i class="material-icons-outlined">assured_workload</i><span class="fw-b">{org_registration_number}</span></div></li><tpl else><li><div class="hbox"><i class="material-icons-outlined">assured_workload</i>---</div></li></tpl>' +
+            '</ul>' +
+            '<ul>' +
+            '<tpl if="balance"><li><div class="hbox a-company-balance {[this.getBalanceColor(values)]}"><i class="material-icons">attach_money</i><span class="fw-b">{[this.getBalance(values)]} </span></div></li><tpl else><li><div class="hbox a-company-balance"><i class="material-icons">attach_money</i>---</div></li></tpl>' +
+            '<tpl if="deals"><li><div class="hbox a-company-deals"><i class="material-icons-outlined">local_offer</i><span class="fw-b">{deals.appointed_active} appointments</span></div></li><tpl else><li><div class="hbox a-company-deals"><i class="material-icons">local_offer</i>---</div></li></tpl>' +
+            // '<tpl><li><div class="hbox"><i class="md-icon">short_text</i><span class="a-placeholder">Some company note</span></div></li></tpl>' +
+            '</ul>' +
+            '</div>' +
+            '</div>',
         {
-            getPhones: function(phones) {
+            getPhones: function (phones) {
                 let res = '';
                 if (phones && phones.length) {
-                    Ext.each(phones, function(phone) {
+                    Ext.each(phones, function (phone) {
                         res +=
                             '<li><div class="hbox"><i class="md-icon-outlined">phone</i><a class="c-blue" href="tel:' +
                             phone.phone +
@@ -61,10 +61,10 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
             },
         },
         {
-            getTags: function(tags) {
+            getTags: function (tags) {
                 if (tags && tags.length) {
                     let res = '';
-                    Ext.each(tags, function(tag) {
+                    Ext.each(tags, function (tag) {
                         res +=
                             '<span class="a-status-badge status-' + tag.toLowerCase() + ' rounded">' + tag + '</span>';
                     });
@@ -74,7 +74,7 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
             },
         },
         {
-            getBalance: function(values) {
+            getBalance: function (values) {
                 var default_currency = Ext.getCmp('main-viewport')
                     .getVM()
                     .get('currentUser')
@@ -110,7 +110,7 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
             },
         },
         {
-            getBalanceColor: function(values) {
+            getBalanceColor: function (values) {
                 let colorCls = '',
                     currentUserType = Ext.getCmp('main-viewport').getVM().get('currentUserType');
                 if (currentUserType == 'agent') {
@@ -137,7 +137,7 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
         },
 
         {
-            getOrgIsVerified: function(values) {
+            getOrgIsVerified: function (values) {
                 let orgIsVerified = values.compliance;
 
                 html =
@@ -163,7 +163,7 @@ Ext.define('Abraxa.view.common.tooltips.CompanyToolTip', {
                 margin: '8 0 8 8',
                 ui: 'action',
                 text: 'View details',
-                handler: function(me) {
+                handler: function (me) {
                     let record = me.upVM().get('record');
                     if (record) {
                         me.up('[xtype=company\\.tooltip]').hide();

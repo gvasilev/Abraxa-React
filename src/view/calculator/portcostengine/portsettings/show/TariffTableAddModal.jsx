@@ -89,23 +89,6 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.TariffTableA
                             me.up('dialog').destroy();
                         },
                     });
-
-                    // store.add(record);
-                    // store.sync({
-                    //     success: function () {
-                    //         Ext.toast('Record created', 1000);
-                    //         // store.load();
-                    //         me.up('dialog').destroy();
-                    //     },
-                    //     failure: function (batch, functions) {
-                    //         store.rejectChanges();
-                    //         me.up('dialog')
-                    //             .down('form\\.error')
-                    //             .setHtml('Please fill all required fields')
-                    //             .show()
-                    //             .addCls('error');
-                    //     },
-                    // });
                 }
             },
         },

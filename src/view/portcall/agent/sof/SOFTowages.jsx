@@ -78,10 +78,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
                                             },
-                                            failure: function (batch) {
-                                                var response = batch.operations[0]._response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message[0]);
-                                            },
                                         });
                                     }
                                 }
@@ -125,10 +121,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                         store.sync({
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
-                                            },
-                                            failure: function (batch) {
-                                                var response = batch.operations[0]._response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message[0]);
                                             },
                                         });
                                     }
@@ -185,10 +177,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
                                             },
-                                            failure: function (batch) {
-                                                var response = batch.operations[0]._response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message[0]);
-                                            },
                                         });
                                     }
                                 }
@@ -235,10 +223,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
                                             },
-                                            failure: function (batch) {
-                                                var response = batch.operations[0]._response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message[0]);
-                                            },
                                         });
                                     }
                                 }
@@ -274,10 +258,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                 store.sync({
                                     success: function (err, msg) {
                                         Ext.toast('Record updated', 1000);
-                                    },
-                                    failure: function (batch) {
-                                        var response = batch.operations[0]._response.responseJson;
-                                        Ext.Msg.alert('Something went wrong', response.message[0]);
                                     },
                                 });
                             }
@@ -345,9 +325,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFTowages', {
                                         store.sync({
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
-                                            },
-                                            failure: function (batch) {
-                                                Ext.Msg.alert('Something went wrong', 'Could not delete record!');
                                             },
                                         });
                                     }

@@ -31,10 +31,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                             iconCls: 'md-icon-keyboard-backspace',
                             ui: 'round default',
                             margin: '0 12 0 0',
-                            handler: function(me) {
+                            handler: function (me) {
                                 me.upVM().set('pageXtype', 'calculator.portcostengine.portsettings.index.page');
                                 let grid = Ext.ComponentQuery.query(
-                                    'calculator\\.portcostengine\\.portsettings\\.index\\.grid',
+                                    'calculator\\.portcostengine\\.portsettings\\.index\\.grid'
                                 )[0];
                                 grid.deselectAll();
 
@@ -118,10 +118,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 ],
                             },
                             listeners: {
-                                childtap: function(me, selection) {
+                                childtap: function (me, selection) {
                                     me.upVM().set(
                                         'subpageXtype',
-                                        'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree',
+                                        'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree'
                                     );
                                 },
                             },
@@ -182,11 +182,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                         },
                                     },
                                 ],
-                                getRecordIndex: function() {
+                                getRecordIndex: function () {
                                     return this.up('list').getStore().indexOf(this.upVM().get('record'));
                                 },
                             },
-                            onRowDrag: function(list, row, newIndex) {
+                            onRowDrag: function (list, row, newIndex) {
                                 let store = list.getStore();
 
                                 store.getProxy().setBatchActions(true);
@@ -194,14 +194,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 store.getProxy().setUrl(Env.ApiEndpoint + 'pc/${portSettingsId}/fields/orders');
                                 store.getProxy().getWriter().setRootProperty('data');
 
-                                store.each(function(val, index) {
+                                store.each(function (val, index) {
                                     val.set('order', index + 1);
                                     val.dirty = true;
                                     store.addSorted(val);
                                 });
 
                                 store.sync({
-                                    success: function() {
+                                    success: function () {
                                         Ext.toast('Record updated');
                                     },
                                 });
@@ -212,10 +212,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 store.getProxy().getWriter().setRootProperty(null);
                             },
                             listeners: {
-                                childtap: function(me) {
+                                childtap: function (me) {
                                     me.upVM().set(
                                         'subpageXtype',
-                                        'calculator.portcostengine.portsettings.show.datafields.show.subpage',
+                                        'calculator.portcostengine.portsettings.show.datafields.show.subpage'
                                     );
 
                                     // Resets error div on data field change
@@ -240,7 +240,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                             .removeCls('error');
                                     }
                                 },
-                                initialize: function(list) {
+                                initialize: function (list) {
                                     list.on('dragsort', 'onRowDrag', list);
                                 },
                             },
@@ -251,7 +251,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                             margin: '0 16',
                             ui: 'normal small',
                             iconCls: 'md-icon-add',
-                            handler: function(btn, e) {
+                            handler: function (btn, e) {
                                 let vm = this.upVM();
                                 let dialog = Ext.create(
                                     'Abraxa.view.calculator.portcostengine.portsettings.show.DataFieldAddModal',
@@ -262,7 +262,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                                 record: Ext.create('Abraxa.model.calculator.DataField', {}),
                                             },
                                         },
-                                    },
+                                    }
                                 );
                                 dialog.show();
                             },
@@ -318,10 +318,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 ],
                             },
                             listeners: {
-                                childtap: function(me) {
+                                childtap: function (me) {
                                     me.upVM().set(
                                         'subpageXtype',
-                                        'calculator.portcostengine.portsettings.show.globalvariables.show.subpage',
+                                        'calculator.portcostengine.portsettings.show.globalvariables.show.subpage'
                                     );
 
                                     // Resets error div on variable change
@@ -340,7 +340,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                             margin: '0 16',
                             ui: 'normal small',
                             iconCls: 'md-icon-add',
-                            handler: function(btn, e) {
+                            handler: function (btn, e) {
                                 let vm = this.upVM();
                                 let dialog = Ext.create(
                                     'Abraxa.view.calculator.portcostengine.portsettings.show.GlobalVariableAddModal',
@@ -351,7 +351,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                                 record: Ext.create('Abraxa.model.calculator.Variable', {}),
                                             },
                                         },
-                                    },
+                                    }
                                 );
                                 dialog.show();
                             },
@@ -407,10 +407,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 ],
                             },
                             listeners: {
-                                childtap: function(me) {
+                                childtap: function (me) {
                                     me.upVM().set(
                                         'subpageXtype',
-                                        'calculator.portcostengine.portsettings.show.tarifftables.grid',
+                                        'calculator.portcostengine.portsettings.show.tarifftables.grid'
                                     );
                                 },
                             },
@@ -421,7 +421,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                             margin: '0 16',
                             ui: 'normal small',
                             iconCls: 'md-icon-add',
-                            handler: function(btn, e) {
+                            handler: function (btn, e) {
                                 let vm = this.upVM();
                                 let dialog = Ext.create(
                                     'Abraxa.view.calculator.portcostengine.portsettings.show.TariffTableAddModal',
@@ -432,7 +432,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                                 record: Ext.create('Abraxa.model.calculator.TariffTable', {}),
                                             },
                                         },
-                                    },
+                                    }
                                 );
                                 dialog.show();
                             },
@@ -487,10 +487,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                 ],
                             },
                             listeners: {
-                                childtap: function(me) {
+                                childtap: function (me) {
                                     me.upVM().set(
                                         'subpageXtype',
-                                        'calculator.portcostengine.portsettings.show.pricebooks.show.subpage',
+                                        'calculator.portcostengine.portsettings.show.pricebooks.show.subpage'
                                     );
 
                                     // Resets error div on price book change
@@ -509,7 +509,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                             margin: '0 16',
                             ui: 'normal small',
                             iconCls: 'md-icon-add',
-                            handler: function(btn, e) {
+                            handler: function (btn, e) {
                                 let vm = this.upVM();
                                 let dialog = Ext.create(
                                     'Abraxa.view.calculator.portcostengine.portsettings.show.PriceBookAddModal',
@@ -520,7 +520,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.LeftMenu', {
                                                 record: Ext.create('Abraxa.model.calculator.PriceBook', {}),
                                             },
                                         },
-                                    },
+                                    }
                                 );
                                 dialog.show();
                             },

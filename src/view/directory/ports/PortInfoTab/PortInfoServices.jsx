@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_internet ? object_record.services_internet : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoServicesInternet}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_medical_facilities ? object_record.services_medical_facilities:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesMedicalFacilities}',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_garbage_disposal ? object_record.services_garbage_disposal:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesGarbageDisposal}',
                                     },
                                 },
                             ],
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_degauss ? object_record.services_degauss:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesDegauss}',
                                     },
                                 },
                             ],
@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_dirty_ballast ? object_record.services_dirty_ballast:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesDirtyBallast}',
                                     },
                                 },
                             ],
@@ -129,7 +129,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_steam ? object_record.services_steam:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesSteam}',
                                     },
                                 },
                             ],
@@ -144,7 +144,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_wash_water ? object_record.services_wash_water:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesWashWater}',
                                     },
                                 },
                             ],
@@ -159,7 +159,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_fumigation ? object_record.services_fumigation:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesFumigation}',
                                     },
                                 },
                             ],
@@ -195,7 +195,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_underwater_inspection ? object_record.services_underwater_inspection :"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesUnderwaterInspection}',
                                     },
                                 },
                             ],
@@ -210,7 +210,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_underwater_cleaning ? object_record.services_underwater_cleaning:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesUnderwaterCleaning}',
                                     },
                                 },
                             ],
@@ -225,7 +225,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_decontainerisation ? object_record.services_decontainerisation:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesDecontainerisation}',
                                     },
                                 },
                             ],
@@ -240,7 +240,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_navigation_repair ? object_record.services_navigation_repair:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesNavigationRepair}',
                                     },
                                 },
                             ],
@@ -255,7 +255,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_electrical_repair ? object_record.services_electrical_repair:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoSercicesElectricalRepair}',
                                     },
                                 },
                             ],
@@ -270,7 +270,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_engine_repair ? object_record.services_engine_repair:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesEngineRepair}',
                                     },
                                 },
                             ],
@@ -285,7 +285,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_bunkering ? object_record.services_bunkering:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesBunkering}',
                                     },
                                 },
                             ],
@@ -300,7 +300,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoServices', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.services_crew_changes ? object_record.services_crew_changes:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoServicesCrewChanges}',
                                     },
                                 },
                             ],

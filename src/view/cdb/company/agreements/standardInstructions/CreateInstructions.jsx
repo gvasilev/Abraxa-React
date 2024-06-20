@@ -184,7 +184,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstru
                                         quickInsertEnabled: false,
                                         theme: 'royal',
                                         pastePlain: true,
-                                        // enter: FroalaEditor.2,
+                                        enter: 2,
                                         imagePaste: false,
                                         height: 300,
                                         charCounterCount: false,

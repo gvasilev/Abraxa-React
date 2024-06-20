@@ -102,9 +102,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingRightCard', {
                                                         .set('newUpdate', new Date());
                                                     Ext.toast('Record updated', 1000);
                                                 },
-                                                failure: function (batch) {
-                                                    Ext.Msg.alert('Something went wrong', 'Could not delete record!');
-                                                },
                                             });
                                         }
                                     },

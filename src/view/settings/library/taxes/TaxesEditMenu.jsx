@@ -27,9 +27,6 @@ Ext.define('Abraxa.view.settings.library.taxes.TaxesEditMenu', {
                             success: function (batch) {
                                 Ext.toast('Record deleted', 1000);
                             },
-                            failure: function (batch) {
-                                Ext.Msg.alert('Something went wrong', 'Unable to delete this record!');
-                            },
                         });
                     },
                     this,

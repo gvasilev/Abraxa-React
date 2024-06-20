@@ -40,7 +40,7 @@ Ext.define('Abraxa.view.cdb.CdbMainViewModel', {
                 bindTo: '{cdbContactsGrid.selection}',
                 deep: true,
             },
-            get: function(record) {
+            get: function (record) {
                 if (record) return record;
             },
         },
@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.cdb.CdbMainViewModel', {
                 bindTo: '{userPermissions}',
                 deeP: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store && Object.keys(store).length > 0) {
                     let record = store['cdbFiles'];
                     if (record && record.edit) {
@@ -72,7 +72,7 @@ Ext.define('Abraxa.view.cdb.CdbMainViewModel', {
                 bindTo: '{organizations}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 return store.getTotalCount();
             },
         },

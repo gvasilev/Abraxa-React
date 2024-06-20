@@ -1,7 +1,7 @@
 import './DocumentsEditButton';
 import '../../../adocs/CreateDocumentPopup';
 import '../../../approval/SendForApprovalDialog';
-//import '../../../../core/override/Abraxa.Gauge';
+import '../../../../core/override/Abraxa.Gauge';
 
 Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
     extend: 'Ext.dataview.List',
@@ -585,34 +585,34 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                             align: 'center',
                         },
                         items: [
-//                            {
-//                                xtype: 'gauge',
-//                                cls: 'a-gauge-fix',
-//                                height: 53,
-//                                width: 53,
-//                                minValue: 0,
-//                                maxValue: 3,
-//                                value: 0,
-//                                bind: {
-//                                    maxValue: '{recordApprovals.total}',
-//                                    value: '{recordApprovals.approved}',
-//                                    valueStyle: '{recordApprovals.valueStyle}',
-//                                },
-//                                textTpl: [
-//                                    '<div class="transformer-guage-text" class="fw-b">',
-//                                    '<div class="fs-11 fw-b">',
-//                                    '{value}/{maxValue}',
-//                                    '</div>',
-//                                    '</div>',
-//                                ],
-//                                trackStart: 270,
-//                                trackLength: 360,
-//                                trackStyle: {
-//                                    strokeWidth: 0,
-//                                    outerRadius: '100%',
-//                                    innerRadius: '100% - 2',
-//                                },
-//                            },
+                            {
+                                xtype: 'gauge',
+                                cls: 'a-gauge-fix',
+                                height: 53,
+                                width: 53,
+                                minValue: 0,
+                                maxValue: 3,
+                                value: 0,
+                                bind: {
+                                    maxValue: '{recordApprovals.total}',
+                                    value: '{recordApprovals.approved}',
+                                    valueStyle: '{recordApprovals.valueStyle}',
+                                },
+                                textTpl: [
+                                    '<div class="transformer-guage-text" class="fw-b">',
+                                    '<div class="fs-11 fw-b">',
+                                    '{value}/{maxValue}',
+                                    '</div>',
+                                    '</div>',
+                                ],
+                                trackStart: 270,
+                                trackLength: 360,
+                                trackStyle: {
+                                    strokeWidth: 0,
+                                    outerRadius: '100%',
+                                    innerRadius: '100% - 2',
+                                },
+                            },
                             {
                                 xtype: 'div',
                                 hidden: true,
@@ -1226,12 +1226,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                                                         new Date()
                                                                                     );
                                                                                 },
-                                                                                failure: function (batch, operations) {
-                                                                                    Ext.Msg.alert(
-                                                                                        'Something went wrong',
-                                                                                        'Could not update file.'
-                                                                                    );
-                                                                                },
                                                                             });
                                                                             file.setChecked(false);
                                                                         });
@@ -1319,12 +1313,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsList', {
                                                                         );
                                                                         new_folder.documents().add(record);
                                                                         vm.set('refreshFolderCount', new Date());
-                                                                    },
-                                                                    failure: function (batch, operations) {
-                                                                        Ext.Msg.alert(
-                                                                            'Something went wrong',
-                                                                            'Could not update file.'
-                                                                        );
                                                                     },
                                                                 });
                                                                 file.setChecked(false);

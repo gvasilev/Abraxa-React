@@ -86,7 +86,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'discounted_price',
             type: 'float',
             depends: ['discount_amount', 'calculated_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 var discount = rec.get('discount_amount'),
                     calculated_price = rec.get('calculated_price');
 
@@ -97,7 +97,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_discounted_price',
             type: 'float',
             depends: ['pda_discount_amount', 'pda_calculated_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 var discount = rec.get('pda_discount_amount'),
                     calculated_price = rec.get('pda_calculated_price');
 
@@ -108,7 +108,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'dda_discounted_price',
             type: 'float',
             depends: ['dda_discount_amount', 'dda_calculated_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 var discount = rec.get('dda_discount_amount'),
                     calculated_price = rec.get('dda_calculated_price');
 
@@ -119,7 +119,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'fda_discounted_price',
             type: 'float',
             depends: ['fda_discount_amount', 'fda_calculated_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 var discount = rec.get('fda_discount_amount'),
                     calculated_price = rec.get('fda_calculated_price');
 
@@ -130,7 +130,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'sda_discounted_price',
             type: 'float',
             depends: ['sda_discount_amount', 'sda_calculated_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 var discount = rec.get('sda_discount_amount'),
                     calculated_price = rec.get('sda_calculated_price');
 
@@ -141,7 +141,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_final_price',
             type: 'float',
             depends: ['pda_calculated_price', 'pda_discounted_price', 'pda_vat_amount'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let price = rec.get('pda_discount_amount')
                         ? rec.get('pda_discounted_price')
                         : rec.get('pda_calculated_price'),
@@ -154,7 +154,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'dda_final_price',
             type: 'float',
             depends: ['dda_calculated_price', 'dda_discounted_price', 'dda_vat_amount'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let price = rec.get('dda_discount_amount')
                         ? rec.get('dda_discounted_price')
                         : rec.get('dda_calculated_price'),
@@ -166,7 +166,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'fda_final_price',
             type: 'float',
             depends: ['fda_calculated_price', 'fda_discounted_price', 'fda_vat_amount'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let price = rec.get('fda_discount_amount')
                         ? rec.get('fda_discounted_price')
                         : rec.get('fda_calculated_price'),
@@ -179,7 +179,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'sda_final_price',
             type: 'float',
             depends: ['sda_calculated_price', 'sda_discounted_price', 'sda_vat_amount'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let price = rec.get('sda_discount_amount')
                         ? rec.get('sda_discounted_price')
                         : rec.get('sda_calculated_price'),
@@ -192,7 +192,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'calculated_price',
             type: 'float',
             depends: ['fda_price', 'dda_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.get('fda_price');
             },
         },
@@ -200,7 +200,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'pda_calculated_price',
             type: 'float',
             depends: ['pda_price', 'currency', 'exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.calculateColumnPrice(rec, 'pda_price');
             },
         },
@@ -208,7 +208,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'dda_calculated_price',
             type: 'float',
             depends: ['dda_price', 'currency', 'exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.calculateColumnPrice(rec, 'dda_price');
             },
         },
@@ -216,7 +216,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'fda_calculated_price',
             type: 'float',
             depends: ['fda_price', 'currency', 'exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.calculateColumnPrice(rec, 'fda_price');
             },
         },
@@ -224,7 +224,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'sda_calculated_price',
             type: 'float',
             depends: ['sda_price', 'currency', 'exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.calculateColumnPrice(rec, 'sda_price');
             },
         },
@@ -317,11 +317,11 @@ Ext.define('Abraxa.model.portcall.Expense', {
             type: 'auto',
             persist: false,
             depends: ['pda_final_price', 'dda_final_price', 'fda_final_price'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return Abraxa.utils.Functions.calculateVariance(
                     rec.get('pda_final_price'),
                     rec.get('dda_final_price'),
-                    rec.get('fda_final_price'),
+                    rec.get('fda_final_price')
                 );
             },
         },
@@ -361,7 +361,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
             name: 'accounting_code',
             type: 'string',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.default_expense_item && data.default_expense_item.aliases) {
                     if (data.default_expense_item.cost_center_accounting_code) {
                         return data.default_expense_item.cost_center_accounting_code;
@@ -427,7 +427,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
         },
     },
 
-    applyDiscount: function(calculated_price, discount) {
+    applyDiscount: function (calculated_price, discount) {
         var value = discount,
             original_price = calculated_price,
             discounted_price = 0;
@@ -449,7 +449,7 @@ Ext.define('Abraxa.model.portcall.Expense', {
         return discounted_price;
     },
 
-    calculateColumnPrice: function(expense, column) {
+    calculateColumnPrice: function (expense, column) {
         let exchangeRate = expense.get('exchange_rate'),
             price = expense.get(column);
         if (

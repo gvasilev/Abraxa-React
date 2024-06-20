@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.common.tooltips.PersonToolTip', {
                     bindTo: '{user_id}',
                     deep: true,
                 },
-                get: function(id) {
+                get: function (id) {
                     if (id) {
                         let store = Ext.getCmp('main-viewport').getVM().get('users');
                         let record = store.getById(id);
@@ -53,7 +53,7 @@ Ext.define('Abraxa.view.common.tooltips.PersonToolTip', {
                     bindTo: '{contact_id}',
                     deep: true,
                 },
-                get: function(id) {
+                get: function (id) {
                     if (id) {
                         let store = this.get('companyContactsRecords');
                         let record = store.findRecord('contact_id', id, 0, false, false, true);
@@ -63,7 +63,7 @@ Ext.define('Abraxa.view.common.tooltips.PersonToolTip', {
                     }
                 },
             },
-            currentRecord: function(get) {
+            currentRecord: function (get) {
                 if (get('user_record')) {
                     return get('user_record');
                 }
@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.common.tooltips.PersonToolTip', {
             },
             record_data: {
                 bind: '{currentRecord}',
-                get: function(record) {
+                get: function (record) {
                     var abvr = '';
                     var full_name = '';
                     var company_name = '';

@@ -319,19 +319,9 @@ Ext.define('Abraxa.view.cdb.company.DocumentsFileInfo', {
                                                         ui: 'action',
                                                         testId: 'documentsFileInfoFileNameSaveBtn',
                                                         handler: function () {
-                                                            // record.getProxy().setExtraParams({
-                                                            //     object_id: record.get('object_id'),
-                                                            //     object_meta_id: record.get('object_meta_id'),
-                                                            // });
                                                             record.save({
                                                                 success: function (batch, opt) {
                                                                     Ext.toast('Document updated', 1500);
-                                                                },
-                                                                failure: function (batch, operations) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not update file.'
-                                                                    );
                                                                 },
                                                             });
                                                             this.up('dialog').destroy();

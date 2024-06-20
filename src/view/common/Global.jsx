@@ -7,52 +7,6 @@ import '../../model/commodity/Commodity';
 Ext.define('Abraxa.Global', {
     singleton: true,
 
-    // getPort: function (portId) {
-    //     if (portId) {
-    //         Ext.Ajax.request({
-    //             url: Env.ApiEndpoint + "ports/" + portId,
-    //             method: "GET",
-    //             headers: {
-    //                 Authorization: "Bearer " + localStorage.getItem("id_token"),
-    //                 "Content-Type": "application/json"
-    //             },
-    //             jsonData: {},
-    //             success: function (response) {
-    //                 var isPortServed = false;
-    //                 var responseData = JSON.parse(response.responseText);
-
-    //                 // Load ports served store
-    //                 var storeCompanyBerths = Ext.create('Abraxa.store.settings.companysettings.PortsServed', {
-    //                     autoLoad: false
-    //                 });
-
-    //                 storeCompanyBerths.load({
-    //                     callback: function (records, operation, success) {
-    //                         if (success == true) {
-    //                             let recordExists = storeCompanyBerths.findRecord('port_id', portId, 0, false, false, true);
-
-    //                             if (recordExists) isPortServed = true;
-
-    //                             Ext.create("Abraxa.view.common.dialog.Port", {
-    //                                 viewModel: {
-    //                                     data: {
-    //                                         record: responseData,
-    //                                         berthClicked: false,
-    //                                         isPortServed: isPortServed
-    //                                     }
-    //                                 }
-    //                             }).show();
-    //                         }
-    //                     }
-    //                 });
-    //             },
-    //             failure: function (response) {
-    //                 Ext.Msg.alert("Status", "Request Failed.");
-    //             }
-    //         });
-    //     }
-    // },
-
     getBerthInPort: function (portId, berthId) {
         if (portId && berthId) {
             let porstsServed = Ext.getCmp('main-viewport').getViewModel().get('portsServed'),
@@ -276,9 +230,6 @@ Ext.define('Abraxa.Global', {
                         },
                     }).showBy(currentTarget, 'bc-tc?');
                 },
-                failure: function (response) {
-                    Ext.Msg.alert('Status', 'Request Failed.');
-                },
             });
         }
     },
@@ -295,9 +246,6 @@ Ext.define('Abraxa.Global', {
                 jsonData: {},
                 success: function (response) {
                     callback(parseFloat(JSON.parse(response.responseText)));
-                },
-                failure: function (response) {
-                    Ext.Msg.alert('Status', 'Request Failed.');
                 },
             });
         }
@@ -343,7 +291,6 @@ Ext.define('Abraxa.Global', {
                     let model = new Abraxa.model.common.Commodity(Object.assign({}, data));
                     resolve(model);
                 },
-                failure: function failure(response) {},
             });
         });
     },

@@ -39,8 +39,6 @@ Ext.define('Abraxa.view.settings.offices.OfficeController', {
                 element.setValue(null);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 document.querySelector('#' + element.id).value = '';
                 element.setValue(null);
             },
@@ -72,9 +70,6 @@ Ext.define('Abraxa.view.settings.offices.OfficeController', {
                     success: function (batch, opt) {
                         Ext.toast('Record updated', 1000);
                         store.reload();
-                    },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update settings!');
                     },
                 });
             }

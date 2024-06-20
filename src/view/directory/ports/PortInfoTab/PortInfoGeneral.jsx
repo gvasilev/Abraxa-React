@@ -36,7 +36,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.meta_name_alternatives ? object_record.meta_name_alternatives:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{alternativeNames}',
                             },
                         },
                     ],
@@ -51,7 +51,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.location_type ? object_record.location_type:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_type ? object_record.meta_type : "<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
@@ -66,7 +66,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.operational_status ? object_record.operational_status:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_status ? object_record.meta_status : "<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
@@ -81,7 +81,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.region ? object_record.region:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_region ? object_record.meta_region:"<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
@@ -96,28 +96,13 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.subregion ? object_record.subregion:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_subregion ? object_record.meta_subregion:"<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
                 },
+                // sixth row container
                 {
-                    //sixth row container
-                    items: [
-                        {
-                            cls: 'a-display-label',
-                            html: 'Country name',
-                        },
-                        {
-                            cls: 'a-display-value fw-b',
-                            bind: {
-                                html: '{object_record.countries ? object_record.countries.country_name:"<span class=\'a-placeholder\'>---</span>"}',
-                            },
-                        },
-                    ],
-                },
-                {
-                    //seventh row container
                     items: [
                         {
                             cls: 'a-display-label',
@@ -126,13 +111,13 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.countries ? object_record.countries.country_code:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_subdivision ? object_record.meta_subdivision :"<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
                 },
+                // seventh row container
                 {
-                    //eighth row container
                     items: [
                         {
                             cls: 'a-display-label',
@@ -141,13 +126,12 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.isps ? object_record.isps:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{object_record.meta_isps ? object_record.meta_isps:"<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],
                 },
                 {
-                    //ninth row container
                     items: [
                         {
                             cls: 'a-display-label',
@@ -156,7 +140,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{object_record.load_lines ? object_record.load_lines:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{getLoadLines}',
                             },
                         },
                     ],

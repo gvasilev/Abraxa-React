@@ -487,7 +487,8 @@ Ext.define('Abraxa.view.portcall.PortCallHeader', {
                                 let record = this.lookupViewModel().get('portCallRecord'),
                                     companyVerified = this.lookupViewModel().get('currentCompany').get('verified'),
                                     portCallVM = Ext.ComponentQuery.query(
-                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                            'portcall\\.main'
                                     )[0].lookupViewModel();
 
                                 Ext.create('Abraxa.view.invitations.InviteDialog', {
@@ -680,7 +681,8 @@ Ext.define('Abraxa.view.portcall.PortCallHeader', {
                             },
                             handler: function (me) {
                                 let portCallVM = Ext.ComponentQuery.query(
-                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                            'portcall\\.main'
                                     )[0].lookupViewModel(),
                                     companyVerified = this.lookupViewModel().get('currentCompany').get('verified');
                                 mixpanel.track('Report button (main header)');
@@ -805,7 +807,8 @@ Ext.define('Abraxa.view.portcall.PortCallHeader', {
                                 let record = this.lookupViewModel().get('portCallRecord'),
                                     companyVerified = this.lookupViewModel().get('currentCompany').get('verified'),
                                     portCallVM = Ext.ComponentQuery.query(
-                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                            'portcall\\.main'
                                     )[0].lookupViewModel();
                                 mixpanel.track('Share button (main header)');
                                 Ext.create('Abraxa.view.invitations.InviteDialog', {

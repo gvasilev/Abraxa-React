@@ -65,7 +65,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.Main', {
                                     align: 'bc-tc?',
                                 },
                             },
-                            handler: function() {
+                            handler: function () {
                                 let panel = Ext.ComponentQuery.query('[cls~=agreements_left_menu]')[0],
                                     cls = panel.getUserCls() == 'is-expanded';
 
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.Main', {
                         ],
                     },
                     listeners: {
-                        childsingletap: function() {
+                        childsingletap: function () {
                             Ext.ComponentQuery.query('agreements\\.prefunding\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('agreements\\.discounts\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('agreements\\.billing\\.grid')[0].deselectAll();

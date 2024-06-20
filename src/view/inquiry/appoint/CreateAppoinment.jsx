@@ -26,7 +26,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
             },
             cls: 'backTool',
             iconCls: 'md-icon-keyboard-backspace',
-            handler: function(me) {
+            handler: function (me) {
                 me.down('[xtype=portcalls\\.instructions\\.container]').hide();
                 me.upVM().set('visibleInstruction', false);
                 me.down('[xtype=portcalls\\.template\\.container]').hide();
@@ -52,14 +52,14 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function() {
+            handler: function () {
                 let dialog = this.up('dialog'),
                     record = this.upVM().get('object_record');
                 if (record.phantom || record.dirty || record.cargoes().needsSync) {
                     Ext.Msg.confirm(
                         'Confirmation',
                         'Would you like to discard all changes?',
-                        function(answer) {
+                        function (answer) {
                             if (answer == 'yes') {
                                 record.cargoes().rejectChanges();
                                 record.reject();
@@ -81,7 +81,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                 ui: 'action loading',
                                 text: 'Discard',
                             },
-                        ],
+                        ]
                     );
                 } else {
                     dialog.destroy();
@@ -112,7 +112,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                 closeAction: 'destroy',
             },
             listeners: {
-                tap: function(me, newValue) {
+                tap: function (me, newValue) {
                     if (me.upVM().get('visibleInstruction')) {
                         me.up('dialog').down('[xtype=portcalls\\.instructions\\.container]').hide();
                         me.upVM().set('visibleInstruction', false);
@@ -157,7 +157,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                 closeAction: 'destroy',
             },
             listeners: {
-                change: function(me, newValue) {
+                change: function (me, newValue) {
                     if (newValue) {
                         var files = this.getFiles(),
                             len = files.length,
@@ -165,7 +165,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                             fileStore = me.upVM().get('files'),
                             totalSize = 0;
 
-                        let size = function(size) {
+                        let size = function (size) {
                             var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                             if (size == 0) return '0 Byte';
                             var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
@@ -197,7 +197,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                             xtype: 'button',
                                             ui: 'action',
                                             text: 'Ok',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.up('dialog').destroy();
                                             },
                                         },
@@ -213,7 +213,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                             tmpForm.appendChild(fileField);
                             tmpForm.reset();
                             parentNod.replaceChild(fileField, tmpForm);
-                            document.querySelector('input[type=\'file\']').value = '';
+                            document.querySelector("input[type='file']").value = '';
                             me.setValue(null);
                             return;
                         }
@@ -228,7 +228,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                             fileStore.add(record);
                         }
                     }
-                    document.querySelector('input[type=\'file\']').value = '';
+                    document.querySelector("input[type='file']").value = '';
                     me.setValue(null);
                 },
             },
@@ -259,7 +259,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                 closeAction: 'destroy',
             },
             listeners: {
-                tap: function(me, newValue) {
+                tap: function (me, newValue) {
                     let currentUserPlan = me.upVM().get('currentUserPlan');
                     if (currentUserPlan == 'starter') {
                         Ext.create('Abraxa.view.main.UpgradeDialog').show();
@@ -350,7 +350,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                 disabled: '{associated ? true : false}',
                                             },
                                             listeners: {
-                                                painted: function(me) {
+                                                painted: function (me) {
                                                     me.focus();
                                                     var record = me.upVM().get('voyage_data');
                                                     if (record) {
@@ -359,7 +359,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         }
                                                     }
                                                 },
-                                                select: function() {
+                                                select: function () {
                                                     let selection = this.getSelection(),
                                                         voyage_data = this.upVM().get('voyage_data');
 
@@ -425,7 +425,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                 value: '{object_record.file_id}',
                                                             },
                                                             listeners: {
-                                                                painted: function() {
+                                                                painted: function () {
                                                                     this.setError(false);
                                                                 },
                                                             },
@@ -479,7 +479,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                     },
                                                     required: true,
                                                     listeners: {
-                                                        focusleave: function(me) {
+                                                        focusleave: function (me) {
                                                             var record = this.upVM().get('object_record');
                                                             record.set({
                                                                 port_eta: me.getValue(),
@@ -503,7 +503,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         required: '{currentUserType == "principal" ? true:false}',
                                                     },
                                                     listeners: {
-                                                        painted: function(me) {
+                                                        painted: function (me) {
                                                             me.setError(false);
                                                             var record = this.upVM().get('object_record');
                                                             if (record) {
@@ -512,17 +512,17 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                 }
                                                             }
                                                         },
-                                                        select: function() {
+                                                        select: function () {
                                                             if (this.getSelection()) {
                                                                 let record = this.upVM().get('object_record');
                                                                 record.set(
                                                                     'port_name',
-                                                                    this.getSelection().get('port_name'),
+                                                                    this.getSelection().get('port_name')
                                                                 );
                                                                 if (this.getSelection().get('code')) {
                                                                     record.set(
                                                                         'port_code',
-                                                                        this.getSelection().get('code'),
+                                                                        this.getSelection().get('code')
                                                                     );
                                                                 }
                                                             }
@@ -545,15 +545,15 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         required: '{currentUserType == "principal" ? false:true}',
                                                     },
                                                     listeners: {
-                                                        painted: function(me) {
+                                                        painted: function (me) {
                                                             me.setError(false);
                                                         },
-                                                        select: function() {
+                                                        select: function () {
                                                             if (this.getSelection()) {
                                                                 let record = this.upVM().get('object_record');
                                                                 record.set(
                                                                     'port_name',
-                                                                    this.getSelection().get('port_name'),
+                                                                    this.getSelection().get('port_name')
                                                                 );
                                                                 if (
                                                                     this.getSelection().get('port') &&
@@ -561,7 +561,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                 ) {
                                                                     record.set(
                                                                         'port_code',
-                                                                        this.getSelection().get('port').code,
+                                                                        this.getSelection().get('port').code
                                                                     );
                                                                 }
                                                             }
@@ -620,16 +620,16 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         required: '{currentUserType == "principal" ? false:true}',
                                                     },
                                                     listeners: {
-                                                        select: function() {
+                                                        select: function () {
                                                             let selection = this.getSelection(),
                                                                 record = this.upVM().get('nomination');
                                                             record.set(
                                                                 'appointing_party_name',
-                                                                selection.get('org_name'),
+                                                                selection.get('org_name')
                                                             );
                                                             record.set(
                                                                 'appointing_party_email',
-                                                                selection.get('org_email'),
+                                                                selection.get('org_email')
                                                             );
                                                         },
                                                     },
@@ -666,16 +666,16 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         required: '{currentUserType == "principal" ? false:true}',
                                                     },
                                                     listeners: {
-                                                        select: function() {
+                                                        select: function () {
                                                             let selection = this.getSelection(),
                                                                 record = this.upVM().get('nomination');
                                                             record.set(
                                                                 'nominating_party_name',
-                                                                selection.get('org_name'),
+                                                                selection.get('org_name')
                                                             );
                                                             record.set(
                                                                 'nominating_party_email',
-                                                                selection.get('org_email'),
+                                                                selection.get('org_email')
                                                             );
                                                         },
                                                     },
@@ -708,7 +708,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         permission: '{userPermissions}',
                                                     },
                                                     listeners: {
-                                                        focusleave: function(me) {
+                                                        focusleave: function (me) {
                                                             var record = this.upVM().get('nomination');
                                                             record.set({
                                                                 date_received: me.getValue(),
@@ -756,7 +756,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         value: '{nomination.agency_type_id}',
                                                     },
                                                     listeners: {
-                                                        select: function() {
+                                                        select: function () {
                                                             let selection = this.getSelection(),
                                                                 record = this.upVM().get('nomination');
                                                             record.set('agency_type_name', selection.get('name'));
@@ -800,7 +800,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                 permission: '{userPermissions}',
                                                             },
                                                             listeners: {
-                                                                select: function(me, selection) {
+                                                                select: function (me, selection) {
                                                                     if (selection.get('value') == 'sub agent') {
                                                                         let nomination = me.upVM().get('nomination'),
                                                                             company = me
@@ -813,18 +813,18 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                         nomination.set('lead_agent_email', null);
                                                                         nomination.set(
                                                                             'sub_agent_id',
-                                                                            company.get('id'),
+                                                                            company.get('id')
                                                                         );
                                                                         nomination.set(
                                                                             'sub_agent_name',
-                                                                            company.get('name'),
+                                                                            company.get('name')
                                                                         );
                                                                         nomination.set(
                                                                             'sub_agent_email',
-                                                                            company.get('email'),
+                                                                            company.get('email')
                                                                         );
                                                                         Ext.ComponentQuery.query(
-                                                                            '[cls~=use_sub_agent]',
+                                                                            '[cls~=use_sub_agent]'
                                                                         )[0].setChecked(true);
                                                                     } else {
                                                                         let nomination = me.upVM().get('nomination'),
@@ -838,15 +838,15 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                         nomination.set('sub_agent_email', null);
                                                                         nomination.set(
                                                                             'lead_agent_id',
-                                                                            company.get('id'),
+                                                                            company.get('id')
                                                                         );
                                                                         nomination.set(
                                                                             'lead_agent_name',
-                                                                            company.get('name'),
+                                                                            company.get('name')
                                                                         );
                                                                         nomination.set(
                                                                             'lead_agent_email',
-                                                                            company.get('email'),
+                                                                            company.get('email')
                                                                         );
                                                                     }
                                                                 },
@@ -868,10 +868,10 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                 permission: '{userPermissions}',
                                                             },
                                                             listeners: {
-                                                                check: function(me) {
+                                                                check: function (me) {
                                                                     me.upVM().set('hubStructure', true);
                                                                 },
-                                                                uncheck: function(me) {
+                                                                uncheck: function (me) {
                                                                     me.upVM().set('hubStructure', false);
                                                                 },
                                                             },
@@ -902,25 +902,25 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                             },
                                                         },
                                                         listeners: {
-                                                            select: function() {
+                                                            select: function () {
                                                                 let selection = this.getSelection(),
                                                                     record = this.upVM().get('nomination');
                                                                 record.set(
                                                                     'lead_agent_name',
-                                                                    selection.get('org_name'),
+                                                                    selection.get('org_name')
                                                                 );
                                                                 record.set(
                                                                     'lead_agent_email',
-                                                                    selection.get('org_email'),
+                                                                    selection.get('org_email')
                                                                 );
                                                             },
                                                         },
                                                     },
                                                     listeners: {
-                                                        painted: function(me) {
+                                                        painted: function (me) {
                                                             me.setError(false);
                                                         },
-                                                        show: function(me) {
+                                                        show: function (me) {
                                                             me.setError(false);
                                                         },
                                                     },
@@ -951,23 +951,23 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         permission: '{userPermissions}',
                                                     },
                                                     listeners: {
-                                                        painted: function(me) {
+                                                        painted: function (me) {
                                                             me.setError(false);
                                                         },
-                                                        show: function(me) {
+                                                        show: function (me) {
                                                             me.setError(false);
                                                         },
                                                     },
                                                     floatedPicker: {
                                                         minWidth: 308,
                                                         listeners: {
-                                                            select: function() {
+                                                            select: function () {
                                                                 let selection = this.getSelection(),
                                                                     record = this.upVM().get('nomination');
                                                                 record.set('sub_agent_name', selection.get('org_name'));
                                                                 record.set(
                                                                     'sub_agent_email',
-                                                                    selection.get('org_email'),
+                                                                    selection.get('org_email')
                                                                 );
                                                             },
                                                         },
@@ -1038,7 +1038,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                                 cls: 'a-title-md',
                                                                                 margin: '0 0 0 -8',
                                                                                 bind: {
-                                                                                    title: '<span class=\'a-cargo-title\'>Cargo {recordIndex + 1}</span>',
+                                                                                    title: "<span class='a-cargo-title'>Cargo {recordIndex + 1}</span>",
                                                                                 },
                                                                             },
                                                                             {
@@ -1069,13 +1069,13 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                                         handler: function handler(me) {
                                                                                             me.up('dialog')
                                                                                                 .down(
-                                                                                                    '[itemId=createCargo]',
+                                                                                                    '[itemId=createCargo]'
                                                                                                 )
                                                                                                 .getStore()
                                                                                                 .remove(
                                                                                                     this.upVM().get(
-                                                                                                        'record',
-                                                                                                    ),
+                                                                                                        'record'
+                                                                                                    )
                                                                                                 );
                                                                                         },
                                                                                     },
@@ -1131,7 +1131,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                             permission: '{userPermissions}',
                                                                         },
                                                                         listeners: {
-                                                                            change: function(combo, value, eOpts) {
+                                                                            change: function (combo, value, eOpts) {
                                                                                 if (value && value != '') {
                                                                                     // All cargoes as cargoes array
                                                                                     var allCargoesRecord = combo
@@ -1144,17 +1144,17 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                                                             selection.get('name');
                                                                                         allCargoesRecord.set(
                                                                                             'commodity',
-                                                                                            commodity_name,
+                                                                                            commodity_name
                                                                                         );
                                                                                     }
                                                                                 }
                                                                             },
-                                                                            painted: function() {
+                                                                            painted: function () {
                                                                                 let record = this.upVM().get('record');
 
                                                                                 if (record.get('commodity')) {
                                                                                     this.setInputValue(
-                                                                                        record.get('commodity'),
+                                                                                        record.get('commodity')
                                                                                     );
                                                                                 }
                                                                             },
@@ -1210,7 +1210,7 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                                                         } else {
                                                             Ext.Msg.warning(
                                                                 ' Oops, Something went wrong.',
-                                                                'Please refresh the page.',
+                                                                'Please refresh the page.'
                                                             );
                                                         }
                                                     },
@@ -1264,14 +1264,14 @@ Ext.define('Abraxa.view.inquiry.appoint.CreateAppointment', {
                 bind: {
                     hidden: '{visibleInstruction || visibleTemplates ? true:false}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     me.up('dialog').getController().onCreate(me, true);
                 },
             },
         ],
     },
     listeners: {
-        destroy: function(me) {
+        destroy: function (me) {
             let record = me.upVM().get('object_record');
             if (record) {
                 record.reject();

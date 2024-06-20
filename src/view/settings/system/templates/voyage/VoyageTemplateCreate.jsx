@@ -77,9 +77,6 @@ Ext.define('AbraxaLive.view.settings.system.templates.voyage.VoyageTemplateCreat
                             Ext.toast('Record created', 1000);
                             btn.up('dialog').destroy();
                         },
-                        failure: function (batch, operations) {
-                            form.down('form\\.error').setHtml('laino').show().addCls('error');
-                        },
                     });
                 } else {
                     form.down('form\\.error').setHtml('Please fill in all required fields').show().addCls('error');
@@ -100,9 +97,6 @@ Ext.define('AbraxaLive.view.settings.system.templates.voyage.VoyageTemplateCreat
                         success: function (batch, opt) {
                             Ext.toast('Record updated', 1000);
                             btn.up('dialog').destroy();
-                        },
-                        failure: function (batch, operations) {
-                            form.down('form\\.error').setHtml('laino').show().addCls('error');
                         },
                     });
                 } else {

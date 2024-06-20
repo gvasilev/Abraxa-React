@@ -16,7 +16,6 @@ Ext.define('Abraxa.view.tasks.TaskForm', {
                 {
                     xtype: 'textareafield',
                     minHeight: 32,
-                    ui: 'field-xl no-border classic',
                     label: false,
                     clearable: false,
                     placeholder: 'Task name',

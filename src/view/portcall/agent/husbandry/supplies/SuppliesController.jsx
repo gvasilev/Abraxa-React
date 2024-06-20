@@ -41,9 +41,6 @@ Ext.define('Abraxa.view.portcall.husbandary.supplies.SuppliesController', {
                         mixpanel.track('Created a Service');
                         view.destroy();
                     },
-                    failure: function (batch) {
-                        Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                    },
                 });
             }
         } else {

@@ -201,20 +201,8 @@ Ext.define('Abraxa.view.portcall.NotesInput', {
                                         success: function () {
                                             Ext.toast('Record updated', 1000);
                                             me.up('dialog').destroy();
-                                            // object_record.save();
                                         },
                                         failure: function (batch, options) {
-                                            var msg =
-                                                (batch &&
-                                                    batch.operations &&
-                                                    batch.operations[0] &&
-                                                    batch.operations[0].error &&
-                                                    batch.operations[0].error.response &&
-                                                    batch.operations[0].error.response.responseJson &&
-                                                    batch.operations[0].error.response.responseJson.message) ||
-                                                'Something went wrong';
-
-                                            Ext.Msg.alert('Error', msg);
                                             me.toggle();
                                         },
                                     });

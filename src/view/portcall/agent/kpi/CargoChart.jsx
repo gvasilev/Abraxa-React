@@ -18,15 +18,11 @@ Ext.define('Abraxa.view.portcall.kpi.CargoChart', {
                 {
                     xtype: 'fusionchart',
                     cls: 'a-fusion-chart',
-                    itemId: 'cargoChart',
                     type: 'MSArea',
                     renderAt: 'chart-container',
                     width: 840,
                     height: 520,
                     itemId: 'cargoChart',
-                    // bind: {
-                    //     dataSource: '{cargoUrl}'
-                    // },
                     events: {
                         dataUpdated: function (e) {
                             let data = e.data.data;

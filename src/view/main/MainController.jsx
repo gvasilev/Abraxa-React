@@ -182,12 +182,6 @@ Ext.define('Abraxa.view.main.MainController', {
                 ':action': '(update|appoint)',
             },
         },
-        'voyage/:id/:action(/:appointmentId)': {
-            action: 'handleCreateVoyageRoute',
-            conditions: {
-                ':action': '(update|appoint)',
-            },
-        },
         'appointment/create': {
             action: 'handleCreateAppointmentRoute',
         },

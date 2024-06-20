@@ -17,7 +17,7 @@ Ext.define('Abraxa.model.directory.Ports', {
         {
             name: 'country',
             type: 'string',
-            convert: function(value) {
+            convert: function (value) {
                 if (value) {
                     return value;
                 }
@@ -27,7 +27,7 @@ Ext.define('Abraxa.model.directory.Ports', {
         {
             name: 'timezone',
             type: 'string',
-            convert: function(value) {
+            convert: function (value) {
                 if (value && value != 'NULL') {
                     return value;
                 }

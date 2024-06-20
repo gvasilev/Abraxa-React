@@ -122,7 +122,6 @@ Ext.define('Abraxa.view.settings.library.expense.DisbursementItemDetailsForm', {
                             },
                             failure: function (batch, operations) {
                                 me.toggle();
-                                Ext.Msg.alert('Something went wrong', 'Cannot update record.');
                             },
                         });
                     } else {

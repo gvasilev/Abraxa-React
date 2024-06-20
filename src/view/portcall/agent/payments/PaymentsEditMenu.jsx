@@ -43,32 +43,7 @@ Ext.define('Abraxa.view.portcall.payments.PaymentsEditMenu', {
                                     Ext.toast('Record deleted', 1000);
                                 },
                                 failure: function failure(response, batch) {
-                                    var msg = response.operations[0].error.response.responseJson.error;
-                                    Ext.create('Ext.MessageBox', {
-                                        ui: 'warning',
-                                        title: 'Delete Cancelled',
-                                        innerCls: 'a-bgr-white',
-                                        message: msg,
-                                        width: 500,
-                                        dataTitle: 'Warning',
-                                        modal: true,
-                                        draggable: false,
-                                        bbar: {
-                                            manageBorders: false,
-                                            items: [
-                                                '->',
-                                                {
-                                                    xtype: 'button',
-                                                    ui: 'action',
-                                                    text: 'Ok',
-                                                    handler: function () {
-                                                        store.rejectChanges();
-                                                        this.up('dialog').destroy();
-                                                    },
-                                                },
-                                            ],
-                                        },
-                                    }).show();
+                                    store.rejectChanges();
                                 },
                             });
                         }

@@ -53,7 +53,7 @@ Ext.define('Abraxa.view.common.dialog.Vessel', {
                             },
                         ],
                         listeners: {
-                            activeTabchange: function() {
+                            activeTabchange: function () {
                                 const activeTab = this.getActiveTab();
                                 const tabBar = this.up('dialog').down('vessel\\.dialog\\.info');
                                 tabBar.setActiveItem(this.items.indexOf(activeTab));
@@ -87,7 +87,7 @@ Ext.define('Abraxa.view.common.dialog.Vessel', {
                             allowOver: false,
                             closeAction: 'destroy',
                         },
-                        handler: function(btn, e) {
+                        handler: function (btn, e) {
                             let me = this,
                                 record = me.upVM().get('vessel');
                             let dialog = Ext.create('Abraxa.view.settings.library.vessels.AddVessel', {
@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.common.dialog.Vessel', {
                                                 bindTo: '{vessel}',
                                                 deep: true,
                                             },
-                                            get: function(vessel) {
+                                            get: function (vessel) {
                                                 if (vessel) {
                                                     if (vessel.get('vessel_img')) {
                                                         return vessel.get('vessel_img');
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.common.dialog.Vessel', {
                             allowOver: false,
                             closeAction: 'destroy',
                         },
-                        handler: function() {
+                        handler: function () {
                             this.up('dialog').destroy();
                         },
                     },
@@ -182,7 +182,7 @@ Ext.define('Abraxa.view.common.dialog.Vessel', {
                                     ui: 'default',
                                     encodeHtml: false,
                                     cls: 'col-6',
-                                    renderer: function(value) {
+                                    renderer: function (value) {
                                         if (value) {
                                             return value;
                                         } else {

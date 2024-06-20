@@ -35,7 +35,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                 closeAction: 'destroy',
             },
             listeners: {
-                change: function(me, newValue) {
+                change: function (me, newValue) {
                     if (newValue) {
                         var files = this.getFiles(),
                             len = files.length,
@@ -43,7 +43,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                             fileStore = me.upVM().get('files'),
                             totalSize = 0;
 
-                        let size = function(size) {
+                        let size = function (size) {
                             var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                             if (size === 0) return '0 Byte';
                             var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
@@ -75,7 +75,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                                             xtype: 'button',
                                             ui: 'action',
                                             text: 'Ok',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.up('dialog').destroy();
                                             },
                                         },
@@ -91,7 +91,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                             tmpForm.appendChild(fileField);
                             tmpForm.reset();
                             parentNod.replaceChild(fileField, tmpForm);
-                            document.querySelector('input[type=\'file\']').value = '';
+                            document.querySelector("input[type='file']").value = '';
                             me.setValue(null);
                             return;
                         }
@@ -106,7 +106,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                             fileStore.add(record);
                         }
                     }
-                    document.querySelector('input[type=\'file\']').value = '';
+                    document.querySelector("input[type='file']").value = '';
                     me.up('dialog').getController().clearFileUpload(me.element.id);
                     me.setValue(null);
                 },
@@ -160,7 +160,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                                         disabled: '{object_record.is_archived ? true:false}',
                                     },
                                     listeners: {
-                                        painted: function(me) {
+                                        painted: function (me) {
                                             me.focus();
                                         },
                                     },
@@ -198,7 +198,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                                         value: '{instruction.description}',
                                     },
                                     listeners: {
-                                        painted: function(me) {
+                                        painted: function (me) {
                                             if (
                                                 me.upVM().get('object_record') &&
                                                 me.upVM().get('object_record').get('is_archived')
@@ -254,7 +254,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
                                                 click: {
                                                     element: 'element',
                                                     delegate: 'i.remove_attachment',
-                                                    fn: function(cmp, a) {
+                                                    fn: function (cmp, a) {
                                                         var store = this.component.getStore();
                                                         var record = this.component.getSelection();
                                                         store.remove(record);
@@ -281,7 +281,7 @@ Ext.define('Abraxa.view.portcall.appointment.AddInstructions', {
         {
             text: 'Cancel',
             margin: '0 8 0 0',
-            handler: function() {
+            handler: function () {
                 let record = this.upVM().get('instruction');
                 if (record) {
                     record.reject();

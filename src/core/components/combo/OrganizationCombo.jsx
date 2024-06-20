@@ -304,7 +304,6 @@ Ext.define('Abraxa.core.components.combo.OrganizationCombo', {
                                 },
                             },
                             {
-                                xtype: 'button',
                                 ui: 'filter round',
                                 text: 'Filter',
                                 xtype: 'splitbutton',

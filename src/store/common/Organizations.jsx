@@ -35,7 +35,7 @@ Ext.define('Abraxa.store.CompanyDatabase', {
         },
     ],
     grouper: {
-        groupFn: function(record) {
+        groupFn: function (record) {
             return record.get('abbr').toUpperCase();
         },
     },

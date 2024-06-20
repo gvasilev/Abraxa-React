@@ -443,7 +443,6 @@ Ext.define('Abraxa.view.inquiry.appoint.AppointList', {
                                                             );
                                                         }
                                                     },
-                                                    failure: function failure(response) {},
                                                 });
                                             }
                                         },

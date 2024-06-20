@@ -104,21 +104,4 @@ Ext.define('Nishilua.data.proxy.Rest', {
         }
         return Ext.Array.pluck(placeholders, '1');
     },
-
-    /**
-     * Finds all the placeholder keys present in the target String.
-     *
-     * @param {String} targetString - String where to find placeholders with format `${foo.bar.baz}`
-     * @returns {String[]} List with unique placeholders found
-     * @private
-     */
-    _findPlaceholderKeys: function (targetString) {
-        var matchedPlaceholder,
-            placeholders = [];
-
-        while ((matchedPlaceholder = this.placeholdersRe.exec(targetString)) !== null) {
-            placeholders.push(matchedPlaceholder);
-        }
-        return Ext.Array.pluck(placeholders, '1');
-    },
 });

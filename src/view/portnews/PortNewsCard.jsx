@@ -30,15 +30,10 @@ Ext.define('Abraxa.view.portnews.PortNewsCard', {
                     Ext.Ajax.request({
                         url: `${Env.ApiEndpoint}port-news/${record.get('id')}/user-data`,
                         method: 'PATCH',
-                        // headers: {
-                        //     Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-                        //     'Content-Type': 'application/json',
-                        // },
                         jsonData: { is_new: false },
                         success: function (response, options) {
                             portNewsCardVM.set('isNewInProggress', false);
                         },
-                        failure: function () {},
                     });
                 }
             });

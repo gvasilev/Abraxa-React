@@ -47,22 +47,7 @@ Ext.define('Abraxa.view.settings.automation.templates.disbursement.DisbursementI
                                     template.set('updated_at', new Date());
                                     template.save();
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create template item!');
-                                },
                             });
-                        // Ext.create('Abraxa.view.settings.automation.templates.disbursement.AddEditDisbursementItem', {
-                        //     viewModel: {
-                        //         parent: me.upVM(),
-                        //         data: {
-                        //             title: 'Create item',
-                        //             editMode: false,
-                        //             record: Ext.create('Abraxa.model.template.TemplateItem', {
-                        //                 order_id: me.upVM().get('templateItems').count() + 1
-                        //             }),
-                        //         }
-                        //     }
-                        // }).show();
                     },
                 },
             ],

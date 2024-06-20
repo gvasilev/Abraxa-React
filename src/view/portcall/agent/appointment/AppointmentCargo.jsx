@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
             },
             width: 30,
             listeners: {
-                checkchange: function(me, rowIndex, checked, record, e, eOpts) {
+                checkchange: function (me, rowIndex, checked, record, e, eOpts) {
                     if (checked) {
                         record.set('is_checked', true);
                     } else {
@@ -88,7 +88,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                     cls: '{nonEditable ? "hidden a-no-content-btn" : "a-no-content-btn"}',
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let nomintaion = me.upVM().get('nomination'),
                         store = me.upVM().get('cargoes');
                     Ext.create('Abraxa.view.AddCargoPopup', {
@@ -146,7 +146,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                                 cls: '{nonEditable ? "hidden a-no-content-btn" : "a-no-content-btn"}',
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let nomintaion = me.upVM().get('nomination'),
                                     store = me.upVM().get('cargoes');
                                 Ext.create('Abraxa.view.AddCargoPopup', {
@@ -201,7 +201,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                                                 cls: '{nonEditable ? "hidden a-no-content-btn" : "a-no-content-btn"}',
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     cargoes = vm.get('cargoes'),
@@ -210,20 +210,14 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete this cargoes?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 cargoes.remove(rec);
                                                             });
                                                             cargoes.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -244,7 +238,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -257,7 +251,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                                     text: 'Customize',
                                     testId: 'appointmentCargoDeleteCustomizeBtn',
                                     margin: '0 0 0 8',
-                                    handler: function() {
+                                    handler: function () {
                                         this.find('cargoesGrid').getPlugin('gridviewoptions').showViewOptions();
                                     },
                                 },
@@ -279,7 +273,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
             flex: 2,
             minWidth: 340,
             // maxWidth: 340,
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 let str = '',
                     quantityStr = '';
                 if (val) {
@@ -306,7 +300,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
                 encodeHtml: false,
             },
             minWidth: 140,
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 if (value) {
                     return '<span class="a-function function-' + value + '"><span>' + value + '</span></span>';
                 } else {
@@ -403,7 +397,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentCargo', {
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }

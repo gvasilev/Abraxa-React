@@ -98,14 +98,6 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                                     portServedRecord.save();
                                                                     Ext.toast('Record updated', 1000);
                                                                 },
-                                                                failure: function (batch) {
-                                                                    var response =
-                                                                        batch.operations[0].error.response.responseJson;
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        response.message
-                                                                    );
-                                                                },
                                                             });
                                                         },
                                                         this,
@@ -245,14 +237,6 @@ Ext.define('Abraxa.view.settings.library.ports.AdditionalMainContainer', {
                                                                     portServedRecord.set('updated_at', new Date());
                                                                     portServedRecord.save();
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function (batch) {
-                                                                    var response =
-                                                                        batch.operations[0].error.response.responseJson;
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        response.message
-                                                                    );
                                                                 },
                                                             });
                                                         },

@@ -133,7 +133,6 @@ Ext.define('Abraxa.view.settings.library.expense.ExpensesForm', {
                                     },
                                     failure: function (batch, operations) {
                                         me.toggle();
-                                        Ext.Msg.alert('Something went wrong', 'Cannot update template!');
                                     },
                                 });
                             } else {
@@ -177,7 +176,6 @@ Ext.define('Abraxa.view.settings.library.expense.ExpensesForm', {
                                     },
                                     failure: function (batch, operations) {
                                         me.toggle();
-                                        Ext.Msg.alert('Something went wrong', 'Cannot create template!');
                                     },
                                 });
                             }

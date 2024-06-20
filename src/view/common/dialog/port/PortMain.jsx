@@ -57,7 +57,7 @@ Ext.define('Abraxa.view.common.dialog.PortMain', {
                             allowOver: false,
                             closeAction: 'destroy',
                         },
-                        handler: function() {
+                        handler: function () {
                             this.up('dialog').destroy();
                         },
                     },
@@ -107,7 +107,7 @@ Ext.define('Abraxa.view.common.dialog.PortMain', {
                                     ui: 'default',
                                     encodeHtml: false,
                                     cls: 'col-6',
-                                    renderer: function(value) {
+                                    renderer: function (value) {
                                         if (value) {
                                             return value;
                                         } else {
@@ -225,7 +225,7 @@ Ext.define('Abraxa.view.common.dialog.PortMain', {
         },
     ],
     listeners: {
-        destroy: function(me) {
+        destroy: function (me) {
             let portServed = Ext.getCmp('main-viewport').getVM().get('portsServed'),
                 port = me.upVM().get('port');
             portRecord = portServed.findRecord('port_id', port.get('id'), 0, false, false, true);

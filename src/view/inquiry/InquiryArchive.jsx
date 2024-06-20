@@ -213,12 +213,8 @@ Ext.define('Abraxa.view.inquiry.InquiryArchive', {
                             if (taskStore) taskStore.reload();
                             if (estimateStore) estimateStore.reload();
 
-                            // container.hide();
                             dialog.destroy();
                             mixpanel.track('Archived a inquiry');
-                        },
-                        failure: function (batch) {
-                            Ext.Msg.alert('Something went wrong', 'Unable to archive record!');
                         },
                     });
                 } else {

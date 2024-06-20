@@ -47,7 +47,7 @@ Ext.define('Abraxa.model.adocs.Document', {
         },
         {
             name: 'size',
-            convert: function(size) {
+            convert: function (size) {
                 var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                 if (size == 0) return '0 Byte';
                 var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));

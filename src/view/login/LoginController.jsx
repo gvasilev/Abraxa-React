@@ -202,7 +202,7 @@ Ext.define('Abraxa.view.login.LoginController', {
                         .down('form\\.error')
                         .setHtml(res.message)
                         .show()
-                        .addCls('erroe');
+                        .addCls('error');
                     reset_password_button.toggle();
                 },
             });

@@ -12,7 +12,7 @@ Ext.define('Abraxa.field.ComboBox', {
     },
 
     initialize: function () {
-// this.callParent(arguments);
+        // this.callParent(arguments);
         const combo = this;
 
         // Ext.util.Observable.capture(this, function (evname) {

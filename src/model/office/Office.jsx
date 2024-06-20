@@ -83,7 +83,7 @@ Ext.define('Abraxa.model.office.Office', {
         {
             name: 'users_count',
             type: 'integer',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.users_count || 0;
             },
         },

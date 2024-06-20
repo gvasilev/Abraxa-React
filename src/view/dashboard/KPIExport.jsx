@@ -439,7 +439,6 @@ Ext.define('Abraxa.view.Dashboard.KPIExport', {
                                 },
                                 {
                                     xtype: 'vessel.combo',
-                                    cls: 'hbox',
                                     label: 'Vessel(s)',
                                     placeholder: 'Start typing',
                                     name: 'vessels',

@@ -20,7 +20,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{balanceExposure}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store) {
                     let data = store.getAt(0);
                     if (data) {
@@ -34,7 +34,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{balanceExposure}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store) {
                     let data = store.getAt(0);
                     if (data) {
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{balanceExposure}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store) {
                     let data = store.getAt(0);
                     if (data) {
@@ -101,7 +101,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{balanceExposure}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store) {
                     let data = store.getAt(0);
                     if (data) {
@@ -115,7 +115,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{balanceExposure}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 if (store) {
                     let data = store.getAt(0);
                     if (data) {
@@ -130,7 +130,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{routeHash}',
                 deep: true,
             },
-            get: function(hash) {
+            get: function (hash) {
                 if (hash && hash == '#dashboard') {
                     let chart = Ext.ComponentQuery.query('[itemId=averageChart]')[0];
                     if (chart) {
@@ -138,15 +138,13 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/average_port_stay/-1',
                             method: 'GET',
-                            success: function(response) {
+                            success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
                                     if (obj) {
                                         fusionchart.setJSONData(obj);
                                     }
                                 }
-                            },
-                            failure: function failure(response) {
                             },
                         });
                     }
@@ -158,7 +156,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{routeHash}',
                 deep: true,
             },
-            get: function(hash) {
+            get: function (hash) {
                 if (hash && hash == '#dashboard') {
                     let chart = Ext.ComponentQuery.query('[itemId=chart]')[0];
                     if (chart) {
@@ -166,15 +164,13 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/appointments/month',
                             method: 'GET',
-                            success: function(response) {
+                            success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
                                     if (obj) {
                                         fusionchart.setJSONData(obj);
                                     }
                                 }
-                            },
-                            failure: function failure(response) {
                             },
                         });
                     }
@@ -186,7 +182,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{routeHash}',
                 deep: true,
             },
-            get: function(hash) {
+            get: function (hash) {
                 if (hash && hash == '#dashboard') {
                     let chart = Ext.ComponentQuery.query('[itemId=angulargaugeChart]')[0];
                     if (chart) {
@@ -194,18 +190,16 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/appointments_latest',
                             method: 'GET',
-                            success: function(response) {
+                            success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
                                     if (obj) {
                                         Ext.ComponentQuery.query('[xtype=dashboard\\.right\\.container]')[0]?.setMasked(
-                                            false,
+                                            false
                                         );
                                         fusionchart.setJSONData(obj);
                                     }
                                 }
-                            },
-                            failure: function failure(response) {
                             },
                         });
                     }
@@ -217,7 +211,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{routeHash}',
                 deep: true,
             },
-            get: function(hash) {
+            get: function (hash) {
                 if (hash && hash == '#dashboard') {
                     let chart = Ext.ComponentQuery.query('[itemId=stackedChart]')[0];
                     if (chart) {
@@ -225,15 +219,13 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                         Ext.Ajax.request({
                             url: Env.ApiEndpoint + 'dashboard/top_deals',
                             method: 'GET',
-                            success: function(response) {
+                            success: function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (fusionchart && !fusionchart.disposed) {
                                     if (obj) {
                                         fusionchart.setJSONData(obj);
                                     }
                                 }
-                            },
-                            failure: function failure(response) {
                             },
                         });
                     }
@@ -245,7 +237,7 @@ Ext.define('Abraxa.view.dashboard.DashboardViewModel', {
                 bindTo: '{routeHash}',
                 deep: true,
             },
-            get: function(hash) {
+            get: function (hash) {
                 if (hash && hash == '#dashboard') {
                     let store = this.get('balanceExposure');
                     if (store) {

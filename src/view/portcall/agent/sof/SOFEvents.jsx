@@ -31,11 +31,9 @@ Ext.define('Abraxa.view.portcall.sof.SOFEvents', {
                         type: 'hbox',
                         align: 'middle',
                     },
-                    bind: {
-                        hidden: '{nonEditable}',
-                    },
                     customComponentHolderId: 'sofButtonToolbar',
                     bind: {
+                        hidden: '{nonEditable}',
                         customComponents: '{currentCompany.custom_components}',
                     },
                     items: [

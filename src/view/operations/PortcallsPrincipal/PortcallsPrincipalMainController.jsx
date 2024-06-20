@@ -256,10 +256,6 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMainCont
                         me.redirectToOperationPortcalls();
                     }, 0);
                 },
-
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             btn.toggle();

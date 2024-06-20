@@ -247,9 +247,6 @@ Ext.define('Abraxa.view.cdb.company.contacts.AddContact', {
                                     view.destroy();
                                     mixpanel.track('Contact created');
                                 },
-                                failure: function (batch) {
-                                    Ext.Msg.alert('Something went wrong', 'Unable to create record!');
-                                },
                             });
                         } else {
                             Ext.Msg.alert('Something went wrong', 'Unable to create record!');

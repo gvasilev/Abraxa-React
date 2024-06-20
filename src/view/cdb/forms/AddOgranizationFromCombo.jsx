@@ -308,9 +308,7 @@ Ext.define('Abraxa.view.cdb.forms.AddOrganizationFromCombo', {
                             dialog.destroy();
                         },
                         failure: function (record, batch) {
-                            var msg = batch.error.response.responseJson.message;
                             btn.toggle();
-                            Ext.Msg.alert('Oops', msg);
                         },
                     });
                 } else {

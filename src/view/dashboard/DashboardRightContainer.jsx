@@ -69,35 +69,6 @@ Ext.define('Abraxa.view.dashboard.DashboardRightContainer', {
                         minorTMNumber: '0',
                         placeTicksInside: '1',
                     },
-                    // events: {
-                    //     chartMouseMove: function (e) {
-
-                    //         return false;
-                    //     }
-                    // },
-                    // dataFormat: 'jsonurl',
-                    // dataSource: Env.ApiEndpoint + 'dashboard/appointments_latest',
-                    // listeners: {
-                    //     painted: function () {
-                    //         let chart = this.getFusionChart();
-                    //         Ext.Ajax.request({
-                    //             url: Env.ApiEndpoint + 'dashboard/appointments_latest',
-                    //             method: 'GET',
-                    //             success: function (response) {
-                    //                 var obj = Ext.decode(response.responseText);
-                    //                 if (chart && !chart.disposed) {
-                    //                     if (obj) {
-                    //                         Ext.ComponentQuery.query('[xtype=dashboard\\.right\\.container]')[0].setMasked(false);
-                    //                         chart.setJSONData(obj);
-                    //                     }
-                    //                 }
-                    //             },
-                    //             failure: function failure(response) {
-
-                    //             }
-                    //         });
-                    //     }
-                    // }
                 },
             ],
         },

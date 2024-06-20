@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.pilotage_requirement ? object_record.pilotage_requirement: "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.pilotage_requirement ? (object_record.pilotage_requirement:capitalize) : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.pilotage_availability ? object_record.pilotage_availability.start:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{fromToPilotageAvailability}',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.pilotage_comments ? object_record.pilotage_comments:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.pilotage_comments ? object_record.pilotage_comments : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.towage_requirement ? object_record.towage_requirement : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.towage_requirement ? (object_record.towage_requirement:capitalize) : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.towage_availability ? object_record.towage_availability.start:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{fromToTowageAvailability}',
                                     },
                                 },
                             ],
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoPilotage', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.towage_comments ? object_record.towage_comments:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.towage_comments ? object_record.towage_comments : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],

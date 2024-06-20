@@ -789,10 +789,6 @@ Ext.define('Abraxa.view.vouchers.Itemform', {
                                 account_id: account ? account.get('id') : null,
                                 org_id: account ? account.get('org_id') : null,
                                 org_name: account ? account.get('org_name') : null,
-                                currency: account
-                                    ? account.get('account_currency')
-                                    : me.upVM().get('currentCompany').get('default_currency'),
-                                account_currency: account ? account.get('account_currency') : null,
                                 from_exchange_rate: 1,
                                 to_exchange_rate: 1,
                                 paymentable_id: invoice.get('id'),

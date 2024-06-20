@@ -159,9 +159,6 @@ Ext.define('Abraxa.view.settings.offices.AssignOfficeEmail', {
                                 store.reload();
                                 dialog.destroy();
                             },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot update team!');
-                            },
                         });
                     }
                 },

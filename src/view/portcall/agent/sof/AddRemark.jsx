@@ -146,9 +146,6 @@ Ext.define('Abraxa.view.portcall.sof.AddRemark', {
                                 btn.toggle();
                                 btn.up('dialog').destroy();
                             },
-                            failure: function (batch, operation) {
-                                Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                            },
                         });
                     } else {
                         remarks.add(record);
@@ -157,9 +154,6 @@ Ext.define('Abraxa.view.portcall.sof.AddRemark', {
                                 Ext.toast('Record created', 1000);
                                 btn.toggle();
                                 btn.up('dialog').destroy();
-                            },
-                            failure: function (batch, operation) {
-                                Ext.Msg.alert('Something went wrong', 'Something went wrong');
                             },
                         });
                     }

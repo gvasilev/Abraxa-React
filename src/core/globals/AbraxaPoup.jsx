@@ -3,7 +3,7 @@ import '../../view/common/dialog/SuccessfullyDialog';
 Ext.define('Abraxa.popup', {
     singleton: true,
 
-    showSuccessDialog: function(title, content, storeForReload = null) {
+    showSuccessDialog: function (title, content, storeForReload = null) {
         if (Ext.getCmp('showSuccessDialog')) {
             Ext.getCmp('showSuccessDialog').destroy();
         }
@@ -18,7 +18,7 @@ Ext.define('Abraxa.popup', {
                 },
             },
             listeners: {
-                show: function(me) {
+                show: function (me) {
                     if (me.upVM().get('storeForReload')) {
                         me.upVM().get('storeForReload').reload();
                     }

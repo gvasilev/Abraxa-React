@@ -88,9 +88,6 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysEditMenu', {
                                 portServedRecordd.save();
                                 Ext.toast('Record deleted', 1000);
                             },
-                            failure: function (batch) {
-                                Ext.Msg.alert('Something went wrong', 'Unable to delete this record!');
-                            },
                         });
                     },
                     this,

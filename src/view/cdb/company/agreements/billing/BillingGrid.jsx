@@ -29,7 +29,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
             },
             width: 30,
             listeners: {
-                checkchange: function(me, rowIndex, checked, record, e, eOpts) {
+                checkchange: function (me, rowIndex, checked, record, e, eOpts) {
                     if (checked) {
                         record.set('is_checked', true);
                     } else {
@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             let record = this.upVM().get('billingGrid.selection'),
                 grid = Ext.ComponentQuery.query('agreements\\.billing\\.grid')[0];
 
@@ -64,14 +64,14 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
         tpl: new Ext.XTemplate(
             '<div class="a-header-{[this.parceString(values.name)]}">{[this.parceString(values.name)]} ({count})</div>',
             {
-                parceString: function(value) {
+                parceString: function (value) {
                     if (value == '1') {
                         return 'Active';
                     } else {
                         return 'Disabled';
                     }
                 },
-            },
+            }
         ),
     },
     emptyText: {
@@ -98,7 +98,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                 bind: {
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let record = me.upVM().get('object_record'),
                         currentUser = me.upVM().get('currentUser');
                     Ext.create('Abraxa.view.cdb.company.agreements.billing.CreateBilling', {
@@ -134,7 +134,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             if (record.get('active')) {
                                 return 'item-active';
@@ -175,7 +175,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = me.upVM().get('object_record'),
                                     currentUser = me.upVM().get('currentUser');
                                 Ext.create('Abraxa.view.cdb.company.agreements.billing.CreateBilling', {
@@ -221,7 +221,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                             bind: {
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     billings = vm.get('billings'),
@@ -229,23 +229,17 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                 Ext.Msg.confirm(
                                                     'Enable',
                                                     'Are you sure you want to enable this direct billings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 1);
                                                             });
                                                             billings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                                         .getVM()
                                                                         .set('newUpdate', new Date());
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not enable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -264,7 +258,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                             ui: 'action loading',
                                                             text: 'Enable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -278,7 +272,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                             bind: {
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     billings = vm.get('billings'),
@@ -286,24 +280,18 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                 Ext.Msg.confirm(
                                                     'Disable',
                                                     'Are you sure you want to disable this direct billings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 0);
                                                             });
                                                             billings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                                         .getVM()
                                                                         .set('newUpdate', new Date());
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not disable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -322,7 +310,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Disable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -336,7 +324,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                             bind: {
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     billings = vm.get('billings'),
@@ -345,24 +333,18 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete this billings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 billings.remove(rec);
                                                             });
                                                             billings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                                         .getVM()
                                                                         .set('newUpdate', new Date());
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -381,7 +363,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -403,7 +385,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                                             iconCls: 'md-icon-outlined md-icon-settings',
                                             text: 'Customize',
                                             margin: '0 0 0 8',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.find('billingGrid').getPlugin('gridviewoptions').showViewOptions();
                                             },
                                         },
@@ -426,7 +408,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
             },
             minWidth: 220,
             flex: 4,
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 if (val) {
                     return (
                         '<div class="hbox"><div class="a-badge a-badge-x32 a-badge-billing"><i class="md-icon-outlined">account_balance_wallet</i></div><div class="ml-12"><div class="text-truncate fw-b">' +
@@ -460,7 +442,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return '<span>' + value + '</span>';
                 } else {
@@ -478,7 +460,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
                     click: {
                         element: 'element',
                         delegate: 'a.company_details',
-                        fn: function(el) {
+                        fn: function (el) {
                             var company_id = el.target.getAttribute('data-company_id');
                             let vm = this.component.up('grid').upVM(),
                                 organizations = vm.get('organizations'),
@@ -552,7 +534,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
             cell: {
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return '<span class="fw-b c-link">' + value + '%</span>';
                 } else {
@@ -651,7 +633,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.BillingGrid', {
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }

@@ -132,9 +132,7 @@ Ext.define('Abraxa.view.settings.company.AssignBanksToPublicProfile', {
                             Ext.toast('Record updated', 1500);
                         },
                         failure: function (batch, options) {
-                            var response = batch.operations[0].error.response.responseJson;
                             dialog.unmask();
-                            Ext.Msg.alert('Something went wrong', response.message);
                         },
                     });
                 },

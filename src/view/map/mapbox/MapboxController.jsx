@@ -157,8 +157,6 @@ Ext.define('Abraxa.view.map.mapbox.AbraxaMapboxController', {
                     break;
                 case '':
                     break;
-                case '':
-                    break;
             }
         });
     },
@@ -177,8 +175,6 @@ Ext.define('Abraxa.view.map.mapbox.AbraxaMapboxController', {
                     var measureDistance = Ext.create('MapboxMeasureDistance', {
                         map: map,
                     });
-                    break;
-                case '':
                     break;
                 case '':
                     break;

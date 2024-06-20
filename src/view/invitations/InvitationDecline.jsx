@@ -120,9 +120,6 @@ Ext.define('Abraxa.view.invitations.InvitationDecline', {
                             Ext.toast('Record updated', 1000);
                             dialog.destroy();
                         },
-                        failure: function (batch) {
-                            // Ext.Msg.alert('Something went wrong', 'Could not appoint this Inquiry!');
-                        },
                     });
                 } else {
                     dialog.down('form\\.error').setHtml('Please fill all required fields').show().addCls('error');

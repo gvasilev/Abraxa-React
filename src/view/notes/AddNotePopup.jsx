@@ -27,7 +27,7 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
                     bindTo: '{object_record}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         let html = '';
 
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
             bind: {
                 hidden: '{add_edit_note.collapsed}',
             },
-            handler: function() {
+            handler: function () {
                 this.up('dialog').collapse();
             },
         },
@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
             bind: {
                 hidden: '{!add_edit_note.collapsed}',
             },
-            handler: function() {
+            handler: function () {
                 this.up('dialog').expand();
             },
         },
@@ -122,13 +122,13 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function(me) {
+            handler: function (me) {
                 let dialog = this.up('dialog'),
                     notes = dialog.upVM().get('object_record').notes();
                 Ext.Msg.confirm(
                     'Confirmation',
                     'Would you like to discard all changes?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             notes.rejectChanges();
                             dialog.destroy();
@@ -151,7 +151,7 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
                             ui: 'action loading',
                             text: 'Discard',
                         },
-                    ],
+                    ]
                 );
             },
         },

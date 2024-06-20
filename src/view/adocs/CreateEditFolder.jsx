@@ -86,10 +86,6 @@ Ext.define('Abraxa.view.adocs.CreateEditFolder', {
                                         dialog.destroy();
                                         Ext.toast('Record updated', 1000);
                                     },
-                                    failure: function (batch) {
-                                        var response = batch.operations[0].error.response.responseJson;
-                                        Ext.Msg.alert('Something went wrong', response.message);
-                                    },
                                 });
                             } else {
                                 dialog.destroy();
@@ -101,10 +97,6 @@ Ext.define('Abraxa.view.adocs.CreateEditFolder', {
                             success: function (err, msg) {
                                 dialog.destroy();
                                 Ext.toast('Record created', 1000);
-                            },
-                            failure: function (batch) {
-                                var response = batch.operations[0].error.response.responseJson;
-                                Ext.Msg.alert('Something went wrong', response.message);
                             },
                         });
                     }

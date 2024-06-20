@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_berth ? object_record.load_offload_berth: "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadBerth}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_anchor ? object_record.load_offload_anchor:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadAnchor}',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_buoy ? object_record.load_offload_buoy:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadBuoy}',
                                     },
                                 },
                             ],
@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_dolphin ? object_record.load_offload_dolphin : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadDolphin}',
                                     },
                                 },
                             ],
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_spm ? object_record.load_offload_spm:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadSPM}',
                                     },
                                 },
                             ],
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoLDLocations', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.load_offload_fsru ? object_record.load_offload_fsru:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoLoadOffloadFSRU}',
                                     },
                                 },
                             ],

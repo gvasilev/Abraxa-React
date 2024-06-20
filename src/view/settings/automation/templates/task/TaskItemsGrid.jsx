@@ -48,22 +48,7 @@ Ext.define('Abraxa.view.settings.automation.templates.task.TaskItemsGrid', {
                                     template.save();
                                     Ext.toast('Record created', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create template item!');
-                                },
                             });
-                        // Ext.create('Abraxa.view.settings.automation.templates.task.AddEditTaskItem', {
-                        //     viewModel: {
-                        //         parent: me.upVM(),
-                        //         data: {
-                        //             title: 'Create item',
-                        //             editMode: false,
-                        //             record: Ext.create('Abraxa.model.template.TemplateItem', {
-                        //                 order_id: me.upVM().get('templateItems').count() + 1
-                        //             }),
-                        //         }
-                        //     }
-                        // }).show();
                     },
                 },
             ],
@@ -99,9 +84,6 @@ Ext.define('Abraxa.view.settings.automation.templates.task.TaskItemsGrid', {
                                     template.set('updated_at', new Date());
                                     template.save();
                                     Ext.toast('Record updated', 1000);
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update template item!');
                                 },
                             });
                         }
@@ -156,9 +138,6 @@ Ext.define('Abraxa.view.settings.automation.templates.task.TaskItemsGrid', {
                                     template.set('updated_at', new Date());
                                     template.save();
                                     Ext.toast('Record updated', 1000);
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update template item!');
                                 },
                             });
                         }

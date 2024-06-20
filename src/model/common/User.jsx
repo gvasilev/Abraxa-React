@@ -77,14 +77,14 @@ Ext.define('Abraxa.model.common.User', {
             type: 'integer',
             depends: 'id',
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 return rec.get('id');
             },
         },
         {
             name: 'previous_login',
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 if (v) {
                     let newValue = JSON.parse(v);
                     newValue.time = new Date(newValue.time);
@@ -121,7 +121,7 @@ Ext.define('Abraxa.model.common.User', {
             type: 'integer',
             depends: ['preferred_hub_agent'],
             persist: false,
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (record && record.get('preferred_hub_agent')) {
                     return record.get('preferred_hub_agent').tenant_id;
                 }

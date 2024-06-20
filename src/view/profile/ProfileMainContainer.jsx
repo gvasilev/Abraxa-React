@@ -69,9 +69,6 @@ Ext.define('Abraxa.view.profile.ProfileMainContainer', {
                                         success: function (batch, opt) {
                                             Ext.toast('Record updated', 1000);
                                         },
-                                        failure: function (batch, operations) {
-                                            Ext.Msg.alert('Something went wrong', 'Cannot update user');
-                                        },
                                     });
                                 }
                             },

@@ -28,7 +28,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.MainPage', {
         },
     ],
     listeners: {
-        painted: function(me) {
+        painted: function (me) {
             if (me.upVM().get('currentUserType') !== 'agent') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

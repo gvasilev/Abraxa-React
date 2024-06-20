@@ -37,7 +37,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.CreateProforma', {
                         value: '{offer.name}',
                     },
                     listeners: {
-                        painted: function() {
+                        painted: function () {
                             this.focus();
                         },
                     },
@@ -58,7 +58,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.CreateProforma', {
                         value: '{offer.group_id}',
                     },
                     listeners: {
-                        painted: function() {
+                        painted: function () {
                             this.setError(false);
                         },
                     },
@@ -89,7 +89,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.CreateProforma', {
                         store: '{portStore}',
                     },
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.setError(false);
                         },
                     },
@@ -178,7 +178,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.CreateProforma', {
                         hidden: '{priceBooks.count ? false : true}',
                     },
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.setError(false);
                         },
                     },
@@ -190,7 +190,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.CreateProforma', {
         {
             text: 'Cancel',
             margin: '0 8 0 0',
-            handler: function(btn) {
+            handler: function (btn) {
                 btn.upVM().get('offer').reject();
                 this.up('dialog').destroy();
             },

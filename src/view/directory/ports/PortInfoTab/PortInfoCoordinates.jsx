@@ -47,7 +47,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoCoordinates', {
                         {
                             cls: 'a-display-value',
                             bind: {
-                                html: '{lat} {lon}',
+                                html: '{portCoordinates}',
                             },
                         },
                     ],
@@ -62,7 +62,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoCoordinates', {
                         {
                             cls: 'a-display-value',
                             bind: {
-                                html: '{object_record.coordinates_entrance ? object_record.coordinates_entrance.latitude :"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{entranceCoordinates}',
                             },
                         },
                     ],
@@ -77,7 +77,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoCoordinates', {
                         {
                             cls: 'a-display-value',
                             bind: {
-                                html: '{object_record.coordinates_pilot_station ? object_record.coordinates_pilot_station.latitude:"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{pilotStationCoordinates}',
                             },
                         },
                     ],

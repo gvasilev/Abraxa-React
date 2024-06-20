@@ -34,7 +34,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                             iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                             margin: '0 16 0 0',
                             ui: 'tool-md',
-                            handler: function(me) {
+                            handler: function (me) {
                                 Ext.getCmp('main-viewport')
                                     .getController()
                                     .redirectTo('inquiry/' + me.upVM().get('object_record').get('id'));
@@ -93,7 +93,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                     },
                                     menu: {
                                         defaults: {
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let selection = me.upVM().get('pda'),
                                                     calculation = me.upVM().get('calculation');
 
@@ -102,7 +102,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                                 }
                                                 if (selection.dirty) {
                                                     selection.save({
-                                                        success: function() {
+                                                        success: function () {
                                                             Ext.toast('Record updated', 1000);
                                                         },
                                                     });
@@ -237,7 +237,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                         ],
                                     },
                                     listeners: {
-                                        tap: function() {
+                                        tap: function () {
                                             mixpanel.track('Agreements (disb screen) - button');
                                         },
                                     },
@@ -271,7 +271,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                             bind: {
                                 disabled: '{(pda.status !="draft" || nonEditable) || isSyncingPdaGrid}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let store = me.upVM().get('services'),
                                     object_record = me.upVM().get('object_record'),
                                     pda = me.upVM().get('pda'),
@@ -286,7 +286,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                 store.add(record);
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 store.sync({
-                                    success: function(rec) {
+                                    success: function (rec) {
                                         Ext.toast('Record updated');
                                         Abraxa.utils.Functions.updateInquiry(object_record);
                                         me.upVM().set('isSyncingPdaGrid', false);
@@ -368,7 +368,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                             bind: {
                                 disabled: '{isSyncingPdaGrid}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 me.upVM().set('isSyncingPdaGrid', true);
                                 const pdaItems = me.up('pda\\.items');
                                 let pda = me.upVM().get('pda');
@@ -404,7 +404,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                                     bind: {
                                                         bindTo: '{documentsList.selection}',
                                                     },
-                                                    get: function(record) {
+                                                    get: function (record) {
                                                         return record;
                                                     },
                                                 },
@@ -413,7 +413,7 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                                         bindTo: '{selectedDocument.id}',
                                                         // deep: true
                                                     },
-                                                    get: function(id) {
+                                                    get: function (id) {
                                                         let record = this.get('selectedDocument');
                                                         if (record) {
                                                             // Ext.ComponentQuery.query('[cls~=pdf-preview]')[0].setMasked(true);
@@ -425,9 +425,9 @@ Ext.define('Abraxa.view.pda.PDAGridView', {
                                                                 .getController()
                                                                 .loadDocument(
                                                                     Env.ApiEndpoint +
-                                                                    'pdf/generate/' +
-                                                                    pda.get('id') +
-                                                                    '/inquiryOffer',
+                                                                        'pdf/generate/' +
+                                                                        pda.get('id') +
+                                                                        '/inquiryOffer'
                                                                 );
                                                         }
                                                     },

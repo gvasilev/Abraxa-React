@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
                     iconCls: 'md-icon-outlined md-icon-file-copy',
                     cls: 'a-create-button a-button-invoice',
                     text: 'Invoice',
-                    handler: function(me) {
+                    handler: function (me) {
                         let expense = me.upVM().get('expense');
                         let docForm = Ext.create('Abraxa.view.adocs.InvoiceDocumentForm', {
                             viewModel: {
@@ -55,19 +55,19 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
                                             bindTo: '{billingParty.selection}',
                                             deep: true,
                                         },
-                                        get: function(billingParty) {
+                                        get: function (billingParty) {
                                             if (billingParty) {
                                                 let expenses = this.get('expenses'),
                                                     expense = this.get('expense'),
                                                     data = [];
                                                 if (expense) {
-                                                    expenses.each(function(item) {
+                                                    expenses.each(function (item) {
                                                         if (item.get('id') === expense.get('id')) {
                                                             data.push(item);
                                                         }
                                                     });
                                                 } else {
-                                                    expenses.each(function(item) {
+                                                    expenses.each(function (item) {
                                                         if (item.get('account_id') === billingParty.get('id')) {
                                                             data.push(item);
                                                         }
@@ -83,11 +83,11 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
 
                         let selectedType = this.upVM()
                             .get('documentTypes')
-                            .queryBy(function(rec, id) {
+                            .queryBy(function (rec, id) {
                                 return rec.get('slug') == 'creditNote' || rec.get('slug') == 'invoice';
                             }).items;
                         if (selectedType.length) {
-                            Ext.Array.sort(selectedType, function(a, b) {
+                            Ext.Array.sort(selectedType, function (a, b) {
                                 return a.get('id') > b.get('id') ? 1 : -1;
                             });
                             docForm.upVM().set('document_data.document_type_id', selectedType[0].id);
@@ -103,7 +103,7 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
                     iconCls: 'md-icon-attach-money',
                     cls: 'a-create-button a-button-financial',
                     text: 'Credit note',
-                    handler: function(me) {
+                    handler: function (me) {
                         let expense = me.upVM().get('expense');
                         let docForm = Ext.create('Abraxa.view.adocs.InvoiceDocumentForm', {
                             viewModel: {
@@ -128,19 +128,19 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
                                             bindTo: '{billingParty.selection}',
                                             deep: true,
                                         },
-                                        get: function(billingParty) {
+                                        get: function (billingParty) {
                                             if (billingParty) {
                                                 let expenses = this.get('expenses'),
                                                     expense = this.get('expense'),
                                                     data = [];
                                                 if (expense) {
-                                                    expenses.each(function(item) {
+                                                    expenses.each(function (item) {
                                                         if (item.get('id') === expense.get('id')) {
                                                             data.push(item);
                                                         }
                                                     });
                                                 } else {
-                                                    expenses.each(function(item) {
+                                                    expenses.each(function (item) {
                                                         if (item.get('account_id') === billingParty.get('id')) {
                                                             data.push(item);
                                                         }
@@ -156,11 +156,11 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
 
                         let selectedType = this.upVM()
                             .get('documentTypes')
-                            .queryBy(function(rec, id) {
+                            .queryBy(function (rec, id) {
                                 return rec.get('slug') == 'creditNote' || rec.get('slug') == 'invoice';
                             }).items;
                         if (selectedType.length) {
-                            Ext.Array.sort(selectedType, function(a, b) {
+                            Ext.Array.sort(selectedType, function (a, b) {
                                 return a.get('id') > b.get('id') ? 1 : -1;
                             });
                             docForm.upVM().set('document_data.document_type_id', selectedType[1].id);
@@ -187,7 +187,7 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
             name: 'files',
             cls: 'mb-16',
             listeners: {
-                change: function(me, newValue) {
+                change: function (me, newValue) {
                     if (newValue) {
                         var files = this.getFiles(),
                             record = this.upVM().get('expense'),
@@ -198,7 +198,7 @@ Ext.define('Abraxa.view.adocs.CreateFinancialPopup', {
                             files.item(i).split = null;
                         }
                         uploadController.upload(files, me.el, record);
-                        document.querySelector('input[type=\'file\']').value = '';
+                        document.querySelector("input[type='file']").value = '';
                         me.setValue(null);
                     }
                 },

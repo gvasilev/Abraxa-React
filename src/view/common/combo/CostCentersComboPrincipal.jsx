@@ -28,7 +28,7 @@ Ext.define('Abraxa.view.common.combo.CostCentersComboPrincipal', {
         if (!this.expandCollapse) return false;
 
         this._setOrigValue(combo);
-// this.callParent();
+        // this.callParent();
     },
 
     //This is a terrible solution if someone find other solution please change it

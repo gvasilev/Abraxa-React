@@ -14,7 +14,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditMenu', {
                 permission: '{userPermissions}',
             },
             iconCls: 'md-icon-outlined md-icon-edit',
-            handler: function(me) {
+            handler: function (me) {
                 let record = me.upVM().get('selectedCompany'),
                     companyRecordsStore = me.upVM().get('organizations');
                 if (record) {
@@ -44,7 +44,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditMenu', {
             iconCls: 'md-icon-outlined md-icon-delete',
             ui: 'decline',
             separator: true,
-            handler: function(me) {
+            handler: function (me) {
                 const container = me.find('company-editpanel'),
                     myTasks = Ext.getCmp('main-viewport').getVM().get('myTasks'),
                     agreements = Ext.getCmp('main-viewport').getVM().get('agreements'),
@@ -55,12 +55,12 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditMenu', {
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you would like to delete this entry?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             if (container) container.hide();
 
                             record.erase({
-                                success: function() {
+                                success: function () {
                                     if (myTasks) myTasks.reload();
                                     if (taskStore) taskStore.reload();
                                     if (agreements) agreements.reload();
@@ -87,7 +87,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditMenu', {
                             text: 'Delete',
                             separator: true,
                         },
-                    ],
+                    ]
                 );
             },
         },

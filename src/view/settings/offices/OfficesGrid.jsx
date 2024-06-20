@@ -354,10 +354,6 @@ Ext.define('Abraxa.view.settings.offices.OfficesGrid', {
                                                         },
                                                         failure: function () {
                                                             Ext.Viewport.unmask();
-                                                            Ext.Msg.alert(
-                                                                'Sync offices failed',
-                                                                'There was a problem during an office removal.'
-                                                            );
                                                         },
                                                     });
                                                 }

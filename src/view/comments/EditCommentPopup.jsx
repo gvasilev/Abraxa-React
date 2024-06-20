@@ -41,7 +41,7 @@ Ext.define('Abraxa.view.comments.EditCommentPopup', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function(me) {
+            handler: function (me) {
                 let dialog = this.up('dialog');
                 // let notes = dialog.upVM().get('object_record').notes();
 
@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.comments.EditCommentPopup', {
                 Ext.Msg.confirm(
                     'Confirmation',
                     'Would you like to discard all changes?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             // notes.rejectChanges();
                             commentsStore.rejectChanges();
@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.comments.EditCommentPopup', {
                             ui: 'action loading',
                             text: 'Discard',
                         },
-                    ],
+                    ]
                 );
             },
         },

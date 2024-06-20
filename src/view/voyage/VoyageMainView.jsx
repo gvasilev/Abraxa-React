@@ -771,9 +771,6 @@ Ext.define('Abraxa.view.voyage.VoyageMainView', {
                 }
                 Ext.getCmp('main-viewport').setMasked(false);
             },
-            failure: function (record, operation) {
-                Ext.Msg.alert('Error', 'Could not load record');
-            },
         });
     },
 });

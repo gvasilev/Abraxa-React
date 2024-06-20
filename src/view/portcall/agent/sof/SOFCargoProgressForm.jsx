@@ -199,7 +199,6 @@ Ext.define('Abraxa.view.sof.portcall.sof.SOFCargoProgressForm', {
                                                 }
                                             }
                                         },
-                                        failure: function failure(response) {},
                                     });
                                 }
                             }

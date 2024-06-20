@@ -37,26 +37,6 @@ Ext.define('Abraxa.view.dashboard.DashboardBottomLeftContainer', {
                     itemId: 'stackedChart',
                     width: '100%',
                     height: '100%',
-                    // dataFormat: 'jsonurl',
-                    // dataSource: Env.ApiEndpoint + 'dashboard/top_deals',
-                    // listeners: {
-                    // 	painted: function () {
-                    // 		let chart = this.getFusionChart();
-                    // 		Ext.Ajax.request({
-                    // 			url: Env.ApiEndpoint + 'dashboard/top_deals',
-                    // 			method: 'GET',
-                    // 			success: function (response) {
-                    // 				var obj = Ext.decode(response.responseText);
-                    // 				if (chart && !chart.disposed) {
-                    // 					if (obj) {
-                    // 						chart.setJSONData(obj);
-                    // 					}
-                    // 				}
-                    // 			},
-                    // 			failure: function failure(response) {},
-                    // 		});
-                    // 	},
-                    // },
                 },
             ],
         },

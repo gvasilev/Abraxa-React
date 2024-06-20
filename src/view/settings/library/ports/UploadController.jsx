@@ -105,8 +105,6 @@ Ext.define('Abraxa.view.settings.library.ports.UploadController', {
                 Ext.toast('Record updated', 2000);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.warning('Unsupported file format', 'The file format you are trying to upload is not supported');
                 me.clearFileUpload(element.id);
             },
         });
@@ -137,8 +135,6 @@ Ext.define('Abraxa.view.settings.library.ports.UploadController', {
                 Ext.toast('Record updated', 2000);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.warning('Unsupported file format', 'The file format you are trying to upload is not supported');
                 me.clearFileUpload(el.id);
             },
         });

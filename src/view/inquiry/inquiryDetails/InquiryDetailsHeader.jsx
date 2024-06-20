@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryDetailsHeader', {
                         dismissDelay: 0,
                         closeAction: 'destroy',
                     },
-                    handler: function(me) {
+                    handler: function (me) {
                         let record = me.upVM().get('object_record'),
                             favorite = record.get('is_watching');
                         if (favorite) {
@@ -147,13 +147,13 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryDetailsHeader', {
                             },
                             menu: {
                                 defaults: {
-                                    handler: function() {
+                                    handler: function () {
                                         const record = this.upVM().get('object_record'),
                                             status_id = this.statusId;
                                         record.set('status', status_id);
 
                                         record.save({
-                                            success: function() {
+                                            success: function () {
                                                 Ext.toast('Record updated', 1000);
                                                 mixpanel.track('Portcall status change');
                                             },
@@ -233,7 +233,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryDetailsHeader', {
                             },
                             text: 'Email',
                             cls: 'chameleon_portcall_report_button',
-                            handler: function(me) {
+                            handler: function (me) {
                                 let inquiryVM = null,
                                     attachmentData = [],
                                     companyVerified = this.upVM().get('currentCompany').get('verified');
@@ -285,23 +285,23 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.InquiryDetailsHeader', {
                                                     bindTo: '{currentUser}',
                                                     deep: true,
                                                 },
-                                                get: function(user) {
+                                                get: function (user) {
                                                     let emails = [];
                                                     if (user) {
                                                         if (user.get('current_office_id')) {
                                                             let officeEmails = user.getOffice().emails();
                                                             Ext.Array.each(
                                                                 officeEmails.getData().items,
-                                                                function(email) {
+                                                                function (email) {
                                                                     let emailModel = email.get('email');
                                                                     emailModel.is_default = email.get('is_default');
                                                                     emails.push(emailModel);
-                                                                },
+                                                                }
                                                             );
                                                         } else {
                                                             let company = this.get('currentCompany');
                                                             let officeEmails = company.get('email_settings');
-                                                            Ext.Array.each(officeEmails, function(email) {
+                                                            Ext.Array.each(officeEmails, function (email) {
                                                                 emails.push(email);
                                                             });
                                                         }

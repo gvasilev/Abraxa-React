@@ -536,7 +536,6 @@ Ext.define('Abraxa.view.vouchers.VouchersDialog', {
                 },
                 drawer: {
                     xtype: 'panel',
-                    cls: 'dark rotate_header collapsible_test a-docs-panel',
                     top: 0,
                     left: 0,
                     cls: Ext.baseCSSPrefix + 'drawer dark collapsible_test a-docs-panel',

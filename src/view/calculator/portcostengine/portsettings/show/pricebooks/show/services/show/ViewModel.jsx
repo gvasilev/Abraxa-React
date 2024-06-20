@@ -7,7 +7,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
         calcservicedatafield: {
             type: 'calcservicedatafield',
             filters: [
-                function(record) {
+                function (record) {
                     return !record.phantom;
                 },
             ],
@@ -19,11 +19,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     serviceId: '{templateServiceRecord.id}',
                 },
             },
-            updateProxy: function(proxy) {
+            updateProxy: function (proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function() {
+                        function () {
                             if (
                                 this.getProxy().getExtraParams().portSettingsId &&
                                 this.getProxy().getExtraParams().priceBookId &&
@@ -32,7 +32,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 this.load();
                             }
                         },
-                        this,
+                        this
                     );
                 }
             },
@@ -41,12 +41,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
     formulas: {
         recordCopy: {
             bind: '{calculatorPriceBookServicesGrid.selection}',
-            get: function(value) {
+            get: function (value) {
                 return value ? value.copy() : null;
             },
         },
         nomenclatureRegionComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -55,7 +55,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                         me.notify();
                     });
@@ -65,7 +65,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
             },
         },
         nomenclatureCargoComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -74,7 +74,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                         me.notify();
                     });
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
             },
         },
         nomenclatureVesselComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -93,7 +93,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                         me.notify();
                     });
@@ -103,7 +103,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
             },
         },
         nomenclatureRegionItemsComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -112,7 +112,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'region');
                         me.notify();
                     });
@@ -122,7 +122,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
             },
         },
         nomenclatureCargoItemsComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -131,7 +131,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'cargo');
                         me.notify();
                     });
@@ -141,7 +141,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
             },
         },
         nomenclatureVesselItemsComboStore: {
-            get: function(value) {
+            get: function (value) {
                 let me = this;
                 let options = [];
                 let nomenclatureStore = Ext.getStore('calcnomenclature');
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                     me.notify();
                 } else {
-                    nomenclatureStore.on('load', function() {
+                    nomenclatureStore.on('load', function () {
                         options = Abraxa.utils.Functions.traverseNomenclature(nomenclatureStore, 'vessel');
                         me.notify();
                     });

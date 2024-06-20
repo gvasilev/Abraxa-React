@@ -164,7 +164,6 @@ Ext.define('Abraxa.view.settings.library.cargoes.AddCargoes', {
                             defaults: {
                                 xtype: 'textfield',
                                 ui: 'hovered-underline',
-                                labelAlign: 'top',
                                 clearable: false,
                                 labelAlign: 'left',
                                 cls: 'col-12',

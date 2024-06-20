@@ -63,9 +63,6 @@ Ext.define('Abraxa.view.settings.library.taxes.TaxesRightCard', {
                                                 success: function (err, msg) {
                                                     Ext.toast('Record updated', 1000);
                                                 },
-                                                failure: function (batch) {
-                                                    Ext.Msg.alert('Something went wrong', 'Could not delete record!');
-                                                },
                                             });
                                         }
                                     },

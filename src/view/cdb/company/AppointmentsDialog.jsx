@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
                             ui: 'tool-sm round',
                         },
                         listeners: {
-                            initialize: function() {
+                            initialize: function () {
                                 this.add({
                                     xtype: 'div',
                                     margin: '0 16',
@@ -88,7 +88,7 @@ Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
                             },
                         },
                     },
-                    renderer: function(value, record) {
+                    renderer: function (value, record) {
                         if (!value) return AbraxaConstants.placeholders.emptyCellSpan;
                         let vesselName = value;
                         let vesselId = record.get('vessel_id') || '';
@@ -102,7 +102,7 @@ Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(statusObj, record) {
+                    renderer: function (statusObj, record) {
                         if (!statusObj || !statusObj.name) return AbraxaConstants.placeholders.emptyStatusDiv;
                         const statusString = statusObj.name;
                         const classString = statusObj.string;
@@ -110,7 +110,7 @@ Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
                         return AbraxaFunctions.renderStatusCell(classString, statusString);
                     },
                     sorter: {
-                        sorterFn: function(record1, record2) {
+                        sorterFn: function (record1, record2) {
                             let val1 = record1.get('status').name || '';
                             let val2 = record2.get('status').name || '';
                             return val1.localeCompare(val2);
@@ -124,18 +124,18 @@ Ext.define('Abraxa.view.cdb.company.AppointmentsDialog', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(value, record) {
+                    renderer: function (value, record) {
                         if (!value) return AbraxaConstants.placeholders.emptySpan;
 
                         const dateFormatted = Abraxa.utils.Functions.formatStringToDate(
                             value,
-                            AbraxaConstants.formatters.date.dayMonYearShortHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonYearShortHyphenTime24
                         );
 
                         return Abraxa.utils.Functions.createPlaceHolders(dateFormatted, 'span');
                     },
                     sorter: {
-                        sorterFn: function(record1, record2) {
+                        sorterFn: function (record1, record2) {
                             let val1 = new Date(record1.get('nomination_date'));
                             let val2 = new Date(record2.get('nomination_date'));
                             if (val1 instanceof Date && !isNaN(val1)) {

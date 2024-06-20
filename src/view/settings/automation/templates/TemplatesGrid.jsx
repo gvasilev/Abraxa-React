@@ -175,9 +175,6 @@ Ext.define('Abraxa.view.settings.automation.templates.TemplatesGrid', {
                                 success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function () {
-                                    Ext.Msg.alert('Something went wrong', 'Error while updating record.');
-                                },
                             });
                         }
                     },

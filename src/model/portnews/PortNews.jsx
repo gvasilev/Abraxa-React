@@ -53,7 +53,7 @@ Ext.define('Abraxa.model.portnews.PortNews', {
             name: 'port_ids',
             type: 'auto',
             critical: true,
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.ports.map((port) => port.id);
             },
         },

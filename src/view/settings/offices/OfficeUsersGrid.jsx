@@ -232,10 +232,6 @@ Ext.define('Abraxa.view.settings.offices.OfficeUserGrid', {
 
                                                                     failure: function () {
                                                                         Ext.Viewport.unmask();
-                                                                        Ext.Msg.alert(
-                                                                            'Unassign user failed',
-                                                                            'There was a problem while unassigning a user.'
-                                                                        );
                                                                     },
                                                                 });
                                                             } else {
@@ -246,15 +242,8 @@ Ext.define('Abraxa.view.settings.offices.OfficeUserGrid', {
                                                 },
                                                 failure: function () {
                                                     Ext.Viewport.unmask();
-                                                    Ext.Msg.alert(
-                                                        'Syncing offices failed',
-                                                        'There was a problem while syncing offices after an office has been removed.'
-                                                    );
                                                 },
                                             });
-                                        },
-                                        failure: function (response) {
-                                            Ext.Msg.alert('Status', 'Request Failed.');
                                         },
                                     });
                                 },

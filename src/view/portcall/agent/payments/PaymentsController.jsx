@@ -45,33 +45,6 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                                         }
                                         view.destroy();
                                     },
-                                    failure: function failure(response, batch) {
-                                        var msg = batch.error.response.responseJson.error;
-                                        Ext.create('Ext.MessageBox', {
-                                            ui: 'warning',
-                                            title: 'Update Cancelled',
-                                            innerCls: 'a-bgr-white',
-                                            message: msg,
-                                            width: 300,
-                                            dataTitle: 'Warning',
-                                            modal: true,
-                                            draggable: false,
-                                            bbar: {
-                                                manageBorders: false,
-                                                items: [
-                                                    '->',
-                                                    {
-                                                        xtype: 'button',
-                                                        ui: 'action',
-                                                        text: 'Ok',
-                                                        handler: function () {
-                                                            this.up('dialog').destroy();
-                                                        },
-                                                    },
-                                                ],
-                                            },
-                                        }).show();
-                                    },
                                 });
                             } else {
                                 //record not dirty check for delete files
@@ -105,33 +78,6 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                                 }
                                 view.destroy();
                             },
-                            failure: function failure(response, batch) {
-                                var msg = batch.error.response.responseJson.error;
-                                Ext.create('Ext.MessageBox', {
-                                    ui: 'warning',
-                                    title: 'Update Cancelled',
-                                    innerCls: 'a-bgr-white',
-                                    message: msg,
-                                    width: 300,
-                                    dataTitle: 'Warning',
-                                    modal: true,
-                                    draggable: false,
-                                    bbar: {
-                                        manageBorders: false,
-                                        items: [
-                                            '->',
-                                            {
-                                                xtype: 'button',
-                                                ui: 'action',
-                                                text: 'Ok',
-                                                handler: function () {
-                                                    this.up('dialog').destroy();
-                                                },
-                                            },
-                                        ],
-                                    },
-                                }).show();
-                            },
                         });
                     } else {
                         //record not dirty check for delete files
@@ -161,33 +107,6 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                                     me.sendEmailDialog(object_record, record);
                                 }
                                 view.destroy();
-                            },
-                            failure: function failure(response, batch) {
-                                var msg = batch.error.response.responseJson.error;
-                                Ext.create('Ext.MessageBox', {
-                                    ui: 'warning',
-                                    title: 'Update Cancelled',
-                                    innerCls: 'a-bgr-white',
-                                    message: msg,
-                                    width: 300,
-                                    dataTitle: 'Warning',
-                                    modal: true,
-                                    draggable: false,
-                                    bbar: {
-                                        manageBorders: false,
-                                        items: [
-                                            '->',
-                                            {
-                                                xtype: 'button',
-                                                ui: 'action',
-                                                text: 'Ok',
-                                                handler: function () {
-                                                    this.up('dialog').destroy();
-                                                },
-                                            },
-                                        ],
-                                    },
-                                }).show();
                             },
                         });
                     } else {
@@ -245,41 +164,6 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                                     },
                                 });
                             }
-                        },
-                        failure: function failure(response, batch) {
-                            let title = 'Create Cancelled';
-                            if (editMode) {
-                                title = 'Update Cancelled';
-                            }
-                            const error = batch.error.response.responseJson.error;
-                            if (error) {
-                                title = 'Insufficient funds';
-                                msg = error;
-                            }
-                            Ext.create('Ext.MessageBox', {
-                                ui: 'warning',
-                                title: title,
-                                innerCls: 'a-bgr-white',
-                                message: msg,
-                                width: 300,
-                                dataTitle: 'Warning',
-                                modal: true,
-                                draggable: false,
-                                bbar: {
-                                    manageBorders: false,
-                                    items: [
-                                        '->',
-                                        {
-                                            xtype: 'button',
-                                            ui: 'action',
-                                            text: 'Ok',
-                                            handler: function () {
-                                                this.up('dialog').destroy();
-                                            },
-                                        },
-                                    ],
-                                },
-                            }).show();
                         },
                     });
                 }
@@ -391,7 +275,9 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
     },
 
     sendEmailDialog(object_record, payment) {
-        let portCallVM = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].upVM(),
+        let portCallVM = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0].upVM(),
             view = Ext.ComponentQuery.query('[xtype=payments\\.create\\.payment]')[0],
             me = view,
             subject = null,
@@ -499,7 +385,6 @@ Ext.define('Abraxa.view.portcall.payment.PaymentsCreateController', {
                 dialog.getVM().set('htmlTemplate', true);
                 dialog.getVM().set('template_html', obj.html);
             },
-            failure: function failure(response) {},
         });
 
         dialog.down('[name=attach_portcall_pdf]').setChecked(true);

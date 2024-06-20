@@ -262,9 +262,6 @@ Ext.define('Abraxa.view.settings.company.AddEmail', {
                                 success: function (batch, opt) {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update email!');
-                                },
                             });
                             dialog.destroy();
                         } else {

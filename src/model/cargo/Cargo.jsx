@@ -154,7 +154,7 @@ Ext.define('Abraxa.model.cargo.Cargo', {
             name: 'function_abbr',
             persist: false,
             depends: 'function',
-            convert: function(v, record) {
+            convert: function (v, record) {
                 let str = '',
                     func = record.get('function');
 

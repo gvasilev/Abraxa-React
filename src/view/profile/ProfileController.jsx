@@ -31,8 +31,6 @@ Ext.define('Abraxa.view.profile.ProfileController', {
                 element.setValue(null);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 document.querySelector('#' + element.id).value = '';
                 element.setValue(null);
             },

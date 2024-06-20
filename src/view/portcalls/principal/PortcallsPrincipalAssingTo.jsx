@@ -91,9 +91,6 @@ Ext.define('Abraxa.view.portcalls.principal.PortcallsPrincipalAssignTo', {
                         record.load();
                         dialog.destroy();
                     },
-                    failure: function (batch) {
-                        // Ext.Msg.alert('Something went wrong', 'Could not appoint this Inquiry!');
-                    },
                 });
             },
         },

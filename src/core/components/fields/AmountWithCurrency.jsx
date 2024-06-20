@@ -70,7 +70,7 @@ Ext.define('Abraxa.core.components.fields.AmountWithCurrency', {
             ],
         });
 
-// this.callParent(arguments);
+        // this.callParent(arguments);
     },
 
     getRawValue: function () {
@@ -147,7 +147,7 @@ Ext.define('Abraxa.core.components.fields.AmountWithCurrency', {
     },
 
     setValue: function (value) {
-// this.callParent(arguments);
+        // this.callParent(arguments);
     },
 
     setError: function (error) {

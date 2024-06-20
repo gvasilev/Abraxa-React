@@ -62,7 +62,6 @@ Ext.define('Abraxa.view.portcall.PortcallDeleteDialog', {
                         },
                         failure: function failure(response) {
                             me.up('dialog').destroy();
-                            Ext.Msg.alert('Something went wrong', 'Could not delete portcall.');
                         },
                     });
                 } else {
@@ -87,7 +86,6 @@ Ext.define('Abraxa.view.portcall.PortcallDeleteDialog', {
                         },
                         failure: function failure(response) {
                             me.up('dialog').destroy();
-                            Ext.Msg.alert('Something went wrong', 'Could not delete portcall.');
                         },
                     });
                 }

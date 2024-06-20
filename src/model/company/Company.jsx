@@ -151,10 +151,10 @@ Ext.define('Abraxa.model.company.Company', {
             name: 'is_verified',
             depends: ['updated_at'],
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.compliance) return data.compliance.status;
             },
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (record && record.getCompliance()) return record.getCompliance().get('status');
             },
         },
@@ -162,9 +162,9 @@ Ext.define('Abraxa.model.company.Company', {
             name: 'virtual_banks',
             type: 'auto',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data && data.virtual_accounts) {
-                    return Ext.Array.filter(data.virtual_accounts, function(rec) {
+                    return Ext.Array.filter(data.virtual_accounts, function (rec) {
                         return rec.type == 'bank';
                     });
                 }
@@ -174,9 +174,9 @@ Ext.define('Abraxa.model.company.Company', {
             name: 'virtual_acc',
             type: 'auto',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data && data.virtual_accounts) {
-                    return Ext.Array.filter(data.virtual_accounts, function(rec) {
+                    return Ext.Array.filter(data.virtual_accounts, function (rec) {
                         return rec.type == 'virtual_account';
                     });
                 } else {
@@ -188,7 +188,7 @@ Ext.define('Abraxa.model.company.Company', {
             name: 'search_index',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data) {
                     return this.buildSearchIndex(data);
                 }
@@ -197,7 +197,7 @@ Ext.define('Abraxa.model.company.Company', {
         {
             name: 'org_types',
             critical: true,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.types) return Ext.Array.pluck(data.types, 'org_type_id');
             },
         },

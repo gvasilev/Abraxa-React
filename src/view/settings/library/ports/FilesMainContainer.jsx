@@ -213,12 +213,6 @@ Ext.define('Abraxa.view.settings.library.ports.FilesMainContainer', {
                                                                             success: function (batch, opt) {
                                                                                 Ext.toast('Document updated', 1500);
                                                                             },
-                                                                            failure: function (batch, operations) {
-                                                                                Ext.Msg.alert(
-                                                                                    'Something went wrong',
-                                                                                    'Could not update file.'
-                                                                                );
-                                                                            },
                                                                         });
                                                                         this.up('dialog').destroy();
                                                                     },

@@ -33,7 +33,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                     ui: 'tool-sm round',
                                     iconCls: 'md-icon-outlined md-icon-delete',
                                     margin: '0 0 0 8',
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let record = me.upVM().get('calcGlobalVariablesList').selection;
                                         let store = me.upVM().getParent().getStore('calcglobalvariable');
                                         let selectionPort = me.upVM().get('calculatorPortSettingsGrid.selection');
@@ -41,14 +41,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                         Ext.Msg.confirm(
                                             'Delete',
                                             'Are you sure you would like to delete this entry?',
-                                            function(answer) {
+                                            function (answer) {
                                                 if (answer === 'yes') {
                                                     store.remove(record);
 
                                                     store.sync({
-                                                        success: function() {
+                                                        success: function () {
                                                             let list = Ext.ComponentQuery.query(
-                                                                'list[reference=calcGlobalVariablesList]',
+                                                                'list[reference=calcGlobalVariablesList]'
                                                             )[0];
 
                                                             if (list.getStore().getCount()) {
@@ -56,29 +56,29 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                                                 list.select(
                                                                     list
                                                                         .getStore()
-                                                                        .getAt(list.getStore().getCount() - 1),
+                                                                        .getAt(list.getStore().getCount() - 1)
                                                                 );
                                                                 me.upVM().set(
                                                                     'subpageXtype',
-                                                                    'calculator.portcostengine.portsettings.show.globalvariables.show.subpage',
+                                                                    'calculator.portcostengine.portsettings.show.globalvariables.show.subpage'
                                                                 );
                                                             } else {
                                                                 // Auto select the first nomenclature
                                                                 let nomenclatureList = Ext.ComponentQuery.query(
-                                                                    'list[reference=nomenclaturesList]',
+                                                                    'list[reference=nomenclaturesList]'
                                                                 )[0];
                                                                 nomenclatureList.select(
-                                                                    nomenclatureList.getStore().getAt(0),
+                                                                    nomenclatureList.getStore().getAt(0)
                                                                 );
                                                                 me.upVM().set(
                                                                     'subpageXtype',
-                                                                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree',
+                                                                    'calculator.portcostengine.portsettings.show.nomenclatures.nomenclaturetree'
                                                                 );
                                                             }
                                                             Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                             Ext.toast('Record deleted', 1000);
                                                         },
-                                                        failure: function(batch, functions) {
+                                                        failure: function (batch, functions) {
                                                             store.rejectChanges();
                                                         },
                                                     });
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                                     ui: 'decline alt',
                                                     separator: true,
                                                 },
-                                            ],
+                                            ]
                                         );
                                     },
                                 },
@@ -176,7 +176,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                         value: '{recordCopy.control}',
                                     },
                                     listeners: {
-                                        select: function(me, selection) {
+                                        select: function (me, selection) {
                                             if (selection.get('value') === 'variable') {
                                                 let recordCopy = me.upVM().get('recordCopy');
                                                 recordCopy.set('repeater', null);
@@ -271,7 +271,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                     bind: {
                                         value: '{recordCopy.formula}',
                                     },
-                                    validators: function(value) {
+                                    validators: function (value) {
                                         let validationRegex = /^[\x20-\x7E]*$/;
                                         if (!validationRegex.test(value)) {
                                             return 'Prohibited character';
@@ -326,11 +326,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                     ui: 'action loading',
                     text: 'Save',
                     height: 36,
-                    handler: function(me) {
+                    handler: function (me) {
                         let record = me.upVM().get('calcGlobalVariablesList').selection;
                         let recordCopy = me.upVM().get('recordCopy');
                         let form = Ext.ComponentQuery.query('container[reference=globalVariableForm]')[0].down(
-                            'formpanel',
+                            'formpanel'
                         );
                         let store = me.upVM().getParent().getStore('calcglobalvariable');
                         let selectionPort = me.upVM().getParent().get('calculatorPortSettingsGrid.selection');
@@ -339,7 +339,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
 
                         if (record.dirty) {
                             store.sync({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record updated', 1000);
                                     Ext.ComponentQuery.query('container[reference=globalVariableForm]')[0]
                                         .down('form\\.error')
@@ -347,7 +347,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.globalvariab
                                         .removeCls('error');
                                     Abraxa.utils.Functions.updatePortCost(selectionPort);
                                 },
-                                failure: function(batch, functions) {
+                                failure: function (batch, functions) {
                                     store.rejectChanges();
                                     Ext.ComponentQuery.query('container[reference=globalVariableForm]')[0]
                                         .down('form\\.error')

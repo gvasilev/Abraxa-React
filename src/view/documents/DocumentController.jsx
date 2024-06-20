@@ -16,7 +16,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         },
     },
 
-    onListSelect: function(list, selection) {
+    onListSelect: function (list, selection) {
         let me = this;
         if (selection.get('document_type') == 'cargo' || selection.get('document_type') == 'operational') {
             let cargo_id = selection.get('documentable_id'),
@@ -25,7 +25,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 cargoes = object_record
                     .getNomination()
                     .cargoes()
-                    .queryBy(function(rec, id) {
+                    .queryBy(function (rec, id) {
                         if (selection.get('document_type') == 'cargo') return rec.get('id') == cargo_id;
 
                         return true;
@@ -60,11 +60,11 @@ Ext.define('Abraxa.view.document.DocumentController', {
         me.currentDocument = selection;
     },
 
-    updateDocumentFields: function() {
+    updateDocumentFields: function () {
         let me = this,
             fieldManager = this.annotationManager.getFieldManager();
 
-        me.fieldsForChange.forEach(function(field) {
+        me.fieldsForChange.forEach(function (field) {
             me.iframeDoc.getElementById(field.element).classList.remove('has_changed');
             me.iframeDoc.getElementById(field.element).classList.add('needs_change');
             field.field.setValue(field.newValue);
@@ -74,7 +74,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         Ext.getCmp('pedal').hide();
     },
 
-    loadViewer: function() {
+    loadViewer: function () {
         let me = this,
             nonEditable = this.getView().upVM().get('nonEditable'),
             username = Ext.getCmp('main-viewport').upVM().get('currentUser.full_name');
@@ -110,7 +110,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 disableLogs: false,
                 useDownloader: false,
             },
-            document.getElementById('pdf-viewer'),
+            document.getElementById('pdf-viewer')
         ).then((instance) => {
             const { documentViewer } = instance.Core;
 
@@ -198,7 +198,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                             const doc = documentViewer.getDocument();
                             doc.rotatePages([documentViewer.getCurrentPage()], PageRotation.E_90);
                         },
-                    },
+                    }
                 );
             });
 
@@ -268,7 +268,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                             includeComments: false,
                             includeAnnotations: false,
                             maintainPageOrientation: true,
-                            onProgress: function(pageNumber, htmlElement) {
+                            onProgress: function (pageNumber, htmlElement) {
                                 if (pageCount === pageNumber) {
                                     documentViewer.loadDocument(blob, { extension: 'pdf' }).then(() => {
                                         const selectedDocument = me.getView().upVM().get('selectedDocument');
@@ -282,7 +282,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 });
             });
 
-            instance.UI.setHeaderItems(function(header) {
+            instance.UI.setHeaderItems(function (header) {
                 // Do not display more info fields for Inquiry/Estimates PDA
                 if (
                     !(
@@ -317,7 +317,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                             Ext.Msg.confirm(
                                 'Delete',
                                 'Are you sure you want to delete this document?',
-                                function(answer) {
+                                function (answer) {
                                     if (answer == 'yes') {
                                         store.remove(record);
                                         record.store.remove(record);
@@ -330,11 +330,11 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                                 .set('refreshFolderCount', new Date());
                                         }
                                         store.sync({
-                                            success: function() {
+                                            success: function () {
                                                 Ext.toast('Record deleted.');
                                                 if (store.count())
                                                     Ext.ComponentQuery.query('[cls~=document_dialog_list]')[0].select(
-                                                        0,
+                                                        0
                                                     );
                                             },
                                         });
@@ -365,7 +365,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                         text: 'Delete',
                                         separator: true,
                                     },
-                                ],
+                                ]
                             );
                         },
                     });
@@ -422,7 +422,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                         selectedDocument.get('document_type') == 'cargo' ||
                         selectedDocument.get('document_type') == 'operational'
                     ) {
-                        Object.keys(data).forEach(function(key) {
+                        Object.keys(data).forEach(function (key) {
                             let documentField = fieldManager.getField(key);
 
                             if (documentField && data[key] && documentField.getValue() !== data[key]) {
@@ -461,13 +461,13 @@ Ext.define('Abraxa.view.document.DocumentController', {
         });
     },
 
-    checkDocumentEligibleForUpdate: function() {
+    checkDocumentEligibleForUpdate: function () {
         let me = this,
             fieldsForChange = this.fieldsForChange,
             document = this.getView().upVM().get('selectedDocument');
 
         if (document.get('status') == 'draft') {
-            fieldsForChange.forEach(function(field) {
+            fieldsForChange.forEach(function (field) {
                 let element = me.iframeDoc.getElementById(field.element);
                 if (element) {
                     element.classList.add('has_changed');
@@ -475,7 +475,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 }
             });
         } else {
-            fieldsForChange.forEach(function(field) {
+            fieldsForChange.forEach(function (field) {
                 let element = me.iframeDoc.getElementById(field.element);
                 if (element) {
                     element.classList.remove('has_changed');
@@ -486,7 +486,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         }
     },
 
-    loadDocument: function(data) {
+    loadDocument: function (data) {
         let me = this;
         if (me.viewerHasLoaded) {
             let instance = WebViewer.getInstance();
@@ -502,7 +502,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         }
     },
 
-    lockDocument: function(selectedDocument) {
+    lockDocument: function (selectedDocument) {
         const annotations = this.annotationManager.getAnnotationsList(),
             instance = WebViewer.getInstance(),
             iframeDoc = instance.UI.iframeWindow.document;
@@ -540,12 +540,12 @@ Ext.define('Abraxa.view.document.DocumentController', {
         }
     },
 
-    checkPermission: function() {
+    checkPermission: function () {
         //skip permission check for now
         return true;
     },
 
-    upload: function(files, el, fromPreview) {
+    upload: function (files, el, fromPreview) {
         let me = el,
             vm = el.upVM(),
             fd = new FormData(),
@@ -594,7 +594,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                             xtype: 'button',
                             ui: 'action',
                             text: 'Ok',
-                            handler: function() {
+                            handler: function () {
                                 this.up('dialog').destroy();
                             },
                         },
@@ -628,7 +628,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                             xtype: 'button',
                             ui: 'action',
                             text: 'Ok',
-                            handler: function() {
+                            handler: function () {
                                 this.up('dialog').destroy();
                             },
                         },
@@ -648,10 +648,10 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 Authorization: 'Bearer ' + localStorage.getItem('id_token'),
                 'Content-Type': null,
             },
-            success: function(response) {
+            success: function (response) {
                 let responseDocuments = Ext.decode(response.responseText).data;
 
-                Ext.each(responseDocuments, function(doc) {
+                Ext.each(responseDocuments, function (doc) {
                     var model = Ext.create('Abraxa.model.document.Document', doc),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(Object.assign({}, doc.folder_file));
 
@@ -674,8 +674,6 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 }
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.warning('Unsupported file format', 'The file format you are trying to upload is not supported');
                 Ext.get('dropped-container').removeCls('a-dropped');
             },
         });
@@ -693,7 +691,9 @@ Ext.define('Abraxa.view.document.DocumentController', {
         parentNod.replaceChild(fileField, tmpForm);
     },
     generateCargoDocs(cmp) {
-        let vm = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             cargoSelection = cmp.upVM().get('documentsSelectedCargoes.selection'),
             document_types = cmp.upVM().get('selectedDocumentTypes.selection'),
@@ -701,12 +701,12 @@ Ext.define('Abraxa.view.document.DocumentController', {
             documents = [],
             model_name;
 
-        Ext.Array.each(cargoSelection, function(cargo) {
+        Ext.Array.each(cargoSelection, function (cargo) {
             model_name = cargo.get('model_name');
             cargoes.push(cargo.get('id'));
         });
 
-        Ext.Array.each(document_types, function(blank) {
+        Ext.Array.each(document_types, function (blank) {
             let data = blank.getData();
             data.model_name = model_name;
             data.ids = cargoes;
@@ -727,14 +727,14 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate',
             method: 'POST',
             jsonData: requestObj,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let store = object_record.documents(),
                     selectedDocuments = new Ext.data.Store();
 
-                Ext.each(Ext.decode(response.responseText), function(document) {
+                Ext.each(Ext.decode(response.responseText), function (document) {
                     let model = Ext.create('Abraxa.model.document.Document', document),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, document.folder_file),
+                            Object.assign({}, document.folder_file)
                         );
 
                     model.setFolderFile(folder_file);
@@ -761,7 +761,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{documentsList.selection}',
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     return record;
                                 },
                             },
@@ -770,7 +770,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{selectedDocument.id}',
                                     // deep: true
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('selectedDocument');
                                     if (record) {
                                         var me = this;
@@ -789,19 +789,18 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 cmp.up('dialog').hide();
                 mixpanel.track('Created a cargo document');
             },
-            failure: function(response, opts) {
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
-            },
         });
     },
 
     generateOperationalDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_types = cmp.upVM().get('operationalTemplate.selection'),
             documents = [];
 
-        Ext.Array.each(document_types, function(blank) {
+        Ext.Array.each(document_types, function (blank) {
             let data = blank.getData();
             data.model_name = object_record.get('model_name');
             data.id = object_record.get('id');
@@ -823,14 +822,14 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate',
             method: 'POST',
             jsonData: requestObj,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let store = object_record.documents(),
                     selectedDocuments = new Ext.data.Store();
 
-                Ext.each(Ext.decode(response.responseText), function(document) {
+                Ext.each(Ext.decode(response.responseText), function (document) {
                     let model = Ext.create('Abraxa.model.document.Document', document),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, document.folder_file),
+                            Object.assign({}, document.folder_file)
                         );
 
                     model.setFolderFile(folder_file);
@@ -855,7 +854,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{documentsList.selection}',
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     return record;
                                 },
                             },
@@ -863,7 +862,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{selectedDocument.id}',
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('selectedDocument');
                                     if (record) {
                                         var me = this;
@@ -883,13 +882,12 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 cmp.up('dialog').destroy();
                 mixpanel.track('Created a cargo document');
             },
-            failure: function(response, opts) {
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
-            },
         });
     },
     generateSofDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_type = 'sof',
             operationalTemplate = cmp.upVM().get('operationalTemplate.selection'),
@@ -926,13 +924,13 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate_sof',
             method: 'POST',
             jsonData: requestObj,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let selectedDocuments = new Ext.data.Store();
 
-                Ext.each(Ext.decode(response.responseText), function(document) {
+                Ext.each(Ext.decode(response.responseText), function (document) {
                     let model = Ext.create('Abraxa.model.document.Document', document),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, document.folder_file),
+                            Object.assign({}, document.folder_file)
                         );
 
                     model.setFolderFile(folder_file);
@@ -959,7 +957,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{documentsList.selection}',
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     return record;
                                 },
                             },
@@ -967,7 +965,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{selectedDocument.id}',
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('selectedDocument');
                                     if (record) {
                                         var me = this;
@@ -985,16 +983,13 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 cmp.up('dialog').destroy();
                 mixpanel.track('Created a SOF document');
             },
-            failure: function(response, opts) {
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
-            },
         });
     },
 
     generateFinancialDocument(cmp) {
         const controller = this;
         const portcallMainVM = Ext.ComponentQuery.query(
-            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main',
+            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
         )[0].lookupViewModel();
 
         const docFormVM = cmp.upVM();
@@ -1033,14 +1028,14 @@ Ext.define('Abraxa.view.document.DocumentController', {
         if (document_data['due_date']) {
             document_data['due_date'] = Abraxa.utils.Functions.formatStringToDate(
                 document_data['due_date'],
-                AbraxaConstants.formatters.date.yearMonthDayHyphen,
+                AbraxaConstants.formatters.date.yearMonthDayHyphen
             );
         }
 
         if (document_data['proforma_date']) {
             document_data['proforma_date'] = Abraxa.utils.Functions.formatStringToDate(
                 document_data['proforma_date'],
-                AbraxaConstants.formatters.date.yearMonthDayHyphen,
+                AbraxaConstants.formatters.date.yearMonthDayHyphen
             );
         }
 
@@ -1050,7 +1045,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
         }
 
         if (record_items.length) {
-            Ext.each(record_items, function(item) {
+            Ext.each(record_items, function (item) {
                 let amount = 0;
                 if (disbursement) {
                     amount = item.get(disbursement.get('type') + '_final_price');
@@ -1060,7 +1055,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                     item_disbursement_item: item.get('id'),
                     item_disbursement_item_category_name: Abraxa.utils.Functions.getNestedProperty(
                         item,
-                        'data.default_expense_item.category.name',
+                        'data.default_expense_item.category.name'
                     ),
                     item_name: item.get('default_expense_item_name'),
                     item_amount: amount,
@@ -1079,14 +1074,14 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate_financial',
             method: 'POST',
             jsonData: document_data,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let store = object_record.documents(),
                     selectedDocuments = new Ext.data.Store();
 
-                Ext.each(Ext.decode(response.responseText), function(document) {
+                Ext.each(Ext.decode(response.responseText), function (document) {
                     let model = Ext.create('Abraxa.model.document.Document', document),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, document.folder_file),
+                            Object.assign({}, document.folder_file)
                         );
 
                     model.setFolderFile(folder_file);
@@ -1111,7 +1106,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{documentsList.selection}',
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     return record;
                                 },
                             },
@@ -1119,7 +1114,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{selectedDocument.id}',
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('selectedDocument');
                                     if (record) {
                                         var me = this;
@@ -1138,12 +1133,9 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 object_record.set('updated_at', new Date());
                 mixpanel.track('Created a financial document');
             },
-            failure: function(response, opts) {
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
-            },
         });
     },
-    generateFinancialPdfDocument: function(cmp) {
+    generateFinancialPdfDocument: function (cmp) {
         let expense = cmp.upVM().get('expense'),
             expenses = cmp.upVM().get('expenses'),
             object_record = cmp.upVM().get('object_record'),
@@ -1166,7 +1158,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
             return AbraxaFunctions.alertNoServicesForInvoiceSelected();
         }
 
-        Ext.each(record_items, function(item) {
+        Ext.each(record_items, function (item) {
             let amount = 0;
             if (item.get('sda_final_price')) {
                 amount = item.get('sda_final_price');
@@ -1182,7 +1174,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 item_disbursement_item: item.get('id'),
                 item_disbursement_item_category_name: Abraxa.utils.Functions.getNestedProperty(
                     item,
-                    'data.default_expense_item.category.name',
+                    'data.default_expense_item.category.name'
                 ),
                 item_name: item.get('default_expense_item_name'),
                 item_amount: amount,
@@ -1214,15 +1206,15 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate_financial',
             method: 'POST',
             jsonData: document_data,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let vouchersStore = vm.get('vouchers'),
                     first;
 
-                Ext.each(Ext.decode(response.responseText), function(response, index) {
+                Ext.each(Ext.decode(response.responseText), function (response, index) {
                     // add document in documents
                     let document = Ext.create('Abraxa.model.document.Document', response[0]),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, response[0].folder_file),
+                            Object.assign({}, response[0].folder_file)
                         );
 
                     document.setFolderFile(folder_file);
@@ -1232,7 +1224,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                     //end add document
                     //start add vouchers
                     if (response.vouchers) {
-                        Ext.each(response.vouchers, function(voucherItem, index) {
+                        Ext.each(response.vouchers, function (voucherItem, index) {
                             let model = Ext.create('Abraxa.model.disbursement.Voucher', voucherItem),
                                 voucher = new Abraxa.model.document.Document(Object.assign({}, voucherItem.document));
                             model.setDocument(voucher);
@@ -1249,7 +1241,8 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 let dialog = Ext.create('Abraxa.view.vouchers.VouchersDialog', {
                     viewModel: {
                         parent: Ext.ComponentQuery.query(
-                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main',
+                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                'portcall\\.main'
                         )[0].upVM(),
                         data: {
                             selectVoucher: first,
@@ -1263,7 +1256,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{vouchersList.selection}',
                                     deep: true,
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     if (record) {
                                         return record;
                                     }
@@ -1274,7 +1267,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{vouchersList.selection.id}',
                                     // deep: true
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('vouchersList.selection');
                                     if (record) {
                                         var me = this;
@@ -1291,7 +1284,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{disbursementRecord}',
                                     deep: true,
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     if (record) {
                                         let objectPermissions = this.get('objectPermissions'),
                                             nonEditable = this.get('nonEditable'),
@@ -1337,7 +1330,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{userPermissions}',
                                     deeP: true,
                                 },
-                                get: function(store) {
+                                get: function (store) {
                                     if (store && Object.keys(store).length > 0) {
                                         let record = store['portcallInvoiceCreate'];
                                         if (record && record.edit) {
@@ -1360,7 +1353,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{member}',
                                     deep: true,
                                 },
-                                get: function(member) {
+                                get: function (member) {
                                     if (member && member.get('role') == 'can edit') {
                                         this.set('nonEditable', false);
                                     }
@@ -1373,17 +1366,18 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 cmp.up('dialog').hide();
                 object_record.set('updated_at', new Date());
             },
-            failure: function(response, opts) {
+            failure: function (response, opts) {
                 const dialog = cmp.up('dialog');
                 if (dialog) {
                     dialog.setMasked(false);
                 }
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
             },
         });
     },
     generateStowagePlanDocument(cmp) {
-        let vm = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0].lookupViewModel(),
+        let vm = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0].lookupViewModel(),
             object_record = cmp.upVM().get('object_record'),
             document_type = 'operational',
             document_subtype = 'stowage_plan',
@@ -1417,13 +1411,13 @@ Ext.define('Abraxa.view.document.DocumentController', {
             url: Env.ApiEndpoint + 'documents/generate-stowage-plan',
             method: 'POST',
             jsonData: requestObj,
-            success: function(response, opts) {
+            success: function (response, opts) {
                 let selectedDocuments = new Ext.data.Store();
 
-                Ext.each(Ext.decode(response.responseText), function(document) {
+                Ext.each(Ext.decode(response.responseText), function (document) {
                     let model = Ext.create('Abraxa.model.document.Document', document),
                         folder_file = new Abraxa.model.adocs.DocumentFolderFile(
-                            Object.assign({}, document.folder_file),
+                            Object.assign({}, document.folder_file)
                         );
 
                     model.setFolderFile(folder_file);
@@ -1450,7 +1444,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                 bind: {
                                     bindTo: '{documentsList.selection}',
                                 },
-                                get: function(record) {
+                                get: function (record) {
                                     return record;
                                 },
                             },
@@ -1459,7 +1453,7 @@ Ext.define('Abraxa.view.document.DocumentController', {
                                     bindTo: '{selectedDocument.id}',
                                     // deep: true
                                 },
-                                get: function(id) {
+                                get: function (id) {
                                     let record = this.get('selectedDocument');
                                     if (record) {
                                         var me = this;
@@ -1478,9 +1472,6 @@ Ext.define('Abraxa.view.document.DocumentController', {
                 dialog.show();
                 cmp.up('dialog').destroy();
                 mixpanel.track('Created a SOF document');
-            },
-            failure: function(response, opts) {
-                Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
             },
         });
     },

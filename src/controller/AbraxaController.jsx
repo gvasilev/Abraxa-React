@@ -7,7 +7,7 @@ import '../view/common/tooltips/TenantToolTip';
 Ext.define('Abraxa.controller.AbraxaController', {
     extend: 'Ext.app.Controller',
 
-    previewFile: function(cmp, selectedFile, store, attachment = null, publicBucket = false) {
+    previewFile: function (cmp, selectedFile, store, attachment = null, publicBucket = false) {
         var documentStore = Ext.create('Abraxa.store.document.Document');
 
         documentStore.add(store);
@@ -29,7 +29,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bind: {
                                 bindTo: '{documentsList.selection}',
                             },
-                            get: function(record) {
+                            get: function (record) {
                                 return record;
                             },
                         },
@@ -37,7 +37,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bind: {
                                 bindTo: '{selectedDocument.id}',
                             },
-                            get: function(id) {
+                            get: function (id) {
                                 let selectedDocument = this.get('selectedDocument');
                                 if (selectedDocument) {
                                     const me = this;
@@ -72,7 +72,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
         }
     },
 
-    showPortDialogById: function(portId) {
+    showPortDialogById: function (portId) {
         if (portId) {
             let porstsServed = Ext.getCmp('main-viewport').getViewModel().get('portsServed'),
                 portsServedRecord = porstsServed.findRecord('port_id', portId),
@@ -90,7 +90,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                 },
             });
             portModel.load({
-                success: function() {
+                success: function () {
                     portDialogVM.set('port', portModel);
                     portDialogVM.set('currentUserType', mainVM.get('currentUserType'));
                     if (portsServedRecord) {
@@ -116,7 +116,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                 },
             });
             berthModel.load({
-                success: function() {
+                success: function () {
                     berthDialog.getVM().set('berth', berthModel);
                     berthDialog.getVM().set('currentUserType', mainVM.get('currentUserType'));
                     berthDialog.setMasked(false);
@@ -134,7 +134,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                     Authorization: 'Bearer ' + localStorage.getItem('id_token'),
                     'Content-Type': null,
                 },
-                success: function(response) {
+                success: function (response) {
                     var obj = Ext.decode(response.responseText);
                     let porstsServed = Ext.getCmp('main-viewport').getViewModel().get('portsServed'),
                         portsServedRecord = porstsServed.findRecord('port_id', obj[0].port_id),
@@ -144,7 +144,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                         id: obj[0].port_id,
                     });
                     portModel.load({
-                        success: function() {
+                        success: function () {
                             portDialogVM.set('record', portModel);
                             if (portsServedRecord) {
                                 portDialogVM.set('getIsPortServed', true);
@@ -152,8 +152,6 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             portDialog.show();
                         },
                     });
-                },
-                failure: function failure(response) {
                 },
             });
         }
@@ -175,14 +173,14 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                     id: '{id}',
                                 },
                             },
-                            updateProxy: function(proxy) {
+                            updateProxy: function (proxy) {
                                 if (proxy) {
                                     proxy.onAfter(
                                         'extraparamschanged',
-                                        function() {
+                                        function () {
                                             if (this.getProxy().getExtraParams().id) this.load();
                                         },
-                                        this,
+                                        this
                                     );
                                 }
                             },
@@ -194,7 +192,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                 bindTo: '{vesselData}',
                                 deep: true,
                             },
-                            get: function(store) {
+                            get: function (store) {
                                 return store.getAt(0);
                             },
                         },
@@ -203,7 +201,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                 bindTo: '{vessel}',
                                 deep: true,
                             },
-                            get: function(record) {
+                            get: function (record) {
                                 if (record) {
                                     if (record.get('company_id') == 0) {
                                         return true;
@@ -223,7 +221,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                 bindTo: '{vessel.flags.country_code}',
                                 deep: true,
                             },
-                            get: function(flag) {
+                            get: function (flag) {
                                 if (flag) {
                                     return (
                                         AbraxaConstants.urls.staticAbraxa + 'flags/1x1/' + flag.toLowerCase() + '.svg'
@@ -236,7 +234,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                 bindTo: '{vessel}',
                                 deep: true,
                             },
-                            get: function(vessel) {
+                            get: function (vessel) {
                                 if (vessel) {
                                     if (vessel.get('vessel_img')) {
                                         return vessel.get('vessel_img');
@@ -276,8 +274,6 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                 data: obj[0],
                             }).showBy(element, 'bc-tc?');
                         }
-                    },
-                    failure: function failure(response) {
                     },
                 });
             }
@@ -428,11 +424,11 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{paymentsMenu.selection}',
                             deep: true,
                         },
-                        get: function(record) {
+                        get: function (record) {
                             if (record) {
                                 let store = this.get('filtedPayments');
                                 if (store) store.clearFilter();
-                                return function(rec) {
+                                return function (rec) {
                                     let conditon = null;
                                     switch (record.get('tab')) {
                                         case 'transactions':
@@ -455,7 +451,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                     return conditon;
                                 };
                             } else {
-                                return function(item) {
+                                return function (item) {
                                     return false;
                                 };
                             }
@@ -466,17 +462,17 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{accountMainCombo.selection.org_id}',
                             deep: true,
                         },
-                        get: function(org_id) {
+                        get: function (org_id) {
                             let store = this.get('paymentsPerAccount');
                             if (store) store.clearFilter();
                             if (org_id) {
-                                return function(rec) {
+                                return function (rec) {
                                     if (rec.get('org_id') == org_id) {
                                         return true;
                                     }
                                 };
                             } else {
-                                return function(item) {
+                                return function (item) {
                                     return true;
                                 };
                             }
@@ -487,7 +483,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{incomingPayments}',
                             deep: true,
                         },
-                        get: function(store) {
+                        get: function (store) {
                             let total = 0;
                             if (store) {
                                 total = store.sum('calculated_amount');
@@ -500,7 +496,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{outgoingPayments}',
                             deep: true,
                         },
-                        get: function(store) {
+                        get: function (store) {
                             let total = 0;
                             if (store) {
                                 total = store.sum('calculated_amount');
@@ -513,7 +509,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             incoming: '{totalIncomingPayments}',
                             outgoing: '{totalOutgoingPayments}',
                         },
-                        get: function(data) {
+                        get: function (data) {
                             let balance = 0;
                             if (data) {
                                 balance = data.incoming - data.outgoing;
@@ -526,7 +522,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{accountMainCombo.selection}',
                             deep: true,
                         },
-                        get: function(record) {
+                        get: function (record) {
                             if (record) {
                                 let store = this.get('accountAgreements'),
                                     port_id = this.get('object_record.port_id'),
@@ -534,7 +530,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
 
                                 if (store) store.clearFilter();
 
-                                return function(rec) {
+                                return function (rec) {
                                     if (rec.get('organization_org_id') == record.get('org_id')) {
                                         let agreementable = rec.get('agreementable'),
                                             port_array = agreementable ? agreementable.port_ids : null;
@@ -557,7 +553,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                     }
                                 };
                             } else {
-                                return function(item) {
+                                return function (item) {
                                     return false;
                                 };
                             }
@@ -568,7 +564,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{accountMainCombo.selection}',
                             deep: true,
                         },
-                        get: function(record) {
+                        get: function (record) {
                             return record;
                         },
                     },
@@ -585,7 +581,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
             if (target_currency) {
                 params.to = target_currency;
             }
-            return new Ext.Promise(function(resolve, reject) {
+            return new Ext.Promise(function (resolve, reject) {
                 Ext.Ajax.request({
                     url: Env.ApiEndpoint + 'exchange_rates',
                     params: params,
@@ -594,7 +590,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                         'Content-Type': 'application/json',
                     },
                     method: 'GET',
-                    success: function(response, opts) {
+                    success: function (response, opts) {
                         var result = JSON.parse(response.responseText);
                         resolve(result);
                     },
@@ -653,18 +649,18 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             },
                         },
                         grouper: {
-                            groupFn: function(record) {
+                            groupFn: function (record) {
                                 return record.get('type');
                             },
                         },
-                        updateProxy: function(proxy) {
+                        updateProxy: function (proxy) {
                             if (proxy) {
                                 proxy.onAfter(
                                     'extraparamschanged',
-                                    function() {
+                                    function () {
                                         if (this.getProxy().getExtraParams().org_id) this.load();
                                     },
-                                    this,
+                                    this
                                 );
                             }
                         },
@@ -678,18 +674,18 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             },
                         },
                         grouper: {
-                            groupFn: function(record) {
+                            groupFn: function (record) {
                                 return record.get('type');
                             },
                         },
-                        updateProxy: function(proxy) {
+                        updateProxy: function (proxy) {
                             if (proxy) {
                                 proxy.onAfter(
                                     'extraparamschanged',
-                                    function() {
+                                    function () {
                                         if (this.getProxy().getExtraParams().org_id) this.load();
                                     },
-                                    this,
+                                    this
                                 );
                             }
                         },
@@ -701,7 +697,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{payment.kind}',
                             deep: true,
                         },
-                        get: function(kind) {
+                        get: function (kind) {
                             if (kind == 'incoming') {
                                 return {
                                     xtype: 'incoming.form.content',
@@ -724,7 +720,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{files.count}',
                             deep: true,
                         },
-                        get: function(count) {
+                        get: function (count) {
                             if (count) {
                                 return false;
                             }
@@ -736,7 +732,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{payment.org_id}',
                             deep: true,
                         },
-                        get: function(org_id) {
+                        get: function (org_id) {
                             if (org_id) {
                                 let store = this.get('paymentAgreements'),
                                     port_id = this.get('object_record.port_id'),
@@ -744,7 +740,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
 
                                 if (store) store.clearFilter();
 
-                                return function(rec) {
+                                return function (rec) {
                                     if (rec.get('organization_org_id') == org_id) {
                                         let agreementable = rec.get('agreementable'),
                                             port_array = agreementable ? agreementable.port_ids : null;
@@ -767,7 +763,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                                     }
                                 };
                             } else {
-                                return function(item) {
+                                return function (item) {
                                     return false;
                                 };
                             }
@@ -778,7 +774,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             payment_currency: '{payment.currency}',
                             account_currency: '{billingParty.selection.account_currency}',
                         },
-                        get: function(data) {
+                        get: function (data) {
                             if (data.payment_currency && data.account_currency) {
                                 if (data.payment_currency != data.account_currency) {
                                     return false;
@@ -794,7 +790,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
                             bindTo: '{payment}',
                             deep: true,
                         },
-                        get: function(payment) {
+                        get: function (payment) {
                             if (payment) {
                                 if (Ext.isNumber(payment.get('id')) && payment.get('status') == 'draft') {
                                     return true;
@@ -835,7 +831,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
     },
 
     //return first met parrent controller
-    getParentController: function(component, viewModel) {
+    getParentController: function (component, viewModel) {
         const parent = component ? component.up() : viewModel.getView();
         if (parent) {
             const controller = parent.getController();
@@ -849,7 +845,7 @@ Ext.define('Abraxa.controller.AbraxaController', {
         }
     },
 
-    setInstructionTitleOrDescription: function(instruction) {
+    setInstructionTitleOrDescription: function (instruction) {
         if (instruction) {
             const titleLabel = 'title';
             const descriptionLabel = 'description';

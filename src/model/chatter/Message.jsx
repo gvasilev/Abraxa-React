@@ -22,7 +22,7 @@ Ext.define('Abraxa.model.chatter.Message', {
         },
         {
             name: 'own',
-            calculate: function(data) {
+            calculate: function (data) {
                 let user_id = Ext.Viewport.getViewModel().get('currentUser').id;
                 return data.sender === user_id;
             },

@@ -126,9 +126,6 @@ Ext.define('Abraxa.view.settings.automation.templates.AddEditTemplate', {
                                 success: function (batch, opt) {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update template!');
-                                },
                             });
                             dialog.destroy();
                         } else {
@@ -138,9 +135,6 @@ Ext.define('Abraxa.view.settings.automation.templates.AddEditTemplate', {
                                 success: function (batch, opt) {
                                     Ext.toast('Record created', 1000);
                                     dialog.destroy();
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create template!');
                                 },
                             });
                         }

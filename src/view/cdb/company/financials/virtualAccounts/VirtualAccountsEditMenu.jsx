@@ -14,7 +14,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
             bind: {
                 permission: '{userPermissions}',
             },
-            handler: function(me) {
+            handler: function (me) {
                 let record = me.upVM().get('record'),
                     selectedCompany = me.upVM().get('object_record');
                 Ext.create('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 hidden: '{record.disabled ? false:true}',
             },
             iconCls: 'md-icon-outlined md-icon-visibility',
-            handler: function(me) {
+            handler: function (me) {
                 let vm = this.upVM(),
                     grid = vm.get('grid'),
                     record = me.upVM().get('record'),
@@ -47,22 +47,19 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 Ext.Msg.confirm(
                     'Enable',
                     'Are you sure you want to enable this direct billings?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             if (selections && selections.length) {
-                                Ext.each(selections, function(rec, index) {
+                                Ext.each(selections, function (rec, index) {
                                     rec.set('disabled', 0);
                                 });
                             } else {
                                 record.set('disabled', 0);
                             }
                             virtualAccounts.sync({
-                                success: function(err, msg) {
+                                success: function (err, msg) {
                                     Ext.toast('Record updated', 1000);
                                     grid.deselectAll();
-                                },
-                                failure: function(batch) {
-                                    Ext.Msg.alert('Something went wrong', 'Could not disable record!');
                                 },
                             });
                         }
@@ -81,7 +78,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                             ui: 'action loading',
                             text: 'Enable',
                         },
-                    ],
+                    ]
                 );
             },
         },
@@ -94,7 +91,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 hidden: '{record.disabled ? true:false}',
             },
             iconCls: 'md-icon-outlined md-icon-visibility-off',
-            handler: function(me) {
+            handler: function (me) {
                 let vm = this.upVM(),
                     grid = vm.get('grid'),
                     record = me.upVM().get('record'),
@@ -103,22 +100,19 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                 Ext.Msg.confirm(
                     'Disable',
                     'Are you sure you want to disable this Virtual Account?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             if (selections && selections.length) {
-                                Ext.each(selections, function(rec, index) {
+                                Ext.each(selections, function (rec, index) {
                                     rec.set('disabled', 1);
                                 });
                             } else {
                                 record.set('disabled', 1);
                             }
                             virtualAccounts.sync({
-                                success: function(err, msg) {
+                                success: function (err, msg) {
                                     Ext.toast('Record updated', 1000);
                                     grid.deselectAll();
-                                },
-                                failure: function(batch) {
-                                    Ext.Msg.alert('Something went wrong', 'Could not disable record!');
                                 },
                             });
                         }
@@ -137,7 +131,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                             ui: 'decline alt',
                             text: 'Disable',
                         },
-                    ],
+                    ]
                 );
             },
         },
@@ -150,19 +144,19 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
             bind: {
                 permission: '{userPermissions}',
             },
-            handler: function(me) {
+            handler: function (me) {
                 let store = me.upVM().get('virtualAccounts'),
                     container = this.find('banksRightCard'),
                     record = me.upVM().get('record');
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you would like to delete this entry?',
-                    function(answer) {
+                    function (answer) {
                         if (answer == 'yes') {
                             container.hide();
                             store.remove(record);
                             store.sync({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record deleted', 1000);
                                 },
                             });
@@ -182,7 +176,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsEditMenu', {
                             ui: 'decline alt',
                             text: 'Delete',
                         },
-                    ],
+                    ]
                 );
             },
         },

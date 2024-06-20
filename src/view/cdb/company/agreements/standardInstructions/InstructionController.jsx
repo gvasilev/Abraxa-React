@@ -49,9 +49,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.InstructionC
                         }
                     }
                 },
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             btn.toggle();
@@ -346,8 +343,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.InstructionC
             },
             failure: function failure(response) {
                 Ext.getCmp('uploadProgress').hide();
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 me.clearFileUpload(element.id);
             },
         });
@@ -372,7 +367,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.InstructionC
                 record.set('updated_at', new Date());
                 record.load();
             },
-            failure: function failure(response) {},
         });
     },
     clearFileUpload(id) {

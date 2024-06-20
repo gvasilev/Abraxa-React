@@ -47,10 +47,10 @@ Ext.define('Abraxa.view.notes.NotesNotify', {
                                         bindTo: '{record}',
                                         deep: true,
                                     },
-                                    get: function(record) {
+                                    get: function (record) {
                                         if (record) {
                                             let store = this.get('users'),
-                                                user = store.queryBy(function(rec, id) {
+                                                user = store.queryBy(function (rec, id) {
                                                     return rec.get('id') == record.get('user_id');
                                                 }).items[0];
                                             if (user) {
@@ -94,7 +94,7 @@ Ext.define('Abraxa.view.notes.NotesNotify', {
                         },
                     },
                     listeners: {
-                        childtap: function(me, location) {
+                        childtap: function (me, location) {
                             let vm = this.upVM();
                             if (location.record) {
                                 let tipExist = Ext.getCmp('createdByTool');
@@ -155,7 +155,7 @@ Ext.define('Abraxa.view.notes.NotesNotify', {
                         closeAction: 'destroy',
                     },
                     iconCls: 'md-icon-add md-icon-outlined',
-                    handler: function() {
+                    handler: function () {
                         this.up('[xtype=notes\\.notify]').down('[cls=notify_users]').hide();
                         this.up('[xtype=notes\\.notify]').down('[cls~=notify_combobox]').show();
                         this.up('[xtype=notes\\.notify]').down('[cls~=notify_combobox]').focus();

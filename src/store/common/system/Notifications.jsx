@@ -5,10 +5,10 @@ Ext.define('Abraxa.store.common.system.Notifications', {
     alias: 'store.notifications',
     model: 'Abraxa.model.notification.Notification',
     grouper: {
-        groupFn: function(record) {
+        groupFn: function (record) {
             return record.get('grouper');
         },
-        sorterFn: function(a, b) {
+        sorterFn: function (a, b) {
             return a.get('id') < b.get('id') ? 1 : -1;
         },
     },

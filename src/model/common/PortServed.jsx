@@ -19,14 +19,14 @@ Ext.define('Abraxa.model.common.PortServed', {
         {
             name: 'port_name',
             persist: false,
-            convert: function(value, record) {
+            convert: function (value, record) {
                 if (record.get('port')) return record.get('port').name;
             },
         },
         {
             name: 'timezone',
             persist: false,
-            convert: function(value, record) {
+            convert: function (value, record) {
                 if (record.get('port')) return record.get('port').time_zone;
             },
         },

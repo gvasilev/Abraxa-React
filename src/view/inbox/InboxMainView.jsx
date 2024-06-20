@@ -14,7 +14,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                     bindTo: '{currentUser}',
                     deep: true,
                 },
-                get: function(user) {
+                get: function (user) {
                     if (user) {
                         return {
                             xtype: 'segmentedbutton',
@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                                     },
                                     // badgeText: '3',
                                     pressed: true,
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let invitations = me.upVM().get('invitations'),
                                             currentUser = me.upVM().get('currentUser');
                                         invitations.clearFilter();
@@ -40,7 +40,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                                         invitations.addFilter(
                                             new Ext.data.Query({
                                                 source: 'tenant_id = "' + currentUser.get('current_company_id') + '"',
-                                            }),
+                                            })
                                         );
                                     },
                                 },
@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                                         text: 'Sent ({invitationsCount.sent})',
                                     },
                                     minWidth: 76,
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let invitations = me.upVM().get('invitations'),
                                             currentUser = me.upVM().get('currentUser');
                                         invitations.clearFilter();
@@ -60,7 +60,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                                         invitations.addFilter(
                                             new Ext.data.Query({
                                                 source: 'company_id = "' + currentUser.get('current_company_id') + '"',
-                                            }),
+                                            })
                                         );
                                     },
                                 },
@@ -101,7 +101,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                             bindTo: '{invitationData}',
                             deep: true,
                         },
-                        get: function(invitation) {
+                        get: function (invitation) {
                             if (invitation) {
                                 if (invitation.getVoyage() && invitation.getVoyage().getPortcall().get('status_data')) {
                                     let status = invitation.get('status'),
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                                 click: {
                                     element: 'element',
                                     delegate: 'a.vessel',
-                                    fn: function() {
+                                    fn: function () {
                                         let imo,
                                             record = this.component.upVM().get('invitationData').getVoyage();
                                         if (record.get('vessel')) {
@@ -174,7 +174,7 @@ Ext.define('Abraxa.view.inbox.InboxMainView', {
                             ui: 'round tool-round',
                             xtype: 'button',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function(me) {
+                            handler: function (me) {
                                 me.find('invitationRightContainer').hide();
                             },
                             tooltip: {

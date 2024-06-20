@@ -425,9 +425,6 @@ Ext.define('Abraxa.view.common.dialog.berth.ViewBerthDetails', {
                                 },
                             }).show();
                         },
-                        failure: function (response) {
-                            Ext.Msg.alert('Status', 'Request Failed.');
-                        },
                     });
                 }
             },

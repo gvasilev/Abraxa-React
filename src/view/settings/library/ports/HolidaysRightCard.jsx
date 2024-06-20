@@ -131,9 +131,6 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysRightCard', {
                                                     portServedRecord.save();
                                                     Ext.toast('Record updated', 1000);
                                                 },
-                                                failure: function (batch) {
-                                                    Ext.Msg.alert('Something went wrong', 'Could not delete record!');
-                                                },
                                             });
                                         }
                                     },
@@ -244,7 +241,6 @@ Ext.define('Abraxa.view.settings.library.ports.HolidaysRightCard', {
                 {
                     xtype: 'selectfield',
                     label: 'Type',
-                    placeholder: 'Choose',
                     labelAlign: 'left',
                     ui: 'classic hovered-border',
                     cls: 'a-field-icon icon-short icon-rounded',

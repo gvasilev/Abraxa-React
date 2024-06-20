@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     ui: 'tool-sm round',
                 },
                 listeners: {
-                    initialize: function() {
+                    initialize: function () {
                         this.add({
                             xtype: 'div',
                             margin: '0 16',
@@ -76,7 +76,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                 bind: {
                     permission: '{userPermissions}',
                 },
-                handler: function(btn, e) {
+                handler: function (btn, e) {
                     let companyRecordsStore = this.upVM().get('organizations');
                     mixpanel.track('+ Company button clicked (CDB)');
                     Ext.create('Abraxa.view.cdb.forms.AddOrganization', {
@@ -111,7 +111,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             Ext.ComponentQuery.query('[xtype=company\\.editpanel]')[0].removeCls('a-right-container-full');
             // Ext.ComponentQuery.query('[xtype=company\\.editpanel]')[0].find('detailsContainer').hide();
             Ext.ComponentQuery.query('[xtype=company\\.editpanel]')[0].hide();
@@ -125,7 +125,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     bind: {
                         bindTo: '{record.types}',
                     },
-                    get: function(types) {
+                    get: function (types) {
                         if (types && types.length) {
                             const pluck = (arr, key) => arr.map((i) => i[key]);
                             const arr = pluck(types, 'type');
@@ -139,7 +139,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
             },
         },
         listeners: {
-            painted: function() {
+            painted: function () {
                 new Ext.tip.ToolTip({
                     target: this,
                     delegate: '.pedence',
@@ -235,7 +235,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                         ],
                     },
                     listeners: {
-                        select: function(field, newValue) {
+                        select: function (field, newValue) {
                             if (newValue.data.id === 'All') field.clearValue();
 
                             this.getViewModel().set({
@@ -245,10 +245,10 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     },
                 },
             },
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 if (val) {
                     return (
-                        '<div data-qtip="<span class=\'text-capitalize\'>' +
+                        "<div data-qtip=\"<span class='text-capitalize'>" +
                         val +
                         '</span>" data-qalign="bc-tc" data-qanchor="true" class="a-verification a-' +
                         val +
@@ -294,7 +294,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     // any Ext.form.field.Text configs accepted
                 },
             },
-            renderer: function(val, selection) {
+            renderer: function (val, selection) {
                 let cls = '';
                 if (selection.get('org_validated')) {
                     cls = '<i class="material-icons md-16 c-green">verified_user</i>';
@@ -302,7 +302,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                 return ['<a href="javascript:void(0)" class="fw-b fs-16 company_name">' + val + '</a>'].join('');
             },
             grouper: {
-                groupFn: function(record) {
+                groupFn: function (record) {
                     return record.get('abbr');
                 },
             },
@@ -333,7 +333,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     },
                 },
             },
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 if (val) {
                     let first = record.get('rating').name;
                     return (
@@ -354,7 +354,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                 cls: 'a-cell-label',
                 encodeHtml: false,
                 listeners: {
-                    painted: function() {
+                    painted: function () {
                         new Ext.tip.ToolTip({
                             target: this,
                             delegate: '.pedence',
@@ -391,7 +391,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     },
                 },
             },
-            renderer: function(tags) {
+            renderer: function (tags) {
                 if (tags && tags.length) {
                     if (tags.length > 1) {
                         return (
@@ -417,7 +417,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                 return '';
             },
             grouper: {
-                groupFn: function(record) {
+                groupFn: function (record) {
                     let val = record.get('types');
                     if (val) {
                         let store = Ext.ComponentQuery.query('[itemId=cdbMainView]')[0].getVM().get('types'),
@@ -426,7 +426,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                             result = '';
                         if (val.length > 1) {
                             //multuple values
-                            Ext.each(val, function(value, index) {
+                            Ext.each(val, function (value, index) {
                                 record = store.findRecord('org_t_id', value.org_type_id, 0, false, false, true);
                                 if (record) {
                                     type = record.get('org_t_name');
@@ -473,11 +473,11 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     // any Ext.form.field.Text configs accepted
                 },
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 return val
                     ? '<div class="a-email d-flex"><i class="md-icon-outlined md-18">mail</i><span class="text-truncate">' +
-                    val +
-                    '</span></div>'
+                          val +
+                          '</span></div>'
                     : '';
             },
         },
@@ -501,7 +501,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     // any Ext.form.field.Text configs accepted
                 },
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 return val ? '<div class="a-phone"><i class="md-icon-outlined md-18">phone</i> ' + val + '</div>' : '';
             },
         },
@@ -535,7 +535,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                     },
                 },
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 if (!val) return '';
                 let store = this.upVM().get('countryStore');
                 if (store) {
@@ -557,7 +557,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                 }
             },
             grouper: {
-                groupFn: function(record) {
+                groupFn: function (record) {
                     let val = record.get('org_country');
                     if (val) {
                         let store = Ext.ComponentQuery.query('[itemId=cdbMainView]')[0].getVM().get('countryStore');
@@ -651,7 +651,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                             dismissDelay: 0,
                             closeAction: 'destroy',
                         },
-                        handler: function(owner, tool, e) {
+                        handler: function (owner, tool, e) {
                             let record = owner.toolOwner.getRecord();
                             this.find('companies-grid').deselectAll();
                             Ext.getCmp('main-viewport')
@@ -684,7 +684,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                         permission: '{userPermissions}',
                     },
                     ui: 'action small',
-                    handler: function(btn, e) {
+                    handler: function (btn, e) {
                         let companyRecordsStore = this.upVM().get('organizations');
                         mixpanel.track('+ Company button clicked (CDB)');
                         Ext.create('Abraxa.view.cdb.forms.AddOrganization', {
@@ -717,11 +717,11 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                             placeholder: 'Search by company or client ID',
                             clearable: true,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var storeCompanies = field.up('grid').getStore();
                                     if (newValue === '') storeCompanies.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     const storeCompanies = this.up('grid').getStore();
                                     storeCompanies.removeFilter('search');
@@ -753,7 +753,7 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
                             ui: 'tool-text-sm',
                             iconCls: 'md-icon-outlined md-icon-settings',
                             text: 'Customize',
-                            handler: function() {
+                            handler: function () {
                                 this.find('companies-grid').getPlugin('gridviewoptions').showViewOptions();
                             },
                         },
@@ -763,17 +763,17 @@ Ext.define('Abraxa.view.cdb.company.CompaniesGrid', {
         },
     ],
     listeners: {
-        painted: function() {
+        painted: function () {
             let storeCompanies = this.upVM().get('organizations');
             storeCompanies.clearFilter();
         },
-        childtap: function(item, location, eOpts) {
+        childtap: function (item, location, eOpts) {
             let record = location.record;
             if (record && location.source.target.tagName === 'BUTTON') {
                 return false;
             }
         },
-        childdoubletap: function(item, location, eOpts) {
+        childdoubletap: function (item, location, eOpts) {
             let record = location.record;
             if (record && location.source.target.tagName !== 'BUTTON') {
                 Ext.getCmp('main-viewport')

@@ -37,7 +37,7 @@ Ext.define('Abraxa.view.mail.Sendmail', {
                 allowOver: false,
                 closeAction: 'destroy',
             },
-            handler: function() {
+            handler: function () {
                 this.up('dialog').destroy();
             },
         },
@@ -171,7 +171,7 @@ Ext.define('Abraxa.view.mail.Sendmail', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let object_record = me.upVM().get('object_record');
                                 Ext.create('Abraxa.view.mail.AddEditDistributionGroup', {
                                     viewModel: {
@@ -211,7 +211,7 @@ Ext.define('Abraxa.view.mail.Sendmail', {
         },
     ],
     listeners: {
-        destroy: function(me) {
+        destroy: function (me) {
             let offerView = Ext.ComponentQuery.query('[itemId=offer-mainlayout]');
             if (offerView.length > 0) {
                 let vm = offerView[0].getVM();

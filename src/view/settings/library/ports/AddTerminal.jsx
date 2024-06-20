@@ -211,9 +211,6 @@ Ext.define('Abraxa.view.settings.library.ports.AddTerminal', {
                                     }
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update office!');
-                                },
                             });
                             dialog.destroy();
                         } else {
@@ -248,9 +245,6 @@ Ext.define('Abraxa.view.settings.library.ports.AddTerminal', {
 
                                     store.reload();
                                     dialog.destroy();
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create office!');
                                 },
                             });
                         }

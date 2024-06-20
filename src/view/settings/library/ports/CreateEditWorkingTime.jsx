@@ -195,9 +195,6 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditWorkingTime', {
                                     portServedRecord.save();
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update working time!');
-                                },
                             });
                             dialog.destroy();
                         } else {
@@ -209,9 +206,6 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditWorkingTime', {
                                     portServedRecorddd.save();
                                     Ext.toast('Record created', 1000);
                                     dialog.destroy();
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot add working time!');
                                 },
                             });
                         }

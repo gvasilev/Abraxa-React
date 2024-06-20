@@ -543,9 +543,6 @@ Ext.define('Abraxa.view.voyage.CreateVoyage', {
                     this.getViewModel().set('isEdit', true);
                     Ext.getCmp('main-viewport').setMasked(false);
                 },
-                failure: function (record, operation) {
-                    Ext.Msg.alert('Error', 'Could not load record');
-                },
             });
         } else {
             let currentUser = this.upVM().get('currentUser');

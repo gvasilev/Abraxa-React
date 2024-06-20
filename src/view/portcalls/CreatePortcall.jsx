@@ -946,13 +946,6 @@ Ext.define('Abraxa.view.portcalls.CreatePortcall', {
                                                     placeholder: 'Choose Company',
                                                     hidden: true,
                                                     slug: 'portcallNominationAgencyStructure',
-                                                    floatedPicker: {
-                                                        viewModel: {
-                                                            data: {
-                                                                showSuggested: true,
-                                                            },
-                                                        },
-                                                    },
                                                     bind: {
                                                         value: '{nomination.sub_agent_id}',
                                                         inputValue: '{nomination.sub_agent_name}',
@@ -970,6 +963,11 @@ Ext.define('Abraxa.view.portcalls.CreatePortcall', {
                                                         },
                                                     },
                                                     floatedPicker: {
+                                                        viewModel: {
+                                                            data: {
+                                                                showSuggested: true,
+                                                            },
+                                                        },
                                                         minWidth: 308,
                                                         listeners: {
                                                             select: function () {

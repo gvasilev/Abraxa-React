@@ -227,12 +227,6 @@ Ext.define('Abraxa.view.portcall.husbandry.crewing.CrewingGrid', {
                                                                 success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                 },
-                                                                failure: function (batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!'
-                                                                    );
-                                                                },
                                                             });
                                                         }
                                                     },

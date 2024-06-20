@@ -104,9 +104,6 @@ Ext.define('Abraxa.view.settings.library.vessels.VesselController', {
                         }
                     }
                 },
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             btn.toggle();
@@ -290,16 +287,6 @@ Ext.define('Abraxa.view.settings.library.vessels.VesselController', {
             },
             failure: function failure(response) {
                 me.clearFileUpload(element.id);
-                const showErrorMessage = () => {
-                    Ext.Msg.warning(
-                        'Something went wrong',
-                        'There was an error while uploading the file(s). Please try again.'
-                    );
-                    uploadProgressCmp.removeListener('hide', showErrorMessage);
-                };
-                // This is a legit way to add and remove Ext.js listeners.
-                // It is necessary for avoiding a bug when the progress CMP won't hide if the Ext.Msg.warning is opened right after that.
-                uploadProgressCmp.addListener('hide', showErrorMessage);
                 uploadProgressCmp.hide();
             },
         });
@@ -330,8 +317,6 @@ Ext.define('Abraxa.view.settings.library.vessels.VesselController', {
                 Ext.toast('Record updated', 2000);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 me.clearFileUpload(el.id);
             },
         });

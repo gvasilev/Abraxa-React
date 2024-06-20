@@ -23,17 +23,17 @@ Ext.define('Abraxa.store.common.Rules', {
             type: 'all',
         },
         {
-            id: 'principal_org_id',
+            id: 'appointing_party_id',
             name: 'Appointing party',
             type: 'agent',
         },
         {
-            id: 'agency_type',
+            id: 'agency_type_id',
             name: 'Agency type',
             type: 'all',
         },
         {
-            id: 'appointing_party_email',
+            id: 'office_id',
             name: 'Appointing party',
             type: 'principal',
         },

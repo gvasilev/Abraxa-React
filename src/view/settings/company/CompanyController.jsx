@@ -9,9 +9,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
             success: function (batch, opt) {
                 Ext.toast('Record updated', 1000);
             },
-            failure: function (batch, operations) {
-                Ext.Msg.alert('Something went wrong', 'Cannot update company!');
-            },
         });
     },
 
@@ -21,9 +18,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
         record.billings().sync({
             success: function (batch, opt) {
                 Ext.toast('Record updated', 1000);
-            },
-            failure: function (batch, operations) {
-                Ext.Msg.alert('Something went wrong', 'Cannot update company!');
             },
         });
     },
@@ -57,9 +51,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                         Ext.toast('Record updated', 1000);
                         store.reload();
                     },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update settings!');
-                    },
                 });
             }
         } else {
@@ -68,9 +59,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                 store.sync({
                     success: function (batch, opt) {
                         Ext.toast('Record updated', 1000);
-                    },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update settings!');
                     },
                 });
             }
@@ -99,13 +87,11 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                 url: Env.ApiEndpoint + 'company/test_email_settings',
                 jsonData: record,
                 success: function (response) {
-                    let result = Ext.decode(response.responseText);
                     Ext.ComponentQuery.query('[cls~=smtp_test_button]')[0].toggle();
                     Ext.ComponentQuery.query('[cls~=smtp_test_success]')[0].setHidden(false);
                     Ext.ComponentQuery.query('[cls~=smtp_test_button]')[0].setText('Test connection');
                 },
                 failure: function failure(response) {
-                    let result = Ext.decode(response.responseText);
                     Ext.ComponentQuery.query('[cls~=smtp_test_button]')[0].toggle();
                     Ext.ComponentQuery.query('[cls~=smtp_test_failed]')[0].setHidden(false);
                     Ext.ComponentQuery.query('[cls~=smtp_test_button]')[0].setText('Test connection');
@@ -140,9 +126,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                         Ext.toast('Record updated', 1000);
                         store.reload();
                     },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update settings!');
-                    },
                 });
             }
         } else {
@@ -156,9 +139,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                 store.sync({
                     success: function (batch, opt) {
                         Ext.toast('Record updated', 1000);
-                    },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update settings!');
                     },
                 });
             }
@@ -201,8 +181,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                 element.setValue(null);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 document.querySelector('#' + element.id).value = '';
                 self.clearFileUpload(element.id);
                 element.setValue(null);
@@ -238,9 +216,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                             dialog.destroy();
                         }
                     },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update company!');
-                    },
                 });
             } else {
                 if (record.dirty) {
@@ -251,9 +226,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                                 store.reload();
                                 dialog.destroy();
                             }
-                        },
-                        failure: function (batch, operations) {
-                            Ext.Msg.alert('Something went wrong', 'Cannot update company!');
                         },
                     });
                 } else {
@@ -291,9 +263,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                             dialog.destroy();
                         }
                     },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot update company!');
-                    },
                 });
             } else {
                 if (record.dirty) {
@@ -309,9 +278,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                                 }
                                 dialog.destroy();
                             }
-                        },
-                        failure: function (batch, operations) {
-                            Ext.Msg.alert('Something went wrong', 'Cannot update company!');
                         },
                     });
                 } else {
@@ -343,9 +309,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                         tenant_email: comboSelection.get('email'),
                     });
                 },
-                failure: function (batch, operations) {
-                    Ext.Msg.alert('Something went wrong', 'Cannot create preferred hub agent!');
-                },
             });
         }
     },
@@ -362,9 +325,6 @@ Ext.define('Abraxa.view.settings.company.SettingsCompanyController', {
                     success: function () {
                         Ext.toast('Record updated', 1000);
                         currentUser.set('preferred_hub_agent', null);
-                    },
-                    failure: function (batch, operations) {
-                        Ext.Msg.alert('Something went wrong', 'Cannot delete preferred hub agent!');
                     },
                 });
             }

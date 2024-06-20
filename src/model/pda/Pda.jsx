@@ -16,7 +16,7 @@ Ext.define('Abraxa.model.pda.Pda', {
         {
             name: 'status',
             type: 'auto',
-            convert: function(val, record) {
+            convert: function (val, record) {
                 let statuses = ['draft', 'submitted', 'approved', 'rejected'];
                 return statuses[val];
             },

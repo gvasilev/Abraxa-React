@@ -179,9 +179,6 @@ Ext.define('Abraxa.view.settings.users_teams.roles.RoleDetails', {
                                                 vm.set('removeSlug', null);
                                                 Ext.toast('Record updated');
                                             },
-                                            failure: function () {
-                                                Ext.Msg.alert('Something went wrong', 'Could not update record.');
-                                            },
                                         });
                                     }
                                 },
@@ -206,9 +203,6 @@ Ext.define('Abraxa.view.settings.users_teams.roles.RoleDetails', {
                             permissions.sync({
                                 success: function () {
                                     Ext.toast('Record updated');
-                                },
-                                failure: function () {
-                                    Ext.Msg.alert('Something went wrong', 'Could not update record.');
                                 },
                             });
                         }
