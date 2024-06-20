@@ -160,8 +160,9 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
                     company = vm.get('selectedCompany'),
                     editMode = vm.get('editMode'),
                     virtualAccounts = vm.get('virtualAccounts'),
-                    virtualAccount = vm.get('virtualAccount');
-                form = dialog.down('formpanel');
+                    virtualAccount = vm.get('virtualAccount'),
+                    form = dialog.down('formpanel');
+
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     if (editMode) {

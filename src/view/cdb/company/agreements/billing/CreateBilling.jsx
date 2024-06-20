@@ -332,8 +332,8 @@ Ext.define('Abraxa.view.cdb.company.agreements.billing.CreateBilling', {
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     billings = vm.get('billings'),
-                    billing = vm.get('billing');
-                form = dialog.down('formpanel');
+                    billing = vm.get('billing'),
+                    form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     billing.getProxy().setExtraParams({

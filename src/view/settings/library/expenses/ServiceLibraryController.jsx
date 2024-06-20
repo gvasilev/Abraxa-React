@@ -56,7 +56,7 @@ Ext.define('Abraxa.view.settings.library.expenses.ServiceLibraryController', {
                             }
 
                             Ext.toast('Record created');
-                            cmp.up('dialog').destroy();
+                            cmp.up('dialog')?.destroy();
                         },
                     });
                 },

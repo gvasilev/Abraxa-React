@@ -1,4 +1,7 @@
 import './PortcallsAgentArchive';
+import '../../inquiries/InquiriesAssingTo';
+import '../../portcall/PortcallDeleteDialog';
+
 Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'portcalls.agent.edit.menu',
