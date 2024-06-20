@@ -127,26 +127,26 @@ Ext.define('Abraxa.view.adocs.FinancialDocumentForm', {
                             const viewModel = cmp.upVM();
                             const selectedOrg = selection.get(AbraxaConstants.labels.organization);
                             let address = '';
-                            if (selectedOrg.org_address) {
+                            if (selectedOrg && selectedOrg.org_address) {
                                 address = selectedOrg.org_address;
                             }
 
                             let address2 = '';
-                            if (selectedOrg.org_address_2) {
+                            if (selectedOrg && selectedOrg.org_address_2) {
                                 address2 = selectedOrg.org_address_2;
                             }
 
                             let memo = '';
-                            if (selectedOrg.org_memo) {
+                            if (selectedOrg && selectedOrg.org_memo) {
                                 memo = selectedOrg.org_memo;
                             }
                             let city = '';
-                            if (selectedOrg.city_name) {
+                            if (selectedOrg && selectedOrg.city_name) {
                                 city = selectedOrg.city_name;
                             }
 
                             let country = '';
-                            if (selectedOrg.country_name) {
+                            if (selectedOrg && selectedOrg.country_name) {
                                 country = selectedOrg.country_name;
                             }
 
