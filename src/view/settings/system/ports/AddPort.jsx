@@ -72,7 +72,6 @@ Ext.define('Abraxa.view.settings.ports.AddPort', {
                             me.up('dialog').destroy();
                         },
                         failure: function (batch, functions) {
-                            Ext.Msg.alert('Oops', batch.operations[0].error.response.responseJson.message);
                             store.rejectChanges();
                         },
                     });

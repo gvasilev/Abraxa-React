@@ -43,7 +43,7 @@ Ext.define('Abraxa.view.directory.DirectoryMainContainer', {
         },
     },
     listeners: {
-        painted: function(me) {
+        painted: function (me) {
             if (me.upVM().get('currentUserType') !== 'principal') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

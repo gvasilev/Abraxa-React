@@ -49,7 +49,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                     listeners: {
                                         click: {
                                             element: 'element',
-                                            fn: function() {
+                                            fn: function () {
                                                 let vm = this.component.upVM(),
                                                     menu = Ext.create('Abraxa.view.portcall.MembersPreviewMenu', {
                                                         viewModel: {
@@ -91,7 +91,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                 inputValue: '{object_record.voyage.vessel_name}',
                             },
                             listeners: {
-                                select: function(me, selection) {
+                                select: function (me, selection) {
                                     var record = this.upVM().get('object_record');
                                     if (selection) {
                                         if (selection.get('company_id')) {
@@ -105,10 +105,10 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                         record.getVoyage().set('vessel_imo', selection.get('imo'));
                                     }
                                 },
-                                blur: function() {
+                                blur: function () {
                                     var record = this.upVM().get('object_record');
                                     record.save({
-                                        success: function() {
+                                        success: function () {
                                             Ext.toast('Record updated', 1000);
                                         },
                                     });
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 Ext.create('Ext.Dialog', {
                                     closable: true,
                                     centered: true,
@@ -162,7 +162,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                                 inputValue: '{object_record.voyage.vessel_name}',
                                             },
                                             listeners: {
-                                                select: function(field, selection) {
+                                                select: function (field, selection) {
                                                     const record = this.upVM().get('object_record');
 
                                                     if (record && selection && !selection.isPhantom()) {
@@ -177,7 +177,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                         {
                                             text: 'Cancel',
                                             margin: '0 8 0 0',
-                                            handler: function() {
+                                            handler: function () {
                                                 var record = this.upVM().get('object_record');
                                                 record.getVoyage().reject();
                                                 record.reject();
@@ -188,10 +188,10 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                                             text: 'Save',
                                             enableToggle: true,
                                             ui: 'action loading',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 var record = this.upVM().get('object_record');
                                                 record.save({
-                                                    success: function() {
+                                                    success: function () {
                                                         Ext.toast('Record updated', 1000);
                                                         record.getVoyage().load();
                                                         me.up('dialog').destroy();
@@ -242,7 +242,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentGeneral', {
                     items: [
                         {
                             xtype: 'div',
-                            html: '<div class=\'hbox\'><div class=\'a-badge a-badge-cargo\'><i></i></div><div class=\'a-panel-title fs-14\'>Cargoes</div></div>',
+                            html: "<div class='hbox'><div class='a-badge a-badge-cargo'><i></i></div><div class='a-panel-title fs-14'>Cargoes</div></div>",
                             cls: 'a-collapsible-title a-collapsible-trigger a-trigger-right',
                             listeners: {
                                 click: {

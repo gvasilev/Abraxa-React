@@ -69,9 +69,6 @@ Ext.define('Abraxa.view.approval.SendForApprovalDialog', {
                             Abraxa.popup.showSuccessDialog('The approval request has been sent', '');
                             mixpanel.track('Request approval sent');
                         },
-                        failure: function (response, opts) {
-                            Ext.Msg.alert('Something went wrong', 'Could not complete operation.');
-                        },
                     });
                 });
             },

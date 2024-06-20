@@ -213,13 +213,6 @@ Ext.define('Abraxa.view.settings.workflows.WorkflowsMainContainer', {
                                                                                     },
                                                                                     failure: function (batch) {
                                                                                         workflow.reject();
-                                                                                        let response =
-                                                                                            batch.operations[0].error
-                                                                                                .response.responseJson;
-                                                                                        Ext.Msg.alert(
-                                                                                            'Something went wrong',
-                                                                                            response.message
-                                                                                        );
                                                                                     },
                                                                                 });
                                                                             }
@@ -256,14 +249,6 @@ Ext.define('Abraxa.view.settings.workflows.WorkflowsMainContainer', {
                                                                                     Ext.toast('Record updated');
                                                                                 },
                                                                                 failure: function (batch) {
-                                                                                    let response =
-                                                                                        batch.operations[0].error
-                                                                                            .response.responseJson;
-                                                                                    Ext.Msg.alert(
-                                                                                        'Warning',
-                                                                                        response.message
-                                                                                    );
-                                                                                    // workflows.add(workflow);
                                                                                     workflows.rejectChanges();
                                                                                 },
                                                                             });

@@ -501,12 +501,6 @@ Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesRightCard', {
                                                                 }
                                                                 Ext.toast('Record updated', 1000);
                                                             },
-                                                            failure: function (batch) {
-                                                                Ext.Msg.alert(
-                                                                    'Something went wrong',
-                                                                    'Could not delete record!'
-                                                                );
-                                                            },
                                                         });
                                                     }
                                                 },
@@ -1303,7 +1297,10 @@ Ext.define('Abraxa.view.portcall.husbandry.supplies.SuppliesRightCard', {
                                                 function (answer) {
                                                     if (answer === 'yes') {
                                                         Ext.ComponentQuery.query(
-                                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                                            Ext.getCmp('main-viewport')
+                                                                .upVM()
+                                                                .get('currentUser')
+                                                                .get('company').type + 'portcall\\.main'
                                                         )[0]
                                                             .getController()
                                                             .deleteVouchers([record]);

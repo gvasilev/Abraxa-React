@@ -110,7 +110,7 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
     updateOptions: function (newOptions) {
         this.getAt(0).setOptions(newOptions);
     },
-    
+
     applyValue: function (value) {
         const draftFiled = this.getAt(0);
         draftFiled.setValue(value);

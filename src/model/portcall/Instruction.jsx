@@ -15,7 +15,7 @@ Ext.define('Abraxa.model.portcall.Instruction', {
             type: 'auto',
             persist: false,
             depends: 'description',
-            convert: function(val, record) {
+            convert: function (val, record) {
                 const labelDescription = 'description';
                 if (record.get(labelDescription)) {
                     //This regular expression will search for both opening and closing tags in the text and remove them.
@@ -30,7 +30,7 @@ Ext.define('Abraxa.model.portcall.Instruction', {
             type: 'auto',
             depends: 'description_plain',
             persist: false,
-            convert: function(value, record) {
+            convert: function (value, record) {
                 const labalDesctription = 'description_plain';
                 let descriptionShort = '';
                 if (record.get(labalDesctription)) {

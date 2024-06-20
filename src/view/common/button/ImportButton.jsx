@@ -103,10 +103,6 @@ Ext.define('Abraxa.view.common.button.UploadButton', {
                     }
                 }
             },
-            failure: function failure(response) {
-                var obj = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', obj.message);
-            },
         });
     },
     showDialog: function (data, columnHeaders, columnsForMap, sheetInfo, columns_text) {

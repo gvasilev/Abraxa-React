@@ -16,7 +16,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                 bind: {
                     bindTo: '{nomenclaturesList.selection}',
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         this.set('nomenclatureSelection', record);
                     }
@@ -27,7 +27,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                     bindTo: '{nomenclatureSelection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         if (Ext.getStore('treeStore')) {
                             Ext.getStore('treeStore').destroy();
@@ -113,21 +113,21 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                             hidden: '{record.leaf ? true : false}',
                             tooltip: {
                                 anchorToTarget: true,
-                                html: '{record.parentId != \'root\' ? \'Add category\' : \'Add item\'}',
+                                html: "{record.parentId != 'root' ? 'Add category' : 'Add item'}",
                                 align: 'bc-tc?',
                                 showDelay: 0,
                                 hideDelay: 0,
                                 dismissDelay: 0,
                             },
                         },
-                        handler: function(me) {
+                        handler: function (me) {
                             let record = me.upVM().get('record'),
                                 nomenclature = me.upVM().get('nomenclaturesList.selection'),
                                 portId = me.upVM().get('calculatorPortSettingsGrid.selection.id'),
                                 selectionPort = me.upVM().get('calculatorPortSettingsGrid.selection'),
                                 realPortId = me.upVM().get('calculatorPortSettingsGrid.selection.port_id'),
                                 store = me.upVM().get('treeStore'),
-                                rootRecord = store.queryBy(function(rec) {
+                                rootRecord = store.queryBy(function (rec) {
                                     return rec.get('id') === 'root';
                                 }).items[0];
                             nomenclature.getProxy().setExtraParams({
@@ -147,9 +147,9 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                 bind: {
                                                     bindTo: '{treeStore}',
                                                 },
-                                                get: function(store) {
+                                                get: function (store) {
                                                     let data = [];
-                                                    store.each(function(record) {
+                                                    store.each(function (record) {
                                                         if (record.get('leaf')) data.push(record.get('id'));
                                                     });
                                                     return [
@@ -200,7 +200,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                         search: null,
                                                     },
                                                     listeners: {
-                                                        painted: function() {
+                                                        painted: function () {
                                                             this.focus();
                                                         },
                                                     },
@@ -221,7 +221,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                             '{nomenclaturesList.selection.type === "vessel" ? true:false}',
                                                     },
                                                     listeners: {
-                                                        painted: function() {
+                                                        painted: function () {
                                                             this.focus();
                                                         },
                                                     },
@@ -246,7 +246,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                         },
                                                     },
                                                     listeners: {
-                                                        painted: function() {
+                                                        painted: function () {
                                                             let store = this.getStore();
                                                             store.getProxy().setExtraParams({
                                                                 port_id: realPortId,
@@ -263,7 +263,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                             text: 'Cancel',
                                             testId: 'calculatorNomenclatureSubpageAddItemDialogCancelBtn',
                                             margin: '0 8 0 0',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.up('dialog').destroy();
                                             },
                                         },
@@ -271,7 +271,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                             text: 'Save',
                                             testId: 'calculatorNomenclatureSubpageAddItemDialogSaveBtn',
                                             ui: 'action',
-                                            handler: function() {
+                                            handler: function () {
                                                 const me = this;
                                                 const portCostEngineVM = me.upVM();
                                                 const form = me.up('dialog').down('formpanel');
@@ -340,7 +340,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
 
                                                 if (form.validate()) {
                                                     nomenclature.save({
-                                                        success: function() {
+                                                        success: function () {
                                                             Ext.toast('Record created', 1000);
                                                             portCostEngineVM.set('nomenclatureSelection', nomenclature);
 
@@ -350,7 +350,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
 
                                                             me.up('dialog').destroy();
                                                         },
-                                                        failure: function(batch, functions) {
+                                                        failure: function (batch, functions) {
                                                             portCostEngineVM.get('treeStore').rejectChanges();
                                                             const form = me.up('dialog').down('form\\.error');
                                                             if (form) {
@@ -390,7 +390,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                             cls: 'a-field-icon icon-short icon-rounded',
                                             placeholder: 'Category name',
                                             listeners: {
-                                                painted: function() {
+                                                painted: function () {
                                                     this.focus();
                                                 },
                                             },
@@ -400,14 +400,14 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                         {
                                             text: 'Cancel',
                                             margin: '0 8 0 0',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.up('dialog').destroy();
                                             },
                                         },
                                         {
                                             text: 'Save',
                                             ui: 'action',
-                                            handler: function() {
+                                            handler: function () {
                                                 let me = this;
                                                 rootRecord.appendChild({
                                                     text: me.upVM().get('categoryName.value'),
@@ -423,7 +423,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                     id: Ext.id(),
                                                 });
                                                 nomenclature.save({
-                                                    success: function() {
+                                                    success: function () {
                                                         Ext.toast('Record created', 1000);
                                                         me.upVM().set('nomenclatureSelection', nomenclature);
 
@@ -432,7 +432,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                         Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                         me.up('dialog').destroy();
                                                     },
-                                                    failure: function(batch, functions) {
+                                                    failure: function (batch, functions) {
                                                         me.upVM().get('treeStore').rejectChanges();
                                                         const form = me.up('dialog').down('form\\.error');
                                                         if (form) {
@@ -456,7 +456,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                         bind: {
                             hidden: '{record.id == "root" ? true : false}',
                         },
-                        handler: function(me) {
+                        handler: function (me) {
                             let record = this.upVM().get('record'),
                                 nomenclature = this.upVM().get('nomenclaturesList.selection'),
                                 portId = this.upVM().get('calculatorPortSettingsGrid.selection.id'),
@@ -466,7 +466,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                 portSettingsId: portId,
                                 type: nomenclature.get('type'),
                             });
-                            nomenclature.get('items').forEach(function(item, val) {
+                            nomenclature.get('items').forEach(function (item, val) {
                                 if (item.id === record.get('id')) {
                                     Ext.Array.remove(nomenclature.get('items'), item);
                                 }
@@ -474,12 +474,12 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                             Ext.Msg.confirm(
                                 'Delete',
                                 'Are you sure you would like to delete this entry?',
-                                function(answer) {
+                                function (answer) {
                                     if (answer === 'yes') {
                                         record.removeAll(true);
                                         store.remove(record);
                                         nomenclature.save({
-                                            success: function() {
+                                            success: function () {
                                                 me.upVM().set('nomenclatureSelection', nomenclature);
 
                                                 // Reloading tariff table store
@@ -487,7 +487,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                                 Abraxa.utils.Functions.updatePortCost(selectionPort);
                                                 Ext.toast('Record created', 1000);
                                             },
-                                            failure: function(batch, functions) {
+                                            failure: function (batch, functions) {
                                                 me.upVM().get('treeStore').rejectChanges();
                                                 me.up('dialog')
                                                     .down('form\\.error')
@@ -512,7 +512,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                         ui: 'decline alt',
                                         text: 'Delete',
                                     },
-                                ],
+                                ]
                             );
                         },
                     },

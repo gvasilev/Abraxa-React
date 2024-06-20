@@ -10,7 +10,7 @@ Ext.define('Abraxa.model.calculator.PriceBookServiceFormulaBlockRule', {
             name: 'value',
             type: 'auto',
             critical: true,
-            convert: function(value) {
+            convert: function (value) {
                 if (Ext.isArray(value)) {
                     return value;
                 } else {

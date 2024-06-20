@@ -24,7 +24,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementDotsMenu', {
                     checked: '{selectedDisbursement.grouped ? true : false}',
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let grid = this.find('disbursementItemsGrid'),
                         grouped = grid.getGrouped();
 
@@ -215,7 +215,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementDotsMenu', {
                             permission: '{userPermissions}',
                             objectPermission: '{objectPermissions}',
                         },
-                        handler: function(me) {
+                        handler: function (me) {
                             let vm = me.upVM(),
                                 currentUserPlan = vm.get('currentUserPlan');
                             if (currentUserPlan === 'starter') {
@@ -252,7 +252,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementDotsMenu', {
                     permission: '{userPermissions}',
                 },
                 iconCls: 'md-icon-outlined md-icon-difference',
-                handler: function(me) {
+                handler: function (me) {
                     let grid = this.find('disbursementItemsGrid');
                     let disbursement = grid.upVM().get('selectedDisbursement');
                     grid.saveDocumentAs({
@@ -271,7 +271,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementDotsMenu', {
                     permission: '{userPermissions}',
                 },
                 iconCls: 'md-icon-outlined md-icon-check-circle',
-                handler: function() {
+                handler: function () {
                     Ext.create('Abraxa.view.approval.SendForApprovalDialog', {
                         viewModel: {
                             parent: this.upVM(),

@@ -14,17 +14,7 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
             bind: {
                 bindTo: '{port.meta_name_alternatives}',
             },
-            get: function (alternativeNames) {
-                let altNamesString = AbraxaConstants.placeholders.emptySpan;
-                if (!alternativeNames) return altNamesString;
-
-                if (alternativeNames.length === 1) {
-                    altNamesString = alternativeNames[0];
-                } else if (alternativeNames.length > 1) {
-                    altNamesString = alternativeNames.join(', ');
-                }
-                return altNamesString;
-            },
+            get: AbraxaFunctions.getAlternativeNames,
         },
         armedGuards: {
             bind: {
@@ -46,20 +36,6 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
                     return store;
                 }
             },
-        },
-        calculateLatCoordinates: {
-            bind: {
-                bindTo: '{port.center}',
-                deep: true,
-            },
-            get: (coordinates) => AbraxaFunctions.getPortLatitude(coordinates),
-        },
-        calculateLonCoordinates: {
-            bind: {
-                bindTo: '{port.center}',
-                deep: true,
-            },
-            get: (coordinates) => AbraxaFunctions.getPortLongitude(coordinates),
         },
         calculateLatCoordinates: {
             bind: {

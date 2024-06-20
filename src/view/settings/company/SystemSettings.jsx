@@ -82,9 +82,6 @@ Ext.define('Abraxa.view.settings.company.SystemSettings', {
                                                                 success: function (batch, opt) {
                                                                     window.location.reload();
                                                                 },
-                                                                failure: function (batch, operations) {
-                                                                    Ext.Msg.alert('Error!', 'Cannot update company!');
-                                                                },
                                                             });
                                                         },
                                                     },

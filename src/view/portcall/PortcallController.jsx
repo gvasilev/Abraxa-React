@@ -50,10 +50,6 @@ Ext.define('Abraxa.view.portcall.PortcallController', {
                 payments.reload();
                 Ext.toast(AbraxaConstants.messages.updateRecord, 1000);
             },
-            failure: function (batch) {
-                var response = batch.operations[0].error.response.responseJson;
-                Ext.Msg.alert('Something went wrong', response.message);
-            },
         });
     },
 

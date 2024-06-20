@@ -518,7 +518,6 @@ Ext.define('Abraxa.model.suggestions.Port', {
             name: 'services_navigation_repair',
             type: 'boolean',
             allowNull: true,
-            allowNull: true,
         },
         {
             name: 'services_electrical_repair',

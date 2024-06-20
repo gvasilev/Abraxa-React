@@ -121,9 +121,6 @@ Ext.define('Abraxa.view.inquiries.InquiriesAssignTo', {
                         record.load();
                         dialog.destroy();
                     },
-                    failure: function (batch) {
-                        // Ext.Msg.alert('Something went wrong', 'Could not appoint this Inquiry!');
-                    },
                 });
             },
         },

@@ -38,6 +38,17 @@ Ext.define('Abraxa.utils.Functions', {
 
             return { latitude: latResult, longitute: lngResult };
         },
+        getAlternativeNames: function (alternativeNames) {
+            let altNamesString = AbraxaConstants.placeholders.emptySpan;
+            if (!alternativeNames) return altNamesString;
+
+            if (alternativeNames.length === 1) {
+                altNamesString = alternativeNames[0];
+            } else if (alternativeNames.length > 1) {
+                altNamesString = alternativeNames.join(', ');
+            }
+            return altNamesString;
+        },
         getDms: function (val) {
             // Required variables
             let valDeg, valMin, valSec, result;
@@ -105,11 +116,34 @@ Ext.define('Abraxa.utils.Functions', {
             const convertedObj = this.convertCoordinatesDDtoDMS(lon, null);
             return convertedObj.longitute;
         },
+        getCoordinatesString: function (coordinates) {
+            if (!coordinates || !coordinates.latitude || !coordinates.longitude) {
+                return AbraxaConstants.placeholders.emptySpan;
+            }
+            const lat = this.getPortLatitude(coordinates);
+            const lon = this.getPortLongitude(coordinates);
+            return lat + ' / ' + lon;
+        },
+        getLowerCaseValue: function (value) {
+            return value ? value.toLowerCase() : '';
+        },
         getYesNoWithIcon: function (value) {
             const placeholders = AbraxaConstants.placeholders;
-            let htmlString = placeholders.noValueWithIcon;
+            let htmlString = placeholders.emptySpan;
             if (value === true) {
                 htmlString = placeholders.yesValueWithIcon;
+            } else if (value === false) {
+                htmlString = placeholders.noValueWithIcon;
+            }
+            return htmlString;
+        },
+        getYesNoWithoutIcon: function (value) {
+            const placeholders = AbraxaConstants.placeholders;
+            let htmlString = placeholders.emptySpan;
+            if (value === true) {
+                htmlString = placeholders.yesValueWithoutIcon;
+            } else if (value === false) {
+                htmlString = placeholders.noValueWithoutIcon;
             }
             return htmlString;
         },
@@ -451,10 +485,6 @@ Ext.define('Abraxa.utils.Functions', {
             return options;
         },
 
-        getLowerCaseValue: function (value) {
-            return value ? value.toLowerCase() : '';
-        },
-
         exportVesselNameFileId: function (record, type) {
             if (record.get(type).voyage.vessel_name) {
                 let fileID = record.get(type).file_id
@@ -538,7 +568,7 @@ Ext.define('Abraxa.utils.Functions', {
             }
         },
         getFromToStringValue: function (data, fromPropName, toPropName, unit) {
-            let htmlString = AbraxaConstants.placeholders.emptyValue;
+            let htmlString = AbraxaConstants.placeholders.emptySpan;
             if (!data) return htmlString;
             const fromVal = data[fromPropName];
             const toVal = data[toPropName];
@@ -551,7 +581,7 @@ Ext.define('Abraxa.utils.Functions', {
             return htmlString;
         },
         getMinMaxValue: function (data, minPropName, maxPropName, digits, unit) {
-            let htmlString = AbraxaConstants.placeholders.emptyValue;
+            let htmlString = AbraxaConstants.placeholders.emptySpan;
             if (!data) return htmlString;
             const minVal = parseFloat(data[minPropName]).toFixed(digits);
             const maxVal = parseFloat(data[maxPropName]).toFixed(digits);
@@ -633,6 +663,42 @@ Ext.define('Abraxa.utils.Functions', {
                 });
             }
             return value;
+        },
+
+        showExceptionMessage: function (response) {
+            let errorResponseMsg = response?.responseJson?.message || false;
+            if (!errorResponseMsg) {
+                //report to sentry backend endpoints with incorrect json response
+                this.reportToSentry(
+                    response.request.url + ' endpoint returned an unexpected response.Please review and fix it ASAP.'
+                );
+                errorResponseMsg = 'Unknown error.';
+            }
+            Ext.create('Ext.MessageBox', {
+                ui: 'warning',
+                title: 'Error',
+                innerCls: 'a-bgr-white',
+                message: errorResponseMsg + '<br>This incident has been reported.',
+                width: 300,
+                dataTitle: 'Warning',
+                modal: true,
+                draggable: false,
+                bbar: {
+                    manageBorders: false,
+                    items: [
+                        '->',
+                        {
+                            xtype: 'button',
+                            iconCls: 'md-icon-report',
+                            ui: 'action',
+                            text: 'OK',
+                            handler: function (me) {
+                                me.up('dialog').destroy();
+                            },
+                        },
+                    ],
+                },
+            }).show();
         },
     },
 });

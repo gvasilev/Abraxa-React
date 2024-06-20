@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_channel_draft ? object_record.restriction_channel_draft : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{minMaxChannelDraft}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_anchorage_draft ? object_record.restriction_anchorage_draft: "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{minMaxAnchorageDraft}',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_daylight_navigation ? object_record.restriction_daylight_navigation:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoDaylightNavigation}',
                                     },
                                 },
                             ],
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_inl ? object_record.restriction_inl:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.restriction_inl ? object_record.restriction_inl : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -114,7 +114,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_swell ? object_record.restriction_swell:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoSwell}',
                                     },
                                 },
                             ],
@@ -129,7 +129,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_piracy ? object_record.restriction_piracy:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoPiracy}',
                                     },
                                 },
                             ],
@@ -160,12 +160,12 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Water Area',
+                                    html: 'War Area',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_war_area ? object_record.restriction_war_area : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoWarArea}',
                                     },
                                 },
                             ],
@@ -180,7 +180,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_seca ? object_record.restriction_seca:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoSeca}',
                                     },
                                 },
                             ],
@@ -195,7 +195,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_tides ? object_record.restriction_tides:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoTides}',
                                     },
                                 },
                             ],
@@ -210,7 +210,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_first_port_of_entry ? object_record.restriction_first_port_of_entry:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoFirstPortOfEntry}',
                                     },
                                 },
                             ],
@@ -225,7 +225,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.restriction_armed_guards ? object_record.restriction_armed_guards:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoArmedGuards}',
                                     },
                                 },
                             ],

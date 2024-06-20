@@ -6,16 +6,16 @@ Ext.define('Abraxa.view.common.button.GridFiltersButton', {
 
     // TODO: Refactor GridFilterButton config, ViewModel and functionality
     // JIRA task: CORE-2705
-    setGridItemId: function(itemId) {
+    setGridItemId: function (itemId) {
         this.getViewModel().set('gridItemId', itemId);
         this.config.gridItemId = itemId;
     },
 
-    setExcludedFilters: function(filters) {
+    setExcludedFilters: function (filters) {
         this.config.excludedFilterIds = filters;
     },
 
-    setStateOfButtons: function(count, button, closeButton, grid) {
+    setStateOfButtons: function (count, button, closeButton, grid) {
         if (count > 0) {
             button.setText('Filter ' + '<em>' + count + '</em>');
             closeButton.setHidden(false);
@@ -42,7 +42,7 @@ Ext.define('Abraxa.view.common.button.GridFiltersButton', {
                     bindTo: '{gridItemId}',
                     deep: true,
                 },
-                get: function(gridItemId) {
+                get: function (gridItemId) {
                     const button = this.getView().down('[itemId=filterButton]');
                     const closeButton = this.getView().down('[itemId=closeButton]');
 
@@ -85,7 +85,7 @@ Ext.define('Abraxa.view.common.button.GridFiltersButton', {
             text: 'Filter',
             cls: 'a-has-counter',
 
-            handler: function(button) {
+            handler: function (button) {
                 const gridItemId = button.up('container').config.gridItemId;
                 const grid = button.find(gridItemId);
 
@@ -134,7 +134,7 @@ Ext.define('Abraxa.view.common.button.GridFiltersButton', {
             },
             iconCls: 'md-icon-close md-icon-outlined',
 
-            handler: function(button) {
+            handler: function (button) {
                 const filterButton = button.up('container').down('[itemId=filterButton]');
                 const gridItemId = button.up('container').config.gridItemId;
                 const grid = button.find(gridItemId);
@@ -148,16 +148,16 @@ Ext.define('Abraxa.view.common.button.GridFiltersButton', {
                 grid.getPlugin('gridfilterbar')
                     .getBar()
                     .items.items.forEach((item) => {
-                    if (item.getValue && item.getValue() !== null) {
-                        item.setValue(null);
-                    }
-                });
+                        if (item.getValue && item.getValue() !== null) {
+                            item.setValue(null);
+                        }
+                    });
             },
         },
     ],
 
     listeners: {
-        painted: function() {
+        painted: function () {
             const buttons = this.query('button');
 
             this.element.el.on('mouseover', () => {

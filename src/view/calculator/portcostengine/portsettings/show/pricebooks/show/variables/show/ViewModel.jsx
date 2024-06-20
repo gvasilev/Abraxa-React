@@ -7,7 +7,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
         calctemplaterepeatertype: {
             type: 'calctemplaterepeatertype',
             filters: [
-                function(record) {
+                function (record) {
                     return !record.phantom;
                 },
             ],
@@ -18,11 +18,11 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                     priceBookId: '{priceBooksList.selection.id}',
                 },
             },
-            updateProxy: function(proxy) {
+            updateProxy: function (proxy) {
                 if (proxy) {
                     proxy.onAfter(
                         'extraparamschanged',
-                        function() {
+                        function () {
                             if (
                                 this.getProxy().getExtraParams().portSettingsId &&
                                 this.getProxy().getExtraParams().priceBookId
@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                                 this.load();
                             }
                         },
-                        this,
+                        this
                     );
                 }
             },
@@ -42,7 +42,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.pricebooks.s
                 bindTo: '{templateVariableRecord}',
                 deep: true,
             },
-            get: function(value) {
+            get: function (value) {
                 return value ? value.copy() : null;
             },
         },

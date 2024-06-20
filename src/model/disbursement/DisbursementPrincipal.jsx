@@ -14,41 +14,41 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
     fields: [
         {
             name: 'voyage_id',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.portcall ? data.portcall.voyage_id : AbraxaConstants.placeholders.emptyValue;
             },
         },
         {
             name: 'vessel',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.portcall && data.portcall.voyage && data.portcall.voyage.vessel
                     ? data.portcall.voyage.vessel
                     : {
-                        name: AbraxaConstants.placeholders.emptyValue,
-                        id: null,
-                    };
+                          name: AbraxaConstants.placeholders.emptyValue,
+                          id: null,
+                      };
             },
         },
         {
             name: 'da_id',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.group_id ? data.group_id : AbraxaConstants.placeholders.emptyValue;
             },
         },
         {
             name: 'port',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.portcall && data.portcall.port_name
                     ? {
-                        name: data.portcall.port_name || AbraxaConstants.placeholders.emptyValue,
-                        id: data.portcall.port_id || '',
-                    }
+                          name: data.portcall.port_name || AbraxaConstants.placeholders.emptyValue,
+                          id: data.portcall.port_id || '',
+                      }
                     : { name: AbraxaConstants.placeholders.emptyValue, id: null };
             },
         },
         {
             name: 'lead_agent',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.portcall && data.portcall.nomination && data.portcall.nomination.lead_agent_name
                     ? { name: data.portcall.nomination.lead_agent_name, id: data.portcall.nomination.lead_agent_id }
                     : { name: AbraxaConstants.placeholders.emptyValue, id: null };
@@ -56,24 +56,24 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'ETD_ATD',
-            mapping: function(data) {
+            mapping: function (data) {
                 let eta = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.port_etd) {
                     eta = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_etd,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'strong',
+                        'strong'
                     );
                 }
                 if (data.portcall && data.portcall.port_atd) {
                     eta = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_atd,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'span',
+                        'span'
                     );
                 }
                 return eta;
@@ -140,7 +140,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             persist: false,
             depends: ['show_vat', 'show_discount'],
             type: 'boolean',
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 if (rec.get('show_vat') || rec.get('show_discount')) {
                     return true;
                 }
@@ -149,7 +149,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'total_costs',
-            mapping: function(data) {
+            mapping: function (data) {
                 return Ext.util.Format.number(data.total_costs || 0, '0,000.00');
             },
         },
@@ -166,34 +166,34 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         {
             name: 'sorting_pda_total_costs',
             type: 'auto',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.pda && data.pda.total_costs
                     ? data.pda.total_costs
                     : data.type === 'pda'
-                        ? data.total_costs
-                        : 0;
+                      ? data.total_costs
+                      : 0;
             },
         },
         {
             name: 'sorting_dda_total_costs',
             type: 'auto',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.dda && data.dda.total_costs
                     ? data.dda.total_costs
                     : data.type === 'dda'
-                        ? data.total_costs
-                        : 0;
+                      ? data.total_costs
+                      : 0;
             },
         },
         {
             name: 'sorting_fda_total_costs',
             type: 'auto',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.fda && data.fda.total_costs
                     ? data.fda.total_costs
                     : data.type === 'fda'
-                        ? data.total_costs
-                        : 0;
+                      ? data.total_costs
+                      : 0;
             },
         },
         {
@@ -232,7 +232,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'portcall_eta',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.portcall) return Date.parse(data.portcall.port_eta);
             },
         },
@@ -240,7 +240,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'portcall_etd',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.portcall) return Date.parse(data.portcall.port_etd);
             },
         },
@@ -248,7 +248,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'voyage_number',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.portcall && data.portcall.nomination) return data.portcall.nomination.voyage_number;
             },
         },
@@ -256,7 +256,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'agency_type',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.portcall && data.portcall.nomination) return data.portcall.nomination.agency_type_name;
             },
         },
@@ -264,7 +264,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'sub_agent',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let subAgent = {
                     org_name: null,
                     org_id: null,
@@ -291,14 +291,14 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         {
             name: 'show_variance',
             type: 'boolean',
-            mapping: function(res) {
+            mapping: function (res) {
                 if (res.data && res.data.show_variance) return true;
                 return false;
             },
         },
         {
             name: 'client_balance',
-            mapping: function(data) {
+            mapping: function (data) {
                 return Ext.util.Format.number(data.client_balance || 0, '0,000.00');
             },
         },
@@ -310,7 +310,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         {
             name: 'show_quantity',
             type: 'boolean',
-            mapping: function(res) {
+            mapping: function (res) {
                 if (res.data && res.data.show_quantity) return true;
                 return false;
             },
@@ -318,7 +318,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         {
             name: 'file_id', //this is used for Port call ID in disbursements grids.
             type: 'string',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data.portcall && data.portcall.file_id
                     ? data.portcall.file_id
                     : AbraxaConstants.placeholders.emptyValue;
@@ -326,24 +326,24 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'ETA_ATA',
-            mapping: function(data) {
+            mapping: function (data) {
                 let eta = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.port_eta) {
                     eta = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_eta,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'strong',
+                        'strong'
                     );
                 }
                 if (data.portcall && data.portcall.port_ata) {
                     eta = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_ata,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'span',
+                        'span'
                     );
                 }
                 return eta;
@@ -351,15 +351,15 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'port_eta',
-            mapping: function(data) {
+            mapping: function (data) {
                 let eta = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.port_eta) {
                     eta = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_eta,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'strong',
+                        'strong'
                     );
                 }
                 return eta;
@@ -367,7 +367,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'port_etb',
-            mapping: function(data) {
+            mapping: function (data) {
                 let etb = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.berths && data.portcall.berths.length > 0) {
                     let currentBerth = data.portcall.berths.find((berth) => berth.is_current);
@@ -375,9 +375,9 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
                         etb = Abraxa.utils.Functions.createPlaceHolders(
                             Abraxa.utils.Functions.formatStringToDate(
                                 currentBerth.etb,
-                                AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                                AbraxaConstants.formatters.date.dayMonHyphenTime24
                             ),
-                            'strong',
+                            'strong'
                         );
                     }
                 }
@@ -386,15 +386,15 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'port_ata',
-            mapping: function(data) {
+            mapping: function (data) {
                 let ata = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.port_ata) {
                     ata = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_ata,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'strong',
+                        'strong'
                     );
                 }
                 return ata;
@@ -402,15 +402,15 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
         },
         {
             name: 'port_atd',
-            mapping: function(data) {
+            mapping: function (data) {
                 let atd = AbraxaConstants.placeholders.emptySpan;
                 if (data.portcall && data.portcall.port_atd) {
                     atd = Abraxa.utils.Functions.createPlaceHolders(
                         Abraxa.utils.Functions.formatStringToDate(
                             data.portcall.port_atd,
-                            AbraxaConstants.formatters.date.dayMonHyphenTime24,
+                            AbraxaConstants.formatters.date.dayMonHyphenTime24
                         ),
-                        'strong',
+                        'strong'
                     );
                 }
                 return atd;
@@ -420,7 +420,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'appointing_party',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let appointingParty = {
                     org_name: null,
                     org_id: null,
@@ -437,7 +437,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'nominating_party',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let nominatingParty = {
                     org_name: null,
                     org_id: null,
@@ -454,11 +454,11 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'refund',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let total = 0;
                 if (data && data.account && data.account.payments && data.account.payments.length > 0) {
                     const account = data.account;
-                    account.payments.forEach(function(payment) {
+                    account.payments.forEach(function (payment) {
                         if (payment.kind === 'outgoing' && payment.to_org_id === account.org_id) {
                             total += parseFloat(payment.calculated_amount);
                         }
@@ -471,12 +471,12 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'my_payments',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let total = 0;
                 if (data && data.account && data.account.payments && data.account.payments.length > 0) {
                     const account = data.account,
                         record = data;
-                    account.payments.forEach(function(payment) {
+                    account.payments.forEach(function (payment) {
                         if (
                             payment.from_org_id === account.org_id &&
                             payment.paymentable_type === record.model_name &&
@@ -493,7 +493,7 @@ Ext.define('Abraxa.model.disbursement.DisbursementPrincipal', {
             name: 'balance',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 let balance = 0;
                 if (data && data.account) {
                     balance = data.account.balance;

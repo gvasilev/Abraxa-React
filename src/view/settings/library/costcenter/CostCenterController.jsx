@@ -39,14 +39,7 @@ Ext.define('Abraxa.view.settings.library.cost_center.CostCenterController', {
                 cmp.up('dialog').destroy();
             },
             failure: function (batch) {
-                let errMsg;
-                try {
-                    errMsg = batch.operations[0].error.response.responseJson.message;
-                } catch (e) {
-                    errMsg = AbraxaConstants.messages.anErrorOccured.message;
-                }
                 costCenterStore.remove(costCenter);
-                Ext.Msg.warning(AbraxaConstants.messages.anErrorOccured.title, errMsg);
                 cmp.up('dialog').destroy();
             },
         });

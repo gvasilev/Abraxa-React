@@ -465,9 +465,6 @@ Ext.define('Abraxa.view.common.port.AddEditBerth', {
                             }
                             dialog.destroy();
                         },
-                        failure: function (batch) {
-                            // Ext.Msg.alert('Something went wrong', 'Could not appoint this Inquiry!');
-                        },
                     });
                 }
             },

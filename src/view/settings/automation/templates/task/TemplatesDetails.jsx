@@ -119,9 +119,6 @@ Ext.define('Abraxa.view.settings.templates.task.TemplatesDetails', {
                             success: function () {
                                 Ext.toast(AbraxaConstants.messages.updateRecord, 1000);
                             },
-                            failure: function () {
-                                Ext.Msg.alert('Something went wrong', 'Error while updating record.');
-                            },
                         });
                     },
                 },

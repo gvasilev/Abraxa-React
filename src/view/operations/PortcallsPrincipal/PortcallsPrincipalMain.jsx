@@ -82,7 +82,7 @@ Ext.define('Abraxa.view.operations.PortcallsPrincipal.PortcallsPrincipalMain', {
                             iconCls: 'md-icon-outlined md-icon-settings',
                             text: 'Manage columns',
                             margin: '0 0 0 8',
-                            handler: function(button) {
+                            handler: function (button) {
                                 const currentTab = button.up('PortcallsPrincipalMain').getViewModel().get('currentTab');
                                 const grid = button
                                     .up('PortcallsPrincipalMain')

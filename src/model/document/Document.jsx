@@ -10,7 +10,7 @@ Ext.define('Abraxa.model.document.Document', {
         },
         {
             name: 'size',
-            convert: function(size) {
+            convert: function (size) {
                 var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                 if (size == 0) return '0 Byte';
                 var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
@@ -44,7 +44,7 @@ Ext.define('Abraxa.model.document.Document', {
             type: 'boolean',
             depends: ['status', 'approvals', 'shared_document'],
             persist: false,
-            convert: function(val, record) {
+            convert: function (val, record) {
                 let approvalMatters = false;
                 if (record.get('approvals') && record.get('approvals').length) {
                     record.get('approvals').forEach((approval) => {
@@ -68,7 +68,7 @@ Ext.define('Abraxa.model.document.Document', {
             type: 'boolean',
             depends: ['approvals', 'shared_document'],
             persist: false,
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (val) {
                     return val;
                 } else {
@@ -99,7 +99,7 @@ Ext.define('Abraxa.model.document.Document', {
             name: 'folder_id',
             depends: ['folder_file'],
             persist: false,
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (record.get('folder_file')) return record.get('folder_file').document_folder_id;
 
                 return null;

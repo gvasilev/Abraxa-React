@@ -74,6 +74,8 @@ Ext.define('Abraxa.utils.AbraxaConstants', {
         emptySpanWithDoubleZero: '<span class="a-cell-placeholder">0</span>',
         noValueWithIcon: '<span class="a-value-no"><i class="md-icon"></i> No</span>',
         yesValueWithIcon: '<span class="a-value-yes"><i class="md-icon"></i> Yes</span>',
+        noValueWithoutIcon: '<span>No</span>',
+        yesValueWithoutIcon: '<span>Yes</span>',
         zeroValue: '0,000.00',
     },
     urls: {

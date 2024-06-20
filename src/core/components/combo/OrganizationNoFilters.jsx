@@ -92,7 +92,7 @@ Ext.define('Abraxa.core.components.combo.OrganizationNoFilters', {
                 return;
             }
 
-// this.callParent([picker]);
+            // this.callParent([picker]);
         }
     },
 });

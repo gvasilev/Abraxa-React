@@ -15,7 +15,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageTasksRightPanel', {
             items: [
                 {
                     xtype: 'title',
-                    title: '<div class=\'hbox\'><div><span class=\'a-panel-title\'>Pending tasks</span><span class=\'a-panel-subtitle\'></div></div>',
+                    title: "<div class='hbox'><div><span class='a-panel-title'>Pending tasks</span><span class='a-panel-subtitle'></div></div>",
                 },
                 {
                     xtype: 'container',
@@ -37,7 +37,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageTasksRightPanel', {
                                 permission: '{userPermissions}',
                                 disabled: '{object_record.is_archived ? true : false}',
                             },
-                            handler: function() {
+                            handler: function () {
                                 let button = this;
 
                                 // Check if a note is already opened

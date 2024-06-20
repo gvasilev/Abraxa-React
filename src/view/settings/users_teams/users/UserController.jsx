@@ -31,8 +31,6 @@ Ext.define('Abraxa.view.settings.users.UserController', {
                 },
                 failure: function failure(response) {
                     element.toggle();
-                    let result = Ext.decode(response.responseText);
-                    Ext.Msg.alert('Oops', result.message);
                 },
             });
         } else {
@@ -62,9 +60,6 @@ Ext.define('Abraxa.view.settings.users.UserController', {
                         params: params,
                         success: function (response, opts) {
                             Ext.toast('Request sent', 2000);
-                        },
-                        failure: function (response, opts) {
-                            Ext.Msg.alert('Something went wrong', 'Could not request password change!');
                         },
                     });
                 }

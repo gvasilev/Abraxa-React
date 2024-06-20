@@ -34,7 +34,7 @@ Ext.define('Abraxa.model.task.Task', {
         {
             name: 'overdue',
             persist: false,
-            calculate: function(data) {
+            calculate: function (data) {
                 if (data.status == 'completed') {
                     return moment(data.due_date).isBefore(data.updated_at);
                 }
@@ -45,7 +45,7 @@ Ext.define('Abraxa.model.task.Task', {
             name: 'search_index',
             depends: 'updated_at',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data) {
                     return this.buildSearchIndex(data);
                 }
@@ -54,7 +54,7 @@ Ext.define('Abraxa.model.task.Task', {
         {
             name: 'current_office_id',
             type: 'auto',
-            mapping: function(data) {
+            mapping: function (data) {
                 return data && data.assigned_user && data.assigned_user.current_office_id
                     ? data.assigned_user.current_office_id
                     : 0;

@@ -54,11 +54,11 @@ Ext.define('Abraxa.view.dashboard.DashboardMainContainer', {
                                         html: 'News feed <em class="bg-pink-500">{newsFeedCount}</em>',
                                     },
                                     listeners: {
-                                        painted: function() {
+                                        painted: function () {
                                             Ext.fireEvent('updateNewPortNewsCount');
                                         },
                                     },
-                                    handler: function() {
+                                    handler: function () {
                                         Ext.getCmp('main-viewport').getController().redirectTo('portnews');
                                     },
                                 },

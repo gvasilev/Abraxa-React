@@ -22,7 +22,7 @@ Ext.define('Abraxa.model.common.Vessel', {
             type: 'date',
             dateFormat: 'Y-m-d',
             dateWriteFormat: 'Y-m-d',
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (val) return val.substring(0, 4);
 
                 return AbraxaConstants.placeholders.emptyValue;
@@ -56,7 +56,7 @@ Ext.define('Abraxa.model.common.Vessel', {
             name: 'vessel_type',
             depends: 'id',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data && data.general_type) return data.general_type.name;
             },
         },
@@ -69,7 +69,7 @@ Ext.define('Abraxa.model.common.Vessel', {
             name: 'is_verified',
             depends: ['updated_at'],
             persist: false,
-            convert: function(val, record) {
+            convert: function (val, record) {
                 if (record.getCompliance() || record.get('compliance')) return true;
 
                 return false;

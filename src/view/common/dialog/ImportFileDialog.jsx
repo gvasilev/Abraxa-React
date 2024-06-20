@@ -152,10 +152,6 @@ Ext.define('Abraxa.view.common.dialog.common.ImportFileDialog', {
                                         }
                                         dialog.destroy();
                                     },
-                                    failure: function failure(response) {
-                                        var obj = Ext.decode(response.responseText);
-                                        Ext.Msg.alert('Something went wrong', obj.message);
-                                    },
                                 });
                             } else {
                                 dialog

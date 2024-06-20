@@ -31,7 +31,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             name: 'paymentable_type',
             type: 'auto',
             depends: 'paymentable_id',
-            convert: function(value, rec) {
+            convert: function (value, rec) {
                 if (rec.get('paymentable_id')) {
                     return value;
                 }
@@ -81,7 +81,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             depends: ['calculated_amount', 'kind'],
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 if (rec.get('kind') == 'incoming') {
                     return rec.get('calculated_amount');
                 } else {
@@ -94,7 +94,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             depends: ['calculated_amount', 'kind'],
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 if (rec.get('kind') == 'outgoing') {
                     return rec.get('calculated_amount');
                 } else {
@@ -107,7 +107,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             depends: ['calculated_amount', 'kind'],
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 if (rec.get('kind') == 'requested') {
                     return rec.get('calculated_amount');
                 } else {
@@ -120,7 +120,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             // persist: false,
             depends: ['currency', 'amount', 'exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let rate = rec.get('exchange_rate'),
                     price = rec.get('amount');
 
@@ -134,7 +134,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             persist: false,
             depends: ['currency', 'amount', 'from_exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let rate = rec.get('from_exchange_rate'),
                     price = rec.get('amount');
 
@@ -148,7 +148,7 @@ Ext.define('Abraxa.model.payment.Payment', {
             type: 'float',
             persist: false,
             depends: ['currency', 'amount', 'to_exchange_rate'],
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let rate = rec.get('to_exchange_rate'),
                     price = rec.get('amount');
 
@@ -200,7 +200,7 @@ Ext.define('Abraxa.model.payment.Payment', {
         {
             name: 'port_name',
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let owner = rec.get('owner');
                 if (owner && owner.port_id) return owner.port_name;
             },
@@ -208,7 +208,7 @@ Ext.define('Abraxa.model.payment.Payment', {
         {
             name: 'vessel_name_id',
             persist: false,
-            convert: function(v, rec) {
+            convert: function (v, rec) {
                 let owner = rec.get('owner');
                 if (owner && owner.port_id) return owner.voyage.vessel_name + owner.reference_number;
             },

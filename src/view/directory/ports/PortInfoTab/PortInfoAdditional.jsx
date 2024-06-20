@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.harbor_size_code ? object_record.harbor_size_code : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.harbor_size_code ? (object_record.harbor_size_code:capitalize) : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.harbor_type_code ? object_record.harbor_type_code : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{object_record.harbor_type_code ? (object_record.harbor_type_code:capitalize) : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.shelter_afforded_code ? object_record.shelter_afforded_code : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{object_record.shelter_afforded_code ? (object_record.shelter_afforded_code:capitalize) : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.info_salinity ? object_record.info_salinity:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{waterSalinity:capitalize}',
                                     },
                                 },
                             ],
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.info_water_density ? object_record.info_water_density : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{minMaxWaterDensity}',
                                     },
                                 },
                             ],
@@ -145,12 +145,12 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Noa Deadline',
+                                    html: 'Notice of arrival deadline',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.info_noa_deadline ? object_record.info_noa_deadline:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{object_record.info_noa_deadline ? object_record.info_noa_deadline + " hours" : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -160,12 +160,27 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoAdditional', {
                             items: [
                                 {
                                     cls: 'a-display-label',
+                                    html: 'Cargo manifest deadline',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{object_record.info_manifest_deadline ? object_record.info_manifest_deadline + " hours" : "<span class=\'a-placeholder\'>---</span>"}',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            //fourth row container
+                            items: [
+                                {
+                                    cls: 'a-display-label',
                                     html: 'US Representative',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.info_us_representative ? object_record.info_us_representative:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoUsRepresentative}',
                                     },
                                 },
                             ],

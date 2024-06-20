@@ -21,12 +21,12 @@ Ext.define('Abraxa.view.invitations.InvitationViewModel', {
                 bindTo: '{currentUser}',
                 deep: true,
             },
-            get: function(user) {
+            get: function (user) {
                 if (user) {
                     if (this.get('invitations')) {
                         this.get('invitations').clearFilter();
                     }
-                    return function(item) {
+                    return function (item) {
                         return item.get('tenant_id') == user.get('current_company_id');
                     };
                 }

@@ -22,7 +22,6 @@ Ext.define('Abraxa.view.portlog.payment.OutgoingRightContent', {
             disabled: false,
             bind: {
                 value: '{payment.org_id}',
-                disabled: '{account ? true : editMode ? true:false }',
                 disabled: '{nonEditable ? true : false}',
             },
             listeners: {

@@ -379,7 +379,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                             testId: 'instructionsRightCardFilesUploadBtn',
                             multiple: true,
                             margin: '0 24 8 24',
-                            ui: 'normal-light medium',
                             iconCls: 'md-icon-outlined md-icon-cloud-upload',
                             ui: 'blue-light',
                             name: 'files',
@@ -713,10 +712,6 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                         store.sync({
                                             success: function (err, msg) {
                                                 Ext.toast('Record updated', 1000);
-                                            },
-                                            failure: function (batch) {
-                                                var response = batch.operations[0].error.response.responseJson;
-                                                Ext.Msg.alert('Something went wrong', response.message);
                                             },
                                         });
                                     },

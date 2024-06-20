@@ -410,7 +410,9 @@ Ext.define('Abraxa.view.AddCargoPopup', {
                     record = me.upVM().get('cargoRecord'),
                     store = me.upVM().get('cargoStore'),
                     vm = this.upVM(),
-                    allCargoes = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+                    allCargoes = Ext.ComponentQuery.query(
+                        Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                    )[0]
                         .getVM()
                         .get('cargoes');
 

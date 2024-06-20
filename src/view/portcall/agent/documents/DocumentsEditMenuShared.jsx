@@ -66,34 +66,12 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenuShared', {
                                     success: function (batch, opt) {
                                         Ext.toast('Document updated', 1500);
                                     },
-                                    failure: function (batch, operations) {
-                                        Ext.Msg.alert('Something went wrong', 'Could not update file.');
-                                    },
                                 });
                                 this.up('dialog').destroy();
                             },
                         },
                     ],
                 }).show();
-
-                // Ext.Msg.prompt('Rename folder', 'Folder', function (btn, value) {
-                //     if (btn == 'ok') {
-                //         store.sync({
-                //             success: function () {
-                //                 Ext.ComponentQuery.query('portcall\\.document\\.sections')[0].select(record);
-                //                 Ext.toast('Record updated');
-                //             }
-                //         });
-                //     } else {
-                //         this.destroy();
-                //     }
-                // }, null, false, null, {
-                //     viewModel: me.upVM(),
-                //     ui: 'hovered-underline',
-                //     cls: 'a-field-icon icon-folder',
-                //     placeholder: 'Enter folder name',
-                //     value: name
-                // });
             },
         },
         {
@@ -148,9 +126,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsEditMenuShared', {
                             store.sync({
                                 success: function (batch, opt) {
                                     Ext.toast('Document deleted', 1500);
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Could not delete document.');
                                 },
                             });
                         }

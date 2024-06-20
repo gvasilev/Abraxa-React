@@ -73,9 +73,6 @@ Ext.define('Abraxa.view.settings.library.cargoes.CargoController', {
                         }
                     }
                 },
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             btn.toggle();

@@ -53,7 +53,8 @@ Ext.define('Abraxa.view.portcalls.agent.PortacallAgentCard', {
                 listeners: {
                     beforesync: function (store) {
                         let object_record = Ext.ComponentQuery.query(
-                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                'portcall\\.main'
                         )[0]
                             .upVM()
                             .get('object_record');

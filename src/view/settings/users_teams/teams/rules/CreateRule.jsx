@@ -139,8 +139,8 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                             required: true,
                             bind: {
                                 value: '{record.port_value}',
-                                hidden: '{(currentUser.company.type == "principal" ? true:false) || (record.property == "port_id"  ? false:true)}',
-                                required: '{record.property == "port_id" ? true:false}',
+                                hidden: '{(currentUser.company.type === "principal" ? true:false) || (record.property === "port_id"  ? false:true)}',
+                                required: '{record.property === "port_id" ? true:false}',
                                 placeholder: '{record.value ? "":"Choose ports"}',
                             },
                         },
@@ -155,8 +155,8 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                             placeholder: 'Choose ports',
                             bind: {
                                 value: '{record.port_value}',
-                                hidden: '{(currentUser.company.type == "agent" ? true:false) || (record.property == "port_id"  ? false:true)}',
-                                required: '{record.property == "port_id" ? true:false}',
+                                hidden: '{(currentUser.company.type === "agent" ? true:false) || (record.property === "port_id"  ? false:true)}',
+                                required: '{record.property === "port_id" ? true:false}',
                                 placeholder: '{record.value ? "":"Choose ports"}',
                             },
                             listeners: {
@@ -195,9 +195,9 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                             bind: {
                                 store: '{offices}',
                                 value: '{record.office_value}',
-                                required: '{record.property == "appointing_party_email" ? true:false}',
+                                required: '{record.property === "office_id" ? true:false}',
                                 placeholder: '{record.value ? "":"Choose office"}',
-                                hidden: '{(currentUser.company.type == "agent" ? true:false) || (record.property == "appointing_party_email"  ? false:true)}',
+                                hidden: '{(currentUser.company.type === "agent" ? true:false) || (record.property === "office_id"  ? false:true)}',
                             },
                         },
                         {
@@ -219,8 +219,8 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                                 value: '{record.port_function_value}',
                                 store: '{berthFunctions}',
                                 placeholder: '{record.value ? "":"Choose function"}',
-                                hidden: '{record.property == "port_function"  ? false:true}',
-                                required: '{record.property == "port_function"  ? true:false}',
+                                hidden: '{record.property === "port_function"  ? false:true}',
+                                required: '{record.property === "port_function"  ? true:false}',
                             },
                         },
                         {
@@ -241,15 +241,15 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                             bind: {
                                 value: '{record.organization_value}',
                                 placeholder: '{record.value ? "":"Choose company"}',
-                                valueField: '{record.property == "principal_org_id"  ? "org_id":"org_name"}',
-                                hidden: '{(currentUser.company.type == "principal" ? true:false) || (record.property == "principal_org_id"  ? false:true)}',
-                                required: '{record.property == "principal_org_id"  ? true:false}',
+                                valueField: '{record.property === "appointing_party_id"  ? "org_id":"org_name"}',
+                                hidden: '{(currentUser.company.type === "principal" ? true:false) || (record.property === "appointing_party_id"  ? false:true)}',
+                                required: '{record.property === "appointing_party_id"  ? true:false}',
                             },
 
                             listeners: {
                                 painted: function (me) {
                                     let record = this.upVM().get('record');
-                                    if (record.get('property') == 'principal_org_id' && record.get('value')) {
+                                    if (record.get('property') === 'appointing_party_id' && record.get('value')) {
                                         me.getStore()
                                             .getProxy()
                                             .setUrl(
@@ -297,7 +297,7 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                                 },
                                 show: function (me) {
                                     let record = this.upVM().get('record');
-                                    if (record.get('property') == 'principal_org_id' && record.get('value')) {
+                                    if (record.get('property') === 'appointing_party_id' && record.get('value')) {
                                         me.getStore()
                                             .getProxy()
                                             .setUrl(
@@ -342,8 +342,8 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                                 store: '{agencyTypes}',
                                 value: '{record.agency_type_value}',
                                 placeholder: '{record.value ? "":"Choose type"}',
-                                hidden: '{record.property == "agency_type"  ? false:true}',
-                                required: '{record.property == "agency_type"  ? true:false}',
+                                hidden: '{record.property === "agency_type_id"  ? false:true}',
+                                required: '{record.property === "agency_type_id"  ? true:false}',
                             },
                             listeners: {
                                 painted: function (me) {
@@ -391,9 +391,6 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                                 }
                                 Ext.toast('Record updated', 1000);
                             },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot update rule!');
-                            },
                         });
                         dialog.destroy();
                     } else {
@@ -406,9 +403,6 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.CreateRule', {
                                 }
                                 Ext.toast('Record created', 1000);
                                 dialog.destroy();
-                            },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot create rule!');
                             },
                         });
                     }

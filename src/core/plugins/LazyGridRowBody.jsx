@@ -4,7 +4,7 @@ Ext.define('Abraxa.core.plugins.LazyGridRowBody', {
     alias: 'plugin.lazyGridRowBody',
 
     init: function (comp) {
-// this.callParent(arguments);
+        // this.callParent(arguments);
 
         if (this.body) {
             // Eager instantiation means create the body now

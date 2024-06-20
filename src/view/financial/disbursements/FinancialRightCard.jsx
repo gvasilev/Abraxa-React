@@ -585,7 +585,6 @@ Ext.define('Abraxa.view.financial.FinancialRightCard', {
             items: [
                 {
                     xtype: 'container',
-                    cls: 'a-disb-data',
                     padding: '12 24',
                     cls: 'a-bb-100',
                     customComponentHolderId: 'dicbursementRightCardMain',
@@ -660,7 +659,6 @@ Ext.define('Abraxa.view.financial.FinancialRightCard', {
                                 },
                                 {
                                     xtype: 'selectfield',
-                                    ui: 'classic hovered-border',
                                     cls: 'a-displayfield a-field-icon icon-rounded icon-short',
                                     ui: 'viewonly classic',
                                     placeholder: 'Choose label',
@@ -748,7 +746,6 @@ Ext.define('Abraxa.view.financial.FinancialRightCard', {
                 },
                 {
                     xtype: 'container',
-                    cls: 'a-portcall-extra',
                     slug: 'portCallCrewingAttachments',
                     hidden: true,
                     cls: 'a-bt-100',

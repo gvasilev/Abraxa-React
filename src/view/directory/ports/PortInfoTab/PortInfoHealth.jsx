@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoHealth', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.quarantine_pratique ? object_record.quarantine_pratique : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoQuarantinePratique}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoHealth', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.quarantine_deratt_cert ? object_record.quarantine_deratt_cert : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoDerattingCertificate}',
                                     },
                                 },
                             ],

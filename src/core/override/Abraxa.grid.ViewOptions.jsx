@@ -86,7 +86,7 @@ Ext.define('Abraxa.grid.ViewOptions', {
     //         },
     //     },
     showViewOptions: function () {
-// this.callParent(arguments);
+        // this.callParent(arguments);
         const columns = this.getGrid().getColumns();
         const noViewOptionsColumns = columns.filter((col) => col.viewOptions === false);
         const indexes = noViewOptionsColumns.map((col) => columns.indexOf(col));

@@ -48,12 +48,10 @@ Ext.define('Abraxa.view.cdb.MainController', {
                         view.destroy();
                     },
                     failure: function (record, batch) {
-                        var msg = batch.error.response.responseJson.message;
                         btn.toggle();
                         if (combo) {
                             store.rejectChanges();
                         }
-                        Ext.Msg.alert('Oops', msg);
                     },
                 });
             }
@@ -72,12 +70,10 @@ Ext.define('Abraxa.view.cdb.MainController', {
                                 Ext.toast('Record updated', 1000);
                             },
                             failure: function (batch) {
-                                var msg = batch.operations[0].error.response.responseJson.message;
                                 if (combo) {
                                     store.rejectChanges();
                                 }
                                 btn.toggle();
-                                Ext.Msg.alert('Oops', msg);
                             },
                         });
                     }
@@ -112,9 +108,6 @@ Ext.define('Abraxa.view.cdb.MainController', {
             success: function (batch) {
                 store.reload();
                 form.destroy();
-            },
-            failure: function (batch) {
-                Ext.Msg.alert('Something went wrong', 'Unable to update record!');
             },
         });
     },

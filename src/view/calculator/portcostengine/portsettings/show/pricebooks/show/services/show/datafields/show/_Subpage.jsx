@@ -30,5 +30,5 @@ Ext.define(
         bind: {
             items: '{dataFieldActiveItemForm}',
         },
-    },
+    }
 );

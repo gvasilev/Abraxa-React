@@ -35,7 +35,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                     cls: 'a-create-button a-button-sof',
                     text: 'Operational',
                     testId: 'createDocumentPopupOperationalButton',
-                    handler: function() {
+                    handler: function () {
                         Ext.create('Abraxa.view.adocs.SofDocumentForm', {
                             viewModel: {
                                 data: {
@@ -57,7 +57,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                     bind: {
                         text: '{(currentUserPlan == "starter") ? "Cargo <span class=\\"a-icon-premium\\"><i class=\\"far fa-gem\\"></i></span>":"Cargo"}',
                     },
-                    handler: function() {
+                    handler: function () {
                         let vm = this.upVM(),
                             currentUserPlan = vm.get('currentUserPlan');
                         if (currentUserPlan == 'starter') {
@@ -83,10 +83,10 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                                                 bindTo: '{selectedDocumentTypes.selection}',
                                                 deep: true,
                                             },
-                                            get: function(selection) {
+                                            get: function (selection) {
                                                 let hide = true;
                                                 if (selection) {
-                                                    Ext.each(selection, function(record) {
+                                                    Ext.each(selection, function (record) {
                                                         if (record.get('can_combine')) {
                                                             hide = false;
                                                         }
@@ -100,7 +100,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                                                 bindTo: '{documentsSelectedCargoes.selection}',
                                                 deep: true,
                                             },
-                                            get: function(selection) {
+                                            get: function (selection) {
                                                 if (selection) {
                                                     return selection.length;
                                                 }
@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                     cls: 'a-create-button a-button-financial',
                     text: 'Disbursement',
                     testId: 'createDocumentPopupDisbursementButton',
-                    handler: function() {
+                    handler: function () {
                         Ext.create('Abraxa.view.adocs.FinancialDocumentForm', {
                             viewModel: {
                                 data: {
@@ -145,12 +145,12 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                                             bindTo: '{selectedDisbursement.selection}',
                                             deep: true,
                                         },
-                                        get: function(record) {
+                                        get: function (record) {
                                             if (record) {
                                                 let expenses = this.get('expenses'),
                                                     data = [];
 
-                                                expenses.each(function(item) {
+                                                expenses.each(function (item) {
                                                     if (item.get(record.get('type') + '_id') == record.get('id')) {
                                                         data.push(item);
                                                     }
@@ -171,7 +171,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                     cls: 'a-create-button a-button-invoice',
                     text: 'Invoice',
                     testId: 'createDocumentPopupInvoiceButton',
-                    handler: function(btn) {
+                    handler: function (btn) {
                         // TODO: CORE-2915: Refactor code to avoid different viewModels for the same component in CreateDocumentPopup
                         // TODO: CORE-2916: Deleted documents still shown in document preview unless page is refreshed
                         const currentViewModel = btn.upVM();
@@ -201,7 +201,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                                             bindTo: '{billingParty.selection}',
                                             deep: true,
                                         },
-                                        get: function(billingParty) {
+                                        get: function (billingParty) {
                                             if (!billingParty) return [];
 
                                             const currentVM = this;
@@ -210,13 +210,13 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                                                 data = [];
 
                                             if (expense) {
-                                                expenses.each(function(item) {
+                                                expenses.each(function (item) {
                                                     if (item.get('id') === expense.get('id')) {
                                                         data.push(item);
                                                     }
                                                 });
                                             } else {
-                                                expenses.each(function(item) {
+                                                expenses.each(function (item) {
                                                     if (
                                                         item.get('default_expense_item_id') &&
                                                         item.get('account_id') === billingParty.get('id')
@@ -236,7 +236,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                             return rec.get('slug') === 'creditNote' || rec.get('slug') === 'invoice';
                         }).items;
                         if (selectedType.length) {
-                            Ext.Array.sort(selectedType, function(a, b) {
+                            Ext.Array.sort(selectedType, function (a, b) {
                                 return a.get('id') > b.get('id') ? 1 : -1;
                             });
                             docForm.upVM().set('document_data.document_type_id', selectedType[0].id);
@@ -268,7 +268,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                 permission: '{userPermissions}',
             },
             listeners: {
-                change: function(me, newValue) {
+                change: function (me, newValue) {
                     if (newValue) {
                         var files = this.getFiles(),
                             uploadController = me.up('dialog').getController(),
@@ -279,7 +279,7 @@ Ext.define('Abraxa.view.adocs.CreateDocumentPopup', {
                         }
                         uploadController.upload(files, this);
                     }
-                    document.querySelector('input[type=\'file\']').value = '';
+                    document.querySelector("input[type='file']").value = '';
                     me.setValue(null);
                 },
             },

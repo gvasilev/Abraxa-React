@@ -27,7 +27,6 @@ Ext.define('Abraxa.view.pda.PDANotes', {
                 },
             },
             cls: 'voyageInstructionsEdtior fr-view-fix',
-            flex: 1,
             margin: '-1 0 0 0',
             shadow: false,
             labelAlign: 'left',

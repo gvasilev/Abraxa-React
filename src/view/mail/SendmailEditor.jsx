@@ -502,7 +502,6 @@ Ext.define('Abraxa.view.mail.SendmailEditor', {
                             xtype: 'common-distribution-email-combo',
                             selectOnTab: true,
                             flex: 1,
-                            autoComplete: false,
                             name: 'mail_bcc',
                             autoComplete: false,
                             itemId: 'mailBccField',

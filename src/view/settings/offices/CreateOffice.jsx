@@ -96,9 +96,6 @@ Ext.define('Abraxa.view.settings.offices.CreateOffice', {
                                     Ext.toast('Record updated', 1000);
                                     Ext.getCmp('main-viewport').upVM().get('currentCompany').load();
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update office!');
-                                },
                             });
                             dialog.destroy();
                         } else {
@@ -109,9 +106,6 @@ Ext.define('Abraxa.view.settings.offices.CreateOffice', {
                                     Ext.toast('Record created', 1000);
                                     Ext.getCmp('main-viewport').upVM().get('currentCompany').load();
                                     dialog.destroy();
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create office!');
                                 },
                             });
                         }

@@ -26,14 +26,14 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                         value: '{selectedAccount.org_name}',
                     },
                     disabled: true,
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return '<a href="javascript:void(0)" class="fw-b org_name">' + value + '</a>';
                     },
                     listeners: {
                         click: {
                             element: 'element',
                             delegate: 'a.org_name',
-                            fn: function(el) {
+                            fn: function (el) {
                                 let email = this.component.upVM().get('selectedAccount.org_email');
                                 if (email) {
                                     let organizations = this.component.upVM().get('organizations'),
@@ -75,11 +75,11 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                 flex: 1,
                 labelAlign: 'left',
                 listeners: {
-                    focusleave: function() {
+                    focusleave: function () {
                         var record = this.upVM().get('selectedAccount');
                         if (record.dirty) {
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -109,14 +109,14 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                         objectPermission: '{objectPermissions}',
                     },
                     listeners: {
-                        select: function() {
+                        select: function () {
                             let record = this.upVM().get('selectedAccount'),
                                 selection = this.getSelection();
 
                             record.set('co_name', selection.get('org_name'));
                             record.set('co_email', selection.get('org_email'));
                         },
-                        clearicontap: function() {
+                        clearicontap: function () {
                             let record = this.upVM().get('selectedAccount');
 
                             record.set('co_name', null);
@@ -131,7 +131,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                     slug: 'portcallDisbursementROE',
                     viewModel: {
                         formulas: {
-                            formattedROE: function(get) {
+                            formattedROE: function (get) {
                                 const value = get('selectedAccount.exchange_rate');
                                 return Abraxa.utils.Functions.formatROE(value);
                             },
@@ -178,11 +178,11 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                         labelAlign: 'left',
                         ui: 'classic hovered-border',
                         listeners: {
-                            focusleave: function() {
+                            focusleave: function () {
                                 var record = this.upVM().get('selectedAccount');
                                 if (record.dirty) {
                                     record.save({
-                                        success: function() {
+                                        success: function () {
                                             Ext.toast('Record updated', 1000);
                                         },
                                     });
@@ -253,11 +253,11 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                 flex: 1,
                 labelAlign: 'left',
                 listeners: {
-                    focusleave: function() {
+                    focusleave: function () {
                         var record = this.upVM().get('selectedAccount');
                         if (record.dirty) {
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -285,14 +285,14 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                     stateful: ['label'],
                     stateId: 'someLAbel',
                     listeners: {
-                        painted: function(field) {
-                            editor.on('complete', function(item, value) {
+                        painted: function (field) {
+                            editor.on('complete', function (item, value) {
                                 field.setLabel(value);
                             });
                         },
                         dblclick: {
                             element: 'labelElement', //bind to the underlying body property on the panel
-                            fn: function(target, el) {
+                            fn: function (target, el) {
                                 editor.startEdit(el);
                             },
                         },
@@ -321,11 +321,11 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                 flex: 1,
                 labelAlign: 'left',
                 listeners: {
-                    focusleave: function() {
+                    focusleave: function () {
                         var record = this.upVM().get('selectedAccount');
                         if (record.dirty) {
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
@@ -402,7 +402,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                     bind: {
                         value: '{object_record.created_at}',
                     },
-                    renderer: function(value) {
+                    renderer: function (value) {
                         return moment(value).format(AbraxaConstants.formatters.date.dayAbbrMonYear);
                     },
                 },
@@ -448,7 +448,7 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                         dismissDelay: 0,
                         closeAction: 'destroy',
                     },
-                    handler: function(me) {
+                    handler: function (me) {
                         let comboSelection = me.upVM().get('paymentAccount.selection'),
                             selectedAccount = me.upVM().get('selectedAccount'),
                             isOwner = me.upVM().get('is_owner');
@@ -485,11 +485,11 @@ Ext.define('Abraxa.view.portcall.accounts.AccountData', {
                     objectPermission: '{objectPermissions}',
                 },
                 listeners: {
-                    focusleave: function() {
+                    focusleave: function () {
                         var record = this.upVM().get('selectedAccount');
                         if (record.dirty) {
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
                             });

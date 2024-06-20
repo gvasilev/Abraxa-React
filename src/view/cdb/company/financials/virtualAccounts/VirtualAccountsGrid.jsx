@@ -29,7 +29,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
     pinHeaders: false,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             let record = this.upVM().get('virtualAccountsGrid.selection'),
                 grid = Ext.ComponentQuery.query('virtual\\.accounts\\.grid')[0];
 
@@ -44,14 +44,14 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
         tpl: new Ext.XTemplate(
             '<div class="a-header-{[this.parceString(values.name)]}">{[this.parceString(values.name)]} ({count})</div>',
             {
-                parceString: function(value) {
+                parceString: function (value) {
                     if (value == '0') {
                         return 'Active';
                     } else {
                         return 'Disabled';
                     }
                 },
-            },
+            }
         ),
     },
     emptyText: {
@@ -78,7 +78,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                 bind: {
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let record = me.upVM().get('object_record'),
                         currentUser = me.upVM().get('currentUser');
                     Ext.create('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
@@ -116,7 +116,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             if (record.get('active')) {
                                 return 'item-active';
@@ -177,7 +177,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = me.upVM().get('object_record'),
                                     currentUser = me.upVM().get('currentUser');
                                 Ext.create('Abraxa.view.cdb.company.virtualAccounts.CreateVirtualAccount', {
@@ -222,7 +222,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                             iconCls: 'md-icon-outlined md-icon-visibility',
                                             text: 'Enable',
                                             testId: 'virtualAccountsGridEnableBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     virtualAccounts = vm.get('virtualAccounts'),
@@ -230,20 +230,14 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                 Ext.Msg.confirm(
                                                     'Enable',
                                                     'Are you sure you want to enable this Virtual Account?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 1);
                                                             });
                                                             virtualAccounts.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not enable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -264,7 +258,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                             ui: 'action loading',
                                                             text: 'Enable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -275,7 +269,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                             iconCls: 'md-icon-outlined md-icon-visibility-off',
                                             text: 'Disable',
                                             testId: 'virtualAccountsGridDisableBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     virtualAccounts = vm.get('virtualAccounts'),
@@ -283,21 +277,15 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                 Ext.Msg.confirm(
                                                     'Disable',
                                                     'Are you sure you want to disable this Virtual Account?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 0);
                                                             });
                                                             billings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not disable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -318,7 +306,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Disable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -329,7 +317,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                             iconCls: 'md-icon-outlined md-icon-delete',
                                             text: 'Delete',
                                             testId: 'virtualAccountsGridDeleteBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     virtualAccounts = vm.get('virtualAccounts'),
@@ -338,21 +326,15 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete this Virtual Account?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 virtualAccounts.remove(rec);
                                                             });
                                                             virtualAccounts.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -373,7 +355,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -396,7 +378,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                                             text: 'Customize',
                                             testId: 'virtualAccountsGridCustomizeBtn',
                                             margin: '0 0 0 8',
-                                            handler: function() {
+                                            handler: function () {
                                                 this.find('virtualAccountsGrid')
                                                     .getPlugin('gridviewoptions')
                                                     .showViewOptions();
@@ -423,7 +405,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                 cls: 'a-cell-offset-x24',
                 encodeHtml: false,
             },
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 if (val) {
                     return (
                         '<div class="hbox"><div class="a-badge a-badge-x32 a-badge-default"><i class="md-icon-outlined">credit_score</i></div><div class="ml-12 text-truncate"><div class="text-truncate fw-b">' +
@@ -442,7 +424,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                 cls: 'expand a-cell-port',
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return '<span>' + value + '</span>';
                 } else {
@@ -459,7 +441,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                 cls: 'a-cell-bl',
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -476,7 +458,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
                 cls: 'a-cell-bl a-cell-br',
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return '<span class="fw-b">' + value + '</span>';
                 } else {
@@ -568,7 +550,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountsGrid', {
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }

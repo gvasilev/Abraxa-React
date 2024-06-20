@@ -108,9 +108,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallMainPrincipal', {
             success: function (record, operation) {
                 this.setRecord(record);
             },
-            failure: function (record, operation) {
-                Ext.Msg.alert('Error', 'Could not load record');
-            },
         });
     },
 });

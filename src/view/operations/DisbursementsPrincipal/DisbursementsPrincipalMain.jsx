@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.operations.DisbursementsPrincipal.DisbursementsPrincipal
                             iconCls: 'md-icon-outlined md-icon-settings',
                             text: 'Manage columns',
                             margin: '0 0 0 8',
-                            handler: function(button) {
+                            handler: function (button) {
                                 const currentTab = button
                                     .up('DisbursementsPrincipalMain')
                                     .getViewModel()

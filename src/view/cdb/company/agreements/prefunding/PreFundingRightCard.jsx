@@ -24,7 +24,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                     bindTo: '{prefundingGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         return (
                             '<div class="a-badge a-badge-prefunding"><i class="md-icon-outlined">payments</i></div><div><span class="a-panel-title">' +
@@ -41,7 +41,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                     bindTo: '{prefundingGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         return record;
                     } else {
@@ -89,7 +89,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function(item, el, eOpts) {
+                            handler: function (item, el, eOpts) {
                                 let vm = this.upVM(),
                                     store = vm.get('prefundings'),
                                     container = this.find('prefundingRightCard'),
@@ -97,19 +97,16 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function(answer) {
+                                    function (answer) {
                                         if (answer == 'yes') {
                                             container.hide();
                                             store.remove(record);
                                             store.sync({
-                                                success: function(err, msg) {
+                                                success: function (err, msg) {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
                                                     Ext.toast('Record updated', 1000);
-                                                },
-                                                failure: function(batch) {
-                                                    Ext.Msg.alert('Something went wrong', 'Could not delete record!');
                                                 },
                                             });
                                         }
@@ -130,7 +127,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                             ui: 'decline alt',
                                             text: 'Delete',
                                         },
-                                    ],
+                                    ]
                                 );
                             },
                         },
@@ -139,7 +136,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                             testId: 'prefundingRightCardHideBtn',
                             ui: 'round tool-round-md',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = this.upVM().get('prefundingGrid.selection'),
                                     grid = Ext.ComponentQuery.query('agreements\\.prefunding\\.grid')[0];
 
@@ -181,11 +178,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                     permission: '{userPermissions}',
                 },
                 listeners: {
-                    blur: function(me) {
+                    blur: function (me) {
                         let record = me.upVM().get('prefundingGrid.selection');
                         if (record.dirty) {
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.getCmp('main-viewport').getVM().get('agreements').reload();
                                     Ext.toast('Record updated', 1000);
                                 },
@@ -215,10 +212,10 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         value: '{prefunding.payment_term_id}',
                     },
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.setError(null);
                         },
-                        select: function(me, selection) {
+                        select: function (me, selection) {
                             if (selection) {
                                 let record = me.upVM().get('prefunding');
                                 record.set('payment_term_name', selection.get('term_name'));
@@ -255,7 +252,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         hidden: '{prefunding.payment_term_id == 3 ? true:false}',
                     },
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.setError(null);
                         },
                     },
@@ -291,11 +288,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                             permission: '{userPermissions}',
                                         },
                                         listeners: {
-                                            blur: function(me) {
+                                            blur: function (me) {
                                                 let record = me.upVM().get('prefundingGrid.selection');
                                                 if (record.dirty) {
                                                     record.save({
-                                                        success: function() {
+                                                        success: function () {
                                                             Ext.ComponentQuery.query('[xtype=company]')[0]
                                                                 .getVM()
                                                                 .set('newUpdate', new Date());
@@ -336,7 +333,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                                 },
                                             ],
                                             listeners: {
-                                                painted: function(me) {
+                                                painted: function (me) {
                                                     me.setError(null);
                                                 },
                                             },
@@ -391,24 +388,24 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 value: '{prefunding.agency_type_id}',
                             },
                             listeners: {
-                                painted: function(me) {
+                                painted: function (me) {
                                     me.setError(null);
                                 },
-                                clearicontap: function(me) {
+                                clearicontap: function (me) {
                                     let record = me.upVM().get('prefunding');
                                     record.set('agency_type_name', null);
                                 },
-                                select: function(me, selection) {
+                                select: function (me, selection) {
                                     if (selection) {
                                         let record = me.upVM().get('prefunding');
                                         record.set('agency_type_name', selection.get('name'));
                                     }
                                 },
-                                blur: function(me) {
+                                blur: function (me) {
                                     let record = me.upVM().get('prefundingGrid.selection');
                                     if (record.dirty) {
                                         record.save({
-                                            success: function() {
+                                            success: function () {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -438,7 +435,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         iconCls:
                             '{preFundingAdvanced ? "md-icon-outlined md-icon-unfold-less" : "md-icon-outlined md-icon-unfold-more"}',
                     },
-                    handler: function() {
+                    handler: function () {
                         let advancedMode = this.upVM().get('preFundingAdvanced');
 
                         if (advancedMode) {
@@ -483,11 +480,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         value: '{prefunding.port_ids}',
                     },
                     listeners: {
-                        blur: function(me) {
+                        blur: function (me) {
                             let record = me.upVM().get('prefundingGrid.selection');
                             if (record.dirty) {
                                 record.save({
-                                    success: function() {
+                                    success: function () {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -518,14 +515,14 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         type: 'berth.function',
                     },
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.setError(null);
                         },
-                        blur: function(me) {
+                        blur: function (me) {
                             let record = me.upVM().get('prefundingGrid.selection');
                             if (record.dirty) {
                                 record.save({
-                                    success: function() {
+                                    success: function () {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());
@@ -563,7 +560,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 value: '{prefunding.validity_from}',
                             },
                             listeners: {
-                                blur: function(me) {
+                                blur: function (me) {
                                     let record = me.upVM().get('prefundingGrid.selection');
                                     if (record.get('validity_to') && record.get('validity_from')) {
                                         if (moment(record.get('validity_from')).isAfter(record.get('validity_to'))) {
@@ -572,7 +569,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                     }
                                     if (record.dirty) {
                                         record.save({
-                                            success: function() {
+                                            success: function () {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -606,7 +603,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 value: '{prefunding.validity_to}',
                             },
                             listeners: {
-                                blur: function(me) {
+                                blur: function (me) {
                                     let record = me.upVM().get('prefundingGrid.selection');
                                     if (record.get('validity_from') && record.get('validity_to')) {
                                         if (moment(record.get('validity_to')).isBefore(record.get('validity_from'))) {
@@ -615,7 +612,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                     }
                                     if (record.dirty) {
                                         record.save({
-                                            success: function() {
+                                            success: function () {
                                                 Ext.ComponentQuery.query('[xtype=company]')[0]
                                                     .getVM()
                                                     .set('newUpdate', new Date());
@@ -656,13 +653,13 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                 checked: '{prefundingGrid.selection.active ? true:false}',
                             },
                             listeners: {
-                                check: function(me) {
+                                check: function (me) {
                                     let record = me.upVM().get('prefunding');
                                     if (record) {
                                         record.set('active', 1);
                                         if (record.dirty) {
                                             record.save({
-                                                success: function() {
+                                                success: function () {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
@@ -673,13 +670,13 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                                         }
                                     }
                                 },
-                                uncheck: function(me) {
+                                uncheck: function (me) {
                                     let record = me.upVM().get('prefunding');
                                     if (record) {
                                         record.set('active', 0);
                                         if (record.dirty) {
                                             record.save({
-                                                success: function() {
+                                                success: function () {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
@@ -711,11 +708,11 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.PrefundingRightCard', 
                         value: '{prefunding.description}',
                     },
                     listeners: {
-                        blur: function(me) {
+                        blur: function (me) {
                             let record = me.upVM().get('prefundingGrid.selection');
                             if (record.dirty) {
                                 record.save({
-                                    success: function() {
+                                    success: function () {
                                         Ext.ComponentQuery.query('[xtype=company]')[0]
                                             .getVM()
                                             .set('newUpdate', new Date());

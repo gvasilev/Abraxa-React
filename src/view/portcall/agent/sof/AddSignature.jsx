@@ -97,9 +97,6 @@ Ext.define('Abraxa.view.portcall.sof.AddSignature', {
                                 btn.toggle();
                                 btn.up('dialog').destroy();
                             },
-                            failure: function (batch, operation) {
-                                Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                            },
                         });
                     } else {
                         signatures.add(record);
@@ -108,9 +105,6 @@ Ext.define('Abraxa.view.portcall.sof.AddSignature', {
                                 Ext.toast('Record created', 1000);
                                 btn.toggle();
                                 btn.up('dialog').destroy();
-                            },
-                            failure: function (batch, operation) {
-                                Ext.Msg.alert('Something went wrong', 'Something went wrong');
                             },
                         });
                     }

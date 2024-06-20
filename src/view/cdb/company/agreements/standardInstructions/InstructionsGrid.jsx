@@ -27,7 +27,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
     grouped: false,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             let record = this.upVM().get('instructionGrid.selection'),
                 grid = Ext.ComponentQuery.query('agreements\\.instructions\\.grid')[0];
 
@@ -61,7 +61,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                 bind: {
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let record = me.upVM().get('object_record'),
                         currentUser = me.upVM().get('currentUser');
                     Ext.create('Abraxa.view.cdb.company.agreements.standardInstructions.CreateInstructions', {
@@ -103,7 +103,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             if (record.get('active')) {
                                 return 'item-active';
@@ -163,7 +163,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = me.upVM().get('object_record'),
                                     currentUser = me.upVM().get('currentUser');
                                 Ext.create(
@@ -186,7 +186,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                 }),
                                             },
                                         },
-                                    },
+                                    }
                                 ).show();
                             },
                         },
@@ -215,7 +215,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                             iconCls: 'md-icon-outlined md-icon-visibility',
                                             text: 'Enable',
                                             testId: 'instructionsGridCreateEnableBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     prefundings = vm.get('prefundings'),
@@ -223,20 +223,14 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                 Ext.Msg.confirm(
                                                     'Enable',
                                                     'Are you sure you want to enable this pre-fundings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 1);
                                                             });
                                                             prefundings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not enable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -257,7 +251,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                             ui: 'action loading',
                                                             text: 'Enable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -268,7 +262,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                             iconCls: 'md-icon-outlined md-icon-visibility-off',
                                             text: 'Disable',
                                             testId: 'instructionsGridDisableBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     prefundings = vm.get('prefundings'),
@@ -276,21 +270,15 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                 Ext.Msg.confirm(
                                                     'Disable',
                                                     'Are you sure you want to disable this pre-fundings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 rec.set('active', 0);
                                                             });
                                                             prefundings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not disable record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -309,7 +297,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                             ui: 'decline alt',
                                                             text: 'Disable',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -320,7 +308,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                             iconCls: 'md-icon-outlined md-icon-delete',
                                             text: 'Delete',
                                             testId: 'instructionsGridDeleteBtn',
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     prefundings = vm.get('prefundings'),
@@ -329,21 +317,15 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete this pre-fundings?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 prefundings.remove(rec);
                                                             });
                                                             prefundings.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -364,7 +346,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -409,7 +391,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
                 cls: 'a-cell-person a-cell-offset-x32',
                 encodeHtml: false,
             },
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 if (value) {
                     return (
                         '<div class="hbox"><div class="a-badge a-badge-default a-badge-x32"><i class="material-icons-outlined">description</i></div><div class="ml-12 text-truncate"><a href="javascript:void(0);" class="fw-b">' +
@@ -427,7 +409,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
             cell: {
                 encodeHtml: false,
             },
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 let str = '<span class="a-cell-placeholder">---</span>';
                 if (record && record.rules) {
                     let rules = record.rules();
@@ -524,7 +506,7 @@ Ext.define('Abraxa.view.cdb.company.agreements.standardInstructions.Instructions
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.event.target.classList.contains('a_grid_action')) return false;
         },
     },

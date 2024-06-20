@@ -96,7 +96,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                 permission: '{userPermissions}',
                                             },
                                             listeners: {
-                                                blur: function(field) {
+                                                blur: function (field) {
                                                     let record = field.upVM().get('object_record');
                                                     if (!field.isValid()) {
                                                         record.reject();
@@ -156,7 +156,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                         allowOver: false,
                                                         closeAction: 'destroy',
                                                     },
-                                                    handler: function() {
+                                                    handler: function () {
                                                         let store = this.upVM().get('phones'),
                                                             organization = this.upVM().get('object_record');
 
@@ -201,11 +201,11 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                             value: '{record.phone}',
                                                         },
                                                         listeners: {
-                                                            blur: function() {
+                                                            blur: function () {
                                                                 let store = this.upVM().get('phones');
 
                                                                 store.sync({
-                                                                    success: function() {
+                                                                    success: function () {
                                                                         Ext.toast('Record updated');
                                                                     },
                                                                 });
@@ -227,13 +227,13 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                             allowOver: false,
                                                             closeAction: 'destroy',
                                                         },
-                                                        handler: function(btn) {
+                                                        handler: function (btn) {
                                                             let store = this.upVM().get('phones'),
                                                                 record = btn.upVM().get('record');
 
                                                             store.remove(record);
                                                             store.sync({
-                                                                success: function() {
+                                                                success: function () {
                                                                     Ext.toast('Record updated');
                                                                 },
                                                             });
@@ -338,7 +338,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                 store: '{countryStore}',
                                             },
                                             listeners: {
-                                                change: function(field, countryId, oldValue) {
+                                                change: function (field, countryId, oldValue) {
                                                     if (!countryId) return;
 
                                                     let cityStore = Ext.getStore('cityStore');
@@ -546,7 +546,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                 hidden: '{object_record.preferred_currency ? true : false}',
                                             },
                                             height: 30,
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 Ext.create(
                                                     'Abraxa.view.cdb.company.financials.overview.CreateReportingCurrency',
                                                     {
@@ -556,7 +556,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                                 editMode: false,
                                                             },
                                                         },
-                                                    },
+                                                    }
                                                 ).show();
                                             },
                                         },
@@ -575,7 +575,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                     cls: 'a-list-values',
                                                     viewModel: {
                                                         formulas: {
-                                                            formattedROE: function(get) {
+                                                            formattedROE: function (get) {
                                                                 const reportingCurrency = get('reportingCurrency');
                                                                 const exchangeRate = reportingCurrency
                                                                     ? reportingCurrency.get('exchange_rate')
@@ -611,7 +611,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                                 allowOver: false,
                                                                 closeAction: 'destroy',
                                                             },
-                                                            handler: function(me) {
+                                                            handler: function (me) {
                                                                 Ext.create(
                                                                     'Abraxa.view.cdb.company.financials.overview.CreateReportingCurrency',
                                                                     {
@@ -621,7 +621,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                                                 editMode: true,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }
                                                                 ).show();
                                                             },
                                                         },
@@ -644,26 +644,26 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                                 allowOver: false,
                                                                 closeAction: 'destroy',
                                                             },
-                                                            handler: function(me) {
+                                                            handler: function (me) {
                                                                 let company = me.upVM().get('object_record'),
                                                                     currentUser = me.upVM().get('currentUser');
                                                                 Ext.Msg.confirm(
                                                                     'Delete',
                                                                     'Are you sure you would like to delete this entry?',
-                                                                    function(answer) {
+                                                                    function (answer) {
                                                                         if (answer == 'yes') {
                                                                             company.set('preferred_currency', null);
                                                                             company.set(
                                                                                 'updated_by_user',
-                                                                                currentUser.getData(),
+                                                                                currentUser.getData()
                                                                             );
                                                                             company.set('updated_at', new Date());
                                                                             if (company.dirty) {
                                                                                 company.save({
-                                                                                    success: function(rec) {
+                                                                                    success: function (rec) {
                                                                                         Ext.toast(
                                                                                             'Record updated',
-                                                                                            1000,
+                                                                                            1000
                                                                                         );
                                                                                     },
                                                                                 });
@@ -686,7 +686,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                                                             ui: 'decline alt',
                                                                             text: 'Delete',
                                                                         },
-                                                                    ],
+                                                                    ]
                                                                 );
                                                             },
                                                         },
@@ -758,7 +758,7 @@ Ext.define('Abraxa.view.cdb.company.Summary', {
                                             height: '100%',
                                             width: '100%',
                                             events: {
-                                                dataPlotClick: function(e) {
+                                                dataPlotClick: function (e) {
                                                     let vm = this.component.upVM(),
                                                         months = vm.get('months');
                                                     if (months) {

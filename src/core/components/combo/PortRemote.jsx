@@ -31,7 +31,7 @@ Ext.define('Abraxa.core.components.combo.PortRemote', {
     },
     queryMode: 'remote',
     listeners: {
-        beforequery: function() {
+        beforequery: function () {
             let store = this.getStore();
             if (!store.loadCount) store.load();
         },

@@ -45,12 +45,12 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                 bind: {
                     bindTo: '{cargoesGrid.selection}',
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         let store = this.get('relatedDocuments');
                         if (store) store.clearFilter();
 
-                        return function(document) {
+                        return function (document) {
                             if (
                                 document.get('documentable_id') == record.get('id') &&
                                 document.get('documentable_type') == record.get('model_name')
@@ -59,7 +59,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                             }
                         };
                     } else {
-                        return function(item) {
+                        return function (item) {
                             return false;
                         };
                     }
@@ -70,7 +70,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{cargoesGrid.selection}',
                     deep: true,
                 },
-                get: function(selection) {
+                get: function (selection) {
                     if (selection) {
                         return selection.get('berth_id');
                     }
@@ -81,12 +81,12 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{cargoesGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         let store = this.get('comments');
                         if (store) store.clearFilter();
 
-                        return function(rec) {
+                        return function (rec) {
                             if (
                                 rec.get('noteable_type') == record.get('model_name') &&
                                 rec.get('noteable_id') == record.get('id')
@@ -95,7 +95,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                             }
                         };
                     } else {
-                        return function(item) {
+                        return function (item) {
                             return true;
                         };
                     }
@@ -106,12 +106,12 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{cargoesGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         let store = this.get('objectTasks');
                         if (store) store.clearFilter();
 
-                        return function(rec) {
+                        return function (rec) {
                             if (
                                 rec.get('taskable_type') == record.get('model_name') &&
                                 rec.get('taskable_id') == record.get('id')
@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                             }
                         };
                     } else {
-                        return function(item) {
+                        return function (item) {
                             return true;
                         };
                     }
@@ -131,7 +131,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{cargoesGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         var store = this.get('cargoes'),
                             index = store.indexOf(record) + 1;
@@ -153,7 +153,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{nonEditable}',
                     deep: true,
                 },
-                get: function(live) {
+                get: function (live) {
                     if (live) {
                         return '<div class="a-attachment"><div class="file-icon-new file-icon-sm-new" data-type="{system_extension ? system_extension : extension}"></div><div><a class="file_name" href="javascript:void(0);">{name}.{extension}</a><span class="sm-title">{size}</span></div></div>';
                     }
@@ -165,7 +165,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{additionalQuantity}',
                     deep: true,
                 },
-                get: function(store) {
+                get: function (store) {
                     if (store) {
                         if (store.getCount()) {
                             return store.getAt(0);
@@ -187,11 +187,11 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     bindTo: '{firstAdditonalQuantity}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         let store = this.get('additionalQuantityFiltered');
                         if (store) store.clearFilter();
-                        return function(rec) {
+                        return function (rec) {
                             if (rec.get('id') != record.get('id')) {
                                 return true;
                             }
@@ -222,7 +222,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                             iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                             margin: '0 16 0 0',
                             ui: 'tool-md',
-                            handler: function() {
+                            handler: function () {
                                 let grid = Ext.ComponentQuery.query('appointment\\.cargo')[0];
                                 if (grid) {
                                     grid.deselectAll();
@@ -258,7 +258,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                 cls: '{nonEditable ? "hidden a-no-content-btn" : "a-no-content-btn"}',
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let vm = me.upVM();
                                 let record = vm.get('cargoesGrid.selection'),
                                     currentUserPlan = vm.get('currentUserPlan');
@@ -279,10 +279,10 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                                         bindTo: '{selectedDocumentTypes.selection}',
                                                         deep: true,
                                                     },
-                                                    get: function(selection) {
+                                                    get: function (selection) {
                                                         let hide = true;
                                                         if (selection) {
-                                                            Ext.each(selection, function(record) {
+                                                            Ext.each(selection, function (record) {
                                                                 if (record.get('can_combine')) {
                                                                     hide = false;
                                                                 }
@@ -296,7 +296,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                                         bindTo: '{documentsSelectedCargoes.selection}',
                                                         deep: true,
                                                     },
-                                                    get: function(selection) {
+                                                    get: function (selection) {
                                                         if (selection) {
                                                             return selection.length;
                                                         }
@@ -324,7 +324,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                 permission: '{userPermissions}',
                                 disabled: '{object_record.is_archived ? true : false}',
                             },
-                            handler: function() {
+                            handler: function () {
                                 let button = this;
 
                                 // Check if a note is already opened
@@ -336,7 +336,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
 
                                 let record = this.upVM().get('cargoesGrid.selection'),
                                     subObjects = this.upVM().get('subObjects'),
-                                    subObject = Ext.Array.filter(subObjects, function(rec) {
+                                    subObject = Ext.Array.filter(subObjects, function (rec) {
                                         return rec.id == record.get('id') && rec.model == record.get('model_name');
                                     })[0];
 
@@ -406,17 +406,17 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                         iconCls: 'md-icon-outlined md-icon-delete',
                                         ui: 'decline',
                                         separator: true,
-                                        handler: function(button, el, data) {
+                                        handler: function (button, el, data) {
                                             Ext.Msg.confirm(
                                                 'Confirmation',
                                                 'Are you sure you want to delete this record?',
-                                                function(answer) {
+                                                function (answer) {
                                                     if (answer == 'yes') {
                                                         let store = button.upVM().get('cargoes'),
                                                             record = this.upVM().get('cargoesGrid.selection');
                                                         store.remove(record);
                                                         store.sync({
-                                                            success: function() {
+                                                            success: function () {
                                                                 Ext.toast('Record deleted', 1000);
                                                             },
                                                         });
@@ -437,7 +437,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                                         ui: 'decline alt loading',
                                                         text: 'Delete',
                                                     },
-                                                ],
+                                                ]
                                             );
                                         },
                                     },
@@ -482,7 +482,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                     items: [
                         {
                             xtype: 'div',
-                            html: '<div class=\'hbox\'><div class=\'a-badge a-badge-default\'><i class=\'md-icon-outlined\'>picture_as_pdf</i></div><div class=\'a-panel-title fs-14\'>Related documents</div></div>',
+                            html: "<div class='hbox'><div class='a-badge a-badge-default'><i class='md-icon-outlined'>picture_as_pdf</i></div><div class='a-panel-title fs-14'>Related documents</div></div>",
                             cls: 'a-collapsible-title a-collapsible-trigger a-trigger-right',
                             testId: 'appointmentRightCardRelatedDocumentsTitle',
                             listeners: {
@@ -544,7 +544,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                             click: {
                                                 element: 'element',
                                                 delegate: 'a.file_name',
-                                                fn: function(element, a) {
+                                                fn: function (element, a) {
                                                     var cmp = this.component,
                                                         vm = cmp.upVM(),
                                                         selectedFile = vm.get('record'),
@@ -574,7 +574,7 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                                                     bind: {
                                                                         bindTo: '{documentsList.selection}',
                                                                     },
-                                                                    get: function(record) {
+                                                                    get: function (record) {
                                                                         return record;
                                                                     },
                                                                 },
@@ -583,20 +583,20 @@ Ext.define('Abraxa.view.portcall.appointment.AppointmentRightCard', {
                                                                         bindTo: '{selectedDocument.id}',
                                                                         // deep: true
                                                                     },
-                                                                    get: function(id) {
+                                                                    get: function (id) {
                                                                         let selectedDocument =
                                                                             this.get('selectedDocument');
                                                                         if (selectedDocument) {
                                                                             Ext.ComponentQuery.query(
-                                                                                '[cls~=pdf-preview]',
+                                                                                '[cls~=pdf-preview]'
                                                                             )[0].setMasked(true);
                                                                             const me = this;
                                                                             me.getView()
                                                                                 .getController()
                                                                                 .loadDocument(
                                                                                     Env.ApiEndpoint +
-                                                                                    'get_pdf/' +
-                                                                                    selectedDocument.get('id'),
+                                                                                        'get_pdf/' +
+                                                                                        selectedDocument.get('id')
                                                                                 );
                                                                         }
                                                                     },

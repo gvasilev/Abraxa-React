@@ -137,10 +137,6 @@ Ext.define('Abraxa.controller.TariffTableController', {
                 vm.get('columns').reload();
                 vm.get('tarifftable').reload();
             },
-            failure: function failure(response) {
-                let obj = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', obj.message);
-            },
         });
     },
 });

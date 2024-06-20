@@ -10,7 +10,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditMenu', 
         {
             text: 'Change currency',
             iconCls: 'md-icon-outlined md-icon-edit',
-            handler: function(me) {
+            handler: function (me) {
                 let vm = me.upVM();
                 let record = me.upVM().get('record');
                 let dialog = Ext.create('Abraxa.view.calculator.portcostengine.portsettings.index.EditModal', {
@@ -29,7 +29,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditMenu', 
             iconCls: 'md-icon-outlined md-icon-delete',
             ui: 'decline',
             separator: true,
-            handler: function(me) {
+            handler: function (me) {
                 event.stopPropagation();
                 let store = me.upVM().get('store');
                 let record = me.upVM().get('record');
@@ -37,15 +37,15 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditMenu', 
                 Ext.Msg.confirm(
                     'Delete',
                     'Are you sure you would like to delete this entry?',
-                    function(answer) {
+                    function (answer) {
                         if (answer === 'yes') {
                             store.remove(record);
 
                             store.sync({
-                                success: function() {
+                                success: function () {
                                     Ext.toast('Record deleted', 1000);
                                 },
-                                failure: function(batch, functions) {
+                                failure: function (batch, functions) {
                                     store.rejectChanges();
                                 },
                             });
@@ -66,7 +66,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.index.EditMenu', 
                             ui: 'decline alt',
                             separator: true,
                         },
-                    ],
+                    ]
                 );
             },
         },

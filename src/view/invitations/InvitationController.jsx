@@ -80,10 +80,6 @@ Ext.define('Abraxa.view.invitations.InvitationController', {
 
                                     invitations.reload();
                                 },
-                                failure: function (record, response) {
-                                    var result = response.error.response.responseJson;
-                                    Ext.Msg.alert('Oops', result.message);
-                                },
                             });
                         },
                     },
@@ -108,10 +104,6 @@ Ext.define('Abraxa.view.invitations.InvitationController', {
             sharings.sync({
                 success: function (batch) {
                     Ext.toast('Record created', 1000);
-                },
-                failure: function (batch) {
-                    var msg = batch.operations[0].error.response.responseJson.message[0];
-                    Ext.Msg.alert('Something went wrong', msg);
                 },
             });
         }

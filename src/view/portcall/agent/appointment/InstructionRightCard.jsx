@@ -389,7 +389,6 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionRightCard', {
                             xtype: 'filebutton',
                             multiple: true,
                             margin: '0 24 8 24',
-                            ui: 'normal-light medium',
                             iconCls: 'md-icon-outlined md-icon-cloud-upload',
                             ui: 'blue-light',
                             name: 'files',

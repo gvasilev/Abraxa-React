@@ -162,9 +162,6 @@ Ext.define('Abraxa.view.portcall.husbandary.crewing.CrewingController', {
                         }
                         mixpanel.track('Crew/Visitor created');
                     },
-                    failure: function (batch) {
-                        Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                    },
                 });
             }
         } else {
@@ -345,7 +342,9 @@ Ext.define('Abraxa.view.portcall.husbandary.crewing.CrewingController', {
     },
 
     deleteFiles: function (ids) {
-        let object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+        let object_record = Ext.ComponentQuery.query(
+            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+        )[0]
             .upVM()
             .get('object_record');
         Ext.Ajax.request({
@@ -455,9 +454,6 @@ Ext.define('Abraxa.view.portcall.husbandary.crewing.CrewingController', {
                             Ext.toast('Record updated', 1000);
                             mixpanel.track('Assigned a service');
                         }
-                    },
-                    failure: function (record, operation) {
-                        Ext.Msg.alert('Warning', 'Could not assign services!');
                     },
                 });
             }

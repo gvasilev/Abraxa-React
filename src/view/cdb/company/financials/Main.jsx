@@ -39,7 +39,7 @@ Ext.define('Abraxa.view.cdb.company.financials.Main', {
                     ui: 'premium large',
                     text: 'Upgrade to Premium',
                     testId: 'financialsMainUpgradeToPremium',
-                    handler: function() {
+                    handler: function () {
                         window.open('https://www.abraxa.com/pricing/');
                     },
                 },
@@ -92,7 +92,7 @@ Ext.define('Abraxa.view.cdb.company.financials.Main', {
                                     align: 'bc-tc?',
                                 },
                             },
-                            handler: function() {
+                            handler: function () {
                                 let panel = Ext.ComponentQuery.query('[cls~=financials_left_menu]')[0],
                                     cls = panel.getUserCls() == 'is-expanded';
 
@@ -162,7 +162,7 @@ Ext.define('Abraxa.view.cdb.company.financials.Main', {
                         ],
                     },
                     listeners: {
-                        childsingletap: function() {
+                        childsingletap: function () {
                             Ext.ComponentQuery.query('virtual\\.accounts\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('financials\\.banks')[0].deselectAll();
                             Ext.ComponentQuery.query('[cls~=transactions_grid]')[0].deselectAll();

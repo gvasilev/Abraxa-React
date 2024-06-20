@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.directory.DirectoryViewModel', {
                 bindTo: '{agentsStore}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 return store.getTotalCount();
             },
         },
@@ -48,7 +48,7 @@ Ext.define('Abraxa.view.directory.DirectoryViewModel', {
                 bindTo: '{directoryPorts}',
                 deep: true,
             },
-            get: function(store) {
+            get: function (store) {
                 return store.getTotalCount();
             },
         },
@@ -56,7 +56,7 @@ Ext.define('Abraxa.view.directory.DirectoryViewModel', {
             bind: {
                 bindTo: '{routeParams}',
             },
-            get: function(routeParams) {
+            get: function (routeParams) {
                 if (routeParams) {
                     if (routeParams === 'agents') {
                         return 0;

@@ -46,7 +46,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                             text: 'Cancel',
                             testId: 'commentsEditInputCancelBtn',
                             margin: '0 8',
-                            handler: function(me) {
+                            handler: function (me) {
                                 let dialog = this.up('dialog');
                                 // let notes = dialog.upVM().get('object_record').notes();
                                 let commentsStore = dialog.upVM().get('comments');
@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                                 Ext.Msg.confirm(
                                     'Confirmation',
                                     'Would you like to discard all changes?',
-                                    function(answer) {
+                                    function (answer) {
                                         if (answer == 'yes') {
                                             // notes.rejectChanges();
                                             commentsStore.rejectChanges();
@@ -78,7 +78,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                                             ui: 'action loading',
                                             text: 'Discard',
                                         },
-                                    ],
+                                    ]
                                 );
                             },
                         },
@@ -89,7 +89,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                             alignSelf: 'right',
                             testId: 'commentsEditInputSaveBtn',
                             text: 'Save',
-                            handler: function(me) {
+                            handler: function (me) {
                                 // let notes = this.upVM().get('object_record').notes();
                                 let commentsStore = this.upVM().get('comments');
 
@@ -106,13 +106,13 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                                     ownerableId = object_record.get('org_id');
                                 }
                                 Array.from(Ext.fly(div).query('.user_mention')).forEach((el) =>
-                                    user_mentions_ids.push(parseInt(el.getAttribute('data-object-id'))),
+                                    user_mentions_ids.push(parseInt(el.getAttribute('data-object-id')))
                                 );
 
                                 if (note.length >= 1) {
                                     Ext.ComponentQuery.query('[cls~=no_note_text]')[0].hide();
                                     Ext.ComponentQuery.query('[cls~=input_with_mention_main]')[0].removeCls(
-                                        'x-invalid',
+                                        'x-invalid'
                                     );
                                     if (!Ext.isNumber(record.get('id'))) {
                                         mixpanel.track('Created a note');
@@ -129,7 +129,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                                         record.set('note', note);
                                         record.set(
                                             'user_mentions',
-                                            user_mentions_ids ? JSON.stringify(Ext.Array.unique(user_mentions_ids)) : [],
+                                            user_mentions_ids ? JSON.stringify(Ext.Array.unique(user_mentions_ids)) : []
                                         );
                                         record.set('ownerable_id', ownerableId);
                                         record.set('ownerable_type', ownerableType);
@@ -155,7 +155,7 @@ Ext.define('Abraxa.view.comments.EditCommentInput', {
                                     // });
 
                                     commentsStore.sync({
-                                        success: function() {
+                                        success: function () {
                                             Ext.toast('Record updated', 1000);
                                             me.up('dialog').destroy();
                                         },

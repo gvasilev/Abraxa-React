@@ -260,8 +260,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                         record.set('berth_sequence', 'Berth' + (index + 1));
                     });
                 },
-            },
-            listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
                         Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
@@ -459,7 +457,8 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                 add: {
                     fn: function (store, record, index) {
                         let object_record = Ext.ComponentQuery.query(
-                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                'portcall\\.main'
                         )[0]
                             .upVM()
                             .get('object_record');
@@ -2248,7 +2247,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                                     }
                                 }
                             },
-                            failure: function failure(response) {},
                         });
                     }
                 }
@@ -2279,7 +2277,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                                     }
                                 }
                             },
-                            failure: function failure(response) {},
                         });
                     }
                 }
@@ -2499,7 +2496,6 @@ Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
                                 vm.get('suggestedOrganizations').add(Ext.decode(response.responseText));
                             }
                         },
-                        failure: function failure(response) {},
                     });
                 }
             },

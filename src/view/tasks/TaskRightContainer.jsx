@@ -769,7 +769,6 @@ Ext.define('Abraxa.view.tasks.TaskRightContainer', {
                     items: [
                         {
                             xtype: 'textareafield',
-                            ui: 'field-xl no-border classic',
                             label: false,
                             clearable: false,
                             placeholder: 'Task name',

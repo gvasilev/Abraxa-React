@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_mobile ? object_record.cranes_mobile :"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranesMobile}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_floating ? object_record.cranes_floating:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranesFloating}',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_grain_elevator ? object_record.cranes_grain_elevator:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranesGrainElevator}',
                                     },
                                 },
                             ],
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_gantry ? object_record.cranes_gantry:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranesGantry}',
                                     },
                                 },
                             ],
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_0_24_tons ? object_record.cranes_0_24_tons : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoCranes0_24Tons}',
                                     },
                                 },
                             ],
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_25_49_tons ? object_record.cranes_25_49_tons:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranes25_49Tons}',
                                     },
                                 },
                             ],
@@ -160,12 +160,12 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Cranes 50 - 99 tons',
+                                    html: 'Cranes 50 - 100 tons',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_50_100_tons ? object_record.cranes_50_100_tons:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranes50_100Tons}',
                                     },
                                 },
                             ],
@@ -180,7 +180,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoFacilities', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{object_record.cranes_100_tons_plus ? object_record.cranes_100_tons_plus:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoCranes100TonsPlus}',
                                     },
                                 },
                             ],

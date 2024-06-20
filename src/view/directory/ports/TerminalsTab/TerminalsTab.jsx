@@ -79,11 +79,11 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                             placeholder: 'Search terminal',
                             clearable: true,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var terminals = this.upVM().get('terminals');
                                     if (newValue == '') terminals.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var terminals = this.upVM().get('terminals');
                                     terminals.removeFilter('search');
@@ -92,7 +92,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                                             new Ext.data.Query({
                                                 id: 'search',
                                                 source: 'name like "' + query + '"',
-                                            }),
+                                            })
                                         );
                                     }
                                 },
@@ -115,7 +115,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                         cls: 'a-cell-offset-x0',
                         encodeHtml: false,
                     },
-                    renderer: function(val, record) {
+                    renderer: function (val, record) {
                         if (val) {
                             return '<span class="text-truncate fw-b c-blue">' + val + '</span>';
                         }
@@ -128,7 +128,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(val) {
+                    renderer: function (val) {
                         if (val) {
                             if (val) {
                                 if (val == 'ro-ro') {
@@ -148,7 +148,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(val) {
+                    renderer: function (val) {
                         if (val) {
                             return val;
                         }
@@ -163,7 +163,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(record) {
+                    renderer: function (record) {
                         if (record) {
                             return (
                                 '<span class="a-status-badge status-admin a-status-sm status-round">' +
@@ -219,7 +219,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                 },
             ],
             listeners: {
-                childtap: function(grid, location) {
+                childtap: function (grid, location) {
                     if (location.event.target.classList.contains('a_grid_action')) {
                         return false;
                     }
@@ -227,11 +227,11 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMain', {
                         .getController()
                         .redirectTo(
                             'port-info/' +
-                            grid.upVM().get('object_record.id') +
-                            '/' +
-                            grid.upVM().get('subTab') +
-                            '/' +
-                            location.record.get('id'),
+                                grid.upVM().get('object_record.id') +
+                                '/' +
+                                grid.upVM().get('subTab') +
+                                '/' +
+                                location.record.get('id')
                         );
                 },
             },

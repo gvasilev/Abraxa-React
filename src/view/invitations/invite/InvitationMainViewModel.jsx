@@ -262,10 +262,6 @@ Ext.define('Abraxa.view.invitations.invite.InvitationMainViewModel', {
                                                             '#portcall/' + record.get('invitable_id');
                                                         invitations.reload();
                                                     },
-                                                    failure: function (record, response) {
-                                                        var result = response.error.response.responseJson;
-                                                        Ext.Msg.alert('Oops', result.message);
-                                                    },
                                                 });
                                             } else {
                                                 invitationController.showFileIdPrompt(invitationMainVM, dialog);
@@ -314,15 +310,6 @@ Ext.define('Abraxa.view.invitations.invite.InvitationMainViewModel', {
                                                                                         record.get('invitable_id');
                                                                                     invitations.reload();
                                                                                 },
-                                                                                failure: function (record, response) {
-                                                                                    var result =
-                                                                                        response.error.response
-                                                                                            .responseJson;
-                                                                                    Ext.Msg.alert(
-                                                                                        'Oops',
-                                                                                        result.message
-                                                                                    );
-                                                                                },
                                                                             });
                                                                         } else {
                                                                             invitationController.showFileIdPrompt(
@@ -340,16 +327,6 @@ Ext.define('Abraxa.view.invitations.invite.InvitationMainViewModel', {
                                             portDialog.show();
                                         }
                                     },
-                                    failure: function failure(response) {
-                                        let errMsg =
-                                            (response &&
-                                                response.error &&
-                                                response.error.response &&
-                                                response.error.response.responseJson) ||
-                                            'Error while getting served ports';
-
-                                        Ext.Msg.alert('Oops', errMsg);
-                                    },
                                 });
                             } else {
                                 invitation.set('status', 'Accepted');
@@ -361,10 +338,6 @@ Ext.define('Abraxa.view.invitations.invite.InvitationMainViewModel', {
                                         Ext.toast('Invitation accepted');
                                         invitations.reload();
                                         window.location.hash = '#portcall/' + record.get('invitable_id');
-                                    },
-                                    failure: function (record, response) {
-                                        var result = response.error.response.responseJson;
-                                        Ext.Msg.alert('Oops', result.message);
                                     },
                                 });
                             }

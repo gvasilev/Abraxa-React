@@ -39,7 +39,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyagePrincipalMain', {
                     listeners: {
                         change: {
                             buffer: 500,
-                            fn: function(field, newValue, oldValue, eOpts) {
+                            fn: function (field, newValue, oldValue, eOpts) {
                                 const store = field.up('VoyagePrincipalMain').down('VoyagesGrid').getStore();
                                 if (newValue.length === 0) store.removeFilter('searchFilter');
                                 if (newValue.length <= 2) return;

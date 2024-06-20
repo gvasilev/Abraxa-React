@@ -81,7 +81,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.Main', {
                                     align: 'bc-tc?',
                                 },
                             },
-                            handler: function() {
+                            handler: function () {
                                 let panel = Ext.ComponentQuery.query('[cls~=contacts_left_menu]')[0],
                                     cls = panel.getUserCls() == 'is-expanded';
 
@@ -141,7 +141,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.Main', {
                         ],
                     },
                     listeners: {
-                        childsingletap: function() {
+                        childsingletap: function () {
                             Ext.ComponentQuery.query('contacts\\.grid')[0].deselectAll();
                             Ext.ComponentQuery.query('departments\\.grid')[0].deselectAll();
                         },

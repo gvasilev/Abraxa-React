@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                     bindTo: '{financialTransactionsGrid.selection.owner}',
                     deep: true,
                 },
-                get: function(portcall) {
+                get: function (portcall) {
                     if (portcall) return Ext.create('Abraxa.model.portcall.Portcall', portcall);
                 },
             },
@@ -47,7 +47,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                     bindTo: '{paymentsStore}',
                     deep: true,
                 },
-                get: function(store) {
+                get: function (store) {
                     return store.getTotalCount();
                 },
             },
@@ -56,9 +56,9 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                     bindTo: '{paymentsStore}',
                     deep: true,
                 },
-                get: function(store) {
+                get: function (store) {
                     let data = [];
-                    store.each(function(record, index) {
+                    store.each(function (record, index) {
                         var payment = record.getData();
                         payment.subOject = 'portcallPayments';
                         payment.model = payment.model_name;
@@ -123,11 +123,11 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                             centered: true,
                             width: 280,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var store = this.find('financial-transactions-grid').getStore();
                                     if (newValue == '') store.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var store = this.find('financial-transactions-grid').getStore();
                                     store.removeFilter('search');
@@ -159,7 +159,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                                             iconCls: 'md-icon-inventory-2 md-icon-outlined',
                                             text: 'Archive',
                                             listeners: {
-                                                painted: function(me) {
+                                                painted: function (me) {
                                                     const stateProvider = Ext.state.Provider.get();
                                                     const state =
                                                         stateProvider.state['financial-transactions-grid-filterbar'];
@@ -169,7 +169,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                                                 },
                                             },
 
-                                            handler: function() {
+                                            handler: function () {
                                                 let store = this.find('financial-transactions-grid').getStore(),
                                                     toggled = this.getPressed();
 
@@ -205,7 +205,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                                                 text: 'Export to Excel',
                                                 separator: true,
                                                 iconCls: 'md-icon-outlined md-icon-difference',
-                                                handler: function(me) {
+                                                handler: function (me) {
                                                     let grid = this.find('financial-transactions-grid');
                                                     grid.saveDocumentAs({
                                                         type: 'xlsx', // exporter alias
@@ -224,7 +224,7 @@ Ext.define('Abraxa.view.financial.FinancialTransactionsView', {
                                     iconCls: 'md-icon-outlined md-icon-settings',
                                     text: 'Customize',
                                     margin: '0 0 0 8',
-                                    handler: function() {
+                                    handler: function () {
                                         this.find('financial-transactions-grid')
                                             .getPlugin('gridviewoptions')
                                             .showViewOptions();

@@ -336,9 +336,6 @@ Ext.define('Abraxa.view.portcall.principal.disbursements.DisbursementDetails', {
                 disbursementViewModel.set('selectedBillingParty', record.getAccount());
                 this.setRecord(record);
             },
-            failure: function (record, operation) {
-                Ext.Msg.alert('Error', 'Could not load disbursement');
-            },
             callback: function (record, operation) {
                 view.fireEvent('disbursementLoadEnd', record);
             },

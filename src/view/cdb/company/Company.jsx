@@ -62,7 +62,7 @@ Ext.define('Abraxa.view.cdb.company.Company', {
                         allowOver: false,
                         closeAction: 'destroy',
                     },
-                    handler: function() {
+                    handler: function () {
                         Ext.ComponentQuery.query('internal\\.tools\\.panel')[0].show();
                     },
                 },
@@ -92,7 +92,7 @@ Ext.define('Abraxa.view.cdb.company.Company', {
                         closeAction: 'destroy',
                     },
                     iconCls: 'md-icon-outlined md-icon-task-alt',
-                    handler: function() {
+                    handler: function () {
                         Ext.ComponentQuery.query('internal\\.tasks\\.panel')[0].show();
                     },
                 },
@@ -162,7 +162,7 @@ Ext.define('Abraxa.view.cdb.company.Company', {
         },
     },
     listeners: {
-        painted: function(me) {
+        painted: function (me) {
             if (me.upVM().get('currentUserType') !== 'agent') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

@@ -488,8 +488,6 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
             },
             failure: function failure(response) {
                 Ext.getCmp('uploadProgress').hide();
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 me.clearFileUpload(element.id);
             },
         });
@@ -557,8 +555,6 @@ Ext.define('Abraxa.view.attachments.AttachmentController', {
             },
             failure: function failure(response) {
                 Ext.getCmp('uploadProgress').hide();
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.warning('Unsupported file format', 'The file format you are trying to upload is not supported');
                 me.clearFileUpload(el.id);
             },
         });

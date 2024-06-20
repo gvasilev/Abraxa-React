@@ -32,7 +32,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                             margin: '0 16 0 0',
                             hidden: true,
                             bind: {
-                                html: '<div class=\'a-badge a-badge-{inquiryMenu.selection.slug}\'><i class=\'md-icon-outlined\'>{inquirySectionIcon}</i></div>',
+                                html: "<div class='a-badge a-badge-{inquiryMenu.selection.slug}'><i class='md-icon-outlined'>{inquirySectionIcon}</i></div>",
                             },
                         },
                         {
@@ -62,7 +62,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                 ui: '{isEmptyInstruction ? "blue-light color-default bgr-light-grey small":"default color-default bgr-light-grey small"}',
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = me.upVM().get('object_record'),
                                     instruction = me.upVM().get('instruction');
 
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                         {
                                             text: 'Cancel',
                                             margin: '0 8 0 0',
-                                            handler: function() {
+                                            handler: function () {
                                                 let record = this.upVM().get('instruction');
                                                 if (record) {
                                                     record.reject();
@@ -99,14 +99,14 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                                 text: '{editMode ? "Save" : "Create"}',
                                                 hidden: '{object_record.is_archived ? true:false}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let dialog = me.up('dialog');
                                                 let store = dialog.upVM().get('inquiry').instructions();
                                                 store.sync({
-                                                    success: function() {
+                                                    success: function () {
                                                         Ext.toast('Record updated', 1000);
                                                         Abraxa.utils.Functions.updateInquiry(
-                                                            dialog.upVM().get('inquiry'),
+                                                            dialog.upVM().get('inquiry')
                                                         );
                                                         dialog.destroy();
                                                     },
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                         ui: '{object_record.attachments.count ? "blue-light color-default bgr-light-grey small":"default color-default bgr-light-grey small"}',
                                         text: 'Attachments <em>{object_record.attachments.count}</em>',
                                     },
-                                    handler: function() {
+                                    handler: function () {
                                         let vm = this.upVM(),
                                             attachments = vm.get('object_record').attachments();
                                         Ext.create('Abraxa.view.attachments.AttachmentsDialog', {
@@ -151,7 +151,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                                             bindTo: '{attachmentsList.selection}',
                                                             deep: true,
                                                         },
-                                                        get: function(record) {
+                                                        get: function (record) {
                                                             if (record) {
                                                                 return record;
                                                             }
@@ -162,7 +162,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                                                             bindTo: '{nonEditable}',
                                                             deeP: true,
                                                         },
-                                                        get: function(nonEditable) {
+                                                        get: function (nonEditable) {
                                                             if (!nonEditable) {
                                                                 return {
                                                                     element: 'element',
@@ -216,7 +216,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaRightContainer', {
                     bind: {
                         hidden: '{nonEditable}',
                     },
-                    handler: function(me) {
+                    handler: function (me) {
                         let vm = me.upVM();
                         let inquiry = vm.get('object_record');
                         Ext.create('Abraxa.view.inquiry.appoint.AppointList', {

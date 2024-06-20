@@ -408,12 +408,6 @@ Ext.define('Abraxa.view.settings.offices.OfficeSettings', {
                                                             success: function (batch, opt) {
                                                                 Ext.toast('Record updated', 1000);
                                                             },
-                                                            failure: function (batch, operations) {
-                                                                Ext.Msg.alert(
-                                                                    'Something went wrong',
-                                                                    'Cannot update settings!'
-                                                                );
-                                                            },
                                                         });
                                                     }
                                                 },

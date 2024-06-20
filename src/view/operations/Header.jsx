@@ -60,7 +60,7 @@ Ext.define('Abraxa.view.operations.Header', {
             ],
 
             listeners: {
-                painted: function(tabbar) {
+                painted: function (tabbar) {
                     const url = Ext.util.History.getHash().replace(/operations\//g, '');
                     const tab = tabbar.items.items.find((tab) => url.includes(tab.url));
 
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.operations.Header', {
                     }
                 },
 
-                activeTabchange: function(tabbar, newTab, oldTab) {
+                activeTabchange: function (tabbar, newTab, oldTab) {
                     Ext.util.History.suspendEvents();
                     Ext.util.History.add('operations/' + newTab.url);
 

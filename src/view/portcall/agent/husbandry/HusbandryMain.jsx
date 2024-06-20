@@ -134,7 +134,8 @@ Ext.define('Abraxa.view.portcall.husbandry.HusbandryMain', {
                                 },
                                 select: function (list, record) {
                                     let VM = Ext.ComponentQuery.query(
-                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                                'portcall\\.main'
                                         )[0].upVM(),
                                         store = list.getStore();
                                     VM.set('selectedInquirySection', store.indexOf(record));

@@ -54,9 +54,6 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
                         }
                     }
                 },
-                failure: function (batch, operation) {
-                    Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                },
             });
         } else {
             btn.toggle();
@@ -264,7 +261,9 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
         return new Ext.Promise(function (resolve, reject) {
             let me = this,
                 fd = new FormData(),
-                object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+                object_record = Ext.ComponentQuery.query(
+                    Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                )[0]
                     .upVM()
                     .get('object_record');
             fd.append('ownerable_id', object_record.get('id'));
@@ -303,7 +302,9 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
             totalSize = 0,
             files = element.getFiles(),
             fd = new FormData(),
-            object_record = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+            object_record = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0]
                 .upVM()
                 .get('object_record');
         Ext.getCmp('uploadProgress').show();
@@ -368,8 +369,6 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
             },
             failure: function failure(response) {
                 Ext.getCmp('uploadProgress').hide();
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.warning('Unsupported file format', 'The file format you are trying to upload is not supported');
                 me.clearFileUpload(element.id);
             },
         });
@@ -394,7 +393,6 @@ Ext.define('Abraxa.view.portcall.appointment.InstructionController', {
                 record.set('updated_at', new Date());
                 record.load();
             },
-            failure: function failure(response) {},
         });
     },
     clearFileUpload(id) {

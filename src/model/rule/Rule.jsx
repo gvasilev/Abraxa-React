@@ -41,13 +41,13 @@ Ext.define('Abraxa.model.rule.Rule', {
                     case 'port_function':
                         val = record.get('port_function_value');
                         break;
-                    case 'principal_org_id':
+                    case 'appointing_party_id':
                         val = record.get('organization_value');
                         break;
-                    case 'agency_type':
+                    case 'agency_type_id':
                         val = record.get('agency_type_value');
                         break;
-                    case 'appointing_party_email':
+                    case 'office_id':
                         val = record.get('office_value');
                         break;
 
@@ -78,7 +78,7 @@ Ext.define('Abraxa.model.rule.Rule', {
             persist: false,
             mapping: function (data) {
                 let organizationNames = [];
-                if (data && data.property === 'principal_org_id' && data.organizations) {
+                if (data && data.property === 'appointing_party_id' && data.organizations) {
                     Ext.Array.each(data.organizations, function (organization) {
                         organizationNames.push(organization.org_name);
                     });
@@ -92,7 +92,7 @@ Ext.define('Abraxa.model.rule.Rule', {
             persist: false,
             mapping: function (data) {
                 let officeNames = [];
-                if (data && data.property === 'appointing_party_email' && data.offices) {
+                if (data && data.property === 'office_id' && data.offices) {
                     Ext.Array.each(data.offices, function (office) {
                         officeNames.push(office.office_name);
                     });
@@ -125,7 +125,7 @@ Ext.define('Abraxa.model.rule.Rule', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                if (data && data.property === 'appointing_party_email') {
+                if (data && data.property === 'office_id') {
                     return data.value;
                 }
             },
@@ -135,7 +135,7 @@ Ext.define('Abraxa.model.rule.Rule', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                if (data && data.property === 'principal_org_id') {
+                if (data && data.property === 'appointing_party_id') {
                     return data.value;
                 }
             },
@@ -145,7 +145,7 @@ Ext.define('Abraxa.model.rule.Rule', {
             type: 'auto',
             persist: false,
             mapping: function (data) {
-                if (data && data.property === 'agency_type') {
+                if (data && data.property === 'agency_type_id') {
                     return data.value;
                 }
             },

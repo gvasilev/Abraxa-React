@@ -265,8 +265,6 @@ Ext.define('Abraxa.view.portcall.PortcallMainViewModel', {
                         record.set('berth_sequence', 'Berth' + (index + 1));
                     });
                 },
-            },
-            listeners: {
                 beforesync: function (store) {
                     let object_record = Ext.ComponentQuery.query(
                         Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
@@ -2275,7 +2273,6 @@ Ext.define('Abraxa.view.portcall.PortcallMainViewModel', {
                                     }
                                 }
                             },
-                            failure: function failure(response) {},
                         });
                     }
                 }
@@ -2306,7 +2303,6 @@ Ext.define('Abraxa.view.portcall.PortcallMainViewModel', {
                                     }
                                 }
                             },
-                            failure: function failure(response) {},
                         });
                     }
                 }
@@ -2526,7 +2522,6 @@ Ext.define('Abraxa.view.portcall.PortcallMainViewModel', {
                                 vm.get('suggestedOrganizations').add(Ext.decode(response.responseText));
                             }
                         },
-                        failure: function failure(response) {},
                     });
                 }
             },

@@ -263,7 +263,6 @@ Ext.define('Abraxa.view.portcall.payments.PaymentsMainView', {
                 },
                 {
                     xtype: 'container',
-                    docked: 'left',
                     weight: 0,
                     cls: 'a-left-menu payments_left_menu',
                     stateful: ['width', 'userCls'],

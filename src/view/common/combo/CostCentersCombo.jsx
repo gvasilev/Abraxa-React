@@ -233,7 +233,6 @@ Ext.define('Abraxa.view.common.combo.CostCentersCombo', {
                 failure: function failure(response) {
                     combo.setStore([]);
                     picker.setMasked(false);
-                    Ext.Msg.warning('Warning', 'Something went wrong. </br> Cannot show shared cost centers.');
                 },
             });
         },
@@ -295,7 +294,7 @@ Ext.define('Abraxa.view.common.combo.CostCentersCombo', {
     },
     collapse: function () {
         if (!this.expandCollapse) return false;
-// this.callParent();
+        // this.callParent();
     },
 
     floatedPicker: {

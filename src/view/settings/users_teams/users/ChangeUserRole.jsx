@@ -90,9 +90,6 @@ Ext.define('Abraxa.view.settings.user_teams.users.ChangeUserRole', {
                                 Ext.toast('Record updated', 1000);
                                 dialog.destroy();
                             },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot create role!');
-                            },
                         });
                     } else {
                         dialog

@@ -66,23 +66,6 @@ Ext.define('Abraxa.Application', {
     launch: function (profile) {
         let me = this;
         moment.suppressDeprecationWarnings = true;
-        Ext.Ajax.on(
-            'requestexception',
-            function (conn, response, options) {
-                if (response.status === 404) {
-                    window.location.hash = '404';
-                }
-                if (response.request.url.match(/\/pc\//g)) {
-                    let title = response.status === 500 ? 'Server Error' : 'Oops';
-                    let msg = (response.responseJson && response.responseJson.message) || 'Something went wrong.';
-                    Ext.Msg.alert(title, msg, function (answer) {
-                        // window.location.hash = '#dashboard';
-                        // window.location.reload();
-                    });
-                }
-            },
-            this
-        );
         document.getElementById('preloader').remove();
 
         Ext.FusionCharts.options.license({
@@ -159,60 +142,8 @@ Ext.define('Abraxa.Application', {
             },
             this
         );
-
-        Ext.Ajax.on(
-            'requestexception',
-            function (conn, response, options) {
-                if (response.status == 401) {
-                    let tipExist = Ext.getCmp('sessionExpired'),
-                        userExists = Ext.Viewport.getViewModel().get('currentUser'),
-                        dialogs = Ext.ComponentQuery.query('dialog');
-
-                    if (dialogs.length > 0) {
-                        Ext.Array.each(dialogs, function (dialog) {
-                            if (dialog.id != 'sessionExpired') {
-                                dialog.hide();
-                            }
-                        });
-                    }
-
-                    if (!tipExist && userExists) {
-                        Ext.create('Ext.MessageBox', {
-                            zIndex: 9999,
-                            id: 'sessionExpired',
-                            ui: 'info',
-                            innerCls: 'a-bgr-white text-center',
-                            message:
-                                "<h3>Your session has expired</h3><br>Please refresh and log in again.<br>Don't worry we kept all of your data in place.",
-                            width: 300,
-                            dataTitle: 'Info',
-                            modal: true,
-                            bbar: {
-                                items: [
-                                    '->',
-                                    {
-                                        xtype: 'button',
-                                        text: 'Log in',
-                                        handler: function (me) {
-                                            me.up('dialog').destroy();
-                                            Ext.getApplication().logout();
-                                        },
-                                    },
-                                ],
-                            },
-                        }).show();
-                    }
-                    let els = document.getElementsByClassName('x-mask');
-                    Ext.Array.each(els, function (el) {
-                        el.classList.add('a-blurred');
-                    });
-                }
-            },
-            this
-        );
-
         Ext.Viewport.getController().onLaunch();
-// this.callParent([profile]);
+        // this.callParent([profile]);
     },
 
     quickTips: false,

@@ -11,7 +11,7 @@ Ext.define('Abraxa.view.operations.VoyagePrincipal.VoyageDetailsRightCard', {
     controller: 'VoyageDetailsRightCardController',
     viewModel: 'VoyageDetailsRightCardViewModel',
 
-    setSelectedVoyage: function(record) {
+    setSelectedVoyage: function (record) {
         const vm = this.getViewModel();
         vm.set('selectedVoyage', record);
     },

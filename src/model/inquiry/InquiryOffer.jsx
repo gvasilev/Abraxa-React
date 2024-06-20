@@ -17,7 +17,7 @@ Ext.define('Abraxa.model.inquiry.InquiryOffer', {
         {
             name: 'status',
             type: 'auto',
-            mapping: function(data, record) {
+            mapping: function (data, record) {
                 let statuses = [
                     'draft',
                     'under review',
@@ -30,7 +30,7 @@ Ext.define('Abraxa.model.inquiry.InquiryOffer', {
                 ];
                 return statuses[data.status];
             },
-            serialize: function(val, record) {
+            serialize: function (val, record) {
                 let statuses = [
                     'draft',
                     'under review',

@@ -27,7 +27,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
             },
             width: 30,
             listeners: {
-                checkchange: function(me, rowIndex, checked, record, e, eOpts) {
+                checkchange: function (me, rowIndex, checked, record, e, eOpts) {
                     if (checked) {
                         record.set('is_checked', true);
                     } else {
@@ -47,7 +47,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             let record = this.upVM().get('offersGrid.selection'),
                 grid = Ext.ComponentQuery.query('proforma\\.grid')[0];
 
@@ -62,14 +62,14 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
         tpl: new Ext.XTemplate(
             '<div class="a-header-{[this.parceString(values.name)]}">{[this.parceString(values.name)]} ({count})</div>',
             {
-                parceString: function(value) {
+                parceString: function (value) {
                     if (value == '1') {
                         return 'Active';
                     } else {
                         return 'Disabled';
                     }
                 },
-            },
+            }
         ),
     },
     emptyText: {
@@ -95,7 +95,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                 bind: {
                     hidden: '{nonEditable}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let record = me.upVM().get('object_record'),
                         currentUser = me.upVM().get('currentUser'),
                         defaultCurrency = me.upVM().get('defaultCurrency');
@@ -114,14 +114,14 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                             port_id: '{offer.port_id}',
                                         },
                                     },
-                                    updateProxy: function(proxy) {
+                                    updateProxy: function (proxy) {
                                         if (proxy) {
                                             proxy.onAfter(
                                                 'extraparamschanged',
-                                                function() {
+                                                function () {
                                                     if (this.getProxy().getExtraParams().port_id) this.load();
                                                 },
-                                                this,
+                                                this
                                             );
                                         }
                                     },
@@ -144,7 +144,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                         port: '{estimatePortCombo.selection}',
                                         currency: '{currencyCombo.value}',
                                     },
-                                    get: function(params) {
+                                    get: function (params) {
                                         let inquiryOffer = this.get('offer'),
                                             me = this;
                                         inquiryOffer.set('exchange_rate', 1);
@@ -171,11 +171,11 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                     let forexRate = Abraxa.getApplication()
                                                         .getController('AbraxaController')
                                                         .getExchange(portCurrency, inquiryCurrency)
-                                                        .then(function(response) {
+                                                        .then(function (response) {
                                                             if (response && response.length) {
                                                                 inquiryOffer.set(
                                                                     'exchange_rate',
-                                                                    response[0].exchange_rate,
+                                                                    response[0].exchange_rate
                                                                 );
                                                             }
                                                         });
@@ -214,7 +214,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             if (record.get('active')) {
                                 return 'item-active';
@@ -251,7 +251,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                     bind: {
                         hidden: '{nonEditable}',
                     },
-                    handler: function(me) {
+                    handler: function (me) {
                         let record = me.upVM().get('object_record'),
                             currentUser = me.upVM().get('currentUser'),
                             defaultCurrency = me.upVM().get('defaultCurrency');
@@ -271,14 +271,14 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                     port_id: '{offer.port_id}',
                                                 },
                                             },
-                                            updateProxy: function(proxy) {
+                                            updateProxy: function (proxy) {
                                                 if (proxy) {
                                                     proxy.onAfter(
                                                         'extraparamschanged',
-                                                        function() {
+                                                        function () {
                                                             if (this.getProxy().getExtraParams().port_id) this.load();
                                                         },
-                                                        this,
+                                                        this
                                                     );
                                                 }
                                             },
@@ -301,7 +301,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                 port: '{estimatePortCombo.selection}',
                                                 currency: '{currencyCombo.value}',
                                             },
-                                            get: function(params) {
+                                            get: function (params) {
                                                 let inquiryOffer = this.get('offer'),
                                                     me = this;
                                                 inquiryOffer.set('exchange_rate', 1);
@@ -329,11 +329,11 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                             let forexRate = Abraxa.getApplication()
                                                                 .getController('AbraxaController')
                                                                 .getExchange(portCurrency, inquiryCurrency)
-                                                                .then(function(response) {
+                                                                .then(function (response) {
                                                                     if (response && response.length) {
                                                                         inquiryOffer.set(
                                                                             'exchange_rate',
-                                                                            response[0].exchange_rate,
+                                                                            response[0].exchange_rate
                                                                         );
                                                                     }
                                                                 });
@@ -385,14 +385,14 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                         disabled: '{nonEditable}',
                                     },
                                     margin: '0 0 0 8',
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let inquiryVM = me.upVM(),
                                             companyVerified = me.upVM().get('currentCompany').get('verified'),
                                             grid = this.up('grid'),
                                             selectedEstimates = grid.getSelections(),
                                             attachments = [];
 
-                                        Ext.each(selectedEstimates, function(estimate) {
+                                        Ext.each(selectedEstimates, function (estimate) {
                                             attachments.push({
                                                 name: estimate.get('name'),
                                                 extension: 'pdf',
@@ -452,24 +452,24 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                             bindTo: '{currentUser}',
                                                             deep: true,
                                                         },
-                                                        get: function(user) {
+                                                        get: function (user) {
                                                             let emails = [];
                                                             if (user) {
                                                                 if (user.get('current_office_id')) {
                                                                     let officeEmails = user.getOffice().emails();
                                                                     Ext.Array.each(
                                                                         officeEmails.getData().items,
-                                                                        function(email) {
+                                                                        function (email) {
                                                                             let emailModel = email.get('email');
                                                                             emailModel.is_default =
                                                                                 email.get('is_default');
                                                                             emails.push(emailModel);
-                                                                        },
+                                                                        }
                                                                     );
                                                                 } else {
                                                                     let company = this.get('currentCompany');
                                                                     let officeEmails = company.get('email_settings');
-                                                                    Ext.Array.each(officeEmails, function(email) {
+                                                                    Ext.Array.each(officeEmails, function (email) {
                                                                         emails.push(email);
                                                                     });
                                                                 }
@@ -505,7 +505,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                     bind: {
                                         disabled: '{nonEditable}',
                                     },
-                                    handler: function(me) {
+                                    handler: function (me) {
                                         let grid = this.up('grid'),
                                             vm = this.upVM(),
                                             offers = vm.get('offers'),
@@ -514,21 +514,15 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                         Ext.Msg.confirm(
                                             'Delete',
                                             'Do you want to delete this estimate?',
-                                            function(answer) {
+                                            function (answer) {
                                                 if (answer == 'yes') {
-                                                    Ext.each(selections, function(rec, index) {
+                                                    Ext.each(selections, function (rec, index) {
                                                         offers.remove(rec);
                                                     });
                                                     offers.sync({
-                                                        success: function(err, msg) {
+                                                        success: function (err, msg) {
                                                             Ext.toast('Record updated', 1000);
                                                             grid.deselectAll();
-                                                        },
-                                                        failure: function(batch) {
-                                                            Ext.Msg.alert(
-                                                                'Something went wrong',
-                                                                'Could not delete record!',
-                                                            );
                                                         },
                                                     });
                                                 }
@@ -549,7 +543,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                                                     text: 'Delete',
                                                     testId: 'deleteProformaGridButtonDelete',
                                                 },
-                                            ],
+                                            ]
                                         );
                                     },
                                 },
@@ -582,7 +576,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                 },
             },
             flex: 1,
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 const calculationId = record.get('pc_calculation_id') ? 1 : 0;
                 if (val) {
                     // return '<div class="hbox"><div class="a-badge a-badge-billing"><i class="md-icon-outlined">account_balance_wallet</i></div><div class="ml-12"><div class="text-truncate fw-b">' + val + '</div></div></div>';
@@ -606,7 +600,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                 cls: 'a-cell-bl text-center',
                 encodeHtml: false,
             },
-            renderer: function(value) {
+            renderer: function (value) {
                 if (value) {
                     return value;
                 } else {
@@ -618,7 +612,6 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
             text: 'Total',
             dataIndex: 'total_costs',
             cls: 'a-column-bordered',
-            align: 'right',
             minWidth: 140,
             align: 'right',
             cell: {
@@ -637,7 +630,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                 bodyCls: 'a-cell-status',
                 encodeHtml: false,
             },
-            renderer: function(value, record) {
+            renderer: function (value, record) {
                 if (record.get('status')) {
                     return (
                         '<div class="a-status-badge a-status-md status-' +
@@ -670,7 +663,7 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
                 },
             },
             sorter: {
-                sorterFn: function(o1, o2) {
+                sorterFn: function (o1, o2) {
                     var v1 = o1.data.updated_at,
                         v2 = o2.data.updated_at;
                     return v1 > v2 ? -1 : v1 < v2 ? 1 : 0;
@@ -728,13 +721,13 @@ Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }
             if (location.event.target.classList.contains('a_grid_action')) return false;
         },
-        childdoubletap: function(grid, location, eOpts) {
+        childdoubletap: function (grid, location, eOpts) {
             Ext.getCmp('main-viewport').setMasked({
                 xtype: 'viewport.mask',
             });

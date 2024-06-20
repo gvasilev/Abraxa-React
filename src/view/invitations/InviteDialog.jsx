@@ -50,8 +50,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                 hideDelay: 0,
                 align: 'bc-tc?',
             },
-            handler: function(me) {
-            },
+            handler: function (me) {},
         },
     },
     closable: true,
@@ -77,7 +76,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                 bind: {
                     hidden: '{invite_mode ? false : true}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let newMembers = me
                         .up('dialog')
                         .down('[cls=invite_container]')
@@ -103,7 +102,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                     permission: '{userPermissions}',
                     disabled: '{members.needsSync ? false : true}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let store = this.upVM().get('members'),
                         object_record = this.upVM().get('object_record'),
                         folders = object_record.folders(),
@@ -113,18 +112,16 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
 
                     mixpanel.track('Save button (invite)');
                     store.sync({
-                        success: function() {
+                        success: function () {
                             me.toggle();
                             accounts.reload();
                             let storesForReload = [accounts, disbursements, folders];
-                            let reloadAllStores = storesForReload.map(function(store) {
+                            let reloadAllStores = storesForReload.map(function (store) {
                                 return Abraxa.utils.Functions.reloadStore(store);
                             });
                             Promise.all(reloadAllStores)
-                                .then(function(results) {
-                                })
-                                .catch(function(error) {
-                                });
+                                .then(function (results) {})
+                                .catch(function (error) {});
                             folders.getProxy().setUrl(Env.ApiEndpoint + 'folders');
                             Ext.toast('Record updated');
                         },
@@ -146,7 +143,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                     hidden: '{invite_mode ? false : true}',
                     permission: '{userPermissions}',
                 },
-                handler: function(me) {
+                handler: function (me) {
                     let members = me.upVM().get('members'),
                         newMembers = me
                             .up('dialog')
@@ -165,24 +162,22 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
 
                     if (companyVerified) {
                         if (newMembers.getCount() > 0) {
-                            Ext.Array.each(newMembers.getData().items, function(value) {
+                            Ext.Array.each(newMembers.getData().items, function (value) {
                                 if (optionalMessage) {
                                     value.set('optional_message', optionalMessage);
                                 }
                                 members.add(value);
                             });
                             members.sync({
-                                success: function(err, msg) {
+                                success: function (err, msg) {
                                     mixpanel.track('Invited a member');
                                     let storesForReload = [accounts, disbursements, folders];
-                                    let reloadAllStores = storesForReload.map(function(store) {
+                                    let reloadAllStores = storesForReload.map(function (store) {
                                         return Abraxa.utils.Functions.reloadStore(store);
                                     });
                                     Promise.all(reloadAllStores)
-                                        .then(function(results) {
-                                        })
-                                        .catch(function(error) {
-                                        });
+                                        .then(function (results) {})
+                                        .catch(function (error) {});
                                     me.toggle();
                                     newMembers.removeAll();
                                     let title = 'Invitation e-mail has been sent',
@@ -191,7 +186,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                     Abraxa.popup.showSuccessDialog(title, content, members);
                                     me.upVM().set('invite_mode', false);
                                     let accountsRecords = accounts.getData();
-                                    accountsRecords.each(function(rec) {
+                                    accountsRecords.each(function (rec) {
                                         let objectAccount = object_record.accounts().getById(rec.get('id'));
                                         if (objectAccount) {
                                             rec.members().loadData(Ext.Array.clone(objectAccount.members().getRange()));
@@ -200,12 +195,8 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                     folders.getProxy().setUrl(Env.ApiEndpoint + 'folders');
                                     Ext.toast('Invitation sent!', 1000);
                                 },
-                                failure: function(batch) {
+                                failure: function (batch) {
                                     me.toggle();
-                                    Ext.Msg.alert(
-                                        'Sending failed',
-                                        'It seems your email settings have not been configured correctly.<br>Please make sure all details are available in your Settings profile',
-                                    );
                                 },
                             });
                         }
@@ -213,7 +204,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                         me.toggle();
                         Ext.Msg.warning(
                             '<div class="hbox"><i class="material-icons c-grey my-8 mr-16">verified_user</i>Company verification</div>',
-                            '<b>Your company is not verified</b>.<br>Please submit the verification form to us before you can<br> start inviting your counterparties and explore the system.',
+                            '<b>Your company is not verified</b>.<br>Please submit the verification form to us before you can<br> start inviting your counterparties and explore the system.'
                         );
                     }
                 },
@@ -242,7 +233,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                 // painted: function (me) {
                 //     me.focus();
                 // },
-                select: function(me, selection) {
+                select: function (me, selection) {
                     if (selection && !selection.isEntered) {
                         let object_record = me.upVM().get('object_record'),
                             members = object_record.members(),
@@ -253,7 +244,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 .down('abraxa\\.formlist')
                                 .getVM()
                                 .getStore('newMembers'),
-                            memberExists = members.queryBy(function(record) {
+                            memberExists = members.queryBy(function (record) {
                                 return (
                                     record.get('invitation') &&
                                     record.get('has_left') === 0 &&
@@ -264,15 +255,15 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                             Ext.Msg.alert(
                                 'Members information',
                                 '<div class="fs-16 fw-b"><span class="c-blue">' +
-                                selection.get('org_name') +
-                                '</span> has been already invited.</div><p class="c-grey-500">Please select another member to invite.</p>',
+                                    selection.get('org_name') +
+                                    '</span> has been already invited.</div><p class="c-grey-500">Please select another member to invite.</p>'
                             );
                             me.getValueCollection().remove(selection);
                         } else {
                             if (currentCompany.email === selection.get('org_email')) {
                                 Ext.Msg.alert(
                                     'Members information',
-                                    '<div class="fs-16 fw-b">А member with that email address has already been invited.</div><p class="c-grey-500">Please select another member to invite.</p>',
+                                    '<div class="fs-16 fw-b">А member with that email address has already been invited.</div><p class="c-grey-500">Please select another member to invite.</p>'
                                 );
                                 me.getValueCollection().remove(selection);
                             } else {
@@ -282,7 +273,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                     0,
                                     false,
                                     false,
-                                    true,
+                                    true
                                 );
                                 if (!existingRecord) {
                                     this.upVM().set('invite_mode', true);
@@ -342,7 +333,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                         },
                         ui: 'normal-light medium',
                         iconCls: 'md-icon-outlined md-icon-group-add',
-                        handler: function() {
+                        handler: function () {
                             this.upVM().set('invite_mode', true);
                         },
                     },
@@ -367,7 +358,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 bindTo: '{record.permissions}',
                                 deep: true,
                             },
-                            get: function(permissions) {
+                            get: function (permissions) {
                                 if (permissions.count()) {
                                     if (permissions.count() != 12) return 'Selected access';
 
@@ -381,7 +372,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 bindTo: '{record}',
                                 deep: true,
                             },
-                            get: function(record) {
+                            get: function (record) {
                                 return record;
                             },
                         },
@@ -390,7 +381,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 bindTo: '{record}',
                                 deep: true,
                             },
-                            get: function(record) {
+                            get: function (record) {
                                 if (record.get('has_accepted')) return 'active';
 
                                 if (record.get('has_left') && record.get('has_accepted')) return 'left';
@@ -405,7 +396,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 bindTo: '{member_status}',
                                 deep: true,
                             },
-                            get: function(access) {
+                            get: function (access) {
                                 let owner = this.get('record').get('is_owner');
 
                                 if (!owner) {
@@ -424,7 +415,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 member: '{currentMember}',
                                 activateAccountFormula: '{activateAccountFormula}',
                             },
-                            get: function(data) {
+                            get: function (data) {
                                 let members = 0;
                                 if (data.member && data.accounts && data.accounts.getCount()) {
                                     let store = data.accounts,
@@ -441,12 +432,12 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 accounts: '{object_record.accounts}',
                                 member: '{currentMember}',
                             },
-                            get: function(data) {
+                            get: function (data) {
                                 let items = [];
                                 if (data.member && data.accounts && data.accounts.getCount()) {
                                     let store = data.accounts,
                                         currentMember = data.member;
-                                    store.each(function(value) {
+                                    store.each(function (value) {
                                         let item = {
                                             id: value.get('id'),
                                             currency: value.get('currency'),
@@ -485,12 +476,12 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 folders: '{object_record.folders}',
                                 member: '{currentMember}',
                             },
-                            get: function(data) {
+                            get: function (data) {
                                 if (data.member && data.folders && data.folders.getCount()) {
                                     let store = data.folders,
                                         currentMember = data.member,
                                         items = [];
-                                    store.each(function(value) {
+                                    store.each(function (value) {
                                         let item = {
                                             is_shared: value.get('is_shared'),
                                             folder_id: value.get('id'),
@@ -524,7 +515,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 member: '{currentMember}',
                                 activateDocumentFormula: '{activateDocumentFormula}',
                             },
-                            get: function(data) {
+                            get: function (data) {
                                 let members = 0;
                                 if (data.member && data.folders && data.folders.getCount()) {
                                     let store = data.folders,
@@ -597,7 +588,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         ui: 'info has-icons',
                                         width: 320,
                                         defaults: {
-                                            handler: function() {
+                                            handler: function () {
                                                 let member = this.upVM().get('record');
                                                 member.set('role', this.role);
                                                 if (this.role == 'can view') {
@@ -636,7 +627,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                             {
                                                 html: '<i class="md-icon-outlined">delete</i><div class="sm-header c-red">Remove member</div><div class="sm-desc">This member will be removed and no longer receive updates related to this port call.</div>',
                                                 separator: true,
-                                                handler: function(me) {
+                                                handler: function (me) {
                                                     let member = me.upVM().get('record'),
                                                         object_record = this.upVM().get('object_record'),
                                                         members = this.upVM().get('members'),
@@ -644,18 +635,18 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                                     if (member.get('tenant_id') == object_record.get('originated_by')) {
                                                         Ext.Msg.alert(
                                                             'Remove member',
-                                                            'You cannot remove the member who created this port call.',
+                                                            'You cannot remove the member who created this port call.'
                                                         );
                                                         return;
                                                     }
                                                     Ext.Msg.confirm(
                                                         'Delete',
                                                         'Are you sure you want to remove this member?',
-                                                        function(btn) {
+                                                        function (btn) {
                                                             if (btn === 'yes') {
                                                                 members.remove(member);
                                                                 members.sync({
-                                                                    success: function() {
+                                                                    success: function () {
                                                                         Ext.getStore('newMemberStore').sync();
                                                                         disbursements.reload();
                                                                         Ext.toast('Record deleted', 2500);
@@ -677,7 +668,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                                                 ui: 'decline alt',
                                                                 text: 'Delete',
                                                             },
-                                                        ],
+                                                        ]
                                                     );
                                                 },
                                             },
@@ -705,18 +696,18 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                 iconCls: 'md-icon-outlined md-icon-delete',
                                 text: 'Remove',
                                 testId: 'inviteDialogInviteRemoveSmallBtn',
-                                handler: function(me) {
+                                handler: function (me) {
                                     let member = me.upVM().get('record');
                                     Ext.Msg.confirm(
                                         'Delete',
                                         'Are you sure you want to remove the selected member?',
-                                        function(btn) {
+                                        function (btn) {
                                             if (btn === 'yes') {
                                                 me.upVM().get('members').remove(member);
                                                 me.upVM()
                                                     .get('members')
                                                     .sync({
-                                                        success: function() {
+                                                        success: function () {
                                                             Ext.getStore('newMemberStore').sync();
                                                             Ext.toast('Record deleted', 2500);
                                                         },
@@ -737,7 +728,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                                 ui: 'decline alt',
                                                 text: 'Remove',
                                             },
-                                        ],
+                                        ]
                                     );
                                 },
                             },
@@ -799,7 +790,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                     bindTo: '{newMembers.count}',
                                     deep: true,
                                 },
-                                get: function(count) {
+                                get: function (count) {
                                     this.getParent().set('newMembersCount', count);
                                 },
                             },
@@ -821,7 +812,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         bindTo: '{record.permissions}',
                                         deep: true,
                                     },
-                                    get: function(permissions) {
+                                    get: function (permissions) {
                                         if (permissions.count()) {
                                             if (permissions.count() != 12) return 'Selected access';
 
@@ -835,7 +826,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         bindTo: '{record}',
                                         deep: true,
                                     },
-                                    get: function(record) {
+                                    get: function (record) {
                                         return record;
                                     },
                                 },
@@ -845,7 +836,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         member: '{currentMember}',
                                         activateAccountFormula: '{activateAccountFormula}',
                                     },
-                                    get: function(data) {
+                                    get: function (data) {
                                         let members = 0;
                                         if (data.member && data.accounts && data.accounts.getCount()) {
                                             let store = data.accounts,
@@ -862,12 +853,12 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         accounts: '{object_record.accounts}',
                                         member: '{currentMember}',
                                     },
-                                    get: function(data) {
+                                    get: function (data) {
                                         let items = [];
                                         if (data.member && data.accounts && data.accounts.getCount()) {
                                             let store = data.accounts,
                                                 currentMember = data.member;
-                                            store.each(function(value) {
+                                            store.each(function (value) {
                                                 let item = {
                                                     id: value.get('id'),
                                                     currency: value.get('currency'),
@@ -909,12 +900,12 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         folders: '{object_record.folders}',
                                         member: '{currentMember}',
                                     },
-                                    get: function(data) {
+                                    get: function (data) {
                                         if (data.member && data.folders && data.folders.getCount()) {
                                             let store = data.folders,
                                                 currentMember = data.member,
                                                 items = [];
-                                            store.each(function(value) {
+                                            store.each(function (value) {
                                                 let item = {
                                                     is_shared: value.get('is_shared'),
                                                     folder_id: value.get('id'),
@@ -950,7 +941,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                         member: '{currentMember}',
                                         activateDocumentFormula: '{activateDocumentFormula}',
                                     },
-                                    get: function(data) {
+                                    get: function (data) {
                                         let members = 0;
                                         if (data.member && data.folders && data.folders.getCount()) {
                                             let store = data.folders,
@@ -1011,7 +1002,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                             ui: 'info has-icons',
                                             width: 320,
                                             defaults: {
-                                                handler: function() {
+                                                handler: function () {
                                                     let member = this.upVM().get('record');
                                                     member.set('role', this.role);
                                                 },
@@ -1048,7 +1039,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
                                                     bind: {
                                                         permission: '{userPermissions}',
                                                     },
-                                                    handler: function(me) {
+                                                    handler: function (me) {
                                                         let member = me.upVM().get('record');
                                                         me.upVM().getParent().getStore('newMembers').remove(member);
                                                     },
@@ -1079,7 +1070,7 @@ Ext.define('Abraxa.view.invitations.InviteDialog', {
         },
     ],
     listeners: {
-        destroy: function(me) {
+        destroy: function (me) {
             Ext.getStore('newMemberStore').removeAll();
             let members = me.upVM().get('members');
             if (members) {

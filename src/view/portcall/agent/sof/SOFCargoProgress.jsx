@@ -187,7 +187,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                             }
                                                                         }
                                                                     },
-                                                                    failure: function failure(response) {},
                                                                 });
                                                             }
                                                         }
@@ -299,7 +298,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                             }
                                                                         }
                                                                     },
-                                                                    failure: function failure(response) {},
                                                                 });
                                                             }
                                                         }
@@ -385,7 +383,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                                     }
                                                                                 }
                                                                             },
-                                                                            failure: function failure(response) {},
                                                                         });
                                                                     }
                                                                 }
@@ -465,7 +462,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                                     }
                                                                                 }
                                                                             },
-                                                                            failure: function failure(response) {},
                                                                         });
                                                                     }
                                                                 }
@@ -545,7 +541,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                                     }
                                                                                 }
                                                                             },
-                                                                            failure: function failure(response) {},
                                                                         });
                                                                     }
                                                                 }
@@ -622,7 +617,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                                     }
                                                                                 }
                                                                             },
-                                                                            failure: function failure(response) {},
                                                                         });
                                                                     }
                                                                 }
@@ -687,7 +681,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                             }
                                                                         }
                                                                     },
-                                                                    failure: function failure(response) {},
                                                                 });
                                                             }
                                                         }
@@ -749,7 +742,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                             }
                                                                         }
                                                                     },
-                                                                    failure: function failure(response) {},
                                                                 });
                                                             }
                                                         }
@@ -813,7 +805,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                             }
                                                                         }
                                                                     },
-                                                                    failure: function failure(response) {},
                                                                 });
                                                             }
                                                         }
@@ -901,9 +892,6 @@ Ext.define('Abraxa.view.portcall.sof.SOFCargoProgress', {
                                                                                             }
                                                                                         }
                                                                                     },
-                                                                                    failure: function failure(
-                                                                                        response
-                                                                                    ) {},
                                                                                 });
                                                                             }
                                                                         }

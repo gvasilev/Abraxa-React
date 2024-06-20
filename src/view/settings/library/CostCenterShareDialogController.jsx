@@ -97,13 +97,6 @@ Ext.define('Abraxa.view.settings.lirbrary.CostCenterShareDialogController', {
                 dialog.close();
             },
             failure: function (response) {
-                let message = 'Error saving changes';
-                if (response && response.responseText) {
-                    message = JSON.parse(response.responseText).message + ', Error saving changes';
-                    Ext.Msg.warning('Error', message);
-                }
-
-                Ext.Msg.warning('Error', message);
                 dialog.setMasked(false);
                 button.toggle();
             },

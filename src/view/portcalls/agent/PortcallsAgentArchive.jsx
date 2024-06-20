@@ -246,9 +246,6 @@ Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentArchive', {
                             dialog.destroy();
                             mixpanel.track('Archived a portcall');
                         },
-                        failure: function (batch) {
-                            Ext.Msg.alert('Something went wrong', 'Unable to archive record!');
-                        },
                     });
                 } else {
                     dialog.down('form\\.error').setHtml('Please fill all required fields').show().addCls('error');

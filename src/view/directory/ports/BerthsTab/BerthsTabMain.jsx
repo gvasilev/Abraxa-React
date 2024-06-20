@@ -73,11 +73,11 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                             placeholder: 'Search berth',
                             clearable: true,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var berthStore = this.upVM().get('berths');
                                     if (newValue == '') berthStore.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var berthStore = this.upVM().get('berths');
                                     berthStore.removeFilter('search');
@@ -86,7 +86,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                                             new Ext.data.Query({
                                                 id: 'search',
                                                 source: 'name like "' + query + '"',
-                                            }),
+                                            })
                                         );
                                     }
                                 },
@@ -109,7 +109,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                         cls: 'a-cell-offset-x0',
                         encodeHtml: false,
                     },
-                    renderer: function(val, record) {
+                    renderer: function (val, record) {
                         if (val) {
                             return '<span class="text-truncate fw-b c-blue">' + val + '</span>';
                         }
@@ -122,7 +122,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(val) {
+                    renderer: function (val) {
                         if (val) {
                             return val;
                         }
@@ -136,7 +136,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                     cell: {
                         encodeHtml: false,
                     },
-                    renderer: function(val) {
+                    renderer: function (val) {
                         if (val) {
                             return val;
                         }
@@ -151,7 +151,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                         cls: 'a-cell-date',
                         encodeHtml: false,
                     },
-                    renderer: function(val) {
+                    renderer: function (val) {
                         if (val) {
                             return moment(val, 'YYYY-MM-DD').month(0).from(moment().month(0));
                         }
@@ -196,17 +196,17 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsTabMain', {
                 },
             ],
             listeners: {
-                childtap: function(grid, location) {
+                childtap: function (grid, location) {
                     if (location.event.target.classList.contains('a_grid_action')) return false;
                     Ext.getCmp('main-viewport')
                         .getController()
                         .redirectTo(
                             'port-info/' +
-                            grid.upVM().get('object_record.id') +
-                            '/' +
-                            grid.upVM().get('subTab') +
-                            '/' +
-                            location.record.get('id'),
+                                grid.upVM().get('object_record.id') +
+                                '/' +
+                                grid.upVM().get('subTab') +
+                                '/' +
+                                location.record.get('id')
                         );
                     grid.upVM().set('subTabId', location.record.get('id'));
                 },

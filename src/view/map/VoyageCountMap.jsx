@@ -4019,9 +4019,6 @@ Ext.define('Abraxa.view.map.VoyageCountMap', {
                                     .getViewModel()
                                     .set('port', response);
                             },
-                            failure: function (response) {
-                                Ext.Msg.alert('Status', 'Request Failed.');
-                            },
                         });
                     }
                 }

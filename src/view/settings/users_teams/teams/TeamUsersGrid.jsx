@@ -169,16 +169,8 @@ Ext.define('Abraxa.view.settings.user_teams.teams.UserGrid', {
                                             team.getProxy().setExtraParams({
                                                 company_id: team.get('id'),
                                             });
-                                            // team.load({
-                                            //     success: function () {
-
-                                            //     }
-                                            // });
                                             teams.reload();
                                             Ext.toast('Users unassigned', 1500);
-                                        },
-                                        failure: function (response) {
-                                            Ext.Msg.alert('Status', 'Request Failed.');
                                         },
                                     });
                                 },

@@ -785,7 +785,6 @@ Ext.define('Abraxa.view.portcall.appointment.CargoInformation', {
                         {
                             xtype: 'selectfield',
                             label: 'Customs status',
-                            placeholder: 'Enter customs status',
                             slug: 'portcallCargoCustoms',
                             subObject: 'cargo',
                             placeholder: 'Enter customs status',

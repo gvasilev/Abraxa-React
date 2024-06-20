@@ -31,7 +31,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
             },
             width: 56,
             listeners: {
-                checkchange: function(me, rowIndex, checked, record, e, eOpts) {
+                checkchange: function (me, rowIndex, checked, record, e, eOpts) {
                     if (checked) {
                         record.set('is_checked', true);
                     } else {
@@ -51,7 +51,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
     keyMapEnabled: true,
     keyMap: {
         scope: 'this',
-        ESC: function() {
+        ESC: function () {
             let record = this.upVM().get('billingGrid.selection'),
                 grid = Ext.ComponentQuery.query('agreements\\.billing\\.grid')[0];
 
@@ -66,14 +66,14 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
         tpl: new Ext.XTemplate(
             '<div class="a-header-{[this.parceString(values.name)]}">{[this.parceString(values.name)]} ({count})</div>',
             {
-                parceString: function(value) {
+                parceString: function (value) {
                     if (value == '1') {
                         return 'Active';
                     } else {
                         return 'Disabled';
                     }
                 },
-            },
+            }
         ),
     },
     emptyText: {
@@ -100,7 +100,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                 bind: {
                     permission: '{userPermissions}',
                 },
-                handler: function(btn, e) {
+                handler: function (btn, e) {
                     let record = this.upVM().get('object_record'),
                         companyId = record.get('org_id'),
                         vm = this.upVM();
@@ -144,7 +144,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) {
                             if (record.get('active')) {
                                 return 'item-active';
@@ -185,7 +185,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(btn, e) {
+                            handler: function (btn, e) {
                                 let record = this.upVM().get('object_record'),
                                     companyId = record.get('org_id'),
                                     vm = this.upVM();
@@ -237,7 +237,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                                             bind: {
                                                 permission: '{userPermissions}',
                                             },
-                                            handler: function(me) {
+                                            handler: function (me) {
                                                 let grid = this.up('grid'),
                                                     vm = this.upVM(),
                                                     contacts = vm.get('contacts'),
@@ -246,21 +246,15 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you want to delete these records?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer == 'yes') {
-                                                            Ext.each(selections, function(rec, index) {
+                                                            Ext.each(selections, function (rec, index) {
                                                                 contacts.remove(rec);
                                                             });
                                                             contacts.sync({
-                                                                success: function(err, msg) {
+                                                                success: function (err, msg) {
                                                                     Ext.toast('Record updated', 1000);
                                                                     grid.deselectAll();
-                                                                },
-                                                                failure: function(batch) {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not delete record!',
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -279,7 +273,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },
@@ -291,7 +285,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                                     iconCls: 'md-icon-outlined md-icon-settings',
                                     text: 'Customize',
                                     margin: '0 0 0 8',
-                                    handler: function() {
+                                    handler: function () {
                                         this.find('contactsGrid').getPlugin('gridviewoptions').showViewOptions();
                                     },
                                 },
@@ -316,13 +310,13 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
             sortable: false,
             menuDisabled: true,
             resizable: false,
-            renderer: function(val, record) {
+            renderer: function (val, record) {
                 return [
                     '<div class="a-person"><i class="md-icon-outlined">person</i><span class="text-truncate fw-b">' +
-                    record.data.contact_first_name +
-                    ' ' +
-                    record.data.contact_last_name +
-                    '</span></div>',
+                        record.data.contact_first_name +
+                        ' ' +
+                        record.data.contact_last_name +
+                        '</span></div>',
                 ].join('');
             },
         },
@@ -338,7 +332,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                 cls: 'a-cell-department',
                 encodeHtml: false,
             },
-            renderer: function(val, rec) {
+            renderer: function (val, rec) {
                 // if (!val) return '';
                 let store = this.upVM().get('departments');
                 var record = store.getById(val);
@@ -366,7 +360,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                 cls: 'a-cell-position',
                 encodeHtml: false,
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 if (val) {
                     return val;
                 } else {
@@ -387,11 +381,11 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                 cls: 'a-cell-email',
                 encodeHtml: false,
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 return val
                     ? '<div class="a-email c-blue-grey"><i class="md-icon-outlined">mail</i><span class="text-truncate">' +
-                    val +
-                    '</span></div>'
+                          val +
+                          '</span></div>'
                     : '<span class="a-cell-placeholder">---</span>';
             },
         },
@@ -407,7 +401,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
                 cls: 'a-cell-phone',
                 encodeHtml: false,
             },
-            renderer: function(val) {
+            renderer: function (val) {
                 return val
                     ? '<div class="a-phone c-blue-grey"><i class="md-icon-outlined">phone</i> ' + val + '</div>'
                     : '<span class="a-cell-placeholder">---</span>';
@@ -475,7 +469,7 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactsGrid', {
         },
     ],
     listeners: {
-        childtap: function(grid, location) {
+        childtap: function (grid, location) {
             if (location.record && location.columnIndex != 0) {
                 location.record.set('is_checked', false);
             }

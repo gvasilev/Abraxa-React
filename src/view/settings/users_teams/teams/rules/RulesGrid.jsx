@@ -129,13 +129,13 @@ Ext.define('Abraxa.view.settings.users_teams.teams.rules.RulesGrid', {
                         case 'port_function':
                             result = value;
                             break;
-                        case 'principal_org_id':
+                        case 'appointing_party_id':
                             result = record.get('organization_names');
                             break;
-                        case 'appointing_party_email':
+                        case 'office_id':
                             result = record.get('office_names');
                             break;
-                        case 'agency_type':
+                        case 'agency_type_id':
                             store = this.upVM().get('agencyTypes');
                             if (store) {
                                 Ext.Array.each(value, function (val) {

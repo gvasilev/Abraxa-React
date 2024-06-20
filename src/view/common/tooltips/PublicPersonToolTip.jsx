@@ -31,7 +31,7 @@ Ext.define('Abraxa.view.common.tooltips.PublicPersonToolTip', {
         formulas: {
             record_data: {
                 bind: '{user}',
-                get: function(record) {
+                get: function (record) {
                     var company_name = '';
                     var email = '';
                     var locationStr = null;

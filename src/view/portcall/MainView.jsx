@@ -310,9 +310,6 @@ Ext.define('Abraxa.view.portlog.MainView', {
             success: function (record, operation) {
                 this.setRecord(record);
             },
-            failure: function (record, operation) {
-                Ext.Msg.alert('Error', 'Could not load record');
-            },
         });
     },
 });

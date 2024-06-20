@@ -19,7 +19,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                     bindTo: '{banksGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         return (
                             '<div class="a-badge a-badge-bank"><i class="md-icon-outlined">account_balance</i></div><div><span class="a-panel-title">' +
@@ -36,7 +36,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                     bindTo: '{banksGrid.selection}',
                     deep: true,
                 },
-                get: function(record) {
+                get: function (record) {
                     if (record) {
                         return record;
                     } else {
@@ -83,7 +83,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                                 allowOver: false,
                                 closeAction: 'destroy',
                             },
-                            handler: function(item, el, eOpts) {
+                            handler: function (item, el, eOpts) {
                                 let vm = this.upVM(),
                                     store = vm.get('banks'),
                                     container = this.find('banksRightCard'),
@@ -91,19 +91,16 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                                 Ext.Msg.confirm(
                                     'Delete',
                                     'Are you sure you would like to delete this entry?',
-                                    function(answer) {
+                                    function (answer) {
                                         if (answer == 'yes') {
                                             container.hide();
                                             store.remove(record);
                                             store.sync({
-                                                success: function(err, msg) {
+                                                success: function (err, msg) {
                                                     Ext.ComponentQuery.query('[xtype=company]')[0]
                                                         .getVM()
                                                         .set('newUpdate', new Date());
                                                     Ext.toast('Record updated', 1000);
-                                                },
-                                                failure: function(batch) {
-                                                    Ext.Msg.alert('Something went wrong', 'Could not delete record!');
                                                 },
                                             });
                                         }
@@ -122,7 +119,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                                             ui: 'decline alt',
                                             text: 'Delete',
                                         },
-                                    ],
+                                    ]
                                 );
                             },
                         },
@@ -130,7 +127,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                             xtype: 'button',
                             ui: 'round tool-round-md',
                             iconCls: 'md-icon-keyboard-tab md-icon-outlined',
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = this.upVM().get('banksGrid.selection'),
                                     grid = Ext.ComponentQuery.query('financials\\.banks')[0];
 
@@ -157,7 +154,6 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
         },
         {
             xtype: 'container',
-            scrollable: true,
             cls: 'a-general-form',
             scrollable: 'y',
             padding: '8 24',
@@ -171,14 +167,14 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                     permission: '{userPermissions}',
                 },
                 listeners: {
-                    blur: function() {
+                    blur: function () {
                         let record = this.upVM().get('banksGrid.selection');
                         if (record.dirty) {
                             record.getProxy().setExtraParams({
                                 org_id: record.get('org_id'),
                             });
                             record.save({
-                                success: function() {
+                                success: function () {
                                     Ext.ComponentQuery.query('[xtype=company]')[0].getVM().set('newUpdate', new Date());
                                     Ext.toast('Record updated');
                                 },
@@ -198,7 +194,7 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                     },
                     required: true,
                     listeners: {
-                        painted: function(me) {
+                        painted: function (me) {
                             me.focus();
                         },
                     },
@@ -278,14 +274,14 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.BanksRightCard', {
                     ],
                     defaults: {
                         listeners: {
-                            change: function() {
+                            change: function () {
                                 let record = this.upVM().get('banksGrid.selection');
                                 if (record.dirty) {
                                     record.getProxy().setExtraParams({
                                         org_id: record.get('org_id'),
                                     });
                                     record.save({
-                                        success: function() {
+                                        success: function () {
                                             Ext.ComponentQuery.query('[xtype=company]')[0]
                                                 .getVM()
                                                 .set('newUpdate', new Date());

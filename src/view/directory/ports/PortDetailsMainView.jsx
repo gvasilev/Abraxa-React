@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                                     xtype: 'tool',
                                     iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                                     ui: 'tool-lg',
-                                    handler: function() {
+                                    handler: function () {
                                         window.history.back();
                                     },
                                 },
@@ -46,7 +46,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                                     xtype: 'div',
                                     cls: 'hbox',
                                     bind: {
-                                        html: '<div class="a-header-title">{object_record.name}, {object_record.countries.country_code}</div><span class="a-status-badge a-status-md bg-light-blue">Port</span>',
+                                        html: '{getPortTitleBar}',
                                     },
                                 },
                             ],
@@ -62,30 +62,31 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Country</div><div class="a-header-info-value">{object_record.country ? object_record.country:"<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '{getPortCountryBar}',
                                     },
                                 },
                                 {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Locode</div><div class="a-header-info-value">{object_record.code ? object_record.code:"<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '{getPortLocodeBar}',
                                     },
                                 },
                                 {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Timezone</div><div class="a-header-info-value">{object_record.timezone ? object_record.timezone:"<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '{getPortTimezoneBar}',
                                     },
                                 },
-                                {
-                                    xtype: 'div',
-                                    cls: 'a-header-info-item',
-                                    bind: {
-                                        html: '<div class="a-header-info-title sm-title">Port calls</div><div class="a-header-info-value">0</div>',
-                                    },
-                                },
+                                // TODO: CORE-3125: Add port calls count per port
+                                // {
+                                //     xtype: 'div',
+                                //     cls: 'a-header-info-item',
+                                //     bind: {
+                                //         html: '<div class="a-header-info-title sm-title">Port calls</div><div class="a-header-info-value">0</div>',
+                                //     },
+                                // },
                             ],
                         },
                         {
@@ -129,7 +130,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                                 },
                             ],
                             listeners: {
-                                activeTabchange: function(tabbar, newTab) {
+                                activeTabchange: function (tabbar, newTab) {
                                     if (newTab.hash === 'port') {
                                         Ext.getCmp('main-viewport')
                                             .getController()
@@ -138,7 +139,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                                         Ext.getCmp('main-viewport')
                                             .getController()
                                             .redirectTo(
-                                                'port-info/' + tabbar.upVM().get('object_record.id') + '/' + newTab.hash,
+                                                'port-info/' + tabbar.upVM().get('object_record.id') + '/' + newTab.hash
                                             );
                                     }
                                 },
@@ -190,7 +191,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
         },
     ],
     listeners: {
-        painted: function(me) {
+        painted: function (me) {
             if (me.upVM().get('currentUserType') !== 'principal') {
                 Ext.getCmp('main-viewport').getController().redirectTo('404');
             }

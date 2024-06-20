@@ -166,9 +166,6 @@ Ext.define('Abraxa.view.settings.offices.AssignOfficeBank', {
                                 store.reload();
                                 dialog.destroy();
                             },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot update office bank!');
-                            },
                         });
                     }
                 },

@@ -429,7 +429,8 @@ Ext.define('Abraxa.view.documents.DocumentInfoPanel', {
                                 tpl: new Ext.XTemplate('<div>{[this.memberName(values.children[0].data)]}</div>', {
                                     memberName: function (record) {
                                         let store = Ext.ComponentQuery.query(
-                                                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company')
+                                                    .type + 'portcall\\.main'
                                             )[0]
                                                 .upVM()
                                                 .get('members'),
@@ -619,9 +620,6 @@ Ext.define('Abraxa.view.documents.DocumentInfoPanel', {
                                                         xtype: 'button',
                                                         ui: 'danger-light small',
                                                         hidden: true,
-                                                        bind: {
-                                                            hidden: '{record.company_id != currentUser.current_company_id ? true : false}',
-                                                        },
                                                         text: 'Cancel request',
                                                         margin: '14 14 0 0',
                                                         bind: {
@@ -670,7 +668,8 @@ Ext.define('Abraxa.view.documents.DocumentInfoPanel', {
                                 tpl: new Ext.XTemplate('<div>{[this.memberName(values.children[0].data)]}</div>', {
                                     memberName: function (record) {
                                         let store = Ext.ComponentQuery.query(
-                                                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                                                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company')
+                                                    .type + 'portcall\\.main'
                                             )[0]
                                                 .upVM()
                                                 .get('members'),

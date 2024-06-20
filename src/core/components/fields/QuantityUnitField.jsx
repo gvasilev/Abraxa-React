@@ -104,7 +104,7 @@ Ext.define('Abraxa.core.components.fields.QuantityUnitField', {
             ],
         });
 
-// this.callParent(arguments);
+        // this.callParent(arguments);
     },
 
     applyUi: function (ui) {
@@ -161,7 +161,7 @@ Ext.define('Abraxa.core.components.fields.QuantityUnitField', {
     },
 
     setValue: function (value) {
-// this.callParent(arguments);
+        // this.callParent(arguments);
     },
 
     setError: function (error) {

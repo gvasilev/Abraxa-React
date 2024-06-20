@@ -40,7 +40,6 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountBalance', {
                         setAdaptiveYMin: '1',
                         showvalues: '0',
                         setadaptiveymin: '1',
-                        canvasBgColor: '#66D3DE, #FFFFFF',
                         showPlotBorder: '1',
                         drawFullAreaBorder: '0',
                         plotFillColor: 'FFFFFF',

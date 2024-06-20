@@ -69,12 +69,6 @@ Ext.define('Abraxa.view.common.dialog.common.AddEditCommodityDialogForm', {
                                             Ext.toast('Record created');
                                             me.up('dialog').destroy();
                                         },
-                                        failure: function (response) {
-                                            Ext.Msg.alert(
-                                                'Status',
-                                                'Photo upload failed! Max allowed file size 5mb. Allowed formats: (jpg, png).'
-                                            );
-                                        },
                                     });
                                 } else {
                                     var commoditiesGrid = Ext.ComponentQuery.query('#commoditiesGridItemId')[0];
@@ -90,9 +84,6 @@ Ext.define('Abraxa.view.common.dialog.common.AddEditCommodityDialogForm', {
                                     Ext.toast('Record created');
                                     me.up('dialog').destroy();
                                 }
-                            },
-                            failure: function (response) {
-                                Ext.Msg.alert('Status', 'Request Failed.');
                             },
                         });
                     } else {
@@ -122,9 +113,6 @@ Ext.define('Abraxa.view.common.dialog.common.AddEditCommodityDialogForm', {
                                 }
 
                                 Ext.toast('Record updated');
-                            },
-                            failure: function (response) {
-                                Ext.Msg.alert('Status', 'Request Failed.');
                             },
                         });
                     }
@@ -301,12 +289,6 @@ Ext.define('Abraxa.view.common.dialog.common.AddEditCommodityDialogForm', {
                                                         dialog.upVM().get('commodity').image_url =
                                                             responseData.image_url;
                                                         Ext.toast('Record updated');
-                                                    },
-                                                    failure: function (response) {
-                                                        Ext.Msg.alert(
-                                                            'Status',
-                                                            'Photo upload failed! Max allowed file size 5mb. Allowed formats: (jpg, png).'
-                                                        );
                                                     },
                                                 });
                                             }

@@ -316,7 +316,6 @@ Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentArchivedMenu', {
                                     if (paymentStore) paymentStore.reload();
                                     if (!call_from_grid) record.load();
                                 },
-                                failure: function (batch) {},
                             });
                         }
                     },

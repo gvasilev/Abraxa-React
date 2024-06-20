@@ -25,7 +25,7 @@ Ext.define('Abraxa.model.expense.DefaultExpenseItem', {
             name: 'accounting_code',
             type: 'string',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.aliases) return data.aliases.accounting_code;
             },
         },
@@ -33,7 +33,7 @@ Ext.define('Abraxa.model.expense.DefaultExpenseItem', {
             name: 'alias_name',
             type: 'string',
             persist: false,
-            mapping: function(data) {
+            mapping: function (data) {
                 if (data.aliases) return data.aliases.name;
             },
         },

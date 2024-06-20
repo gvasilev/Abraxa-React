@@ -299,7 +299,6 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
                                 me.set('balance', obj);
                             }
                         },
-                        failure: function failure(response) {},
                     });
                 }
             },
@@ -414,7 +413,6 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
                                     }
                                 }
                             },
-                            failure: function failure(response) {},
                         });
                     }
                 }

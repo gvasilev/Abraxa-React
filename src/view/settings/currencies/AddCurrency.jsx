@@ -171,9 +171,6 @@ Ext.define('Abraxa.view.settings.currencies.AddCurrency', {
                                 mixpanel.track('Add currency - button');
                                 dialog.destroy();
                             },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Cannot create currency!');
-                            },
                         });
                     } else {
                         btn.toggle();

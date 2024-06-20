@@ -91,13 +91,8 @@ Ext.define('Abraxa.view.portnews.CreateNewPostDialogController', {
                     store.remove(record);
                     store.sync({
                         success: function (err, msg) {
-                            // store.load();
                             Ext.toast('Post was deleted .', 2000);
                             dialog.destroy();
-                        },
-                        failure: function (batch) {
-                            var response = batch.operations[0].error.response.responseJson;
-                            Ext.Msg.warning('Something went wrong.', response.message);
                         },
                     });
                 }

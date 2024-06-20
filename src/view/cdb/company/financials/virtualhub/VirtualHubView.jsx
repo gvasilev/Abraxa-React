@@ -25,7 +25,7 @@ Ext.define('Abraxa.view.cdb.company.financials.virtualhub.VirtualHubView', {
                     bindTo: '{virtualHubPayments}',
                     deep: true,
                 },
-                get: function(store) {
+                get: function (store) {
                     return store.getTotalCount();
                 },
             },
@@ -54,11 +54,11 @@ Ext.define('Abraxa.view.cdb.company.financials.virtualhub.VirtualHubView', {
                             centered: true,
                             width: 280,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var store = this.find('company-virtualhub-grid').getStore();
                                     if (newValue == '') store.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var store = this.find('company-virtualhub-grid').getStore();
                                     store.removeFilter('search');
@@ -85,7 +85,7 @@ Ext.define('Abraxa.view.cdb.company.financials.virtualhub.VirtualHubView', {
                                     enableToggle: true,
                                     iconCls: 'md-icon-filter-alt md-icon-outlined',
                                     text: 'Filter',
-                                    handler: function() {
+                                    handler: function () {
                                         let grid = this.find('company-virtualhub-grid'),
                                             toggled = this.getPressed(),
                                             org_id = this.upVM().get('object_record.org_id');
@@ -113,7 +113,7 @@ Ext.define('Abraxa.view.cdb.company.financials.virtualhub.VirtualHubView', {
                                                 text: 'Export to Excel',
                                                 separator: true,
                                                 iconCls: 'md-icon-outlined md-icon-difference',
-                                                handler: function(me) {
+                                                handler: function (me) {
                                                     let grid = this.find('company-virtualhub-grid');
                                                     grid.saveDocumentAs({
                                                         type: 'xlsx', // exporter alias
@@ -132,7 +132,7 @@ Ext.define('Abraxa.view.cdb.company.financials.virtualhub.VirtualHubView', {
                                     iconCls: 'md-icon-outlined md-icon-settings',
                                     text: 'Customize',
                                     margin: '0 0 0 8',
-                                    handler: function() {
+                                    handler: function () {
                                         this.find('company-virtualhub-grid')
                                             .getPlugin('gridviewoptions')
                                             .showViewOptions();

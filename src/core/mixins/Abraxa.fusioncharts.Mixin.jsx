@@ -12,6 +12,7 @@ Charts(FusionCharts);
 Ext.define('Abraxa.fusioncharts.Mixin', {
     extend: 'Ext.Mixin',
 
+    // twoWayBindable: ['data'],
     defaultBindProperty: 'data',
 
     config: {
@@ -23,52 +24,74 @@ Ext.define('Abraxa.fusioncharts.Mixin', {
     },
     data: null,
 
+    /**
+     * @property {Boolean} isFusionChart
+     * Identifies this class and its subclasses.
+     * @readonly
+     */
     isFusionChart: true,
+
+    /**
+     * @property {Boolean} isReady
+     * Flags whether the Froala editor instance has been initialized. Initialization
+     * happens automatically when the component is created, but takes several milliseconds.
+     * Upon initialization, the {@link #event-ready} event is fired.
+     * @readonly
+     */
     isReady: false,
 
-    applyType(config) {
+    applyType: function (config) {
+        var me = this,
+            fusionChart;
+
         if (config === null) {
-            const fusionChart = this.getChart();
-            if (fusionChart) {
-                fusionChart.destroy();
-                this.getFusionChartDomElement().innerHTML = '';
-            }
+            fusionChart = me.getChart();
+            fusionChart.destroy();
+            // Froala leaves the innerHTML set to the html value. Since
+            // we're being destroyed, clean that up too.
+            me.getFusionChartDomElement().innerHTML = '';
+
             return null;
         }
-        return this.createFusionChart(config);
+        return me.createFusionChart(config);
     },
 
-    createFusionChart(config) {
-        const fusionChart = new FusionCharts(this.config);
-        const chartElement = this.chartElement;
+    createFusionChart: function (config) {
+        var me = this,
+            fusionchart = new FusionCharts(me.config),
+            chartElement = this.chartElement;
 
         if (chartElement && chartElement.id) {
-            FusionCharts.ready(() => {
-                fusionChart.render(chartElement.id);
-                fusionChart.isReady = true;
-                fusionChart.component = this;
+            FusionCharts.ready(function () {
+                fusionchart.render(chartElement.id);
+                fusionchart.isReady = true;
+                fusionchart.component = me;
+                // fusionchart.resizeTo(chartElement.dom.offsetWidth, chartElement.dom.offsetHeight);
             });
-            this.setFusionChart(fusionChart);
+            this.setFusionChart(fusionchart);
         }
 
-        return fusionChart;
+        return fusionchart;
     },
 
-    updateChart(data) {
-        const fusionChart = this.getFusionChart();
+    updateChart: function (data) {
+        var me = this,
+            chartDetails = data,
+            fusionChart = this.getFusionChart();
 
         if (fusionChart && fusionChart.isReady) {
             fusionChart.setChartData({
-                chart: data,
+                chart: chartDetails,
                 data: this.getData(),
                 categories: this.getCategories(),
-                dataset: this.getDataset(),
+                dataset: this.getData(),
             });
         }
     },
 
-    updateData(data) {
-        const fusionChart = this.getFusionChart();
+    updateData: function (data) {
+        var me = this,
+            fusionChart = this.getFusionChart();
 
         if (fusionChart && fusionChart.isReady) {
             fusionChart.setChartData({
@@ -77,9 +100,9 @@ Ext.define('Abraxa.fusioncharts.Mixin', {
             });
         }
     },
-
-    updateCategories(data) {
-        const fusionChart = this.getFusionChart();
+    updateCategories: function (data) {
+        var me = this,
+            fusionChart = this.getFusionChart();
 
         if (fusionChart && fusionChart.isReady) {
             fusionChart.setChartData({
@@ -89,9 +112,9 @@ Ext.define('Abraxa.fusioncharts.Mixin', {
             });
         }
     },
-
-    updateDataset(data) {
-        const fusionChart = this.getFusionChart();
+    updateDataset: function (data) {
+        var me = this,
+            fusionChart = this.getFusionChart();
 
         if (fusionChart && fusionChart.isReady) {
             fusionChart.setChartData({
@@ -102,18 +125,12 @@ Ext.define('Abraxa.fusioncharts.Mixin', {
             });
         }
     },
-
-    setChartDataUrl(url, type) {
-        const fusionChart = this.getFusionChart();
-        if (fusionChart) {
-            fusionChart.setChartDataUrl(url, type);
-        }
+    setChartDataUrl: function (url, type) {
+        let fusionChart = this.getFusionChart();
+        fusionChart.setChartDataUrl(url, type);
     },
-
-    setDataSource(url, type) {
-        const fusionChart = this.getFusionChart();
-        if (fusionChart) {
-            fusionChart.setChartDataUrl(url, type);
-        }
+    setDataSource: function (url, type) {
+        let fusionChart = this.getFusionChart();
+        fusionChart.setChartDataUrl(url, type);
     },
 });

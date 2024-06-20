@@ -13,7 +13,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
         selectedBerth: null,
 
         formulas: {
-            getIsPortServed: function(get) {
+            getIsPortServed: function (get) {
                 var me = this;
                 return get('isPortServed');
             },
@@ -22,7 +22,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                     bindTo: '{selectedBerth.type}',
                     deep: true,
                 },
-                get: function(type) {
+                get: function (type) {
                     if (type) {
                         return Ext.String.capitalize(type);
                     }
@@ -53,7 +53,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                             text: 'Berth',
                                             iconCls: 'md-icon-add',
                                             ui: 'action small',
-                                            handler: function(item, el, eOpts) {
+                                            handler: function (item, el, eOpts) {
                                                 // Ext.ComponentQuery.query('#mainleftmenuSlidepanelSearchId')[0].getViewModel().set('storeLoaded', false);
                                                 let me = this,
                                                     dialog = this.up('dialog'),
@@ -87,7 +87,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                     placeholder: 'Search berths',
                                     width: 280,
                                     listeners: {
-                                        change: function(me, newValue, oldValue, eOpts) {
+                                        change: function (me, newValue, oldValue, eOpts) {
                                             var grid = Ext.ComponentQuery.query('#portBerthsGridItemId')[0];
                                             let storeBerths = grid.getStore();
                                             storeBerths.setRemoteFilter(false);
@@ -142,9 +142,9 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                             margin: '0 16 0 0',
                                             ui: 'round',
                                             iconCls: 'md-icon-keyboard-backspace',
-                                            handler: function(btn, el, eOpts) {
+                                            handler: function (btn, el, eOpts) {
                                                 var mainContainer = Ext.ComponentQuery.query(
-                                                    '#portBerthsMainContainerItemId',
+                                                    '#portBerthsMainContainerItemId'
                                                 )[0];
                                                 mainContainer.setActiveItem(0);
                                                 mainContainer.getViewModel().set('selectedBerth', null);
@@ -181,7 +181,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                                 allowOver: false,
                                                 closeAction: 'destroy',
                                             },
-                                            handler: function(item, el, eOpts) {
+                                            handler: function (item, el, eOpts) {
                                                 let me = this,
                                                     dialog = this.up('dialog'),
                                                     vm = dialog.getViewModel(),
@@ -194,7 +194,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                                         recordData = recordClone.getData();
                                                     delete recordData['id'];
                                                     berth = new Abraxa.model.common.Berth(
-                                                        Object.assign({}, recordData),
+                                                        Object.assign({}, recordData)
                                                     );
                                                     berth.set('parent_id', record.get('id'));
                                                 } else {
@@ -233,28 +233,22 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                                 allowOver: false,
                                                 closeAction: 'destroy',
                                             },
-                                            handler: function(item, el, eOpts) {
+                                            handler: function (item, el, eOpts) {
                                                 let record = this.upVM().get('selectedBerth'),
                                                     store = this.upVM().get('berths');
                                                 Ext.Msg.confirm(
                                                     'Delete',
                                                     'Are you sure you would like to delete this record?',
-                                                    function(answer) {
+                                                    function (answer) {
                                                         if (answer != 'yes') return;
                                                         store.remove(selectedRow);
                                                         store.sync({
-                                                            success: function(batch) {
+                                                            success: function (batch) {
                                                                 var mainContainer = Ext.ComponentQuery.query(
-                                                                    '#portBerthsMainContainerItemId',
+                                                                    '#portBerthsMainContainerItemId'
                                                                 )[0];
                                                                 mainContainer.setActiveItem(0);
                                                                 Ext.toast('Record deleted', 1000);
-                                                            },
-                                                            failure: function(batch) {
-                                                                Ext.Msg.alert(
-                                                                    'Something went wrong',
-                                                                    'Unable to delete this record!',
-                                                                );
                                                             },
                                                         });
                                                     },
@@ -272,7 +266,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortBerths', {
                                                             ui: 'decline alt',
                                                             text: 'Delete',
                                                         },
-                                                    ],
+                                                    ]
                                                 );
                                             },
                                         },

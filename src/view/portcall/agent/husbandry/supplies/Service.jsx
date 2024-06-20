@@ -74,7 +74,6 @@ Ext.define('Abraxa.view.portcall.husbandry.supplies.Service', {
                     cls: 'a-field-icon icon-short icon-rounded non-editable',
                     subObject: 'supply',
                     disabled: true,
-                    clearable: true,
                     valueField: 'name',
                     displayField: 'name',
                     clearable: true,

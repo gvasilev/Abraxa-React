@@ -45,9 +45,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                 success: function () {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function failure() {
-                                    Ext.Msg.alert('Something went wrong', 'Could not update company.');
-                                },
                             });
                         }
                     },
@@ -231,12 +228,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                                         success: function (batch, opt) {
                                                                             Ext.toast('Record updated', 1000);
                                                                         },
-                                                                        failure: function (batch, operations) {
-                                                                            Ext.Msg.alert(
-                                                                                'Something went wrong',
-                                                                                'Cannot update user'
-                                                                            );
-                                                                        },
                                                                     });
                                                                 }
                                                             },
@@ -251,7 +242,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                             items: [
                                                 {
                                                     xtype: 'div',
-                                                    cls: 'text-center',
                                                     cls: 'fw-b fs-14 mb-16',
                                                     html: 'Square logo',
                                                 },
@@ -321,12 +311,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                                         success: function (batch, opt) {
                                                                             Ext.toast('Record updated', 1000);
                                                                         },
-                                                                        failure: function (batch, operations) {
-                                                                            Ext.Msg.alert(
-                                                                                'Something went wrong',
-                                                                                'Cannot update user'
-                                                                            );
-                                                                        },
                                                                     });
                                                                 }
                                                             },
@@ -368,12 +352,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                             record.save({
                                                                 success: function () {
                                                                     Ext.toast('Record updated', 1000);
-                                                                },
-                                                                failure: function failure() {
-                                                                    Ext.Msg.alert(
-                                                                        'Something went wrong',
-                                                                        'Could not update company.'
-                                                                    );
                                                                 },
                                                             });
                                                         }
@@ -769,15 +747,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                                                             1500
                                                                                         );
                                                                                     },
-                                                                                    failure: function (
-                                                                                        batch,
-                                                                                        operations
-                                                                                    ) {
-                                                                                        Ext.Msg.alert(
-                                                                                            'Something went wrong',
-                                                                                            'Cannot update user'
-                                                                                        );
-                                                                                    },
                                                                                 });
                                                                             }
                                                                         },
@@ -807,8 +776,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                         {
                                             xtype: 'button',
                                             text: 'Assign bank account',
-                                            ui: 'normal small',
-                                            iconCls: 'md-icon-add',
                                             testId: 'settingsCompanyBankAssignTestId',
                                             ui: 'normal small',
                                             iconCls: 'md-icon-add',
@@ -852,7 +819,6 @@ Ext.define('Abraxa.view.settings.company.CompanyProfile', {
                                                     name: 'body',
                                                     label: false,
                                                     shadow: false,
-                                                    flex: 1,
                                                     labelAlign: 'top',
                                                     flex: 1,
                                                     ui: 'froala-classic',

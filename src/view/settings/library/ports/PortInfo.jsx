@@ -48,7 +48,6 @@ Ext.define('Abraxa.view.settings.library.PortInfo', {
                             items: [
                                 {
                                     xtype: 'displayfield',
-                                    ui: 'default',
                                     encodeHtml: false,
                                     labelAlign: 'top',
                                     ui: 'field-xl',

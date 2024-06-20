@@ -68,10 +68,6 @@ Ext.define('Abraxa.view.mail.SendmailController', {
                         view.unmask();
                     },
                     failure: function (response) {
-                        Ext.Msg.alert(
-                            'Sending failed',
-                            'It seems your email settings have not been configured correctly.<br>Please make sure all details are available in your Settings profile'
-                        );
                         view.unmask();
                     },
                 });
@@ -134,8 +130,6 @@ Ext.define('Abraxa.view.mail.SendmailController', {
                 Ext.toast('Record updated', 2000);
             },
             failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
                 me.clearFileUpload(element.id);
                 list.setMasked(false);
             },

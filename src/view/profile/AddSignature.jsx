@@ -182,9 +182,6 @@ Ext.define('Abraxa.view.profile.AddSignature', {
                                 success: function (batch, opt) {
                                     Ext.toast('Record updated', 1000);
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot update user signature!');
-                                },
                             });
                             dialog.destroy();
                         } else {
@@ -194,9 +191,6 @@ Ext.define('Abraxa.view.profile.AddSignature', {
                                     Ext.toast('Record created', 1000);
                                     mixpanel.track('Create signature - button');
                                     dialog.destroy();
-                                },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Cannot create user signature!');
                                 },
                             });
                         }

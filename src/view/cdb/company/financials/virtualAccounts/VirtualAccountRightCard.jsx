@@ -44,7 +44,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
                                     iconCls: 'md-icon-outlined md-icon-keyboard-backspace',
                                     margin: '0 16 0 0',
                                     ui: 'tool-md',
-                                    handler: function() {
+                                    handler: function () {
                                         let grid = Ext.ComponentQuery.query('virtual\\.accounts\\.grid')[0];
                                         if (grid) {
                                             grid.deselectAll();
@@ -105,22 +105,22 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
                                                 bind: {
                                                     permission: '{userPermissions}',
                                                 },
-                                                handler: function(button, el, data) {
+                                                handler: function (button, el, data) {
                                                     Ext.Msg.confirm(
                                                         'Confirmation',
                                                         'Are you sure you want to delete this record?',
-                                                        function(answer) {
+                                                        function (answer) {
                                                             if (answer == 'yes') {
                                                                 let store = button.upVM().get('virtualAccounts'),
                                                                     container = this.up(
-                                                                        '[xtype=virtual\\.account\\.right\\.card]',
+                                                                        '[xtype=virtual\\.account\\.right\\.card]'
                                                                     ),
                                                                     record = this.upVM().get(
-                                                                        'virtualAccountsGrid.selection',
+                                                                        'virtualAccountsGrid.selection'
                                                                     );
                                                                 store.remove(record);
                                                                 store.sync({
-                                                                    success: function() {
+                                                                    success: function () {
                                                                         container.hide();
                                                                         Ext.toast('Record deleted', 1000);
                                                                     },
@@ -144,7 +144,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
                                                                 ui: 'decline alt loading',
                                                                 text: 'Delete',
                                                             },
-                                                        ],
+                                                        ]
                                                     );
                                                 },
                                             },
@@ -170,7 +170,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
                             bind: {
                                 permission: '{userPermissions}',
                             },
-                            handler: function(me) {
+                            handler: function (me) {
                                 let record = me.upVM().get('object_record'),
                                     virtualAccount = me.upVM().get('virtualAccountsGrid.selection'),
                                     currentCompany = me.upVM().get('currentCompany');
@@ -201,7 +201,7 @@ Ext.define('Abraxa.view.cdb.company.virtualAccounts.VirtualAccountRightCard', {
                                                     payment_currency: '{payment.currency}',
                                                     currency: '{virtualAccount.currency}',
                                                 },
-                                                get: function(data) {
+                                                get: function (data) {
                                                     if (data.payment_currency && data.currency) {
                                                         if (data.payment_currency != data.currency) {
                                                             return false;

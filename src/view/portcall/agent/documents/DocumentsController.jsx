@@ -5,7 +5,9 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
     requires: ['Ext.drag.Target'],
 
     canEdit: function () {
-        let permission = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+        let permission = Ext.ComponentQuery.query(
+            Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+        )[0]
             .upVM()
             .get('documentsEditable');
         return Object.keys(permission).length;
@@ -38,13 +40,12 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
             success: function (batch, opt) {
                 Ext.toast('Document deleted', 1500);
                 documentsViewModel.set('selectedFiles', null);
-                Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0]
+                Ext.ComponentQuery.query(
+                    Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+                )[0]
                     .getController()
                     .deleteVouchers(vouchersToDelete);
                 documentsViewModel.set('refreshFolderCount', new Date());
-            },
-            failure: function (batch, operations) {
-                Ext.Msg.alert('Something went wrong', 'Could not delete document.');
             },
         });
     },
@@ -143,12 +144,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                 Ext.toast('Record updated', 2000);
                 if (me.up('dialog')) me.up('dialog').destroy();
             },
-            failure: function failure(response) {
-                let result = Ext.decode(response.responseText);
-                Ext.Msg.alert('Something went wrong', result.message);
-                Ext.get('dropped-container').removeCls('a-dropped');
-                //store.reload();
-            },
         });
     },
 
@@ -187,9 +182,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         file.save({
             success: function (batch, opt) {
                 Ext.toast('Record updated');
-            },
-            failure: function (batch, operations) {
-                Ext.Msg.alert('Something went wrong', 'Could not update file.');
             },
         });
     },
@@ -256,7 +248,9 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this,
             currentController = this,
             view = me.getView(),
-            sectionsView = Ext.ComponentQuery.query(Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main')[0];
+            sectionsView = Ext.ComponentQuery.query(
+                Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main'
+            )[0];
 
         me.dropZone = Ext.create('Ext.plugin.dd.DropZone', {
             element: sectionsView.bodyElement,
@@ -361,9 +355,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                                 component.upVM().set('refreshFolderCount', new Date());
                                                 document.set('folder_id', old_folder.get('id'));
                                             },
-                                            failure: function (batch, operations) {
-                                                Ext.Msg.alert('Something went wrong', 'Could not update file.');
-                                            },
                                         });
                                     });
                                     me.toggleDropMarker(info, false);
@@ -409,9 +400,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                     component.upVM().set('refreshFolderCount', new Date());
                                     document.set('folder_id', old_folder.get('id'));
                                 },
-                                failure: function (batch, operations) {
-                                    Ext.Msg.alert('Something went wrong', 'Could not update file.');
-                                },
                             });
                         });
                         me.toggleDropMarker(info, false);
@@ -441,9 +429,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                             new_folder.documents().add(record.data);
                                             component.upVM().set('refreshFolderCount', new Date());
                                             document.set('folder_id', new_folder.get('id'));
-                                        },
-                                        failure: function (batch, operations) {
-                                            Ext.Msg.alert('Something went wrong', 'Could not update file.');
                                         },
                                     });
                                     me.toggleDropMarker(info, false);
@@ -482,9 +467,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
                                 new_folder.documents().add(record.data);
                                 component.upVM().set('refreshFolderCount', new Date());
                                 document.set('folder_id', new_folder.get('id'));
-                            },
-                            failure: function (batch, operations) {
-                                Ext.Msg.alert('Something went wrong', 'Could not update file.');
                             },
                         });
                         me.toggleDropMarker(info, false);
@@ -554,5 +536,6 @@ Ext.define('Abraxa.view.portcall.documents.DocumentsController', {
         var me = this;
 
         me.dragZone = me.dropZone = Ext.destroy(me.dragZone, me.dragZone);
+        // me.callParent();
     },
 });

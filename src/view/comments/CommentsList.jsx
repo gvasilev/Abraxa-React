@@ -30,7 +30,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         let currentUser = this.get('currentUser');
 
                         if (record.get('created_by') == currentUser.get('id')) {
@@ -44,7 +44,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         let commentator = record.get('commentator');
 
                         if (commentator) return commentator.first_name[0] + '.' + commentator.last_name;
@@ -55,7 +55,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record.get('created_at'))
                             return (
                                 record.get('created_at').setSeconds('00') == record.get('updated_at').setSeconds('00')
@@ -67,7 +67,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record}',
                         deep: true,
                     },
-                    get: function(record) {
+                    get: function (record) {
                         if (record) return record.likes();
                     },
                 },
@@ -76,16 +76,16 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record.likes}',
                         deep: true,
                     },
-                    get: function(likes) {
+                    get: function (likes) {
                         let html = 'Like';
                         if (likes.getCount()) {
                             html = '<strong>Liked by</strong>';
                             let currentUser = this.get('currentUser'),
                                 users = this.get('users'),
-                                user = likes.queryBy(function(rec, id) {
+                                user = likes.queryBy(function (rec, id) {
                                     return rec.get('created_by') == currentUser.get('id');
                                 }).items[0],
-                                others = likes.queryBy(function(rec, id) {
+                                others = likes.queryBy(function (rec, id) {
                                     return rec.get('created_by') != currentUser.get('id');
                                 }).items;
 
@@ -93,8 +93,8 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                                 html += '<br>You';
                             }
                             if (others) {
-                                Ext.each(others, function(u) {
-                                    let usr = users.queryBy(function(rec, id) {
+                                Ext.each(others, function (u) {
+                                    let usr = users.queryBy(function (rec, id) {
                                         return rec.get('id') == u.get('created_by');
                                     }).items[0];
                                     if (usr) {
@@ -111,7 +111,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record.updated_at}',
                         deep: true,
                     },
-                    get: function(updatedAt) {
+                    get: function (updatedAt) {
                         if (updatedAt) {
                             return Abraxa.getApplication()
                                 .getController('AbraxaController')
@@ -126,7 +126,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bindTo: '{record.created_at}',
                         deep: true,
                     },
-                    get: function(createdAt) {
+                    get: function (createdAt) {
                         if (createdAt) {
                             return Abraxa.getApplication()
                                 .getController('AbraxaController')
@@ -158,7 +158,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bind: {
                             hidden: '{object_record.is_archived}',
                         },
-                        handler: function() {
+                        handler: function () {
                             mixpanel.track('Button clicked', {
                                 Type: 'Button',
                                 Target: 'Edit comment button',
@@ -219,7 +219,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                         bind: {
                             hidden: '{object_record.is_archived}',
                         },
-                        handler: function() {
+                        handler: function () {
                             mixpanel.track('Button clicked', {
                                 Type: 'Button',
                                 Target: 'Delete comment button',
@@ -232,12 +232,12 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                             Ext.Msg.confirm(
                                 'Delete',
                                 'Are you sure you want to delete this record?',
-                                function(answer) {
+                                function (answer) {
                                     if (answer == 'yes') {
                                         store.remove(record);
                                         if (store.source) {
                                             store.getSource().sync({
-                                                success: function() {
+                                                success: function () {
                                                     mixpanel.track('Record deleted', {
                                                         Type: 'Comment',
                                                         Target: 'Right panel',
@@ -249,7 +249,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                                             });
                                         } else {
                                             store.sync({
-                                                success: function() {
+                                                success: function () {
                                                     mixpanel.track('Record deleted', {
                                                         Type: 'Comment',
                                                         Target: 'Right panel',
@@ -277,7 +277,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                                         text: 'Delete',
                                         separator: true,
                                     },
-                                ],
+                                ]
                             );
                         },
                     },
@@ -312,7 +312,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                             click: {
                                 element: 'element',
                                 delegate: 'a.a-user',
-                                fn: function(el) {
+                                fn: function (el) {
                                     if (this.component.upVM().get('record.commentator')) {
                                         var user = this.component.upVM().get('record.commentator');
                                         let tipExist = Ext.getCmp('createdByTool');
@@ -393,7 +393,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                                                 closeAction: 'destroy',
                                             },
                                         },
-                                        handler: function(btn) {
+                                        handler: function (btn) {
                                             mixpanel.track('Button clicked', {
                                                 Type: 'Button',
                                                 Target: 'Like comment button',
@@ -404,7 +404,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
                                                 vm = btn.upVM(),
                                                 record = btn.upVM().get('record'),
                                                 currentUser = btn.upVM().get('currentUser'),
-                                                like = likes.queryBy(function(rec, id) {
+                                                like = likes.queryBy(function (rec, id) {
                                                     return rec.get('created_by') == currentUser.get('id');
                                                 }).items[0];
 
@@ -470,7 +470,7 @@ Ext.define('Abraxa.view.comments.CommentsList', {
             click: {
                 element: 'element',
                 delegate: 'a',
-                fn: function(el) {
+                fn: function (el) {
                     let type = el.currentTarget.getAttribute('data-object-type');
                     let vm = this.component.upVM();
 

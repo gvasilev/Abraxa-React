@@ -23,7 +23,7 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                     bindTo: '{accountsStore}',
                     deep: true,
                 },
-                get: function(store) {
+                get: function (store) {
                     return store.getTotalCount();
                 },
             },
@@ -63,11 +63,11 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                             centered: true,
                             width: 280,
                             listeners: {
-                                change: function(field, newValue, oldValue, eOpts) {
+                                change: function (field, newValue, oldValue, eOpts) {
                                     var store = this.find('financial-accounts-grid').getStore();
                                     if (newValue == '') store.removeFilter('search');
                                 },
-                                action: function(me, newValue, oldValue, eOpts) {
+                                action: function (me, newValue, oldValue, eOpts) {
                                     const query = Abraxa.utils.Functions.getLowerCaseValue(this.getValue());
                                     var store = this.find('financial-accounts-grid').getStore();
                                     store.removeFilter('search');
@@ -100,7 +100,7 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                                             iconCls: 'md-icon-inventory-2 md-icon-outlined',
                                             text: 'Archive',
                                             listeners: {
-                                                painted: function(me) {
+                                                painted: function (me) {
                                                     const stateProvider = Ext.state.Provider.get();
                                                     const state =
                                                         stateProvider.state['financial-accounts-grid-filterbar'];
@@ -109,7 +109,7 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                                                     }
                                                 },
                                             },
-                                            handler: function() {
+                                            handler: function () {
                                                 let store = this.find('financial-accounts-grid').getStore(),
                                                     toggled = this.getPressed();
 
@@ -147,7 +147,7 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                                                 text: 'Export to Excel',
                                                 separator: true,
                                                 iconCls: 'md-icon-outlined md-icon-difference',
-                                                handler: function(me) {
+                                                handler: function (me) {
                                                     let grid = this.find('financial-accounts-grid');
                                                     grid.saveDocumentAs({
                                                         type: 'xlsx', // exporter alias
@@ -167,7 +167,7 @@ Ext.define('Abraxa.view.financial.accounts.FinancialAccountsView', {
                                     iconCls: 'md-icon-outlined md-icon-settings',
                                     text: 'Customize',
                                     margin: '0 0 0 8',
-                                    handler: function() {
+                                    handler: function () {
                                         this.find('financial-accounts-grid')
                                             .getPlugin('gridviewoptions')
                                             .showViewOptions();

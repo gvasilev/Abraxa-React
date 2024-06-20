@@ -53,9 +53,6 @@ Ext.define('Abraxa.view.settings.company.VerifyController', {
                             dialog.destroy();
                         }
                     },
-                    failure: function (batch) {
-                        Ext.Msg.alert('Something went wrong', 'Something went wrong');
-                    },
                 });
             } else {
                 me.toggle();

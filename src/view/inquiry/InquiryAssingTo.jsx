@@ -82,7 +82,6 @@ Ext.define('Abraxa.view.inquiry.InquiryAssingTo', {
                         {
                             xtype: 'user.combo',
                             testId: 'assignUserInquiryToCombo',
-                            flex: 1,
                             label: 'Assign to',
                             placeholder: 'Choose assignee',
                             labelAlign: 'left',
@@ -131,9 +130,6 @@ Ext.define('Abraxa.view.inquiry.InquiryAssingTo', {
                         Ext.toast('Record updated', 1000);
                         record.load();
                         dialog.destroy();
-                    },
-                    failure: function (batch) {
-                        // Ext.Msg.alert('Something went wrong', 'Could not appoint this Inquiry!');
                     },
                 });
             },

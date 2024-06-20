@@ -17,14 +17,14 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
             complete: 'completeDisbursementGridEdit',
         },
     },
-    onDisbursementChange: function(disbursement) {
+    onDisbursementChange: function (disbursement) {
         this.disbursement = disbursement;
     },
-    updateStore: function(disbusementGrid, disbursementItemsStore) {
+    updateStore: function (disbusementGrid, disbursementItemsStore) {
         this.disbursementItems = disbursementItemsStore;
     },
 
-    completeDisbursementGridEdit: function(editor, context) {
+    completeDisbursementGridEdit: function (editor, context) {
         if (!editor.up('grid').reference) {
             //stop propagation to nested grid for vouchers grid
             //prevent double update requests for voucher price
@@ -36,19 +36,19 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                 portcall_id: record.get('portcall_id'),
             });
             record.save({
-                success: function() {
+                success: function () {
                     Ext.toast(AbraxaConstants.messages.updateRecord);
                 },
             });
         }
     },
-    completeVoucherGridEdit: function(editor) {
+    completeVoucherGridEdit: function (editor) {
         let expenseVoucher = editor.ownerCmp.getRecord(),
             disbursementType = editor.upVM().get('selectedDisbursement.type'),
             expense = editor.upVM().get('gridExpence'),
             vouchers = editor.upVM().get('disbursementInvoices'),
             sum = 0;
-        vouchers.each(function(voucher) {
+        vouchers.each(function (voucher) {
             if (voucher.get('expense_id') === expense.get('id')) {
                 sum += parseFloat(voucher.get('calculated_price'));
             }
@@ -58,25 +58,25 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                 portcall_id: expenseVoucher.get('portcall_id'),
             });
             expenseVoucher.save({
-                success: function() {
+                success: function () {
                     expense.getProxy().setExtraParams({
                         portcall_id: expense.get('portcall_id'),
                     });
                     expense.set(disbursementType + '_price', sum);
                     expense.save({
-                        success: function() {
+                        success: function () {
                             Ext.toast('Record updated', 1000);
                         },
                     });
                 },
-                failure: function() {
+                failure: function () {
                     expenseVoucher.reject();
                 },
             });
         }
     },
 
-    upload: function(files, el, record) {
+    upload: function (files, el, record) {
         let me = this,
             view = me.getView(),
             vm = view.upVM(),
@@ -116,7 +116,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                             xtype: 'button',
                             ui: 'action',
                             text: 'Ok',
-                            handler: function() {
+                            handler: function () {
                                 this.up('dialog').destroy();
                             },
                         },
@@ -130,23 +130,22 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
 
         xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
 
-        xhr.onprogress = function(e) {
+        xhr.onprogress = function (e) {
             if (e.lengthComputable) {
             }
         };
 
-        xhr.onloadstart = function(e) {
+        xhr.onloadstart = function (e) {
             Ext.getCmp('uploadProgress').show();
         };
 
-        xhr.onloadend = function(e) {
+        xhr.onloadend = function (e) {
             Ext.getCmp('uploadProgress').hide();
         };
 
-        xhr.onerror = function(e) {
-        };
+        xhr.onerror = function (e) {};
 
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             // Server Status 300 - Multiple Choices Avaible
 
             if (xhr.readyState == 4 && xhr.status == 300) {
@@ -156,7 +155,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                     Ext.Msg.alert(
                         'Unsupported file format',
                         'The file format you are trying to upload is not supported',
-                        Ext.emptyFn,
+                        Ext.emptyFn
                     );
                 }
                 if (data.data.length) {
@@ -197,7 +196,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                 if (data && data.vouchers) {
                     let vouchers = data.vouchers,
                         first = null;
-                    Ext.each(vouchers, function(value, index) {
+                    Ext.each(vouchers, function (value, index) {
                         let model = Ext.create('Abraxa.model.disbursement.Voucher', value),
                             document = new Abraxa.model.document.Document(Object.assign({}, value.document));
                         model.setDocument(document);
@@ -223,7 +222,8 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                         Ext.create('Abraxa.view.vouchers.VouchersDialog', {
                             viewModel: {
                                 parent: Ext.ComponentQuery.query(
-                                    Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type + 'portcall\\.main',
+                                    Ext.getCmp('main-viewport').upVM().get('currentUser').get('company').type +
+                                        'portcall\\.main'
                                 )[0].upVM(),
                                 data: data,
                                 formulas: {
@@ -232,7 +232,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                                             bindTo: '{vouchersList.selection}',
                                             deep: true,
                                         },
-                                        get: function(record) {
+                                        get: function (record) {
                                             if (record) {
                                                 return record;
                                             }
@@ -242,7 +242,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                                         bind: {
                                             bindTo: '{vouchersList.selection.id}',
                                         },
-                                        get: function() {
+                                        get: function () {
                                             let record = this.get('vouchersList.selection');
                                             if (record) {
                                                 let me = this;
@@ -258,7 +258,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                                             bindTo: '{disbursementRecord}',
                                             deep: true,
                                         },
-                                        get: function(record) {
+                                        get: function (record) {
                                             if (record) {
                                                 let objectPermissions = this.get('objectPermissions'),
                                                     nonEditable = this.get('nonEditable'),
@@ -301,7 +301,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                                             bindTo: '{userPermissions}',
                                             deeP: true,
                                         },
-                                        get: function(store) {
+                                        get: function (store) {
                                             if (store && Object.keys(store).length > 0) {
                                                 let record = store['portcallInvoiceCreate'];
                                                 if (record && record.edit) {
@@ -324,7 +324,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                                             bindTo: '{member}',
                                             deep: true,
                                         },
-                                        get: function(member) {
+                                        get: function (member) {
                                             if (member && member.get('role') == 'can edit') {
                                                 this.set('nonEditable', false);
                                             }
@@ -344,7 +344,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                 Ext.Msg.error(
                     'Server Error 413',
                     'Your files upload request exceeds maximum server allowed size per upload.</br>' +
-                    'Please upload files on smaller chunks , or at reduced size',
+                        'Please upload files on smaller chunks , or at reduced size'
                 );
                 return false;
             }
@@ -375,7 +375,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         xhr.send(formdata);
         mixpanel.track('Uploaded a voucher');
     },
-    checkFilesMaxSize: function(files) {
+    checkFilesMaxSize: function (files) {
         let totalSize = 0;
         for (let i = 0; i < files.length; i++) {
             totalSize += files.item(i).size;
@@ -386,7 +386,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         }
         return 0;
     },
-    onDrop: function(event, info, eOpts) {
+    onDrop: function (event, info, eOpts) {
         let type = this.getView().upVM().get('selectedDisbursement.type');
         if (type === 'pda') return;
         if (this.getView().upVM().get('nonEditable')) {
@@ -415,9 +415,9 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
             Ext.Msg.warning(
                 'Upload Cancelled',
                 'Your file(s) payload size (' +
-                (totalSize / 1024 / 1024).toFixed(2) +
-                ' MB) <br /> is exceeding the maximum allowed size (10 MB) per upload. </br>' +
-                '<br/>Please try uploading on smaller chunks, or reduce the size of your files <br />',
+                    (totalSize / 1024 / 1024).toFixed(2) +
+                    ' MB) <br /> is exceeding the maximum allowed size (10 MB) per upload. </br>' +
+                    '<br/>Please try uploading on smaller chunks, or reduce the size of your files <br />'
             );
             return;
         }
@@ -438,7 +438,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         parentNod.replaceChild(fileField, tmpForm);
     },
 
-    hideDisbursementColumn: function(button) {
+    hideDisbursementColumn: function (button) {
         let selectedDisbursement = this.getView().upVM().get('selectedDisbursement');
         let currentValue = selectedDisbursement.get(button.hidableLabel);
         if (!currentValue) {
@@ -449,7 +449,7 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         selectedDisbursement.save();
     },
 
-    deleteDisbursementExpense: function(button) {
+    deleteDisbursementExpense: function (button) {
         const view = this.getView();
         const vm = view.upVM();
         const expense = button.getParent().ownerCmp.getRecord(),
@@ -463,13 +463,13 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         Ext.Msg.confirm(
             AbraxaConstants.titles.delete,
             deleteMsg,
-            function(answer) {
+            function (answer) {
                 if (answer === 'yes') {
                     let allTypes = ['pda_id', 'dda_id', 'sda_id', 'fda_id'];
                     expense.set(selectedDisbursement.get(AbraxaConstants.labels.type) + '_id', null);
                     //check for others if is null
                     let allNull = true;
-                    Ext.Array.each(allTypes, function(type) {
+                    Ext.Array.each(allTypes, function (type) {
                         if (type !== selectedDisbursement.get(AbraxaConstants.labels.type) + '_id') {
                             if (expense.get(type)) {
                                 allNull = false;
@@ -485,9 +485,9 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                             portcall_id: expense.get('portcall_id'),
                         });
                         expense.save({
-                            success: function() {
+                            success: function () {
                                 if (invoices.count()) {
-                                    invoices.each(function(invoice) {
+                                    invoices.each(function (invoice) {
                                         invoice.set('expense_id', null);
                                     });
                                     invoices.sync();
@@ -513,11 +513,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                     text: 'Delete',
                     separator: true,
                 },
-            ],
+            ]
         );
     },
 
-    deleteDisbursement: function(button) {
+    deleteDisbursement: function (button) {
         const vm = button.upVM();
         let store = vm.get('disbursements'),
             //the next line is set in this way, because  this function has been used in different casses
@@ -529,13 +529,13 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         Ext.Msg.confirm(
             AbraxaConstants.titles.delete,
             AbraxaConstants.messages.deleteDisbursement,
-            function(answer) {
+            function (answer) {
                 if (answer == 'yes') {
                     if (allDisbursementsFromGroup.items && allDisbursementsFromGroup.items.length == 1) {
                         //this is the last disbursement from this group detach all expenses
                         let allExpensesFromGroup = expenses.query('disbursement_id', disbursement.get('group_id'));
                         if (allExpensesFromGroup.items && allExpensesFromGroup.items.length) {
-                            Ext.Array.each(allExpensesFromGroup.items, function(rec) {
+                            Ext.Array.each(allExpensesFromGroup.items, function (rec) {
                                 rec.set('disbursement_id', null);
                             });
                             expenses.sync();
@@ -543,21 +543,21 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                     }
                     //detach disbursement
                     if (allDisbursementsFromGroup.items.length) {
-                        Ext.Array.each(allDisbursementsFromGroup.items, function(rec) {
+                        Ext.Array.each(allDisbursementsFromGroup.items, function (rec) {
                             rec.set(disbursement.get(AbraxaConstants.labels.type) + '_id', null);
                         });
                     }
                     let disbursementExpenses = expenses.query(
                         disbursement.get(AbraxaConstants.labels.type) + '_id',
-                        disbursement.get('id'),
+                        disbursement.get('id')
                     );
-                    Ext.Array.each(disbursementExpenses.items, function(rec) {
+                    Ext.Array.each(disbursementExpenses.items, function (rec) {
                         rec.set(disbursement.get(AbraxaConstants.labels.type) + '_id', null);
                     });
                     expenses.sync();
                     store.remove(store.getById(disbursement.get('id')));
                     store.sync({
-                        success: function() {
+                        success: function () {
                             if (selectedAccount) selectedAccount.load();
                             Ext.toast(AbraxaConstants.messages.updateRecord);
                         },
@@ -579,11 +579,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                     text: 'Yes, Delete DA',
                     separator: true,
                 },
-            ],
+            ]
         );
     },
 
-    cellAmountRenderer: function(value, row) {
+    cellAmountRenderer: function (value, row) {
         let total = 0;
         const disbursement = this.disbursement;
         const disbursementItems = this.disbursementItems;
@@ -593,12 +593,12 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
             if (disbursement.get('grouped')) {
                 //when disbursement is grouped we need to sum all services skip filters
                 //when disbursement group is collapse total sum must be not affected
-                disbursementItems.queryBy(function(rec) {
+                disbursementItems.queryBy(function (rec) {
                     total += rec.get(row.dataIndex);
                 });
             } else {
                 //we use sum method of store because need to sum filtered services for selected disbursement
-                disbursementItems.each(function(disbursement) {
+                disbursementItems.each(function (disbursement) {
                     total += parseFloat(row.dataIndex);
                 });
             }
@@ -606,13 +606,13 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         return Ext.util.Format.number(total, AbraxaConstants.placeholders.zeroValue);
     },
 
-    summaryCellAmountRenderer: function(value, row, dataIndex) {
+    summaryCellAmountRenderer: function (value, row, dataIndex) {
         let total = 0;
         const disbursement = this.disbursement;
         const disbursementItems = this.disbursementItems;
         if (disbursementItems && disbursement) {
             if (disbursement.get('grouped')) {
-                disbursementItems.queryBy(function(rec) {
+                disbursementItems.queryBy(function (rec) {
                     total += rec.get(dataIndex);
                 });
             } else {
@@ -622,11 +622,11 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         return Ext.util.Format.number(total, AbraxaConstants.placeholders.zeroValue);
     },
 
-    emptySummaryRenderer: function() {
+    emptySummaryRenderer: function () {
         return '';
     },
 
-    disbursementValueRender: function(value) {
+    disbursementValueRender: function (value) {
         if (value) {
             return Ext.util.Format.number(value, AbraxaConstants.placeholders.zeroValue);
         } else {
@@ -634,23 +634,23 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         }
     },
 
-    varianceRenderer: function(val, row) {
+    varianceRenderer: function (val, row) {
         let pda_price = 0,
             dda_price = 0,
             final_price = 0;
-        row.store.queryBy(function(rec) {
+        row.store.queryBy(function (rec) {
             pda_price += rec.get('pda_final_price');
             dda_price += rec.get('dda_final_price');
             final_price += rec.get('fda_final_price');
         });
         return Abraxa.utils.Functions.calculateVariance(pda_price, dda_price, final_price);
     },
-    varianceExportRenderer: function(val, row) {
+    varianceExportRenderer: function (val, row) {
         let pda_price = 0,
             dda_price = 0,
             final_price = 0;
         if (this.disbursementItems) {
-            this.disbursementItems.queryBy(function(rec) {
+            this.disbursementItems.queryBy(function (rec) {
                 pda_price += rec.get('pda_final_price');
                 dda_price += rec.get('dda_final_price');
                 final_price += rec.get('fda_final_price');
@@ -659,12 +659,12 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
         return Abraxa.utils.Functions.calculateVariance(pda_price, dda_price, final_price, false);
     },
 
-    varianceSummaryRenderer: function(val, row) {
+    varianceSummaryRenderer: function (val, row) {
         let pda_price = 0,
             dda_price = 0,
             final_price = 0;
         if (this.disbursementItems) {
-            this.disbursementItems.queryBy(function(rec) {
+            this.disbursementItems.queryBy(function (rec) {
                 pda_price += rec.get('pda_final_price');
                 dda_price += rec.get('dda_final_price');
                 final_price += rec.get('fda_final_price');

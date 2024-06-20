@@ -37,8 +37,8 @@ Ext.define('Abraxa.core.components.combo.Port', {
         initialStore: null,
         value: null,
     },
-    initialize: function() {
-// this.callParent(arguments);
+    initialize: function () {
+        // this.callParent(arguments);
 
         const vm = this.getViewModel();
         const combo = this;
@@ -46,7 +46,7 @@ Ext.define('Abraxa.core.components.combo.Port', {
 
         combo.on(
             'keydown',
-            function(combo, error, eOpts) {
+            function (combo, error, eOpts) {
                 Ext.ComponentQuery.query('port\\.combo').forEach((element) => {
                     if (element.containsFocus) {
                         element.config.value = element.getValue() ? [...element.getValue()] : [];
@@ -56,12 +56,12 @@ Ext.define('Abraxa.core.components.combo.Port', {
                     }
                 });
             },
-            this,
+            this
         );
 
         combo.on(
             'mousedown',
-            function(combo, error, eOpts) {
+            function (combo, error, eOpts) {
                 Ext.ComponentQuery.query('port\\.combo').forEach((element) => {
                     if (element.containsFocus) {
                         element.config.value = element.getValue() ? [...element.getValue()] : [];
@@ -71,10 +71,10 @@ Ext.define('Abraxa.core.components.combo.Port', {
                     }
                 });
             },
-            this,
+            this
         );
 
-        combo.on('change', function(combo, newValue, oldValue, eOpts) {
+        combo.on('change', function (combo, newValue, oldValue, eOpts) {
             if (newValue && newValue.length > 0) {
                 const selectedRecord = combo
                     .getStore()
@@ -89,7 +89,7 @@ Ext.define('Abraxa.core.components.combo.Port', {
         }),
             combo.getStore().on(
                 'load',
-                function(store, records, successful, operation, eOpts) {
+                function (store, records, successful, operation, eOpts) {
                     setTimeout(() => {
                         if (!combo.config.initialStore && combo.getStore().getCount() > 0) {
                             combo.config.initialStore = [...combo.getStore().getData().items];
@@ -102,7 +102,7 @@ Ext.define('Abraxa.core.components.combo.Port', {
                                     index ===
                                     self.findIndex(
                                         (item) =>
-                                            item.data[combo.getValueField()] === current.data[combo.getValueField()],
+                                            item.data[combo.getValueField()] === current.data[combo.getValueField()]
                                     )
                                 );
                             });
@@ -111,12 +111,12 @@ Ext.define('Abraxa.core.components.combo.Port', {
                         }
                     }, 0);
                 },
-                this,
+                this
                 // { single: true }
             );
     },
     listeners: {
-        beforequery: function() {
+        beforequery: function () {
             let store = this.getStore();
             if (!store.loadCount) store.load();
         },
