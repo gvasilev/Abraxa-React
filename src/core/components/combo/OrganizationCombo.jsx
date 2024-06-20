@@ -242,7 +242,9 @@ Ext.define('Abraxa.core.components.combo.OrganizationCombo', {
                                                 });
                                                 combo.setValue(newValues);
                                             } else {
-                                                combo.clearValue();
+                                                if(combo) {
+                                                    combo.clearValue();
+                                                }
                                             }
 
                                             let store = Ext.ComponentQuery.query('[cls~=invite_container]')[0]

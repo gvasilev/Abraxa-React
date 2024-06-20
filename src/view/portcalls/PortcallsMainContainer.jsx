@@ -4,6 +4,7 @@ import '../financial/accounts/FinancialAccountsView';
 import '../financial/disbursements/FinancialDisbursementsView';
 import '../financial/transactions/FinancialTransactionsView';
 import './PortcallsHeader';
+import '../../core/globals/Abraxa.Export';
 
 Ext.define('Abraxa.view.portcalls.PortcallsMainContainer', {
     extend: 'Ext.Container',

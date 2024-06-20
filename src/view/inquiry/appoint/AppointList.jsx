@@ -1,3 +1,4 @@
+import './CreateAppoinment';
 Ext.define('Abraxa.view.inquiry.appoint.AppointList', {
     extend: 'Ext.Dialog',
     testId: 'inquiryAppointList',

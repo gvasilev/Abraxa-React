@@ -203,7 +203,7 @@ Ext.define('Abraxa.view.settings.library.ports.CreateEditWorkingTime', {
                                 success: function (batch, opt) {
                                     portServedRecord.set('updated_by_user', currentUser.getData());
                                     portServedRecord.set('updated_at', new Date());
-                                    portServedRecorddd.save();
+                                    portServedRecord.save();
                                     Ext.toast('Record created', 1000);
                                     dialog.destroy();
                                 },
