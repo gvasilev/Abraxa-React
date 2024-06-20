@@ -485,7 +485,7 @@ Ext.define('Abraxa.view.main.UserMenu', {
                             cls: 'a-menu-logout',
                             iconCls: 'md-icon-exit-to-app',
                             handler: function handler() {
-                                Ext.getApplication().logout();
+                                auth0Logout();
                             },
                         },
                     ],

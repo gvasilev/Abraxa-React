@@ -44,16 +44,16 @@ Ext.define('Abraxa.core.components.fields.DateTimeField', {
                     datetrigger: null,
                     expand: null,
                 },
-                floatedPicker: {
-                    listeners: {
-                        select: function (me, value) {
-                            this.up('abraxa\\.datetimefield').setDateTime(value);
-                            this.up('abraxa\\.datetimefield').getAt(1).focus();
-                            this.up('abraxa\\.datetimefield').blur();
-                            this.hide();
-                        },
-                    },
-                },
+                // floatedPicker: {
+                //     listeners: {
+                //         select: function (me, value) {
+                //             this.up('abraxa\\.datetimefield').setDateTime(value);
+                //             this.up('abraxa\\.datetimefield').getAt(1).focus();
+                //             this.up('abraxa\\.datetimefield').blur();
+                //             this.hide();
+                //         },
+                //     },
+                // },
                 listeners: {
                     keyup: function () {
                         let value = this.up('abraxa\\.datetimefield').getValue();

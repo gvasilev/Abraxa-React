@@ -43,6 +43,11 @@ const App = () => {
                             Ext.Ajax.on(
                                 'beforerequest',
                                 function (conn, options, eOptions) {
+                                    if (!options.headers) {
+                                        options.headers = {};
+                                    }
+                                    options.headers['Authorization'] = 'Bearer ' + tokenClaims.__raw;
+
                                     let routeHash = Ext.Viewport.getViewModel().get('routeHash'),
                                         object_id = null;
                                     if (routeHash == '#portcall') {
@@ -72,8 +77,8 @@ const App = () => {
         }
     }, [isAuthenticated, getIdTokenClaims]);
 
-    const handleLogout = () => {
-        logout({ returnTo: window.location.origin });
+    const auth0Logout = () => {
+        logout({ logoutParams: { returnTo: window.location.origin } });
     };
 
     if (isLoading) {
@@ -85,27 +90,24 @@ const App = () => {
     }
 
     if (!isAuthenticated) {
-        loginWithRedirect();
+        loginWithRedirect({
+            appState: {
+                returnTo: '/#dashboard'
+            }
+        });
         return null; // Don't render anything while redirecting to login
     }
 
     if (isAuthenticated && isExtAppReady) {
-        return (
-            <div
-                style={{
-                    boxSizing: 'border-box',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}>
-                <TempView />
-                <button id="logoutButton" onClick={handleLogout} style={{ display: 'none' }}>
-                    Logout
-                </button>
-            </div>
-        );
+        window.auth0Logout = auth0Logout; // Make logout function available globally
+        return <TempView style={{
+            boxSizing: 'border-box',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+        }}></TempView>;
     }
 
-    return <Preloader />; // Return null while waiting for ExtJS app to be ready
+    return <Preloader />; // Return Loader while waiting for ExtJS app to be ready
 };
 export default App;
