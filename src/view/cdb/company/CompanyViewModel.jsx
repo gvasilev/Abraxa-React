@@ -409,7 +409,9 @@ Ext.define('Abraxa.view.cdb.company.CompanyViewModel', {
                                     if (obj) {
                                         me.set('months', obj.months);
                                         delete obj.months;
-                                        fusionchart.setJSONData(obj);
+                                        if(obj.dataset && obj.dataset.length > 0 ) {
+                                            fusionchart.setJSONData(obj);
+                                        }
                                     }
                                 }
                             },
