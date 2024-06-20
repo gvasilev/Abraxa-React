@@ -1,4 +1,5 @@
 import './CreateProforma';
+import '../inquiryDetails/ProformaEditMenu';
 
 Ext.define('Abraxa.view.inquiry.inquiryDetails.ProformaGrid', {
     extend: 'Ext.grid.Grid',

@@ -206,11 +206,10 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                             bindTo: '{columns}',
                         },
                         get: function (store) {
-                            let columnId = this.getView().getDataIndex();
-
-                            record = store.queryBy(function (rec) {
-                                return rec.get('dataIndex') == columnId;
-                            }).items[0];
+                            let columnId = this.getView().getDataIndex(),
+                                record = store.queryBy(function (rec) {
+                                    return rec.get('dataIndex') == columnId;
+                                }).items[0];
 
                             return record;
                         },
@@ -1341,13 +1340,15 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                     handler: function (me) {
                         let record = this.upVM().get('tariffTablesList.selection');
 
-                        record.set('updated_at', new Date());
+                        if (record && record.dirty) {
+                            record.set('updated_at', new Date());
 
-                        record.save({
-                            success: function () {
-                                Ext.toast('Record updated', 1000);
-                            },
-                        });
+                            record.save({
+                                success: function () {
+                                    Ext.toast('Record updated', 1000);
+                                },
+                            });
+                         }
                     },
                 },
             ],

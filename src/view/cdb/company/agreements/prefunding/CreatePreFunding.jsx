@@ -453,8 +453,8 @@ Ext.define('Abraxa.view.cdb.company.agreements.prefunding.CreatePreFunding', {
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     prefundings = vm.get('prefundings'),
-                    prefunding = vm.get('prefunding');
-                form = dialog.down('formpanel');
+                    prefunding = vm.get('prefunding'),
+                    form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     prefunding.getProxy().setExtraParams({

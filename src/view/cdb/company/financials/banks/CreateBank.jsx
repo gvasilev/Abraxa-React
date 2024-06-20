@@ -238,8 +238,8 @@ Ext.define('Abraxa.view.cdb.company.financials.banks.CreateBank', {
                     dialog = me.up('dialog'),
                     company = vm.get('selectedCompany'),
                     banks = vm.get('banks'),
-                    bank = vm.get('bank');
-                form = dialog.down('formpanel');
+                    bank = vm.get('bank'),
+                    form = dialog.down('formpanel');
                 if (form.validate()) {
                     form.down('form\\.error').setHtml('').hide().removeCls('error');
                     bank.getProxy().setExtraParams({

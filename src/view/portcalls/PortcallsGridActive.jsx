@@ -1,6 +1,7 @@
 import './agent/PortcallsAgentEditMenu';
 import './CreatePortcall';
 import '../common/Global';
+import './agent/PortcallsAgentArchivedMenu';
 
 var doubleClickInProgress = false;
 Ext.define('Abraxa.view.portcalls.PortcallsGridActive', {

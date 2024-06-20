@@ -141,11 +141,10 @@ Ext.define('Abraxa.view.settings.library.ports.UploadController', {
     },
     clearFileUpload(id) {
         // get the file upload element
-        fileField = document.getElementById(id);
-        // get the file upload parent element
-        parentNod = fileField.parentNode;
-        // create new element
-        tmpForm = document.createElement('form');
+        let fileField = document.getElementById(id),
+            tmpForm = document.createElement('form'),
+            parentNod = fileField.parentNode;
+
         parentNod.replaceChild(tmpForm, fileField);
         tmpForm.appendChild(fileField);
         tmpForm.reset();

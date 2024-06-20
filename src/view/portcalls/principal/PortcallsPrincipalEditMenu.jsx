@@ -1,3 +1,5 @@
+import '../../portcall/PortcallDeleteDialog';
+
 Ext.define('Abraxa.view.portcalls.principal.PortcallsPrincipalEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'portcalls.principal.edit.menu',

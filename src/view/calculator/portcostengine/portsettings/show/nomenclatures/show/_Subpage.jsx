@@ -490,7 +490,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.nomenclature
                                             failure: function (batch, functions) {
                                                 me.upVM().get('treeStore').rejectChanges();
                                                 me.up('dialog')
-                                                    .down('form\\.error')
+                                                    ?.down('form\\.error')
                                                     .setHtml('Please fill all required fields')
                                                     .show()
                                                     .addCls('error');

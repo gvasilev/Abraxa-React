@@ -4,6 +4,7 @@ import '../../store/common/port/Berths';
 import '../../store/sof/DefaultEvents';
 import '../../store/common/DefaultExpenseItems';
 import '../../store/chatter/Messages';
+import '../../core/globals/Abraxa.Sof';
 
 Ext.define('Abraxa.view.portcall.PortcallMainViewModel', {
     extend: 'Ext.app.ViewModel',

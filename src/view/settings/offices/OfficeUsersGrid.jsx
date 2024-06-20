@@ -127,8 +127,8 @@ Ext.define('Abraxa.view.settings.offices.OfficeUserGrid', {
             renderer: function (value, rec) {
                 if (value) {
                     let roles = this.upVM().get('roles'),
-                        roleId = rec.getUser().get('role_id'),
-                        record = roles.getById(roleId);
+                        roleId = rec.getUser()?.get('role_id'),
+                        record = roleId ? roles.getById(roleId) : null;
                     if (record) {
                         return (
                             '<span class="a-status-badge status-role status-round"><i class="md-icon-outlined fs-16 mr-8">manage_accounts</i>' +

@@ -2,6 +2,7 @@ import './PortcallInfoDialog';
 import '../../store/mail/Templates';
 import '../../store/mail/Snippets';
 import '../../store/mail/Attachments';
+import '../portcalls/agent/PortcallsAgentArchivedMenu';
 
 Ext.define('Abraxa.view.portcall.PortCallHeader', {
     extend: 'Ext.Container',

@@ -1,4 +1,5 @@
 import '../notes/AddNotePopup';
+import '../portcalls/agent/PortcallsAgentArchivedMenu';
 
 Ext.define('Abraxa.view.portcalls.agent.PortacallAgentCard', {
     extend: 'Ext.Container',

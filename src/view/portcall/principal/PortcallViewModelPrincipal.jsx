@@ -1,4 +1,5 @@
 import '../../../store/chatter/Messages';
+import '../../../core/globals/Abraxa.Sof';
 
 Ext.define('Abraxa.view.portcall.principal.PortcallViewModelPrincipal', {
     extend: 'Ext.app.ViewModel',
