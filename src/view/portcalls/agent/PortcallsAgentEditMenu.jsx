@@ -1,3 +1,4 @@
+import './PortcallsAgentArchive';
 Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentEditMenu', {
     extend: 'Ext.menu.Menu',
     xtype: 'portcalls.agent.edit.menu',
