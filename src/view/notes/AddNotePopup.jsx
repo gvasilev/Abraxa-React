@@ -9,10 +9,6 @@ Ext.define('Abraxa.view.notes.AddNotePopup', {
     right: 80,
     bottom: 0,
     alwaysOnTop: true,
-    showAnimation: {
-        type: 'slide',
-        direction: 'up',
-    },
     modal: false,
     width: 480,
     collapsible: {
