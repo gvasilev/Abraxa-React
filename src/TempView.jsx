@@ -37,6 +37,7 @@ import '../styles/1.css';
 import '../styles/2.css';
 import '../styles/3.css';
 import '../styles/4.css';
+import './helpers/mention/mention.css';
 
 const TempView = () => {
     return <ReExt xtype="MainViewPort" />;

@@ -95,14 +95,15 @@ Ext.define('Abraxa.view.comments.CommentsInput', {
                                     users = this.component.upVM().get('users'),
                                     fieldId = 'mention';
 
-                                let myMention = new Mention({
-                                    input: Ext.fly(this.el.dom).query('.content_editable_element')[0],
+                                new Mention({
+                                    input: Ext.fly(this.el.dom).query('.mention_div')[0],
                                     reverse: true,
                                     options: data,
                                     // update: function () {
                                     //     document.querySelector('#data').innerHTML = JSON.stringify(this.findMatches(), null, '\t')
                                     // },
                                     match: function (word, option) {
+                                        console.log(word, option);
                                         return (
                                             option.name.startsWith(word) ||
                                             option.description.toLowerCase().indexOf(word.toLowerCase()) >= 0

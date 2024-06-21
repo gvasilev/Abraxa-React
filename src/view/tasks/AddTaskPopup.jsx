@@ -9,11 +9,7 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
     },
     right: 80,
     bottom: 0,
-    // alwaysOnTop: true,
-    showAnimation: {
-        type: 'slide',
-        direction: 'up',
-    },
+    alwaysOnTop: true,
     modal: false,
     width: 480,
     collapsible: {
@@ -23,10 +19,6 @@ Ext.define('Abraxa.view.tasks.AddTaskPopup', {
     focusable: false,
     closable: false,
     minHeight: 410,
-    layout: {
-        type: 'vbox',
-        align: 'stretch',
-    },
     padding: '0 24 16 24',
     cls: 'a-dialog-add-task',
     reference: 'add_edit_task',

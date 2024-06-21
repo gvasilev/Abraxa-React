@@ -6,7 +6,7 @@ import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 import 'moment-timezone';
 import numeral from 'numeral';
-import Mention from './helpers/mention/Mention';
+import UserMention from './helpers/mention/Mention';
 import WebViewer from '@pdftron/webviewer';
 import * as Sentry from "@sentry/react";
 
@@ -35,7 +35,7 @@ mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
 window.moment = moment;
 window.mixpanel = mixpanel;
 window.numeral = numeral;
-window.Mention = Mention;
+window.Mention = UserMention;
 window.WebViewer = WebViewer;
 
 (async () => {
