@@ -87,5 +87,9 @@ Ext.define('Abraxa.model.disbursement.Voucher', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'disbursement_files/${portcall_id}',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        },
     },
 });

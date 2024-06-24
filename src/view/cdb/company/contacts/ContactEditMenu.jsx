@@ -43,8 +43,8 @@ Ext.define('Abraxa.view.cdb.company.contacts.ContactEditMenu', {
                 let container = this.find('contactsRightCard'),
                     organizations = Ext.getCmp('main-viewport').getViewModel().get('organizations'),
                     currentUser = Ext.getCmp('main-viewport').getViewModel().get('currentUser'),
-                    record = me.upVM().get('selectedContact');
-                store = me.upVM().get('contacts');
+                    record = me.upVM().get('selectedContact'),
+                    store = me.upVM().get('contacts');
 
                 Ext.Msg.confirm(
                     'Delete',

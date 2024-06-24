@@ -2,7 +2,7 @@ import './Preloader.css';
 
 const Preloader = () => {
     return (
-        <div id="preloader" className="a-preloader-container" height='400'>
+        <div id="preloader" className="a-preloader-container" height="400">
             <div className="a-preloader-logo">
                 <img src="https://static.abraxa.com/images/logo.svg" alt="Abraxa" />
             </div>

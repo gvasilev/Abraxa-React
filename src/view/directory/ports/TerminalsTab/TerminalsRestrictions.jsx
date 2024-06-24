@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.width ? selectedRecord.width : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.restriction_max_beam ? selectedRecord.restriction_max_beam + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.ship_length ? selectedRecord.ship_length : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.restriction_max_loa ? selectedRecord.restriction_max_loa + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -84,7 +84,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_max_draft ? selectedRecord.restriction_max_draft : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.restriction_max_draft ? selectedRecord.restriction_max_draft + " m" : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -99,7 +99,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_channel_draft ? selectedRecord.restriction_channel_draft : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{minMaxChannelDraftTerminal}',
                                     },
                                 },
                             ],
@@ -135,7 +135,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_max_air_draft ? selectedRecord.restriction_max_air_draft : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.restriction_max_air_draft ? selectedRecord.restriction_max_air_draft + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -150,7 +150,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_naabsa ? selectedRecord.restriction_naabsa : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoNaabsaTerminalBerth}',
                                     },
                                 },
                             ],
@@ -165,7 +165,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_daylight_navigation ? selectedRecord.restriction_daylight_navigation : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoDaylightNavigationTerminal}',
                                     },
                                 },
                             ],
@@ -180,7 +180,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsRestrictions', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.restriction_tides ? selectedRecord.restriction_tides : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoTidesTerminal}',
                                     },
                                 },
                             ],

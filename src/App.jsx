@@ -28,16 +28,19 @@ const App = () => {
                         stores: [
                             'View', // creates one global instance of the Menu store (Ext.getStore('Menu'))
                         ],
-                        launch: function() {
+                        launch: function () {
                             // Call the login function which returns a Promise
-                            Ext.Viewport.getController().loginUser().then(function() {
-                                // Proceed with the rest of the launch process once the user is logged in
-                                Ext.Viewport.getController().initAfterLogin();
-                                setIsExtAppReady(true);
-                            }).catch(function(error) {
-                                // Handle login failure (show error message, redirect to login page, etc.)
-                                console.error('Login failed:', error);
-                            });
+                            Ext.Viewport.getController()
+                                .loginUser()
+                                .then(function () {
+                                    // Proceed with the rest of the launch process once the user is logged in
+                                    Ext.Viewport.getController().initAfterLogin();
+                                    setIsExtAppReady(true);
+                                })
+                                .catch(function (error) {
+                                    // Handle login failure (show error message, redirect to login page, etc.)
+                                    console.error('Login failed:', error);
+                                });
 
                             //KILL THIS ASAP!!!
                             Ext.Ajax.on(
@@ -92,20 +95,23 @@ const App = () => {
     if (!isAuthenticated) {
         loginWithRedirect({
             appState: {
-                returnTo: '/#dashboard'
-            }
+                returnTo: '/#dashboard',
+            },
         });
         return null; // Don't render anything while redirecting to login
     }
 
     if (isAuthenticated && isExtAppReady) {
         window.auth0Logout = auth0Logout; // Make logout function available globally
-        return <TempView style={{
-            boxSizing: 'border-box',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-        }}></TempView>;
+        return (
+            <TempView
+                style={{
+                    boxSizing: 'border-box',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}></TempView>
+        );
     }
 
     return <Preloader />; // Return Loader while waiting for ExtJS app to be ready

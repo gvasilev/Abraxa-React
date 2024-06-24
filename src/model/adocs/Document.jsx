@@ -74,5 +74,9 @@ Ext.define('Abraxa.model.adocs.Document', {
     proxy: {
         type: 'rest',
         url: Env.ApiEndpoint + 'document',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        },
     },
 });

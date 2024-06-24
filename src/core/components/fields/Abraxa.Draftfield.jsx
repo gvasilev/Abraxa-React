@@ -49,7 +49,7 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
                 minValue: 0,
                 clearable: false,
                 listeners: {
-                   change: function (me, newValue, oldValue) {
+                    change: function (me, newValue, oldValue) {
                         this.oldValue = oldValue;
                         this.up('draftfield').setValue(newValue);
                         this.up('draftfield').fireEvent('change', me, newValue, oldValue);
@@ -119,7 +119,6 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
     updateValue: function (newValue, oldValue) {
         this.down('draftnumberfield').setValue(newValue);
     },
-
 
     applyValueUnit: function (valueUnit) {
         let combobox = this.getAt(1);

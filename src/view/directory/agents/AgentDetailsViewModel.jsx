@@ -38,7 +38,7 @@ Ext.define('Abraxa.view.directory.agents.AgentDetailsViewModel', {
             },
             get: function (portsServed) {
                 if (portsServed && portsServed.length > 0) {
-                    let portsArr = portsServed.filter((item) => item.port);
+                    let portsArr = portsServed.map((item) => item.port);
 
                     let sortedPorts = portsArr.sort((a, b) => {
                         return a.port_name.localeCompare(b.port_name);
@@ -70,21 +70,17 @@ Ext.define('Abraxa.view.directory.agents.AgentDetailsViewModel', {
         googleMapMarkerData: {
             bind: '{portsServed}',
             get: function (ports) {
-                let meView = this.getView();
+                const meView = this.getView();
                 let markersDataArr = [];
                 if (ports && ports.length > 0) {
                     ports.forEach(function (portEl) {
-                        if (portEl.port && portEl.port.point) {
-                            let ptStr = portEl.port.point;
+                        if (!portEl?.center) return;
+                        const lat = portEl.center.latitude;
+                        const lng = portEl.center.longitude;
+                        const portId = portEl.id || null;
+                        const portName = portEl.port_name || null;
 
-                            let ptArr = JSON.parse(ptStr);
-                            let lat = ptArr.coordinates[1];
-                            let lng = ptArr.coordinates[0];
-                            let portId = portEl.port.id || null;
-                            let portName = portEl.port.name || null;
-
-                            markersDataArr.push({ lat, lng, portId, portName });
-                        }
+                        markersDataArr.push({ lat, lng, portId, portName });
                     });
                 }
 
@@ -93,31 +89,24 @@ Ext.define('Abraxa.view.directory.agents.AgentDetailsViewModel', {
                     markersDataArr = [{ lat: 43.1982, lng: 27.7923, portId: 8563, portName: 'Varna' }];
                 }
 
-                let gMapCmp = meView.down('AbraxaGoogleMap');
+                const gMapCmp = meView.down('AbraxaGoogleMap');
                 async function initMap() {
                     // Request needed libraries.
-                    // let AdvancedMarkerElement = (await google.maps.importLibrary("marker")).AdvancedMarkerElement;
-                    let MarkerElement = (await google.maps.importLibrary('marker')).Marker;
+                    const MarkerElement = (await google.maps.importLibrary('marker')).Marker;
 
                     // Set Varna as center!
                     let map = gMapCmp.googleMapInstance;
 
                     if (!map) {
-                        let { Map } = await google.maps.importLibrary('maps');
+                        const { Map } = await google.maps.importLibrary('maps');
                         map = new Map(gMapCmp.element.dom, gMapCmp.mapConfig);
                         gMapCmp.googleMapInstance = map;
                     }
 
                     markersDataArr.forEach(function (markerData) {
-                        // let gmapMarker = document.createElement("div");
-
-                        // gmapMarker.className = "google-map-marker";
-                        // gmapMarker.textContent = markerData.portName;
-
                         let marker = new MarkerElement({
                             map,
                             position: { lat: markerData.lat, lng: markerData.lng },
-                            // content: gmapMarker,
                         });
 
                         marker.addListener('click', () => {

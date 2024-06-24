@@ -394,8 +394,8 @@ Ext.define('Abraxa.view.portcall.husbandary.supplies.SuppliesController', {
                     currencyRateStore = vm.get('currencyRateStore'),
                     list = Ext.ComponentQuery.query('[cls~=vouchers_list]')[0];
 
-                if (data && data.vouchers) {
-                    let vouchers = data.vouchers,
+                if (data && data.data) {
+                    let vouchers = data.data,
                         first = null;
                     Ext.each(vouchers, function (value, index) {
                         let model = Ext.create('Abraxa.model.disbursement.Voucher', value),

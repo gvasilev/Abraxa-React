@@ -107,23 +107,17 @@ Ext.define('Abraxa.view.voyage.VoyageViewModel', {
                 bindTo: '{agentCombo.selection}',
             },
             get: function (agent) {
-                if (
-                    agent &&
-                    agent.getData() &&
-                    agent.getData().ports_served &&
-                    agent.getData().ports_served.length > 0
-                ) {
-                    let portsArr = agent.getData().ports_served.filter((item) => item.port);
+                const portsServed = agent?.getData()?.ports_served;
+                if (!portsServed?.length) return AbraxaConstants.placeholders.emptyValue;
 
-                    let sortedPorts = portsArr.sort((a, b) => {
-                        return a.port_name.localeCompare(b.port_name);
-                    });
+                let portsArr = agent.getData().ports_served.filter((item) => item.port);
 
-                    let portName = sortedPorts[0].port_name;
-                    return portName;
-                } else {
-                    return AbraxaConstants.placeholders.emptyValue;
-                }
+                let sortedPorts = portsArr.sort((a, b) => {
+                    return a.port_name.localeCompare(b.port_name);
+                });
+
+                let portName = sortedPorts[0].port_name;
+                return portName;
             },
         },
         renderVoyageType: {

@@ -193,8 +193,8 @@ Ext.define('Abraxa.view.portcall.disbursements.DisbursementsUploadController', {
                     expense.save();
                 }
 
-                if (data && data.vouchers) {
-                    let vouchers = data.vouchers,
+                if (data && data.data) {
+                    let vouchers = data.data,
                         first = null;
                     Ext.each(vouchers, function (value, index) {
                         let model = Ext.create('Abraxa.model.disbursement.Voucher', value),

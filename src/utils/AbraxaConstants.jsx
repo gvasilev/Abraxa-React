@@ -48,6 +48,7 @@ Ext.define('Abraxa.utils.AbraxaConstants', {
     },
     formatters: {
         date: {
+            dayMonYear: 'd M y',
             dayMonHyphenTime24: 'd M - H:i',
             dayMonYearShortHyphenTime24: 'd M Y - H:i',
             dayMonYearTime24: 'DD MMM YY HH:mm',

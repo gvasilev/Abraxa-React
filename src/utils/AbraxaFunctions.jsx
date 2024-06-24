@@ -586,10 +586,10 @@ Ext.define('Abraxa.utils.Functions', {
             const minVal = parseFloat(data[minPropName]).toFixed(digits);
             const maxVal = parseFloat(data[maxPropName]).toFixed(digits);
             if ((minVal && !isNaN(minVal)) || minVal === 0) {
-                htmlString = `${minVal}${unit}`;
+                htmlString = `${minVal} ${unit}`;
             }
             if ((maxVal && !isNaN(maxVal)) || maxVal === 0) {
-                htmlString = `${htmlString} - ${maxVal}${unit}`;
+                htmlString = `${htmlString} - ${maxVal} ${unit}`;
             }
             return htmlString;
         },

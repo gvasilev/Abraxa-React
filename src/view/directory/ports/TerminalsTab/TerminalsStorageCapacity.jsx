@@ -45,7 +45,6 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsStorageCapacity', 
                     items: [
                         //every item is container because of parent defaults
                         {
-                            //first row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -54,43 +53,26 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsStorageCapacity', 
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_bulk ? selectedRecord.storage_capacity_bulk : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_bulk ? selectedRecord.storage_capacity_bulk + " tn" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //second row container
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Liquid Cargo',
+                                    html: 'Containers',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_liquid ? selectedRecord.storage_capacity_liquid : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_container ? selectedRecord.storage_capacity_container + " TEU" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //third row container
-                            items: [
-                                {
-                                    cls: 'a-display-label',
-                                    html: 'Cold Storage',
-                                },
-                                {
-                                    cls: 'a-display-value fw-b',
-                                    bind: {
-                                        html: '{selectedRecord.storage_capacity_cold_storage ? selectedRecord.storage_capacity_cold_storage : "<span class=\'a-placeholder\'>---</span>" }',
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            //fourth row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -99,7 +81,21 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsStorageCapacity', 
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_gas ? selectedRecord.storage_capacity_gas : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_gas ? selectedRecord.storage_capacity_gas + " m³" : "<span class=\'a-placeholder\'>---</span>" }',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            items: [
+                                {
+                                    cls: 'a-display-label',
+                                    html: 'Livestock',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{selectedRecord.storage_capacity_livestock ? selectedRecord.storage_capacity_livestock + " u" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -126,37 +122,20 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsStorageCapacity', 
                     items: [
                         //every item is container because of parent defaults
                         {
-                            //first row container
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'LNG',
+                                    html: 'Liquid Cargo',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_lng ? selectedRecord.storage_capacity_lng : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_liquid ? selectedRecord.storage_capacity_liquid + " m³" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //second row container
-                            items: [
-                                {
-                                    cls: 'a-display-label',
-                                    html: 'Containers',
-                                },
-                                {
-                                    cls: 'a-display-value fw-b',
-                                    bind: {
-                                        html: '{selectedRecord.storage_capacity_container ? selectedRecord.storage_capacity_container : "<span class=\'a-placeholder\'>---</span>" }',
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            //third row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -165,22 +144,35 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsStorageCapacity', 
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_roro ? selectedRecord.storage_capacity_roro : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_roro ? selectedRecord.storage_capacity_roro + " u" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //fourth row container
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Livestock',
+                                    html: 'LNG',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.storage_capacity_livestock ? selectedRecord.storage_capacity_livestock : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.storage_capacity_lng ? selectedRecord.storage_capacity_lng + " m³" : "<span class=\'a-placeholder\'>---</span>" }',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            items: [
+                                {
+                                    cls: 'a-display-label',
+                                    html: 'Cold Storage',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{selectedRecord.storage_capacity_cold_storage ? selectedRecord.storage_capacity_cold_storage + " m³" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],

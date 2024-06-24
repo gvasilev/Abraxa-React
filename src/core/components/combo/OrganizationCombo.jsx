@@ -242,7 +242,7 @@ Ext.define('Abraxa.core.components.combo.OrganizationCombo', {
                                                 });
                                                 combo.setValue(newValues);
                                             } else {
-                                                if(combo) {
+                                                if (combo) {
                                                     combo.clearValue();
                                                 }
                                             }

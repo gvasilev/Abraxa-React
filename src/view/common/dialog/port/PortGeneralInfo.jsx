@@ -41,25 +41,25 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Alternative Names',
                                     bind: {
-                                        value: '{alternativeNames}',
+                                        value: '{alternativeNamesPort}',
                                     },
                                 },
                                 {
                                     label: 'Operational Status',
                                     bind: {
-                                        value: '{port.meta_status ? port.meta_status : "---"}',
+                                        value: '{port.meta_status ? port.meta_status : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
                                     label: 'Region',
                                     bind: {
-                                        value: '{port.meta_region ? port.meta_region : "---"}',
+                                        value: '{port.meta_region ? port.meta_region : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
                                     label: 'UN Country subdivision',
                                     bind: {
-                                        value: '{port.meta_subdivision ? port.meta_subdivision : "---"}',
+                                        value: '{port.meta_subdivision ? port.meta_subdivision : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -83,14 +83,14 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'NOA Deadline',
                                     bind: {
-                                        value: '{port.eta_message ? port.eta_message + " hours" : "---"}',
+                                        value: '{port.eta_message ? port.eta_message + " hours" : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
                                     label: 'US Representative',
                                     cls: 'a-display-value',
                                     bind: {
-                                        value: '{usRepresentative}',
+                                        value: '{yesNoUsRepresentativePort}',
                                     },
                                 },
                             ],
@@ -145,19 +145,19 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Daylight Navigation',
                                     bind: {
-                                        value: '{port.restriction_daylight_navigation === true ? "Yes" : "No"}',
+                                        value: '{yesNoDaylightNavigationPort}',
                                     },
                                 },
                                 {
                                     label: 'International Navigation Limits',
                                     bind: {
-                                        value: '{port.restriction_inl ? port.restriction_inl : "---"}',
+                                        value: '{port.restriction_inl ? port.restriction_inl : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
                                     label: 'Swell',
                                     bind: {
-                                        value: '{port.entrance_restriction_swell === true ? "Yes" : "No"}',
+                                        value: '{yesNoRestrictionSwellPort}',
                                     },
                                 },
                             ],
@@ -169,33 +169,33 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Piracy',
                                     bind: {
-                                        value: '{port.restriction_piracy === true ? "Yes" : "No"}',
+                                        value: '{yesNoRestrictionPiracyPort}',
                                     },
                                 },
                                 {
                                     label: 'War Area',
                                     bind: {
-                                        value: '{port.restriction_war_area === true ? "Yes" : "No"}',
+                                        value: '{yesNoRestrictionWarAreaPort}',
                                     },
                                 },
                                 {
                                     label: 'Tides',
                                     bind: {
-                                        value: '{port.restriction_tides === true ? "Yes" : "No"}',
+                                        value: '{yesNoRestrictionTidesPort}',
                                     },
                                 },
                                 {
                                     label: 'First Port of Entry',
                                     cls: 'a-display-value',
                                     bind: {
-                                        value: '{firstPortOfEntry}',
+                                        value: '{yesNoFirstPortOfEntryPort}',
                                     },
                                 },
                                 {
                                     label: 'Armed Guards',
                                     cls: 'a-display-value',
                                     bind: {
-                                        value: '{armedGuards}',
+                                        value: '{yesNoArmedGuardsPort}',
                                     },
                                 },
                             ],
@@ -223,6 +223,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                         defaults: {
                             xtype: 'displayfield',
                             ui: 'default',
+                            encodeHtml: false,
                             padding: 8,
                             labelAlign: 'left',
                             bodyAlign: 'end',
@@ -237,7 +238,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Pilotage Requirement',
                                     bind: {
-                                        value: '{port.pilotage_requirement ? (port.pilotage_requirement:capitalize) : "---"}',
+                                        value: '{port.pilotage_requirement ? (port.pilotage_requirement:capitalize) : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
@@ -249,7 +250,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Pilotage Comments',
                                     bind: {
-                                        value: '{port.pilotage_comments ? port.pilotage_comments : "---"}',
+                                        value: '{port.pilotage_comments ? port.pilotage_comments : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -261,7 +262,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Towage Requirement',
                                     bind: {
-                                        value: '{port.towage_requirement ? (port.towage_requirement:capitalize) : "---"}',
+                                        value: '{port.towage_requirement ? (port.towage_requirement:capitalize) : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                                 {
@@ -273,7 +274,7 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                                 {
                                     label: 'Towage Comments',
                                     bind: {
-                                        value: '{port.towage_comments ? port.towage_comments : "---"}',
+                                        value: '{port.towage_comments ? port.towage_comments : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -298,14 +299,14 @@ Ext.define('Abraxa.view.common.dialog.port.PortGeneralInfo', {
                 {
                     xtype: 'div',
                     bind: {
-                        html: '<span class="c-grey-500">Last port updated:</span> <span class="a-date">{port.updated_at ? (port.updated_at:date("d M y - H:i")):"---"}</span>',
+                        html: '<span class="c-grey-500">Last port updated:</span> <span class="a-date">{port.updated_at ? (port.updated_at:date("d M y - H:i")) : "---" }</span>',
                     },
                 },
                 {
                     xtype: 'button',
                     hidden: true,
                     bind: {
-                        hidden: '{currentUserType == "agent" ? true:false}',
+                        hidden: '{currentUserType === "agent"}',
                     },
                     ui: 'action loading',
                     text: 'View port details',

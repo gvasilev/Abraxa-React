@@ -69,7 +69,7 @@ Ext.define('Abraxa.GridHeaderContainer', {
                         }
                     }
 
-                    important: A null sorter will *clear* the UI sort indicator.
+                    //important: A null sorter will *clear* the UI sort indicator.
                     header.setSortState(sorter);
                 }
             }

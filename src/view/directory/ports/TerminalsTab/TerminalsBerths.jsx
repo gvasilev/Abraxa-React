@@ -50,7 +50,6 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsBerths', {
                                 store: '{berthsPerTerminal}',
                             },
                             itemConfig: {
-                                viewModel: true,
                                 xtype: 'container',
                                 cls: 'a-list-item',
                                 minHeight: 56,
@@ -59,13 +58,41 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsBerths', {
                                     type: 'hbox',
                                     align: 'middle',
                                 },
+                                viewModel: {
+                                    formulas: {
+                                        getBerthListTplInTerminalInfo: {
+                                            bind: {
+                                                bindTo: '{record}',
+                                                deep: true,
+                                            },
+                                            get: function (berthRecord) {
+                                                const emptySpan = AbraxaConstants.placeholders.emptySpan;
+                                                if (!berthRecord) return emptySpan;
+                                                const berthName = berthRecord.get('name') || emptySpan;
+                                                const berthType = berthRecord.get('meta_type') || emptySpan;
+                                                let berthUpdatedAt = emptySpan;
+                                                if (berthRecord.get('updated_at')) {
+                                                    berthUpdatedAt = AbraxaFunctions.formatStringToDate(
+                                                        berthRecord.get('updated_at'),
+                                                        AbraxaConstants.formatters.date.dayMonYear
+                                                    );
+                                                }
+                                                return (
+                                                    `<div class="flex-5"><span class="text-truncate fw-b c-blue">${berthName}</span></div>` +
+                                                    `<div class="flex-1 fw-b"><span class="text-truncate fw-b">${berthType}</span></div>` +
+                                                    `<div class="flex-1 fw-b"><span class="text-truncate fw-b">${berthUpdatedAt}</span></div>`
+                                                );
+                                            },
+                                        },
+                                    },
+                                },
                                 items: [
                                     {
                                         xtype: 'div',
                                         cls: 'a-list-values',
                                         flex: 1,
                                         bind: {
-                                            html: '<div class="flex-5"><span class="text-truncate fw-b c-blue">{record.name ? record.name : "<span class=\'a-placeholder\'>---</span>"}</span></div><div class="flex-1 fw-b"><span class="text-truncate fw-b">{record.type ? record.type : "<span class=\'a-placeholder\'>---</span>"}</span></div><div class="flex-1 fw-b"><span class="text-truncate fw-b">{record.updated_by ? (record.updated_by:date("d M y")) : "<span class=\'a-placeholder\'>---</span>"}</span></div>',
+                                            html: '{getBerthListTplInTerminalInfo}',
                                         },
                                     },
                                     {

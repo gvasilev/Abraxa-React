@@ -47,7 +47,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsCoordinates', {
                         {
                             cls: 'a-display-value',
                             bind: {
-                                html: '{selectedRecord.coordinates_center ? selectedRecord.coordinates_center.latitude :"<span class=\'a-placeholder\'>---</span>"}',
+                                html: '{coordinatesTerminalBerth}',
                             },
                         },
                     ],

@@ -1,4 +1,6 @@
 import '../../../../store/cdb/OrganizationVirtualAccounts';
+import '../../../../store/cdb/OrganizationVirtualAccountPayments';
+import '../../../../store/cdb/OrganizationVirtualAccountChart';
 
 Ext.define('Abraxa.view.cdb.company.financials.FinancialsViewModel', {
     extend: 'Ext.app.ViewModel',

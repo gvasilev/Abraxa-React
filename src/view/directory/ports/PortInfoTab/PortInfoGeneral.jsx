@@ -36,7 +36,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoTab.PortInfoGeneral', {
                         {
                             cls: 'a-display-value fw-b',
                             bind: {
-                                html: '{alternativeNames}',
+                                html: '{alternativeNamesPort}',
                             },
                         },
                     ],

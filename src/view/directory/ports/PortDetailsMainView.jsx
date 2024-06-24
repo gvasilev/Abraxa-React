@@ -179,7 +179,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsMainView', {
                         {
                             xtype: 'div',
                             bind: {
-                                html: '<span class="text-info">Last port updated:</span> {portInfoUpdated ? (portInfoUpdated:date("d M y")) :"---"}',
+                                html: '<span class="text-info">Port last updated:</span> {portInfoUpdated ? (portInfoUpdated:date("d M y")) :"---"}',
                             },
                         },
                     ],
