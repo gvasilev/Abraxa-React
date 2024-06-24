@@ -7,24 +7,15 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
     isField: true,
     alias: 'widget.draftfield',
     defaultListenerScope: true,
-    //    //	require		 : ['Ext.field.InputMask'],
-    //    layout: 'hbox',
-    //    defaults: {
-    //        ui: 'hovered-border classic',
-    //    },
-    //
-    //    twoWayBindable: {
-    //        valueUnit: true,
-    //        value: true,
-    //        disabled: true,
-    //        required: true,
-    //    },
-    //
-    //    publishes: ['value', 'valueUnit'],
-    //
+    layout: 'hbox',
+    defaults: {
+        ui: 'hovered-border classic',
+    },
+    publishes: ['value', 'valueUnit'],
     config: {
         value: null,
         valueUnit: 'm',
+        draftValue: null,
         label: null,
         disabled: null,
         readOnly: null,
@@ -35,6 +26,13 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
         // todo make predefined metric options
 
         options: ['cm', 'dm', 'm'],
+    },
+    twoWayBindable: {
+        valueUnit: true,
+        value: true,
+        disabled: true,
+        required: true,
+        readOnly: true,
     },
     privates: {
         items: [
@@ -51,7 +49,7 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
                 minValue: 0,
                 clearable: false,
                 listeners: {
-                    change: function (me, newValue, oldValue) {
+                   change: function (me, newValue, oldValue) {
                         this.oldValue = oldValue;
                         this.up('draftfield').setValue(newValue);
                         this.up('draftfield').fireEvent('change', me, newValue, oldValue);
@@ -77,7 +75,7 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
                 flex: 3,
                 listeners: {
                     change: function (me, newValue, oldValue) {
-                        this.oldValue = oldValue;
+                        // this.oldValue = oldValue;
                         this.up('draftfield').setValueUnit(newValue);
                         this.up('draftfield').fireEvent('change', me, newValue, oldValue);
                     },
@@ -112,18 +110,21 @@ Ext.define('Abraxa.core.components.fields.DraftField', {
     },
 
     applyValue: function (value) {
-        const draftFiled = this.getAt(0);
-        draftFiled.setValue(value);
+        if (!value) {
+            return null;
+        }
+        return value;
     },
 
-    updateValue: function (newValue) {
-        const draftFiled = this.getAt(0);
-        draftFiled.setValue(newValue);
+    updateValue: function (newValue, oldValue) {
+        this.down('draftnumberfield').setValue(newValue);
     },
+
 
     applyValueUnit: function (valueUnit) {
         let combobox = this.getAt(1);
         combobox.setValue(valueUnit);
+        return valueUnit;
     },
 
     updateValueUnit: function (newValueUnit) {

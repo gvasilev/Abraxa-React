@@ -127,63 +127,65 @@ Ext.define('Abraxa.field.DraftNumber', {
         this.setInputAttribute('step', newStepValue);
     },
 
-    applyValue: function (value, oldValue) {
-        var me = this,
-            minValue = me.getMinValue(),
-            maxValue = me.getMaxValue(),
-            precision = me.getDecimals();
+    // applyValue: function (value, oldValue) {
+    //     var me = this,
+    //         minValue = me.getMinValue(),
+    //         maxValue = me.getMaxValue(),
+    //         precision = me.getDecimals();
 
-        if (this.isConfiguring) {
-            this.originalValue = value;
-        }
+    //     if (this.isConfiguring) {
+    //         this.originalValue = value;
+    //     }
 
-        if (Ext.isNumber(minValue) && Ext.isNumber(value)) {
-            value = Math.max(value, minValue);
-        }
+    //     if (Ext.isNumber(minValue) && Ext.isNumber(value)) {
+    //         value = Math.max(value, minValue);
+    //     }
 
-        if (Ext.isNumber(maxValue) && Ext.isNumber(value)) {
-            value = Math.min(value, maxValue);
-        }
+    //     if (Ext.isNumber(maxValue) && Ext.isNumber(value)) {
+    //         value = Math.min(value, maxValue);
+    //     }
 
-        value = parseFloat(value);
+    //     value = parseFloat(value);
 
-        if (isNaN(value)) {
-            return '';
-        }
+    //     if (isNaN(value)) {
+    //         return '';
+    //     }
 
-        if (precision != null) {
-            value = Ext.Number.roundToPrecision(value, precision);
-        }
+    //     if (precision != null) {
+    //         value = Ext.Number.roundToPrecision(value, precision);
+    //     }
 
-        if (value === oldValue) {
-            // If the old value is the same as the current value
-            // because maxValue or minValue changed the value
-            // that was passed in, we need to make sure
-            // updateInputValue is executed so the <input>
-            // is properly updated and in sync with the value.
-            this.updateInputValue(numeral(value).format('00.00'));
-        }
-        if (isNaN(value)) {
-            return '';
-        } else {
-            if (value < 10) {
-                return numeral(value).format('0.00');
-            } else {
-                return numeral(value).format('00.00');
-            }
-        }
-        //return (isNaN(value)) ? '' : numeral(value).format('00.00');
-    },
+    //     if (value === oldValue) {
+    //         // If the old value is the same as the current value
+    //         // because maxValue or minValue changed the value
+    //         // that was passed in, we need to make sure
+    //         // updateInputValue is executed so the <input>
+    //         // is properly updated and in sync with the value.
+    //         this.updateInputValue(numeral(value).format('00.00'));
+    //     }
+    //     if (isNaN(value)) {
+    //         console.log('applyValue', value, oldValue);
+    //         return '';
+    //     } else {
+    //         if (value < 10) {
+    //             return numeral(value).format('0.00');
+    //         } else {
+    //             return numeral(value).format('00.00');
+    //         }
+    //     }
+    //     //return (isNaN(value)) ? '' : numeral(value).format('00.00');
+    // },
 
-    getValue: function (value) {
-        if (isNaN(value)) {
-            return '';
-        } else {
-            if (value < 10) {
-                return numeral(value).format('0.00');
-            } else {
-                return numeral(value).format('00.00');
-            }
-        }
-    },
+    // getValue: function (value) {
+    //     console.log('getValue', value);
+    //     if (isNaN(value)) {
+    //         return '';
+    //     } else {
+    //         if (value < 10) {
+    //             return numeral(value).format('0.00');
+    //         } else {
+    //             return numeral(value).format('00.00');
+    //         }
+    //     }
+    // },
 });

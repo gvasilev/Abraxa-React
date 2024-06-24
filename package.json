@@ -25,7 +25,7 @@
         "@sentry/react": "^8.7.0",
         "@sentry/vite-plugin": "^2.18.0",
         "@vitejs/plugin-legacy": "^5.4.0",
-        "fusioncharts": "^3.23.0",
+        "fusioncharts": "3.21.1",
         "install": "^0.13.0",
         "js-cookie": "^3.0.5",
         "mapbox-gl": "^3.3.0",
