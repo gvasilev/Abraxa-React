@@ -50,7 +50,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                                     xtype: 'div',
                                     cls: 'hbox',
                                     bind: {
-                                        html: '<div class="a-header-title">{selectedRecord.name}</div><span class="a-status-badge a-status-md {badgeString === "terminal" ? "bg-light-purple":"bg-light-yellow" }">{badgeString:capitalize}</span>',
+                                        html: '{getTerminalOrBerthTitleBar}',
                                     },
                                 },
                             ],
@@ -60,7 +60,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                             cls: 'a-header-info-bar',
                             hidden: false,
                             bind: {
-                                hidden: '{badgeString === "terminal" ? false:true}',
+                                hidden: '{badgeString !== "terminal"}',
                             },
                             layout: {
                                 type: 'hbox',
@@ -70,7 +70,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Type</div><div class="a-header-info-value">{selectedRecord.type ? selectedRecord.type:"<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '<div class="a-header-info-title sm-title">Type</div><div class="a-header-info-value">{selectedRecord.meta_type ? selectedRecord.meta_type :"<span class=\'a-placeholder\'>---</span>"}</div>',
                                     },
                                 },
                                 {
@@ -104,14 +104,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                                     xtype: 'div',
                                     cls: 'a-header-info-item',
                                     bind: {
-                                        html: '<div class="a-header-info-title sm-title">Country</div><div class="a-header-info-value">{object_record.country ? object_record.country:"<span class=\'a-placeholder\'>---</span>"}</div>',
-                                    },
-                                },
-                                {
-                                    xtype: 'div',
-                                    cls: 'a-header-info-item',
-                                    bind: {
-                                        html: '<div class="a-header-info-title sm-title">Working time</div><div class="a-header-info-value">{selectedRecord.info_work_hours ? selectedRecord.info_work_hours.start:"<span class=\'a-placeholder\'>---</span>"}</div>',
+                                        html: '<div class="a-header-info-title sm-title">Country</div><div class="a-header-info-value">{object_record.meta_country_name ? object_record.meta_country_name :"<span class=\'a-placeholder\'>---</span>"}</div>',
                                     },
                                 },
                             ],
@@ -121,7 +114,7 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                             cls: 'a-header-info-bar',
                             hidden: false,
                             bind: {
-                                hidden: '{badgeString === "berth" ? false:true}',
+                                hidden: '{badgeString !== "berth"}',
                             },
                             layout: {
                                 type: 'hbox',
@@ -190,7 +183,6 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                             xtype: 'container',
                             cls: 'a-directory-inner-wrapper right_card_content', //this class is needed to get container and clear items when selections is changed
                             layout: 'vbox',
-                            // flex: 1,
                             bind: {
                                 items: '{selectionContent}',
                             },
@@ -211,16 +203,16 @@ Ext.define('Abraxa.view.directory.ports.PortInfoRightCard', {
                             xtype: 'div',
                             hidden: false,
                             bind: {
-                                hidden: '{badgeString === "terminal" ? false:true}', //terminals tab
-                                html: '<span class="text-info">Last terminal updated:</span> {selectedRecord.updated_at ? (selectedRecord.updated_at:date("d M y")) : "<span class=\'a-placeholder\'>---</span>"}',
+                                hidden: '{badgeString !== "terminal"}', //terminals tab
+                                html: '<span class="text-info">Terminal last updated:</span> {selectedRecord.updated_at ? (selectedRecord.updated_at:date("d M y")) : "<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                         {
                             xtype: 'div',
                             hidden: false,
                             bind: {
-                                hidden: '{badgeString === "berth" ? false:true}', //berths tab
-                                html: '<span class="text-info">Last berth updated:</span> {selectedRecord.updated_at ? (selectedRecord.updated_at:date("d M y")) : "<span class=\'a-placeholder\'>---</span>"}',
+                                hidden: '{badgeString !== "berth"}', //berths tab
+                                html: '<span class="text-info">Berth last updated:</span> {selectedRecord.updated_at ? (selectedRecord.updated_at:date("d M y")) : "<span class=\'a-placeholder\'>---</span>"}',
                             },
                         },
                     ],

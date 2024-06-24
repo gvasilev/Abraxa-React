@@ -59,7 +59,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.meta_name_alternatives ? selectedRecord.meta_name_alternatives : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{alternativeNamesTerminalBerth}',
                                     },
                                 },
                             ],
@@ -74,7 +74,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.location ? selectedRecord.location:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{selectedRecord.meta_type ? selectedRecord.meta_type : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -89,7 +89,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.operational_status ? selectedRecord.operational_status:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{selectedRecord.meta_status ? selectedRecord.meta_status:"<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -104,7 +104,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.isps_code ? selectedRecord.isps_code:"<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{selectedRecord.meta_isps ? selectedRecord.meta_isps : "<span class=\'a-placeholder\'>---</span>"}',
                                     },
                                 },
                             ],
@@ -140,7 +140,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_work_days ? selectedRecord.info_work_days.start : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{fromToWorkDaysTerminal}',
                                     },
                                 },
                             ],
@@ -155,7 +155,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_work_hours ? selectedRecord.info_work_hours.start : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{fromToWorkHoursTerminal}',
                                     },
                                 },
                             ],
@@ -170,7 +170,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_overtime ? selectedRecord.info_overtime : "<span class=\'a-placeholder\'>---</span>"}',
+                                        html: '{yesNoOvertimeTerminal}',
                                     },
                                 },
                             ],

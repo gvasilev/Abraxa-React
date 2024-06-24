@@ -10,17 +10,11 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
         },
     },
     formulas: {
-        alternativeNames: {
+        alternativeNamesPort: {
             bind: {
                 bindTo: '{port.meta_name_alternatives}',
             },
             get: AbraxaFunctions.getAlternativeNames,
-        },
-        armedGuards: {
-            bind: {
-                bindTo: '{port.restriction_armed_guards}',
-            },
-            get: AbraxaFunctions.getYesNoWithIcon,
         },
         berths: {
             bind: {
@@ -50,12 +44,6 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
                 deep: true,
             },
             get: (coordinates) => AbraxaFunctions.getPortLongitude(coordinates),
-        },
-        firstPortOfEntry: {
-            bind: {
-                bindTo: '{port.restriction_first_port_of_entry}',
-            },
-            get: AbraxaFunctions.getYesNoWithIcon,
         },
         fromToLoadLines: {
             bind: {
@@ -155,12 +143,6 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
                 }
             },
         },
-        usRepresentative: {
-            bind: {
-                bindTo: '{port.info_us_representative}',
-            },
-            get: AbraxaFunctions.getYesNoWithIcon,
-        },
         waterSalinity: {
             bind: {
                 bindTo: '{port.water}',
@@ -169,6 +151,54 @@ Ext.define('Abraxa.view.common.port.PortMainViewModel', {
             get: function (waterArray) {
                 return waterArray && waterArray[0] ? waterArray[0] : AbraxaConstants.placeholders.emptySpan;
             },
+        },
+        yesNoArmedGuardsPort: {
+            bind: {
+                bindTo: '{port.restriction_armed_guards}',
+            },
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoDaylightNavigationPort: {
+            bind: {
+                bindTo: '{port.restriction_daylight_navigation}',
+            },
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoFirstPortOfEntryPort: {
+            bind: {
+                bindTo: '{port.restriction_first_port_of_entry}',
+            },
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoRestrictionPiracyPort: {
+            bind: {
+                bindTo: '{port.restriction_piracy}',
+            },
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoRestrictionSwellPort: {
+            bind: {
+                bindTo: '{port.restriction_swell}',
+            },
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoRestrictionTidesPort: {
+            bind: {
+                bindTo: '{port.restriction_tides}',
+            },
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoRestrictionWarAreaPort: {
+            bind: {
+                bindTo: '{port.restriction_war_area}',
+            },
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoUsRepresentativePort: {
+            bind: {
+                bindTo: '{port.info_us_representative}',
+            },
+            get: AbraxaFunctions.getYesNoWithIcon,
         },
     },
 });

@@ -55,7 +55,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_bulk ? selectedRecord.vessel_bulk : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_bulk ? selectedRecord.vessel_bulk + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -70,7 +70,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_lng ? selectedRecord.vessel_lng : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_lng ? selectedRecord.vessel_lng + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -85,7 +85,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_container ? selectedRecord.vessel_container : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_container ? selectedRecord.vessel_container + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -100,7 +100,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_cruise ? selectedRecord.vessel_cruise : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_cruise ? selectedRecord.vessel_cruise + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -115,7 +115,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_roro ? selectedRecord.vessel_roro : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_roro ? selectedRecord.vessel_roro + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -151,7 +151,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_pleasure_craft ? selectedRecord.vessel_pleasure_craft : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_pleasure_craft ? selectedRecord.vessel_pleasure_craft + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -166,7 +166,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_general_cargo ? selectedRecord.vessel_general_cargo : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_general_cargo ? selectedRecord.vessel_general_cargo + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -181,7 +181,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_fishing ? selectedRecord.vessel_fishing : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.vessel_fishing ? selectedRecord.vessel_fishing + " dwt" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -196,7 +196,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value',
                                     bind: {
-                                        html: '{object_record.region ? object_record.region:"---"}',
+                                        html: '{yesNoVesselNavyTerminal}',
                                     },
                                 },
                             ],
@@ -211,7 +211,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsMaxVessel', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.vessel_special_purpose ? selectedRecord.vessel_special_purpose : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoVesselSpecialPurposeTerminal}',
                                     },
                                 },
                             ],

@@ -1348,7 +1348,7 @@ Ext.define('Abraxa.view.calculator.portcostengine.portsettings.show.tarifftables
                                     Ext.toast('Record updated', 1000);
                                 },
                             });
-                         }
+                        }
                     },
                 },
             ],

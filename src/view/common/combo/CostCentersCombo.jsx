@@ -123,7 +123,8 @@ Ext.define('Abraxa.view.common.combo.CostCentersCombo', {
                 },
 
                 success: function (response) {
-                    const obj = Ext.decode(response.responseText);
+                    const data = Ext.decode(response.responseText);
+                    const obj = data && data.data ? data.data : [];
                     const serviceId = combo.up().ownerCmp.getRecord().get('id');
                     const sharedCostCentersArray = obj.filter((el) => el.id === serviceId);
                     if (sharedCostCentersArray.length && sharedCostCentersArray[0].shared_cost_centers) {

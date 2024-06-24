@@ -7,5 +7,9 @@ Ext.define('Abraxa.store.disbursements.DefaultDisbursementTags', {
         appendId: false,
         type: 'rest',
         url: Env.ApiEndpoint + 'default_disbursement_tags',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        },
     },
 });

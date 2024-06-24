@@ -58,7 +58,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.width ? selectedRecord.width : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_max_beam ? selectedRecord.restriction_max_beam + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -73,7 +73,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.ship_length ? selectedRecord.ship_length : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_max_loa ? selectedRecord.restriction_max_loa + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -88,7 +88,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.restriction_max_draft ? selectedRecord.restriction_max_draft : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_max_draft ? selectedRecord.restriction_max_draft + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -103,7 +103,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.restriction_max_air_draft ? selectedRecord.restriction_max_air_draft : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_max_air_draft ? selectedRecord.restriction_max_air_draft + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -139,7 +139,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.restriction_berth_height ? selectedRecord.restriction_berth_height : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_berth_height ? selectedRecord.restriction_berth_height + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -154,7 +154,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.restriction_wlthc ? selectedRecord.restriction_wlthc : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{selectedRecord.restriction_wlthc ? selectedRecord.restriction_wlthc + " m" : "<span class=\'a-placeholder\'>---</span>" }',
                                             },
                                         },
                                     ],
@@ -169,29 +169,12 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsRestrictions', {
                                         {
                                             cls: 'a-display-value fw-b',
                                             bind: {
-                                                html: '{selectedRecord.restriction_naabsa ? selectedRecord.restriction_naabsa : "<span class=\'a-placeholder\'>---</span>" }',
+                                                html: '{yesNoNaabsaTerminalBerth}',
                                             },
                                         },
                                     ],
                                 },
                             ],
-                        },
-                    ],
-                },
-                {
-                    xtype: 'container',
-                    items: [
-                        {
-                            xtype: 'div',
-                            cls: 'my-16',
-                            html: "<div class='hbox'><div class='a-panel-title fs-14 fw-b'>Other Restrictions</div></div>",
-                        },
-                        {
-                            xtype: 'div',
-                            cls: 'a-display-value',
-                            bind: {
-                                html: '{selectedRecord.restriction_other ? selectedRecord.restriction_other : "<span class=\'a-placeholder\'>---</span>" }',
-                            },
                         },
                     ],
                 },

@@ -54,11 +54,16 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
         },
     },
     formulas: {
-        alternativeNames: {
+        alternativeNamesPort: {
             bind: '{object_record.meta_name_alternatives}',
             get: AbraxaFunctions.getAlternativeNames,
         },
-
+        alternativeNamesTerminalBerth: {
+            bind: {
+                bindTo: '{selectedRecord.meta_name_alternatives}',
+            },
+            get: AbraxaFunctions.getAlternativeNames,
+        },
         activeItemPerSubTab: {
             bind: {
                 bindTo: '{subTab}',
@@ -116,22 +121,27 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
                 terminalId: '{subTabId}',
             },
             get: function (data) {
-                if (data && data.badgeString && data.terminalId) {
-                    let store = this.get('berthsPerTerminal');
-                    if (store) store.clearFilter();
-                    return function (rec) {
-                        if (data.badgeString === 'terminal') {
-                            if (rec.get('terminal_id') && rec.get('terminal_id') === data.terminalId) {
-                                return true;
-                            }
-                        }
-                    };
-                } else {
+                if (!data || !data.badgeString || !data.terminalId) {
                     return function () {
                         return false;
                     };
                 }
+
+                const berthsStore = this.get('berthsPerTerminal');
+                if (berthsStore) berthsStore.clearFilter();
+
+                return function (rec) {
+                    if (data.badgeString !== 'terminal') return false;
+                    if (rec.get('terminal_id') && parseInt(rec.get('terminal_id')) === parseInt(data.terminalId)) {
+                        return true;
+                    }
+                    return false;
+                };
             },
+        },
+        coordinatesTerminalBerth: {
+            bind: '{selectedRecord.coordinates_center}',
+            get: (coordinates) => AbraxaFunctions.getCoordinatesString(coordinates),
         },
         doDefaults: {
             bind: {
@@ -170,6 +180,24 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
         fromToTowageAvailability: {
             bind: {
                 bindTo: '{object_record.towage_availability}',
+                deep: true,
+            },
+            get: function (data) {
+                return AbraxaFunctions.getFromToStringValue(data, 'start', 'end', '');
+            },
+        },
+        fromToWorkDaysTerminal: {
+            bind: {
+                bindTo: '{selectedRecord.info_work_days}',
+                deep: true,
+            },
+            get: function (data) {
+                return AbraxaFunctions.getFromToStringValue(data, 'start', 'end', '');
+            },
+        },
+        fromToWorkHoursTerminal: {
+            bind: {
+                bindTo: '{selectedRecord.info_work_hours}',
                 deep: true,
             },
             get: function (data) {
@@ -227,7 +255,6 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
                 return `<div class="a-header-info-title sm-title">Timezone</div><div class="a-header-info-value">${timezone}</div>`;
             },
         },
-
         getPortTitleBar: {
             bind: {
                 bindTo: '{object_record}',
@@ -242,6 +269,21 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
                     htmlString = `<div class="a-header-title">${portName}, ${countryId}</div><span class="a-status-badge a-status-md bg-light-blue">${portType}</span>`;
                 }
                 return htmlString;
+            },
+        },
+        getTerminalOrBerthTitleBar: {
+            bind: {
+                selectedRecordName: '{selectedRecord.name}',
+                badgeString: '{badgeString}',
+            },
+            get: function (data) {
+                // <div class="a-header-title">{selectedRecord.name}</div><span class="a-status-badge a-status-md {badgeString === "terminal" ? "bg-light-purple":"bg-light-yellow" }">{badgeString:capitalize}</span>
+                if (!data) return AbraxaConstants.placeholders.emptySpan;
+
+                const selectedRecName = data.selectedRecordName || '';
+                const badgeName = data.badgeString ? Ext.String.capitalize(data.badgeString) : '';
+                const badgeColor = badgeName === 'Terminal' ? 'bg-light-purple' : 'bg-light-yellow';
+                return `<div class="a-header-title">${selectedRecName}</div><span class="a-status-badge a-status-md ${badgeColor}">${badgeName}</span>`;
             },
         },
         minMaxAnchorageDraft: {
@@ -262,10 +304,28 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
                 return AbraxaFunctions.getMinMaxValue(data, 'min', 'max', 1, 'm');
             },
         },
+        minMaxChannelDraftTerminal: {
+            bind: {
+                min: '{selectedRecord.restriction_min_channel_draft}',
+                max: '{selectedRecord.restriction_max_channel_draft}',
+            },
+            get: function (data) {
+                return AbraxaFunctions.getMinMaxValue(data, 'min', 'max', 1, 'm');
+            },
+        },
         minMaxWaterDensity: {
             bind: {
                 min: '{object_record.info_water_density_min}',
                 max: '{object_record.info_water_density_max}',
+            },
+            get: function (data) {
+                return AbraxaFunctions.getMinMaxValue(data, 'min', 'max', 3, '');
+            },
+        },
+        minMaxWaterDensityTerminal: {
+            bind: {
+                min: '{selectedRecord.info_water_density_min}',
+                max: '{selectedRecord.info_water_density_max}',
             },
             get: function (data) {
                 return AbraxaFunctions.getMinMaxValue(data, 'min', 'max', 3, '');
@@ -287,7 +347,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
             },
         },
         portCoordinates: {
-            bind: '{object_record.center}',
+            bind: '{object_record.coordinates_center}',
             get: (coordinates) => AbraxaFunctions.getCoordinatesString(coordinates),
         },
         portInfoUpdated: {
@@ -297,10 +357,6 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
                     return date;
                 }
             },
-        },
-        yesNoInfrastructureDrydock: {
-            bind: '{object_record.infrastructure_drydock}',
-            get: AbraxaFunctions.getYesNoWithIcon,
         },
         pilotStationCoordinates: {
             bind: '{object_record.coordinates_pilot_station}',
@@ -328,7 +384,7 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
             get: function (data) {
                 if (data.subTabId) {
                     let store = this.get('terminals');
-                    if (this.get('subTab') == 'berths') {
+                    if (this.get('subTab') === 'berths') {
                         store = this.get('berths');
                     }
                     if (store) {
@@ -364,6 +420,18 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
         yesNoArmedGuards: {
             bind: '{object_record.restriction_armed_guards}',
             get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoCargoDangerousGoodsTerminal: {
+            bind: '{selectedRecord.cargo_dangerous_goods}',
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoCargoLivestockTerminal: {
+            bind: '{selectedRecord.cargo_livestock}',
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
+        yesNoCargoRadioactiveTerminal: {
+            bind: '{selectedRecord.cargo_radioactive}',
+            get: AbraxaFunctions.getYesNoWithoutIcon,
         },
         yesNoCranes0_24Tons: {
             bind: '{object_record.cranes_0_24_tons}',
@@ -401,12 +469,24 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
             bind: '{object_record.restriction_daylight_navigation}',
             get: AbraxaFunctions.getYesNoWithIcon,
         },
+        yesNoDaylightNavigationTerminal: {
+            bind: '{selectedRecord.restriction_daylight_navigation}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
         yesNoDerattingCertificate: {
             bind: '{object_record.quarantine_deratt_cert}',
             get: AbraxaFunctions.getYesNoWithIcon,
         },
         yesNoFirstPortOfEntry: {
             bind: '{object_record.restriction_first_port_of_entry}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoInfrastructureDrydock: {
+            bind: '{object_record.infrastructure_drydock}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoNaabsaTerminalBerth: {
+            bind: '{selectedRecord.restriction_naabsa}',
             get: AbraxaFunctions.getYesNoWithIcon,
         },
         yesNoLoadOffloadAnchor: {
@@ -431,6 +511,14 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
         },
         yesNoLoadOffloadSPM: {
             bind: '{object_record.load_offload_spm}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoVesselNavyTerminal: {
+            bind: '{selectedRecord.vessel_navy}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
+        yesNoOvertimeTerminal: {
+            bind: '{selectedRecord.info_overtime}',
             get: AbraxaFunctions.getYesNoWithIcon,
         },
         yesNoPiracy: {
@@ -509,6 +597,10 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
             bind: '{object_record.services_wash_water}',
             get: AbraxaFunctions.getYesNoWithIcon,
         },
+        yesNoVesselSpecialPurposeTerminal: {
+            bind: '{selectedRecord.vessel_special_purpose}',
+            get: AbraxaFunctions.getYesNoWithIcon,
+        },
         yesNoSuppliesDeck: {
             bind: '{object_record.supplies_deck}',
             get: AbraxaFunctions.getYesNoWithIcon,
@@ -545,6 +637,10 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
             bind: '{object_record.restriction_tides}',
             get: AbraxaFunctions.getYesNoWithoutIcon,
         },
+        yesNoTidesTerminal: {
+            bind: '{selectedRecord.restriction_tides}',
+            get: AbraxaFunctions.getYesNoWithoutIcon,
+        },
         yesNoUsRepresentative: {
             bind: '{object_record.info_us_representative}',
             get: AbraxaFunctions.getYesNoWithIcon,
@@ -555,6 +651,15 @@ Ext.define('Abraxa.view.directory.ports.PortDetailsViewModel', {
         },
         waterSalinity: {
             bind: '{object_record.info_salinity}',
+            get: function (salinity) {
+                if (salinity && salinity[0]) {
+                    return salinity[0];
+                }
+                return AbraxaConstants.placeholders.emptySpan;
+            },
+        },
+        waterSalinityTerminal: {
+            bind: '{selectedRecord.info_salinity}',
             get: function (salinity) {
                 if (salinity && salinity[0]) {
                     return salinity[0];

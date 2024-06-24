@@ -30,6 +30,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                     xtype: 'container',
                     margin: '0 32 0 0',
                     flex: 1,
+                    //every container has defaults
                     defaults: {
                         xtype: 'container',
                         cls: 'a-display-item',
@@ -38,14 +39,12 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                             align: 'middle',
                         },
                         defaults: {
-                            //every container have also defaults
                             xtype: 'div',
                         },
                     },
                     items: [
                         //every item is container because of parent defaults
                         {
-                            //first row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -54,43 +53,12 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.load_rate_bulk_cargo ? selectedRecord.load_rate_bulk_cargo : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.load_rate_bulk ? selectedRecord.load_rate_bulk + " tph" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //second row container
-                            items: [
-                                {
-                                    cls: 'a-display-label',
-                                    html: 'Liquid Cargo',
-                                },
-                                {
-                                    cls: 'a-display-value fw-b',
-                                    bind: {
-                                        html: '{selectedRecord.load_rate_liquid_cargo ? selectedRecord.load_rate_liquid_cargo : "<span class=\'a-placeholder\'>---</span>" }',
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            //third row container
-                            items: [
-                                {
-                                    cls: 'a-display-label',
-                                    html: 'LNG',
-                                },
-                                {
-                                    cls: 'a-display-value fw-b',
-                                    bind: {
-                                        html: '{selectedRecord.load_rate_lng ? selectedRecord.load_rate_lng : "<span class=\'a-placeholder\'>---</span>" }',
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            //fourth row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -99,7 +67,35 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.load_rate_containers ? selectedRecord.load_rate_containers : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.load_rate_container ? selectedRecord.load_rate_container + " TEU/h" : "<span class=\'a-placeholder\'>---</span>" }',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            items: [
+                                {
+                                    cls: 'a-display-label',
+                                    html: 'Gas',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{selectedRecord.load_rate_gas ? selectedRecord.load_rate_gas + " m³/h" : "<span class=\'a-placeholder\'>---</span>" }',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            items: [
+                                {
+                                    cls: 'a-display-label',
+                                    html: 'Livestock',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{selectedRecord.load_rate_livestock ? selectedRecord.load_rate_livestock + " u/h" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -118,30 +114,28 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                             type: 'hbox',
                             align: 'middle',
                         },
+                        //every container has defaults
                         defaults: {
-                            //every container have also defaults
                             xtype: 'div',
                         },
                     },
                     items: [
                         //every item is container because of parent defaults
                         {
-                            //first row container
                             items: [
                                 {
                                     cls: 'a-display-label',
-                                    html: 'Gas',
+                                    html: 'Liquid Cargo',
                                 },
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.load_rate_gas ? selectedRecord.load_rate_gas : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.load_rate_liquid ? selectedRecord.load_rate_liquid + " m³/h" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //second row container
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -150,13 +144,26 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.load_rate_roro ? selectedRecord.load_rate_roro : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.load_rate_roro ? selectedRecord.load_rate_roro + " u/h" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
                         },
                         {
-                            //third row container
+                            items: [
+                                {
+                                    cls: 'a-display-label',
+                                    html: 'LNG',
+                                },
+                                {
+                                    cls: 'a-display-value fw-b',
+                                    bind: {
+                                        html: '{selectedRecord.load_rate_lng ? selectedRecord.load_rate_lng + " m³/h"  : "<span class=\'a-placeholder\'>---</span>" }',
+                                    },
+                                },
+                            ],
+                        },
+                        {
                             items: [
                                 {
                                     cls: 'a-display-label',
@@ -165,22 +172,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsLDRates', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.load_rate_passengers ? selectedRecord.load_rate_passengers : "<span class=\'a-placeholder\'>---</span>" }',
-                                    },
-                                },
-                            ],
-                        },
-                        {
-                            //fourth row container
-                            items: [
-                                {
-                                    cls: 'a-display-label',
-                                    html: 'Livestock',
-                                },
-                                {
-                                    cls: 'a-display-value fw-b',
-                                    bind: {
-                                        html: '{selectedRecord.load_rate_livestock ? selectedRecord.load_rate_livestock : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.load_rate_passengers ? selectedRecord.load_rate_passengers + " p/h" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],

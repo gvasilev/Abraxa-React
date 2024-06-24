@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsSpecialGoods', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.cargo_dangerous_goods ? selectedRecord.cargo_dangerous_goods : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoCargoDangerousGoodsTerminal}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsSpecialGoods', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.cargo_radioactive ? selectedRecord.cargo_radioactive : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoCargoRadioactiveTerminal}',
                                     },
                                 },
                             ],
@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsSpecialGoods', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.cargo_livestock ? selectedRecord.cargo_livestock : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{yesNoCargoLivestockTerminal}',
                                     },
                                 },
                             ],

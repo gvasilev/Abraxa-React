@@ -1,6 +1,6 @@
 import '../../model/billing/BillingCompanyInfo';
 import '../../react/Grid';
-import DataGridDemo from '../../react/Grid';
+// import DataGridDemo from '../../react/Grid';
 
 Ext.define('Abraxa.view.billing.BillingMainContainer', {
     extend: 'Ext.Container',

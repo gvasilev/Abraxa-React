@@ -125,7 +125,7 @@ Ext.define('Abraxa.model.account.Account', {
         url: Env.ApiEndpoint + 'account',
         reader: {
             type: 'json',
-            // rootProperty: 'data',
+            rootProperty: 'data',
         },
     },
 });

@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_salinity ? selectedRecord.info_salinity : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{waterSalinityTerminal}',
                                     },
                                 },
                             ],
@@ -69,7 +69,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_water_density ? selectedRecord.info_water_density : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{minMaxWaterDensityTerminal}',
                                     },
                                 },
                             ],
@@ -105,7 +105,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_noa_deadline ? selectedRecord.info_noa_deadline : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.info_noa_deadline ? selectedRecord.info_noa_deadline + " hours" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],
@@ -120,7 +120,7 @@ Ext.define('Abraxa.view.directory.ports.TerminalsTab.TerminalsAdditional', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.info_manifest_deadline ? selectedRecord.info_manifest_deadline : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{selectedRecord.info_manifest_deadline ? selectedRecord.info_manifest_deadline + " hours" : "<span class=\'a-placeholder\'>---</span>" }',
                                     },
                                 },
                             ],

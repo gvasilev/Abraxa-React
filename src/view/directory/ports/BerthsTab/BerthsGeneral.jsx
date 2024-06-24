@@ -54,7 +54,7 @@ Ext.define('Abraxa.view.directory.ports.BerthsTab.BerthsGeneral', {
                                 {
                                     cls: 'a-display-value fw-b',
                                     bind: {
-                                        html: '{selectedRecord.meta_name_alternatives ? selectedRecord.meta_name_alternatives : "<span class=\'a-placeholder\'>---</span>" }',
+                                        html: '{alternativeNamesTerminalBerth}',
                                     },
                                 },
                             ],

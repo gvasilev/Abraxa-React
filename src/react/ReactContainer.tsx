@@ -10,9 +10,9 @@ Ext.define('ReactContainer', {
         this.reactRoot = createRoot(this.el.dom);
         this.reactRoot.render(this.config.reactComponent);
     },
-    destroy: function() {
+    destroy: function () {
         if (this.reactRoot) {
             this.reactRoot.unmount();
         }
-    }
+    },
 });

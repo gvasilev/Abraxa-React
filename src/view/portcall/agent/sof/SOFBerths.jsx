@@ -1,5 +1,5 @@
 import './SOFCargolist';
-//import '../../../../core/components/fields/Abraxa.Draftfield';
+//// import '../../../../core/components/fields/Abraxa.Draftfield';
 Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
     extend: 'Ext.Container',
     xtype: 'sof.berths',
@@ -229,7 +229,8 @@ Ext.define('Abraxa.view.portcall.sof.SOFBerths', {
                                                                             if (count > 1 && recordIndex == 0) {
                                                                                 selectedRecord = recordIndex;
                                                                             }
-                                                                            const expenses = this.upVM().get('expenses');
+                                                                            const expenses =
+                                                                                this.upVM().get('expenses');
 
                                                                             if (reassignedBerth) {
                                                                                 cargoes.each(function (cargo) {

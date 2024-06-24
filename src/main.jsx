@@ -8,27 +8,24 @@ import 'moment-timezone';
 import numeral from 'numeral';
 import UserMention from './helpers/mention/Mention';
 import WebViewer from '@pdftron/webviewer';
-import * as Sentry from "@sentry/react";
+import * as Sentry from '@sentry/react';
 
 Sentry.init({
-  dsn: "https://420c7834aeca214d484bed6572ebcfe2@o233857.ingest.us.sentry.io/4507377588436992",
-  integrations: [
-    Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration(),
-  ],
-  // Performance Monitoring
-  tracesSampleRate: 1.0, //  Capture 100% of the transactions
-  // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-  tracePropagationTargets: ["localhost", /^http:\/\/live\.abx-internal\.com\/server\/api/],
-  // Session Replay
-  replaysSessionSampleRate: 0, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-  replaysOnErrorSampleRate: 0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+    dsn: 'https://420c7834aeca214d484bed6572ebcfe2@o233857.ingest.us.sentry.io/4507377588436992',
+    integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
+    // Performance Monitoring
+    tracesSampleRate: 1.0, //  Capture 100% of the transactions
+    // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+    tracePropagationTargets: ['localhost', /^http:\/\/live\.abx-internal\.com\/server\/api/],
+    // Session Replay
+    replaysSessionSampleRate: 0, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+    replaysOnErrorSampleRate: 0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
 // Initialize Mixpanel
 mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
-    "api_host": import.meta.env.VITE_MIXPANEL_API_HOST,
-    batch_requests: true
+    api_host: import.meta.env.VITE_MIXPANEL_API_HOST,
+    batch_requests: true,
 });
 
 // Declare global variables
@@ -53,11 +50,10 @@ window.WebViewer = WebViewer;
             // useRefreshTokens="true"
             authorizationParams={{
                 redirect_uri: window.location.href,
-            }}
-        >
+            }}>
             <ReExtProvider splash={true} ReExtData={ReExtData}>
                 <App />
             </ReExtProvider>
         </Auth0Provider>
-    )
+    );
 })();

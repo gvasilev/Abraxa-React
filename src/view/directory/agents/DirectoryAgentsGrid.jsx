@@ -194,69 +194,23 @@ Ext.define('Abraxa.view.directory.agents.DirectoryAgentsGrid', {
                 encodeHtml: false,
             },
             renderer: function (value, record) {
-                if (
-                    record &&
-                    record.getData() &&
-                    record.getData().ports_served &&
-                    record.getData().ports_served.length > 0
-                ) {
-                    let portsArr = record.getData().ports_served.filter((item) => item.port);
+                const portsServed = record?.getData()?.ports_served;
+                if (!portsServed?.length) return AbraxaConstants.placeholders.emptySpan;
 
-                    let sortedPorts = portsArr.sort((a, b) => {
-                        return a.port_name.localeCompare(b.port_name);
-                    });
+                let portsArr = record.getData().ports_served.filter((item) => item.port);
 
-                    let portName = sortedPorts[0].port_name;
-                    return `<div class="a-function function-${portName}"><span> ${portName} (+${
-                        sortedPorts.length - 1
-                    })</span></div>`;
-                } else {
-                    return AbraxaConstants.placeholders.emptySpan;
-                }
+                let sortedPorts = portsArr.sort((a, b) => {
+                    return a.port_name.localeCompare(b.port_name);
+                });
+
+                let portName = sortedPorts[0].port_name;
+                return `<div class="a-function function-${portName}"><span> ${portName} (+${
+                    sortedPorts.length - 1
+                })</span></div>`;
             },
             sortable: false,
             menuDisabled: true,
             editable: false,
-            // sorter: {
-            //     sorterFn: function (rec1, rec2) {
-
-            //         let hasData1 = (rec1 && rec1.getData() && rec1.getData().ports_served && rec1.getData().ports_served.length > 0);
-            //         let hasData2 = (rec2 && rec2.getData() && rec2.getData().ports_served && rec2.getData().ports_served.length > 0);
-
-            //         if (!hasData1 && !hasData2) {
-            //             return 0;
-            //         }
-
-            //         if (!hasData1 && hasData2) {
-            //             return 1;
-            //         }
-
-            //         if (hasData1 && !hasData2) {
-            //             return -1;
-            //         }
-
-            //         // Both records have data:
-
-            //         let portsArr1 = rec1.getData().ports_served.filter(item => item.port).sort((a, b) => {
-            //             return a.port_name.localeCompare(b.port_name);
-            //         });
-
-            //         let portName1 = portsArr1[0].port_name || '';
-
-            //         let portsArr2 = rec2.getData().ports_served.filter(item => item.port).sort((a, b) => {
-            //             return a.port_name.localeCompare(b.port_name);
-            //         });;
-
-            //         let portName2 = portsArr2[0].port_name || '';
-
-            //         if (portName1.localeCompare(portName2) === 0) {
-            //             return portsArr1.length - portsArr2.length;
-            //         }
-
-            //         return portName1.localeCompare(portName2);
-
-            //     },
-            // },
         },
         {
             text: 'Country',
