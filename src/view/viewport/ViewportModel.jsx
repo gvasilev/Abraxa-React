@@ -30,7 +30,6 @@ Ext.define('Abraxa.view.viewport.ViewportModel', {
                 const vm = this;
                 if (currentUser.get('id')) {
                     window.CurrentUser = currentUser;
-                    console.log(currentUser);
                     vm.set('currentUser', currentUser);
                 }
             },

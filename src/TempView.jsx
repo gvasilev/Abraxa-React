@@ -1,14 +1,12 @@
 import ReExt from '@gusmano/reext';
 import './utils/AbraxaConstants';
 import './utils/AbraxaFunctions';
-import './core/components/AbraxaStateProvider';
 import './core/override/Abraxa.data.proxy.Ajax';
 import './core/override/Abraxa.data.proxy.Rest';
 import './core/override/Abraxa.AjaxRequest';
 import './core/override/Abraxa.Ajax';
 import './core/override/Server';
 import './core/override/Abraxa.data.Store';
-import './core/override/Rest';
 import './core/override/Abraxa.data.ChainedStore';
 import './core/override/Abraxa.data.Model';
 import './utils/AbraxaConstants';
