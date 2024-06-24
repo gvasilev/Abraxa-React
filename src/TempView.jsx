@@ -6,6 +6,7 @@ import './core/override/Abraxa.data.proxy.Rest';
 import './core/override/Abraxa.AjaxRequest';
 import './core/override/Abraxa.Ajax';
 import './core/override/Server';
+import './core/components/AbraxaStateProvider.jsx'
 import './core/override/Abraxa.data.Store';
 import './core/override/Abraxa.data.ChainedStore';
 import './core/override/Abraxa.data.Model';

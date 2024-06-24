@@ -1,3 +1,4 @@
+
 Ext.define(
     'Abraxa.StateProvider',
     function (Provider) {
@@ -24,10 +25,15 @@ Ext.define(
 
                 //Uncommet this to load on init
                 me.restoreState();
-
-                me.callParent(arguments);
+                // me.callParent(arguments);
             },
+            get: function(name, defaultValue) {
+                if(this.state) {
+                    var ret = this.state[name];
+                    return ret === undefined ? defaultValue : ret;
+                }
 
+            },
             set: function (name, value) {
                 var me = this;
 
@@ -37,7 +43,7 @@ Ext.define(
                 }
 
                 me.saveStateForKey(name, value);
-                me.callParent(arguments);
+                // me.callParent(arguments);
             },
 
             // private
@@ -52,7 +58,9 @@ Ext.define(
                         var result = JSON.parse(response.responseText.trim());
                         for (var property in result) {
                             if (result.hasOwnProperty(property)) {
-                                me.state[result[property].state_key] = me.decodeValue(result[property].state_value);
+                                if(me.state) {
+                                    me.state[result[property].state_key] = me.decodeValue(result[property].state_value);
+                                }
                             }
                         }
                     },
@@ -74,7 +82,7 @@ Ext.define(
                 var me = this;
 
                 me.clearStateForKey(name);
-                me.callParent(arguments);
+                // me.callParent(arguments);
             },
 
             // private
@@ -113,6 +121,6 @@ Ext.define(
         };
     },
     function (Provider) {
-        Ext.state.Provider.register(new Provider());
+        Ext.state.Provider.register(Ext.create('Abraxa.StateProvider', {}));
     }
 );

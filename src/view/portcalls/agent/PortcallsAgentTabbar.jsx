@@ -73,10 +73,13 @@ Ext.define('Abraxa.view.portcalls.agent.PortcallsAgentTabbar', {
                                 text: 'Archive',
                                 afterRender: function () {
                                     const stateProvider = Ext.state.Provider.get();
-                                    const state = stateProvider.state['portcalls-grid-active-filterbar'];
-                                    if (state && state.find((s) => s.id === 'archived')) {
-                                        this.setPressed(true);
+                                    if(stateProvider &&  stateProvider.state) {
+                                        const state = stateProvider.state['portcalls-grid-active-filterbar'];
+                                        if (state && state.find((s) => s.id === 'archived')) {
+                                            this.setPressed(true);
+                                        }
                                     }
+
                                 },
 
                                 handler: function (me) {
