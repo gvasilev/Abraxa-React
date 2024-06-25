@@ -19,7 +19,6 @@ Ext.define(
 
                 //Uncommet this to load on init
                 this.restoreState();
-                // me.callParent(arguments);
             },
             get: function (name, defaultValue) {
                 if (this.state) {
