@@ -210,7 +210,7 @@ Ext.define('Abraxa.view.cdb.company.CompanyEditPanel', {
                                          {
                                             xtype: 'ReactComponent',
                                             padding: '16 0',
-                                            reactComponent: MultiActionAreaCard()
+                                            reactComponent: MultiActionAreaCard
                                         },
                                         {
                                             xtype: 'container',
