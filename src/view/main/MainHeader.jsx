@@ -1,9 +1,8 @@
 import './UserMenu';
 import './RecentlyOpenedMenu';
-import '../../react/ReactContainer';
-import '../../react/Button';
-import ButtonUsage from '../../react/Button';
-import ReactButton from '../../react/Button';
+import '../../react/ReactComponent';
+import AccountMenu from '../../react/AccountMenu';
+
 
 Ext.define('Abraxa.view.main.MainHeader', {
     extend: 'Ext.Container',
@@ -57,6 +56,11 @@ Ext.define('Abraxa.view.main.MainHeader', {
                 {
                     xtype: 'user.header.menu',
                     cls: 'a-user-header-menu',
+                },
+                {
+                    xtype: 'ReactComponent',
+                    margin: '0 0 0 16',
+                    reactComponent: AccountMenu,
                 },
             ],
         },
