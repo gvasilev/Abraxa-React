@@ -1,4 +1,3 @@
-
 Ext.define(
     'Abraxa.StateProvider',
     function (Provider) {
@@ -13,26 +12,20 @@ Ext.define(
             },
 
             constructor: function (config) {
-                // if (!config.userId) {
-                //     throw 'App.util.HttpStateProvider: Missing userId';
-                // }
-                // if (!config.url) {
-                //     throw 'App.util.HttpStateProvider: Missing url';
-                // }
+                this.queue = new Ext.util.Bag();
+                this.state = {};
 
                 this.initConfig(config);
-                var me = this;
 
                 //Uncommet this to load on init
-                me.restoreState();
+                this.restoreState();
                 // me.callParent(arguments);
             },
-            get: function(name, defaultValue) {
-                if(this.state) {
+            get: function (name, defaultValue) {
+                if (this.state) {
                     var ret = this.state[name];
                     return ret === undefined ? defaultValue : ret;
                 }
-
             },
             set: function (name, value) {
                 var me = this;
@@ -43,7 +36,6 @@ Ext.define(
                 }
 
                 me.saveStateForKey(name, value);
-                // me.callParent(arguments);
             },
 
             // private
@@ -58,7 +50,7 @@ Ext.define(
                         var result = JSON.parse(response.responseText.trim());
                         for (var property in result) {
                             if (result.hasOwnProperty(property)) {
-                                if(me.state) {
+                                if (me.state) {
                                     me.state[result[property].state_key] = me.decodeValue(result[property].state_value);
                                 }
                             }
@@ -121,6 +113,6 @@ Ext.define(
         };
     },
     function (Provider) {
-        Ext.state.Provider.register(Ext.create('Abraxa.StateProvider', {}));
+        Ext.state.Provider.register(Ext.create(Provider));
     }
 );
